@@ -30,7 +30,7 @@ export default function Home() {
     const contact = [
         "LangiQ.ai",
         "Address: 1333 Trailside Ct, San Jose, CA 95138",
-        "Phone: (408) 718 5361",
+        "Phone: (669) 356-1998",
         "Email: info@langiq.ai",
         "Website : https://www.langiq.ai"
     ];
