@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+  font-family: "Roboto Flex Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 1000;
+ }
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: "Roboto Flex Variable", sans-serif;
+    font-weight: 100;
+    font-size: 0.96rem;
+    line-height: 1.8;
+    margin: 0;
+
+}
