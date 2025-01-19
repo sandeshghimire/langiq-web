@@ -5,6 +5,13 @@ import { MdFunctions, MdArchitecture } from "react-icons/md";
 import { FaGreaterThan } from "react-icons/fa";
 import { SiInfracost, SiInformatica } from "react-icons/si";
 import Image from "next/image";
+import { AiOutlineRobot } from "react-icons/ai";
+import { AiOutlineCloudServer } from "react-icons/ai";
+import { IoMdCreate } from "react-icons/io";
+import { FaDatabase } from "react-icons/fa6";
+import { FaBug } from "react-icons/fa";
+
+
 
 export default function Home() {
     const titles = [
@@ -32,25 +39,25 @@ export default function Home() {
         {
             title: "AI/ML frameworks",
             service: services[0],
-            icon: <SiOllama />,
+            icon: <AiOutlineRobot />,
             footer: "Footer Button"
         },
         {
             title: "LLM APIs",
             service: services[1],
-            icon: <RiMiniProgramLine />,
+            icon: <AiOutlineCloudServer  />,
             footer: "Footer Button"
         },
         {
             title: "Prompt Engineering",
             service: services[2],
-            icon: <MdFunctions />,
+            icon: <IoMdCreate  />,
             footer: "Footer Button"
         },
         {
             title: "Vector Databases",
             service: services[3],
-            icon: <MdArchitecture />,
+            icon: <FaDatabase  />,
             footer: "Footer Button"
         },
         {
@@ -62,7 +69,7 @@ export default function Home() {
         {
             title: "Debug complex AI systems",
             service: services[5],
-            icon: <SiInfracost />,
+            icon: <FaBug  />,
             footer: "Footer Button"
         }
     ];
