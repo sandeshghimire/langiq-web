@@ -24,21 +24,51 @@ export default function Home() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Animation elements
+    // Load handwritten font
+    const loadFonts = async () => {
+      const font = new FontFace('Caveat', 'url(https://fonts.gstatic.com/s/caveat/v10/Wnz6HAc5bAfYB2Q7YjYY.woff2)');
+      try {
+        await font.load();
+        document.fonts.add(font);
+        console.log('Font loaded successfully');
+      } catch (error) {
+        console.error('Font loading failed:', error);
+      }
+    };
+
+    loadFonts();
+
+    // Animation elements with additional glowing properties
     const elements = {
-      user: { x: canvas.width * 0.1, y: canvas.height * 0.5, radius: 30, color: '#4285F4' },
-      langiq: { x: canvas.width * 0.5, y: canvas.height * 0.5, radius: 50, color: '#34A853' },
+      user: {
+        x: canvas.width * 0.1,
+        y: canvas.height * 0.5,
+        radius: 30,
+        color: '#4285F4',
+        glowing: false,
+        glowIntensity: 0,
+        ringSize: 5
+      },
+      langiq: {
+        x: canvas.width * 0.5,
+        y: canvas.height * 0.5,
+        radius: 50,
+        color: '#34A853',
+        glowing: false,
+        glowIntensity: 0,
+        ringSize: 8
+      },
       models: [
-        { name: 'PaLM/Gemini', x: canvas.width * 0.75, y: canvas.height * 0.3, radius: 25, color: '#EA4335' },
-        { name: 'Claude', x: canvas.width * 0.8, y: canvas.height * 0.45, radius: 25, color: '#FBBC05' },
-        { name: 'GPT-4', x: canvas.width * 0.75, y: canvas.height * 0.6, radius: 25, color: '#4285F4' },
-        { name: 'Llama/Mistral', x: canvas.width * 0.8, y: canvas.height * 0.75, radius: 25, color: '#34A853' }
+        { name: 'PaLM/Gemini', x: canvas.width * 0.75, y: canvas.height * 0.3, radius: 25, color: '#EA4335', glowing: false, glowIntensity: 0, ringSize: 4 },
+        { name: 'Claude', x: canvas.width * 0.8, y: canvas.height * 0.45, radius: 25, color: '#FBBC05', glowing: false, glowIntensity: 0, ringSize: 4 },
+        { name: 'GPT-4', x: canvas.width * 0.75, y: canvas.height * 0.6, radius: 25, color: '#4285F4', glowing: false, glowIntensity: 0, ringSize: 4 },
+        { name: 'Llama/Mistral', x: canvas.width * 0.8, y: canvas.height * 0.75, radius: 25, color: '#34A853', glowing: false, glowIntensity: 0, ringSize: 4 }
       ],
       tools: [
-        { name: 'Databases', x: canvas.width * 0.25, y: canvas.height * 0.25, radius: 20, color: '#EA4335' },
-        { name: 'APIs', x: canvas.width * 0.2, y: canvas.height * 0.75, radius: 20, color: '#FBBC05' },
-        { name: 'Vector DBs', x: canvas.width * 0.7, y: canvas.height * 0.15, radius: 20, color: '#4285F4' },
-        { name: 'Multi-Agent', x: canvas.width * 0.6, y: canvas.height * 0.85, radius: 20, color: '#34A853' }
+        { name: 'Databases', x: canvas.width * 0.25, y: canvas.height * 0.25, radius: 20, color: '#EA4335', glowing: false, glowIntensity: 0, ringSize: 3 },
+        { name: 'APIs', x: canvas.width * 0.2, y: canvas.height * 0.75, radius: 20, color: '#FBBC05', glowing: false, glowIntensity: 0, ringSize: 3 },
+        { name: 'Vector DBs', x: canvas.width * 0.7, y: canvas.height * 0.15, radius: 20, color: '#4285F4', glowing: false, glowIntensity: 0, ringSize: 3 },
+        { name: 'Multi-Agent', x: canvas.width * 0.6, y: canvas.height * 0.85, radius: 20, color: '#34A853', glowing: false, glowIntensity: 0, ringSize: 3 }
       ],
       dataPackets: []
     };
@@ -46,6 +76,63 @@ export default function Home() {
     // Animation loop
     let animationFrameId: number;
     let lastTime = 0;
+    let lastPacketTime = 0;
+
+    // Helper function to draw a node with glow and ring
+    const drawNode = (node: any, text: string) => {
+      // Draw outer white ring
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius + node.ringSize, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+      ctx.fill();
+
+      // Draw glow if the node is glowing
+      if (node.glowing && node.glowIntensity > 0) {
+        const gradient = ctx.createRadialGradient(
+          node.x, node.y, node.radius,
+          node.x, node.y, node.radius * (1.5 + node.glowIntensity * 0.5)
+        );
+        gradient.addColorStop(0, node.color);
+        gradient.addColorStop(1, `rgba(${hexToRgb(node.color)}, 0)`);
+
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.radius * (1.5 + node.glowIntensity * 0.5), 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+      }
+
+      // Draw the node
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      ctx.fillStyle = node.color;
+      ctx.fill();
+
+      // Add text
+      ctx.fillStyle = '#FFF';
+      // Use handwritten font
+      const fontSize = node.radius * 0.7;
+      ctx.font = `${fontSize}px 'Caveat', cursive`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(text, node.x, node.y);
+
+      // Reduce glow intensity over time
+      if (node.glowIntensity > 0) {
+        node.glowIntensity -= 0.05;
+        if (node.glowIntensity <= 0) {
+          node.glowing = false;
+          node.glowIntensity = 0;
+        }
+      }
+    };
+
+    // Helper function to convert hex to rgb
+    const hexToRgb = (hex: string) => {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result
+        ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`
+        : '255, 255, 255';
+    };
 
     // Data packet class for animation
     class DataPacket {
@@ -58,8 +145,9 @@ export default function Home() {
       size: number;
       arrived: boolean;
       nextTarget: { x: number, y: number } | null;
+      targetNode: any;
 
-      constructor(startX: number, startY: number, targetX: number, targetY: number, color: string) {
+      constructor(startX: number, startY: number, targetX: number, targetY: number, color: string, targetNode: any) {
         this.x = startX;
         this.y = startY;
         this.targetX = targetX;
@@ -69,6 +157,7 @@ export default function Home() {
         this.size = 5 + Math.random() * 5;
         this.arrived = false;
         this.nextTarget = null;
+        this.targetNode = targetNode;
       }
 
       update() {
@@ -77,6 +166,12 @@ export default function Home() {
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < 5) {
+          // Make target node glow when packet arrives
+          if (this.targetNode) {
+            this.targetNode.glowing = true;
+            this.targetNode.glowIntensity = 1.0;
+          }
+
           if (this.nextTarget) {
             this.targetX = this.nextTarget.x;
             this.targetY = this.nextTarget.y;
@@ -92,6 +187,19 @@ export default function Home() {
       }
 
       draw(ctx: CanvasRenderingContext2D) {
+        // Draw packet with glowing trail
+        const gradient = ctx.createRadialGradient(
+          this.x, this.y, 0,
+          this.x, this.y, this.size * 2
+        );
+        gradient.addColorStop(0, this.color);
+        gradient.addColorStop(1, `rgba(${hexToRgb(this.color)}, 0)`);
+
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size * 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fillStyle = this.color;
@@ -108,7 +216,8 @@ export default function Home() {
           elements.user.y,
           elements.langiq.x,
           elements.langiq.y,
-          '#4285F4'
+          '#4285F4',
+          elements.langiq
         );
         elements.dataPackets.push(packet);
       }
@@ -121,7 +230,8 @@ export default function Home() {
         elements.langiq.y,
         randomTarget.x,
         randomTarget.y,
-        randomTarget.color
+        randomTarget.color,
+        randomTarget
       );
       elements.dataPackets.push(packet);
 
@@ -134,7 +244,8 @@ export default function Home() {
           source.y,
           elements.langiq.x,
           elements.langiq.y,
-          source.color
+          source.color,
+          elements.langiq
         );
         elements.dataPackets.push(packet);
       }
@@ -143,14 +254,15 @@ export default function Home() {
     // Animation render function
     const render = (time: number) => {
       const deltaTime = time - lastTime;
+      const packetDeltaTime = time - lastPacketTime;
 
       // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Create new data packets
-      if (deltaTime > 300) {
+      if (packetDeltaTime > 300) {
         createDataPacket();
-        lastTime = time;
+        lastPacketTime = time;
       }
 
       // Draw connections
@@ -171,46 +283,18 @@ export default function Home() {
         ctx.stroke();
       });
 
-      // Draw elements
-      // Draw user
-      ctx.beginPath();
-      ctx.arc(elements.user.x, elements.user.y, elements.user.radius, 0, Math.PI * 2);
-      ctx.fillStyle = elements.user.color;
-      ctx.fill();
-      ctx.fillStyle = '#FFF';
-      ctx.font = '14px Arial';
-      ctx.textAlign = 'center';
-      ctx.fillText('User', elements.user.x, elements.user.y + 5);
-
-      // Draw LangIQ
-      ctx.beginPath();
-      ctx.arc(elements.langiq.x, elements.langiq.y, elements.langiq.radius, 0, Math.PI * 2);
-      ctx.fillStyle = elements.langiq.color;
-      ctx.fill();
-      ctx.fillStyle = '#FFF';
-      ctx.font = '16px Arial';
-      ctx.fillText('LangIQ', elements.langiq.x, elements.langiq.y + 5);
+      // Draw nodes with new drawNode helper
+      drawNode(elements.user, 'User');
+      drawNode(elements.langiq, 'LangIQ');
 
       // Draw models
       elements.models.forEach(model => {
-        ctx.beginPath();
-        ctx.arc(model.x, model.y, model.radius, 0, Math.PI * 2);
-        ctx.fillStyle = model.color;
-        ctx.fill();
-        ctx.fillStyle = '#FFF';
-        ctx.font = '12px Arial';
-        ctx.fillText(model.name, model.x, model.y + 5);
+        drawNode(model, model.name);
       });
 
       // Draw tools
       elements.tools.forEach(tool => {
-        ctx.beginPath();
-        ctx.arc(tool.x, tool.y, tool.radius, 0, Math.PI * 2);
-        ctx.fillStyle = tool.color;
-        ctx.fill();
-        ctx.fillStyle = '#FFF';
-        ctx.font = '12px Arial';
-        ctx.fillText(tool.name, tool.x, tool.y + 5);
+        drawNode(tool, tool.name);
       });
 
       // Update and draw data packets
@@ -223,6 +307,7 @@ export default function Home() {
         }
       });
 
+      lastTime = time;
       // Continue animation loop
       animationFrameId = requestAnimationFrame(render);
     };
@@ -238,7 +323,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4 math-paper-bg text-white relative overflow-hidden">
+    <main className="flex h-screen flex-col items-center justify-center p-0 math-paper-bg text-white relative overflow-hidden">
       {/* Background Canvas - slightly transparent to show the math paper */}
       <canvas
         ref={canvasRef}
@@ -246,7 +331,7 @@ export default function Home() {
       />
 
       {/* Content */}
-      <div className="z-10 text-center max-w-4xl">
+      <div className="z-10 text-center w-full max-w-4xl px-4">
         <motion.h1
           className="text-5xl font-bold mb-6 handwriting"
           initial={{ opacity: 0, y: -20 }}
@@ -320,7 +405,7 @@ export default function Home() {
         </motion.div>
       </div>
 
-      {/* Features Section - Changed to absolute positioning for corners */}
+      {/* Features Section */}
       <motion.section
         className="w-full h-full absolute top-0 left-0 z-10 pointer-events-none"
         initial={{ opacity: 0 }}
