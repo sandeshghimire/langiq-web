@@ -320,64 +320,86 @@ export default function Home() {
         </motion.div>
       </div>
 
-      {/* Features Section */}
+      {/* Features Section - Changed to absolute positioning for corners */}
       <motion.section
-        className="mt-20 w-full max-w-6xl z-10"
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
+        className="w-full h-full absolute top-0 left-0 z-10 pointer-events-none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.2 }}
       >
-        <h2 className="text-3xl font-bold mb-10 text-center handwriting">Powerful Features</h2>
+        <h2 className="text-3xl font-bold text-center handwriting mt-4 pointer-events-auto">Powerful Features</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="content-box p-6">
-            <h3 className="text-xl font-semibold mb-3 text-blue-400 handwriting">Model Ecosystem</h3>
-            <p className="mb-4 handwriting-alt">Access state-of-the-art models from leading AI companies:</p>
-            <ul className="list-disc list-inside space-y-1 ml-2 handwriting-alt">
-              <li>Google (PaLM, Gemini)</li>
-              <li>Anthropic (Claude)</li>
-              <li>OpenAI (GPT-4, DALL-E)</li>
-              <li>Open Source (Llama 2, Mistral, Falcon)</li>
-              <li>Local deployment with Ollama & VLLM</li>
-            </ul>
-          </div>
+        {/* Top Left - Model Ecosystem */}
+        <motion.div
+          className="content-box p-5 absolute top-8 left-8 max-w-xs pointer-events-auto"
+          initial={{ opacity: 0, x: -50, y: -50 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.4 }}
+        >
+          <h3 className="text-xl font-semibold mb-3 text-blue-400 handwriting">Model Ecosystem</h3>
+          <p className="mb-4 handwriting-alt">Access state-of-the-art models from leading AI companies:</p>
+          <ul className="list-disc list-inside space-y-1 ml-2 handwriting-alt">
+            <li>Google (PaLM, Gemini)</li>
+            <li>Anthropic (Claude)</li>
+            <li>OpenAI (GPT-4, DALL-E)</li>
+            <li>Open Source (Llama 2, Mistral, Falcon)</li>
+            <li>Local deployment with Ollama & VLLM</li>
+          </ul>
+        </motion.div>
 
-          <div className="content-box p-6">
-            <h3 className="text-xl font-semibold mb-3 text-green-400 handwriting">Advanced AI Techniques</h3>
-            <p className="mb-4 handwriting-alt">Leverage cutting-edge AI capabilities:</p>
-            <ul className="list-disc list-inside space-y-1 ml-2 handwriting-alt">
-              <li>Retrieval-Augmented Generation (RAG)</li>
-              <li>Vector databases (ChromaDB, Pinecone, FAISS)</li>
-              <li>LLM Fine-Tuning (LoRA, QLoRA, PEFT)</li>
-              <li>Multi-Agent Systems (LangChain, AutoGen)</li>
-              <li>Tool & API Integration</li>
-            </ul>
-          </div>
+        {/* Top Right - Advanced AI Techniques */}
+        <motion.div
+          className="content-box p-5 absolute top-8 right-8 max-w-xs pointer-events-auto"
+          initial={{ opacity: 0, x: 50, y: -50 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.6 }}
+        >
+          <h3 className="text-xl font-semibold mb-3 text-green-400 handwriting">Advanced AI Techniques</h3>
+          <p className="mb-4 handwriting-alt">Leverage cutting-edge AI capabilities:</p>
+          <ul className="list-disc list-inside space-y-1 ml-2 handwriting-alt">
+            <li>Retrieval-Augmented Generation (RAG)</li>
+            <li>Vector databases (ChromaDB, Pinecone, FAISS)</li>
+            <li>LLM Fine-Tuning (LoRA, QLoRA, PEFT)</li>
+            <li>Multi-Agent Systems (LangChain, AutoGen)</li>
+            <li>Tool & API Integration</li>
+          </ul>
+        </motion.div>
 
-          <div className="content-box p-6">
-            <h3 className="text-xl font-semibold mb-3 text-yellow-400 handwriting">Data Processing</h3>
-            <p className="mb-4 handwriting-alt">Transform and enrich your data:</p>
-            <ul className="list-disc list-inside space-y-1 ml-2 handwriting-alt">
-              <li>Tokenization & Normalization</li>
-              <li>Stemming & Lemmatization</li>
-              <li>Named Entity Recognition (NER)</li>
-              <li>Sentiment Analysis</li>
-              <li>Topic Modeling (LDA, NMF)</li>
-            </ul>
-          </div>
+        {/* Bottom Left - Data Processing */}
+        <motion.div
+          className="content-box p-5 absolute bottom-8 left-8 max-w-xs pointer-events-auto"
+          initial={{ opacity: 0, x: -50, y: 50 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.8 }}
+        >
+          <h3 className="text-xl font-semibold mb-3 text-yellow-400 handwriting">Data Processing</h3>
+          <p className="mb-4 handwriting-alt">Transform and enrich your data:</p>
+          <ul className="list-disc list-inside space-y-1 ml-2 handwriting-alt">
+            <li>Tokenization & Normalization</li>
+            <li>Stemming & Lemmatization</li>
+            <li>Named Entity Recognition (NER)</li>
+            <li>Sentiment Analysis</li>
+            <li>Topic Modeling (LDA, NMF)</li>
+          </ul>
+        </motion.div>
 
-          <div className="content-box p-6">
-            <h3 className="text-xl font-semibold mb-3 text-purple-400 handwriting">Multi-Modal Output</h3>
-            <p className="mb-4 handwriting-alt">Get results in various formats:</p>
-            <ul className="list-disc list-inside space-y-1 ml-2 handwriting-alt">
-              <li>Text (Markdown, HTML)</li>
-              <li>Images (PNG, JPEG via Stable Diffusion)</li>
-              <li>Videos (MP4 via RunwayML)</li>
-              <li>Speech (WAV, MP3 via gTTS)</li>
-              <li>Tailored reports & presentations</li>
-            </ul>
-          </div>
-        </div>
+        {/* Bottom Right - Multi-Modal Output */}
+        <motion.div
+          className="content-box p-5 absolute bottom-8 right-8 max-w-xs pointer-events-auto"
+          initial={{ opacity: 0, x: 50, y: 50 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ duration: 0.8, delay: 2.0 }}
+        >
+          <h3 className="text-xl font-semibold mb-3 text-purple-400 handwriting">Multi-Modal Output</h3>
+          <p className="mb-4 handwriting-alt">Get results in various formats:</p>
+          <ul className="list-disc list-inside space-y-1 ml-2 handwriting-alt">
+            <li>Text (Markdown, HTML)</li>
+            <li>Images (PNG, JPEG via Stable Diffusion)</li>
+            <li>Videos (MP4 via RunwayML)</li>
+            <li>Speech (WAV, MP3 via gTTS)</li>
+            <li>Tailored reports & presentations</li>
+          </ul>
+        </motion.div>
       </motion.section>
     </main>
   );
