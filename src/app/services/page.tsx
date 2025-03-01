@@ -34,30 +34,7 @@ export default function ServicesPage() {
             icon: "🧠",
             color: "red"
         },
-        {
-            title: "RAG Systems",
-            description: "Build powerful retrieval-augmented generation systems with automatic vector database integration.",
-            icon: "📚",
-            color: "green"
-        },
-        {
-            title: "Multi-Agent Systems",
-            description: "Deploy collaborative AI agents that work together to solve complex problems.",
-            icon: "👥",
-            color: "purple"
-        },
-        {
-            title: "Data Processing",
-            description: "Transform, clean, and enrich your data with advanced ML pipelines and workflows.",
-            icon: "📊",
-            color: "yellow"
-        },
-        {
-            title: "Custom Fine-Tuning",
-            description: "Train specialized AI models on your proprietary data using efficient techniques like LoRA.",
-            icon: "🧠",
-            color: "red"
-        },
+
         {
             title: "API Orchestration",
             description: "Seamlessly connect multiple AI services and databases into a unified workflow.",
