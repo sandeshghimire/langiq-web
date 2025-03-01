@@ -72,9 +72,7 @@ export default function ServicesPage() {
                             <p className="handwriting-alt text-gray-200">
                                 {service.description}
                             </p>
-                            <button className="mt-4 handwriting text-sm border border-blue-500 hover:bg-blue-500/20 text-blue-300 rounded-full px-4 py-1 transition-all">
-                                Learn More →
-                            </button>
+
                         </motion.div>
                     ))}
                 </div>
