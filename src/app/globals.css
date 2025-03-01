@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -8,6 +12,11 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --foreground-rgb: 255, 255, 255;
+  --background-rgb: 20, 20, 30;
+  --grid-color: rgba(100, 100, 240, 0.2);
+  --grid-size: 20px;
+  --grid-small: 4px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,7 +27,32 @@
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: rgb(var(--foreground-rgb));
+  background-color: rgb(var(--background-rgb));
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.math-paper-bg {
+  background-color: rgb(20, 20, 35);
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(var(--grid-color) 0.5px, transparent 0.5px),
+    linear-gradient(90deg, var(--grid-color) 0.5px, transparent 0.5px);
+  background-size: var(--grid-size) var(--grid-size), var(--grid-size) var(--grid-size), var(--grid-small) var(--grid-small), var(--grid-small) var(--grid-small);
+  background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+}
+
+.handwriting {
+  font-family: var(--font-caveat), cursive;
+}
+
+.handwriting-alt {
+  font-family: var(--font-kalam), cursive;
+}
+
+.content-box {
+  background-color: rgba(20, 20, 35, 0.85);
+  border: 2px solid rgba(100, 100, 240, 0.3);
+  border-radius: 8px;
 }

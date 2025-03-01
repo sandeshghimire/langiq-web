@@ -238,26 +238,27 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gray-900 text-white relative overflow-hidden">
-      {/* Background Canvas */}
+    <main className="flex min-h-screen flex-col items-center justify-center p-4 math-paper-bg text-white relative overflow-hidden">
+      {/* Background Canvas - slightly transparent to show the math paper */}
       <canvas
         ref={canvasRef}
-        className="absolute top-0 left-0 w-full h-full z-0"
+        className="absolute top-0 left-0 w-full h-full z-0 opacity-80"
       />
 
       {/* Content */}
       <div className="z-10 text-center max-w-4xl">
         <motion.h1
-          className="text-5xl font-bold mb-6"
+          className="text-5xl font-bold mb-6 handwriting"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}
         >
           LangIQ
         </motion.h1>
 
         <motion.p
-          className="text-xl mb-8"
+          className="text-xl mb-8 handwriting-alt"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -271,9 +272,9 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <div className="bg-gray-800 p-6 rounded-lg shadow-xl">
-            <h2 className="text-xl font-semibold mb-3 text-blue-400">Input</h2>
-            <ul className="text-left space-y-2">
+          <div className="content-box p-6">
+            <h2 className="text-xl font-semibold mb-3 text-blue-400 handwriting">Input</h2>
+            <ul className="text-left space-y-2 handwriting-alt">
               <li>• Universal Data Ingestion</li>
               <li>• Multiple File Formats</li>
               <li>• Database Connections</li>
@@ -282,9 +283,9 @@ export default function Home() {
             </ul>
           </div>
 
-          <div className="bg-gray-800 p-6 rounded-lg shadow-xl">
-            <h2 className="text-xl font-semibold mb-3 text-green-400">Processing</h2>
-            <ul className="text-left space-y-2">
+          <div className="content-box p-6">
+            <h2 className="text-xl font-semibold mb-3 text-green-400 handwriting">Processing</h2>
+            <ul className="text-left space-y-2 handwriting-alt">
               <li>• Intelligent Analysis</li>
               <li>• Model Orchestration</li>
               <li>• Frontier AI Models</li>
@@ -293,9 +294,9 @@ export default function Home() {
             </ul>
           </div>
 
-          <div className="bg-gray-800 p-6 rounded-lg shadow-xl">
-            <h2 className="text-xl font-semibold mb-3 text-yellow-400">Output</h2>
-            <ul className="text-left space-y-2">
+          <div className="content-box p-6">
+            <h2 className="text-xl font-semibold mb-3 text-yellow-400 handwriting">Output</h2>
+            <ul className="text-left space-y-2 handwriting-alt">
               <li>• Multi-Modal Results</li>
               <li>• Contextualized Responses</li>
               <li>• Customizable Formats</li>
@@ -310,10 +311,10 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 mr-4">
+          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 mr-4 handwriting">
             Get Started
           </button>
-          <button className="bg-transparent border-2 border-blue-600 hover:bg-blue-600/10 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300">
+          <button className="bg-transparent border-2 border-blue-600 hover:bg-blue-600/10 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 handwriting">
             Learn More
           </button>
         </motion.div>
@@ -326,13 +327,13 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1.2 }}
       >
-        <h2 className="text-3xl font-bold mb-10 text-center">Powerful Features</h2>
+        <h2 className="text-3xl font-bold mb-10 text-center handwriting">Powerful Features</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-gray-800/70 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold mb-3 text-blue-400">Model Ecosystem</h3>
-            <p className="mb-4">Access state-of-the-art models from leading AI companies:</p>
-            <ul className="list-disc list-inside space-y-1 ml-2">
+          <div className="content-box p-6">
+            <h3 className="text-xl font-semibold mb-3 text-blue-400 handwriting">Model Ecosystem</h3>
+            <p className="mb-4 handwriting-alt">Access state-of-the-art models from leading AI companies:</p>
+            <ul className="list-disc list-inside space-y-1 ml-2 handwriting-alt">
               <li>Google (PaLM, Gemini)</li>
               <li>Anthropic (Claude)</li>
               <li>OpenAI (GPT-4, DALL-E)</li>
@@ -341,10 +342,10 @@ export default function Home() {
             </ul>
           </div>
 
-          <div className="bg-gray-800/70 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold mb-3 text-green-400">Advanced AI Techniques</h3>
-            <p className="mb-4">Leverage cutting-edge AI capabilities:</p>
-            <ul className="list-disc list-inside space-y-1 ml-2">
+          <div className="content-box p-6">
+            <h3 className="text-xl font-semibold mb-3 text-green-400 handwriting">Advanced AI Techniques</h3>
+            <p className="mb-4 handwriting-alt">Leverage cutting-edge AI capabilities:</p>
+            <ul className="list-disc list-inside space-y-1 ml-2 handwriting-alt">
               <li>Retrieval-Augmented Generation (RAG)</li>
               <li>Vector databases (ChromaDB, Pinecone, FAISS)</li>
               <li>LLM Fine-Tuning (LoRA, QLoRA, PEFT)</li>
@@ -353,10 +354,10 @@ export default function Home() {
             </ul>
           </div>
 
-          <div className="bg-gray-800/70 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold mb-3 text-yellow-400">Data Processing</h3>
-            <p className="mb-4">Transform and enrich your data:</p>
-            <ul className="list-disc list-inside space-y-1 ml-2">
+          <div className="content-box p-6">
+            <h3 className="text-xl font-semibold mb-3 text-yellow-400 handwriting">Data Processing</h3>
+            <p className="mb-4 handwriting-alt">Transform and enrich your data:</p>
+            <ul className="list-disc list-inside space-y-1 ml-2 handwriting-alt">
               <li>Tokenization & Normalization</li>
               <li>Stemming & Lemmatization</li>
               <li>Named Entity Recognition (NER)</li>
@@ -365,10 +366,10 @@ export default function Home() {
             </ul>
           </div>
 
-          <div className="bg-gray-800/70 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold mb-3 text-purple-400">Multi-Modal Output</h3>
-            <p className="mb-4">Get results in various formats:</p>
-            <ul className="list-disc list-inside space-y-1 ml-2">
+          <div className="content-box p-6">
+            <h3 className="text-xl font-semibold mb-3 text-purple-400 handwriting">Multi-Modal Output</h3>
+            <p className="mb-4 handwriting-alt">Get results in various formats:</p>
+            <ul className="list-disc list-inside space-y-1 ml-2 handwriting-alt">
               <li>Text (Markdown, HTML)</li>
               <li>Images (PNG, JPEG via Stable Diffusion)</li>
               <li>Videos (MP4 via RunwayML)</li>
