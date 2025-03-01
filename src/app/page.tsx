@@ -327,11 +327,9 @@ export default function Home() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.2 }}
       >
-        <h2 className="text-3xl font-bold text-center handwriting mt-4 pointer-events-auto">Powerful Features</h2>
-
         {/* Top Left - Model Ecosystem */}
         <motion.div
-          className="content-box p-5 absolute top-8 left-8 max-w-xs pointer-events-auto"
+          className="content-box p-5 absolute top-20 left-8 max-w-xs pointer-events-auto" // Modified top position to account for navbar
           initial={{ opacity: 0, x: -50, y: -50 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, delay: 1.4 }}
@@ -349,7 +347,7 @@ export default function Home() {
 
         {/* Top Right - Advanced AI Techniques */}
         <motion.div
-          className="content-box p-5 absolute top-8 right-8 max-w-xs pointer-events-auto"
+          className="content-box p-5 absolute top-20 right-8 max-w-xs pointer-events-auto" // Modified top position to account for navbar
           initial={{ opacity: 0, x: 50, y: -50 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, delay: 1.6 }}
