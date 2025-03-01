@@ -414,7 +414,7 @@ export default function Home() {
       >
         {/* Top Left - Model Ecosystem */}
         <motion.div
-          className="content-box p-5 absolute top-20 left-8 max-w-xs pointer-events-auto" // Modified top position to account for navbar
+          className="content-box p-5 absolute top-20 left-6 max-w-[320px] sm:max-w-[380px] pointer-events-auto"
           initial={{ opacity: 0, x: -50, y: -50 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, delay: 1.4 }}
@@ -432,7 +432,7 @@ export default function Home() {
 
         {/* Top Right - Advanced AI Techniques */}
         <motion.div
-          className="content-box p-5 absolute top-20 right-8 max-w-xs pointer-events-auto" // Modified top position to account for navbar
+          className="content-box p-5 absolute top-20 right-6 max-w-[320px] sm:max-w-[380px] pointer-events-auto"
           initial={{ opacity: 0, x: 50, y: -50 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, delay: 1.6 }}
@@ -450,7 +450,7 @@ export default function Home() {
 
         {/* Bottom Left - Data Processing */}
         <motion.div
-          className="content-box p-5 absolute bottom-8 left-8 max-w-xs pointer-events-auto"
+          className="content-box p-5 absolute bottom-8 left-6 max-w-[320px] sm:max-w-[380px] pointer-events-auto"
           initial={{ opacity: 0, x: -50, y: 50 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, delay: 1.8 }}
@@ -468,7 +468,7 @@ export default function Home() {
 
         {/* Bottom Right - Multi-Modal Output */}
         <motion.div
-          className="content-box p-5 absolute bottom-8 right-8 max-w-xs pointer-events-auto"
+          className="content-box p-5 absolute bottom-8 right-6 max-w-[320px] sm:max-w-[380px] pointer-events-auto"
           initial={{ opacity: 0, x: 50, y: 50 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, delay: 2.0 }}

@@ -58,6 +58,8 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(5px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 .content-box:hover {
@@ -74,6 +76,7 @@ body {
     bottom: auto !important;
     margin: 1rem auto;
     max-width: 90% !important;
+    width: 90%;
   }
 
   nav .handwriting,
