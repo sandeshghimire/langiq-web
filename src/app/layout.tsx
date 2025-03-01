@@ -113,7 +113,7 @@ export default function RootLayout({
         </nav>
 
         {/* Add padding to the top of the main content to account for the fixed nav */}
-        <div className="pt-16">
+        <div className="">
           {children}
         </div>
       </body>

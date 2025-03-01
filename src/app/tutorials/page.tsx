@@ -76,7 +76,7 @@ export default function TutorialsPage() {
     };
 
     return (
-        <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-white p-6 pt-8">
+        <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-white p-6 pt-32">
             <motion.div
                 className="max-w-6xl mx-auto"
                 initial={{ opacity: 0 }}
@@ -94,8 +94,8 @@ export default function TutorialsPage() {
                         <button
                             key={category.id}
                             className={`handwriting px-4 py-1 rounded-full transition-all ${activeCategory === category.id
-                                    ? 'bg-blue-600 text-white'
-                                    : 'bg-gray-800 hover:bg-gray-700 text-gray-300'
+                                ? 'bg-blue-600 text-white'
+                                : 'bg-gray-800 hover:bg-gray-700 text-gray-300'
                                 }`}
                             onClick={() => setActiveCategory(category.id)}
                         >

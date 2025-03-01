@@ -48,7 +48,7 @@ export default function ApplicationsPage() {
     ];
 
     return (
-        <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-white p-6 pt-8">
+        <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-white p-6 pt-8 pt-32">
             <motion.div
                 className="max-w-6xl mx-auto"
                 initial={{ opacity: 0 }}
