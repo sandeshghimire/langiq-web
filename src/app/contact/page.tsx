@@ -77,8 +77,8 @@ export default function ContactPage() {
     };
 
     const officeLocations = [
-        { city: "San Francisco", address: "123 AI Avenue, San Francisco, CA 94105", phone: "+1 (415) 555-0123" },
-        { city: "New York", address: "456 Tech Tower, New York, NY 10001", phone: "+1 (212) 555-0456" },
+        { city: "San Francisco Bay Area", address: "1333 Trailside Ct, San Jose, CA 95138", phone: "+1 (415) 555-0123" },
+        { city: "Ann Arbor, Michigan", address: "1252 Timmins dr, Ann Arbor, MI 48103", phone: "+1 (212) 555-0456" },
         { city: "London", address: "78 Innovation Lane, London, UK EC1V 9BP", phone: "+44 20 7123 4567" }
     ];
 
