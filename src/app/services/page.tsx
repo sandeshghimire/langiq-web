@@ -34,12 +34,95 @@ export default function ServicesPage() {
             icon: "🧠",
             color: "red"
         },
-
         {
             title: "API Orchestration",
             description: "Seamlessly connect multiple AI services and databases into a unified workflow.",
             icon: "🔄",
             color: "orange"
+        },
+        {
+            title: "Real-time AI Monitoring",
+            description: "Track and analyze AI performance metrics with sophisticated dashboards and alert systems.",
+            icon: "📈",
+            color: "indigo"
+        },
+        {
+            title: "Voice & Speech Processing",
+            description: "Implement speech recognition, text-to-speech, and voice analysis capabilities into your applications.",
+            icon: "🎙️",
+            color: "pink"
+        },
+        {
+            title: "Computer Vision Integration",
+            description: "Add image recognition, object detection, and visual processing capabilities to your systems.",
+            icon: "👁️",
+            color: "cyan"
+        },
+        {
+            title: "Sentiment Analysis",
+            description: "Understand customer emotions and feedback through advanced NLP sentiment analysis tools.",
+            icon: "😊",
+            color: "teal"
+        },
+        {
+            title: "Language Translation",
+            description: "Deploy neural machine translation systems for accurate, context-aware multilingual communication.",
+            icon: "🌐",
+            color: "blue"
+        },
+        {
+            title: "Knowledge Graph Construction",
+            description: "Build semantic knowledge representations of your data for enhanced AI reasoning and insights.",
+            icon: "🕸️",
+            color: "purple"
+        },
+        {
+            title: "AI Training & Workshops",
+            description: "Equip your team with practical AI skills through customized training programs and workshops.",
+            icon: "🎓",
+            color: "green"
+        },
+        {
+            title: "Compliance & Ethics Framework",
+            description: "Develop responsible AI governance with built-in bias detection and ethical guidelines.",
+            icon: "⚖️",
+            color: "amber"
+        },
+        {
+            title: "Chatbot Development",
+            description: "Create intelligent conversational interfaces for customer support and information retrieval.",
+            icon: "💬",
+            color: "emerald"
+        },
+        {
+            title: "Predictive Analytics",
+            description: "Forecast trends and outcomes using machine learning models trained on historical data.",
+            icon: "🔮",
+            color: "violet"
+        },
+        {
+            title: "Natural Language Processing",
+            description: "Implement text classification, entity recognition, and semantic understanding capabilities.",
+            icon: "📝",
+            color: "rose"
+        },
+        {
+            title: "AI Strategy Consulting",
+            description: "Get expert guidance on AI adoption roadmaps, use cases, and ROI optimization.",
+            icon: "🧩",
+            color: "red"
+        },
+        {
+            title: "MLOps Infrastructure",
+            description: "Build robust deployment pipelines for model versioning, monitoring, and automated retraining.",
+            icon: "⚙️",
+            color: "gray"
+        },
+        {
+            title: "Reinforcement Learning Solutions",
+            description: "Implement self-improving AI systems that optimize through experience and feedback loops.",
+            icon: "🎮",
+            color: "lime"
         }
     ];
 
