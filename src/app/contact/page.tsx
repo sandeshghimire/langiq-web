@@ -11,6 +11,12 @@ export default function ContactPage() {
         message: '',
         subject: 'General Inquiry'
     });
+    const [submitStatus, setSubmitStatus] = useState({
+        submitting: false,
+        submitted: false,
+        error: false,
+        message: ''
+    });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         setFormState({
@@ -19,11 +25,55 @@ export default function ContactPage() {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Form submission logic would go here
-        console.log('Form submitted:', formState);
-        alert('Thanks for your message! We will get back to you soon.');
+
+        setSubmitStatus({
+            ...submitStatus,
+            submitting: true,
+            error: false,
+            message: ''
+        });
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formState),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to submit form');
+            }
+
+            setSubmitStatus({
+                submitting: false,
+                submitted: true,
+                error: false,
+                message: 'Thanks for your message! We will get back to you soon.'
+            });
+
+            // Clear the form
+            setFormState({
+                name: '',
+                email: '',
+                company: '',
+                message: '',
+                subject: 'General Inquiry'
+            });
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            setSubmitStatus({
+                submitting: false,
+                submitted: false,
+                error: true,
+                message: 'Failed to submit form. Please try again.'
+            });
+        }
     };
 
     const officeLocations = [
@@ -55,83 +105,96 @@ export default function ContactPage() {
                     >
                         <h2 className="text-2xl font-semibold mb-6 handwriting">Send Us a Message</h2>
 
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block mb-2 handwriting-alt text-gray-300">Your Name</label>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        value={formState.name}
-                                        onChange={handleChange}
-                                        className="w-full p-3 bg-gray-800/70 border border-gray-700 rounded-lg handwriting-alt focus:ring-blue-500 focus:border-blue-500"
-                                        required
-                                    />
-                                </div>
-
-                                <div>
-                                    <label className="block mb-2 handwriting-alt text-gray-300">Email Address</label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value={formState.email}
-                                        onChange={handleChange}
-                                        className="w-full p-3 bg-gray-800/70 border border-gray-700 rounded-lg handwriting-alt focus:ring-blue-500 focus:border-blue-500"
-                                        required
-                                    />
-                                </div>
+                        {submitStatus.submitted ? (
+                            <div className="bg-green-600/20 border border-green-500 text-white p-4 rounded-lg mb-6">
+                                <p className="handwriting-alt">{submitStatus.message}</p>
                             </div>
+                        ) : (
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                {submitStatus.error && (
+                                    <div className="bg-red-600/20 border border-red-500 text-white p-4 rounded-lg">
+                                        <p className="handwriting-alt">{submitStatus.message}</p>
+                                    </div>
+                                )}
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block mb-2 handwriting-alt text-gray-300">Company (Optional)</label>
-                                    <input
-                                        type="text"
-                                        name="company"
-                                        value={formState.company}
-                                        onChange={handleChange}
-                                        className="w-full p-3 bg-gray-800/70 border border-gray-700 rounded-lg handwriting-alt focus:ring-blue-500 focus:border-blue-500"
-                                    />
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label className="block mb-2 handwriting-alt text-gray-300">Your Name</label>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            value={formState.name}
+                                            onChange={handleChange}
+                                            className="w-full p-3 bg-gray-800/70 border border-gray-700 rounded-lg handwriting-alt focus:ring-blue-500 focus:border-blue-500"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block mb-2 handwriting-alt text-gray-300">Email Address</label>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            value={formState.email}
+                                            onChange={handleChange}
+                                            className="w-full p-3 bg-gray-800/70 border border-gray-700 rounded-lg handwriting-alt focus:ring-blue-500 focus:border-blue-500"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label className="block mb-2 handwriting-alt text-gray-300">Company (Optional)</label>
+                                        <input
+                                            type="text"
+                                            name="company"
+                                            value={formState.company}
+                                            onChange={handleChange}
+                                            className="w-full p-3 bg-gray-800/70 border border-gray-700 rounded-lg handwriting-alt focus:ring-blue-500 focus:border-blue-500"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block mb-2 handwriting-alt text-gray-300">Subject</label>
+                                        <select
+                                            name="subject"
+                                            value={formState.subject}
+                                            onChange={handleChange}
+                                            className="w-full p-3 bg-gray-800/70 border border-gray-700 rounded-lg handwriting-alt focus:ring-blue-500 focus:border-blue-500"
+                                        >
+                                            <option value="General Inquiry">General Inquiry</option>
+                                            <option value="Technical Support">Technical Support</option>
+                                            <option value="Partnership">Partnership</option>
+                                            <option value="Pricing">Pricing</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <div>
-                                    <label className="block mb-2 handwriting-alt text-gray-300">Subject</label>
-                                    <select
-                                        name="subject"
-                                        value={formState.subject}
+                                    <label className="block mb-2 handwriting-alt text-gray-300">Your Message</label>
+                                    <textarea
+                                        name="message"
+                                        value={formState.message}
                                         onChange={handleChange}
+                                        rows={6}
                                         className="w-full p-3 bg-gray-800/70 border border-gray-700 rounded-lg handwriting-alt focus:ring-blue-500 focus:border-blue-500"
+                                        required
+                                    ></textarea>
+                                </div>
+
+                                <div>
+                                    <button
+                                        type="submit"
+                                        disabled={submitStatus.submitting}
+                                        className="py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition duration-300 handwriting-alt disabled:opacity-70"
                                     >
-                                        <option value="General Inquiry">General Inquiry</option>
-                                        <option value="Technical Support">Technical Support</option>
-                                        <option value="Partnership">Partnership</option>
-                                        <option value="Pricing">Pricing</option>
-                                        <option value="Other">Other</option>
-                                    </select>
+                                        {submitStatus.submitting ? 'Sending...' : 'Send Message'}
+                                    </button>
                                 </div>
-                            </div>
-
-                            <div>
-                                <label className="block mb-2 handwriting-alt text-gray-300">Your Message</label>
-                                <textarea
-                                    name="message"
-                                    value={formState.message}
-                                    onChange={handleChange}
-                                    rows={6}
-                                    className="w-full p-3 bg-gray-800/70 border border-gray-700 rounded-lg handwriting-alt focus:ring-blue-500 focus:border-blue-500"
-                                    required
-                                ></textarea>
-                            </div>
-
-                            <div>
-                                <button
-                                    type="submit"
-                                    className="py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition duration-300 handwriting-alt"
-                                >
-                                    Send Message
-                                </button>
-                            </div>
-                        </form>
+                            </form>
+                        )}
                     </motion.div>
 
                     {/* Contact Information */}
