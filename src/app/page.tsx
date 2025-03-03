@@ -3,6 +3,9 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
+// Import DataPacket interface
+import { DataPacket } from '../types/dataPacket';
+
 export default function Home() {
   // Reference to the canvas for animation
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -39,7 +42,47 @@ export default function Home() {
     loadFonts();
 
     // Animation elements with additional glowing properties
-    const elements = {
+    const elements: {
+      user: {
+        x: number;
+        y: number;
+        radius: number;
+        color: string;
+        glowing: boolean;
+        glowIntensity: number;
+        ringSize: number;
+      };
+      langiq: {
+        x: number;
+        y: number;
+        radius: number;
+        color: string;
+        glowing: boolean;
+        glowIntensity: number;
+        ringSize: number;
+      };
+      models: {
+        name: string;
+        x: number;
+        y: number;
+        radius: number;
+        color: string;
+        glowing: boolean;
+        glowIntensity: number;
+        ringSize: number;
+      }[];
+      tools: {
+        name: string;
+        x: number;
+        y: number;
+        radius: number;
+        color: string;
+        glowing: boolean;
+        glowIntensity: number;
+        ringSize: number;
+      }[];
+      dataPackets: DataPacket[]; // Change from never[] or any[] to DataPacket[]
+    } = {
       user: {
         x: canvas.width * 0.1,
         y: canvas.height * 0.5,
@@ -134,8 +177,8 @@ export default function Home() {
         : '255, 255, 255';
     };
 
-    // Data packet class for animation
-    class DataPacket {
+    // Rename the class to AnimatedPacket to avoid conflict with the imported DataPacket interface
+    class AnimatedPacket implements DataPacket {
       x: number;
       y: number;
       targetX: number;
@@ -146,6 +189,11 @@ export default function Home() {
       arrived: boolean;
       nextTarget: { x: number, y: number } | null;
       targetNode: any;
+      // Add these properties to satisfy the DataPacket interface
+      id?: string;
+      type?: string;
+      content?: any;
+      timestamp?: number;
 
       constructor(startX: number, startY: number, targetX: number, targetY: number, color: string, targetNode: any) {
         this.x = startX;
@@ -158,6 +206,10 @@ export default function Home() {
         this.arrived = false;
         this.nextTarget = null;
         this.targetNode = targetNode;
+        // Initialize interface properties
+        this.id = Math.random().toString(36).substring(2, 9);
+        this.type = 'animated';
+        this.timestamp = Date.now();
       }
 
       update() {
@@ -211,7 +263,7 @@ export default function Home() {
     const createDataPacket = () => {
       // User to LangIQ
       if (Math.random() > 0.5) {
-        const packet = new DataPacket(
+        const packet = new AnimatedPacket(
           elements.user.x,
           elements.user.y,
           elements.langiq.x,
@@ -225,7 +277,7 @@ export default function Home() {
       // LangIQ to Models/Tools
       const targets = [...elements.models, ...elements.tools];
       const randomTarget = targets[Math.floor(Math.random() * targets.length)];
-      const packet = new DataPacket(
+      const packet = new AnimatedPacket(
         elements.langiq.x,
         elements.langiq.y,
         randomTarget.x,
@@ -239,7 +291,7 @@ export default function Home() {
       if (Math.random() > 0.7) {
         const sourceIndex = Math.floor(Math.random() * targets.length);
         const source = targets[sourceIndex];
-        const packet = new DataPacket(
+        const packet = new AnimatedPacket(
           source.x,
           source.y,
           elements.langiq.x,
