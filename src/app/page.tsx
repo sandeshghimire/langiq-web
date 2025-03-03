@@ -41,10 +41,10 @@ export default function Home() {
 
     loadFonts();
 
-    // Calculate cluster positions around a circle
+    // Calculate cluster positions around a circle with 30% increased radius
     const centerX = canvas.width * 0.5;
     const centerY = canvas.height * 0.5;
-    const radius = Math.min(canvas.width, canvas.height) * 0.3;
+    const radius = Math.min(canvas.width, canvas.height) * 0.39; // Increased by 30%
 
     // Helper function to calculate position on a circle
     const posOnCircle = (angle: number, distance: number = 1) => {
@@ -53,6 +53,10 @@ export default function Home() {
         y: centerY + Math.sin(angle) * radius * distance
       };
     };
+
+    // Calculate equal angles for 7 clusters
+    const clusterCount = 7;
+    const angleStep = (Math.PI * 2) / clusterCount;
 
     // Animation elements with cluster structure
     const elements: {
@@ -63,6 +67,7 @@ export default function Home() {
         color: string;
         glowing: boolean;
         glowIntensity: number;
+        glowColor: string;
         ringSize: number;
       };
       langiq: {
@@ -72,6 +77,7 @@ export default function Home() {
         color: string;
         glowing: boolean;
         glowIntensity: number;
+        glowColor: string;
         ringSize: number;
       };
       clusters: {
@@ -82,6 +88,7 @@ export default function Home() {
         color: string;
         glowing: boolean;
         glowIntensity: number;
+        glowColor: string;
         ringSize: number;
         nodes: {
           name: string;
@@ -91,6 +98,7 @@ export default function Home() {
           color: string;
           glowing: boolean;
           glowIntensity: number;
+          glowColor: string;
           ringSize: number;
         }[];
       }[];
@@ -103,6 +111,7 @@ export default function Home() {
         color: '#4285F4',
         glowing: false,
         glowIntensity: 0,
+        glowColor: '#4285F4',
         ringSize: 5
       },
       langiq: {
@@ -112,289 +121,320 @@ export default function Home() {
         color: '#34A853',
         glowing: false,
         glowIntensity: 0,
+        glowColor: '#34A853',
         ringSize: 8
       },
       clusters: [
         {
           name: "Frontier Models",
-          ...posOnCircle(Math.PI * 0.25),
+          ...posOnCircle(angleStep * 0),
           radius: 35,
           color: '#EA4335',
           glowing: false,
           glowIntensity: 0,
+          glowColor: '#EA4335',
           ringSize: 6,
           nodes: [
             {
               name: "Gemini",
-              ...posOnCircle(Math.PI * 0.2, 0.9),
+              ...posOnCircle(angleStep * 0 - 0.15, 0.9),
               radius: 20,
               color: '#EA4335',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#EA4335',
               ringSize: 3
             },
             {
               name: "GPT-4",
-              ...posOnCircle(Math.PI * 0.25, 0.9),
+              ...posOnCircle(angleStep * 0, 0.9),
               radius: 20,
               color: '#EA4335',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#EA4335',
               ringSize: 3
             },
             {
               name: "Claude 3",
-              ...posOnCircle(Math.PI * 0.3, 0.9),
+              ...posOnCircle(angleStep * 0 + 0.15, 0.9),
               radius: 20,
               color: '#EA4335',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#EA4335',
               ringSize: 3
             },
             {
               name: "DeepSeek-V2",
-              ...posOnCircle(Math.PI * 0.35, 0.9),
+              ...posOnCircle(angleStep * 0 + 0.3, 0.9),
               radius: 20,
               color: '#EA4335',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#EA4335',
               ringSize: 3
             }
           ]
         },
         {
           name: "Fine-tuned Models",
-          ...posOnCircle(Math.PI * 0.75),
+          ...posOnCircle(angleStep * 1),
           radius: 35,
           color: '#FBBC05',
           glowing: false,
           glowIntensity: 0,
+          glowColor: '#FBBC05',
           ringSize: 6,
           nodes: [
             {
               name: "Med-PaLM",
-              ...posOnCircle(Math.PI * 0.7, 0.9),
+              ...posOnCircle(angleStep * 1 - 0.15, 0.9),
               radius: 20,
               color: '#FBBC05',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#FBBC05',
               ringSize: 3
             },
             {
               name: "GPT-4 Turbo",
-              ...posOnCircle(Math.PI * 0.75, 0.9),
+              ...posOnCircle(angleStep * 1, 0.9),
               radius: 20,
               color: '#FBBC05',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#FBBC05',
               ringSize: 3
             },
             {
               name: "Claude Specialized",
-              ...posOnCircle(Math.PI * 0.8, 0.9),
+              ...posOnCircle(angleStep * 1 + 0.15, 0.9),
               radius: 20,
               color: '#FBBC05',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#FBBC05',
               ringSize: 3
             }
           ]
         },
         {
           name: "Open Source Models",
-          ...posOnCircle(Math.PI * 1.25),
+          ...posOnCircle(angleStep * 2),
           radius: 35,
           color: '#4285F4',
           glowing: false,
           glowIntensity: 0,
+          glowColor: '#4285F4',
           ringSize: 6,
           nodes: [
             {
               name: "Llama 3",
-              ...posOnCircle(Math.PI * 1.2, 0.9),
+              ...posOnCircle(angleStep * 2 - 0.15, 0.9),
               radius: 20,
               color: '#4285F4',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#4285F4',
               ringSize: 3
             },
             {
               name: "Qwen",
-              ...posOnCircle(Math.PI * 1.25, 0.9),
+              ...posOnCircle(angleStep * 2, 0.9),
               radius: 20,
               color: '#4285F4',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#4285F4',
               ringSize: 3
             },
             {
               name: "Phi",
-              ...posOnCircle(Math.PI * 1.3, 0.9),
+              ...posOnCircle(angleStep * 2 + 0.15, 0.9),
               radius: 20,
               color: '#4285F4',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#4285F4',
               ringSize: 3
             },
             {
               name: "Mistral",
-              ...posOnCircle(Math.PI * 1.35, 0.9),
+              ...posOnCircle(angleStep * 2 + 0.3, 0.9),
               radius: 20,
               color: '#4285F4',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#4285F4',
               ringSize: 3
             }
           ]
         },
         {
           name: "Frameworks",
-          ...posOnCircle(Math.PI * 1.75),
+          ...posOnCircle(angleStep * 3),
           radius: 35,
           color: '#34A853',
           glowing: false,
           glowIntensity: 0,
+          glowColor: '#34A853',
           ringSize: 6,
           nodes: [
             {
               name: "Hugging Face",
-              ...posOnCircle(Math.PI * 1.7, 0.9),
+              ...posOnCircle(angleStep * 3 - 0.15, 0.9),
               radius: 20,
               color: '#34A853',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#34A853',
               ringSize: 3
             },
             {
               name: "Transformers",
-              ...posOnCircle(Math.PI * 1.75, 0.9),
+              ...posOnCircle(angleStep * 3, 0.9),
               radius: 20,
               color: '#34A853',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#34A853',
               ringSize: 3
             },
             {
               name: "Multimodal",
-              ...posOnCircle(Math.PI * 1.8, 0.9),
+              ...posOnCircle(angleStep * 3 + 0.15, 0.9),
               radius: 20,
               color: '#34A853',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#34A853',
               ringSize: 3
             }
           ]
         },
         {
           name: "Retrieval",
-          ...posOnCircle(Math.PI * -0.05),
+          ...posOnCircle(angleStep * 4),
           radius: 35,
           color: '#9C27B0',
           glowing: false,
           glowIntensity: 0,
+          glowColor: '#9C27B0',
           ringSize: 6,
           nodes: [
             {
               name: "Vector DBs",
-              ...posOnCircle(Math.PI * -0.1, 0.9),
+              ...posOnCircle(angleStep * 4 - 0.15, 0.9),
               radius: 20,
               color: '#9C27B0',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#9C27B0',
               ringSize: 3
             },
             {
               name: "RAG Systems",
-              ...posOnCircle(Math.PI * -0.05, 0.9),
+              ...posOnCircle(angleStep * 4, 0.9),
               radius: 20,
               color: '#9C27B0',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#9C27B0',
               ringSize: 3
             },
             {
               name: "Knowledge Bases",
-              ...posOnCircle(Math.PI * 0, 0.9),
+              ...posOnCircle(angleStep * 4 + 0.15, 0.9),
               radius: 20,
               color: '#9C27B0',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#9C27B0',
               ringSize: 3
             }
           ]
         },
         {
           name: "Tools & Interfaces",
-          ...posOnCircle(Math.PI * -0.35),
+          ...posOnCircle(angleStep * 5),
           radius: 35,
           color: '#FF5722',
           glowing: false,
           glowIntensity: 0,
+          glowColor: '#FF5722',
           ringSize: 6,
           nodes: [
             {
               name: "Web Search",
-              ...posOnCircle(Math.PI * -0.4, 0.9),
+              ...posOnCircle(angleStep * 5 - 0.15, 0.9),
               radius: 20,
               color: '#FF5722',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#FF5722',
               ringSize: 3
             },
             {
               name: "Web Crawling",
-              ...posOnCircle(Math.PI * -0.35, 0.9),
+              ...posOnCircle(angleStep * 5, 0.9),
               radius: 20,
               color: '#FF5722',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#FF5722',
               ringSize: 3
             },
             {
               name: "APIs & SDKs",
-              ...posOnCircle(Math.PI * -0.3, 0.9),
+              ...posOnCircle(angleStep * 5 + 0.15, 0.9),
               radius: 20,
               color: '#FF5722',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#FF5722',
               ringSize: 3
             }
           ]
         },
         {
           name: "Multi-agent Systems",
-          ...posOnCircle(Math.PI * -0.65),
+          ...posOnCircle(angleStep * 6),
           radius: 35,
           color: '#00BCD4',
           glowing: false,
           glowIntensity: 0,
+          glowColor: '#00BCD4',
           ringSize: 6,
           nodes: [
             {
               name: "LangChain",
-              ...posOnCircle(Math.PI * -0.7, 0.9),
+              ...posOnCircle(angleStep * 6 - 0.15, 0.9),
               radius: 20,
               color: '#00BCD4',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#00BCD4',
               ringSize: 3
             },
             {
               name: "AutoGPT",
-              ...posOnCircle(Math.PI * -0.65, 0.9),
+              ...posOnCircle(angleStep * 6, 0.9),
               radius: 20,
               color: '#00BCD4',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#00BCD4',
               ringSize: 3
             },
             {
               name: "Agent Networks",
-              ...posOnCircle(Math.PI * -0.6, 0.9),
+              ...posOnCircle(angleStep * 6 + 0.15, 0.9),
               radius: 20,
               color: '#00BCD4',
               glowing: false,
               glowIntensity: 0,
+              glowColor: '#00BCD4',
               ringSize: 3
             }
           ]
@@ -425,8 +465,8 @@ export default function Home() {
           node.x, node.y, node.radius,
           node.x, node.y, node.radius * (1.5 + node.glowIntensity * 0.5)
         );
-        gradient.addColorStop(0, node.color);
-        gradient.addColorStop(1, `rgba(${hexToRgb(node.color)}, 0)`);
+        gradient.addColorStop(0, node.glowColor);
+        gradient.addColorStop(1, `rgba(${hexToRgb(node.glowColor)}, 0)`);
 
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius * (1.5 + node.glowIntensity * 0.5), 0, Math.PI * 2);
@@ -512,6 +552,8 @@ export default function Home() {
           if (this.targetNode) {
             this.targetNode.glowing = true;
             this.targetNode.glowIntensity = 1.0;
+            // Set the glow color to match the packet color
+            this.targetNode.glowColor = this.color;
           }
 
           if (this.nextTarget) {
