@@ -1,8 +1,36 @@
+/**
+ * Interface representing a data packet in the LangIQ system
+ */
 export interface DataPacket {
-    // Add all required properties of your data packet
+    /**
+     * Unique identifier for the packet
+     */
     id?: string;
+
+    /**
+     * The type of packet (e.g., 'query', 'response', 'data', 'animated')
+     */
     type?: string;
+
+    /**
+     * The content/payload of the packet
+     */
     content?: any;
+
+    /**
+     * Timestamp when the packet was created
+     */
     timestamp?: number;
-    // Add any other properties that your DataPacket should have
+
+    /**
+     * Position attributes for animation (optional)
+     */
+    x?: number;
+    y?: number;
+
+    /**
+     * Target position for animation (optional)
+     */
+    targetX?: number;
+    targetY?: number;
 }

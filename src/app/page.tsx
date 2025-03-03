@@ -41,7 +41,20 @@ export default function Home() {
 
     loadFonts();
 
-    // Animation elements with additional glowing properties
+    // Calculate cluster positions around a circle
+    const centerX = canvas.width * 0.5;
+    const centerY = canvas.height * 0.5;
+    const radius = Math.min(canvas.width, canvas.height) * 0.3;
+
+    // Helper function to calculate position on a circle
+    const posOnCircle = (angle: number, distance: number = 1) => {
+      return {
+        x: centerX + Math.cos(angle) * radius * distance,
+        y: centerY + Math.sin(angle) * radius * distance
+      };
+    };
+
+    // Animation elements with cluster structure
     const elements: {
       user: {
         x: number;
@@ -61,7 +74,7 @@ export default function Home() {
         glowIntensity: number;
         ringSize: number;
       };
-      models: {
+      clusters: {
         name: string;
         x: number;
         y: number;
@@ -70,22 +83,22 @@ export default function Home() {
         glowing: boolean;
         glowIntensity: number;
         ringSize: number;
+        nodes: {
+          name: string;
+          x: number;
+          y: number;
+          radius: number;
+          color: string;
+          glowing: boolean;
+          glowIntensity: number;
+          ringSize: number;
+        }[];
       }[];
-      tools: {
-        name: string;
-        x: number;
-        y: number;
-        radius: number;
-        color: string;
-        glowing: boolean;
-        glowIntensity: number;
-        ringSize: number;
-      }[];
-      dataPackets: DataPacket[]; // Change from never[] or any[] to DataPacket[]
+      dataPackets: DataPacket[];
     } = {
       user: {
-        x: canvas.width * 0.1,
-        y: canvas.height * 0.5,
+        x: centerX - radius * 0.8,
+        y: centerY,
         radius: 30,
         color: '#4285F4',
         glowing: false,
@@ -93,33 +106,310 @@ export default function Home() {
         ringSize: 5
       },
       langiq: {
-        x: canvas.width * 0.5,
-        y: canvas.height * 0.5,
+        x: centerX,
+        y: centerY,
         radius: 50,
         color: '#34A853',
         glowing: false,
         glowIntensity: 0,
         ringSize: 8
       },
-      models: [
-        { name: 'PaLM/Gemini', x: canvas.width * 0.75, y: canvas.height * 0.3, radius: 25, color: '#EA4335', glowing: false, glowIntensity: 0, ringSize: 4 },
-        { name: 'Claude', x: canvas.width * 0.8, y: canvas.height * 0.45, radius: 25, color: '#FBBC05', glowing: false, glowIntensity: 0, ringSize: 4 },
-        { name: 'GPT-4', x: canvas.width * 0.75, y: canvas.height * 0.6, radius: 25, color: '#4285F4', glowing: false, glowIntensity: 0, ringSize: 4 },
-        { name: 'Llama/Mistral', x: canvas.width * 0.8, y: canvas.height * 0.75, radius: 25, color: '#34A853', glowing: false, glowIntensity: 0, ringSize: 4 }
-      ],
-      tools: [
-        { name: 'Databases', x: canvas.width * 0.25, y: canvas.height * 0.25, radius: 20, color: '#EA4335', glowing: false, glowIntensity: 0, ringSize: 3 },
-        { name: 'APIs', x: canvas.width * 0.2, y: canvas.height * 0.75, radius: 20, color: '#FBBC05', glowing: false, glowIntensity: 0, ringSize: 3 },
-        { name: 'Vector DBs', x: canvas.width * 0.7, y: canvas.height * 0.15, radius: 20, color: '#4285F4', glowing: false, glowIntensity: 0, ringSize: 3 },
-        { name: 'Multi-Agent', x: canvas.width * 0.6, y: canvas.height * 0.85, radius: 20, color: '#34A853', glowing: false, glowIntensity: 0, ringSize: 3 }
+      clusters: [
+        {
+          name: "Frontier Models",
+          ...posOnCircle(Math.PI * 0.25),
+          radius: 35,
+          color: '#EA4335',
+          glowing: false,
+          glowIntensity: 0,
+          ringSize: 6,
+          nodes: [
+            {
+              name: "Gemini",
+              ...posOnCircle(Math.PI * 0.2, 0.9),
+              radius: 20,
+              color: '#EA4335',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            },
+            {
+              name: "GPT-4",
+              ...posOnCircle(Math.PI * 0.25, 0.9),
+              radius: 20,
+              color: '#EA4335',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            },
+            {
+              name: "Claude 3",
+              ...posOnCircle(Math.PI * 0.3, 0.9),
+              radius: 20,
+              color: '#EA4335',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            },
+            {
+              name: "DeepSeek-V2",
+              ...posOnCircle(Math.PI * 0.35, 0.9),
+              radius: 20,
+              color: '#EA4335',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            }
+          ]
+        },
+        {
+          name: "Fine-tuned Models",
+          ...posOnCircle(Math.PI * 0.75),
+          radius: 35,
+          color: '#FBBC05',
+          glowing: false,
+          glowIntensity: 0,
+          ringSize: 6,
+          nodes: [
+            {
+              name: "Med-PaLM",
+              ...posOnCircle(Math.PI * 0.7, 0.9),
+              radius: 20,
+              color: '#FBBC05',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            },
+            {
+              name: "GPT-4 Turbo",
+              ...posOnCircle(Math.PI * 0.75, 0.9),
+              radius: 20,
+              color: '#FBBC05',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            },
+            {
+              name: "Claude Specialized",
+              ...posOnCircle(Math.PI * 0.8, 0.9),
+              radius: 20,
+              color: '#FBBC05',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            }
+          ]
+        },
+        {
+          name: "Open Source Models",
+          ...posOnCircle(Math.PI * 1.25),
+          radius: 35,
+          color: '#4285F4',
+          glowing: false,
+          glowIntensity: 0,
+          ringSize: 6,
+          nodes: [
+            {
+              name: "Llama 3",
+              ...posOnCircle(Math.PI * 1.2, 0.9),
+              radius: 20,
+              color: '#4285F4',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            },
+            {
+              name: "Qwen",
+              ...posOnCircle(Math.PI * 1.25, 0.9),
+              radius: 20,
+              color: '#4285F4',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            },
+            {
+              name: "Phi",
+              ...posOnCircle(Math.PI * 1.3, 0.9),
+              radius: 20,
+              color: '#4285F4',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            },
+            {
+              name: "Mistral",
+              ...posOnCircle(Math.PI * 1.35, 0.9),
+              radius: 20,
+              color: '#4285F4',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            }
+          ]
+        },
+        {
+          name: "Frameworks",
+          ...posOnCircle(Math.PI * 1.75),
+          radius: 35,
+          color: '#34A853',
+          glowing: false,
+          glowIntensity: 0,
+          ringSize: 6,
+          nodes: [
+            {
+              name: "Hugging Face",
+              ...posOnCircle(Math.PI * 1.7, 0.9),
+              radius: 20,
+              color: '#34A853',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            },
+            {
+              name: "Transformers",
+              ...posOnCircle(Math.PI * 1.75, 0.9),
+              radius: 20,
+              color: '#34A853',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            },
+            {
+              name: "Multimodal",
+              ...posOnCircle(Math.PI * 1.8, 0.9),
+              radius: 20,
+              color: '#34A853',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            }
+          ]
+        },
+        {
+          name: "Retrieval",
+          ...posOnCircle(Math.PI * -0.05),
+          radius: 35,
+          color: '#9C27B0',
+          glowing: false,
+          glowIntensity: 0,
+          ringSize: 6,
+          nodes: [
+            {
+              name: "Vector DBs",
+              ...posOnCircle(Math.PI * -0.1, 0.9),
+              radius: 20,
+              color: '#9C27B0',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            },
+            {
+              name: "RAG Systems",
+              ...posOnCircle(Math.PI * -0.05, 0.9),
+              radius: 20,
+              color: '#9C27B0',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            },
+            {
+              name: "Knowledge Bases",
+              ...posOnCircle(Math.PI * 0, 0.9),
+              radius: 20,
+              color: '#9C27B0',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            }
+          ]
+        },
+        {
+          name: "Tools & Interfaces",
+          ...posOnCircle(Math.PI * -0.35),
+          radius: 35,
+          color: '#FF5722',
+          glowing: false,
+          glowIntensity: 0,
+          ringSize: 6,
+          nodes: [
+            {
+              name: "Web Search",
+              ...posOnCircle(Math.PI * -0.4, 0.9),
+              radius: 20,
+              color: '#FF5722',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            },
+            {
+              name: "Web Crawling",
+              ...posOnCircle(Math.PI * -0.35, 0.9),
+              radius: 20,
+              color: '#FF5722',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            },
+            {
+              name: "APIs & SDKs",
+              ...posOnCircle(Math.PI * -0.3, 0.9),
+              radius: 20,
+              color: '#FF5722',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            }
+          ]
+        },
+        {
+          name: "Multi-agent Systems",
+          ...posOnCircle(Math.PI * -0.65),
+          radius: 35,
+          color: '#00BCD4',
+          glowing: false,
+          glowIntensity: 0,
+          ringSize: 6,
+          nodes: [
+            {
+              name: "LangChain",
+              ...posOnCircle(Math.PI * -0.7, 0.9),
+              radius: 20,
+              color: '#00BCD4',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            },
+            {
+              name: "AutoGPT",
+              ...posOnCircle(Math.PI * -0.65, 0.9),
+              radius: 20,
+              color: '#00BCD4',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            },
+            {
+              name: "Agent Networks",
+              ...posOnCircle(Math.PI * -0.6, 0.9),
+              radius: 20,
+              color: '#00BCD4',
+              glowing: false,
+              glowIntensity: 0,
+              ringSize: 3
+            }
+          ]
+        }
       ],
       dataPackets: []
     };
 
-    // Animation loop
-    let animationFrameId: number;
-    let lastTime = 0;
-    let lastPacketTime = 0;
+    // Helper function to convert hex to rgb
+    const hexToRgb = (hex: string) => {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result
+        ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`
+        : '255, 255, 255';
+    };
 
     // Helper function to draw a node with glow and ring
     const drawNode = (node: any, text: string) => {
@@ -153,11 +443,19 @@ export default function Home() {
       // Add text
       ctx.fillStyle = '#FFF';
       // Use handwritten font
-      const fontSize = node.radius * 0.7;
+      const fontSize = Math.max(node.radius * 0.7, 10);
       ctx.font = `${fontSize}px 'Caveat', cursive`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(text, node.x, node.y);
+
+      // Handle multi-line text
+      const words = text.split(' ');
+      if (words.length > 1 && node.radius > 25) {
+        ctx.fillText(words[0], node.x, node.y - fontSize * 0.5);
+        ctx.fillText(words.slice(1).join(' '), node.x, node.y + fontSize * 0.5);
+      } else {
+        ctx.fillText(text, node.x, node.y);
+      }
 
       // Reduce glow intensity over time
       if (node.glowIntensity > 0) {
@@ -167,14 +465,6 @@ export default function Home() {
           node.glowIntensity = 0;
         }
       }
-    };
-
-    // Helper function to convert hex to rgb
-    const hexToRgb = (hex: string) => {
-      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-      return result
-        ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`
-        : '255, 255, 255';
     };
 
     // Rename the class to AnimatedPacket to avoid conflict with the imported DataPacket interface
@@ -262,7 +552,7 @@ export default function Home() {
     // Generate data packets
     const createDataPacket = () => {
       // User to LangIQ
-      if (Math.random() > 0.5) {
+      if (Math.random() > 0.6) {
         const packet = new AnimatedPacket(
           elements.user.x,
           elements.user.y,
@@ -274,79 +564,137 @@ export default function Home() {
         elements.dataPackets.push(packet);
       }
 
-      // LangIQ to Models/Tools
-      const targets = [...elements.models, ...elements.tools];
-      const randomTarget = targets[Math.floor(Math.random() * targets.length)];
-      const packet = new AnimatedPacket(
-        elements.langiq.x,
-        elements.langiq.y,
-        randomTarget.x,
-        randomTarget.y,
-        randomTarget.color,
-        randomTarget
-      );
-      elements.dataPackets.push(packet);
+      // LangIQ to random cluster
+      if (elements.clusters.length > 0) {
+        const randomClusterIndex = Math.floor(Math.random() * elements.clusters.length);
+        const targetCluster = elements.clusters[randomClusterIndex];
 
-      // Models/Tools back to LangIQ
-      if (Math.random() > 0.7) {
-        const sourceIndex = Math.floor(Math.random() * targets.length);
-        const source = targets[sourceIndex];
         const packet = new AnimatedPacket(
-          source.x,
-          source.y,
           elements.langiq.x,
           elements.langiq.y,
-          source.color,
-          elements.langiq
+          targetCluster.x,
+          targetCluster.y,
+          targetCluster.color,
+          targetCluster
         );
+
+        // After reaching the cluster, randomly go to one of its nodes
+        if (targetCluster.nodes.length > 0) {
+          const randomNodeIndex = Math.floor(Math.random() * targetCluster.nodes.length);
+          const targetNode = targetCluster.nodes[randomNodeIndex];
+
+          packet.nextTarget = {
+            x: targetNode.x,
+            y: targetNode.y
+          };
+          packet.targetNode = targetNode;
+        }
+
         elements.dataPackets.push(packet);
+      }
+
+      // Random cluster node back to LangIQ
+      if (Math.random() > 0.7 && elements.clusters.length > 0) {
+        const randomClusterIndex = Math.floor(Math.random() * elements.clusters.length);
+        const sourceCluster = elements.clusters[randomClusterIndex];
+
+        if (sourceCluster.nodes.length > 0) {
+          const randomNodeIndex = Math.floor(Math.random() * sourceCluster.nodes.length);
+          const sourceNode = sourceCluster.nodes[randomNodeIndex];
+
+          const packet = new AnimatedPacket(
+            sourceNode.x,
+            sourceNode.y,
+            elements.langiq.x,
+            elements.langiq.y,
+            sourceCluster.color,
+            elements.langiq
+          );
+
+          elements.dataPackets.push(packet);
+        }
+      }
+
+      // Direct connection between clusters occasionally
+      if (Math.random() > 0.85 && elements.clusters.length > 1) {
+        const sourceClusterIndex = Math.floor(Math.random() * elements.clusters.length);
+        let targetClusterIndex;
+        do {
+          targetClusterIndex = Math.floor(Math.random() * elements.clusters.length);
+        } while (targetClusterIndex === sourceClusterIndex);
+
+        const sourceCluster = elements.clusters[sourceClusterIndex];
+        const targetCluster = elements.clusters[targetClusterIndex];
+
+        if (sourceCluster.nodes.length > 0 && targetCluster.nodes.length > 0) {
+          const sourceNodeIndex = Math.floor(Math.random() * sourceCluster.nodes.length);
+          const targetNodeIndex = Math.floor(Math.random() * targetCluster.nodes.length);
+
+          const sourceNode = sourceCluster.nodes[sourceNodeIndex];
+          const targetNode = targetCluster.nodes[targetNodeIndex];
+
+          const packet = new AnimatedPacket(
+            sourceNode.x,
+            sourceNode.y,
+            targetNode.x,
+            targetNode.y,
+            sourceCluster.color,
+            targetNode
+          );
+
+          elements.dataPackets.push(packet);
+        }
       }
     };
 
     // Animation render function
     const render = (time: number) => {
-      const deltaTime = time - lastTime;
-      const packetDeltaTime = time - lastPacketTime;
-
       // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Create new data packets
-      if (packetDeltaTime > 300) {
+      if (time - lastPacketTime > 300) {
         createDataPacket();
         lastPacketTime = time;
       }
 
       // Draw connections
+      // User to LangIQ
       ctx.strokeStyle = 'rgba(200, 200, 200, 0.5)';
       ctx.lineWidth = 1;
-
-      // User to LangIQ
       ctx.beginPath();
       ctx.moveTo(elements.user.x, elements.user.y);
       ctx.lineTo(elements.langiq.x, elements.langiq.y);
       ctx.stroke();
 
-      // LangIQ to Models and Tools
-      [...elements.models, ...elements.tools].forEach(item => {
+      // LangIQ to Clusters
+      elements.clusters.forEach(cluster => {
         ctx.beginPath();
         ctx.moveTo(elements.langiq.x, elements.langiq.y);
-        ctx.lineTo(item.x, item.y);
+        ctx.lineTo(cluster.x, cluster.y);
+        ctx.strokeStyle = `rgba(${hexToRgb(cluster.color)}, 0.5)`;
         ctx.stroke();
+
+        // Cluster to its nodes
+        cluster.nodes.forEach(node => {
+          ctx.beginPath();
+          ctx.moveTo(cluster.x, cluster.y);
+          ctx.lineTo(node.x, node.y);
+          ctx.strokeStyle = `rgba(${hexToRgb(cluster.color)}, 0.3)`;
+          ctx.stroke();
+        });
       });
 
-      // Draw nodes with new drawNode helper
+      // Draw nodes
       drawNode(elements.user, 'User');
       drawNode(elements.langiq, 'LangIQ');
 
-      // Draw models
-      elements.models.forEach(model => {
-        drawNode(model, model.name);
-      });
-
-      // Draw tools
-      elements.tools.forEach(tool => {
-        drawNode(tool, tool.name);
+      // Draw clusters and their nodes
+      elements.clusters.forEach(cluster => {
+        drawNode(cluster, cluster.name);
+        cluster.nodes.forEach(node => {
+          drawNode(node, node.name);
+        });
       });
 
       // Update and draw data packets
@@ -359,10 +707,15 @@ export default function Home() {
         }
       });
 
-      lastTime = time;
       // Continue animation loop
+      lastTime = time;
       animationFrameId = requestAnimationFrame(render);
     };
+
+    // Animation loop
+    let animationFrameId: number;
+    let lastTime = 0;
+    let lastPacketTime = 0;
 
     // Start animation
     animationFrameId = requestAnimationFrame(render);
