@@ -40,6 +40,90 @@ export default function ApplicationsPage() {
             use_cases: ["Developer productivity", "Legacy code maintenance", "Learning programming"],
             icon: "💻"
         },
+        {
+            title: "Language Translator",
+            description: "Translate text between languages with high accuracy while preserving context and cultural nuances.",
+            use_cases: ["International business communication", "Content localization", "Cross-cultural research"],
+            icon: "🌐"
+        },
+        {
+            title: "Meeting Assistant",
+            description: "Record, transcribe, and summarize meetings with action items and key insights automatically extracted.",
+            use_cases: ["Executive briefings", "Team coordination", "Project management"],
+            icon: "🗓️"
+        },
+        {
+            title: "Email Summarizer",
+            description: "Automatically organize and prioritize emails, generating concise summaries and suggested responses.",
+            use_cases: ["Inbox management", "Customer communications", "Team coordination"],
+            icon: "📧"
+        },
+        {
+            title: "Research Assistant",
+            description: "Search across academic papers, synthesize findings, and identify connections between different research areas.",
+            use_cases: ["Literature reviews", "Academic research", "Competitive intelligence"],
+            icon: "🔍"
+        },
+        {
+            title: "Learning Manager",
+            description: "Create personalized learning experiences that adapt to individual progress and learning styles.",
+            use_cases: ["Employee training", "Student education", "Professional development"],
+            icon: "📚"
+        },
+        {
+            title: "Trend Analyzer",
+            description: "Monitor social media, news, and industry publications to identify emerging trends and sentiment patterns.",
+            use_cases: ["Brand monitoring", "Market intelligence", "Product development"],
+            icon: "📈"
+        },
+        {
+            title: "Compliance Monitor",
+            description: "Review documents and communications for regulatory compliance and flag potential issues.",
+            use_cases: ["Legal risk management", "Industry regulation adherence", "Policy enforcement"],
+            icon: "⚖️"
+        },
+        {
+            title: "Customer Feedback Analyzer",
+            description: "Process customer reviews and feedback to extract actionable insights and sentiment analysis.",
+            use_cases: ["Product improvement", "Service optimization", "Competitive analysis"],
+            icon: "🔊"
+        },
+        {
+            title: "Product Recommender",
+            description: "Create sophisticated recommendation systems that understand user preferences and context.",
+            use_cases: ["E-commerce personalization", "Content discovery", "Service matching"],
+            icon: "🛍️"
+        },
+        {
+            title: "Social Media Manager",
+            description: "Generate, schedule, and optimize social media content while monitoring engagement and trends.",
+            use_cases: ["Brand presence", "Campaign management", "Community engagement"],
+            icon: "📱"
+        },
+        {
+            title: "Resume Analyzer",
+            description: "Screen and rank job candidates by analyzing resumes and matching skills to job requirements.",
+            use_cases: ["Recruitment", "Talent acquisition", "Career development"],
+            icon: "📋"
+        },
+        {
+            title: "Grant Writer",
+            description: "Create compelling grant proposals tailored to specific funding opportunities and requirements.",
+            use_cases: ["Research funding", "Nonprofit support", "Educational initiatives"],
+            icon: "💰"
+        },
+        {
+            title: "Medical Assistant",
+            description: "Support healthcare professionals with patient information summarization and research assistance.",
+            use_cases: ["Clinical documentation", "Medical research", "Patient education"],
+            icon: "🏥"
+        },
+        {
+            title: "Creative Writing Coach",
+            description: "Provide feedback on writing style, offer suggestions, and help overcome writer's block.",
+            use_cases: ["Fiction writing", "Content creation", "Copywriting improvement"],
+            icon: "🖋️"
+        }
     ];
 
     const industries = [

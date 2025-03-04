@@ -62,6 +62,118 @@ export default function TutorialsPage() {
             difficulty: "Intermediate",
             duration: "25 min",
             author: "Elena Gonzalez"
+        },
+        {
+            title: "Customizing LangIQ's UI Components",
+            description: "Learn how to customize and extend the user interface components provided by LangIQ.",
+            category: "getting-started",
+            difficulty: "Intermediate",
+            duration: "35 min",
+            author: "David Lee"
+        },
+        {
+            title: "Implementing Authentication with LangIQ",
+            description: "Set up user authentication and authorization in your LangIQ application.",
+            category: "getting-started",
+            difficulty: "Intermediate",
+            duration: "45 min",
+            author: "Rachel Torres"
+        },
+        {
+            title: "Multi-Modal RAG with LangIQ",
+            description: "Build a RAG system that works with text, images, and audio inputs.",
+            category: "rag",
+            difficulty: "Advanced",
+            duration: "60 min",
+            author: "Kevin Wang"
+        },
+        {
+            title: "Implementing Hybrid Search in RAG",
+            description: "Combine semantic and keyword search for more accurate document retrieval.",
+            category: "rag",
+            difficulty: "Intermediate",
+            duration: "40 min",
+            author: "Priya Singh"
+        },
+        {
+            title: "Creating Agent Memory Systems",
+            description: "Implement long and short-term memory for AI agents to improve contextual understanding.",
+            category: "multi-agent",
+            difficulty: "Advanced",
+            duration: "55 min",
+            author: "Marco Rossi"
+        },
+        {
+            title: "Building a Task Planning Agent",
+            description: "Design an agent that can break down complex tasks into manageable steps for other agents.",
+            category: "multi-agent",
+            difficulty: "Advanced",
+            duration: "50 min",
+            author: "Olivia Chen"
+        },
+        {
+            title: "Parameter-Efficient Fine-Tuning",
+            description: "Explore techniques like QLoRA and adapter tuning to reduce computational requirements.",
+            category: "fine-tuning",
+            difficulty: "Advanced",
+            duration: "45 min",
+            author: "Daniel Park"
+        },
+        {
+            title: "Building a Document Q&A System",
+            description: "Create a specialized RAG system that answers questions based on your document library.",
+            category: "rag",
+            difficulty: "Intermediate",
+            duration: "35 min",
+            author: "Sophia Martinez"
+        },
+        {
+            title: "Evaluating Fine-Tuned Models",
+            description: "Learn methods and metrics for properly evaluating your fine-tuned language models.",
+            category: "fine-tuning",
+            difficulty: "Intermediate",
+            duration: "30 min",
+            author: "Michael Thompson"
+        },
+        {
+            title: "Optimizing LangIQ Performance",
+            description: "Techniques for improving the speed and efficiency of your LangIQ applications.",
+            category: "getting-started",
+            difficulty: "Advanced",
+            duration: "40 min",
+            author: "Jennifer Wu"
+        },
+        {
+            title: "Agent Communication Protocols",
+            description: "Design robust communication systems between multiple AI agents for complex workflows.",
+            category: "multi-agent",
+            difficulty: "Intermediate",
+            duration: "35 min",
+            author: "Robert Anderson"
+        },
+        {
+            title: "Debugging Multi-Agent Systems",
+            description: "Tools and techniques for identifying and fixing issues in multi-agent applications.",
+            category: "multi-agent",
+            difficulty: "Advanced",
+            duration: "45 min",
+            author: "Natalie Wong"
+        },
+        {
+            title: "Handling Citations in RAG Systems",
+            description: "Implement proper source attribution and citation tracking in your RAG applications.",
+            category: "rag",
+            difficulty: "Intermediate",
+            duration: "25 min",
+            author: "Carlos Rodriguez"
+        },
+        {
+            title: "Deploying LangIQ to Production",
+            description: "Best practices for deploying and scaling your LangIQ application in production environments.",
+            category: "getting-started",
+            difficulty: "Advanced",
+            duration: "50 min",
+            author: "Emma Johnson"
         }
     ];
 
