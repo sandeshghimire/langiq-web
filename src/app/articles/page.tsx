@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 interface ArticleMetadata {
     title: string;
@@ -42,7 +43,7 @@ export default function ArticlesPage() {
                 const data = await response.json();
 
                 if (data.articles) {
-                    setArticles(data.articles.slice(0, 5)); // Get first 5 articles
+                    setArticles(data.articles.slice(0, 100)); // Get first 5 articles
                 } else {
                     setArticles([]);
                 }
@@ -149,9 +150,9 @@ export default function ArticlesPage() {
                                 <h2 className="text-2xl font-bold mb-3 handwriting">{featuredArticle.title}</h2>
                                 <p className="handwriting-alt mb-4 text-gray-300">{featuredArticle.description}</p>
                                 <p className="handwriting text-gray-400 mb-4">By {featuredArticle.author}</p>
-                                <button className="handwriting bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full shadow-md text-sm transition-all">
+                                <Link href={`/articles/${featuredArticle.slug}`} className="handwriting bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full shadow-md text-sm transition-all inline-block">
                                     Read Article
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </motion.div>
@@ -173,9 +174,9 @@ export default function ArticlesPage() {
                                 <p className="handwriting-alt mb-4 text-gray-300 text-sm">{article.description}</p>
                                 <div className="flex justify-between items-center">
                                     <span className="handwriting text-gray-400 text-sm">By {article.author}</span>
-                                    <button className="handwriting text-sm text-blue-400 hover:text-blue-300">
+                                    <Link href={`/articles/${article.slug}`} className="handwriting text-sm text-blue-400 hover:text-blue-300">
                                         Read More →
-                                    </button>
+                                    </Link>
                                 </div>
                             </motion.div>
                         ))}
