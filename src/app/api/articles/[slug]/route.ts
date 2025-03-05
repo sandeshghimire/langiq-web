@@ -5,9 +5,10 @@ import matter from 'gray-matter';
 
 export async function GET(
     request: NextRequest,
-    { params }: { params: { slug: string } }
+    context: { params: { slug: string } | Promise<{ slug: string }> }
 ) {
     try {
+        const params = await context.params;
         const slug = params.slug;
         const articlesDirectory = path.join(process.cwd(), 'public/content/Articles');
         const categories = ['Advanced', 'Beginner', 'Intermediate'];
