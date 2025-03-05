@@ -33,6 +33,7 @@ export default function ArticlesPage() {
     const [featuredArticle, setFeaturedArticle] = useState<ArticleMetadata | null>(null);
     const [articles, setArticles] = useState<ArticleMetadata[]>([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         async function loadArticles() {
@@ -42,88 +43,23 @@ export default function ArticlesPage() {
 
                 if (data.articles) {
                     setArticles(data.articles.slice(0, 5)); // Get first 5 articles
+                } else {
+                    setArticles([]);
                 }
 
                 if (data.featured) {
                     setFeaturedArticle(data.featured);
+                } else {
+                    setFeaturedArticle(null);
                 }
 
                 setLoading(false);
             } catch (error) {
                 console.error("Error loading articles:", error);
                 setLoading(false);
-
-                // Fall back to sample data if API fails
-                setFeaturedArticle({
-                    title: "The Evolution of Large Language Models in 2024",
-                    author: "Dr. Sarah Chen",
-                    description: "How recent developments in LLMs have revolutionized natural language processing and opened new possibilities for AI applications.",
-                    keywords: ["LLM", "AI", "NLP"],
-                    date: "May 15, 2024",
-                    difficultyLevel: "Intermediate",
-                    estimatedTime: "10 min",
-                    category: "Research",
-                    slug: "llm-evolution"
-                });
-
-                // Sample articles data remains the same
-                setArticles([
-                    {
-                        title: "Building Effective RAG Systems with LangIQ",
-                        author: "Michael Rodriguez",
-                        description: "A step-by-step guide to creating retrieval-augmented generation systems that deliver accurate, contextually relevant responses.",
-                        keywords: ["RAG", "LangIQ", "Tutorial"],
-                        date: "May 8, 2024",
-                        difficultyLevel: "Beginner",
-                        estimatedTime: "15 min",
-                        category: "Tutorials",
-                        slug: "building-effective-rag-systems"
-                    },
-                    {
-                        title: "Fine-Tuning vs. RAG: Choosing the Right Approach",
-                        author: "Aisha Patel",
-                        description: "An in-depth comparison of model fine-tuning and retrieval-augmented generation for different use cases.",
-                        keywords: ["Fine-Tuning", "RAG", "Comparison"],
-                        date: "April 29, 2024",
-                        difficultyLevel: "Intermediate",
-                        estimatedTime: "12 min",
-                        category: "Analysis",
-                        slug: "fine-tuning-vs-rag"
-                    },
-                    {
-                        title: "Multi-Agent Systems: The Future of Complex AI Tasks",
-                        author: "James Wilson",
-                        description: "How cooperative AI agents can work together to solve problems beyond the capabilities of single models.",
-                        keywords: ["Multi-Agent", "AI", "Cooperation"],
-                        date: "April 22, 2024",
-                        difficultyLevel: "Advanced",
-                        estimatedTime: "20 min",
-                        category: "Research",
-                        slug: "multi-agent-systems"
-                    },
-                    {
-                        title: "Open-Source LLMs: State of the Art in 2024",
-                        author: "Lin Wei",
-                        description: "A comprehensive overview of the most powerful open-source language models and how they compare to proprietary alternatives.",
-                        keywords: ["Open-Source", "LLM", "Comparison"],
-                        date: "April 15, 2024",
-                        difficultyLevel: "Intermediate",
-                        estimatedTime: "18 min",
-                        category: "Analysis",
-                        slug: "open-source-llms"
-                    },
-                    {
-                        title: "Responsible AI: Ethical Considerations for LLM Deployment",
-                        author: "Elena Gonzalez",
-                        description: "Best practices for ensuring your AI systems respect privacy, avoid bias, and operate ethically.",
-                        keywords: ["Responsible AI", "Ethics", "LLM"],
-                        date: "April 8, 2024",
-                        difficultyLevel: "Beginner",
-                        estimatedTime: "10 min",
-                        category: "Ethics",
-                        slug: "responsible-ai"
-                    }
-                ]);
+                setError("Failed to load articles. Please try again later.");
+                setArticles([]);
+                setFeaturedArticle(null);
             }
         }
 
@@ -157,6 +93,26 @@ export default function ArticlesPage() {
                     {/* Skeleton for article list */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {[1, 2, 3, 4].map(i => <ArticleSkeleton key={i} />)}
+                    </div>
+                </div>
+            </main>
+        );
+    }
+
+    // Display error state
+    if (error) {
+        return (
+            <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-white p-6 pt-32">
+                <div className="max-w-5xl mx-auto text-center">
+                    <h1 className="text-4xl font-bold mb-3 handwriting text-center">LangIQ Articles</h1>
+                    <div className="content-box p-8 mt-10">
+                        <h2 className="text-xl handwriting mb-4 text-red-400">Error</h2>
+                        <p className="handwriting-alt mb-6">{error}</p>
+                        <button
+                            onClick={() => window.location.reload()}
+                            className="handwriting bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full shadow-md text-sm transition-all">
+                            Try Again
+                        </button>
                     </div>
                 </div>
             </main>
@@ -202,33 +158,42 @@ export default function ArticlesPage() {
                 )}
 
                 {/* Article List */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {articles.map((article, index) => (
-                        <motion.div
-                            key={article.slug}
-                            className="content-box p-5"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
-                        >
-                            <span className="text-sm text-blue-400 handwriting-alt">{article.category} • {article.date}</span>
-                            <h2 className="text-xl font-semibold mb-2 handwriting">{article.title}</h2>
-                            <p className="handwriting-alt mb-4 text-gray-300 text-sm">{article.description}</p>
-                            <div className="flex justify-between items-center">
-                                <span className="handwriting text-gray-400 text-sm">By {article.author}</span>
-                                <button className="handwriting text-sm text-blue-400 hover:text-blue-300">
-                                    Read More →
-                                </button>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
+                {articles.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {articles.map((article, index) => (
+                            <motion.div
+                                key={article.slug}
+                                className="content-box p-5"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
+                            >
+                                <span className="text-sm text-blue-400 handwriting-alt">{article.category} • {article.date}</span>
+                                <h2 className="text-xl font-semibold mb-2 handwriting">{article.title}</h2>
+                                <p className="handwriting-alt mb-4 text-gray-300 text-sm">{article.description}</p>
+                                <div className="flex justify-between items-center">
+                                    <span className="handwriting text-gray-400 text-sm">By {article.author}</span>
+                                    <button className="handwriting text-sm text-blue-400 hover:text-blue-300">
+                                        Read More →
+                                    </button>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="content-box p-8 text-center">
+                        <p className="handwriting-alt mb-3">No articles found.</p>
+                        <p className="text-sm text-gray-400">Check back later for new content!</p>
+                    </div>
+                )}
 
-                <div className="mt-10 text-center">
-                    <button className="handwriting border border-blue-500 hover:bg-blue-500/20 text-blue-300 rounded-full px-6 py-2 transition-all">
-                        View All Articles
-                    </button>
-                </div>
+                {articles.length > 0 && (
+                    <div className="mt-10 text-center">
+                        <button className="handwriting border border-blue-500 hover:bg-blue-500/20 text-blue-300 rounded-full px-6 py-2 transition-all">
+                            View All Articles
+                        </button>
+                    </div>
+                )}
             </motion.div>
         </main>
     );

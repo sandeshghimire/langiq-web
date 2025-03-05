@@ -96,7 +96,7 @@ export async function GET() {
                     slug: slug
                 };
 
-                console.log('Parsed article metadata:', article);
+
                 allArticles.push(article);
             }
         }
