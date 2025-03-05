@@ -5,6 +5,9 @@ import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
+import rehypeKatex from 'rehype-katex';
+import remarkMath from 'remark-math';
+import 'katex/dist/katex.min.css';
 
 // Article metadata interface
 interface ArticleMetadata {
@@ -17,6 +20,9 @@ interface ArticleMetadata {
     estimatedTime: string;
     category: string;
     slug: string;
+    abstract?: string;
+    doi?: string;
+    journal?: string;
 }
 
 // Article content skeleton component
@@ -73,12 +79,12 @@ export default function ArticlePage() {
     // Loading state
     if (loading) {
         return (
-            <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-white p-6 pt-32">
-                <div className="max-w-3xl mx-auto">
-                    <Link href="/articles" className="text-blue-400 hover:text-blue-300 mb-6 inline-block handwriting">
+            <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-black p-6 pt-32">
+                <div className="max-w-4xl mx-auto">
+                    <Link href="/articles" className="text-blue-800 hover:text-blue-600 mb-6 inline-block font-serif">
                         ← Back to Articles
                     </Link>
-                    <div className="content-box p-8">
+                    <div className="bg-white p-8 shadow-md">
                         <ArticleSkeleton />
                     </div>
                 </div>
@@ -89,17 +95,17 @@ export default function ArticlePage() {
     // Error state
     if (error || !articleData) {
         return (
-            <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-white p-6 pt-32">
-                <div className="max-w-3xl mx-auto">
-                    <Link href="/articles" className="text-blue-400 hover:text-blue-300 mb-6 inline-block handwriting">
+            <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-black p-6 pt-32">
+                <div className="max-w-4xl mx-auto">
+                    <Link href="/articles" className="text-blue-800 hover:text-blue-600 mb-6 inline-block font-serif">
                         ← Back to Articles
                     </Link>
-                    <div className="content-box p-8 text-center">
-                        <h2 className="text-xl handwriting mb-4 text-red-400">Error</h2>
-                        <p className="handwriting-alt mb-6">{error || "Article not found"}</p>
+                    <div className="bg-white p-8 shadow-md text-center">
+                        <h2 className="text-xl font-serif mb-4 text-red-700">Error</h2>
+                        <p className="font-serif mb-6">{error || "Article not found"}</p>
                         <button
                             onClick={() => router.push('/articles')}
-                            className="handwriting bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full shadow-md text-sm transition-all">
+                            className="font-serif bg-blue-700 hover:bg-blue-800 text-white py-2 px-4 rounded text-sm transition-all">
                             Return to Articles
                         </button>
                     </div>
@@ -111,67 +117,82 @@ export default function ArticlePage() {
     const { metadata, content } = articleData;
 
     return (
-        <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-white p-6 pt-32">
+        <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-black p-6 pt-32">
             <motion.div
-                className="max-w-3xl mx-auto"
+                className="max-w-4xl mx-auto"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
             >
-                <Link href="/articles" className="text-blue-400 hover:text-blue-300 mb-6 inline-block handwriting">
+                <Link href="/articles" className="text-blue-800 hover:text-blue-600 mb-6 inline-block font-serif">
                     ← Back to Articles
                 </Link>
 
-                <article className="content-box p-8">
-                    {/* Article Header */}
-                    <header className="mb-8">
-                        <div className="flex items-center gap-2 text-sm text-blue-400 handwriting-alt mb-2">
-                            <span>{metadata.category}</span>
-                            <span>•</span>
-                            <span>{metadata.date}</span>
-                            {metadata.estimatedTime && (
-                                <>
-                                    <span>•</span>
-                                    <span>{metadata.estimatedTime} read</span>
-                                </>
-                            )}
+                <article className="bg-white p-12 shadow-md font-serif leading-relaxed">
+                    {/* Journal Info */}
+                    {metadata.journal && (
+                        <div className="text-center text-gray-600 text-sm mb-6 border-b pb-4">
+                            {metadata.journal} • {metadata.date}
+                            {metadata.doi && <div className="mt-2">DOI: {metadata.doi}</div>}
                         </div>
+                    )}
 
-                        <h1 className="text-3xl font-bold mb-4 handwriting">{metadata.title}</h1>
+                    {/* Article Header */}
+                    <header className="mb-8 text-center">
+                        <h1 className="text-2xl font-bold mb-6 leading-tight">{metadata.title}</h1>
 
-                        {metadata.description && (
-                            <p className="text-lg text-gray-300 handwriting-alt mb-4">
-                                {metadata.description}
-                            </p>
-                        )}
-
-                        <div className="flex items-center">
-                            <div className="w-8 h-8 bg-blue-400 rounded-full flex items-center justify-center text-white mr-3">
-                                {metadata.author?.charAt(0).toUpperCase() || "A"}
+                        <div className="mb-6">
+                            <div className="font-medium">
+                                {metadata.author}
                             </div>
-                            <div className="handwriting text-sm">
-                                By <span className="text-blue-300">{metadata.author}</span>
+                            <div className="text-sm text-gray-600 mt-1">
+                                {metadata.category}
                             </div>
                         </div>
                     </header>
 
+                    {/* Abstract */}
+                    {(metadata.abstract || metadata.description) && (
+                        <section className="mb-8">
+                            <h2 className="text-lg font-bold mb-2">Abstract</h2>
+                            <p className="text-sm italic leading-relaxed">
+                                {metadata.abstract || metadata.description}
+                            </p>
+                        </section>
+                    )}
+
                     {/* Article Content */}
-                    <div className="prose prose-invert prose-slate max-w-none handwriting-alt">
-                        <ReactMarkdown>{content}</ReactMarkdown>
+                    <div className="prose prose-sm max-w-none">
+                        <ReactMarkdown
+                            remarkPlugins={[remarkMath]}
+                            rehypePlugins={[rehypeKatex]}
+                        >
+                            {content}
+                        </ReactMarkdown>
                     </div>
 
                     {/* Keywords/Tags */}
                     {metadata.keywords && metadata.keywords.length > 0 && (
-                        <div className="mt-8 pt-6 border-t border-gray-700">
+                        <div className="mt-8 pt-6 border-t border-gray-300">
                             <div className="flex flex-wrap gap-2">
+                                <span className="font-bold mr-2">Keywords:</span>
                                 {metadata.keywords.map((keyword, index) => (
-                                    <span key={index} className="bg-gray-700 text-xs px-3 py-1 rounded-full handwriting">
-                                        {keyword}
+                                    <span key={index} className="text-sm">
+                                        {keyword}{index < metadata.keywords.length - 1 ? "," : ""}
                                     </span>
                                 ))}
                             </div>
                         </div>
                     )}
+
+                    {/* Citations and References */}
+                    <div className="mt-8 pt-6 border-t border-gray-300">
+                        <h2 className="text-lg font-bold mb-4">References</h2>
+                        <div className="text-sm text-gray-700">
+                            {/* This would contain actual references in a real paper */}
+                            <p className="italic text-gray-500 text-xs">References will be displayed here when available</p>
+                        </div>
+                    </div>
                 </article>
             </motion.div>
         </main>
