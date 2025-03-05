@@ -80,7 +80,7 @@ export default function ArticlePage() {
     if (loading) {
         return (
             <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-black p-6 pt-32">
-                <div className="max-w-4xl mx-auto">
+                <div className="max-w-7xl mx-auto">
                     <Link href="/articles" className="text-blue-800 hover:text-blue-600 mb-6 inline-block font-serif">
                         ← Back to Articles
                     </Link>
@@ -96,7 +96,7 @@ export default function ArticlePage() {
     if (error || !articleData) {
         return (
             <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-black p-6 pt-32">
-                <div className="max-w-4xl mx-auto">
+                <div className="max-w-7xl mx-auto">
                     <Link href="/articles" className="text-blue-800 hover:text-blue-600 mb-6 inline-block font-serif">
                         ← Back to Articles
                     </Link>
@@ -119,7 +119,7 @@ export default function ArticlePage() {
     return (
         <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-black p-6 pt-32">
             <motion.div
-                className="max-w-4xl mx-auto"
+                className="max-w-7xl mx-auto"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
