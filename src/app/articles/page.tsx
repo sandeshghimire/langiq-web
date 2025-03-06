@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-
+import Image from 'next/image';
 /**
  * Interface representing the metadata structure for articles
  * Contains all essential information about an article that's displayed in listings
@@ -205,8 +205,22 @@ export default function ArticlesPage() {
                     >
                         <div className="flex flex-col md:flex-row gap-6">
                             {/* Featured article image/placeholder */}
-                            <div className="w-full md:w-1/2 bg-gray-700 h-64 rounded-lg flex items-center justify-center text-4xl">
-                                📝
+                            <div className="w-full md:w-1/2 bg-gradient-to-br from-gray-800 to-gray-700  rounded-lg overflow-hidden">
+                                <motion.div
+                                    initial={{ opacity: 0, y: -20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.8 }}
+                                    className="relative w-full h-full"
+                                >
+                                    <Image
+                                        src="/logo.jpg"
+                                        alt="LangIQ Logo"
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                        className="object-cover rounded-none"
+                                        priority
+                                    />
+                                </motion.div>
                             </div>
                             <div className="w-full md:w-1/2">
                                 {/* Featured article metadata */}
