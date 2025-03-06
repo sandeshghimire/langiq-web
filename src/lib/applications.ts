@@ -1,170 +1,162 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { Application } from './types';
 
-const APPLICATIONS_DIRECTORY = path.join(process.cwd(), 'public/content/Applications');
-const DIFFICULTY_LEVELS = ['Beginner', 'Intermediate', 'Advanced'];
-
-// Helper to get icon based on keywords
-const getIconForApplication = (keywords: string[]): string => {
-    const keywordIconMap: Record<string, string> = {
-        'document': '📄',
-        'knowledge': '🧠',
-        'content': '✍️',
-        'data': '📊',
-        'conversation': '💬',
-        'code': '💻',
-        'language': '🌐',
-        'meeting': '🗓️',
-        'email': '📧',
-        'research': '🔍',
-        'learning': '📚',
-        'trend': '📈',
-        'compliance': '⚖️',
-        'feedback': '🔊',
-        'product': '🛍️',
-        'social': '📱',
-        'resume': '📋',
-        'grant': '💰',
-        'medical': '🏥',
-        'writing': '🖋️',
-    };
-
-    for (const keyword of keywords) {
-        for (const [key, icon] of Object.entries(keywordIconMap)) {
-            if (keyword.toLowerCase().includes(key.toLowerCase())) {
-                return icon;
-            }
-        }
-    }
-
-    return '🔮'; // Default icon
-};
-
-// Read an application file and parse its metadata
-export function parseApplicationFile(filePath: string): Application {
-    const fileContent = fs.readFileSync(filePath, 'utf8');
-    const { data, content } = matter(fileContent);
-
-    const fileName = path.basename(filePath, '.md');
-    const difficulty = DIFFICULTY_LEVELS.find(level =>
-        filePath.includes(`/${level}/`)) || 'Beginner';
-
-    const keywords = Array.isArray(data.keywords) ?
-        data.keywords :
-        (data.keywords ? data.keywords.split(',').map((k: string) => k.trim()) : []);
-
-    return {
-        title: data.title || fileName,
-        author: data.author || 'LangIQ Team',
-        description: data.description || '',
-        keywords: keywords,
-        difficulty: difficulty as Application['difficulty'],
-        estimatedTime: data.estimatedTime || '10 minutes',
-        slug: fileName,
-        content: content
-    };
+export interface Application {
+    slug: string;
+    title: string;
+    author: string;
+    description: string;
+    keywords: string[];
+    date: string;
+    difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
+    label: string;
+    estimatedTime: string;
+    content: string;
 }
 
-// Function to get all applications
-export async function getAllApplications(): Promise<Application[]> {
+const applicationsDirectory = path.join(process.cwd(), 'public/content/Applications');
+
+export function getDifficultyLevels(): string[] {
+    return ['Beginner', 'Intermediate', 'Advanced'];
+}
+
+export function getApplicationSlugs(difficulty: string): string[] {
+    const difficultyPath = path.join(applicationsDirectory, difficulty);
+    if (!fs.existsSync(difficultyPath)) return [];
+
+    return fs.readdirSync(difficultyPath)
+        .filter(file => file.endsWith('.md'))
+        .map(file => file.replace(/\.md$/, ''));
+}
+
+export function getAllApplications(): Application[] {
+    const applications: Application[] = [];
+
+    getDifficultyLevels().forEach(difficulty => {
+        const difficultyPath = path.join(applicationsDirectory, difficulty);
+        if (!fs.existsSync(difficultyPath)) return;
+
+        const fileNames = fs.readdirSync(difficultyPath);
+
+        fileNames.forEach(fileName => {
+            if (!fileName.endsWith('.md')) return;
+
+            const slug = fileName.replace(/\.md$/, '');
+            const fullPath = path.join(difficultyPath, fileName);
+
+            try {
+                const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+                // Use gray-matter with default settings
+                const { data, content } = matter(fileContents);
+
+                // Extract all possible field names with case insensitivity
+                const title = data.title || data.Title || '';
+                const author = data.author || data.Author || '';
+                const description = data.description || data.Description || '';
+                const rawKeywords = data.keywords || data.Keywords || [];
+                const date = data.date || data.Date || '';
+                const label = data.label || data.Label || '';
+                const estimatedTime = data.estimatedTime || data['Estimated Time'] || '';
+
+                // Handle keywords that might be strings or arrays
+                const keywords = Array.isArray(rawKeywords)
+                    ? rawKeywords
+                    : typeof rawKeywords === 'string'
+                        ? rawKeywords.split(',').map(k => k.trim())
+                        : [];
+
+                applications.push({
+                    slug,
+                    title,
+                    author,
+                    description,
+                    keywords,
+                    date,
+                    difficulty: difficulty as Application['difficulty'],
+                    label,
+                    estimatedTime,
+                    content
+                });
+            } catch (error) {
+                console.error(`Error parsing file ${fileName}:`, error);
+                // Add a fallback application with error information
+                applications.push({
+                    slug,
+                    title: `Error loading: ${fileName}`,
+                    author: 'System',
+                    description: `There was an error loading this application: ${(error as Error).message}`,
+                    keywords: ['error'],
+                    date: new Date().toISOString(),
+                    difficulty: difficulty as Application['difficulty'],
+                    label: 'Error',
+                    estimatedTime: 'N/A',
+                    content: '**Error loading content**'
+                });
+            }
+        });
+    });
+
+    // Sort by date (newest first)
+    return applications.sort((a, b) => {
+        const dateA = a.date ? new Date(a.date).getTime() : 0;
+        const dateB = b.date ? new Date(b.date).getTime() : 0;
+        return dateB - dateA;
+    });
+}
+
+export function getApplicationBySlug(difficulty: string, slug: string): Application | null {
+    const fullPath = path.join(applicationsDirectory, difficulty, `${slug}.md`);
+    if (!fs.existsSync(fullPath)) return null;
+
     try {
-        const applications: Application[] = [];
+        const fileContents = fs.readFileSync(fullPath, 'utf8');
 
-        // Check if directory exists
-        if (!fs.existsSync(APPLICATIONS_DIRECTORY)) {
-            console.warn('Applications directory not found:', APPLICATIONS_DIRECTORY);
-            return [];
-        }
+        // Use gray-matter with default settings
+        const { data, content } = matter(fileContents);
 
-        // Loop through each difficulty level
-        for (const difficulty of DIFFICULTY_LEVELS) {
-            const difficultyPath = path.join(APPLICATIONS_DIRECTORY, difficulty);
+        // Extract all possible field names with case insensitivity
+        const title = data.title || data.Title || '';
+        const author = data.author || data.Author || '';
+        const description = data.description || data.Description || '';
+        const rawKeywords = data.keywords || data.Keywords || [];
+        const date = data.date || data.Date || '';
+        const label = data.label || data.Label || '';
+        const estimatedTime = data.estimatedTime || data['Estimated Time'] || '';
 
-            if (fs.existsSync(difficultyPath)) {
-                const files = fs.readdirSync(difficultyPath).filter(file => file.endsWith('.md'));
+        // Handle keywords that might be strings or arrays
+        const keywords = Array.isArray(rawKeywords)
+            ? rawKeywords
+            : typeof rawKeywords === 'string'
+                ? rawKeywords.split(',').map(k => k.trim())
+                : [];
 
-                for (const file of files) {
-                    try {
-                        const filePath = path.join(difficultyPath, file);
-                        const application = parseApplicationFile(filePath);
-
-                        // Add the formatted slug that includes the difficulty level
-                        application.slug = `${difficulty}/${application.slug}`;
-
-                        applications.push(application);
-                    } catch (e) {
-                        console.error(`Error reading application file ${file}:`, e);
-                    }
-                }
-            }
-        }
-
-        return applications;
+        return {
+            slug,
+            title,
+            author,
+            description,
+            keywords,
+            date,
+            difficulty: difficulty as Application['difficulty'],
+            label,
+            estimatedTime,
+            content
+        };
     } catch (error) {
-        console.error('Error getting all applications:', error);
-        return [];
+        console.error(`Error parsing file ${slug}.md:`, error);
+        return {
+            slug,
+            title: `Error loading: ${slug}`,
+            author: 'System',
+            description: `There was an error loading this application: ${(error as Error).message}`,
+            keywords: ['error'],
+            date: new Date().toISOString(),
+            difficulty: difficulty as Application['difficulty'],
+            label: 'Error',
+            estimatedTime: 'N/A',
+            content: '**Error loading content**'
+        };
     }
-}
-
-// Get a single application by slug (just the filename part)
-export function getApplicationBySlug(slug: string): Application | null {
-    for (const difficultyLevel of DIFFICULTY_LEVELS) {
-        const difficultyPath = path.join(APPLICATIONS_DIRECTORY, difficultyLevel);
-
-        if (fs.existsSync(difficultyPath)) {
-            const files = fs.readdirSync(difficultyPath).filter(file => file.endsWith('.md'));
-
-            for (const file of files) {
-                if (file.replace(/\.md$/, '') === slug) {
-                    const filePath = path.join(difficultyPath, file);
-                    return parseApplicationFile(filePath);
-                }
-            }
-        }
-    }
-
-    return null;
-}
-
-// Get a single application by full slug (difficulty/filename format)
-export async function getApplicationByFullSlug(fullSlug: string): Promise<Application> {
-    try {
-        // Split the slug to get difficulty and filename parts
-        const [difficulty, slug] = fullSlug.split('/');
-
-        if (!difficulty || !slug) {
-            throw new Error(`Invalid full slug format: ${fullSlug}`);
-        }
-
-        // Construct path to the application file
-        const filePath = path.join(APPLICATIONS_DIRECTORY, difficulty, `${slug}.md`);
-
-        // Check if the file exists
-        if (!fs.existsSync(filePath)) {
-            console.error(`Application not found for path: ${filePath}`);
-            throw new Error(`Application not found for slug: ${fullSlug}`);
-        }
-
-        // Parse the application file
-        const application = parseApplicationFile(filePath);
-
-        // Set the full slug
-        application.slug = fullSlug;
-
-        return application;
-    } catch (error) {
-        console.error(`Error getting application data for full slug ${fullSlug}:`, error);
-        throw error;
-    }
-}
-
-// Get application content - if not already included in the application object
-export function getApplicationContent(slug: string): string | null {
-    const application = getApplicationBySlug(slug);
-    if (application && application.content) {
-        return application.content;
-    }
-    return null;
 }

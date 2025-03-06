@@ -6,10 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "fix-yaml": "node src/utils/fix-yaml.js"
   },
   "dependencies": {
     "framer-motion": "^12.4.7",
+    "glob": "^11.0.1",
     "gray-matter": "^4.0.3",
     "katex": "^0.16.21",
     "next": "15.2.0",
