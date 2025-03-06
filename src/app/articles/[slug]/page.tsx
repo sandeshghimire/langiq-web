@@ -60,6 +60,8 @@ export default function ArticlePage() {
             try {
                 const response = await fetch(`/api/articles/${slug}`);
 
+
+
                 if (!response.ok) {
                     throw new Error(`Failed to fetch article: ${response.statusText}`);
                 }
