@@ -72,6 +72,7 @@ export default function Home() {
         glowIntensity: number;
         glowColor: string;
         ringSize: number;
+        isSquare?: boolean; // Add isSquare property for square shape
       };
       langiq: {
         x: number;
@@ -108,14 +109,15 @@ export default function Home() {
       dataPackets: DataPacket[];
     } = {
       user: {
-        x: centerX - radius * 0.8,
+        x: centerX - radius * 1.04, // Increased distance by 30% (from 0.8 to 1.04)
         y: centerY,
-        radius: 30,
+        radius: 39, // Increased size by 30% (from 30 to 39)
         color: '#4285F4',
         glowing: false,
         glowIntensity: 0,
         glowColor: '#4285F4',
-        ringSize: 5
+        ringSize: 5,
+        isSquare: true // Setting user shape to square
       },
       langiq: {
         x: centerX,
@@ -458,7 +460,13 @@ export default function Home() {
     const drawNode = (node: any, text: string) => {
       // Draw outer white ring
       ctx.beginPath();
-      ctx.arc(node.x, node.y, node.radius + node.ringSize, 0, Math.PI * 2);
+      if (node.isSquare) {
+        // Draw square outer ring
+        const outerSize = node.radius + node.ringSize;
+        ctx.rect(node.x - outerSize, node.y - outerSize, outerSize * 2, outerSize * 2);
+      } else {
+        ctx.arc(node.x, node.y, node.radius + node.ringSize, 0, Math.PI * 2);
+      }
       ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
       ctx.fill();
 
@@ -472,14 +480,25 @@ export default function Home() {
         gradient.addColorStop(1, `rgba(${hexToRgb(node.glowColor)}, 0)`);
 
         ctx.beginPath();
-        ctx.arc(node.x, node.y, node.radius * (1.5 + node.glowIntensity * 0.5), 0, Math.PI * 2);
+        if (node.isSquare) {
+          // Draw square glow
+          const glowSize = node.radius * (1.5 + node.glowIntensity * 0.5);
+          ctx.rect(node.x - glowSize, node.y - glowSize, glowSize * 2, glowSize * 2);
+        } else {
+          ctx.arc(node.x, node.y, node.radius * (1.5 + node.glowIntensity * 0.5), 0, Math.PI * 2);
+        }
         ctx.fillStyle = gradient;
         ctx.fill();
       }
 
       // Draw the node
       ctx.beginPath();
-      ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      if (node.isSquare) {
+        // Draw square node
+        ctx.rect(node.x - node.radius, node.y - node.radius, node.radius * 2, node.radius * 2);
+      } else {
+        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+      }
       ctx.fillStyle = node.color;
       ctx.fill();
 
