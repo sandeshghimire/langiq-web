@@ -265,25 +265,53 @@ export default function ArticlePage() {
                             remarkPlugins={[remarkMath]}
                             rehypePlugins={[rehypeKatex]}
                             components={{
-                                h1: ({ node, ...props }) => <h1 className="text-2xl font-bold mt-8 mb-4" {...props} />,
-                                h2: ({ node, ...props }) => <h2 className="text-xl font-bold mt-6 mb-3" {...props} />,
-                                h3: ({ node, ...props }) => <h3 className="text-lg font-bold mt-4 mb-2" {...props} />,
-                                p: ({ node, ...props }) => <p className="my-4" {...props} />,
-                                ul: ({ node, ...props }) => <ul className="list-disc pl-6 my-4" {...props} />,
-                                ol: ({ node, ...props }) => <ol className="list-decimal pl-6 my-4" {...props} />,
+                                h1: ({ node, ...props }) => <h1 className="text-2xl font-bold mt-10 mb-6 pb-2 border-b border-gray-200" {...props} />,
+                                h2: ({ node, ...props }) => <h2 className="text-xl font-bold mt-8 mb-4 pb-1 border-b border-gray-100" {...props} />,
+                                h3: ({ node, ...props }) => <h3 className="text-lg font-bold mt-6 mb-3 text-gray-800" {...props} />,
+                                h4: ({ node, ...props }) => <h4 className="text-base font-bold mt-4 mb-2 text-gray-700" {...props} />,
+                                p: ({ node, ...props }) => <p className="my-4 leading-relaxed" {...props} />,
+                                ul: ({ node, ...props }) => <ul className="list-disc pl-6 my-4 space-y-2" {...props} />,
+                                ol: ({ node, ...props }) => <ol className="list-decimal pl-6 my-4 space-y-2" {...props} />,
                                 li: ({ node, ...props }) => <li className="mb-1" {...props} />,
-                                blockquote: ({ node, ...props }) => <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4" {...props} />,
-                                table: ({ node, ...props }) => <div className="overflow-x-auto my-6"><table className="min-w-full border border-gray-300 rounded-lg" {...props} /></div>,
-                                thead: ({ node, ...props }) => <thead className="bg-gray-200" {...props} />,
-                                th: ({ node, ...props }) => <th className="border border-gray-300 px-4 py-2 text-left" {...props} />,
+                                blockquote: ({ node, ...props }) => <blockquote className="border-l-4 border-blue-300 bg-blue-50 pl-4 py-2 italic my-6 text-gray-700 rounded-r" {...props} />,
+                                table: ({ node, ...props }) => <div className="overflow-x-auto my-8"><table className="min-w-full border border-gray-300 rounded-lg shadow-sm" {...props} /></div>,
+                                thead: ({ node, ...props }) => <thead className="bg-gray-100" {...props} />,
+                                th: ({ node, ...props }) => <th className="border border-gray-300 px-4 py-2 text-left font-semibold" {...props} />,
                                 td: ({ node, ...props }) => <td className="border border-gray-300 px-4 py-2" {...props} />,
+                                a: ({ node, ...props }) => <a className="text-blue-700 hover:text-blue-900 underline" {...props} />,
                                 code: ({ node, inline, className, children, ...props }) => {
                                     if (inline) {
-                                        return <code className="bg-gray-200 px-1 py-0.5 rounded font-mono text-sm" {...props}>{children}</code>
+                                        return <code className="bg-gray-100 px-1.5 py-0.5 rounded font-mono text-sm text-blue-800" {...props}>{children}</code>
                                     }
-                                    return <pre className="bg-gray-200 p-4 rounded-lg overflow-x-auto my-4"><code className="font-mono text-sm" {...props}>{children}</code></pre>
+                                    return (
+                                        <div className="relative">
+                                            <pre className="bg-gray-50 p-4 rounded-lg overflow-x-auto my-6 border border-gray-200 shadow-sm">
+                                                <code className="font-mono text-sm" {...props}>{children}</code>
+                                            </pre>
+                                        </div>
+                                    )
                                 },
-                                img: ({ node, ...props }) => <img className="max-w-full h-auto my-6 rounded-lg shadow-md" {...props} />,
+                                img: ({ node, ...props }) => (
+                                    <div className="flex justify-center my-8">
+                                        <img 
+                                            className="max-w-full h-auto rounded-lg shadow-md" 
+                                            alt={props.alt || "Article image"} 
+                                            loading="lazy" 
+                                            {...props} 
+                                        />
+                                    </div>
+                                ),
+                                hr: ({ node, ...props }) => <hr className="my-8 border-gray-300" {...props} />,
+                                // Special handling for math elements
+                                span: ({ node, className, ...props }) => {
+                                    if (className === 'math-inline' || className === 'math-display') {
+                                        return <span className={`${className} text-blue-900`} {...props} />;
+                                    }
+                                    return <span className={className} {...props} />;
+                                },
+                                // Add better styling for definition terms
+                                dt: ({ node, ...props }) => <dt className="font-bold mt-4" {...props} />,
+                                dd: ({ node, ...props }) => <dd className="pl-4 mb-4" {...props} />,
                             }}
                         >
                             {content}
