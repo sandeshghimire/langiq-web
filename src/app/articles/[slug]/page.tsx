@@ -140,7 +140,7 @@ export default function ArticlePage() {
                     Back to Articles
                 </Link>
 
-                <article className="bg-white p-6 md:p-12 shadow-lg font-serif leading-relaxed tracking-tight">
+                <article className="bg-white p-6 md:p-12 shadow-lg font-serif leading-relaxed tracking-tight rounded-lg">
                     {/* Journal Info */}
                     {metadata.journal && (
                         <div className="text-center text-gray-600 mb-8 pb-4 border-b border-gray-200">
@@ -165,7 +165,7 @@ export default function ArticlePage() {
                     </header>
 
                     {/* Article Metadata Card */}
-                    <div className="bg-gray-50 border border-gray-200 rounded-md p-5 mb-10 shadow-sm ">
+                    <div className="bg-gray-100 border border-gray-200 rounded-lg p-5 mb-10 shadow-sm">
                         <h3 className="text-lg font-bold mb-4 border-b pb-2 border-gray-200 text-gray-700">Article Information</h3>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -272,18 +272,18 @@ export default function ArticlePage() {
                                 ul: ({ node, ...props }) => <ul className="list-disc pl-6 my-4" {...props} />,
                                 ol: ({ node, ...props }) => <ol className="list-decimal pl-6 my-4" {...props} />,
                                 li: ({ node, ...props }) => <li className="mb-1" {...props} />,
-                                blockquote: ({ node, ...props }) => <blockquote className="border-l-4 border-gray-200 pl-4 italic my-4" {...props} />,
-                                table: ({ node, ...props }) => <div className="overflow-x-auto my-6"><table className="min-w-full border border-gray-300" {...props} /></div>,
-                                thead: ({ node, ...props }) => <thead className="bg-gray-100" {...props} />,
+                                blockquote: ({ node, ...props }) => <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4" {...props} />,
+                                table: ({ node, ...props }) => <div className="overflow-x-auto my-6"><table className="min-w-full border border-gray-300 rounded-lg" {...props} /></div>,
+                                thead: ({ node, ...props }) => <thead className="bg-gray-200" {...props} />,
                                 th: ({ node, ...props }) => <th className="border border-gray-300 px-4 py-2 text-left" {...props} />,
                                 td: ({ node, ...props }) => <td className="border border-gray-300 px-4 py-2" {...props} />,
                                 code: ({ node, inline, className, children, ...props }) => {
                                     if (inline) {
-                                        return <code className="bg-gray-100 px-1 py-0.5 rounded font-mono text-sm" {...props}>{children}</code>
+                                        return <code className="bg-gray-200 px-1 py-0.5 rounded font-mono text-sm" {...props}>{children}</code>
                                     }
-                                    return <pre className="bg-gray-100 p-4 rounded-md overflow-x-auto my-4"><code className="font-mono text-sm" {...props}>{children}</code></pre>
+                                    return <pre className="bg-gray-200 p-4 rounded-lg overflow-x-auto my-4"><code className="font-mono text-sm" {...props}>{children}</code></pre>
                                 },
-                                img: ({ node, ...props }) => <img className="max-w-full h-auto my-6 rounded shadow-md" {...props} />,
+                                img: ({ node, ...props }) => <img className="max-w-full h-auto my-6 rounded-lg shadow-md" {...props} />,
                             }}
                         >
                             {content}
@@ -293,7 +293,7 @@ export default function ArticlePage() {
                     {/* Citations and References */}
                     <div className="mt-12 pt-6 border-t border-gray-200">
                         <h2 className="text-xl font-bold mb-6">References</h2>
-                        <div className="text-sm text-gray-700 bg-gray-50 p-4 rounded">
+                        <div className="text-sm text-gray-700 bg-gray-200 p-4 rounded-lg">
                             {/* This would contain actual references in a real paper */}
                             <p className="italic text-gray-500">References will be displayed here when available</p>
                         </div>
