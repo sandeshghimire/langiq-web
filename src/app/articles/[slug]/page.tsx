@@ -83,7 +83,7 @@ export default function ArticlePage() {
     if (loading) {
         return (
             <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-black p-4 md:p-6 pt-24 md:pt-32">
-                <div className="max-w-4xl mx-auto">
+                <div className="max-w-7xl mx-auto">
                     <Link href="/articles" className="text-blue-800 hover:text-blue-600 mb-6 inline-block font-serif flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -102,7 +102,7 @@ export default function ArticlePage() {
     if (error || !articleData) {
         return (
             <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-black p-4 md:p-6 pt-24 md:pt-32">
-                <div className="max-w-4xl mx-auto">
+                <div className="max-w-7xl mx-auto">
                     <Link href="/articles" className="text-blue-800 hover:text-blue-600 mb-6 inline-block font-serif flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -128,7 +128,7 @@ export default function ArticlePage() {
     return (
         <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-black p-4 md:p-6 pt-24 md:pt-32">
             <motion.div
-                className="max-w-4xl mx-auto"
+                className="max-w-7xl mx-auto"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
@@ -152,7 +152,7 @@ export default function ArticlePage() {
 
                     {/* Article Header */}
                     <header className="mb-8 text-center">
-                        <h1 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">{metadata.title}</h1>
+                        <h1 className="text-3xl md:text-2xl font-bold mb-6 leading-tight">{metadata.title}</h1>
 
                         <div className="mb-4">
                             <div className="text-lg font-medium">
@@ -258,22 +258,10 @@ export default function ArticlePage() {
                         </div>
                     </div>
 
-                    {/* Abstract */}
-                    <section className="mb-12 bg-gray-50 p-6 border-l-4 border-blue-700">
-                        <h2 className="text-xl font-bold mb-4">Abstract</h2>
-                        <p className="text-base leading-relaxed text-gray-700">
-                            {metadata.abstract}
-                        </p>
-                    </section>
 
                     {/* Article Content */}
-                    <div className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:mt-10 prose-headings:mb-5 prose-h2:text-2xl prose-h3:text-xl prose-p:my-5 prose-p:leading-7 prose-li:my-1 prose-img:my-8 prose-img:mx-auto prose-blockquote:border-l-4 prose-blockquote:border-gray-300 prose-blockquote:pl-4 prose-blockquote:italic">
-                        <ReactMarkdown
-                            remarkPlugins={[remarkMath]}
-                            rehypePlugins={[rehypeKatex]}
-                        >
-                            {content}
-                        </ReactMarkdown>
+                    <div className="">
+                        {content}
                     </div>
 
                     {/* Citations and References */}
@@ -285,11 +273,7 @@ export default function ArticlePage() {
                         </div>
                     </div>
 
-                    {/* Article Footer */}
-                    <footer className="mt-12 pt-6 border-t border-gray-200 text-sm text-center text-gray-500">
-                        <div>Published on {metadata.date}</div>
-                        {metadata.doi && <div className="mt-1">DOI: {metadata.doi}</div>}
-                    </footer>
+
                 </article>
             </motion.div>
         </main>
