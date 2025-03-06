@@ -2,6 +2,9 @@
 
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+
+// Import DataPacket interface
 
 // Import DataPacket interface
 import { DataPacket } from '../types/dataPacket';
@@ -787,12 +790,16 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 mr-4 handwriting">
-            Get Started
-          </button>
-          <button className="bg-transparent border-2 border-blue-600 hover:bg-blue-600/10 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 handwriting">
-            Learn More
-          </button>
+          <Link href="/services" className="mr-4">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 handwriting">
+              Get Started
+            </button>
+          </Link>
+          <Link href="/contact">
+            <button className="bg-transparent border-2 border-blue-600 hover:bg-blue-600/10 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 handwriting">
+              Learn More
+            </button>
+          </Link>
         </motion.div>
       </div>
 
