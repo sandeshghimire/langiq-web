@@ -735,6 +735,24 @@ export default function Home() {
         lastPacketTime = time;
       }
 
+      // Update node positions for satellite-like orbital motion
+      elements.clusters.forEach((cluster, clusterIndex) => {
+        const baseAngle = time * 0.0005; // Base rotation speed
+        const clusterAngleOffset = (Math.PI * 2 / elements.clusters.length) * clusterIndex;
+
+        cluster.nodes.forEach((node, nodeIndex) => {
+          // Calculate orbital properties for each node
+          const orbitRadius = cluster.radius * 2; // Distance from cluster center
+          const orbitSpeed = 0.0003 + (nodeIndex * 0.00005); // Slightly different speeds for each node
+          const orbitPhase = (Math.PI * 2 / cluster.nodes.length) * nodeIndex; // Starting position
+
+          // Update node position with circular orbit
+          const orbitAngle = baseAngle * orbitSpeed + orbitPhase + clusterAngleOffset;
+          node.x = cluster.x + Math.cos(orbitAngle) * orbitRadius;
+          node.y = cluster.y + Math.sin(orbitAngle) * orbitRadius;
+        });
+      });
+
       // Draw nodes
       drawNode(elements.user, 'User');
       drawNode(elements.langiq, 'LangIQ');
@@ -743,6 +761,14 @@ export default function Home() {
       elements.clusters.forEach(cluster => {
         drawNode(cluster, cluster.name);
         cluster.nodes.forEach(node => {
+          // Draw connection lines between cluster and its nodes
+          ctx.beginPath();
+          ctx.moveTo(cluster.x, cluster.y);
+          ctx.lineTo(node.x, node.y);
+          ctx.strokeStyle = `rgba(${hexToRgb(cluster.color)}, 0.3)`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+
           drawNode(node, node.name);
         });
       });
