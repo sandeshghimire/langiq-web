@@ -123,7 +123,7 @@ export default function ArticlesPage() {
     return (
         <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-white p-6 pt-32">
             <motion.div
-                className="max-w-5xl mx-auto"
+                className="max-w-7xl mx-auto"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
