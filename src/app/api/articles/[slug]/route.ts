@@ -36,12 +36,48 @@ export async function GET(
                 const fileContents = fs.readFileSync(possiblePath, 'utf8');
                 const { content, data } = matter(fileContents);
 
-                articleContent = content;
+                // Process and format metadata fields
+                const rawMetadata = data;
+                
+                // Format date if it exists
+                let formattedDate = null;
+                if (rawMetadata.date) {
+                    try {
+                        const dateObj = new Date(rawMetadata.date);
+                        formattedDate = dateObj.toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+                    } catch (e) {
+                        // If date parsing fails, use the original string
+                        formattedDate = rawMetadata.date;
+                    }
+                }
+
+                // Ensure keywords is an array
+                const keywords = Array.isArray(rawMetadata.keywords) 
+                    ? rawMetadata.keywords 
+                    : (rawMetadata.keywords ? rawMetadata.keywords.split(',').map((k: string) => k.trim()) : []);
+
+                // Create structured article metadata
                 articleMetadata = {
-                    ...data,
-                    category,
-                    slug
+                    title: rawMetadata.title || 'Untitled Article',
+                    author: rawMetadata.author || 'Unknown Author',
+                    description: rawMetadata.description || '',
+                    abstract: rawMetadata.abstract || rawMetadata.description || '',
+                    keywords: keywords,
+                    rawDate: rawMetadata.date || '',
+                    date: formattedDate || 'Unpublished',
+                    difficultyLevel: rawMetadata.difficultyLevel || 'Not specified',
+                    estimatedTime: rawMetadata.estimatedTime || 'Not specified',
+                    category: category || 'Uncategorized',
+                    journal: rawMetadata.journal || null,
+                    doi: rawMetadata.doi || null,
+                    slug: slug,
                 };
+
+                articleContent = content;
             }
         }
 
