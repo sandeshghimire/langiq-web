@@ -700,33 +700,6 @@ export default function Home() {
         lastPacketTime = time;
       }
 
-      // Draw connections
-      // User to LangIQ
-      ctx.strokeStyle = 'rgba(200, 200, 200, 0.5)';
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(elements.user.x, elements.user.y);
-      ctx.lineTo(elements.langiq.x, elements.langiq.y);
-      ctx.stroke();
-
-      // LangIQ to Clusters
-      elements.clusters.forEach(cluster => {
-        ctx.beginPath();
-        ctx.moveTo(elements.langiq.x, elements.langiq.y);
-        ctx.lineTo(cluster.x, cluster.y);
-        ctx.strokeStyle = `rgba(${hexToRgb(cluster.color)}, 0.5)`;
-        ctx.stroke();
-
-        // Cluster to its nodes
-        cluster.nodes.forEach(node => {
-          ctx.beginPath();
-          ctx.moveTo(cluster.x, cluster.y);
-          ctx.lineTo(node.x, node.y);
-          ctx.strokeStyle = `rgba(${hexToRgb(cluster.color)}, 0.3)`;
-          ctx.stroke();
-        });
-      });
-
       // Draw nodes
       drawNode(elements.user, 'User');
       drawNode(elements.langiq, 'LangIQ');
@@ -786,7 +759,7 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}
         >
-          LangIQ
+
         </motion.h1>
 
         <motion.p
@@ -804,38 +777,9 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <div className="content-box p-6">
-            <h2 className="text-xl font-semibold mb-3 text-blue-400 handwriting">Input</h2>
-            <ul className="text-left space-y-2 handwriting-alt">
-              <li>• Universal Data Ingestion</li>
-              <li>• Multiple File Formats</li>
-              <li>• Database Connections</li>
-              <li>• Natural Language Prompts</li>
-              <li>• API Integration</li>
-            </ul>
-          </div>
 
-          <div className="content-box p-6">
-            <h2 className="text-xl font-semibold mb-3 text-green-400 handwriting">Processing</h2>
-            <ul className="text-left space-y-2 handwriting-alt">
-              <li>• Intelligent Analysis</li>
-              <li>• Model Orchestration</li>
-              <li>• Frontier AI Models</li>
-              <li>• RAG with Vector DBs</li>
-              <li>• Multi-Agent Systems</li>
-            </ul>
-          </div>
 
-          <div className="content-box p-6">
-            <h2 className="text-xl font-semibold mb-3 text-yellow-400 handwriting">Output</h2>
-            <ul className="text-left space-y-2 handwriting-alt">
-              <li>• Multi-Modal Results</li>
-              <li>• Contextualized Responses</li>
-              <li>• Customizable Formats</li>
-              <li>• Data Visualizations</li>
-              <li>• Actionable Insights</li>
-            </ul>
-          </div>
+
         </motion.div>
 
         <motion.div
