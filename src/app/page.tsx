@@ -615,7 +615,7 @@ export default function Home() {
 
     // Generate data packets
     const createDataPacket = () => {
-      // User to LangIQ
+      // User to LangIQ - keep existing logic
       if (Math.random() > 0.6) {
         const packet = new AnimatedPacket(
           elements.user.x,
@@ -628,7 +628,20 @@ export default function Home() {
         elements.dataPackets.push(packet);
       }
 
-      // LangIQ to random cluster
+      // LangIQ to User - add consistent bi-directional communication
+      if (Math.random() > 0.65) {
+        const packet = new AnimatedPacket(
+          elements.langiq.x,
+          elements.langiq.y,
+          elements.user.x,
+          elements.user.y,
+          '#34A853', // LangIQ color
+          elements.user
+        );
+        elements.dataPackets.push(packet);
+      }
+
+      // LangIQ to random cluster - keep existing logic
       if (elements.clusters.length > 0) {
         const randomClusterIndex = Math.floor(Math.random() * elements.clusters.length);
         const targetCluster = elements.clusters[randomClusterIndex];
@@ -657,7 +670,7 @@ export default function Home() {
         elements.dataPackets.push(packet);
       }
 
-      // Random cluster node back to LangIQ
+      // Random cluster node back to LangIQ - keep existing logic
       if (Math.random() > 0.7 && elements.clusters.length > 0) {
         const randomClusterIndex = Math.floor(Math.random() * elements.clusters.length);
         const sourceCluster = elements.clusters[randomClusterIndex];
@@ -679,7 +692,7 @@ export default function Home() {
         }
       }
 
-      // Direct connection between clusters occasionally
+      // Direct connection between clusters occasionally - keep existing logic
       if (Math.random() > 0.85 && elements.clusters.length > 1) {
         const sourceClusterIndex = Math.floor(Math.random() * elements.clusters.length);
         let targetClusterIndex;
