@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter'; // Library for parsing markdown frontmatter
+import { processArticleMetadata } from '@/utils/metadataHelper';
 
 /**
  * GET handler for retrieving a specific article by its slug
@@ -52,57 +53,8 @@ export async function GET(
                 // Extract frontmatter data and main content
                 const { content, data } = matter(fileContents);
 
-                // Access the raw metadata from frontmatter
-                const rawMetadata = data;
-
-                console.log(rawMetadata); // Debug: Log the content to console
-
-                // Format the date for display if available
-                let formattedDate = null;
-                if (rawMetadata.date) {
-                    try {
-                        // Convert string date to formatted date string
-                        const dateObj = new Date(rawMetadata.date);
-                        formattedDate = dateObj.toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                        });
-                    } catch (e) {
-                        // Fallback to original string if date parsing fails
-                        formattedDate = rawMetadata.date;
-                    }
-                }
-
-                // Handle fields with potential duplicates - take the first occurrence
-                // For author, where duplicates might exist in the frontmatter
-                const author = rawMetadata.author || 'Unknown Author';
-
-                // Ensure keywords are properly formatted as an array
-                // This handles both array and comma-separated string formats
-                const keywords = Array.isArray(rawMetadata.keywords)
-                    ? rawMetadata.keywords
-                    : (rawMetadata.keywords ? rawMetadata.keywords.split(',').map((k: string) => k.trim()) : []);
-
-                // Construct a standardized metadata object with all necessary properties
-                // Providing fallbacks for any missing fields
-                articleMetadata = {
-                    title: rawMetadata.title || 'Untitled Article',
-                    author: author, // Use the first occurrence of author field
-                    description: rawMetadata.description || '',
-                    // Abstract can come from dedicated field or fall back to description
-                    abstract: rawMetadata.abstract || rawMetadata.description || '',
-                    keywords: keywords,
-                    rawDate: rawMetadata.date || '',
-                    date: formattedDate || 'Unpublished',
-                    difficultyLevel: rawMetadata.difficultyLevel || 'Not specified',
-                    estimatedTime: rawMetadata.estimatedTime || 'Not specified',
-                    category: category || 'Uncategorized',
-                    // Additional metadata for academic articles
-                    journal: rawMetadata.journal || null,
-                    doi: rawMetadata.doi || null,
-                    slug: slug, // Keep the slug for reference
-                };
+                // Process the metadata using our helper function
+                articleMetadata = processArticleMetadata(data, slug, category);
 
                 // Store the main article content
                 articleContent = content;
