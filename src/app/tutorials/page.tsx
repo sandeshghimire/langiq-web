@@ -3,14 +3,10 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { getAllTutorials, Tutorial } from '../../../lib/tutorials';
+import { Tutorial } from '../../../lib/tutorials';
 
 export default function TutorialsPage() {
-    const [activeCategory, setActiveCategory] = useState('all');
     const [tutorials, setTutorials] = useState<Tutorial[]>([]);
-    const [categories, setCategories] = useState([
-        { id: 'all', name: 'All Tutorials' }
-    ]);
 
     useEffect(() => {
         async function fetchTutorials() {
@@ -18,24 +14,10 @@ export default function TutorialsPage() {
             const response = await fetch('/api/tutorials');
             const data = await response.json();
             setTutorials(data.tutorials);
-
-            // Extract unique categories
-            const uniqueCategories = [...new Set(data.tutorials.map(t => t.category))];
-            setCategories([
-                { id: 'all', name: 'All Tutorials' },
-                ...uniqueCategories.map(cat => ({
-                    id: cat,
-                    name: cat.charAt(0).toUpperCase() + cat.slice(1).replace(/-/g, ' ')
-                }))
-            ]);
         }
 
         fetchTutorials();
     }, []);
-
-    const filteredTutorials = activeCategory === 'all'
-        ? tutorials
-        : tutorials.filter(tutorial => tutorial.category === activeCategory);
 
     const difficultyColors = {
         'Beginner': 'green',
@@ -56,25 +38,9 @@ export default function TutorialsPage() {
                     Step-by-step guides to help you master LangIQ and build powerful AI applications.
                 </p>
 
-                {/* Category Filter */}
-                <div className="flex flex-wrap justify-center gap-3 mb-10">
-                    {categories.map((category) => (
-                        <button
-                            key={category.id}
-                            className={`handwriting px-4 py-1 rounded-full transition-all ${activeCategory === category.id
-                                ? 'bg-blue-600 text-white'
-                                : 'bg-gray-800 hover:bg-gray-700 text-gray-300'
-                                }`}
-                            onClick={() => setActiveCategory(category.id)}
-                        >
-                            {category.name}
-                        </button>
-                    ))}
-                </div>
-
                 {/* Tutorials Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredTutorials.map((tutorial, index) => (
+                    {tutorials.map((tutorial, index) => (
                         <motion.div
                             key={tutorial.slug}
                             className="content-box p-5"
@@ -83,22 +49,22 @@ export default function TutorialsPage() {
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                         >
                             <div className="flex justify-between items-start mb-3">
-                                <span className={`text-${difficultyColors[tutorial.difficulty]}-400 text-sm handwriting-alt px-2 py-0.5 bg-gray-800 rounded-full`}>
-                                    {tutorial.difficulty}
+                                <span className={`text-${difficultyColors[tutorial.difficulty] || 'blue'}-400 text-sm handwriting-alt px-2 py-0.5 bg-gray-800 rounded-full`}>
+                                    {tutorial.difficulty || 'General'}
                                 </span>
                                 <span className="text-gray-400 text-sm handwriting-alt">
-                                    {tutorial.duration}
+                                    {tutorial.duration || 'Varies'}
                                 </span>
                             </div>
 
-                            <h2 className="text-xl font-semibold mb-2 handwriting">{tutorial.title}</h2>
+                            <h2 className="text-xl font-semibold mb-2 handwriting">{tutorial.title || 'Untitled Tutorial'}</h2>
                             <p className="handwriting-alt mb-4 text-gray-300 text-sm">
-                                {tutorial.description}
+                                {tutorial.description || 'No description available'}
                             </p>
 
                             <div className="flex justify-between items-center mt-4">
                                 <span className="text-gray-400 text-sm handwriting-alt">
-                                    By {tutorial.author}
+                                    By {tutorial.author || 'Unknown Author'}
                                 </span>
                                 <Link href={`/tutorials/${tutorial.slug}`} className="handwriting text-sm text-blue-400 hover:text-blue-300 flex items-center">
                                     Start Tutorial
