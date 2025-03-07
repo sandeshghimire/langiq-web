@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
-import { Tutorial } from '../../../../lib/tutorials';
+import { Tutorial } from '../../../../lib/applications';
 
 export default function TutorialPage() {
     const params = useParams();

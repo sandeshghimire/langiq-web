@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { getAllTutorials, Tutorial } from '../../../lib/tutorials';
+import { getAllTutorials, Tutorial } from '../../../lib/applications';
 
 export default function TutorialsPage() {
     const [activeCategory, setActiveCategory] = useState('all');
