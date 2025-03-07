@@ -152,14 +152,14 @@ export default function ArticlePage() {
 
                     {/* Article Header */}
                     <header className="mb-8 text-center handwriting font-serif">
-                        <h1 className="text-3xl md:text-2xl font-bold mb-6 leading-tight">{metadata.title}</h1>
+                        <h1 className="text-3xl md:text-3xl font-bold mb-6 leading-tight">{metadata.title}</h1>
 
                         <div className="mb-4">
-                            <div className="text-lg font-medium">
+                            <div className="text-2xl font-medium">
                                 {metadata.author}
                             </div>
-                            <div className="text-sm text-gray-600 mt-2 uppercase tracking-wide">
-                                {metadata.category}
+                            <div className="text-sm text-gray-600 mt-2  tracking-wide">
+                                {metadata.date}
                             </div>
                         </div>
                     </header>
@@ -167,7 +167,7 @@ export default function ArticlePage() {
                     {/* Article Metadata Card */}
                     <div className="bg-gray-100 border border-gray-200 rounded-lg p-5 mb-10 shadow-sm">
                         <h3 className="text-lg font-bold mb-4 border-b pb-2 border-gray-200 text-gray-700">Article Information</h3>
-
+                        <div className="py-5 hand">{metadata.description}</div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {/* Date */}
                             <div className="flex items-start">
@@ -265,11 +265,11 @@ export default function ArticlePage() {
                             remarkPlugins={[remarkMath]}
                             rehypePlugins={[rehypeKatex]}
                             components={{
-                                h1: ({ node, ...props }) => <h1 className="text-2xl font-bold mt-10 mb-6 pb-2 border-b border-gray-200" {...props} />,
+                                h1: ({ node, ...props }) => <h1 className="text-xl font-bold mt-10 mb-6 pb-2 border-b border-gray-200" {...props} />,
                                 h2: ({ node, ...props }) => <h2 className="text-xl font-bold mt-8 mb-4 pb-1 border-b border-gray-100" {...props} />,
                                 h3: ({ node, ...props }) => <h3 className="text-lg font-bold mt-6 mb-3 text-gray-800" {...props} />,
                                 h4: ({ node, ...props }) => <h4 className="text-base font-bold mt-4 mb-2 text-gray-700" {...props} />,
-                                p: ({ node, ...props }) => <p className="my-4 leading-relaxed" {...props} />,
+                                p: ({ node, ...props }) => <p className="my-4 text-base leading-relaxed" {...props} />,
                                 ul: ({ node, ...props }) => <ul className="list-disc pl-6 my-4 space-y-2" {...props} />,
                                 ol: ({ node, ...props }) => <ol className="list-decimal pl-6 my-4 space-y-2" {...props} />,
                                 li: ({ node, ...props }) => <li className="mb-1" {...props} />,
