@@ -90,7 +90,7 @@ export default function ArticlePage() {
                         </svg>
                         Back to Articles
                     </Link>
-                    <div className="bg-white p-6 md:p-10 shadow-lg rounded-sm">
+                    <div className="bg-gray-600 p-6 md:p-10 shadow-lg rounded-sm">
                         <ArticleSkeleton />
                     </div>
                 </div>
@@ -260,7 +260,7 @@ export default function ArticlePage() {
 
 
                     {/* Article Content */}
-                    <div className="markdown-article prose prose-lg prose-blue max-w-none">
+                    <div className=" prose-blue prose-a:text-blue-700 prose-a:underline prose-a:hover:text-blue-900">
                         <ReactMarkdown
                             remarkPlugins={[remarkMath]}
                             rehypePlugins={[rehypeKatex]}
@@ -275,7 +275,7 @@ export default function ArticlePage() {
                                 li: ({ node, ...props }) => <li className="mb-1" {...props} />,
                                 blockquote: ({ node, ...props }) => <blockquote className="border-l-4 border-blue-300 bg-blue-50 pl-4 py-2 italic my-6 text-gray-700 rounded-r" {...props} />,
                                 table: ({ node, ...props }) => <div className="overflow-x-auto my-8"><table className="min-w-full border border-gray-300 rounded-lg shadow-sm" {...props} /></div>,
-                                thead: ({ node, ...props }) => <thead className="bg-gray-100" {...props} />,
+                                thead: ({ node, ...props }) => <thead className="bg-gray-800" {...props} />,
                                 th: ({ node, ...props }) => <th className="border border-gray-300 px-4 py-2 text-left font-semibold" {...props} />,
                                 td: ({ node, ...props }) => <td className="border border-gray-300 px-4 py-2" {...props} />,
                                 a: ({ node, ...props }) => <a className="text-blue-700 hover:text-blue-900 underline" {...props} />,
@@ -293,11 +293,11 @@ export default function ArticlePage() {
                                 },
                                 img: ({ node, ...props }) => (
                                     <div className="flex justify-center my-8">
-                                        <img 
-                                            className="max-w-full h-auto rounded-lg shadow-md" 
-                                            alt={props.alt || "Article image"} 
-                                            loading="lazy" 
-                                            {...props} 
+                                        <img
+                                            className="max-w-full h-auto rounded-lg shadow-md"
+                                            alt={props.alt || "Article image"}
+                                            loading="lazy"
+                                            {...props}
                                         />
                                     </div>
                                 ),
