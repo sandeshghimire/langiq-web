@@ -15,7 +15,7 @@ export default function TutorialsPage() {
     useEffect(() => {
         async function fetchTutorials() {
             // In client components, we need to fetch from an API endpoint
-            const response = await fetch('/api/tutorials');
+            const response = await fetch('/api/applications');
             const data = await response.json();
             setTutorials(data.tutorials);
 
@@ -100,7 +100,7 @@ export default function TutorialsPage() {
                                 <span className="text-gray-400 text-sm handwriting-alt">
                                     By {tutorial.author}
                                 </span>
-                                <Link href={`/tutorials/${tutorial.slug}`} className="handwriting text-sm text-blue-400 hover:text-blue-300 flex items-center">
+                                <Link href={`/applications/${tutorial.slug}`} className="handwriting text-sm text-blue-400 hover:text-blue-300 flex items-center">
                                     Start Tutorial
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

@@ -18,7 +18,7 @@ export default function TutorialPage() {
         async function fetchTutorial() {
             try {
                 const slug = params.slug as string;
-                const res = await fetch(`/api/tutorials?slug=${slug}`);
+                const res = await fetch(`/api/applications?slug=${slug}`);
 
                 if (!res.ok) {
                     throw new Error('Failed to fetch tutorial');
