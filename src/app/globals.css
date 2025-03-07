@@ -198,3 +198,46 @@ nav a.active {
 .markdown-article dd {
   margin-left: 2rem;
 }
+
+/* Enhanced Markdown Styling */
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.prose pre {
+  margin: 1.5rem 0;
+  border-radius: 0.5rem;
+  overflow: auto;
+}
+
+.prose code {
+  font-family: 'Courier New', monospace;
+}
+
+.prose h1:hover .anchor,
+.prose h2:hover .anchor,
+.prose h3:hover .anchor,
+.prose h4:hover .anchor {
+  opacity: 1;
+}
+
+.prose .anchor {
+  opacity: 0;
+  text-decoration: none;
+  transition: opacity 0.2s ease-in-out;
+  margin-left: 0.5rem;
+}
+
+.toc a {
+  transition: all 0.2s ease;
+  display: block;
+  border-left: 2px solid transparent;
+  padding-left: 0.5rem;
+}
+
+.toc a.active {
+  border-left: 2px solid #3b82f6;
+  color: #3b82f6;
+}
