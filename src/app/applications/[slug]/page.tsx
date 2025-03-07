@@ -39,7 +39,7 @@ export default function TutorialPage() {
     if (isLoading) {
         return (
             <div className="min-h-[calc(100vh-4rem)] math-paper-bg text-white p-6 pt-32">
-                <div className="max-w-4xl mx-auto text-center">
+                <div className="max-w-7xl mx-auto text-center">
                     <p className="handwriting text-xl">Loading tutorial...</p>
                 </div>
             </div>
@@ -49,7 +49,7 @@ export default function TutorialPage() {
     if (error || !tutorial) {
         return (
             <div className="min-h-[calc(100vh-4rem)] math-paper-bg text-white p-6 pt-32">
-                <div className="max-w-4xl mx-auto text-center">
+                <div className="max-w-7xl mx-auto text-center">
                     <h1 className="text-3xl font-bold mb-4 handwriting">Tutorial Not Found</h1>
                     <p className="handwriting-alt mb-6">{error || "We couldn't find the tutorial you're looking for."}</p>
                     <Link href="/tutorials" className="handwriting bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-full">
@@ -69,7 +69,7 @@ export default function TutorialPage() {
     return (
         <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-white p-6 pt-32">
             <motion.div
-                className="max-w-4xl mx-auto"
+                className="max-w-7xl mx-auto"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}

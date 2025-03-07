@@ -812,7 +812,7 @@ export default function Home() {
       />
 
       {/* Content */}
-      <div className="z-10 text-center w-full max-w-4xl px-4">
+      <div className="z-10 text-center w-full max-w-7xl px-4">
         <motion.h1
           className="text-5xl font-bold mb-6 handwriting"
           initial={{ opacity: 0, y: -20 }}
