@@ -56,7 +56,7 @@ export async function GET(request: Request) {
     // When no slug provided, return all tutorials
     const tutorials = getAllTutorials();
 
-    console.log(tutorials);
+
 
 
 

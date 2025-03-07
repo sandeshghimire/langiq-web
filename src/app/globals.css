@@ -17,10 +17,10 @@
   --background: #ffffff;
   --foreground: #171717;
   --foreground-rgb: 255, 255, 255;
-  --background-rgb: 20, 20, 30;
-  --grid-color: rgba(100, 100, 240, 0.2);
+  --background-rgb: 0, 0, 0;
+  --grid-color: rgba(0, 0, 0, 0.8);
   --grid-size: 20px;
-  --grid-small: 4px;
+  --grid-small: 100px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,7 +33,7 @@
 body {
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-rgb));
-  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   letter-spacing: -0.011em;
@@ -52,13 +52,14 @@ body {
 }
 
 .handwriting {
-  font-family: 'Caveat', cursive;
-  font-weight: 600;
+  font-family: 'Kalam', cursive;
+  font-weight: 800;
 }
 
 .handwriting-alt {
   font-family: 'Kalam', cursive;
   font-weight: 400;
+  font-size: var(--font-sans);
 }
 
 .content-box {
@@ -253,7 +254,7 @@ nav a.active {
 }
 
 .prose h1 {
-  font-size: 2.25rem;
+  font-size: 2.00rem;
   margin-top: 2.5rem;
   margin-bottom: 1.25rem;
   letter-spacing: -0.025em;
@@ -261,7 +262,7 @@ nav a.active {
 }
 
 .prose h2 {
-  font-size: 1.875rem;
+  font-size: 1.8rem;
   margin-top: 2.25rem;
   margin-bottom: 1rem;
   letter-spacing: -0.025em;
@@ -269,7 +270,7 @@ nav a.active {
 }
 
 .prose h3 {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   margin-top: 2rem;
   margin-bottom: 0.75rem;
   letter-spacing: -0.025em;
@@ -277,14 +278,14 @@ nav a.active {
 }
 
 .prose h4 {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   margin-top: 1.75rem;
   margin-bottom: 0.5rem;
   letter-spacing: -0.025em;
 }
 
 .prose p {
-  margin-top: 1.25rem;
+  margin-top: 1.000rem;
   margin-bottom: 1.25rem;
   line-height: 1.75;
 }
