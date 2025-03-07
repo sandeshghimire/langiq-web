@@ -278,9 +278,9 @@ export default function TutorialPage() {
                     )}
 
                     {/* Tutorial Content */}
-                    <div className={`${headings.length > 0 ? 'md:w-3/4' : 'w-full'}`}>
+                    <div className={`${headings.length > 0 ? 'w-full' : 'w-full'}`}>
                         <div className="content-box p-6 mb-8" ref={contentRef}>
-                            <article className="prose prose-invert prose-lg max-w-none">
+                            <article className="">
                                 <ReactMarkdown
                                     remarkPlugins={[remarkGfm]}
                                     rehypePlugins={[rehypeRaw, rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }]]}
