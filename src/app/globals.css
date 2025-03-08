@@ -389,12 +389,12 @@ nav a.active {
 }
 
 /* Table of Contents Styling */
-.toc {
+.prose .toc {
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
 }
 
-.toc a {
+.prose .toc a {
   transition: all 0.2s ease;
   display: block;
   border-left: 2px solid transparent;
@@ -409,15 +409,15 @@ nav a.active {
   white-space: nowrap;
 }
 
-.toc a:hover,
-.toc a.active {
+.prose .toc a:hover,
+.prose .toc a.active {
   border-left: 2px solid #3b82f6;
   color: #60a5fa;
   background-color: rgba(59, 130, 246, 0.1);
 }
 
 /* Dark mode optimized syntax highlighting */
-.prism-code {
+.prose .prism-code {
   border-radius: 0.5rem !important;
   font-family: 'JetBrains Mono', monospace !important;
   font-size: 0.9rem !important;
@@ -448,7 +448,7 @@ nav a.active {
     font-size: 1.25rem;
   }
 
-  .toc {
+  .prose .toc {
     font-size: 0.85rem;
   }
 }
