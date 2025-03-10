@@ -229,7 +229,7 @@ export default function ArticlesPage() {
                                 <p className="handwriting-alt mb-4 text-gray-300">{featuredArticle.description}</p>
                                 <p className="handwriting text-gray-400 mb-4">By {featuredArticle.author}</p>
                                 {/* Link to the full article */}
-                                <Link href={`/articles/${featuredArticle.slug}`} className="handwriting bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full shadow-md text-sm transition-all inline-block">
+                                <Link href={`/articles/${encodeURIComponent(featuredArticle.slug)}`} className="handwriting bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full shadow-md text-sm transition-all inline-block">
                                     Read Article
                                 </Link>
                             </div>
@@ -259,7 +259,7 @@ export default function ArticlesPage() {
                                     {/* Article author */}
                                     <span className="handwriting text-gray-400 text-sm">By {article.author}</span>
                                     {/* Link to full article */}
-                                    <Link href={`/articles/${article.slug}`} className="handwriting text-sm text-blue-400 hover:text-blue-300">
+                                    <Link href={`/articles/${encodeURIComponent(article.slug)}`} className="handwriting text-sm text-blue-400 hover:text-blue-300">
                                         Read More →
                                     </Link>
                                 </div>
