@@ -50,6 +50,25 @@ export default function ContentDetailView({
     const [readingProgress, setReadingProgress] = useState<number>(0);
     const [showShareOptions, setShowShareOptions] = useState<boolean>(false);
 
+    // Add eye comfort mode
+    const [isEyeComfortMode, setIsEyeComfortMode] = useState<boolean>(false);
+    const [lineHeight, setLineHeight] = useState<string>('leading-relaxed');
+    const [contentWidth, setContentWidth] = useState<string>('max-w-7xl');
+
+    // Toggle eye comfort reading mode
+    const toggleEyeComfortMode = () => {
+        if (isEyeComfortMode) {
+            setFontSize('text-base');
+            setLineHeight('leading-relaxed');
+            setContentWidth('max-w-7xl');
+        } else {
+            setFontSize('text-lg');
+            setLineHeight('leading-loose');
+            setContentWidth('max-w-5xl');
+        }
+        setIsEyeComfortMode(!isEyeComfortMode);
+    };
+
     // Add font size control
     const increaseFontSize = () => {
         if (fontSize === 'text-base') setFontSize('text-lg');
@@ -430,9 +449,13 @@ export default function ContentDetailView({
                 style={{ width: `${readingProgress}%` }}
             />
 
-            <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-white p-6 pt-32 print:pt-10 print:bg-white print:text-black">
+            <main className={`min-h-[calc(100vh-4rem)] ${isEyeComfortMode ? 'bg-[#f8f5ee] dark:bg-[#1a1a1a]' : 'math-paper-bg'} 
+                    ${isEyeComfortMode ? 'text-[#333333] dark:text-[#e0e0e0]' : 'text-white'} 
+                    p-6 pt-32 print:pt-10 print:bg-white print:text-black
+                    ${isEyeComfortMode ? 'transition-colors duration-300' : ''}`}
+            >
                 <motion.div
-                    className="max-w-7xl mx-auto"
+                    className={`${contentWidth} mx-auto`}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
@@ -445,8 +468,19 @@ export default function ContentDetailView({
                             {backLinkText}
                         </Link>
 
-                        {/* Reading options toolbar */}
+                        {/* Reading options toolbar - Enhanced with eye comfort mode */}
                         <div className="flex items-center space-x-3">
+                            <button
+                                onClick={toggleEyeComfortMode}
+                                className={`p-1.5 rounded-full ${isEyeComfortMode ? 'bg-blue-500 text-white' : 'bg-gray-800 hover:bg-gray-700'} transition-colors`}
+                                aria-label={isEyeComfortMode ? "Disable eye comfort mode" : "Enable eye comfort mode"}
+                                title={isEyeComfortMode ? "Disable eye comfort mode" : "Enable eye comfort mode"}
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                            </button>
                             <button
                                 onClick={decreaseFontSize}
                                 className="p-1.5 rounded-full bg-gray-800 hover:bg-gray-700 transition-colors"
@@ -480,9 +514,12 @@ export default function ContentDetailView({
                     </div>
 
                     {/* Content Header */}
-                    <div className="content-box p-6 mb-8 print:border print:border-gray-300 print:shadow-none">
+                    <div className={`content-box p-6 mb-8 print:border print:border-gray-300 print:shadow-none 
+                        ${isEyeComfortMode ? 'bg-white dark:bg-zinc-900 shadow-lg border border-gray-200 dark:border-gray-800' : ''}`}>
                         <div className="flex items-center justify-between mb-4">
-                            <span className={`text-${difficultyColors[tutorial.difficulty]}-400 text-sm handwriting-alt px-2 py-0.5 bg-gray-800 dark:bg-gray-900 rounded-full print:bg-gray-200 print:text-gray-800`}>
+                            <span className={`text-${difficultyColors[tutorial.difficulty]}-400 text-sm handwriting-alt px-2 py-0.5 
+                                ${isEyeComfortMode ? 'bg-gray-100 dark:bg-gray-800' : 'bg-gray-800 dark:bg-gray-900'} 
+                                rounded-full print:bg-gray-200 print:text-gray-800`}>
                                 {tutorial.difficulty}
                             </span>
                             <div className="flex items-center space-x-4">
@@ -497,31 +534,33 @@ export default function ContentDetailView({
                             </div>
                         </div>
 
-                        <h1 className="text-3xl font-bold mb-3 handwriting text-center print:text-black">{tutorial.title}</h1>
+                        <h1 className={`text-3xl font-bold mb-4 handwriting text-center ${isEyeComfortMode ? 'text-gray-800 dark:text-white' : ''} print:text-black`}>
+                            {tutorial.title}
+                        </h1>
 
                         {tutorial.image && (
-                            <div className="mb-4 flex justify-center">
+                            <div className="mb-6 flex justify-center">
                                 <img
                                     src={tutorial.image}
                                     alt={tutorial.title}
-                                    className="max-w-full h-auto rounded-lg max-h-60 object-cover"
+                                    className="max-w-full h-auto rounded-lg max-h-60 object-cover shadow-md"
                                 />
                             </div>
                         )}
 
-                        <p className="handwriting-alt text-lg mb-4 text-gray-300">
+                        <p className={`handwriting-alt text-lg mb-5 ${isEyeComfortMode ? 'text-gray-600 dark:text-gray-300' : 'text-gray-300'}`}>
                             {tutorial.description}
                         </p>
 
-                        <div className="flex items-center justify-between border-t border-gray-700 pt-4 mt-4">
+                        <div className={`flex items-center justify-between pt-4 mt-5 ${isEyeComfortMode ? 'border-t border-gray-200 dark:border-gray-700' : 'border-t border-gray-700'}`}>
                             <div className="flex items-center">
-                                <span className="text-gray-400 handwriting-alt">
+                                <span className={`${isEyeComfortMode ? 'text-gray-600 dark:text-gray-400' : 'text-gray-400'} handwriting-alt`}>
                                     By {tutorial.author}
                                 </span>
                             </div>
 
                             {tutorial.date && (
-                                <span className="text-gray-500 text-sm handwriting-alt">
+                                <span className={`${isEyeComfortMode ? 'text-gray-500 dark:text-gray-500' : 'text-gray-500'} text-sm handwriting-alt`}>
                                     {new Date(tutorial.date).toLocaleDateString('en-US', {
                                         year: 'numeric',
                                         month: 'long',
@@ -537,8 +576,10 @@ export default function ContentDetailView({
                         {/* Table of Contents - Sidebar */}
                         {headings.length > 0 && (
                             <div className="lg:w-1/4 order-2 lg:order-1 print:hidden">
-                                <div className="content-box p-4 sticky top-32">
-                                    <h3 className="text-xl font-bold mb-4 handwriting border-b border-gray-700 pb-2">Contents</h3>
+                                <div className={`content-box p-4 sticky top-32 ${isEyeComfortMode ? 'bg-white dark:bg-zinc-900 shadow-md border border-gray-200 dark:border-gray-800' : ''}`}>
+                                    <h3 className={`text-xl font-bold mb-4 handwriting pb-2 ${isEyeComfortMode ? 'border-b border-gray-200 dark:border-gray-700' : 'border-b border-gray-700'}`}>
+                                        Contents
+                                    </h3>
                                     <nav className="toc">
                                         <ul className="space-y-2">
                                             {headings.map((heading) => (
@@ -548,7 +589,12 @@ export default function ContentDetailView({
                                                 >
                                                     <a
                                                         href={`#${heading.id}`}
-                                                        className={`block py-1 hover:text-blue-300 transition-colors duration-200 text-sm ${activeTocItem === heading.id ? 'text-blue-400 font-medium active' : 'text-gray-300'}`}
+                                                        className={`block py-1.5 hover:text-blue-400 transition-colors duration-200 text-sm 
+                                                            ${activeTocItem === heading.id
+                                                                ? 'text-blue-500 font-medium active'
+                                                                : isEyeComfortMode
+                                                                    ? 'text-gray-600 dark:text-gray-300'
+                                                                    : 'text-gray-300'}`}
                                                     >
                                                         {heading.text}
                                                     </a>
@@ -557,10 +603,10 @@ export default function ContentDetailView({
                                         </ul>
                                     </nav>
 
-                                    <div className="mt-6 pt-4 border-t border-gray-700">
+                                    <div className={`mt-6 pt-4 ${isEyeComfortMode ? 'border-t border-gray-200 dark:border-gray-700' : 'border-t border-gray-700'}`}>
                                         <button
                                             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                                            className="text-blue-400 hover:text-blue-300 text-sm flex items-center"
+                                            className="text-blue-500 hover:text-blue-400 text-sm flex items-center"
                                         >
                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
@@ -574,12 +620,35 @@ export default function ContentDetailView({
 
                         {/* Content Main */}
                         <div className={`${headings.length > 0 ? 'lg:w-3/4' : 'w-full'} order-1 lg:order-2`}>
-                            <div className={`content-box p-6 mb-8 ${fontSize} print:shadow-none print:border print:border-gray-300`} ref={contentRef}>
-                                <article className="print:text-black">
+                            <div className={`content-box p-6 md:p-8 mb-8 ${fontSize} ${lineHeight} print:shadow-none print:border print:border-gray-300
+                                ${isEyeComfortMode ? 'bg-white dark:bg-zinc-900 shadow-lg border border-gray-200 dark:border-gray-800' : ''}`} ref={contentRef}>
+                                <article className={`${isEyeComfortMode ? 'text-gray-800 dark:text-gray-100' : ''} print:text-black`}>
                                     <ReactMarkdown
                                         remarkPlugins={[remarkGfm]}
                                         rehypePlugins={[rehypeRaw, rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }]]}
-                                        components={MarkdownComponents}
+                                        components={{
+                                            ...MarkdownComponents,
+                                            // Override some components for better eye comfort
+                                            p: ({ children, ...props }) => (
+                                                <p className={`my-5 ${lineHeight}`} {...props}>{children}</p>
+                                            ),
+                                            ul: ({ children, ...props }) => (
+                                                <ul className={`list-disc list-outside pl-6 my-5 space-y-2.5`} {...props}>{children}</ul>
+                                            ),
+                                            ol: ({ children, ...props }) => (
+                                                <ol className={`list-decimal list-outside pl-6 my-5 space-y-2.5`} {...props}>{children}</ol>
+                                            ),
+                                            li: ({ children, ...props }) => (
+                                                <li className={`pl-1.5 ${lineHeight}`} {...props}>{children}</li>
+                                            ),
+                                            blockquote: ({ children, ...props }) => (
+                                                <blockquote className={`border-l-4 border-blue-500 dark:border-blue-600 pl-5 py-2 my-6 
+                                                    ${isEyeComfortMode ? 'text-gray-600 bg-blue-50 dark:bg-blue-900/20 dark:text-gray-300' : 'text-gray-300 dark:text-gray-400 bg-gray-800/40 dark:bg-gray-900/40'}
+                                                    rounded-r`} {...props}>
+                                                    {children}
+                                                </blockquote>
+                                            ),
+                                        }}
                                     >
                                         {tutorial.content}
                                     </ReactMarkdown>
@@ -587,7 +656,7 @@ export default function ContentDetailView({
                             </div>
 
                             {/* Next Steps */}
-                            <div className="content-box p-6 mt-8 print:hidden">
+                            <div className={`content-box p-6 mt-8 print:hidden ${isEyeComfortMode ? 'bg-white dark:bg-zinc-900 shadow-md border border-gray-200 dark:border-gray-800' : ''}`}>
                                 <h2 className="text-xl font-bold mb-4 handwriting">Continue Learning</h2>
                                 <div className="flex flex-wrap justify-between items-center gap-4">
                                     <Link href={backLinkUrl} className="handwriting bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-full transition-colors">
