@@ -1,13 +1,12 @@
+/* Base imports */
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Kalam:wght@300;400;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Theme variables */
 @theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -21,6 +20,12 @@
   --grid-color: rgba(0, 0, 0, 0.8);
   --grid-size: 20px;
   --grid-small: 100px;
+
+  /* Common colors */
+  --primary-blue: #60a5fa;
+  --primary-blue-hover: #93c5fd;
+  --border-color: rgba(100, 100, 200, 0.2);
+  --card-bg: rgba(30, 30, 60, 0.7);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,6 +35,7 @@
   }
 }
 
+/* Base elements */
 body {
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-rgb));
@@ -42,15 +48,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Background and decorative elements */
 .math-paper-bg {
   background-color: #1a1a2e;
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 60px 60px;
-  /* 3x larger than original 20px */
 }
 
+/* Typography styles */
 .handwriting {
   font-family: 'Kalam', cursive;
   font-weight: 800;
@@ -62,9 +69,10 @@ body {
   font-size: var(--font-sans);
 }
 
+/* Content boxes and cards */
 .content-box {
-  background-color: rgba(30, 30, 60, 0.7);
-  border: 1px solid rgba(100, 100, 200, 0.3);
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(5px);
@@ -78,24 +86,6 @@ body {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
-@media (max-width: 768px) {
-  .content-box {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    margin: 1rem auto;
-    max-width: 90% !important;
-    width: 90%;
-  }
-
-  nav .handwriting,
-  nav .handwriting-alt {
-    font-size: 1rem;
-  }
-}
-
 /* Navigation styles */
 nav {
   border-bottom: 1px solid rgba(100, 100, 240, 0.3);
@@ -106,7 +96,7 @@ nav a.active {
   background-color: rgba(66, 133, 244, 0.3);
 }
 
-/* Improved styling for math equations */
+/* Math styling */
 .katex-display {
   margin: 2.5rem 0;
   padding: 1rem;
@@ -116,25 +106,22 @@ nav a.active {
   border: 1px solid #e5e7eb;
 }
 
-/* Fix inline math styling */
 .math-inline {
   padding: 0 0.2em;
 }
 
-/* Style the markdown article container */
+/* Markdown and article styling */
 .markdown-article {
   font-size: 1.125rem;
   line-height: 1.75;
   color: #e2e8f0;
 }
 
-/* Code block highlighting */
 .markdown-article pre {
   position: relative;
   font-size: 0.9em;
 }
 
-/* Enhance table styling */
 .markdown-article table {
   width: 100%;
   margin: 2rem 0;
@@ -149,8 +136,9 @@ nav a.active {
   background-color: #f9fafb;
 }
 
-/* Style for task lists */
-.markdown-article ul li[data-task="true"] {
+/* Task lists */
+.markdown-article ul li[data-task="true"],
+.markdown-article ul li[data-task="false"] {
   list-style-type: none;
   position: relative;
   padding-left: 1.5rem;
@@ -162,19 +150,13 @@ nav a.active {
   left: 0;
 }
 
-.markdown-article ul li[data-task="false"] {
-  list-style-type: none;
-  position: relative;
-  padding-left: 1.5rem;
-}
-
 .markdown-article ul li[data-task="false"]::before {
   content: '⬜';
   position: absolute;
   left: 0;
 }
 
-/* Footnotes styling */
+/* Footnotes */
 .markdown-article .footnotes {
   margin-top: 2.5rem;
   padding-top: 1.5rem;
@@ -183,7 +165,7 @@ nav a.active {
   color: #4b5563;
 }
 
-/* Improved blockquote styling */
+/* Blockquotes */
 .markdown-article blockquote {
   font-style: italic;
   color: #4b5563;
@@ -209,7 +191,7 @@ nav a.active {
   margin-left: 2rem;
 }
 
-/* Enhanced Markdown Styling */
+/* Enhanced Prose styling */
 .prose {
   font-family: 'Inter', sans-serif;
   max-width: 70ch;
@@ -217,6 +199,7 @@ nav a.active {
   color: #e2e8f0;
 }
 
+/* Prose elements */
 .prose img {
   max-width: 100%;
   height: auto;
@@ -234,7 +217,7 @@ nav a.active {
   font-size: 0.9rem;
   line-height: 1.6;
   padding: 1rem !important;
-  border: 1px solid rgba(100, 100, 200, 0.2);
+  border: 1px solid var(--border-color);
 }
 
 .prose code {
@@ -253,11 +236,18 @@ nav a.active {
   border: none;
 }
 
+/* Typography scale */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  letter-spacing: -0.025em;
+}
+
 .prose h1 {
-  font-size: 2.00rem;
+  font-size: 2rem;
   margin-top: 2.5rem;
   margin-bottom: 1.25rem;
-  letter-spacing: -0.025em;
   line-height: 1.2;
 }
 
@@ -265,7 +255,6 @@ nav a.active {
   font-size: 1.8rem;
   margin-top: 2.25rem;
   margin-bottom: 1rem;
-  letter-spacing: -0.025em;
   line-height: 1.3;
 }
 
@@ -273,7 +262,6 @@ nav a.active {
   font-size: 1.6rem;
   margin-top: 2rem;
   margin-bottom: 0.75rem;
-  letter-spacing: -0.025em;
   line-height: 1.4;
 }
 
@@ -281,15 +269,15 @@ nav a.active {
   font-size: 1.4rem;
   margin-top: 1.75rem;
   margin-bottom: 0.5rem;
-  letter-spacing: -0.025em;
 }
 
 .prose p {
-  margin-top: 1.000rem;
+  margin-top: 1rem;
   margin-bottom: 1.25rem;
   line-height: 1.75;
 }
 
+/* Lists */
 .prose ul,
 .prose ol {
   margin-top: 1.25rem;
@@ -302,16 +290,14 @@ nav a.active {
   margin-bottom: 0.5rem;
 }
 
-.prose ul li::marker {
-  color: #60a5fa;
-}
-
+.prose ul li::marker,
 .prose ol li::marker {
-  color: #60a5fa;
+  color: var(--primary-blue);
 }
 
+/* Links and anchors */
 .prose a {
-  color: #60a5fa;
+  color: var(--primary-blue);
   text-decoration: underline;
   text-decoration-thickness: 0.1em;
   text-underline-offset: 0.15em;
@@ -319,7 +305,7 @@ nav a.active {
 }
 
 .prose a:hover {
-  color: #93c5fd;
+  color: var(--primary-blue-hover);
   text-decoration-thickness: 0.15em;
 }
 
@@ -338,13 +324,14 @@ nav a.active {
   font-weight: 400;
 }
 
+/* Prose blockquotes */
 .prose blockquote {
   border-left-width: 0.25rem;
-  border-left-color: #60a5fa;
+  border-left-color: var(--primary-blue);
   padding: 1rem 1.5rem;
   margin: 1.5rem 0;
   border-radius: 0.25rem;
-  background-color: rgba(30, 30, 60, 0.5);
+  background-color: var(--card-bg);
   font-style: italic;
 }
 
@@ -353,6 +340,7 @@ nav a.active {
   margin-bottom: 0.5rem;
 }
 
+/* Tables */
 .prose table {
   width: 100%;
   margin: 2rem 0;
@@ -360,7 +348,7 @@ nav a.active {
   border-spacing: 0;
   overflow: hidden;
   border-radius: 0.5rem;
-  border: 1px solid rgba(100, 100, 200, 0.2);
+  border: 1px solid var(--border-color);
 }
 
 .prose thead {
@@ -371,7 +359,7 @@ nav a.active {
   padding: 0.75rem 1rem;
   text-align: left;
   font-weight: 600;
-  border-bottom: 1px solid rgba(100, 100, 200, 0.2);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .prose td {
@@ -385,10 +373,10 @@ nav a.active {
 
 .prose hr {
   margin: 2.5rem 0;
-  border-color: rgba(100, 100, 200, 0.2);
+  border-color: var(--border-color);
 }
 
-/* Table of Contents Styling */
+/* Table of Contents */
 .prose .toc {
   font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
@@ -412,11 +400,11 @@ nav a.active {
 .prose .toc a:hover,
 .prose .toc a.active {
   border-left: 2px solid #3b82f6;
-  color: #60a5fa;
+  color: var(--primary-blue);
   background-color: rgba(59, 130, 246, 0.1);
 }
 
-/* Dark mode optimized syntax highlighting */
+/* Syntax highlighting */
 .prose .prism-code {
   border-radius: 0.5rem !important;
   font-family: 'JetBrains Mono', monospace !important;
@@ -424,8 +412,24 @@ nav a.active {
   line-height: 1.6 !important;
 }
 
-/* Responsive adjustments for better readability */
+/* Media queries for responsive design */
 @media (max-width: 768px) {
+  .content-box {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    margin: 1rem auto;
+    max-width: 90% !important;
+    width: 90%;
+  }
+
+  nav .handwriting,
+  nav .handwriting-alt {
+    font-size: 1rem;
+  }
+
   .prose {
     font-size: 0.95rem;
     padding: 0 0.5rem;
@@ -453,7 +457,6 @@ nav a.active {
   }
 }
 
-/* Improve reading experience on larger screens */
 @media (min-width: 1024px) {
   .prose {
     font-size: 1.05rem;

@@ -5,6 +5,9 @@ import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import { motion } from 'framer-motion';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import remarkGfm from 'remark-gfm';
 
 // Define the article metadata interface
 interface ArticleMetadata {
@@ -31,15 +34,24 @@ const extractHeadings = (content: string): TocItem[] => {
     const headingRegex = /^(#{1,6})\s+(.+)$/gm;
     const headings: TocItem[] = [];
     let match;
+    const idCounts: Record<string, number> = {};
 
     while ((match = headingRegex.exec(content)) !== null) {
         const level = match[1].length;
         const text = match[2].trim();
         // Create an ID from the heading text - replace spaces with dashes and remove special chars
-        const id = text
+        let id = text
             .toLowerCase()
             .replace(/[^a-z0-9\s-]/g, '')
             .replace(/\s+/g, '-');
+
+        // Check if this ID already exists and make it unique if needed
+        if (idCounts[id]) {
+            idCounts[id]++;
+            id = `${id}-${idCounts[id]}`;
+        } else {
+            idCounts[id] = 1;
+        }
 
         headings.push({ id, text, level });
     }
@@ -110,32 +122,209 @@ const TableOfContents = ({ items }: { items: TocItem[] }) => {
 // Custom component to render markdown with anchored headings
 const MarkdownWithAnchors = ({ content }: { content: string }) => {
     const headings = extractHeadings(content);
-
-    // Replace heading lines with anchored versions
-    const contentWithAnchors = content.replace(
-        /^(#{1,6})\s+(.+)$/gm,
-        (match, hashes, text) => {
-            const id = text
-                .trim()
-                .toLowerCase()
-                .replace(/[^a-z0-9\s-]/g, '')
-                .replace(/\s+/g, '-');
-
-            return `${hashes} <a id="${id}" className="anchor" href="#${id}">${text}</a>`;
-        }
-    );
+    const idCounts: Record<string, number> = {};
 
     return (
         <div className="prose prose-invert prose-blue max-w-none handwriting-alt">
-            {typeof ReactMarkdown === 'function' ? (
-                <ReactMarkdown>{contentWithAnchors}</ReactMarkdown>
-            ) : (
-                <div>
-                    {content.split('\n\n').map((paragraph, i) => (
-                        <p key={i} className="mb-4">{paragraph}</p>
-                    ))}
-                </div>
-            )}
+            <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                    h1: ({ node, ...props }) => {
+                        const text = props.children?.toString() || '';
+                        let id = text
+                            .toLowerCase()
+                            .replace(/[^a-z0-9\s-]/g, '')
+                            .replace(/\s+/g, '-');
+
+                        // Ensure ID uniqueness
+                        if (idCounts[id]) {
+                            idCounts[id]++;
+                            id = `${id}-${idCounts[id]}`;
+                        } else {
+                            idCounts[id] = 1;
+                        }
+
+                        return (
+                            <h1 id={id} className="scroll-mt-24 mt-8 mb-4">
+                                <a href={`#${id}`} className="anchor">
+                                    {props.children}
+                                </a>
+                            </h1>
+                        );
+                    },
+                    h2: ({ node, ...props }) => {
+                        const text = props.children?.toString() || '';
+                        let id = text
+                            .toLowerCase()
+                            .replace(/[^a-z0-9\s-]/g, '')
+                            .replace(/\s+/g, '-');
+
+                        // Ensure ID uniqueness
+                        if (idCounts[id]) {
+                            idCounts[id]++;
+                            id = `${id}-${idCounts[id]}`;
+                        } else {
+                            idCounts[id] = 1;
+                        }
+
+                        return (
+                            <h2 id={id} className="scroll-mt-24 mt-8 mb-4">
+                                <a href={`#${id}`} className="anchor">
+                                    {props.children}
+                                </a>
+                            </h2>
+                        );
+                    },
+                    h3: ({ node, ...props }) => {
+                        const text = props.children?.toString() || '';
+                        let id = text
+                            .toLowerCase()
+                            .replace(/[^a-z0-9\s-]/g, '')
+                            .replace(/\s+/g, '-');
+
+                        // Ensure ID uniqueness
+                        if (idCounts[id]) {
+                            idCounts[id]++;
+                            id = `${id}-${idCounts[id]}`;
+                        } else {
+                            idCounts[id] = 1;
+                        }
+
+                        return (
+                            <h3 id={id} className="scroll-mt-24 mt-6 mb-3">
+                                <a href={`#${id}`} className="anchor">
+                                    {props.children}
+                                </a>
+                            </h3>
+                        );
+                    },
+                    h4: ({ node, ...props }) => {
+                        const text = props.children?.toString() || '';
+                        let id = text
+                            .toLowerCase()
+                            .replace(/[^a-z0-9\s-]/g, '')
+                            .replace(/\s+/g, '-');
+
+                        // Ensure ID uniqueness
+                        if (idCounts[id]) {
+                            idCounts[id]++;
+                            id = `${id}-${idCounts[id]}`;
+                        } else {
+                            idCounts[id] = 1;
+                        }
+
+                        return (
+                            <h4 id={id} className="scroll-mt-24 mt-5 mb-2">
+                                <a href={`#${id}`} className="anchor">
+                                    {props.children}
+                                </a>
+                            </h4>
+                        );
+                    },
+                    code({ node, inline, className, children, ...props }) {
+                        const match = /language-(\w+)/.exec(className || '');
+                        return !inline && match ? (
+                            <div className="rounded-lg overflow-hidden my-4 bg-gray-900/50">
+                                <SyntaxHighlighter
+                                    style={atomDark}
+                                    language={match[1]}
+                                    PreTag="div"
+                                    className="!bg-transparent !m-0 rounded-lg text-sm"
+                                    showLineNumbers
+                                    wrapLongLines
+                                    {...props}
+                                >
+                                    {String(children).replace(/\n$/, '')}
+                                </SyntaxHighlighter>
+                            </div>
+                        ) : (
+                            <code className="bg-gray-800 px-1 py-0.5 rounded text-blue-300" {...props}>
+                                {children}
+                            </code>
+                        );
+                    },
+                    blockquote({ node, children, ...props }) {
+                        return (
+                            <blockquote className="border-l-4 border-blue-500 pl-4 italic my-4 text-gray-300 bg-blue-900/10 p-2 rounded-r" {...props}>
+                                {children}
+                            </blockquote>
+                        );
+                    },
+                    a({ node, children, href, ...props }) {
+                        return (
+                            <a
+                                href={href}
+                                className="text-blue-400 hover:text-blue-300 underline transition-colors"
+                                target={href?.startsWith('http') ? '_blank' : undefined}
+                                rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                {...props}
+                            >
+                                {children}
+                            </a>
+                        );
+                    },
+                    table({ node, children, ...props }) {
+                        return (
+                            <div className="overflow-x-auto my-4">
+                                <table className="min-w-full border-collapse border border-gray-700" {...props}>
+                                    {children}
+                                </table>
+                            </div>
+                        );
+                    },
+                    tr({ node, children, ...props }) {
+                        return (
+                            <tr className="border-b border-gray-700" {...props}>
+                                {children}
+                            </tr>
+                        );
+                    },
+                    th({ node, children, ...props }) {
+                        return (
+                            <th className="px-4 py-2 bg-gray-800 text-left text-sm font-semibold text-white" {...props}>
+                                {children}
+                            </th>
+                        );
+                    },
+                    td({ node, children, ...props }) {
+                        return (
+                            <td className="px-4 py-2 bg-gray-900/50 text-sm" {...props}>
+                                {children}
+                            </td>
+                        );
+                    },
+                    ul({ node, children, ...props }) {
+                        return (
+                            <ul className="list-disc pl-6 my-4 space-y-2" {...props}>
+                                {children}
+                            </ul>
+                        );
+                    },
+                    ol({ node, children, ...props }) {
+                        return (
+                            <ol className="list-decimal pl-6 my-4 space-y-2" {...props}>
+                                {children}
+                            </ol>
+                        );
+                    },
+                    hr({ node, ...props }) {
+                        return <hr className="my-8 border-gray-700" {...props} />;
+                    },
+                    img({ node, ...props }) {
+                        return (
+                            <div className="flex justify-center my-6">
+                                <img
+                                    {...props}
+                                    className="max-w-full h-auto rounded-lg shadow-lg"
+                                    alt={props.alt || 'Article image'}
+                                />
+                            </div>
+                        );
+                    }
+                }}
+            >
+                {content}
+            </ReactMarkdown>
         </div>
     );
 };
@@ -372,6 +561,31 @@ export default function ArticlePage() {
                     .toc-sidebar {
                         position: static;
                     }
+                }
+                
+                /* Enhanced markdown styling */
+                .prose pre {
+                    margin: 0;
+                    padding: 0;
+                }
+                
+                .prose p {
+                    margin-top: 1.25em;
+                    margin-bottom: 1.25em;
+                    line-height: 1.7;
+                }
+                
+                .prose strong {
+                    color: #e2e8f0;
+                    font-weight: 600;
+                }
+                
+                .prose em {
+                    font-style: italic;
+                }
+                
+                .prose code {
+                    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
                 }
             `}</style>
         </div>
