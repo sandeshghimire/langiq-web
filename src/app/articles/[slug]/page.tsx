@@ -254,7 +254,7 @@ const MarkdownWithAnchors = ({ content }: { content: string }) => {
                         return (
                             <a
                                 href={href}
-                                className="text-blue-400 hover:text-blue-300 underline transition-colors"
+                                className="text-blue-400 hover:text-blue-300 transition-colors"
                                 target={href?.startsWith('http') ? '_blank' : undefined}
                                 rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
                                 {...props}
@@ -586,6 +586,11 @@ export default function ArticlePage() {
                 
                 .prose code {
                     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+                }
+                
+                /* Remove underlines from all links in prose content */
+                .prose a {
+                    text-decoration: none;
                 }
             `}</style>
         </div>
