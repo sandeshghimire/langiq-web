@@ -118,26 +118,6 @@ export default function TutorialsPage() {
                         </motion.div>
                     ))}
                 </div>
-
-                {/* Call to action for tutorial requests */}
-                <motion.div
-                    className="content-box p-6 mt-12 max-w-3xl mx-auto bg-gray-800/40"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.6 }}
-                >
-                    <h2 className="text-2xl font-bold mb-4 handwriting text-center text-blue-100">
-                        Can't find what you're looking for?
-                    </h2>
-                    <p className="handwriting-alt text-center mb-4 text-gray-200">
-                        Request a specific tutorial and our team will consider creating it for the community.
-                    </p>
-                    <div className="flex justify-center">
-                        <button className="handwriting bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-2 px-6 rounded-full shadow-lg transition-all">
-                            Request a Tutorial
-                        </button>
-                    </div>
-                </motion.div>
             </motion.div>
         </main>
     );

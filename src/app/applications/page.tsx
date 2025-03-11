@@ -111,27 +111,6 @@ export default function ApplicationsPage() {
                         </motion.div>
                     ))}
                 </div>
-
-                {/* Request Application Box */}
-                <motion.div
-                    className="content-box p-8 mt-14 max-w-3xl mx-auto bg-gray-800/40"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.6 }}
-                >
-                    <h2 className="text-2xl font-bold mb-4 handwriting text-center text-blue-100">
-                        Have an idea for a LangIQ application?
-                    </h2>
-                    <p className="handwriting-alt text-center mb-6 text-gray-200 leading-relaxed">
-                        We're always looking to expand our gallery of examples.
-                        Submit your idea and our team may develop it as a showcase application.
-                    </p>
-                    <div className="flex justify-center">
-                        <button className="handwriting bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 px-8 rounded-full shadow-lg transition-all">
-                            Suggest an Application
-                        </button>
-                    </div>
-                </motion.div>
             </motion.div>
         </main>
     );
