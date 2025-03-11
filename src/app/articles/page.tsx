@@ -190,22 +190,22 @@ export default function ArticlesPage() {
                 transition={{ duration: 0.5 }}
             >
                 {/* Page header */}
-                <h1 className="text-4xl font-bold mb-3 handwriting text-center">LangIQ Articles</h1>
-                <p className="handwriting-alt text-center mb-10 max-w-2xl mx-auto">
+                <h1 className="text-4xl font-bold mb-3 handwriting text-center text-blue-100">LangIQ Articles</h1>
+                <p className="handwriting-alt text-center mb-10 max-w-2xl mx-auto text-gray-200">
                     Insights, tutorials, and research on the latest developments in AI and language models.
                 </p>
 
                 {/* Featured Article Section - Conditionally rendered */}
                 {featuredArticle && (
                     <motion.div
-                        className="content-box p-6 mb-10"
+                        className="content-box p-6 mb-10 bg-gray-800/40"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                     >
                         <div className="flex flex-col md:flex-row gap-6">
                             {/* Featured article image/placeholder */}
-                            <div className="w-full md:w-1/2 bg-gradient-to-br from-gray-800 to-gray-700  rounded-lg overflow-hidden">
+                            <div className="w-full md:w-1/2 bg-gradient-to-br from-gray-800 to-gray-700 rounded-lg overflow-hidden">
                                 <motion.div
                                     initial={{ opacity: 0, y: -20 }}
                                     animate={{ opacity: 1, y: 0 }}
@@ -224,12 +224,12 @@ export default function ArticlesPage() {
                             </div>
                             <div className="w-full md:w-1/2">
                                 {/* Featured article metadata */}
-                                <span className="text-sm text-blue-400 handwriting-alt">{featuredArticle.category} • {featuredArticle.date}</span>
-                                <h2 className="text-2xl font-bold mb-3 handwriting">{featuredArticle.title}</h2>
-                                <p className="handwriting-alt mb-4 text-gray-300">{featuredArticle.description}</p>
-                                <p className="handwriting text-gray-400 mb-4">By {featuredArticle.author}</p>
+                                <span className="text-sm text-blue-300 handwriting-alt">{featuredArticle.category} • {featuredArticle.date}</span>
+                                <h2 className="text-2xl font-bold mb-3 handwriting text-blue-200">{featuredArticle.title}</h2>
+                                <p className="handwriting-alt mb-4 text-gray-200">{featuredArticle.description}</p>
+                                <p className="handwriting text-gray-300 mb-4">By {featuredArticle.author}</p>
                                 {/* Link to the full article */}
-                                <Link href={`/articles/${encodeURIComponent(featuredArticle.slug)}`} className="handwriting bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full shadow-md text-sm transition-all inline-block">
+                                <Link href={`/articles/${encodeURIComponent(featuredArticle.slug)}`} className="handwriting bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-2 px-4 rounded-full shadow-md text-sm transition-all inline-block">
                                     Read Article
                                 </Link>
                             </div>
@@ -244,22 +244,22 @@ export default function ArticlesPage() {
                         {articles.map((article, index) => (
                             <motion.div
                                 key={article.slug}
-                                className="content-box p-5"
+                                className="content-box p-5 bg-gray-800/40"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }} // Staggered animation effect
                             >
                                 {/* Article category and date */}
-                                <span className="text-sm text-blue-400 handwriting-alt">{article.category} • {article.date}</span>
+                                <span className="text-sm text-blue-300 handwriting-alt">{article.category} • {article.date}</span>
                                 {/* Article title */}
-                                <h2 className="text-xl font-semibold mb-2 handwriting">{article.title}</h2>
+                                <h2 className="text-xl font-semibold mb-2 handwriting text-blue-200">{article.title}</h2>
                                 {/* Article description */}
-                                <p className="handwriting-alt mb-4 text-gray-300 text-sm">{article.description}</p>
+                                <p className="handwriting-alt mb-4 text-gray-200 text-sm">{article.description}</p>
                                 <div className="flex justify-between items-center">
                                     {/* Article author */}
-                                    <span className="handwriting text-gray-400 text-sm">By {article.author}</span>
+                                    <span className="handwriting text-gray-300 text-sm">By {article.author}</span>
                                     {/* Link to full article */}
-                                    <Link href={`/articles/${encodeURIComponent(article.slug)}`} className="handwriting text-sm text-blue-400 hover:text-blue-300">
+                                    <Link href={`/articles/${encodeURIComponent(article.slug)}`} className="handwriting text-sm text-blue-300 hover:text-blue-200">
                                         Read More →
                                     </Link>
                                 </div>
@@ -268,16 +268,16 @@ export default function ArticlesPage() {
                     </div>
                 ) : (
                     // No articles found state
-                    <div className="content-box p-8 text-center">
-                        <p className="handwriting-alt mb-3">No articles found.</p>
-                        <p className="text-sm text-gray-400">Check back later for new content!</p>
+                    <div className="content-box p-8 text-center bg-gray-800/40">
+                        <p className="handwriting-alt mb-3 text-gray-200">No articles found.</p>
+                        <p className="text-sm text-gray-300">Check back later for new content!</p>
                     </div>
                 )}
 
                 {/* View All Articles button - only shown when articles exist */}
                 {articles.length > 0 && (
                     <div className="mt-10 text-center">
-                        <button className="handwriting border border-blue-500 hover:bg-blue-500/20 text-blue-300 rounded-full px-6 py-2 transition-all">
+                        <button className="handwriting bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full px-6 py-2 transition-all shadow-lg">
                             View All Articles
                         </button>
                     </div>

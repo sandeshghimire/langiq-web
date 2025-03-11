@@ -56,9 +56,9 @@ export default function TutorialsPage() {
 
     // Color mapping for different difficulty levels
     const difficultyColors = {
-        'Beginner': 'green',     // Easy tutorials
-        'Intermediate': 'yellow', // Medium difficulty
-        'Advanced': 'red'        // Hard tutorials
+        'Beginner': 'emerald',     // Easy tutorials
+        'Intermediate': 'amber', // Medium difficulty
+        'Advanced': 'rose'        // Hard tutorials
     };
 
     return (
@@ -71,8 +71,8 @@ export default function TutorialsPage() {
                 transition={{ duration: 0.5 }}
             >
                 {/* Page header section */}
-                <h1 className="text-4xl font-bold mb-3 handwriting text-center">Tutorials</h1>
-                <p className="handwriting-alt text-center mb-8 max-w-2xl mx-auto">
+                <h1 className="text-4xl font-bold mb-3 handwriting text-center text-blue-100">Tutorials</h1>
+                <p className="handwriting-alt text-center mb-8 max-w-2xl mx-auto text-gray-200">
                     Step-by-step guides to help you master LangIQ and build powerful AI applications.
                 </p>
 
@@ -82,7 +82,7 @@ export default function TutorialsPage() {
                         /* Individual tutorial card with staggered animation */
                         <motion.div
                             key={tutorial.slug}
-                            className="content-box p-5"
+                            className="content-box p-5 bg-gray-800/40"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -92,23 +92,23 @@ export default function TutorialsPage() {
                                 <span className={`text-${difficultyColors[tutorial.difficulty || tutorial.difficultyLevel] || 'blue'}-400 text-sm handwriting-alt px-2 py-0.5 bg-gray-800 rounded-full`}>
                                     {tutorial.difficulty || tutorial.difficultyLevel || 'General'}
                                 </span>
-                                <span className="text-gray-400 text-sm handwriting-alt">
+                                <span className="text-gray-300 text-sm handwriting-alt">
                                     {tutorial.duration || tutorial.estimatedTime || 'Varies'}
                                 </span>
                             </div>
 
                             {/* Tutorial title and description with fallbacks for missing data */}
-                            <h2 className="text-xl font-semibold mb-2 handwriting">{tutorial.title || 'Untitled Tutorial'}</h2>
-                            <p className="handwriting-alt mb-4 text-gray-300 text-sm">
+                            <h2 className="text-xl font-semibold mb-2 handwriting text-blue-200">{tutorial.title || 'Untitled Tutorial'}</h2>
+                            <p className="handwriting-alt mb-4 text-gray-200 text-sm">
                                 {tutorial.description || 'No description available'}
                             </p>
 
                             {/* Card footer with author info and tutorial link */}
                             <div className="flex justify-between items-center mt-4">
-                                <span className="text-gray-400 text-sm handwriting-alt">
+                                <span className="text-gray-300 text-sm handwriting-alt">
                                     By {tutorial.author || 'Unknown Author'}
                                 </span>
-                                <Link href={`/tutorials/${tutorial.slug}`} className="handwriting text-sm text-blue-400 hover:text-blue-300 flex items-center">
+                                <Link href={`/tutorials/${tutorial.slug}`} className="handwriting text-sm text-blue-300 hover:text-blue-200 flex items-center">
                                     Start Tutorial
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -121,15 +121,15 @@ export default function TutorialsPage() {
 
                 {/* Call to action for tutorial requests */}
                 <motion.div
-                    className="content-box p-6 mt-12 max-w-3xl mx-auto"
+                    className="content-box p-6 mt-12 max-w-3xl mx-auto bg-gray-800/40"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.6 }}
                 >
-                    <h2 className="text-2xl font-bold mb-4 handwriting text-center">
+                    <h2 className="text-2xl font-bold mb-4 handwriting text-center text-blue-100">
                         Can't find what you're looking for?
                     </h2>
-                    <p className="handwriting-alt text-center mb-4">
+                    <p className="handwriting-alt text-center mb-4 text-gray-200">
                         Request a specific tutorial and our team will consider creating it for the community.
                     </p>
                     <div className="flex justify-center">
