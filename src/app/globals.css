@@ -21,21 +21,22 @@
   --grid-size: 20px;
   --grid-small: 100px;
 
-  /* Enhanced colors for eye comfort */
-  --primary-blue: #7fb4ff;
-  --primary-blue-hover: #a5c8ff;
-  --border-color: rgba(120, 130, 215, 0.15);
-  --card-bg: rgba(35, 35, 70, 0.6);
-  --bg-dark: #1a1a2e;
-  --text-primary: #e6edf3;
-  --text-secondary: #bbc7d4;
-  --code-bg: #2d2d40;
+  /* Eye-friendly color palette */
+  --primary-blue: #8abbff;
+  --primary-blue-hover: #afd1ff;
+  --border-color: rgba(120, 140, 200, 0.12);
+  --card-bg: rgba(35, 38, 65, 0.5);
+  --bg-dark: #1a1e2e;
+  --text-primary: #e0e8f5;
+  --text-secondary: #b6c5db;
+  --code-bg: #2a2f45;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0a0c14;
+    /* Changed from #0c0f1a to a darker gray */
+    --foreground: #e6ebf5;
   }
 }
 
@@ -54,10 +55,10 @@ body {
 
 /* Background and decorative elements - softer pattern */
 .math-paper-bg {
-  background-color: #1e1e36;
+  background-color: #141a2a;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
@@ -65,6 +66,7 @@ body {
 .handwriting {
   font-family: 'Kalam', cursive;
   font-weight: 700;
+  color: #c8daff;
 }
 
 .handwriting-alt {
@@ -72,6 +74,7 @@ body {
   font-weight: 400;
   font-size: var(--font-sans);
   letter-spacing: 0.03em;
+  color: #c8daff;
 }
 
 /* Content boxes and cards - softer shadows */
@@ -79,8 +82,8 @@ body {
   background-color: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0, 10, 30, 0.12);
+  backdrop-filter: blur(10px);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
   word-wrap: break-word;
   hyphens: auto;
@@ -88,17 +91,17 @@ body {
 
 .content-box:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 30px rgba(0, 10, 30, 0.18);
 }
 
 /* Navigation styles */
 nav {
-  border-bottom: 1px solid rgba(120, 140, 220, 0.2);
+  border-bottom: 1px solid rgba(120, 140, 200, 0.15);
 }
 
 nav a.active {
-  color: white;
-  background-color: rgba(100, 150, 240, 0.2);
+  color: #c8daff;
+  background-color: rgba(80, 120, 220, 0.15);
 }
 
 /* Math styling */
@@ -106,9 +109,9 @@ nav a.active {
   margin: 2.5rem 0;
   padding: 1rem;
   overflow-x: auto;
-  background-color: #272736;
+  background-color: #242942;
   border-radius: 0.5rem;
-  border: 1px solid #383850;
+  border: 1px solid #353b55;
 }
 
 .math-inline {
@@ -134,11 +137,11 @@ nav a.active {
 }
 
 .markdown-article table th {
-  background-color: #2d2d45;
+  background-color: #2a324a;
 }
 
 .markdown-article table tr:nth-child(even) {
-  background-color: #2a2a40;
+  background-color: #272f45;
 }
 
 /* Task lists */
@@ -165,7 +168,7 @@ nav a.active {
 .markdown-article .footnotes {
   margin-top: 2.5rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #383850;
+  border-top: 1px solid #353b55;
   font-size: 0.9em;
   color: var(--text-secondary);
 }
@@ -175,8 +178,8 @@ nav a.active {
   font-style: italic;
   color: var(--text-secondary);
   border-left-width: 0.25rem;
-  border-left-color: #7fb4ff;
-  background-color: #2d2d45;
+  border-left-color: #8abbff;
+  background-color: #2a324a;
   padding: 1rem 1.5rem;
   margin: 1.5rem 0;
   border-radius: 0.25rem;
@@ -210,7 +213,9 @@ nav a.active {
   height: auto;
   border-radius: 0.5rem;
   margin: 1.5rem auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 8px rgba(0, 10, 30, 0.15);
+  filter: brightness(0.95) contrast(0.95);
+  /* Softer images */
 }
 
 .prose pre {
@@ -228,12 +233,12 @@ nav a.active {
 .prose code {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.9em;
-  background-color: rgba(45, 45, 70, 0.5);
+  background-color: rgba(45, 50, 70, 0.4);
   padding: 0.2em 0.4em;
   border-radius: 0.25rem;
-  border: 1px solid rgba(120, 120, 200, 0.1);
+  border: 1px solid rgba(120, 130, 200, 0.08);
   letter-spacing: -0.01em;
-  color: #b5ceff;
+  color: #b5cfff;
 }
 
 .prose pre code {
@@ -248,7 +253,7 @@ nav a.active {
 .prose h3,
 .prose h4 {
   letter-spacing: 0;
-  color: #d5e3ff;
+  color: #d5e6ff;
 }
 
 .prose h1 {
@@ -342,7 +347,7 @@ nav a.active {
   padding: 1.25rem 1.5rem;
   margin: 1.75rem 0;
   border-radius: 0.375rem;
-  background-color: rgba(50, 50, 80, 0.3);
+  background-color: rgba(45, 55, 80, 0.25);
   font-style: italic;
 }
 
@@ -363,7 +368,7 @@ nav a.active {
 }
 
 .prose thead {
-  background-color: rgba(40, 40, 80, 0.5);
+  background-color: rgba(40, 50, 80, 0.4);
 }
 
 .prose th {
@@ -375,7 +380,7 @@ nav a.active {
 
 .prose td {
   padding: 0.875rem 1rem;
-  border-bottom: 1px solid rgba(120, 120, 200, 0.1);
+  border-bottom: 1px solid rgba(120, 130, 200, 0.08);
 }
 
 .prose tr:last-child td {
@@ -398,7 +403,7 @@ nav a.active {
   display: block;
   border-left: 2px solid transparent;
   padding-left: 0.75rem;
-  color: #c9d6e5;
+  color: #c8d6e5;
   text-decoration: none;
   line-height: 1.7;
   padding-top: 0.25rem;
@@ -412,7 +417,7 @@ nav a.active {
 .prose .toc a.active {
   border-left: 2px solid var(--primary-blue);
   color: var(--primary-blue);
-  background-color: rgba(80, 120, 200, 0.1);
+  background-color: rgba(80, 120, 200, 0.08);
 }
 
 /* Syntax highlighting */
@@ -425,9 +430,9 @@ nav a.active {
 
 /* Table of Contents styling */
 .toc-sidebar {
-  background-color: rgba(40, 40, 65, 0.4) !important;
+  background-color: rgba(40, 45, 65, 0.35) !important;
   border: 1px solid var(--border-color);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 10, 30, 0.1);
 }
 
 .toc-nav a {
@@ -438,7 +443,7 @@ nav a.active {
 .toc-nav a:hover,
 .toc-nav a.active {
   color: var(--primary-blue) !important;
-  background-color: rgba(80, 120, 200, 0.08);
+  background-color: rgba(80, 120, 200, 0.06);
   border-radius: 3px;
 }
 
@@ -497,5 +502,33 @@ nav a.active {
   .prose {
     font-size: 1.05rem;
     line-height: 1.8;
+  }
+}
+
+/* Dark mode optimizations for eye comfort */
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #e0e8f5;
+  }
+
+  .math-paper-bg {
+    background-color: #0a0c14;
+    /* Changed from #121825 to a darker gray */
+  }
+
+  .content-box {
+    background-color: rgba(25, 28, 45, 0.5);
+    /* Adjusted for better contrast with darker background */
+  }
+
+  /* Reduce the brightness and contrast for dark mode */
+  img,
+  video {
+    filter: brightness(0.9) contrast(0.9);
+  }
+
+  /* Softer glow effects for dark mode */
+  .content-box:hover {
+    box-shadow: 0 8px 30px rgba(10, 20, 50, 0.15);
   }
 }

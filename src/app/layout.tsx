@@ -49,21 +49,21 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${caveat.variable} ${kalam.variable} antialiased`}
       >
-        <nav className="fixed top-0 left-0 w-full z-50 bg-opacity-80 backdrop-blur-md bg-gray-900 shadow-lg">
+        <nav className="fixed top-0 left-0 w-full z-50 bg-opacity-60 backdrop-blur-lg bg-gray-900/80 shadow-md border-b border-gray-800/30">
           <div className="max-w-7xl mx-auto px-4">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
                 <Link href="/" className="flex-shrink-0">
-                  <h1 className="text-2xl handwriting font-bold text-white">LangIQ</h1>
+                  <h1 className="text-2xl handwriting font-bold text-blue-200">LangIQ</h1>
                 </Link>
               </div>
               <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-4">
+                <div className="ml-10 flex items-baseline space-x-5">
                   {navItems.map((item) => (
                     <Link
                       key={item.name}
                       href={item.path}
-                      className="handwriting-alt text-gray-300 hover:bg-blue-600/20 hover:text-white px-3 py-2 rounded-md text-md font-medium transition-colors"
+                      className="handwriting-alt text-gray-300 hover:bg-blue-600/10 hover:text-blue-200 px-3 py-2 rounded-md text-md font-medium transition-colors"
                     >
                       {item.name}
                     </Link>
@@ -73,7 +73,7 @@ export default function RootLayout({
               <div className="-mr-2 flex md:hidden">
                 <button
                   type="button"
-                  className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"
+                  className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-blue-200 hover:bg-gray-800/50 focus:outline-none"
                   aria-label="Open main menu"
                 >
                   <svg
@@ -103,7 +103,7 @@ export default function RootLayout({
                 <Link
                   key={item.name}
                   href={item.path}
-                  className="handwriting-alt block text-gray-300 hover:bg-blue-600/20 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                  className="handwriting-alt block text-gray-300 hover:bg-blue-600/10 hover:text-blue-200 px-3 py-2 rounded-md text-base font-medium"
                 >
                   {item.name}
                 </Link>
@@ -113,7 +113,7 @@ export default function RootLayout({
         </nav>
 
         {/* Add padding to the top of the main content to account for the fixed nav */}
-        <div className="">
+        <div className="pt-16">
           {children}
         </div>
       </body>
