@@ -126,6 +126,11 @@ export default function ServicesPage() {
         }
     ];
 
+    // Consistent color mapping for service categories
+    const getCardStyle = (index) => {
+        return "bg-gray-800/40 hover:bg-gray-800/60";
+    };
+
     return (
         <main className="min-h-[calc(100vh-4rem)] math-paper-bg text-white p-6 pt-24 md:pt-32">
             <motion.div
@@ -134,8 +139,8 @@ export default function ServicesPage() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
             >
-                <h1 className="text-3xl md:text-4xl font-bold mb-4 handwriting text-center">Our Services</h1>
-                <p className="handwriting-alt text-center mb-10 max-w-2xl mx-auto text-gray-100 text-lg">
+                <h1 className="text-3xl md:text-4xl font-bold mb-4 handwriting text-center text-blue-100">Our Services</h1>
+                <p className="handwriting-alt text-center mb-10 max-w-2xl mx-auto text-gray-200 text-lg">
                     LangIQ provides comprehensive AI integration services to help you harness the power of frontier AI models.
                 </p>
 
@@ -143,29 +148,29 @@ export default function ServicesPage() {
                     {services.map((service, index) => (
                         <motion.div
                             key={service.title}
-                            className="content-box p-6 hover:shadow-lg transition-all duration-300 hover:translate-y-[-5px] backdrop-blur-sm"
+                            className={`content-box p-6 hover:shadow-lg transition-all duration-300 hover:translate-y-[-5px] backdrop-blur-sm ${getCardStyle(index)}`}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                         >
                             <div className="text-4xl mb-4">{service.icon}</div>
-                            <h2 className="text-xl font-semibold mb-3 handwriting opacity-90">
+                            <h2 className="text-xl font-semibold mb-3 handwriting text-blue-200">
                                 {service.title}
                             </h2>
-                            <p className="handwriting-alt text-gray-300 leading-relaxed text-sm md:text-base">
+                            <p className="handwriting-alt text-gray-200 leading-relaxed text-sm md:text-base">
                                 {service.description}
                             </p>
                         </motion.div>
                     ))}
                 </div>
 
-                <div className="mt-20 content-box p-8 max-w-3xl mx-auto">
-                    <h2 className="text-2xl font-bold mb-5 handwriting text-center">Custom Enterprise Solutions</h2>
+                <div className="mt-20 content-box p-8 max-w-3xl mx-auto bg-gray-800/40">
+                    <h2 className="text-2xl font-bold mb-5 handwriting text-center text-blue-100">Custom Enterprise Solutions</h2>
                     <p className="handwriting-alt mb-6 text-gray-200 text-center leading-relaxed">
                         Need something tailored to your specific business needs? Our team of AI specialists can build a custom solution that integrates with your existing systems and workflows.
                     </p>
                     <div className="flex justify-center">
-                        <button className="handwriting bg-blue-600 hover:bg-blue-700 text-white py-3 px-8 rounded-full shadow-lg transition-all hover:shadow-xl">
+                        <button className="handwriting bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 px-8 rounded-full shadow-lg transition-all hover:shadow-xl">
                             Schedule a Consultation
                         </button>
                     </div>
