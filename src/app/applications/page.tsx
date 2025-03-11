@@ -72,45 +72,61 @@ export default function ApplicationsPage() {
                     ))}
                 </div>
 
+                {/* No Applications Message */}
+                {filteredApplications.length === 0 && (
+                    <motion.div
+                        className="text-center py-12"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <p className="text-xl handwriting text-gray-300">
+                            No applications found in this category.
+                        </p>
+                    </motion.div>
+                )}
+
                 {/* Applications Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {filteredApplications.map((application, index) => (
-                        <motion.div
-                            key={application.slug}
-                            className="content-box p-6 hover:shadow-xl transition-all bg-gray-800/40"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                        >
-                            <div className="flex justify-between items-start mb-4">
-                                <span className={`text-${complexityColors[application.difficulty]}-400 text-sm handwriting-alt px-3 py-1 bg-gray-800 rounded-full`}>
-                                    {application.difficulty}
-                                </span>
-                                <span className="text-gray-300 text-sm handwriting-alt">
-                                    {application.duration}
-                                </span>
-                            </div>
+                {filteredApplications.length > 0 && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {filteredApplications.map((application, index) => (
+                            <motion.div
+                                key={application.slug}
+                                className="content-box p-6 hover:shadow-xl transition-all bg-gray-800/40"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                            >
+                                <div className="flex justify-between items-start mb-4">
+                                    <span className={`text-${complexityColors[application.difficulty]}-400 text-sm handwriting-alt px-3 py-1 bg-gray-800 rounded-full`}>
+                                        {application.difficulty}
+                                    </span>
+                                    <span className="text-gray-300 text-sm handwriting-alt">
+                                        {application.duration}
+                                    </span>
+                                </div>
 
-                            <h2 className="text-2xl font-semibold mb-3 handwriting text-blue-200">{application.title}</h2>
-                            <p className="handwriting-alt mb-5 text-gray-200 leading-relaxed">
-                                {application.description}
-                            </p>
+                                <h2 className="text-2xl font-semibold mb-3 handwriting text-blue-200">{application.title}</h2>
+                                <p className="handwriting-alt mb-5 text-gray-200 leading-relaxed">
+                                    {application.description}
+                                </p>
 
-                            <div className="flex justify-between items-center mt-5 pt-3 border-t border-gray-800">
-                                <span className="text-gray-300 text-sm handwriting-alt">
-                                    By {application.author}
-                                </span>
-                                <Link href={`/applications/${application.slug}`}
-                                    className="handwriting bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-1.5 px-4 rounded-full flex items-center transition-all shadow-md">
-                                    more
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </Link>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
+                                <div className="flex justify-between items-center mt-5 pt-3 border-t border-gray-800">
+                                    <span className="text-gray-300 text-sm handwriting-alt">
+                                        By {application.author}
+                                    </span>
+                                    <Link href={`/applications/${application.slug}`}
+                                        className="handwriting bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-1.5 px-4 rounded-full flex items-center transition-all shadow-md">
+                                        more
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </Link>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                )}
             </motion.div>
         </main>
     );
