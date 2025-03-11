@@ -90,10 +90,55 @@ const extractHeadings = (content: string): TocItem[] => {
     return headings;
 };
 
+// Function to prepare markdown content by removing duplicate title/abstract
+const prepareMarkdownContent = (content: string, metadata: ArticleMetadata): string => {
+    // Split content by lines
+    const lines = content.split('\n');
+    let processedLines = [...lines];
+    let startIndex = 0;
+
+    // Check if the first line is a heading (# Title)
+    if (lines[0]?.startsWith('# ')) {
+        const titleText = lines[0].replace(/^#\s+/, '').trim();
+
+        // If the heading matches the metadata title, skip it
+        if (titleText.toLowerCase() === metadata.title.toLowerCase()) {
+            startIndex = 1;
+
+            // Check if there's a blank line after the title
+            if (lines[1]?.trim() === '') {
+                startIndex = 2;
+
+                // If the next lines form a paragraph (potentially the abstract)
+                let abstractEndIndex = startIndex;
+                let potentialAbstract = '';
+
+                while (abstractEndIndex < lines.length && lines[abstractEndIndex]?.trim() !== '' && !lines[abstractEndIndex]?.startsWith('#')) {
+                    potentialAbstract += lines[abstractEndIndex] + ' ';
+                    abstractEndIndex++;
+                }
+
+                potentialAbstract = potentialAbstract.trim();
+
+                // If this paragraph matches the metadata description, skip it too
+                if (potentialAbstract.toLowerCase() === metadata.description.toLowerCase()) {
+                    startIndex = abstractEndIndex + 1; // +1 to skip a blank line after the abstract
+                }
+            }
+        }
+    }
+
+    // Return the content without the duplicate title/abstract
+    return processedLines.slice(startIndex).join('\n');
+};
+
 // Custom component to render markdown with anchored headings
-const MarkdownWithAnchors = ({ content }: { content: string }) => {
+const MarkdownWithAnchors = ({ content, metadata }: { content: string, metadata: ArticleMetadata }) => {
     const headings = extractHeadings(content);
     const idCounts: Record<string, number> = {};
+
+    // Process content to remove duplicated title/abstract
+    const processedContent = prepareMarkdownContent(content, metadata);
 
     return (
         <div className="markdown-content handwriting-alt" style={{ color: 'white' }}>
@@ -342,7 +387,7 @@ const MarkdownWithAnchors = ({ content }: { content: string }) => {
                     }
                 }}
             >
-                {content}
+                {processedContent}
             </ReactMarkdown>
 
             <style jsx global>{`
@@ -615,11 +660,11 @@ export default function ArticlePage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                     >
-                        <ArticleActions />
+
                         <ArticleHeader metadata={metadata} />
 
                         <div className="border-t border-gray-700 pt-6">
-                            {content && <MarkdownWithAnchors content={content} />}
+                            {content && metadata && <MarkdownWithAnchors content={content} metadata={metadata} />}
                         </div>
 
                         <div className="mt-12 pt-6 border-t border-gray-700">
