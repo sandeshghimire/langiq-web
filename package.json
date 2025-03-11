@@ -10,6 +10,7 @@
     "fix-yaml": "node src/utils/fix-yaml.js"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.5.0",
     "framer-motion": "^12.4.7",
     "glob": "^11.0.1",
     "gray-matter": "^4.0.3",
