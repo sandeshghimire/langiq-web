@@ -192,7 +192,8 @@ export default function ArticlesPage() {
                 {/* Page header */}
                 <h1 className="text-4xl font-bold mb-3 handwriting text-center text-blue-100">LangIQ Articles</h1>
                 <p className="handwriting-alt text-center mb-10 max-w-2xl mx-auto text-gray-200">
-                    Insights, tutorials, and research on the latest developments in AI and language models.
+                    Insights, tutorials, and research on our AI services including prompt engineering, RAG (Retrieval-Augmented Generation), 
+                    tools, model automation, fine tuning, and agentic solutions.
                 </p>
 
                 {/* Featured Article Section - Conditionally rendered */}
