@@ -8,9 +8,19 @@ import { getAllTutorials, Tutorial } from '../../../lib/applications';
 export default function ApplicationsPage() {
     const [activeCategory, setActiveCategory] = useState('all');
     const [applications, setApplications] = useState<Tutorial[]>([]);
-    const [categories, setCategories] = useState([
-        { id: 'all', name: 'All Applications' }
-    ]);
+    
+    // Define our service categories
+    const serviceCategories = [
+        { id: 'all', name: 'All Applications', description: 'Explore all LangIQ applications across different AI capabilities.' },
+        { id: 'prompt-engineering', name: 'Prompt Engineering', description: 'Applications showcasing advanced prompt design techniques to better control AI outputs.' },
+        { id: 'rag', name: 'RAG', description: 'Retrieval-Augmented Generation applications that combine knowledge bases with generative AI.' },
+        { id: 'tools', name: 'Tools', description: 'Applications demonstrating how LangIQ integrates with various external tools and APIs.' },
+        { id: 'model-automation', name: 'Model Automation', description: 'Solutions for automating AI model deployment, monitoring, and orchestration.' },
+        { id: 'fine-tuning', name: 'Fine Tuning', description: 'Examples of specialized models trained for specific domains and use cases.' },
+        { id: 'agentic', name: 'Agentic Solutions', description: 'Autonomous AI agents that can perform complex tasks with minimal human supervision.' },
+    ];
+    
+    const [categories, setCategories] = useState(serviceCategories);
 
     useEffect(() => {
         async function fetchApplications() {
@@ -21,13 +31,17 @@ export default function ApplicationsPage() {
 
             // Extract unique categories
             const uniqueCategories = [...new Set(data.tutorials.map(t => t.category))];
-            setCategories([
-                { id: 'all', name: 'All Applications' },
-                ...uniqueCategories.map(cat => ({
+            
+            // Merge our predefined service categories with any additional categories from the data
+            const additionalCategories = uniqueCategories
+                .filter(cat => !serviceCategories.some(sc => sc.id === cat))
+                .map(cat => ({
                     id: cat,
-                    name: cat.charAt(0).toUpperCase() + cat.slice(1).replace(/-/g, ' ')
-                }))
-            ]);
+                    name: cat.charAt(0).toUpperCase() + cat.slice(1).replace(/-/g, ' '),
+                    description: ''
+                }));
+                
+            setCategories([...serviceCategories, ...additionalCategories]);
         }
 
         fetchApplications();
@@ -53,7 +67,8 @@ export default function ApplicationsPage() {
             >
                 <h1 className="text-4xl font-bold mb-3 handwriting text-center text-blue-100">LangIQ Applications</h1>
                 <p className="handwriting-alt text-center mb-8 max-w-2xl mx-auto leading-relaxed text-gray-200">
-                    Explore sample applications developed by LangIQ to demonstrate its powerful AI capabilities.
+                    Explore sample applications developed by LangIQ to demonstrate its powerful AI capabilities across prompt engineering, 
+                    RAG, tools integration, model automation, fine-tuning, and agentic solutions.
                 </p>
 
                 {/* Category Filter */}
@@ -66,11 +81,26 @@ export default function ApplicationsPage() {
                                 : 'bg-gray-800 hover:bg-gray-700 text-gray-200'
                                 }`}
                             onClick={() => setActiveCategory(category.id)}
+                            title={category.description}
                         >
                             {category.name}
                         </button>
                     ))}
                 </div>
+
+                {/* Service Description */}
+                {activeCategory !== 'all' && (
+                    <motion.div 
+                        className="mb-8 text-center"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <p className="handwriting-alt text-gray-200 max-w-3xl mx-auto">
+                            {categories.find(c => c.id === activeCategory)?.description}
+                        </p>
+                    </motion.div>
+                )}
 
                 {/* No Applications Message */}
                 {filteredApplications.length === 0 && (
