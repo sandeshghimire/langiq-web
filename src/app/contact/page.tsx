@@ -79,7 +79,7 @@ export default function ContactPage() {
     const officeLocations = [
         { city: "San Francisco Bay Area", address: "1333 Trailside Ct, San Jose, CA 95138", phone: "(669) 356-1998" },
         { city: "Ann Arbor, Michigan", address: "1252 Timmins dr, Ann Arbor, MI 48103", phone: "(669) 356-1998" },
-        { city: "North Carolina", address: "2027 Rosebank way, Mebane NC 27302", phone: "(669) 356-1998" }
+        { city: "Mebane, North Carolina", address: "2027 Rosebank way, Mebane NC 27302", phone: "(669) 356-1998" }
     ];
 
     return (
