@@ -25,6 +25,17 @@ interface ArticleMetadata {
     lastUpdated?: string;    // Last modification date
 }
 
+// Define service categories
+const serviceCategories = [
+    { id: "all", name: "All Tutorials", icon: "📚" },
+    { id: "prompt-engineering", name: "Prompt Engineering", icon: "✏️" },
+    { id: "rag", name: "RAG", icon: "🔍" },
+    { id: "tools", name: "Tools Integration", icon: "🧰" },
+    { id: "model-automation", name: "Model Automation", icon: "⚙️" },
+    { id: "fine-tuning", name: "Fine Tuning", icon: "🔧" },
+    { id: "agentic", name: "Agentic Solutions", icon: "🤖" }
+];
+
 /**
  * Tutorials Page Component
  * Displays a grid of all available tutorials with animation effects
@@ -33,6 +44,10 @@ interface ArticleMetadata {
 export default function TutorialsPage() {
     // State to store the fetched tutorials
     const [tutorials, setTutorials] = useState<ArticleMetadata[]>([]);
+    // State to store the active filter
+    const [activeFilter, setActiveFilter] = useState("all");
+    // Filtered tutorials based on the active filter
+    const [filteredTutorials, setFilteredTutorials] = useState<ArticleMetadata[]>([]);
 
     // Fetch tutorials on component mount
     useEffect(() => {
@@ -53,6 +68,18 @@ export default function TutorialsPage() {
 
         fetchTutorials();
     }, []);
+    
+    // Filter tutorials when the activeFilter changes or when tutorials are loaded
+    useEffect(() => {
+        if (activeFilter === "all") {
+            setFilteredTutorials(tutorials);
+        } else {
+            setFilteredTutorials(tutorials.filter(tutorial => 
+                tutorial.category?.toLowerCase().includes(activeFilter) || 
+                tutorial.keywords?.some(keyword => keyword.toLowerCase().includes(activeFilter))
+            ));
+        }
+    }, [activeFilter, tutorials]);
 
     // Color mapping for different difficulty levels
     const difficultyColors = {
@@ -76,23 +103,49 @@ export default function TutorialsPage() {
                     Step-by-step guides to help you master LangIQ and build powerful AI applications.
                 </p>
 
+
+
+                {/* Filter buttons */}
+                <div className="mb-8">
+                    <h3 className="text-lg font-semibold mb-3 handwriting text-center text-blue-300"> </h3>
+                    <div className="flex flex-wrap justify-center gap-2">
+                        {serviceCategories.map((category) => (
+                            <button
+                                key={category.id}
+                                onClick={() => setActiveFilter(category.id)}
+                                className={`px-3 py-1.5 rounded-full text-sm handwriting-alt transition-colors ${
+                                    activeFilter === category.id 
+                                        ? 'bg-blue-600 text-white' 
+                                        : 'bg-gray-800/60 text-gray-300 hover:bg-gray-700'
+                                }`}
+                            >
+                                {category.icon} {category.name}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
                 {/* Empty state message when no tutorials available */}
-                {tutorials.length === 0 ? (
+                {filteredTutorials.length === 0 ? (
                     <motion.div
                         className="text-center p-10 content-box bg-gray-800/40"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5 }}
                     >
-                        <h3 className="text-xl handwriting text-blue-200 mb-2">No Tutorials Available</h3>
+                        <h3 className="text-xl handwriting text-blue-200 mb-2">
+                            {tutorials.length === 0 ? "No Tutorials Available" : "No Matching Tutorials"}
+                        </h3>
                         <p className="handwriting-alt text-gray-300">
-                            We're working on creating new tutorials. Please check back soon!
+                            {tutorials.length === 0 
+                                ? "We're working on creating new tutorials. Please check back soon!" 
+                                : "Try selecting a different category filter."}
                         </p>
                     </motion.div>
                 ) : (
                     /* Tutorials display grid - responsive layout with different columns based on screen size */
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {tutorials.map((tutorial, index) => (
+                        {filteredTutorials.map((tutorial, index) => (
                             /* Individual tutorial card with staggered animation */
                             <motion.div
                                 key={tutorial.slug}
