@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import { Caveat } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
@@ -33,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${caveat.variable} bg-gray-950 text-gray-100 antialiased`}
+        className={`${montserrat.variable} ${caveat.variable} bg-gray-950 text-gray-100 antialiased`}
       >
         <Navbar />
         <main className="min-h-screen">

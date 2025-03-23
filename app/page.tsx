@@ -1,8 +1,15 @@
 import Link from 'next/link';
+import { Montserrat } from 'next/font/google';
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-montserrat',
+});
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className={`min-h-screen ${montserrat.className}`}>
       {/* Hero section */}
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-violet-900/20 to-gray-900"></div>
