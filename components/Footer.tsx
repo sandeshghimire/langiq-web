@@ -2,6 +2,10 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import {
+    FaPencilAlt, FaDatabase, FaTools, FaRobot, FaCode, FaMagic, FaCogs,
+    FaInfoCircle, FaUsers, FaBriefcase, FaBookOpen, FaChartBar, FaEnvelope
+} from 'react-icons/fa';
 
 export default function Footer() {
     const [email, setEmail] = useState('');
@@ -53,19 +57,20 @@ export default function Footer() {
                         <h3 className="font-handwritten text-xl text-white mb-4">Our Services</h3>
                         <ul className="space-y-3">
                             {[
-                                { name: 'Prompt Engineering', path: '/prompt-engineering' },
-                                { name: 'RAG', path: '/rag' },
-                                { name: 'Tools & MCP', path: '/tools-mcp' },
-                                { name: 'Model Augmentation', path: '/model-augmentation' },
-                                { name: 'Fine Tuning', path: '/fine-tuning' },
-                                { name: 'AI Agents', path: '/agents' },
-                                { name: 'App Development', path: '/app-dev' },
+                                { name: 'Prompt Engineering', path: '/prompt-engineering', icon: <FaPencilAlt className="text-purple-400" /> },
+                                { name: 'RAG', path: '/rag', icon: <FaDatabase className="text-purple-400" /> },
+                                { name: 'Tools & MCP', path: '/tools-mcp', icon: <FaTools className="text-purple-400" /> },
+                                { name: 'Model Augmentation', path: '/model-augmentation', icon: <FaMagic className="text-purple-400" /> },
+                                { name: 'Fine Tuning', path: '/fine-tuning', icon: <FaCogs className="text-purple-400" /> },
+                                { name: 'AI Agents', path: '/agents', icon: <FaRobot className="text-purple-400" /> },
+                                { name: 'App Development', path: '/app-dev', icon: <FaCode className="text-purple-400" /> }
                             ].map((link) => (
                                 <li key={link.path}>
                                     <Link
                                         href={link.path}
-                                        className="text-gray-400 hover:text-purple-400 transition-colors"
+                                        className="text-gray-400 hover:text-purple-400 transition-colors flex items-center"
                                     >
+                                        <span className="mr-2">{link.icon}</span>
                                         {link.name}
                                     </Link>
                                 </li>
@@ -78,18 +83,19 @@ export default function Footer() {
                         <h3 className="font-handwritten text-xl text-white mb-4">Company</h3>
                         <ul className="space-y-3">
                             {[
-                                { name: 'About Us', path: '/about' },
-                                { name: 'Team', path: '/team' },
-                                { name: 'Careers', path: '/careers' },
-                                { name: 'Blog', path: '/blog' },
-                                { name: 'Case Studies', path: '/case-studies' },
-                                { name: 'Contact', path: '/contact' },
+                                { name: 'About Us', path: '/about', icon: <FaInfoCircle className="text-purple-400" /> },
+                                { name: 'Team', path: '/team', icon: <FaUsers className="text-purple-400" /> },
+                                { name: 'Careers', path: '/careers', icon: <FaBriefcase className="text-purple-400" /> },
+                                { name: 'Blog', path: '/blog', icon: <FaBookOpen className="text-purple-400" /> },
+                                { name: 'Case Studies', path: '/case-studies', icon: <FaChartBar className="text-purple-400" /> },
+                                { name: 'Contact', path: '/contact', icon: <FaEnvelope className="text-purple-400" /> },
                             ].map((link) => (
                                 <li key={link.path}>
                                     <Link
                                         href={link.path}
-                                        className="text-gray-400 hover:text-purple-400 transition-colors"
+                                        className="text-gray-400 hover:text-purple-400 transition-colors flex items-center"
                                     >
+                                        <span className="mr-2">{link.icon}</span>
                                         {link.name}
                                     </Link>
                                 </li>
