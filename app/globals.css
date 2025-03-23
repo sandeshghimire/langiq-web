@@ -94,6 +94,7 @@ body {
 
 .font-handwritten {
   font-family: var(--font-handwritten);
+  letter-spacing: 0.01em;
 }
 
 .grid-bg {
@@ -161,4 +162,72 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Add after existing styles */
+
+/* Enhanced typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: -0.025em;
+}
+
+/* Improved text readability */
+p {
+  line-height: 1.7;
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Improved button styles */
+.btn {
+  @apply font-medium rounded-lg transition-all duration-200 shadow-lg;
+}
+
+.btn-primary {
+  @apply bg-purple-600 hover:bg-purple-700 text-white hover:shadow-purple-500/30;
+}
+
+/* Gradient text enhancement */
+.gradient-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Enhanced spacing utilities */
+.section-spacing {
+  @apply py-24;
+}
+
+.content-spacing {
+  @apply space-y-8;
 }
