@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function PromptEngineering() {
     return (
@@ -33,31 +34,60 @@ export default function PromptEngineering() {
                                 Well-designed prompts can be the difference between mediocre and exceptional AI performance, helping models understand context,
                                 follow instructions precisely, and deliver relevant, accurate responses.
                             </p>
+                            <div className="mt-4 p-4 bg-gray-800 rounded-lg border border-purple-800/30">
+                                <h3 className="font-handwritten text-xl text-purple-400 mb-2">LangIQ Prompt Library</h3>
+                                <p className="text-gray-300 mb-3">
+                                    We've developed an open-source Python library with advanced prompt engineering techniques and templates.
+                                    Access our toolkit on GitHub to supercharge your AI applications.
+                                </p>
+                                <a
+                                    href="https://github.com/langiq/prompt-engineering"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center text-purple-400 hover:text-purple-300"
+                                >
+                                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                                    </svg>
+                                    Explore our GitHub Repository
+                                </a>
+                            </div>
                             <div className="mt-8">
                                 <Link href="/contact" className="bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg text-white font-medium transition-all">
                                     Get Expert Help
                                 </Link>
                             </div>
                         </div>
-                        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-                            <h3 className="font-handwritten text-2xl text-purple-400 mb-4">Key Techniques</h3>
-                            <ul className="space-y-3">
-                                {[
-                                    "Context setting and framing",
-                                    "Role-based prompting",
-                                    "Chain-of-thought reasoning",
-                                    "Few-shot examples and demonstrations",
-                                    "Instruction clarity and specificity",
-                                    "Constraint specification",
-                                    "Output format control",
-                                    "Iterative refinement strategies"
-                                ].map((item, index) => (
-                                    <li key={index} className="flex items-start">
-                                        <span className="text-purple-400 mr-2">•</span>
-                                        <span className="text-gray-300">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                        <div className="flex flex-col space-y-6">
+                            <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-xl">
+                                <Image
+                                    src="/images/prompt-engineering-code.jpg"
+                                    alt="LangIQ Prompt Engineering Code Example"
+                                    fill
+                                    style={{ objectFit: 'cover' }}
+                                    className="rounded-xl"
+                                />
+                            </div>
+                            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                                <h3 className="font-handwritten text-2xl text-purple-400 mb-4">Key Techniques</h3>
+                                <ul className="space-y-3">
+                                    {[
+                                        "Context setting and framing",
+                                        "Role-based prompting",
+                                        "Chain-of-thought reasoning",
+                                        "Few-shot examples and demonstrations",
+                                        "Instruction clarity and specificity",
+                                        "Constraint specification",
+                                        "Output format control",
+                                        "Iterative refinement strategies"
+                                    ].map((item, index) => (
+                                        <li key={index} className="flex items-start">
+                                            <span className="text-purple-400 mr-2">•</span>
+                                            <span className="text-gray-300">{item}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
