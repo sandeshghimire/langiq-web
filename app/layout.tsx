@@ -4,6 +4,8 @@ import { Caveat } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import AnimatedLayout from "../components/AnimatedLayout";
+import BackgroundWrapper from "../components/BackgroundWrapper";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -30,10 +32,11 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${caveat.variable} bg-gray-950 text-gray-100 antialiased`}
       >
+        <BackgroundWrapper />
         <Navbar />
-        <main className="min-h-screen">
+        <AnimatedLayout>
           {children}
-        </main>
+        </AnimatedLayout>
         <Footer />
       </body>
     </html>
