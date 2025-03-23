@@ -39,7 +39,7 @@ export default function Navbar() {
                                 className={`${pathname === item.path
                                     ? 'bg-gray-800 text-white'
                                     : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                                    } px-3 py-2 rounded-md text-sm font-medium transition-colors font-handwritten`}
+                                    } px-3 py-2 rounded-md text-base font-medium transition-colors font-handwritten`}
                             >
                                 {item.name}
                             </Link>
@@ -80,7 +80,7 @@ export default function Navbar() {
                                 className={`${pathname === item.path
                                     ? 'bg-gray-800 text-white'
                                     : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                                    } block px-3 py-2 rounded-md text-base font-medium font-handwritten`}
+                                    } block px-3 py-2 rounded-md text-lg font-medium font-handwritten`}
                                 onClick={() => setIsOpen(false)}
                             >
                                 {item.name}
