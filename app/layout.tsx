@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Caveat } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,9 +39,7 @@ export default function RootLayout({
         <main className="min-h-screen">
           {children}
         </main>
-        <footer className="py-8 border-t border-gray-800 text-center">
-          <p className="font-handwritten text-xl">LangIQ © {new Date().getFullYear()}</p>
-        </footer>
+        <Footer />
       </body>
     </html>
   );
