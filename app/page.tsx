@@ -13,7 +13,7 @@ export default function Home() {
               Welcome to LangIQ
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-10">
-              Unlocking the future of AI language technologies for innovative enterprises
+              Our production-ready Python library empowers developers to build enterprise-grade LLM applications with advanced security, reliability, and performance optimizations
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/prompt-engineering"
@@ -35,14 +35,14 @@ export default function Home() {
           <h2 className="font-handwritten text-4xl md:text-5xl text-center mb-16 text-purple-400">Our Expertise</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {[
-              { title: 'Prompt Engineering', path: '/prompt-engineering', description: 'Master the art of effective prompt design' },
-              { title: 'Retrieval-Augmented Generation', path: '/rag', description: 'Enhance AI responses with external knowledge' },
-              { title: 'Tools and MCP', path: '/tools-mcp', description: 'Leverage powerful tools and methodologies' },
-              { title: 'Model Augmentation', path: '/model-augmentation', description: 'Expand model capabilities beyond limits' },
-              { title: 'Fine Tuning', path: '/fine-tuning', description: 'Customize models for your specific use cases' },
-              { title: 'Agents', path: '/agents', description: 'Create autonomous AI agents for complex tasks' },
-              { title: 'Application Development', path: '/app-dev', description: 'Build cutting-edge AI-powered applications' },
-              { title: 'Consulting', path: '/consulting', description: 'Expert guidance for your AI transformation' },
+              { title: 'Prompt Engineering', path: '/prompt-engineering', description: 'Advanced prompt crafting tools with templating, versioning, and optimization algorithms to maximize LLM performance' },
+              { title: 'Retrieval-Augmented Generation', path: '/rag', description: 'Enterprise-grade RAG framework with vector database integrations, context optimization, and hallucination reduction' },
+              { title: 'Tools and MCP', path: '/tools-mcp', description: 'Comprehensive toolkit for function calling, tool management, and multi-chain prompting with monitoring capabilities' },
+              { title: 'Model Augmentation', path: '/model-augmentation', description: 'Proprietary techniques to extend model capabilities through reasoning scaffolds, knowledge graphs, and multi-model orchestration' },
+              { title: 'Fine Tuning', path: '/fine-tuning', description: 'End-to-end pipeline for dataset preparation, model training, evaluation metrics, and deployment of specialized models' },
+              { title: 'Agents', path: '/agents', description: 'Secure agent framework with memory management, planning capabilities, and safeguards against prompt injection and data leakage' },
+              { title: 'Application Development', path: '/app-dev', description: 'Full-stack framework for rapidly building production LLM applications with authentication, caching, and scalability built-in' },
+              { title: 'Consulting', path: '/consulting', description: 'Expert guidance on architecture design, implementation strategies, and best practices from our experienced AI engineers' },
             ].map((service, index) => (
               <Link
                 href={service.path}
@@ -60,9 +60,9 @@ export default function Home() {
       {/* CTA section */}
       <section className="py-20 bg-gradient-to-br from-gray-900 to-violet-950">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="font-handwritten text-5xl mb-6 text-white">Ready to Transform Your AI Strategy?</h2>
+          <h2 className="font-handwritten text-5xl mb-6 text-white">Ready to Build Secure LLM Applications?</h2>
           <p className="text-xl text-gray-300 mb-10">
-            Join the leading organizations leveraging LangIQ to stay ahead in the AI revolution
+            Join industry leaders who've reduced development time by 60% while achieving enterprise-grade security and reliability. Our Python library handles the complex infrastructure so you can focus on building transformative AI experiences.
           </p>
           <Link
             href="/contact"
