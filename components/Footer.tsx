@@ -60,7 +60,6 @@ export default function Footer() {
                                 { name: 'Fine Tuning', path: '/fine-tuning' },
                                 { name: 'AI Agents', path: '/agents' },
                                 { name: 'App Development', path: '/app-dev' },
-                                { name: 'Consulting', path: '/consulting' },
                             ].map((link) => (
                                 <li key={link.path}>
                                     <Link
