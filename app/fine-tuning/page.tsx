@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+// Removing unused Image import
 
 // Sample code string to avoid JSX evaluation issues
 const codeExample = `from langiq import FineTuningClient
@@ -78,7 +78,7 @@ export default function FineTuningPage() {
                         <div className="space-y-8">
                             <h2 className="font-handwritten text-4xl text-teal-400 mb-6">Fine-Tuning Made Simple</h2>
                             <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                                Our LangIQ library makes it effortless to fine-tune language models using HuggingFace's
+                                Our LangIQ library makes it effortless to fine-tune language models using HuggingFace&apos;s
                                 powerful pipeline, allowing you to customize models for your specific business needs.
                             </p>
                             <p className="text-gray-300 mb-6 text-lg leading-relaxed">

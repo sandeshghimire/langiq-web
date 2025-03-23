@@ -1,0 +1,8 @@
+# Ignore specific files
+*.min.js
+*.md
+
+# Ignore specific directories
+dist/
+node_modules/
+build/
