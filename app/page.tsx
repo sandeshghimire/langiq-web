@@ -36,8 +36,8 @@ export default function Home() {
     <div className={`min-h-screen ${montserrat.className}`}>
       {/* Hero section */}
       <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-violet-900/20 to-gray-900"></div>
-        <div className="grid-bg absolute inset-0 opacity-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-900/40 to-gray-900/90"></div>
+        <div className="grid-bg absolute inset-0 opacity-20"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             className="text-center max-w-3xl mx-auto"
@@ -79,7 +79,7 @@ export default function Home() {
       </section>
 
       {/* Services section */}
-      <section className="py-16 bg-gray-900">
+      <section className="py-16 bg-gray-900/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             className="font-handwritten text-4xl md:text-5xl text-center mb-16 text-purple-400"
@@ -131,7 +131,7 @@ export default function Home() {
       </section>
 
       {/* CTA section */}
-      <section className="py-20 bg-gradient-to-br from-gray-900 to-violet-950">
+      <section className="py-20 bg-gradient-to-br from-gray-900/95 to-violet-950/95">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0 }}
