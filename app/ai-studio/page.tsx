@@ -155,15 +155,15 @@ export default function Home() {
       {/* CTA section */}
       <section className="py-20 bg-gradient-to-br from-gray-900 to-violet-950">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="font-handwritten text-5xl mb-6 text-white animate-fadeIn">Ready to Elevate Your AI Projects?</h2>
+          <h2 className="font-handwritten text-5xl mb-6 text-white animate-fadeIn">Transform Your AI Workflow Today</h2>
           <p className="text-xl text-gray-300 mb-10 animate-fadeIn animation-delay-300">
-            Join thousands of AI developers who have accelerated their workflow and improved output quality with our comprehensive studio tools. From ideation to deployment, AI Studio provides everything you need in one place.
+            Join AI developers who have accelerated their workflow and improved output quality with our comprehensive studio tools. From ideation to deployment, AI Studio provides everything you need in one place.
           </p>
           <Link
-            href="/ai-studio/signup"
+            href="/contact"
             className="inline-block bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-lg text-white font-medium text-lg transition-all duration-300 shadow-lg hover:shadow-purple-500/30 hover:scale-105 animate-bounce animation-duration-2000"
           >
-            Start Free Trial
+            Start Your Journey
           </Link>
         </div>
       </section>
