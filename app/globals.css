@@ -231,3 +231,33 @@ p {
 .content-spacing {
   @apply space-y-8;
 }
+
+/* Custom animation classes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease forwards;
+  opacity: 0;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animation-duration-2000 {
+  animation-duration: 2s;
+}
+
+/* Ensure the animation for cards works properly with a staggered delay */
+.grid>div {
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
