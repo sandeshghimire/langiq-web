@@ -1,6 +1,30 @@
+
+"use client";
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function About() {
+    // Animation variants
+    const fadeIn = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { duration: 0.6 } }
+    };
+
+    const slideUp = {
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    };
+
+    const staggerContainer = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    };
+
     return (
         <div className="min-h-screen">
             {/* Hero section */}
@@ -8,22 +32,39 @@ export default function About() {
                 <div className="absolute inset-0 bg-gradient-to-br from-violet-900/20 to-gray-900"></div>
                 <div className="grid-bg absolute inset-0 opacity-10"></div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div className="text-center max-w-3xl mx-auto">
-                        <h1 className="font-handwritten text-5xl md:text-6xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">
+                    <motion.div
+                        className="text-center max-w-3xl mx-auto"
+                        initial="hidden"
+                        animate="visible"
+                        variants={fadeIn}
+                    >
+                        <motion.h1
+                            className="font-handwritten text-5xl md:text-6xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400"
+                            variants={slideUp}
+                        >
                             About LangIQ
-                        </h1>
-                        <p className="text-xl text-gray-300 mb-10">
+                        </motion.h1>
+                        <motion.p
+                            className="text-xl text-gray-300 mb-10"
+                            variants={slideUp}
+                        >
                             Pioneering the future of language AI technologies and applications
-                        </p>
-                    </div>
+                        </motion.p>
+                    </motion.div>
                 </div>
             </section>
 
             {/* Main content */}
             <section className="py-16 bg-gray-900">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        <div>
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-2 gap-12"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
+                        variants={staggerContainer}
+                    >
+                        <motion.div variants={slideUp}>
                             <h2 className="font-handwritten text-3xl text-purple-400 mb-6">Our Story</h2>
                             <p className="text-gray-300 mb-4">
                                 LangIQ was founded by a team of AI researchers, engineers, and industry experts
@@ -39,8 +80,12 @@ export default function About() {
                                 harness the full capabilities of language models through expert consulting, advanced
                                 techniques, and custom application development.
                             </p>
-                        </div>
-                        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                        </motion.div>
+                        <motion.div
+                            className="bg-gray-800 rounded-xl p-6 border border-gray-700"
+                            variants={slideUp}
+                            whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
+                        >
                             <h3 className="font-handwritten text-2xl text-purple-400 mb-4">Our Mission</h3>
                             <p className="text-gray-300 mb-6">
                                 To empower organizations with the expertise, tools, and applications needed to transform
@@ -52,12 +97,26 @@ export default function About() {
                                 enhancing human capabilities, driving innovation, and creating unprecedented value across
                                 all sectors of the economy.
                             </p>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
 
-                    <div className="mt-16">
-                        <h2 className="font-handwritten text-3xl text-purple-400 mb-6 text-center">Our Core Values</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <motion.div
+                        className="mt-16"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
+                        variants={fadeIn}
+                    >
+                        <motion.h2
+                            className="font-handwritten text-3xl text-purple-400 mb-6 text-center"
+                            variants={slideUp}
+                        >
+                            Our Core Values
+                        </motion.h2>
+                        <motion.div
+                            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                            variants={staggerContainer}
+                        >
                             {[
                                 {
                                     title: "Innovation",
@@ -84,13 +143,23 @@ export default function About() {
                                     description: "We measure our success by the tangible value we create for our clients and society."
                                 }
                             ].map((value, index) => (
-                                <div key={index} className="bg-gray-800 p-6 rounded-xl border border-gray-700">
+                                <motion.div
+                                    key={index}
+                                    className="bg-gray-800 p-6 rounded-xl border border-gray-700"
+                                    variants={slideUp}
+                                    whileHover={{
+                                        scale: 1.05,
+                                        boxShadow: "0 10px 25px -5px rgba(124, 58, 237, 0.1)",
+                                        borderColor: "#a78bfa",
+                                        transition: { duration: 0.2 }
+                                    }}
+                                >
                                     <h3 className="font-handwritten text-2xl text-purple-400 mb-3">{value.title}</h3>
                                     <p className="text-gray-300">{value.description}</p>
-                                </div>
+                                </motion.div>
                             ))}
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
                 </div>
             </section>
 
