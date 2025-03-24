@@ -2,35 +2,39 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 // Sample code string to avoid JSX evaluation issues
-const codeExample = `from langiq_tools import ToolsClient, MCP
+const codeExample = `from langiq.agents import Agent, AgentRegistry
+from langiq.tools import WebSearch, Calculator, DataAnalyzer
 
-# Initialize the client with tools support
-client = ToolsClient(
-  provider="openai",
-  model="gpt-4"
+# Initialize the agent with specialized capabilities
+agent = Agent(
+  name="research_assistant",
+  model="gpt-4-turbo",
+  description="Research assistant specialized in data analysis"
 )
 
-# Register available tools
-client.register_tool("web_search", search_web)
-client.register_tool("calculator", perform_calculation)
-client.register_tool("database", query_database)
+# Equip the agent with necessary tools
+agent.add_tool(WebSearch())
+agent.add_tool(Calculator())
+agent.add_tool(DataAnalyzer())
 
-# Enable Multi-Context Processing
-mcp = MCP(contexts=["research", "analysis", "coding"])
-
-# Execute a task with tool access and MCP
-response = client.execute(
-  task="Research machine learning algorithms and implement a solution",
-  tools=["web_search", "calculator", "database"],
-  mcp=mcp
+# Define agent's memory and context handling
+agent.configure_memory(
+  long_term_capacity=1000,
+  working_memory_slots=7
 )
 
-# Display the results
-print(response.solution)
-print(f"Tools used: {response.tools_used}")
-print(f"Contexts processed: {response.contexts_processed}")`;
+# Deploy the agent to solve a complex task
+response = agent.run(
+  task="Research recent machine learning trends and prepare a summary report",
+  output_format="markdown"
+)
 
-export default function ToolsAndMCP() {
+# Access the results
+print(response.output)
+print(f"Tools used: {response.tool_usage}")
+print(f"Time taken: {response.execution_time}s")`;
+
+export default function LLMAgents() {
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-950">
             {/* Hero section with animated gradient */}
@@ -40,13 +44,13 @@ export default function ToolsAndMCP() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="text-center max-w-3xl mx-auto">
                         <h1 className="font-handwritten text-5xl md:text-7xl mb-8 bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-400 animate-pulse-slow">
-                            Tools and MCP Library
+                            LLM Agents Framework
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed">
-                            Empower AI models with external tools and Multi-Context Processing for complex problem-solving
+                            Create powerful AI agents with specialized capabilities for autonomous problem-solving and task completion
                         </p>
                         <a
-                            href="https://github.com/langiq/tools-mcp"
+                            href="https://github.com/langiq/agents"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center bg-teal-600/80 hover:bg-teal-600 backdrop-blur-sm px-8 py-4 rounded-lg text-white font-medium text-lg transition-all shadow-lg hover:shadow-teal-500/30 group"
@@ -66,30 +70,30 @@ export default function ToolsAndMCP() {
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                         <div className="space-y-8">
-                            <h2 className="font-handwritten text-4xl text-teal-400 mb-6">Introducing Tools & MCP</h2>
+                            <h2 className="font-handwritten text-4xl text-teal-400 mb-6">Introducing LLM Agents</h2>
                             <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                                We've developed a powerful Python-based library that enables AI models to use external tools
-                                and process multiple contexts simultaneously, expanding their problem-solving capabilities.
+                                Our powerful framework enables you to create autonomous AI agents powered by large language models
+                                that can tackle complex tasks by utilizing specialized tools and reasoning capabilities.
                             </p>
                             <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                                Available on GitHub, our library makes it easy to connect language models to specialized tools
-                                like web search, data analysis, and API integrations through a unified interface.
+                                Available on GitHub, our library makes it easy to build, customize, and deploy intelligent agents
+                                that can understand task requirements, plan execution steps, and adaptively solve problems.
                             </p>
                             <div className="flex flex-wrap gap-4 mt-10">
                                 <div className="bg-teal-900/20 border border-teal-700/30 rounded-lg px-4 py-2">
-                                    <span className="text-teal-300 font-semibold">Web Search</span>
+                                    <span className="text-teal-300 font-semibold">Task Planning</span>
                                 </div>
                                 <div className="bg-teal-900/20 border border-teal-700/30 rounded-lg px-4 py-2">
-                                    <span className="text-teal-300 font-semibold">Database Access</span>
+                                    <span className="text-teal-300 font-semibold">Tool Integration</span>
                                 </div>
                                 <div className="bg-teal-900/20 border border-teal-700/30 rounded-lg px-4 py-2">
-                                    <span className="text-teal-300 font-semibold">Code Execution</span>
+                                    <span className="text-teal-300 font-semibold">Memory Systems</span>
                                 </div>
                                 <div className="bg-teal-900/20 border border-teal-700/30 rounded-lg px-4 py-2">
-                                    <span className="text-teal-300 font-semibold">API Integration</span>
+                                    <span className="text-teal-300 font-semibold">Multi-Agent Teams</span>
                                 </div>
                                 <div className="bg-teal-900/20 border border-teal-700/30 rounded-lg px-4 py-2">
-                                    <span className="text-teal-300 font-semibold">Multi-Context</span>
+                                    <span className="text-teal-300 font-semibold">Autonomous Reasoning</span>
                                 </div>
                             </div>
                         </div>
@@ -104,9 +108,9 @@ export default function ToolsAndMCP() {
                                             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                                             <div className="w-3 h-3 rounded-full bg-green-500"></div>
                                         </div>
-                                        <span className="ml-4 text-gray-400 text-sm">tools_mcp_example.py</span>
+                                        <span className="ml-4 text-gray-400 text-sm">agent_example.py</span>
                                     </div>
-                                    <div className="text-xs text-gray-500">Tools & MCP Demo</div>
+                                    <div className="text-xs text-gray-500">LLM Agent Demo</div>
                                 </div>
 
                                 {/* Editor content */}
@@ -119,7 +123,7 @@ export default function ToolsAndMCP() {
                                 {/* Editor footer */}
                                 <div className="bg-gray-800 px-4 py-1 text-xs text-gray-500 flex justify-between border-t border-gray-700">
                                     <div>Python 3.10.4</div>
-                                    <div>Tools & MCP v1.0.0</div>
+                                    <div>LangIQ Agents v1.0.0</div>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +137,7 @@ export default function ToolsAndMCP() {
                     <div className="text-center mb-16">
                         <h2 className="font-handwritten text-5xl text-teal-400 mb-6">Key Features</h2>
                         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                            Expand your AI system's capabilities with powerful tools and multi-context processing
+                            Build intelligent agents that can autonomously solve complex tasks
                         </p>
                     </div>
 
@@ -144,10 +148,10 @@ export default function ToolsAndMCP() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
                                 </svg>
                             </div>
-                            <h3 className="font-medium text-xl text-teal-300 mb-3">Tool Integration Framework</h3>
+                            <h3 className="font-medium text-xl text-teal-300 mb-3">Agent Personalities</h3>
                             <p className="text-gray-300 leading-relaxed">
-                                Connect your AI models to a wide range of external tools including web search, APIs, databases,
-                                and specialized functions through a unified interface.
+                                Create agents with distinct personas, expertise domains, and behavior patterns
+                                to match specific use cases and professional requirements.
                             </p>
                         </div>
 
@@ -157,10 +161,10 @@ export default function ToolsAndMCP() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                                 </svg>
                             </div>
-                            <h3 className="font-medium text-xl text-teal-300 mb-3">Multi-Context Processing</h3>
+                            <h3 className="font-medium text-xl text-teal-300 mb-3">Advanced Planning</h3>
                             <p className="text-gray-300 leading-relaxed">
-                                Enable AI models to maintain and process multiple information contexts simultaneously,
-                                allowing for sophisticated reasoning across different domains.
+                                Equip agents with strategic planning capabilities to break down complex tasks
+                                into manageable steps and adapt their approach based on new information.
                             </p>
                         </div>
 
@@ -170,10 +174,10 @@ export default function ToolsAndMCP() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                                 </svg>
                             </div>
-                            <h3 className="font-medium text-xl text-teal-300 mb-3">Context Management</h3>
+                            <h3 className="font-medium text-xl text-teal-300 mb-3">Memory Systems</h3>
                             <p className="text-gray-300 leading-relaxed">
-                                Efficiently handle multiple, potentially conflicting information streams with
-                                advanced context management techniques and priority handling.
+                                Implement sophisticated memory architectures including short-term working memory
+                                and long-term storage for persistent knowledge retention.
                             </p>
                         </div>
 
@@ -183,10 +187,10 @@ export default function ToolsAndMCP() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
                                 </svg>
                             </div>
-                            <h3 className="font-medium text-xl text-teal-300 mb-3">Cross-Context Reasoning</h3>
+                            <h3 className="font-medium text-xl text-teal-300 mb-3">Multi-Agent Collaboration</h3>
                             <p className="text-gray-300 leading-relaxed">
-                                Enable AI systems to draw connections and inferences across disparate knowledge
-                                domains and information sources for better problem-solving.
+                                Create teams of specialized agents that can collaborate on complex tasks,
+                                sharing information and delegating sub-tasks based on expertise.
                             </p>
                         </div>
 
@@ -196,10 +200,10 @@ export default function ToolsAndMCP() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
                                 </svg>
                             </div>
-                            <h3 className="font-medium text-xl text-teal-300 mb-3">Dynamic Tool Selection</h3>
+                            <h3 className="font-medium text-xl text-teal-300 mb-3">Tool Integration</h3>
                             <p className="text-gray-300 leading-relaxed">
-                                Implement systems that intelligently select and sequence the right tools
-                                for complex multi-step tasks based on context and requirements.
+                                Extend agent capabilities with a wide range of tools including web search,
+                                data analysis, code execution, and API interactions.
                             </p>
                         </div>
 
@@ -209,10 +213,10 @@ export default function ToolsAndMCP() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                 </svg>
                             </div>
-                            <h3 className="font-medium text-xl text-teal-300 mb-3">Security & Validation</h3>
+                            <h3 className="font-medium text-xl text-teal-300 mb-3">Self-Improvement</h3>
                             <p className="text-gray-300 leading-relaxed">
-                                Built-in security features to validate tool inputs, control access permissions,
-                                and monitor tool usage for safe AI tool integration.
+                                Implement learning mechanisms that allow agents to improve performance over time
+                                by analyzing past interactions and refining their approaches.
                             </p>
                         </div>
                     </div>
@@ -223,19 +227,19 @@ export default function ToolsAndMCP() {
             <section className="py-24 bg-gradient-to-br from-teal-950/30 to-gray-900">
                 <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
                     <div className="animate-float">
-                        <h2 className="font-handwritten text-5xl mb-8 text-white">Start Building With Tools & MCP Today</h2>
+                        <h2 className="font-handwritten text-5xl mb-8 text-white">Start Building LLM Agents Today</h2>
                         <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
-                            Enhance your AI applications with advanced tool integration and multi-context processing
+                            Create intelligent AI agents that can autonomously solve complex problems
                         </p>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-6 justify-center">
                         <a
-                            href="https://github.com/langiq/tools-mcp"
+                            href="https://github.com/langiq/agents"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-block bg-teal-600 hover:bg-teal-700 px-8 py-4 rounded-lg text-white font-medium text-lg transition-all shadow-lg hover:shadow-teal-500/30"
                         >
-                            Download Library
+                            Download Framework
                         </a>
                         <Link
                             href="/contact"

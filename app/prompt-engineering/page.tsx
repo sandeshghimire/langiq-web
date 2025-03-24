@@ -36,7 +36,7 @@ export default function PromptEngineering() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="text-center max-w-3xl mx-auto">
                         <h1 className="font-handwritten text-5xl md:text-7xl mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 animate-pulse-slow">
-                            Langiq_pe Library
+                            Prompt Engineering
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed">
                             A comprehensive toolkit for prompt engineering and LLM integration
