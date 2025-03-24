@@ -98,6 +98,7 @@ export default function Home() {
             viewport={{ once: true, amount: 0.2 }}
           >
             {[
+              { title: 'AI Studio', path: '/ai-studio', description: 'Intuitive platform for building, testing, and deploying AI solutions with visual workflows and real-time performance analytics' },
               { title: 'Prompt Engineering', path: '/prompt-engineering', description: 'Advanced prompt crafting tools with templating, versioning, and optimization algorithms to maximize LLM performance' },
               { title: 'Retrieval-Augmented Generation', path: '/rag', description: 'Enterprise-grade RAG framework with vector database integrations, context optimization, and hallucination reduction' },
               { title: 'Tools and MCP', path: '/tools-mcp', description: 'Comprehensive toolkit for function calling, tool management, and multi-chain prompting with monitoring capabilities' },
@@ -105,7 +106,7 @@ export default function Home() {
               { title: 'Fine Tuning', path: '/fine-tuning', description: 'End-to-end pipeline for dataset preparation, model training, evaluation metrics, and deployment of specialized models' },
               { title: 'Agents', path: '/agents', description: 'Secure agent framework with memory management, planning capabilities, and safeguards against prompt injection and data leakage' },
               { title: 'Application Development', path: '/app-dev', description: 'Full-stack framework for rapidly building production LLM applications with authentication, caching, and scalability built-in' },
-              { title: 'Consulting', path: '/consulting', description: 'Expert guidance on architecture design, implementation strategies, and best practices from our experienced AI engineers' },
+
             ].map((service, index) => (
               <motion.div key={index} variants={cardVariant}>
                 <motion.div
