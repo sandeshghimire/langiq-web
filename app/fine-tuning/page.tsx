@@ -93,30 +93,17 @@ export default function PromptEngineering() {
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-950">
             {/* Hero section with animated gradient */}
-            <section className="py-28 relative overflow-hidden">
+            <section className="py-32 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-gray-900 animate-gradient-slow"></div>
                 <div className="grid-bg absolute inset-0 opacity-10 animate-pulse-slower"></div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className={`text-center max-w-3xl mx-auto transition-all duration-1000 transform ${isVisible.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                        <h1 className="font-handwritten text-5xl md:text-7xl mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 animate-pulse-slow">
+                        <h1 className="font-handwritten text-5xl md:text-7xl mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 animate-pulse-slow font-bold tracking-tight">
                             LangIQ Prompt Library
                         </h1>
-                        <p className="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed animate-slide-up delay-300">
-                            A universal prompt library for seamless integration with frontier language models
+                        <p className="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed animate-slide-up delay-300 font-light max-w-2xl mx-auto">
+                            Our production-ready library enables your applications to interface with both frontier LLMs and local open source models through a single, unified API available in JavaScript and Python.
                         </p>
-                        <a
-                            href="https://github.com/langiq/langiq_pe"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center bg-purple-600/80 hover:bg-purple-600 backdrop-blur-sm px-8 py-4 rounded-lg text-white font-medium text-lg transition-all shadow-lg hover:shadow-purple-500/30 hover:scale-105 group animate-fade-in delay-500"
-                        >
-                            <svg className="w-5 h-5 mr-2 group-hover:animate-bounce" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                            </svg>
-                            <span className="relative after:content-[''] after:absolute after:h-0.5 after:bg-white after:w-0 after:left-0 after:-bottom-1 after:transition-all group-hover:after:w-full">
-                                Get Started on GitHub
-                            </span>
-                        </a>
                     </div>
                 </div>
             </section>
@@ -127,45 +114,39 @@ export default function PromptEngineering() {
                     <div className={`relative rounded-xl overflow-hidden shadow-2xl border border-purple-700/30 transition-all duration-1000 transform ${isVisible.image ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
                         <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 animate-pulse-slow"></div>
                         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-                        <Image
-                            src="/langiq-studio-dashboard.png"
-                            alt="LangIQ AI Studio Interface"
-                            width={1200}
-                            height={600}
-                            className="w-full h-auto relative z-10 transition-transform duration-700 hover:scale-[1.02]"
-                        />
+                        <div className="w-full h-full group relative">
+                            <Image
+                                src="/pe.png"
+                                alt="LangIQ AI Studio Interface"
+                                width={1200}
+                                height={600}
+                                className="w-full h-auto relative z-10 transition-transform duration-700 group-hover:scale-[1.02]"
+                            />
+                            <div className="absolute inset-0 shadow-inner z-20 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        </div>
                     </div>
+                    <p className="text-xl text-gray-300 mt-8 mb-10 leading-relaxed animate-slide-up delay-300 text-center max-w-4xl mx-auto font-light">
+                        Design, test, and verify prompt library capabilities using our LangIQ AI Studio — a powerful interface powered by the same LangIQ prompt library you'll use in production.
+                    </p>
                 </div>
             </section>
 
             {/* Introduction section with Python code editor */}
-            <section className="py-24 relative">
+            <section className="py-28 relative">
                 <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-gray-950 opacity-80"></div>
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div className={`grid grid-cols-1 md:grid-cols-2 gap-16 items-center transition-all duration-1000 ${isVisible.intro ? 'opacity-100' : 'opacity-0'}`}>
-                        <div className="space-y-8 animate-fade-in-left">
-                            <h2 className="font-handwritten text-4xl text-purple-400 mb-6 animate-glow">Introducing LangIQ Prompt Library</h2>
-                            <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                                Our production-ready library enables your applications to interface with large language frontier models
-                                through a single, unified API available in both JavaScript and Python.
-                            </p>
-                            <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                                Design, test, and verify prompt library capabilities using our LangIQ AI Studio — a powerful
-                                interface powered by the same LangIQ prompt library you'll use in production.
-                            </p>
-                            <div className="flex flex-wrap gap-4 mt-10">
-                                {['OpenAI', 'Google', 'XAI', 'DeepSeek', 'Anthropic'].map((provider, index) => (
-                                    <div key={provider}
-                                        className="bg-purple-900/20 border border-purple-700/30 rounded-lg px-4 py-2 hover:bg-purple-800/30 hover:border-purple-500/40 transition-all hover:scale-105 animate-fade-in"
-                                        style={{ animationDelay: `${index * 0.1 + 0.5}s` }}>
-                                        <span className="text-purple-300 font-semibold">{provider}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                        <div className="transform hover:scale-[1.02] transition-all duration-300 animate-float-slow">
+                    <div className={`text-center mb-16 transition-all duration-1000 transform ${isVisible.intro ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                        <h2 className="font-handwritten text-5xl text-purple-400 mb-6 animate-glow">Library Implementation</h2>
+                        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                            Consistent APIs across languages with powerful features for both Python and JavaScript
+                        </p>
+                    </div>
+
+                    {/* Python section with code and description side by side */}
+                    <div className={`grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16 items-center mb-28 transition-all duration-1000 ${isVisible.intro ? 'opacity-100' : 'opacity-0'}`}>
+                        <div className="lg:col-span-3 transform hover:scale-[1.02] transition-all duration-300 animate-float-slow order-2 lg:order-1">
                             {/* Python code editor */}
-                            <div className="rounded-xl overflow-hidden shadow-2xl bg-gray-950 border border-purple-700/20 hover:border-purple-600/40 transition-colors hover:shadow-lg hover:shadow-purple-600/10">
+                            <div className="rounded-xl overflow-hidden shadow-2xl bg-gray-950 border border-purple-700/20 hover:border-purple-600/40 transition-colors hover:shadow-lg hover:shadow-purple-600/10 group">
                                 {/* Editor header */}
                                 <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
                                     <div className="flex items-center">
@@ -180,12 +161,12 @@ export default function PromptEngineering() {
                                 </div>
 
                                 {/* Editor content with typing animation */}
-                                <div className="p-5 font-mono text-sm relative group">
+                                <div className="p-6 font-mono text-sm relative group">
                                     <div className="absolute right-4 top-4 opacity-0 group-hover:opacity-100 transition-opacity">
                                         <div className="animate-pulse-fast w-2 h-4 bg-purple-400"></div>
                                     </div>
                                     <pre className="language-python text-gray-300 overflow-x-auto animate-typing">
-                                        <code>{codeExample}</code>
+                                        <code className="group-hover:text-white transition-colors duration-300">{codeExample}</code>
                                     </pre>
                                 </div>
 
@@ -196,13 +177,45 @@ export default function PromptEngineering() {
                                 </div>
                             </div>
                         </div>
+                        <div className="lg:col-span-2 space-y-6 animate-fade-in-left order-1 lg:order-2">
+                            <h3 className="font-handwritten text-3xl text-purple-400 mb-4">Python Library</h3>
+                            <p className="text-gray-300 mb-4 text-lg leading-relaxed">
+                                Our Python library provides a clean, intuitive interface for interacting with various language models. Perfect for data science workflows, backend services, and AI research.
+                            </p>
+                            <ul className="space-y-3">
+                                {["Full asyncio support", "Integrated with popular Python ML frameworks", "Comprehensive error handling", "Built-in caching mechanism"].map((item, index) => (
+                                    <li key={index} className="flex items-start">
+                                        <svg className="w-5 h-5 text-purple-400 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span className="text-gray-300">{item}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
 
-                    {/* JavaScript example row - reversed columns */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mt-24">
-                        <div className="transform hover:scale-[1.02] transition-all duration-300 animate-float-slow delay-300">
+                    {/* JavaScript section with code and description side by side - reversed order */}
+                    <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16 items-center">
+                        <div className="lg:col-span-2 space-y-6 animate-fade-in-right delay-300">
+                            <h3 className="font-handwritten text-3xl text-purple-400 mb-4">JavaScript Library</h3>
+                            <p className="text-gray-300 mb-4 text-lg leading-relaxed">
+                                Our JavaScript/TypeScript library seamlessly integrates with modern web frameworks and Node.js applications. Perfect for interactive web applications and serverless functions.
+                            </p>
+                            <ul className="space-y-3">
+                                {["Full TypeScript support", "Promise-based API", "React/Next.js hooks", "Streaming responses"].map((item, index) => (
+                                    <li key={index} className="flex items-start">
+                                        <svg className="w-5 h-5 text-purple-400 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span className="text-gray-300">{item}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className="lg:col-span-3 transform hover:scale-[1.02] transition-all duration-300 animate-float-slow delay-300">
                             {/* JavaScript code editor */}
-                            <div className="rounded-xl overflow-hidden shadow-2xl bg-gray-950 border border-purple-700/20 hover:border-purple-600/40 transition-colors hover:shadow-lg hover:shadow-purple-600/10">
+                            <div className="rounded-xl overflow-hidden shadow-2xl bg-gray-950 border border-purple-700/20 hover:border-purple-600/40 transition-colors hover:shadow-lg hover:shadow-purple-600/10 group">
                                 {/* Editor header */}
                                 <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
                                     <div className="flex items-center">
@@ -217,12 +230,12 @@ export default function PromptEngineering() {
                                 </div>
 
                                 {/* Editor content with improved animation */}
-                                <div className="p-5 font-mono text-sm relative group">
+                                <div className="p-6 font-mono text-sm relative group">
                                     <div className="absolute right-4 top-4 opacity-0 group-hover:opacity-100 transition-opacity">
                                         <div className="animate-pulse-fast w-2 h-4 bg-purple-400"></div>
                                     </div>
                                     <pre className="language-javascript text-gray-300 overflow-x-auto animate-typing-delay">
-                                        <code>{jsCodeExample}</code>
+                                        <code className="group-hover:text-white transition-colors duration-300">{jsCodeExample}</code>
                                     </pre>
                                 </div>
 
@@ -233,27 +246,16 @@ export default function PromptEngineering() {
                                 </div>
                             </div>
                         </div>
-                        <div className="space-y-8 animate-fade-in-right delay-300">
-                            <h2 className="font-handwritten text-4xl text-purple-400 mb-6 animate-glow">Multi-Language Support</h2>
-                            <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                                Build applications in your preferred language with the same powerful capabilities. Our
-                                library provides consistent APIs across both JavaScript and Python environments.
-                            </p>
-                            <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                                Whether you're building with Node.js, React, or Python frameworks, LangIQ Prompt Library
-                                enables you to perform many tasks using a single, unified API.
-                            </p>
-                        </div>
                     </div>
                 </div>
             </section>
 
             {/* Features section with cards */}
-            <section className="py-24 bg-gradient-to-b from-gray-950 to-purple-950/30">
+            <section className="py-28 bg-gradient-to-b from-gray-950 to-purple-950/30">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className={`text-center mb-16 transition-all duration-1000 transform ${isVisible.features ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                        <h2 className="font-handwritten text-5xl text-purple-400 mb-6 animate-glow">Key Features</h2>
-                        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                    <div className={`text-center mb-20 transition-all duration-1000 transform ${isVisible.features ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                        <h2 className="font-handwritten text-5xl text-purple-400 mb-8 animate-glow">Key Features</h2>
+                        <p className="text-xl text-gray-300 max-w-3xl mx-auto font-light">
                             LangIQ Prompt Library provides everything you need to build powerful AI applications
                         </p>
                     </div>
@@ -262,7 +264,7 @@ export default function PromptEngineering() {
                         {[
                             {
                                 title: "Universal Model Access",
-                                description: "Connect your applications to frontier LLMs including OpenAI, Google, XAI, DeepSeek, and Anthropic through a unified interface.",
+                                description: "Connect your applications to both frontier LLMs (OpenAI, Google, Anthropic) and local open source models (Llama, Mistral, Mixtral) through a unified interface.",
                                 icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                             },
                             {
@@ -286,25 +288,25 @@ export default function PromptEngineering() {
                                 icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             },
                             {
-                                title: "Single API Solution",
-                                description: "Perform many LLM tasks using a single API, simplifying integration and allowing easy swapping between different language models.",
-                                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                title: "Local & Cloud Flexibility",
+                                description: "Choose between cloud-based frontier models or locally hosted open weight models based on your privacy, cost, and performance requirements.",
+                                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
                             }
                         ].map((feature, index) => (
                             <div key={feature.title}
-                                className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-xl border border-purple-800/20 shadow-lg hover:shadow-purple-700/20 transition-all hover:-translate-y-2 hover:border-purple-600/40 animate-fade-in-up relative overflow-hidden group"
+                                className="bg-gray-900/80 backdrop-blur-lg p-8 rounded-xl border border-purple-800/20 shadow-lg hover:shadow-purple-700/20 transition-all hover:-translate-y-2 hover:border-purple-600/40 animate-fade-in-up relative overflow-hidden group"
                                 style={{ animationDelay: `${index * 0.15}s` }}
                             >
                                 {/* Add animated gradient background */}
                                 <div className="absolute inset-0 bg-gradient-to-br from-purple-800/5 to-blue-800/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                 <div className="absolute -inset-1 bg-gradient-to-r from-purple-600/10 via-transparent to-blue-600/10 rounded-xl opacity-0 group-hover:opacity-100 blur-xl group-hover:animate-gradient-xy transition-opacity"></div>
 
-                                <div className="w-12 h-12 bg-purple-900/50 rounded-lg flex items-center justify-center mb-5 group-hover:bg-purple-800/70 transition-colors animate-pulse-slow relative">
-                                    <svg className="w-6 h-6 text-purple-400 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <div className="w-14 h-14 bg-purple-900/50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-800/70 transition-colors animate-pulse-slow relative">
+                                    <svg className="w-7 h-7 text-purple-400 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         {feature.icon}
                                     </svg>
                                 </div>
-                                <h3 className="font-medium text-xl text-purple-300 mb-3 relative">{feature.title}</h3>
+                                <h3 className="font-medium text-xl text-purple-300 mb-4 relative">{feature.title}</h3>
                                 <p className="text-gray-300 leading-relaxed relative">
                                     {feature.description}
                                 </p>
@@ -315,27 +317,18 @@ export default function PromptEngineering() {
             </section>
 
             {/* CTA section */}
-            <section className="py-24 bg-gradient-to-br from-purple-950/30 to-gray-900">
+            <section className="py-28 bg-gradient-to-br from-purple-950/30 to-gray-900">
                 <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
                     <div className={`transition-all duration-1000 transform ${isVisible.cta ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-                        <h2 className="font-handwritten text-5xl mb-8 text-white animate-glow">Start Building With LangIQ Today</h2>
-                        <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in delay-300">
-                            Transform your AI applications with our powerful universal prompt library
+                        <h2 className="font-handwritten text-5xl mb-10 text-white animate-glow font-bold tracking-tight">Start Building With LangIQ Today</h2>
+                        <p className="text-xl text-gray-300 mb-14 max-w-2xl mx-auto leading-relaxed animate-fade-in delay-300 font-light">
+                            Transform your AI applications with our powerful universal prompt library — supporting both frontier and open source models
                         </p>
                     </div>
-                    <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                        <a
-                            href="https://github.com/langiq/langiq-prompt-library"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-lg text-white font-medium text-lg transition-all shadow-lg hover:shadow-purple-500/30 hover:scale-105 animate-bounce-subtle relative group overflow-hidden"
-                        >
-                            <span className="relative z-10">Download Library</span>
-                            <span className="absolute inset-0 bg-gradient-to-r from-purple-500 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                        </a>
+                    <div className="flex flex-col sm:flex-row gap-8 justify-center">
                         <Link
                             href="/contact"
-                            className="inline-block bg-gray-800 hover:bg-gray-700 px-8 py-4 rounded-lg text-white font-medium text-lg transition-all shadow-lg hover:shadow-gray-500/20 hover:scale-105 animate-bounce-subtle relative group overflow-hidden"
+                            className="inline-block bg-gray-800 hover:bg-gray-700 px-10 py-5 rounded-lg text-white font-medium text-lg transition-all shadow-xl hover:shadow-gray-500/20 hover:scale-105 animate-bounce-subtle relative group overflow-hidden border border-gray-700"
                             style={{ animationDelay: "0.2s" }}
                         >
                             <span className="relative z-10">Get Support</span>
