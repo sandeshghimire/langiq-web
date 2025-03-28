@@ -93,16 +93,16 @@ export default function PromptEngineering() {
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-950">
             {/* Hero section with animated gradient */}
-            <section className="py-32 relative overflow-hidden">
+            <section className="py-20 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-gray-900 animate-gradient-slow"></div>
                 <div className="grid-bg absolute inset-0 opacity-10 animate-pulse-slower"></div>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div className={`text-center max-w-3xl mx-auto transition-all duration-1000 transform ${isVisible.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                <div className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div className={`text-center mx-auto transition-all duration-1000 transform ${isVisible.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                         <h1 className="font-handwritten text-5xl md:text-7xl mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 animate-pulse-slow font-bold tracking-tight">
-                            LangIQ Prompt Library
+                            LangIQ Tools and MCP Library
                         </h1>
-                        <p className="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed animate-slide-up delay-300 font-light max-w-2xl mx-auto">
-                            Our production-ready library enables your applications to interface with both frontier LLMs and local open source models through a single, unified API available in JavaScript and Python.
+                        <p className="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed animate-slide-up delay-300 font-light max-w-3xl mx-auto">
+                            Our LangIQ Tools and MCP library is a production-ready library in both Python and JavaScript. We provide a framework to quickly build tools and connect to your prompt library so you can make your LLM perform Tool and MCP calls when needed. This adds context-aware, real-time data to your application, making it more useful and relevant. We have developed over 100 MCP and tools you can design, test, and verify using our AI Studio tool section. Our AI Studio is powered by our Tools and MCP library.
                         </p>
                     </div>
                 </div>
@@ -126,7 +126,7 @@ export default function PromptEngineering() {
                         </div>
                     </div>
                     <p className="text-xl text-gray-300 mt-8 mb-10 leading-relaxed animate-slide-up delay-300 text-center max-w-4xl mx-auto font-light">
-                        Design, test, and verify prompt library capabilities using our LangIQ AI Studio — a powerful interface powered by the same LangIQ prompt library you'll use in production.
+                        Design, test, and verify Tools and MCP capabilities using our LangIQ AI Studio — a powerful interface powered by the same LangIQ Tools and MCP library you'll use in production.
                     </p>
                 </div>
             </section>
@@ -136,9 +136,9 @@ export default function PromptEngineering() {
                 <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-gray-950 opacity-80"></div>
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className={`text-center mb-16 transition-all duration-1000 transform ${isVisible.intro ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                        <h2 className="font-handwritten text-5xl text-purple-400 mb-6 animate-glow">Library Implementation</h2>
+                        <h2 className="font-handwritten text-5xl text-purple-400 mb-6 animate-glow">Tools and MCP Implementation</h2>
                         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                            Consistent APIs across languages with powerful features for both Python and JavaScript
+                            Consistent APIs across languages with powerful tool and MCP features for both Python and JavaScript
                         </p>
                     </div>
 
@@ -178,9 +178,9 @@ export default function PromptEngineering() {
                             </div>
                         </div>
                         <div className="lg:col-span-2 space-y-6 animate-fade-in-left order-1 lg:order-2">
-                            <h3 className="font-handwritten text-3xl text-purple-400 mb-4">Python Library</h3>
+                            <h3 className="font-handwritten text-3xl text-purple-400 mb-4">Python Tools and MCP Library</h3>
                             <p className="text-gray-300 mb-4 text-lg leading-relaxed">
-                                Our Python library provides a clean, intuitive interface for interacting with various language models. Perfect for data science workflows, backend services, and AI research.
+                                Our Python library provides a clean, intuitive interface for creating and managing tools and MCPs that LLMs can invoke. Perfect for data science workflows, backend services, and AI applications requiring real-time data.
                             </p>
                             <ul className="space-y-3">
                                 {["Full asyncio support", "Integrated with popular Python ML frameworks", "Comprehensive error handling", "Built-in caching mechanism"].map((item, index) => (
@@ -198,9 +198,9 @@ export default function PromptEngineering() {
                     {/* JavaScript section with code and description side by side - reversed order */}
                     <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16 items-center">
                         <div className="lg:col-span-2 space-y-6 animate-fade-in-right delay-300">
-                            <h3 className="font-handwritten text-3xl text-purple-400 mb-4">JavaScript Library</h3>
+                            <h3 className="font-handwritten text-3xl text-purple-400 mb-4">JavaScript Tools and MCP Library</h3>
                             <p className="text-gray-300 mb-4 text-lg leading-relaxed">
-                                Our JavaScript/TypeScript library seamlessly integrates with modern web frameworks and Node.js applications. Perfect for interactive web applications and serverless functions.
+                                Our JavaScript/TypeScript library seamlessly integrates tools and MCP capabilities with modern web frameworks and Node.js applications. Perfect for interactive web applications requiring real-time data access.
                             </p>
                             <ul className="space-y-3">
                                 {["Full TypeScript support", "Promise-based API", "React/Next.js hooks", "Streaming responses"].map((item, index) => (
@@ -256,7 +256,7 @@ export default function PromptEngineering() {
                     <div className={`text-center mb-20 transition-all duration-1000 transform ${isVisible.features ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                         <h2 className="font-handwritten text-5xl text-purple-400 mb-8 animate-glow">Key Features</h2>
                         <p className="text-xl text-gray-300 max-w-3xl mx-auto font-light">
-                            LangIQ Prompt Library provides everything you need to build powerful AI applications
+                            LangIQ Tools and MCP Library provides everything you need to create context-aware AI applications
                         </p>
                     </div>
 
