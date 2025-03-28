@@ -145,7 +145,7 @@ export default function Footer() {
                     <div className="flex flex-col md:flex-row justify-between items-center text-gray-400">
                         <div className="mb-4 md:mb-0">
                             <p className="text-center md:text-left">
-                                101 Innovation Drive, San Francisco, CA 94105
+                                1333 Trailside Ct, San Jose, CA 95131, USA
                             </p>
                         </div>
                         <div className="flex space-x-6">
