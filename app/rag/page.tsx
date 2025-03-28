@@ -3,59 +3,77 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-// Sample Python code string to avoid JSX evaluation issues
-const codeExample = `from langiq_prompt_library import LangiqClient
+// Sample Python code string for RAG implementation
+const codeExample = `from langiq_rag_library import LangiqRAGClient
 
-# Initialize the client with your preferred model
-client = LangiqClient(
+# Initialize the RAG client with your preferred model
+client = LangiqRAGClient(
   provider="openai",
   model="gpt-4"
 )
 
-# Create a prompt with chain-of-thought reasoning
-response = client.generate(
-  prompt="Explain the concept of neural networks",
+# Process and index documents for the vector database
+client.ingest_documents(
+  sources=["reports/", "documentation.pdf", "data.xlsx"],
+  chunk_size=512,
+  overlap=50
+)
+
+# Query the vector database with RAG
+response = client.query(
+  question="What were our Q2 sales figures?",
   temperature=0.7,
-  chain_of_thought=True,
   max_tokens=500
 )
 
-# Display the response
+# Display the response with source attribution
 print(response.text)
+print(f"Source documents: {response.sources}")
 
 # Get detailed performance metrics
 metrics = client.get_metrics()
 print(f"Response time: {metrics['response_time']}s")
-print(f"Tokens used: {metrics['tokens_used']}")`;
+print(f"Retrieved chunks: {metrics['chunks_retrieved']}")`;
 
-// JavaScript code example
-const jsCodeExample = `import { LangiqClient } from 'langiq-prompt-library';
+// JavaScript code example for RAG
+const jsCodeExample = `import { LangiqRAGClient } from 'langiq-rag-library';
 
-// Initialize the client with your preferred model
-const client = new LangiqClient({
+// Initialize the RAG client with your preferred model
+const client = new LangiqRAGClient({
   provider: "openai",
   model: "gpt-4"
 });
 
-// Create a prompt with chain-of-thought reasoning
-async function generateResponse() {
-  const response = await client.generate({
-    prompt: "Explain the concept of neural networks",
+// Process and index documents for the vector database
+async function buildVectorDatabase() {
+  await client.ingestDocuments({
+    sources: ["reports/", "documentation.pdf", "data.xlsx"],
+    chunkSize: 512,
+    overlap: 50
+  });
+  
+  console.log("Vector database created successfully");
+}
+
+// Query the vector database with RAG
+async function queryDatabase() {
+  const response = await client.query({
+    question: "What were our Q2 sales figures?",
     temperature: 0.7,
-    chainOfThought: true,
     maxTokens: 500
   });
 
-  // Display the response
+  // Display the response with source attribution
   console.log(response.text);
+  console.log(\`Source documents: \${response.sources}\`);
 
   // Get detailed performance metrics
   const metrics = client.getMetrics();
   console.log(\`Response time: \${metrics.responseTime}s\`);
-  console.log(\`Tokens used: \${metrics.tokensUsed}\`);
+  console.log(\`Retrieved chunks: \${metrics.chunksRetrieved}\`);
 }
 
-generateResponse();`;
+buildVectorDatabase().then(queryDatabase);`;
 
 export default function PromptEngineering() {
     // Add state for scroll-based animations
@@ -99,10 +117,10 @@ export default function PromptEngineering() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className={`text-center max-w-3xl mx-auto transition-all duration-1000 transform ${isVisible.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                         <h1 className="font-handwritten text-5xl md:text-7xl mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 animate-pulse-slow font-bold tracking-tight">
-                            LangIQ Prompt Library
+                            LangIQ RAG Library
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed animate-slide-up delay-300 font-light max-w-2xl mx-auto">
-                            Our production-ready library enables your applications to interface with both frontier LLMs and local open source models through a single, unified API available in JavaScript and Python.
+                            Our universal retrieval-augmented generation library enables you to develop vector databases from your structured and unstructured data in any format, providing essential context for smarter AI interactions.
                         </p>
                     </div>
                 </div>
@@ -116,8 +134,8 @@ export default function PromptEngineering() {
                         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
                         <div className="w-full h-full group relative">
                             <Image
-                                src="/pe.png"
-                                alt="LangIQ AI Studio Interface"
+                                src="/rag.png"
+                                alt="LangIQ AI Studio RAG Interface"
                                 width={1200}
                                 height={600}
                                 className="w-full h-auto relative z-10 transition-transform duration-700 group-hover:scale-[1.02]"
@@ -126,7 +144,7 @@ export default function PromptEngineering() {
                         </div>
                     </div>
                     <p className="text-xl text-gray-300 mt-8 mb-10 leading-relaxed animate-slide-up delay-300 text-center max-w-4xl mx-auto font-light">
-                        Design, test, and verify prompt library capabilities using our LangIQ AI Studio — a powerful interface powered by the same LangIQ prompt library you'll use in production.
+                        Test and verify RAG capabilities using our LangIQ AI Studio — a powerful interface powered by the same LangIQ RAG library you'll use in production.
                     </p>
                 </div>
             </section>
@@ -136,9 +154,9 @@ export default function PromptEngineering() {
                 <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-gray-950 opacity-80"></div>
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className={`text-center mb-16 transition-all duration-1000 transform ${isVisible.intro ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                        <h2 className="font-handwritten text-5xl text-purple-400 mb-6 animate-glow">Library Implementation</h2>
+                        <h2 className="font-handwritten text-5xl text-purple-400 mb-6 animate-glow">RAG Library Implementation</h2>
                         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                            Consistent APIs across languages with powerful features for both Python and JavaScript
+                            Consistent APIs across languages with powerful vector database features for both Python and JavaScript
                         </p>
                     </div>
 
@@ -155,7 +173,7 @@ export default function PromptEngineering() {
                                             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                                             <div className="w-3 h-3 rounded-full bg-green-500"></div>
                                         </div>
-                                        <span className="ml-4 text-gray-400 text-sm">langiq_example.py</span>
+                                        <span className="ml-4 text-gray-400 text-sm">langiq_rag_example.py</span>
                                     </div>
                                     <div className="text-xs text-gray-500">Python Example</div>
                                 </div>
@@ -173,17 +191,17 @@ export default function PromptEngineering() {
                                 {/* Editor footer */}
                                 <div className="bg-gray-800 px-4 py-1 text-xs text-gray-500 flex justify-between border-t border-gray-700">
                                     <div>Python 3.10.4</div>
-                                    <div>LangIQ Prompt Library v1.2.0</div>
+                                    <div>LangIQ RAG Library v1.2.0</div>
                                 </div>
                             </div>
                         </div>
                         <div className="lg:col-span-2 space-y-6 animate-fade-in-left order-1 lg:order-2">
                             <h3 className="font-handwritten text-3xl text-purple-400 mb-4">Python Library</h3>
                             <p className="text-gray-300 mb-4 text-lg leading-relaxed">
-                                Our Python library provides a clean, intuitive interface for interacting with various language models. Perfect for data science workflows, backend services, and AI research.
+                                Our Python RAG library efficiently processes diverse document formats, creating optimized vector databases to provide contextual information for more accurate LLM responses.
                             </p>
                             <ul className="space-y-3">
-                                {["Full asyncio support", "Integrated with popular Python ML frameworks", "Comprehensive error handling", "Built-in caching mechanism"].map((item, index) => (
+                                {["Multi-format document ingestion", "Efficient vector database creation", "Semantic search capabilities", "Source citation tracking"].map((item, index) => (
                                     <li key={index} className="flex items-start">
                                         <svg className="w-5 h-5 text-purple-400 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -200,10 +218,10 @@ export default function PromptEngineering() {
                         <div className="lg:col-span-2 space-y-6 animate-fade-in-right delay-300">
                             <h3 className="font-handwritten text-3xl text-purple-400 mb-4">JavaScript Library</h3>
                             <p className="text-gray-300 mb-4 text-lg leading-relaxed">
-                                Our JavaScript/TypeScript library seamlessly integrates with modern web frameworks and Node.js applications. Perfect for interactive web applications and serverless functions.
+                                Our JavaScript RAG library seamlessly processes documents and builds vector databases for enhanced context, working with both web and Node.js environments.
                             </p>
                             <ul className="space-y-3">
-                                {["Full TypeScript support", "Promise-based API", "React/Next.js hooks", "Streaming responses"].map((item, index) => (
+                                {["Full TypeScript support", "Browser & server compatibility", "Streaming query responses", "Customizable chunking strategies"].map((item, index) => (
                                     <li key={index} className="flex items-start">
                                         <svg className="w-5 h-5 text-purple-400 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -224,7 +242,7 @@ export default function PromptEngineering() {
                                             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                                             <div className="w-3 h-3 rounded-full bg-green-500"></div>
                                         </div>
-                                        <span className="ml-4 text-gray-400 text-sm">langiq_example.js</span>
+                                        <span className="ml-4 text-gray-400 text-sm">langiq_rag_example.js</span>
                                     </div>
                                     <div className="text-xs text-gray-500">JavaScript Example</div>
                                 </div>
@@ -242,7 +260,7 @@ export default function PromptEngineering() {
                                 {/* Editor footer */}
                                 <div className="bg-gray-800 px-4 py-1 text-xs text-gray-500 flex justify-between border-t border-gray-700">
                                     <div>Node.js 18.x</div>
-                                    <div>LangIQ Prompt Library v1.2.0</div>
+                                    <div>LangIQ RAG Library v1.2.0</div>
                                 </div>
                             </div>
                         </div>
@@ -256,15 +274,25 @@ export default function PromptEngineering() {
                     <div className={`text-center mb-20 transition-all duration-1000 transform ${isVisible.features ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                         <h2 className="font-handwritten text-5xl text-purple-400 mb-8 animate-glow">Key Features</h2>
                         <p className="text-xl text-gray-300 max-w-3xl mx-auto font-light">
-                            LangIQ Prompt Library provides everything you need to build powerful AI applications
+                            LangIQ RAG Library provides everything you need to build context-aware AI applications
                         </p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {[
                             {
-                                title: "Universal Model Access",
-                                description: "Connect your applications to both frontier LLMs (OpenAI, Google, Anthropic) and local open source models (Llama, Mistral, Mixtral) through a unified interface.",
+                                title: "Universal Format Support",
+                                description: "Process and index Microsoft docs, text files, PowerPoint, PDF, database records, reports, and Excel files through a single unified interface.",
+                                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            },
+                            {
+                                title: "Efficient Vector Database",
+                                description: "Automatically structure and store your data in an optimized vector database for fast, accurate retrieval during LLM interactions.",
+                                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                            },
+                            {
+                                title: "Context-Enhanced AI",
+                                description: "Provide relevant context from your data to LLMs, dramatically improving response accuracy and relevance for domain-specific questions.",
                                 icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                             },
                             {
@@ -273,23 +301,13 @@ export default function PromptEngineering() {
                                 icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
                             },
                             {
-                                title: "Advanced Prompting",
-                                description: "Implement sophisticated prompt engineering strategies with simple API calls to optimize your model interactions and outputs.",
-                                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                            },
-                            {
                                 title: "AI Studio Integration",
-                                description: "Design, test, and verify prompt capabilities using our LangIQ AI Studio before implementing them in your production applications.",
+                                description: "Test and verify RAG capabilities using our LangIQ AI Studio before implementing them in your production applications.",
                                 icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                             },
                             {
-                                title: "Performance Tracking",
-                                description: "Monitor response times, token usage, and cost metrics to optimize your implementation and track usage patterns across different LLMs.",
-                                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            },
-                            {
-                                title: "Local & Cloud Flexibility",
-                                description: "Choose between cloud-based frontier models or locally hosted open weight models based on your privacy, cost, and performance requirements.",
+                                title: "Model Compatibility",
+                                description: "Use your RAG system with both cloud-based frontier models and locally hosted open-source models based on your requirements.",
                                 icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
                             }
                         ].map((feature, index) => (
@@ -320,9 +338,9 @@ export default function PromptEngineering() {
             <section className="py-28 bg-gradient-to-br from-purple-950/30 to-gray-900">
                 <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
                     <div className={`transition-all duration-1000 transform ${isVisible.cta ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
-                        <h2 className="font-handwritten text-5xl mb-10 text-white animate-glow font-bold tracking-tight">Start Building With LangIQ Today</h2>
+                        <h2 className="font-handwritten text-5xl mb-10 text-white animate-glow font-bold tracking-tight">Start Building With LangIQ RAG Today</h2>
                         <p className="text-xl text-gray-300 mb-14 max-w-2xl mx-auto leading-relaxed animate-fade-in delay-300 font-light">
-                            Transform your AI applications with our powerful universal prompt library — supporting both frontier and open source models
+                            Transform your AI applications with our powerful RAG/CAG library — supporting documents of any format for context-aware AI interactions
                         </p>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-8 justify-center">
