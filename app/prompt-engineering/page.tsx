@@ -102,7 +102,7 @@ export default function PromptEngineering() {
                             LangIQ Prompt Library
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed animate-slide-up delay-300 font-light max-w-2xl mx-auto">
-                            Our production-ready library enables your applications to interface with large language frontier models through a single, unified API available in both JavaScript and Python.
+                            Our production-ready library enables your applications to interface with both frontier LLMs and local open source models through a single, unified API available in JavaScript and Python.
                         </p>
                     </div>
                 </div>
@@ -135,28 +135,16 @@ export default function PromptEngineering() {
             <section className="py-28 relative">
                 <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-gray-950 opacity-80"></div>
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div className={`grid grid-cols-1 md:grid-cols-2 gap-16 items-center transition-all duration-1000 ${isVisible.intro ? 'opacity-100' : 'opacity-0'}`}>
-                        <div className="space-y-8 animate-fade-in-left">
-                            <h2 className="font-handwritten text-4xl text-purple-400 mb-6 animate-glow">Introducing LangIQ Prompt Library</h2>
-                            <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                                Our production-ready library enables your applications to interface with large language frontier models
-                                through a single, unified API available in both JavaScript and Python.
-                            </p>
-                            <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                                Design, test, and verify prompt library capabilities using our LangIQ AI Studio — a powerful
-                                interface powered by the same LangIQ prompt library you'll use in production.
-                            </p>
-                            <div className="flex flex-wrap gap-4 mt-10">
-                                {['OpenAI', 'Google', 'XAI', 'DeepSeek', 'Anthropic'].map((provider, index) => (
-                                    <div key={provider}
-                                        className="bg-purple-900/20 backdrop-blur-sm border border-purple-700/30 rounded-lg px-4 py-2 hover:bg-purple-800/30 hover:border-purple-500/40 transition-all hover:scale-105 animate-fade-in shadow-lg"
-                                        style={{ animationDelay: `${index * 0.1 + 0.5}s` }}>
-                                        <span className="text-purple-300 font-semibold">{provider}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                        <div className="transform hover:scale-[1.02] transition-all duration-300 animate-float-slow">
+                    <div className={`text-center mb-16 transition-all duration-1000 transform ${isVisible.intro ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                        <h2 className="font-handwritten text-5xl text-purple-400 mb-6 animate-glow">Library Implementation</h2>
+                        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                            Consistent APIs across languages with powerful features for both Python and JavaScript
+                        </p>
+                    </div>
+
+                    {/* Python section with code and description side by side */}
+                    <div className={`grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16 items-center mb-28 transition-all duration-1000 ${isVisible.intro ? 'opacity-100' : 'opacity-0'}`}>
+                        <div className="lg:col-span-3 transform hover:scale-[1.02] transition-all duration-300 animate-float-slow order-2 lg:order-1">
                             {/* Python code editor */}
                             <div className="rounded-xl overflow-hidden shadow-2xl bg-gray-950 border border-purple-700/20 hover:border-purple-600/40 transition-colors hover:shadow-lg hover:shadow-purple-600/10 group">
                                 {/* Editor header */}
@@ -189,11 +177,43 @@ export default function PromptEngineering() {
                                 </div>
                             </div>
                         </div>
+                        <div className="lg:col-span-2 space-y-6 animate-fade-in-left order-1 lg:order-2">
+                            <h3 className="font-handwritten text-3xl text-purple-400 mb-4">Python Library</h3>
+                            <p className="text-gray-300 mb-4 text-lg leading-relaxed">
+                                Our Python library provides a clean, intuitive interface for interacting with various language models. Perfect for data science workflows, backend services, and AI research.
+                            </p>
+                            <ul className="space-y-3">
+                                {["Full asyncio support", "Integrated with popular Python ML frameworks", "Comprehensive error handling", "Built-in caching mechanism"].map((item, index) => (
+                                    <li key={index} className="flex items-start">
+                                        <svg className="w-5 h-5 text-purple-400 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span className="text-gray-300">{item}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
 
-                    {/* JavaScript example row - reversed columns */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mt-28">
-                        <div className="transform hover:scale-[1.02] transition-all duration-300 animate-float-slow delay-300">
+                    {/* JavaScript section with code and description side by side - reversed order */}
+                    <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16 items-center">
+                        <div className="lg:col-span-2 space-y-6 animate-fade-in-right delay-300">
+                            <h3 className="font-handwritten text-3xl text-purple-400 mb-4">JavaScript Library</h3>
+                            <p className="text-gray-300 mb-4 text-lg leading-relaxed">
+                                Our JavaScript/TypeScript library seamlessly integrates with modern web frameworks and Node.js applications. Perfect for interactive web applications and serverless functions.
+                            </p>
+                            <ul className="space-y-3">
+                                {["Full TypeScript support", "Promise-based API", "React/Next.js hooks", "Streaming responses"].map((item, index) => (
+                                    <li key={index} className="flex items-start">
+                                        <svg className="w-5 h-5 text-purple-400 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <span className="text-gray-300">{item}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className="lg:col-span-3 transform hover:scale-[1.02] transition-all duration-300 animate-float-slow delay-300">
                             {/* JavaScript code editor */}
                             <div className="rounded-xl overflow-hidden shadow-2xl bg-gray-950 border border-purple-700/20 hover:border-purple-600/40 transition-colors hover:shadow-lg hover:shadow-purple-600/10 group">
                                 {/* Editor header */}
@@ -226,17 +246,6 @@ export default function PromptEngineering() {
                                 </div>
                             </div>
                         </div>
-                        <div className="space-y-8 animate-fade-in-right delay-300">
-                            <h2 className="font-handwritten text-4xl text-purple-400 mb-6 animate-glow">Multi-Language Support</h2>
-                            <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                                Build applications in your preferred language with the same powerful capabilities. Our
-                                library provides consistent APIs across both JavaScript and Python environments.
-                            </p>
-                            <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                                Whether you're building with Node.js, React, or Python frameworks, LangIQ Prompt Library
-                                enables you to perform many tasks using a single, unified API.
-                            </p>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -255,7 +264,7 @@ export default function PromptEngineering() {
                         {[
                             {
                                 title: "Universal Model Access",
-                                description: "Connect your applications to frontier LLMs including OpenAI, Google, XAI, DeepSeek, and Anthropic through a unified interface.",
+                                description: "Connect your applications to both frontier LLMs (OpenAI, Google, Anthropic) and local open source models (Llama, Mistral, Mixtral) through a unified interface.",
                                 icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                             },
                             {
@@ -279,9 +288,9 @@ export default function PromptEngineering() {
                                 icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             },
                             {
-                                title: "Single API Solution",
-                                description: "Perform many LLM tasks using a single API, simplifying integration and allowing easy swapping between different language models.",
-                                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                title: "Local & Cloud Flexibility",
+                                description: "Choose between cloud-based frontier models or locally hosted open weight models based on your privacy, cost, and performance requirements.",
+                                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
                             }
                         ].map((feature, index) => (
                             <div key={feature.title}
@@ -313,19 +322,10 @@ export default function PromptEngineering() {
                     <div className={`transition-all duration-1000 transform ${isVisible.cta ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
                         <h2 className="font-handwritten text-5xl mb-10 text-white animate-glow font-bold tracking-tight">Start Building With LangIQ Today</h2>
                         <p className="text-xl text-gray-300 mb-14 max-w-2xl mx-auto leading-relaxed animate-fade-in delay-300 font-light">
-                            Transform your AI applications with our powerful universal prompt library
+                            Transform your AI applications with our powerful universal prompt library — supporting both frontier and open source models
                         </p>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-8 justify-center">
-                        <a
-                            href="https://github.com/langiq/langiq-prompt-library"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block bg-gradient-to-r from-purple-600 to-purple-700 px-10 py-5 rounded-lg text-white font-medium text-lg transition-all shadow-xl hover:shadow-purple-500/30 hover:scale-105 animate-bounce-subtle relative group overflow-hidden"
-                        >
-                            <span className="relative z-10">Download Library</span>
-                            <span className="absolute inset-0 bg-gradient-to-r from-purple-500 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                        </a>
                         <Link
                             href="/contact"
                             className="inline-block bg-gray-800 hover:bg-gray-700 px-10 py-5 rounded-lg text-white font-medium text-lg transition-all shadow-xl hover:shadow-gray-500/20 hover:scale-105 animate-bounce-subtle relative group overflow-hidden border border-gray-700"
