@@ -49,13 +49,13 @@ export default function Home() {
               className="font-handwritten text-6xl md:text-7xl lg:text-8xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400"
               variants={fadeIn}
             >
-              LangIQ AI Studio
+              LangIQ AI Hub
             </motion.h1>
             <motion.p
               className="text-xl md:text-2xl text-gray-300 mb-10"
               variants={fadeIn}
             >
-              A universal framework for LLM application development, designed for organizations of all sizes to build powerful AI solutions with frontier and open-source models
+              An AI innovation hub dedicated to empowering organizations with advanced language technologies. Founded by a team of AI researchers, engineers, and industry experts, LangIQ bridges the gap between the potential of large language models and their practical application across industries.
             </motion.p>
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -146,24 +146,55 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              Create Your Own Custom AI Studio
+              Our Mission & Vision
             </motion.h2>
             <motion.p
-              className="text-xl text-gray-300 mb-10"
+              className="text-xl text-gray-300 mb-6"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.4 }}
             >
-              Customize LangIQ AI Studio for your unique needs. Graphically develop applications, collaborate with colleagues, access frontier and open-source models, convert your data into knowledge bases, and deploy agentic solutions—all from one unified platform.
+              <span className="font-semibold text-purple-400">Mission:</span> To provide organizations with the expertise, tools, and applications necessary to transform operations and enhance customer experiences through cutting-edge AI language technologies.
             </motion.p>
+            <motion.p
+              className="text-xl text-gray-300 mb-10"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.5 }}
+            >
+              <span className="font-semibold text-purple-400">Vision:</span> To seamlessly integrate AI language technologies into every organization, enhancing human capabilities, driving innovation, and creating unprecedented value across all sectors of the economy.
+            </motion.p>
+
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.6 }}
+            >
+              <div className="bg-gray-800/60 p-4 rounded-lg">
+                <h3 className="text-purple-400 font-semibold mb-2">Innovation & Excellence</h3>
+                <p className="text-gray-300">Pushing the boundaries of AI language technologies while upholding the highest standards in research and client solutions.</p>
+              </div>
+              <div className="bg-gray-800/60 p-4 rounded-lg">
+                <h3 className="text-purple-400 font-semibold mb-2">Responsibility & Collaboration</h3>
+                <p className="text-gray-300">Prioritizing ethical AI practices and working closely with clients and partners to achieve shared objectives.</p>
+              </div>
+              <div className="bg-gray-800/60 p-4 rounded-lg">
+                <h3 className="text-purple-400 font-semibold mb-2">Education & Impact</h3>
+                <p className="text-gray-300">Democratizing AI knowledge and measuring success by the tangible value created for clients and society.</p>
+              </div>
+            </motion.div>
+
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.6 }}
+              transition={{ duration: 0.7, delay: 0.7 }}
             >
               <Link
                 href="/contact"
