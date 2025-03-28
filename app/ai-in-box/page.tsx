@@ -36,11 +36,6 @@ export default function Home() {
             >
               An all-inclusive framework providing you with powerful hardware, optimized OS, and comprehensive LangIQ libraries
             </p>
-            <p
-              className={`text-lg md:text-xl text-gray-400 mb-10 transition-all duration-1000 delay-500 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
-            >
-              Unleash the full potential of AI with purpose-built systems that eliminate complexity and accelerate your machine learning workflows
-            </p>
           </div>
         </div>
       </section>
@@ -55,10 +50,7 @@ export default function Home() {
               Purpose-built hardware solutions optimized for AI workloads, ranging from inference to training at scale.
               Each system comes with our complete software stack pre-installed.
             </p>
-            <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-              From entry-level inference to high-performance model training, we've engineered each system to deliver
-              maximum AI performance while minimizing setup time and configuration complexity.
-            </p>
+
           </div>
 
           {/* LangIQ AI Box - x86 (Image on right) */}
@@ -165,20 +157,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Customer Testimonial Section */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-semibold text-purple-400 mb-8 text-center">What Our Customers Say</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-gray-800/70 p-6 rounded-xl border border-purple-500/20 shadow-lg">
-                <p className="text-gray-300 italic mb-4">"The LangIQ AI Box Pro has completely transformed our research capabilities. Tasks that used to take days now complete in hours, and the pre-installed software stack saved us weeks of configuration time."</p>
-                <p className="text-purple-300 font-medium">— Dr. Sarah Chen, AI Research Director</p>
-              </div>
-              <div className="bg-gray-800/70 p-6 rounded-xl border border-purple-500/20 shadow-lg">
-                <p className="text-gray-300 italic mb-4">"As a mid-size enterprise adopting AI, the LangIQ AI Box Plus gave us the perfect balance of performance and value. The integrated libraries allowed us to deploy our first models within days of receiving the system."</p>
-                <p className="text-purple-300 font-medium">— Marcus Johnson, CTO at FutureScale Tech</p>
-              </div>
-            </div>
-          </div>
+
 
           {/* Included Software Section */}
           <div className="bg-gray-800 p-8 rounded-xl border border-purple-500/30 mb-16 shadow-lg">
