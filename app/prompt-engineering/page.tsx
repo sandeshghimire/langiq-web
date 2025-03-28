@@ -128,7 +128,7 @@ export default function PromptEngineering() {
                         <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 animate-pulse-slow"></div>
                         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
                         <Image
-                            src="/langiq-studio-dashboard.png"
+                            src="/pe.png"
                             alt="LangIQ AI Studio Interface"
                             width={1200}
                             height={600}
