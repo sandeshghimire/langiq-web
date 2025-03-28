@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 
 const navItems = [
     { name: 'AI Studio', path: '/ai-studio' },
+    { name: 'Hardware', path: '/ai-in-box' },
     { name: 'Prompting', path: '/prompt-engineering' },
     { name: 'RAG', path: '/rag' },
     { name: 'Tools', path: '/tools-mcp' },
