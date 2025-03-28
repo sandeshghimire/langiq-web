@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-// Sample code string to avoid JSX evaluation issues
-const codeExample = `from langiq_pe import LangiqClient
+// Sample Python code string to avoid JSX evaluation issues
+const codeExample = `from langiq_prompt_library import LangiqClient
 
 # Initialize the client with your preferred model
 client = LangiqClient(
@@ -26,6 +26,35 @@ metrics = client.get_metrics()
 print(f"Response time: {metrics['response_time']}s")
 print(f"Tokens used: {metrics['tokens_used']}")`;
 
+// JavaScript code example
+const jsCodeExample = `import { LangiqClient } from 'langiq-prompt-library';
+
+// Initialize the client with your preferred model
+const client = new LangiqClient({
+  provider: "openai",
+  model: "gpt-4"
+});
+
+// Create a prompt with chain-of-thought reasoning
+async function generateResponse() {
+  const response = await client.generate({
+    prompt: "Explain the concept of neural networks",
+    temperature: 0.7,
+    chainOfThought: true,
+    maxTokens: 500
+  });
+
+  // Display the response
+  console.log(response.text);
+
+  // Get detailed performance metrics
+  const metrics = client.getMetrics();
+  console.log(\`Response time: \${metrics.responseTime}s\`);
+  console.log(\`Tokens used: \${metrics.tokensUsed}\`);
+}
+
+generateResponse();`;
+
 export default function PromptEngineering() {
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-950">
@@ -36,10 +65,10 @@ export default function PromptEngineering() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="text-center max-w-3xl mx-auto">
                         <h1 className="font-handwritten text-5xl md:text-7xl mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 animate-pulse-slow">
-                            Prompt Engineering
+                            LangIQ Prompt Library
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed">
-                            A comprehensive toolkit for prompt engineering and LLM integration
+                            A universal prompt library for seamless integration with frontier language models
                         </p>
                         <a
                             href="https://github.com/langiq/langiq_pe"
@@ -56,36 +85,56 @@ export default function PromptEngineering() {
                 </div>
             </section>
 
+            {/* Hero image section */}
+            <section className="py-16 relative">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="relative rounded-xl overflow-hidden shadow-2xl border border-purple-700/30">
+                        <Image
+                            src="/images/langiq-studio-dashboard.png"
+                            alt="LangIQ AI Studio Interface"
+                            width={1200}
+                            height={600}
+                            className="w-full h-auto"
+                        />
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent p-6">
+                            <p className="text-white text-lg">
+                                Design, test, and verify your prompts with LangIQ AI Studio
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Introduction section with code editor */}
             <section className="py-24 relative">
                 <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-gray-950 opacity-80"></div>
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                         <div className="space-y-8">
-                            <h2 className="font-handwritten text-4xl text-purple-400 mb-6">Introducing Langiq_pe</h2>
+                            <h2 className="font-handwritten text-4xl text-purple-400 mb-6">Introducing LangIQ Prompt Library</h2>
                             <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                                We've developed a powerful Python-based library called Langiq_pe that streamlines prompt engineering
-                                and LLM integration for developers and AI practitioners.
+                                Our production-ready library enables your applications to interface with large language frontier models
+                                through a single, unified API available in both JavaScript and Python.
                             </p>
                             <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                                Available on GitHub, Langiq_pe makes it easy to interact with both commercial and open-source
-                                language models through a clean, unified interface.
+                                Design, test, and verify prompt library capabilities using our LangIQ AI Studio — a powerful
+                                interface powered by the same LangIQ prompt library you'll use in production.
                             </p>
                             <div className="flex flex-wrap gap-4 mt-10">
                                 <div className="bg-purple-900/20 border border-purple-700/30 rounded-lg px-4 py-2">
                                     <span className="text-purple-300 font-semibold">OpenAI</span>
                                 </div>
                                 <div className="bg-purple-900/20 border border-purple-700/30 rounded-lg px-4 py-2">
-                                    <span className="text-purple-300 font-semibold">Anthropic</span>
-                                </div>
-                                <div className="bg-purple-900/20 border border-purple-700/30 rounded-lg px-4 py-2">
                                     <span className="text-purple-300 font-semibold">Google</span>
                                 </div>
                                 <div className="bg-purple-900/20 border border-purple-700/30 rounded-lg px-4 py-2">
-                                    <span className="text-purple-300 font-semibold">Ollama</span>
+                                    <span className="text-purple-300 font-semibold">XAI</span>
                                 </div>
                                 <div className="bg-purple-900/20 border border-purple-700/30 rounded-lg px-4 py-2">
-                                    <span className="text-purple-300 font-semibold">HuggingFace</span>
+                                    <span className="text-purple-300 font-semibold">DeepSeek</span>
+                                </div>
+                                <div className="bg-purple-900/20 border border-purple-700/30 rounded-lg px-4 py-2">
+                                    <span className="text-purple-300 font-semibold">Anthropic</span>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +151,7 @@ export default function PromptEngineering() {
                                         </div>
                                         <span className="ml-4 text-gray-400 text-sm">langiq_example.py</span>
                                     </div>
-                                    <div className="text-xs text-gray-500">Langiq_pe Demo</div>
+                                    <div className="text-xs text-gray-500">Python Example</div>
                                 </div>
 
                                 {/* Editor content */}
@@ -115,7 +164,52 @@ export default function PromptEngineering() {
                                 {/* Editor footer */}
                                 <div className="bg-gray-800 px-4 py-1 text-xs text-gray-500 flex justify-between border-t border-gray-700">
                                     <div>Python 3.10.4</div>
-                                    <div>Langiq_pe v1.2.0</div>
+                                    <div>LangIQ Prompt Library v1.2.0</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* JavaScript example row */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mt-16">
+                        <div className="space-y-8 order-2 md:order-1">
+                            <h2 className="font-handwritten text-4xl text-purple-400 mb-6">Multi-Language Support</h2>
+                            <p className="text-gray-300 mb-6 text-lg leading-relaxed">
+                                Build applications in your preferred language with the same powerful capabilities. Our
+                                library provides consistent APIs across both JavaScript and Python environments.
+                            </p>
+                            <p className="text-gray-300 mb-6 text-lg leading-relaxed">
+                                Whether you're building with Node.js, React, or Python frameworks, LangIQ Prompt Library
+                                enables you to perform many tasks using a single, unified API.
+                            </p>
+                        </div>
+                        <div className="transform hover:scale-[1.02] transition-all duration-300 order-1 md:order-2">
+                            {/* Code editor-like component for JavaScript */}
+                            <div className="rounded-xl overflow-hidden shadow-2xl bg-gray-950 border border-purple-700/20 hover:border-purple-600/40 transition-colors">
+                                {/* Editor header */}
+                                <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
+                                    <div className="flex items-center">
+                                        <div className="flex space-x-2">
+                                            <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                                            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                                        </div>
+                                        <span className="ml-4 text-gray-400 text-sm">langiq_example.js</span>
+                                    </div>
+                                    <div className="text-xs text-gray-500">JavaScript Example</div>
+                                </div>
+
+                                {/* Editor content */}
+                                <div className="p-5 font-mono text-sm">
+                                    <pre className="language-javascript text-gray-300 overflow-x-auto">
+                                        <code>{jsCodeExample}</code>
+                                    </pre>
+                                </div>
+
+                                {/* Editor footer */}
+                                <div className="bg-gray-800 px-4 py-1 text-xs text-gray-500 flex justify-between border-t border-gray-700">
+                                    <div>Node.js 18.x</div>
+                                    <div>LangIQ Prompt Library v1.2.0</div>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +223,7 @@ export default function PromptEngineering() {
                     <div className="text-center mb-16">
                         <h2 className="font-handwritten text-5xl text-purple-400 mb-6">Key Features</h2>
                         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                            Langiq_pe provides everything you need to build powerful AI applications
+                            LangIQ Prompt Library provides everything you need to build powerful AI applications
                         </p>
                     </div>
 
@@ -140,10 +234,10 @@ export default function PromptEngineering() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                                 </svg>
                             </div>
-                            <h3 className="font-medium text-xl text-purple-300 mb-3">Frontier LLM Integration</h3>
+                            <h3 className="font-medium text-xl text-purple-300 mb-3">Universal Model Access</h3>
                             <p className="text-gray-300 leading-relaxed">
-                                Connect your applications to leading commercial LLMs including OpenAI, Anthropic,
-                                Google, and DeepSeek through a unified interface.
+                                Connect your applications to frontier LLMs including OpenAI, Google, XAI,
+                                DeepSeek, and Anthropic through a unified interface.
                             </p>
                         </div>
 
@@ -153,10 +247,10 @@ export default function PromptEngineering() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
                                 </svg>
                             </div>
-                            <h3 className="font-medium text-xl text-purple-300 mb-3">Local Model Support</h3>
+                            <h3 className="font-medium text-xl text-purple-300 mb-3">Production Ready</h3>
                             <p className="text-gray-300 leading-relaxed">
-                                Build applications that communicate with local models using Ollama, VLLM,
-                                and HuggingFace Transformer pipelines.
+                                Build applications with our production-ready library available in both JavaScript and Python,
+                                ensuring reliable performance in any environment.
                             </p>
                         </div>
 
@@ -168,8 +262,8 @@ export default function PromptEngineering() {
                             </div>
                             <h3 className="font-medium text-xl text-purple-300 mb-3">Advanced Prompting</h3>
                             <p className="text-gray-300 leading-relaxed">
-                                Implement sophisticated prompt engineering strategies including few-shot learning
-                                and chain-of-thought prompting with simple API calls.
+                                Implement sophisticated prompt engineering strategies with simple API calls
+                                to optimize your model interactions and outputs.
                             </p>
                         </div>
 
@@ -179,10 +273,10 @@ export default function PromptEngineering() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                                 </svg>
                             </div>
-                            <h3 className="font-medium text-xl text-purple-300 mb-3">Parameter Control</h3>
+                            <h3 className="font-medium text-xl text-purple-300 mb-3">AI Studio Integration</h3>
                             <p className="text-gray-300 leading-relaxed">
-                                Fine-tune LLM behavior by controlling various parameters such as temperature, top-p,
-                                and frequency penalty to optimize outputs.
+                                Design, test, and verify prompt capabilities using our LangIQ AI Studio before
+                                implementing them in your production applications.
                             </p>
                         </div>
 
@@ -195,7 +289,7 @@ export default function PromptEngineering() {
                             <h3 className="font-medium text-xl text-purple-300 mb-3">Performance Tracking</h3>
                             <p className="text-gray-300 leading-relaxed">
                                 Monitor response times, token usage, and cost metrics to optimize your implementation
-                                and track usage patterns.
+                                and track usage patterns across different LLMs.
                             </p>
                         </div>
 
@@ -205,10 +299,10 @@ export default function PromptEngineering() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                                 </svg>
                             </div>
-                            <h3 className="font-medium text-xl text-purple-300 mb-3">Debug Information</h3>
+                            <h3 className="font-medium text-xl text-purple-300 mb-3">Single API Solution</h3>
                             <p className="text-gray-300 leading-relaxed">
-                                Collect comprehensive debug information to analyze model behavior and optimize your prompts
-                                for better results.
+                                Perform many LLM tasks using a single API, simplifying integration and allowing easy
+                                swapping between different language models.
                             </p>
                         </div>
                     </div>
@@ -219,14 +313,14 @@ export default function PromptEngineering() {
             <section className="py-24 bg-gradient-to-br from-purple-950/30 to-gray-900">
                 <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
                     <div className="animate-float">
-                        <h2 className="font-handwritten text-5xl mb-8 text-white">Start Building With Langiq_pe Today</h2>
+                        <h2 className="font-handwritten text-5xl mb-8 text-white">Start Building With LangIQ Today</h2>
                         <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
-                            Transform your AI applications with our powerful prompt engineering library
+                            Transform your AI applications with our powerful universal prompt library
                         </p>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-6 justify-center">
                         <a
-                            href="https://github.com/langiq/langiq_pe"
+                            href="https://github.com/langiq/langiq-prompt-library"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-block bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-lg text-white font-medium text-lg transition-all shadow-lg hover:shadow-purple-500/30"
