@@ -90,22 +90,17 @@ export default function PromptEngineering() {
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="relative rounded-xl overflow-hidden shadow-2xl border border-purple-700/30">
                         <Image
-                            src="/images/langiq-studio-dashboard.png"
+                            src="/langiq-studio-dashboard.png"
                             alt="LangIQ AI Studio Interface"
                             width={1200}
                             height={600}
                             className="w-full h-auto"
                         />
-                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent p-6">
-                            <p className="text-white text-lg">
-                                Design, test, and verify your prompts with LangIQ AI Studio
-                            </p>
-                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* Introduction section with code editor */}
+            {/* Introduction section with Python code editor */}
             <section className="py-24 relative">
                 <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-gray-950 opacity-80"></div>
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -139,7 +134,7 @@ export default function PromptEngineering() {
                             </div>
                         </div>
                         <div className="transform hover:scale-[1.02] transition-all duration-300">
-                            {/* Code editor-like component with fancy styling */}
+                            {/* Python code editor */}
                             <div className="rounded-xl overflow-hidden shadow-2xl bg-gray-950 border border-purple-700/20 hover:border-purple-600/40 transition-colors">
                                 {/* Editor header */}
                                 <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
@@ -170,21 +165,10 @@ export default function PromptEngineering() {
                         </div>
                     </div>
 
-                    {/* JavaScript example row */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mt-16">
-                        <div className="space-y-8 order-2 md:order-1">
-                            <h2 className="font-handwritten text-4xl text-purple-400 mb-6">Multi-Language Support</h2>
-                            <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                                Build applications in your preferred language with the same powerful capabilities. Our
-                                library provides consistent APIs across both JavaScript and Python environments.
-                            </p>
-                            <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                                Whether you're building with Node.js, React, or Python frameworks, LangIQ Prompt Library
-                                enables you to perform many tasks using a single, unified API.
-                            </p>
-                        </div>
-                        <div className="transform hover:scale-[1.02] transition-all duration-300 order-1 md:order-2">
-                            {/* Code editor-like component for JavaScript */}
+                    {/* JavaScript example row - reversed columns */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mt-24">
+                        <div className="transform hover:scale-[1.02] transition-all duration-300">
+                            {/* JavaScript code editor */}
                             <div className="rounded-xl overflow-hidden shadow-2xl bg-gray-950 border border-purple-700/20 hover:border-purple-600/40 transition-colors">
                                 {/* Editor header */}
                                 <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
@@ -212,6 +196,17 @@ export default function PromptEngineering() {
                                     <div>LangIQ Prompt Library v1.2.0</div>
                                 </div>
                             </div>
+                        </div>
+                        <div className="space-y-8">
+                            <h2 className="font-handwritten text-4xl text-purple-400 mb-6">Multi-Language Support</h2>
+                            <p className="text-gray-300 mb-6 text-lg leading-relaxed">
+                                Build applications in your preferred language with the same powerful capabilities. Our
+                                library provides consistent APIs across both JavaScript and Python environments.
+                            </p>
+                            <p className="text-gray-300 mb-6 text-lg leading-relaxed">
+                                Whether you're building with Node.js, React, or Python frameworks, LangIQ Prompt Library
+                                enables you to perform many tasks using a single, unified API.
+                            </p>
                         </div>
                     </div>
                 </div>

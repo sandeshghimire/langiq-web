@@ -1,163 +1,141 @@
-"use client";
-
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 
-// Animation variants
-const fadeIn = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-};
+// Sample Python code string to avoid JSX evaluation issues
+const codeExample = `from langiq_prompt_library import LangiqClient
 
-const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1
-        }
-    }
-};
-
-const cardVariant = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-};
-
-// Sample code string to avoid JSX evaluation issues
-const codeExample = `from langiq.agents import Agent, AgentRegistry
-from langiq.tools import WebSearch, Calculator, DataAnalyzer
-
-# Initialize the agent with specialized capabilities
-agent = Agent(
-  name="research_assistant",
-  model="gpt-4-turbo",
-  description="Research assistant specialized in data analysis"
+# Initialize the client with your preferred model
+client = LangiqClient(
+  provider="openai",
+  model="gpt-4"
 )
 
-# Equip the agent with necessary tools
-agent.add_tool(WebSearch())
-agent.add_tool(Calculator())
-agent.add_tool(DataAnalyzer())
-
-# Define agent's memory and context handling
-agent.configure_memory(
-  long_term_capacity=1000,
-  working_memory_slots=7
+# Create a prompt with chain-of-thought reasoning
+response = client.generate(
+  prompt="Explain the concept of neural networks",
+  temperature=0.7,
+  chain_of_thought=True,
+  max_tokens=500
 )
 
-# Deploy the agent to solve a complex task
-response = agent.run(
-  task="Research recent machine learning trends and prepare a summary report",
-  output_format="markdown"
-)
+# Display the response
+print(response.text)
 
-# Access the results
-print(response.output)
-print(f"Tools used: {response.tool_usage}")
-print(f"Time taken: {response.execution_time}s")`;
+# Get detailed performance metrics
+metrics = client.get_metrics()
+print(f"Response time: {metrics['response_time']}s")
+print(f"Tokens used: {metrics['tokens_used']}")`;
 
-export default function LLMAgents() {
+// JavaScript code example
+const jsCodeExample = `import { LangiqClient } from 'langiq-prompt-library';
+
+// Initialize the client with your preferred model
+const client = new LangiqClient({
+  provider: "openai",
+  model: "gpt-4"
+});
+
+// Create a prompt with chain-of-thought reasoning
+async function generateResponse() {
+  const response = await client.generate({
+    prompt: "Explain the concept of neural networks",
+    temperature: 0.7,
+    chainOfThought: true,
+    maxTokens: 500
+  });
+
+  // Display the response
+  console.log(response.text);
+
+  // Get detailed performance metrics
+  const metrics = client.getMetrics();
+  console.log(\`Response time: \${metrics.responseTime}s\`);
+  console.log(\`Tokens used: \${metrics.tokensUsed}\`);
+}
+
+generateResponse();`;
+
+export default function PromptEngineering() {
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-950">
             {/* Hero section with animated gradient */}
             <section className="py-28 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-teal-900/20 to-gray-900 animate-gradient-slow"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-gray-900 animate-gradient-slow"></div>
                 <div className="grid-bg absolute inset-0 opacity-10"></div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <motion.div
-                        className="text-center max-w-3xl mx-auto"
-                        initial="hidden"
-                        animate="visible"
-                        variants={staggerContainer}
-                    >
-                        <motion.h1
-                            className="font-handwritten text-5xl md:text-7xl mb-8 bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-400 animate-pulse-slow"
-                            variants={fadeIn}
-                        >
-                            LLM Agents Framework
-                        </motion.h1>
-                        <motion.p
-                            className="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed"
-                            variants={fadeIn}
-                        >
-                            Create powerful AI agents with specialized capabilities for autonomous problem-solving and task completion
-                        </motion.p>
-                        <motion.a
-                            href="https://github.com/langiq/agents"
+                    <div className="text-center max-w-3xl mx-auto">
+                        <h1 className="font-handwritten text-5xl md:text-7xl mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 animate-pulse-slow">
+                            LangIQ Prompt Library
+                        </h1>
+                        <p className="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed">
+                            A universal prompt library for seamless integration with frontier language models
+                        </p>
+                        <a
+                            href="https://github.com/langiq/langiq_pe"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center bg-teal-600/80 hover:bg-teal-600 backdrop-blur-sm px-8 py-4 rounded-lg text-white font-medium text-lg transition-all shadow-lg hover:shadow-teal-500/30 group"
-                            variants={fadeIn}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
+                            className="inline-flex items-center bg-purple-600/80 hover:bg-purple-600 backdrop-blur-sm px-8 py-4 rounded-lg text-white font-medium text-lg transition-all shadow-lg hover:shadow-purple-500/30 group"
                         >
                             <svg className="w-5 h-5 mr-2 group-hover:animate-bounce" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
                             </svg>
                             Get Started on GitHub
-                        </motion.a>
-                    </motion.div>
+                        </a>
+                    </div>
                 </div>
             </section>
 
-            {/* Introduction section with code editor */}
+            {/* Hero image section */}
+            <section className="py-16 relative">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="relative rounded-xl overflow-hidden shadow-2xl border border-purple-700/30">
+                        <Image
+                            src="/langiq-studio-dashboard.png"
+                            alt="LangIQ AI Studio Interface"
+                            width={1200}
+                            height={600}
+                            className="w-full h-auto"
+                        />
+                    </div>
+                </div>
+            </section>
+
+            {/* Introduction section with Python code editor */}
             <section className="py-24 relative">
                 <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-gray-950 opacity-80"></div>
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <motion.div
-                        className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <motion.div
-                            className="space-y-8"
-                            initial={{ opacity: 0, x: -50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                        >
-                            <h2 className="font-handwritten text-4xl text-teal-400 mb-6">Introducing LLM Agents</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                        <div className="space-y-8">
+                            <h2 className="font-handwritten text-4xl text-purple-400 mb-6">Introducing LangIQ Prompt Library</h2>
                             <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                                Our powerful framework enables you to create autonomous AI agents powered by large language models
-                                that can tackle complex tasks by utilizing specialized tools and reasoning capabilities.
+                                Our production-ready library enables your applications to interface with large language frontier models
+                                through a single, unified API available in both JavaScript and Python.
                             </p>
                             <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                                Available on GitHub, our library makes it easy to build, customize, and deploy intelligent agents
-                                that can understand task requirements, plan execution steps, and adaptively solve problems.
+                                Design, test, and verify prompt library capabilities using our LangIQ AI Studio — a powerful
+                                interface powered by the same LangIQ prompt library you'll use in production.
                             </p>
-                            <motion.div
-                                className="flex flex-wrap gap-4 mt-10"
-                                variants={staggerContainer}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true }}
-                            >
-                                {["Task Planning", "Tool Integration", "Memory Systems", "Multi-Agent Teams", "Autonomous Reasoning"].map((item, index) => (
-                                    <motion.div
-                                        key={index}
-                                        className="bg-teal-900/20 border border-teal-700/30 rounded-lg px-4 py-2"
-                                        variants={cardVariant}
-                                        whileHover={{ scale: 1.05, borderColor: "rgba(94, 234, 212, 0.5)" }}
-                                    >
-                                        <span className="text-teal-300 font-semibold">{item}</span>
-                                    </motion.div>
-                                ))}
-                            </motion.div>
-                        </motion.div>
-                        <motion.div
-                            className="transform hover:scale-[1.02] transition-all duration-300"
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.4 }}
-                            whileHover={{ scale: 1.04 }}
-                        >
-                            {/* Code editor-like component with fancy styling */}
-                            <div className="rounded-xl overflow-hidden shadow-2xl bg-gray-950 border border-teal-700/20 hover:border-teal-600/40 transition-colors">
+                            <div className="flex flex-wrap gap-4 mt-10">
+                                <div className="bg-purple-900/20 border border-purple-700/30 rounded-lg px-4 py-2">
+                                    <span className="text-purple-300 font-semibold">OpenAI</span>
+                                </div>
+                                <div className="bg-purple-900/20 border border-purple-700/30 rounded-lg px-4 py-2">
+                                    <span className="text-purple-300 font-semibold">Google</span>
+                                </div>
+                                <div className="bg-purple-900/20 border border-purple-700/30 rounded-lg px-4 py-2">
+                                    <span className="text-purple-300 font-semibold">XAI</span>
+                                </div>
+                                <div className="bg-purple-900/20 border border-purple-700/30 rounded-lg px-4 py-2">
+                                    <span className="text-purple-300 font-semibold">DeepSeek</span>
+                                </div>
+                                <div className="bg-purple-900/20 border border-purple-700/30 rounded-lg px-4 py-2">
+                                    <span className="text-purple-300 font-semibold">Anthropic</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="transform hover:scale-[1.02] transition-all duration-300">
+                            {/* Python code editor */}
+                            <div className="rounded-xl overflow-hidden shadow-2xl bg-gray-950 border border-purple-700/20 hover:border-purple-600/40 transition-colors">
                                 {/* Editor header */}
                                 <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
                                     <div className="flex items-center">
@@ -166,9 +144,9 @@ export default function LLMAgents() {
                                             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                                             <div className="w-3 h-3 rounded-full bg-green-500"></div>
                                         </div>
-                                        <span className="ml-4 text-gray-400 text-sm">agent_example.py</span>
+                                        <span className="ml-4 text-gray-400 text-sm">langiq_example.py</span>
                                     </div>
-                                    <div className="text-xs text-gray-500">LLM Agent Demo</div>
+                                    <div className="text-xs text-gray-500">Python Example</div>
                                 </div>
 
                                 {/* Editor content */}
@@ -181,149 +159,176 @@ export default function LLMAgents() {
                                 {/* Editor footer */}
                                 <div className="bg-gray-800 px-4 py-1 text-xs text-gray-500 flex justify-between border-t border-gray-700">
                                     <div>Python 3.10.4</div>
-                                    <div>LangIQ Agents v1.0.0</div>
+                                    <div>LangIQ Prompt Library v1.2.0</div>
                                 </div>
                             </div>
-                        </motion.div>
-                    </motion.div>
+                        </div>
+                    </div>
+
+                    {/* JavaScript example row - reversed columns */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mt-24">
+                        <div className="transform hover:scale-[1.02] transition-all duration-300">
+                            {/* JavaScript code editor */}
+                            <div className="rounded-xl overflow-hidden shadow-2xl bg-gray-950 border border-purple-700/20 hover:border-purple-600/40 transition-colors">
+                                {/* Editor header */}
+                                <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
+                                    <div className="flex items-center">
+                                        <div className="flex space-x-2">
+                                            <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                                            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                                        </div>
+                                        <span className="ml-4 text-gray-400 text-sm">langiq_example.js</span>
+                                    </div>
+                                    <div className="text-xs text-gray-500">JavaScript Example</div>
+                                </div>
+
+                                {/* Editor content */}
+                                <div className="p-5 font-mono text-sm">
+                                    <pre className="language-javascript text-gray-300 overflow-x-auto">
+                                        <code>{jsCodeExample}</code>
+                                    </pre>
+                                </div>
+
+                                {/* Editor footer */}
+                                <div className="bg-gray-800 px-4 py-1 text-xs text-gray-500 flex justify-between border-t border-gray-700">
+                                    <div>Node.js 18.x</div>
+                                    <div>LangIQ Prompt Library v1.2.0</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="space-y-8">
+                            <h2 className="font-handwritten text-4xl text-purple-400 mb-6">Multi-Language Support</h2>
+                            <p className="text-gray-300 mb-6 text-lg leading-relaxed">
+                                Build applications in your preferred language with the same powerful capabilities. Our
+                                library provides consistent APIs across both JavaScript and Python environments.
+                            </p>
+                            <p className="text-gray-300 mb-6 text-lg leading-relaxed">
+                                Whether you're building with Node.js, React, or Python frameworks, LangIQ Prompt Library
+                                enables you to perform many tasks using a single, unified API.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
             {/* Features section with cards */}
-            <section className="py-24 bg-gradient-to-b from-gray-950 to-teal-950/30">
+            <section className="py-24 bg-gradient-to-b from-gray-950 to-purple-950/30">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div
-                        className="text-center mb-16"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.7 }}
-                    >
-                        <h2 className="font-handwritten text-5xl text-teal-400 mb-6">Key Features</h2>
+                    <div className="text-center mb-16">
+                        <h2 className="font-handwritten text-5xl text-purple-400 mb-6">Key Features</h2>
                         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                            Build intelligent agents that can autonomously solve complex tasks
+                            LangIQ Prompt Library provides everything you need to build powerful AI applications
                         </p>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                        variants={staggerContainer}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                    >
-                        {[
-                            {
-                                title: "Agent Personalities",
-                                icon: <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" /></svg>,
-                                description: "Create agents with distinct personas, expertise domains, and behavior patterns to match specific use cases and professional requirements."
-                            },
-                            // ...existing features...
-                        ].concat([
-                            {
-                                title: "Advanced Planning",
-                                icon: <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>,
-                                description: "Equip agents with strategic planning capabilities to break down complex tasks into manageable steps and adapt their approach based on new information."
-                            },
-                            {
-                                title: "Memory Systems",
-                                icon: <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>,
-                                description: "Implement sophisticated memory architectures including short-term working memory and long-term storage for persistent knowledge retention."
-                            },
-                            {
-                                title: "Multi-Agent Collaboration",
-                                icon: <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" /></svg>,
-                                description: "Create teams of specialized agents that can collaborate on complex tasks, sharing information and delegating sub-tasks based on expertise."
-                            },
-                            {
-                                title: "Tool Integration",
-                                icon: <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" /></svg>,
-                                description: "Extend agent capabilities with a wide range of tools including web search, data analysis, code execution, and API interactions."
-                            },
-                            {
-                                title: "Self-Improvement",
-                                icon: <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>,
-                                description: "Implement learning mechanisms that allow agents to improve performance over time by analyzing past interactions and refining their approaches."
-                            }
-                        ]).map((feature, index) => (
-                            <motion.div
-                                key={index}
-                                className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-xl border border-teal-800/20 shadow-lg hover:shadow-teal-700/5 transition-all"
-                                variants={cardVariant}
-                                whileHover={{
-                                    scale: 1.03,
-                                    boxShadow: "0 10px 25px -5px rgba(20, 184, 166, 0.3)",
-                                    borderColor: "rgba(94, 234, 212, 0.4)"
-                                }}
-                            >
-                                <div className="w-12 h-12 bg-teal-900/50 rounded-lg flex items-center justify-center mb-5">
-                                    {feature.icon}
-                                </div>
-                                <h3 className="font-medium text-xl text-teal-300 mb-3">{feature.title}</h3>
-                                <p className="text-gray-300 leading-relaxed">
-                                    {feature.description}
-                                </p>
-                            </motion.div>
-                        ))}
-                    </motion.div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-xl border border-purple-800/20 shadow-lg hover:shadow-purple-700/5 transition-all hover:-translate-y-1">
+                            <div className="w-12 h-12 bg-purple-900/50 rounded-lg flex items-center justify-center mb-5">
+                                <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                            </div>
+                            <h3 className="font-medium text-xl text-purple-300 mb-3">Universal Model Access</h3>
+                            <p className="text-gray-300 leading-relaxed">
+                                Connect your applications to frontier LLMs including OpenAI, Google, XAI,
+                                DeepSeek, and Anthropic through a unified interface.
+                            </p>
+                        </div>
+
+                        <div className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-xl border border-purple-800/20 shadow-lg hover:shadow-purple-700/5 transition-all hover:-translate-y-1">
+                            <div className="w-12 h-12 bg-purple-900/50 rounded-lg flex items-center justify-center mb-5">
+                                <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                                </svg>
+                            </div>
+                            <h3 className="font-medium text-xl text-purple-300 mb-3">Production Ready</h3>
+                            <p className="text-gray-300 leading-relaxed">
+                                Build applications with our production-ready library available in both JavaScript and Python,
+                                ensuring reliable performance in any environment.
+                            </p>
+                        </div>
+
+                        <div className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-xl border border-purple-800/20 shadow-lg hover:shadow-purple-700/5 transition-all hover:-translate-y-1">
+                            <div className="w-12 h-12 bg-purple-900/50 rounded-lg flex items-center justify-center mb-5">
+                                <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                </svg>
+                            </div>
+                            <h3 className="font-medium text-xl text-purple-300 mb-3">Advanced Prompting</h3>
+                            <p className="text-gray-300 leading-relaxed">
+                                Implement sophisticated prompt engineering strategies with simple API calls
+                                to optimize your model interactions and outputs.
+                            </p>
+                        </div>
+
+                        <div className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-xl border border-purple-800/20 shadow-lg hover:shadow-purple-700/5 transition-all hover:-translate-y-1">
+                            <div className="w-12 h-12 bg-purple-900/50 rounded-lg flex items-center justify-center mb-5">
+                                <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                                </svg>
+                            </div>
+                            <h3 className="font-medium text-xl text-purple-300 mb-3">AI Studio Integration</h3>
+                            <p className="text-gray-300 leading-relaxed">
+                                Design, test, and verify prompt capabilities using our LangIQ AI Studio before
+                                implementing them in your production applications.
+                            </p>
+                        </div>
+
+                        <div className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-xl border border-purple-800/20 shadow-lg hover:shadow-purple-700/5 transition-all hover:-translate-y-1">
+                            <div className="w-12 h-12 bg-purple-900/50 rounded-lg flex items-center justify-center mb-5">
+                                <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                            </div>
+                            <h3 className="font-medium text-xl text-purple-300 mb-3">Performance Tracking</h3>
+                            <p className="text-gray-300 leading-relaxed">
+                                Monitor response times, token usage, and cost metrics to optimize your implementation
+                                and track usage patterns across different LLMs.
+                            </p>
+                        </div>
+
+                        <div className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-xl border border-purple-800/20 shadow-lg hover:shadow-purple-700/5 transition-all hover:-translate-y-1">
+                            <div className="w-12 h-12 bg-purple-900/50 rounded-lg flex items-center justify-center mb-5">
+                                <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                </svg>
+                            </div>
+                            <h3 className="font-medium text-xl text-purple-300 mb-3">Single API Solution</h3>
+                            <p className="text-gray-300 leading-relaxed">
+                                Perform many LLM tasks using a single API, simplifying integration and allowing easy
+                                swapping between different language models.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
             {/* CTA section */}
-            <section className="py-24 bg-gradient-to-br from-teal-950/30 to-gray-900">
+            <section className="py-24 bg-gradient-to-br from-purple-950/30 to-gray-900">
                 <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-                    <motion.div
-                        className="animate-float"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <motion.h2
-                            className="font-handwritten text-5xl mb-8 text-white"
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.7, delay: 0.2 }}
-                        >
-                            Start Building LLM Agents Today
-                        </motion.h2>
-                        <motion.p
-                            className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed"
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.7, delay: 0.4 }}
-                        >
-                            Create intelligent AI agents that can autonomously solve complex problems
-                        </motion.p>
-                    </motion.div>
-                    <motion.div
-                        className="flex flex-col sm:flex-row gap-6 justify-center"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.7, delay: 0.6 }}
-                    >
-                        <motion.a
-                            href="https://github.com/langiq/agents"
+                    <div className="animate-float">
+                        <h2 className="font-handwritten text-5xl mb-8 text-white">Start Building With LangIQ Today</h2>
+                        <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+                            Transform your AI applications with our powerful universal prompt library
+                        </p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                        <a
+                            href="https://github.com/langiq/langiq-prompt-library"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-block bg-teal-600 hover:bg-teal-700 px-8 py-4 rounded-lg text-white font-medium text-lg transition-all shadow-lg hover:shadow-teal-500/30"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
+                            className="inline-block bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-lg text-white font-medium text-lg transition-all shadow-lg hover:shadow-purple-500/30"
                         >
-                            Download Framework
-                        </motion.a>
-                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                            <Link
-                                href="/contact"
-                                className="inline-block bg-gray-800 hover:bg-gray-700 px-8 py-4 rounded-lg text-white font-medium text-lg transition-all shadow-lg"
-                            >
-                                Get Support
-                            </Link>
-                        </motion.div>
-                    </motion.div>
+                            Download Library
+                        </a>
+                        <Link
+                            href="/contact"
+                            className="inline-block bg-gray-800 hover:bg-gray-700 px-8 py-4 rounded-lg text-white font-medium text-lg transition-all shadow-lg"
+                        >
+                            Get Support
+                        </Link>
+                    </div>
                 </div>
             </section>
         </div>
