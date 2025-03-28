@@ -116,7 +116,7 @@ export default function PromptEngineering() {
                         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
                         <div className="w-full h-full group relative">
                             <Image
-                                src="/pe.png"
+                                src="/app-dev.png"
                                 alt="LangIQ AI Studio Interface"
                                 width={1200}
                                 height={600}
