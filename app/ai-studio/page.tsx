@@ -36,7 +36,7 @@ export default function Home() {
             <p
               className={`text-xl md:text-2xl text-gray-300 mb-10 transition-all duration-1000 delay-300 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
             >
-              A powerful environment for designing, testing, and deploying advanced AI solutions with intuitive tools for prompt engineering, model fine-tuning, and application development
+              A universal framework for LLM application development, designed for startups and companies of all sizes to adopt AI workflows with graphical tools for application development, model interfacing, and custom solutions
             </p>
           </div>
         </div>
@@ -107,37 +107,31 @@ export default function Home() {
           <h2 className="font-handwritten text-4xl md:text-5xl text-center mb-16 text-purple-400 animate-fadeIn">Studio Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {[
-              { title: 'Prompt Playground', description: 'Interactive environment for crafting, testing, and refining prompts with real-time feedback and version control' },
-              { title: 'Model Integration', description: 'Seamless connections to leading AI models including OpenAI, Anthropic, Cohere, and custom models with unified interface' },
-              { title: 'Visual Prompt Builder', description: 'Drag-and-drop interface for creating complex prompt chains and workflows without writing code' },
-              { title: 'Data Visualization', description: 'Rich visualizations of model outputs, performance metrics, and response patterns for deeper insights' },
-              { title: 'Collaboration', description: 'Team workspaces with shared projects, commenting, and version history for effective team coordination' },
-              { title: 'Testing & Evaluation', description: 'Automated testing suite for prompt robustness, model performance, and output quality assurance' },
+              { title: 'Graphical AI Development', description: 'Build AI applications visually with our intuitive interface, eliminating the need for extensive coding knowledge' },
+              { title: 'Frontier Model Integration', description: 'Seamless connections to leading AI models from OpenAI, Google, Anthropic, DeepSeek, XAI with unified interface' },
+              { title: 'Local LLM Support', description: 'Interface with open-source and open-weight LLMs like Meta LLAMA, DeepSeek, Microsoft PI, and Alibaba QWN' },
+              { title: 'Vector Database Creation', description: 'Convert your data into vector databases and work with both local and frontier embeddings for knowledge bases' },
+              { title: 'Model Augmentation', description: 'Enhance model knowledge by generating synthetic data based on your existing data for improved performance' },
+              { title: 'State-of-the-Art Fine-Tuning', description: 'Utilize Hugging Face transformer pipeline for advanced model fine-tuning and customization' },
+              { title: 'Agentic Solutions', description: 'Solve unique business challenges using multiple coordinated agents working together in your workflow' },
+              { title: 'Customizable Workspace', description: 'Personalize AI Studio for your specific needs, creating your own dedicated environment for solving unique problems' },
+              { title: 'Team Collaboration', description: 'Work together with colleagues on shared workspaces and projects while tracking progress effectively' },
+              { title: 'Performance Monitoring', description: 'Access graphical interfaces for monitoring, debugging performance, identifying issues, and implementing fixes' },
+              { title: 'Parallel Model Testing', description: 'Engage with multiple AI models simultaneously to compare responses and streamline research' },
+              { title: 'Real-Time Data Retrieval', description: 'Integrate the latest online information into AI conversations via web search for up-to-date responses' },
+              { title: 'Knowledge Management', description: 'Import and organize information with files, folders, vaults, transcriptions, and customizable knowledge stacks' },
+              { title: 'Prompt Engineering Tools', description: 'Craft, test, and refine prompts with real-time feedback and version control for optimal outputs' },
+              { title: 'Data Visualization', description: 'Generate rich visualizations of model outputs, performance metrics, and response patterns for deeper insights' },
               { title: 'Deployment Pipeline', description: 'One-click deployment to production environments with monitoring, scaling, and rollback capabilities' },
-              { title: 'Templates Library', description: 'Pre-built templates for common AI use cases including chatbots, content generation, and data analysis' },
-              { title: 'Offline-First Design', description: 'Operates seamlessly without an internet connection, ensuring privacy and reliability while supporting online AI services like OpenAI, Claude, and others' },
-              { title: 'Parallel Multiverse Chats', description: 'Engage with multiple AI models simultaneously, compare responses side-by-side, and streamline research and decision-making' },
-              { title: 'Conversation Crafting Tools', description: 'Enhance AI interactions by regenerating responses, refining answers, exploring topics deeper, and cloning conversations for iterative discussions' },
-              { title: 'Real-Time Data Retrieval', description: 'Integrate the latest online information into AI conversations via web search, ensuring relevant and up-to-date responses' },
-              { title: 'Knowledge Stack', description: 'Import and manage information with files, folders, Obsidian vaults, YouTube transcriptions, and multiple customizable knowledge stacks' },
-              { title: 'Unified Model Access', description: 'Seamlessly switch between AI models from platforms like Hugging Face, Ollama, Open Router, and other model providers' },
-              { title: 'Prompt Library', description: 'Utilize a curated collection of predefined prompts, customize them, and create new ones to optimize AI outputs' },
-              { title: 'Discovery and Visualization', description: 'Use delve mode and Flowchat™ to navigate AI-generated knowledge, track thought processes, and visually organize complex ideas' },
-              { title: 'Ollama Integration', description: 'Run and integrate existing Ollama models effortlessly within the AI Studio environment' },
-              { title: 'Ultimate Privacy', description: 'No personal data leaves your device, ensuring total control over sensitive information' },
-              { title: 'Offline Mode', description: 'Full functionality without an internet connection, allowing private and secure AI interactions anywhere' },
-              { title: 'Folders Organization', description: 'Organize and manage conversations efficiently with a structured folder system' },
-              { title: 'Multiple Workspaces', description: 'Create isolated environments for different projects, ensuring data separation and seamless synchronization across devices' },
-              { title: 'Attachments Support', description: 'Attach and interact with images, documents, and other media within AI conversations' },
-              { title: 'Custom AI Model Configuration', description: 'Tailor model settings to fit specific needs, adjusting parameters for performance, response style, and creativity' },
-              { title: 'Multi-Device Syncing', description: 'Keep conversations and settings consistent across multiple devices with secure synchronization' },
-              { title: 'API Integrations', description: 'Connect with external APIs for extended functionalities and automation' },
-              { title: 'Session History & Search', description: 'Retrieve past conversations and search through chat history for quick reference' },
-              { title: 'Customizable UI', description: 'Adjust themes, layouts, and workspace configurations for a personalized experience' },
-              { title: 'Voice Input & Output', description: 'Utilize speech-to-text and text-to-speech for hands-free AI interactions' },
-              { title: 'Collaboration Features', description: 'Share AI-generated insights and discussions with team members or collaborators' },
-              { title: 'Export & Backup Options', description: 'Save and export conversations, ensuring important discussions are backed up and accessible' },
-              { title: 'Fine-Tuned AI Behavior', description: 'Modify response behavior using temperature settings, prompt engineering, and model-specific optimizations' }
+              { title: 'Templates Library', description: 'Access pre-built templates for common AI use cases including chatbots, content generation, and data analysis' },
+              { title: 'Conversation Management', description: 'Enhance AI interactions with tools for regenerating responses, refining answers, and exploring topics deeper' },
+              { title: 'Privacy-First Design', description: 'Keep sensitive data secure with options for local processing and controlled information sharing' },
+              { title: 'Multiple Workspaces', description: 'Create isolated environments for different projects with data separation and device synchronization' },
+              { title: 'Media Attachments', description: 'Attach and interact with images, documents, and other media within AI conversations for comprehensive analysis' },
+              { title: 'Custom Model Configuration', description: 'Tailor AI model settings to fit specific needs, adjusting parameters for performance and creativity' },
+              { title: 'API Integrations', description: 'Connect with external APIs and services for extended functionality and automation capabilities' },
+              { title: 'Comprehensive Search', description: 'Easily retrieve past conversations and search through chat history for quick reference and insights' },
+              { title: 'Export & Backup', description: 'Save and export conversations and projects, ensuring important work is backed up and accessible' }
             ].map((feature, index) => (
               <div
                 key={index}
@@ -155,9 +149,9 @@ export default function Home() {
       {/* CTA section */}
       <section className="py-20 bg-gradient-to-br from-gray-900 to-violet-950">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="font-handwritten text-5xl mb-6 text-white animate-fadeIn">Transform Your AI Workflow Today</h2>
+          <h2 className="font-handwritten text-5xl mb-6 text-white animate-fadeIn">Transform Your AI Strategy Today</h2>
           <p className="text-xl text-gray-300 mb-10 animate-fadeIn animation-delay-300">
-            Join AI developers who have accelerated their workflow and improved output quality with our comprehensive studio tools. From ideation to deployment, AI Studio provides everything you need in one place.
+            Join organizations of all sizes who have accelerated their AI adoption with our comprehensive LangIQ AI Studio. From development to deployment, we provide everything you need to create custom AI solutions for your unique challenges.
           </p>
           <Link
             href="/contact"
