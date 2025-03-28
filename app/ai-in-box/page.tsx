@@ -187,7 +187,8 @@ export default function Home() {
 
           {/* FAQ Section */}
           <div className="mb-16">
-            <h3 className="text-2xl font-semibold text-purple-400 mb-8 text-center">Frequently Asked Questions</h3>
+
+            <h3 className="text-3xl font-semibold text-purple-400 mb-10 text-center">Frequently Asked Questions</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-gray-800/50 p-6 rounded-xl">
                 <h4 className="text-xl font-medium text-purple-400 mb-2">Is custom configuration available?</h4>
