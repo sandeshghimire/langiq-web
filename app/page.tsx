@@ -49,22 +49,22 @@ export default function Home() {
               className="font-handwritten text-6xl md:text-7xl lg:text-8xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400"
               variants={fadeIn}
             >
-              Welcome to LangIQ
+              LangIQ AI Studio
             </motion.h1>
             <motion.p
               className="text-xl md:text-2xl text-gray-300 mb-10"
               variants={fadeIn}
             >
-              Our production-ready Python library empowers developers to build enterprise-grade LLM applications with advanced security, reliability, and performance optimizations
+              A universal framework for LLM application development, designed for organizations of all sizes to build powerful AI solutions with frontier and open-source models
             </motion.p>
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center"
               variants={fadeIn}
             >
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/prompt-engineering"
+                <Link href="/ai-studio"
                   className="bg-purple-600 hover:bg-purple-700 px-8 py-3 rounded-lg text-white font-medium transition-all shadow-lg hover:shadow-purple-500/30 inline-block">
-                  Get Started
+                  Explore AI Studio
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -98,15 +98,14 @@ export default function Home() {
             viewport={{ once: true, amount: 0.2 }}
           >
             {[
-              { title: 'AI Studio', path: '/ai-studio', description: 'Intuitive platform for building, testing, and deploying AI solutions with visual workflows and real-time performance analytics' },
-              { title: 'Prompt Engineering', path: '/prompt-engineering', description: 'Advanced prompt crafting tools with templating, versioning, and optimization algorithms to maximize LLM performance' },
-              { title: 'Retrieval-Augmented Generation', path: '/rag', description: 'Enterprise-grade RAG framework with vector database integrations, context optimization, and hallucination reduction' },
-              { title: 'Tools and MCP', path: '/tools-mcp', description: 'Comprehensive toolkit for function calling, tool management, and multi-chain prompting with monitoring capabilities' },
-              { title: 'Model Augmentation', path: '/model-augmentation', description: 'Proprietary techniques to extend model capabilities through reasoning scaffolds, knowledge graphs, and multi-model orchestration' },
-              { title: 'Fine Tuning', path: '/fine-tuning', description: 'End-to-end pipeline for dataset preparation, model training, evaluation metrics, and deployment of specialized models' },
-              { title: 'Agents', path: '/agents', description: 'Secure agent framework with memory management, planning capabilities, and safeguards against prompt injection and data leakage' },
-              { title: 'Application Development', path: '/app-dev', description: 'Full-stack framework for rapidly building production LLM applications with authentication, caching, and scalability built-in' },
-
+              { title: 'AI Studio', path: '/ai-studio', description: 'State-of-the-art graphical interface for building AI applications with collaborative workspaces, performance monitoring, and debugging capabilities' },
+              { title: 'Prompt Engineering', path: '/prompt-engineering', description: 'Interface with frontier LLMs from OpenAI, Google, Anthropic, DeepSeek, XAI and optimize prompts for your specific use cases' },
+              { title: 'Retrieval-Augmented Generation', path: '/rag', description: 'Convert your data into vector databases to work with local and frontier embeddings, creating powerful knowledge bases for your applications' },
+              { title: 'Tools and MCP', path: '/tools-mcp', description: 'Comprehensive toolkit for integrating with open-source and open-weight LLMs such as Meta LLAMA, DeepSeek, Microsoft PI, and Alibaba QWN' },
+              { title: 'Model Augmentation', path: '/model-augmentation', description: 'Enhance model knowledge by generating synthetic data based on your existing datasets, creating custom knowledge tailored to your needs' },
+              { title: 'Fine Tuning', path: '/fine-tuning', description: 'State-of-the-art fine-tuning capabilities using Hugging Face transformer pipeline to customize models for your specific requirements' },
+              { title: 'Agents', path: '/agents', description: 'Develop agentic solutions with multiple specialized agents working together to solve your unique business challenges and automate complex workflows' },
+              { title: 'Application Development', path: '/app-dev', description: 'Universal framework for LLM application development designed for startups and organizations of all sizes to adopt AI, ML, and LLM workflows' },
             ].map((service, index) => (
               <motion.div key={index} variants={cardVariant}>
                 <motion.div
@@ -147,7 +146,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              Ready to Build Secure LLM Applications?
+              Create Your Own Custom AI Studio
             </motion.h2>
             <motion.p
               className="text-xl text-gray-300 mb-10"
@@ -156,7 +155,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.4 }}
             >
-              Join industry leaders who've reduced development time by 60% while achieving enterprise-grade security and reliability. Our Python library handles the complex infrastructure so you can focus on building transformative AI experiences.
+              Customize LangIQ AI Studio for your unique needs. Graphically develop applications, collaborate with colleagues, access frontier and open-source models, convert your data into knowledge bases, and deploy agentic solutions—all from one unified platform.
             </motion.p>
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -170,7 +169,7 @@ export default function Home() {
                 href="/contact"
                 className="inline-block bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-lg text-white font-medium text-lg transition-all shadow-lg hover:shadow-purple-500/30"
               >
-                Contact Us
+                Start Building Today
               </Link>
             </motion.div>
           </motion.div>
