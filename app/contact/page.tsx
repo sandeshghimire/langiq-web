@@ -48,8 +48,23 @@ export default function Contact() {
         setErrors({});
 
         try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    type: activeTab // Send the active tab to determine which email to use
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.details || data.error || 'Failed to send message');
+            }
+
             toast.success('Message sent successfully!');
             setSubmitted(true);
 
@@ -57,8 +72,9 @@ export default function Contact() {
                 setFormData({ name: '', email: '', company: '', message: '', interest: 'General Inquiry' });
                 setSubmitted(false);
             }, 5000);
-        } catch (error) {
-            toast.error('Failed to send message. Please try again.');
+        } catch (error: any) {
+            console.error('Contact form submission error:', error);
+            toast.error(`Failed to send message: ${error.message}`);
         } finally {
             setIsSubmitting(false);
         }
