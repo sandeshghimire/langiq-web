@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import AnimatedLayout from "../components/AnimatedLayout";
 import BackgroundWrapper from "../components/BackgroundWrapper";
+import { Toaster } from 'react-hot-toast';
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -38,6 +39,7 @@ export default function RootLayout({
           {children}
         </AnimatedLayout>
         <Footer />
+        <Toaster position="top-right" />
       </body>
     </html>
   );
