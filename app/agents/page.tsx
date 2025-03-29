@@ -102,7 +102,7 @@ export default function PromptEngineering() {
                             LangIQ Prompt Library
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed animate-slide-up delay-300 font-light max-w-2xl mx-auto">
-                            Our production-ready library enables your applications to interface with both frontier LLMs and local open source models through a single, unified API available in JavaScript and Python.
+                            LangIQ Agents Orchestration Library: The LangIQ Agents Library is a state-of-the-art, production-ready agent orchestration library. This library enables you to develop agentic workflows, adding multiple multimodal agents with tools and MCP, enabling you to develop a feature-rich app. You can use our LangIQ AI Studio to design and develop an agentic framework or use our state-of-the-art library available in JavaScript and Python to develop your next big application. Our LangIQ AI Studio is powered by the LangIQ Agents Orchestration Library.
                         </p>
                     </div>
                 </div>
@@ -126,7 +126,7 @@ export default function PromptEngineering() {
                         </div>
                     </div>
                     <p className="text-xl text-gray-300 mt-8 mb-10 leading-relaxed animate-slide-up delay-300 text-center max-w-4xl mx-auto font-light">
-                        Design, test, and verify prompt library capabilities using our LangIQ AI Studio — a powerful interface powered by the same LangIQ prompt library you'll use in production.
+                        Design, test, and verify agentic workflows using our LangIQ AI Studio — a powerful interface powered by the LangIQ Agents Orchestration Library you'll use in production.
                     </p>
                 </div>
             </section>
@@ -138,7 +138,7 @@ export default function PromptEngineering() {
                     <div className={`text-center mb-16 transition-all duration-1000 transform ${isVisible.intro ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                         <h2 className="font-handwritten text-5xl text-purple-400 mb-6 animate-glow">Library Implementation</h2>
                         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                            Consistent APIs across languages with powerful features for both Python and JavaScript
+                            Consistent APIs across languages with powerful features for both Python and JavaScript, enabling you to orchestrate agents and tools seamlessly.
                         </p>
                     </div>
 
@@ -180,7 +180,7 @@ export default function PromptEngineering() {
                         <div className="lg:col-span-2 space-y-6 animate-fade-in-left order-1 lg:order-2">
                             <h3 className="font-handwritten text-3xl text-purple-400 mb-4">Python Library</h3>
                             <p className="text-gray-300 mb-4 text-lg leading-relaxed">
-                                Our Python library provides a clean, intuitive interface for interacting with various language models. Perfect for data science workflows, backend services, and AI research.
+                                Our Python library provides a clean, intuitive interface for orchestrating agents and tools. Perfect for data science workflows, backend services, and AI research.
                             </p>
                             <ul className="space-y-3">
                                 {["Full asyncio support", "Integrated with popular Python ML frameworks", "Comprehensive error handling", "Built-in caching mechanism"].map((item, index) => (
@@ -200,7 +200,7 @@ export default function PromptEngineering() {
                         <div className="lg:col-span-2 space-y-6 animate-fade-in-right delay-300">
                             <h3 className="font-handwritten text-3xl text-purple-400 mb-4">JavaScript Library</h3>
                             <p className="text-gray-300 mb-4 text-lg leading-relaxed">
-                                Our JavaScript/TypeScript library seamlessly integrates with modern web frameworks and Node.js applications. Perfect for interactive web applications and serverless functions.
+                                Our JavaScript/TypeScript library seamlessly integrates with modern web frameworks and Node.js applications. Perfect for building interactive agentic workflows and serverless functions.
                             </p>
                             <ul className="space-y-3">
                                 {["Full TypeScript support", "Promise-based API", "React/Next.js hooks", "Streaming responses"].map((item, index) => (
@@ -256,7 +256,7 @@ export default function PromptEngineering() {
                     <div className={`text-center mb-20 transition-all duration-1000 transform ${isVisible.features ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                         <h2 className="font-handwritten text-5xl text-purple-400 mb-8 animate-glow">Key Features</h2>
                         <p className="text-xl text-gray-300 max-w-3xl mx-auto font-light">
-                            LangIQ Prompt Library provides everything you need to build powerful AI applications
+                            LangIQ Agents Orchestration Library provides everything you need to build powerful agentic AI applications.
                         </p>
                     </div>
 
@@ -322,7 +322,7 @@ export default function PromptEngineering() {
                     <div className={`transition-all duration-1000 transform ${isVisible.cta ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
                         <h2 className="font-handwritten text-5xl mb-10 text-white animate-glow font-bold tracking-tight">Start Building With LangIQ Today</h2>
                         <p className="text-xl text-gray-300 mb-14 max-w-2xl mx-auto leading-relaxed animate-fade-in delay-300 font-light">
-                            Transform your AI applications with our powerful universal prompt library — supporting both frontier and open source models
+                            Transform your AI applications with our powerful universal agent orchestration library — supporting both frontier and open source models.
                         </p>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-8 justify-center">
