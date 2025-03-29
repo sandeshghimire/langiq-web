@@ -67,26 +67,8 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://langiq.ai"),
 };
 
-// ...existing code...
-import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
-import { Caveat } from "next/font/google";
-import "./globals.css";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import AnimatedLayout from "../components/AnimatedLayout";
-import BackgroundWrapper from "../components/BackgroundWrapper";
-import { Toaster } from 'react-hot-toast';
-import Script from "next/script";
 
-// ...existing code...
 
-export const metadata: Metadata = {
-  title: "LangIQ | AI Innovation Hub",
-  description: "LangIQ is a universal framework for LLM application development, designed for startups, small, medium to large-scale companies to adopt AI, ML, and LLM workflow. We provide a state-of-the-art AI studio through which you can graphically develop AI applications, interface with frontier large language models from OpenAI, Google, Anthropic, DeepSeek, XAI and our local open source and open weight LLM such as LLAMA , DeepSeek, Geema, qwq, phi etc , . You can interface with local open-source and open-weight LLMs such as Meta LLAMA, DeepSeek, Microsoft PI, Alibaba QWN, etc. You can take your data and convert it into a vector database and work with local and frontier embeddings and use your data as knowledge bases. In addition, you can make local and frontier model knowledge by augmenting data using our state-of-the-art model augmentation. We do this by generating synthetic data based on your data. We provide state-of-the-art fine-tuning using Hugging Face transformer pipeline. Finally, using multiple agents, we provide agentic solutions to solve your unique needs. You can accomplish all this by using our state-of-the-art LangIQ AI studio. AI Studio from LangIQ can be customized for your needs, therefore it can be your own personal AI studio to solve your unique problems. AI Studio lets you collaborate on your workspace and projects with your colleagues, keep track of your progress. It also provides a graphical interface to monitor and debug performance, identify bugs, and fix them.",
-};
-
-// ...existing code...
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { Caveat } from "next/font/google";
@@ -108,10 +90,7 @@ const caveat = Caveat({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "LangIQ | AI Innovation Hub",
-  description: "Advanced AI solutions and education for the modern enterprise",
-};
+
 
 export default function RootLayout({
   children,
