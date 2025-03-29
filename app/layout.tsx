@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import AnimatedLayout from "../components/AnimatedLayout";
 import BackgroundWrapper from "../components/BackgroundWrapper";
 import { Toaster } from 'react-hot-toast';
+import Script from "next/script";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -30,6 +31,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=G-M8RY6DM9EJ`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-M8RY6DM9EJ');
+          `}
+        </Script>
+      </head>
       <body
         className={`${montserrat.variable} ${caveat.variable} bg-gray-950 text-gray-100 antialiased`}
       >
