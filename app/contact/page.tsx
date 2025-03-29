@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaTwitter, FaLinkedin, FaGithub, FaYoutube } from 'react-icons/fa';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { BiLineChart } from 'react-icons/bi';
+import { BsCurrencyDollar, BsLightningCharge, BsPeople } from 'react-icons/bs';
 import { toast } from 'react-hot-toast';
 
 export default function Contact() {
@@ -74,6 +76,29 @@ export default function Contact() {
         { name: 'YouTube', icon: <FaYoutube className="w-6 h-6" />, url: '#' }
     ];
 
+    const investorBenefits = [
+        {
+            icon: <BsCurrencyDollar className="w-10 h-10 text-purple-400" />,
+            title: "High Growth Potential",
+            description: "Join us in the rapidly expanding AI market with projected CAGR of 37.3% (2023-2030)"
+        },
+        {
+            icon: <BsLightningCharge className="w-10 h-10 text-purple-400" />,
+            title: "Innovative Technology",
+            description: "Our proprietary LLM optimization technologies offer a competitive edge in the AI landscape"
+        },
+        {
+            icon: <BiLineChart className="w-10 h-10 text-purple-400" />,
+            title: "Proven Traction",
+            description: "With established enterprise clients and consistent MRR growth of 22% QoQ"
+        },
+        {
+            icon: <BsPeople className="w-10 h-10 text-purple-400" />,
+            title: "Expert Team",
+            description: "Founded by AI researchers with prior exits and enterprise AI implementation experience"
+        }
+    ];
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -91,7 +116,62 @@ export default function Contact() {
                 </div>
             </section>
 
-            <section className="py-16 bg-gray-900">
+            {/* Investor Section */}
+            <section className="py-16 bg-gray-800 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 to-gray-800 z-0"></div>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <motion.div
+                        initial={{ y: 20, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.7 }}
+                        viewport={{ once: true }}
+                        className="text-center mb-12"
+                    >
+                        <h2 className="font-handwritten text-4xl md:text-5xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">
+                            Investor Opportunities
+                        </h2>
+                        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                            Join us on our mission to revolutionize AI implementation for enterprises.
+                            We're seeking strategic partners who share our vision for the future of AI.
+                        </p>
+                    </motion.div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {investorBenefits.map((benefit, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ y: 20, opacity: 0 }}
+                                whileInView={{ y: 0, opacity: 1 }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                viewport={{ once: true }}
+                                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                                className="bg-gray-900/60 backdrop-blur p-6 rounded-xl border border-gray-700"
+                            >
+                                <div className="mb-4">{benefit.icon}</div>
+                                <h3 className="text-xl font-semibold text-purple-300 mb-2">{benefit.title}</h3>
+                                <p className="text-gray-400">{benefit.description}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    <motion.div
+                        initial={{ y: 20, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 0.7, delay: 0.4 }}
+                        viewport={{ once: true }}
+                        className="mt-12 text-center"
+                    >
+                        <p className="text-gray-300 mb-6">
+                            Currently raising our Series A round to accelerate growth and product development.
+                        </p>
+                        <a href="#contact-form" className="inline-block bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-lg text-white font-medium transition-all transform hover:scale-105">
+                            Request Investor Deck
+                        </a>
+                    </motion.div>
+                </div>
+            </section>
+
+            <section className="py-16 bg-gray-900" id="contact-form">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial={{ y: 20, opacity: 0 }}
@@ -243,6 +323,7 @@ export default function Contact() {
                                                 <option>Agents</option>
                                                 <option>Application Development</option>
                                                 <option>Partnership</option>
+                                                <option>Investment Opportunities</option>
                                             </select>
                                         </motion.div>
 
