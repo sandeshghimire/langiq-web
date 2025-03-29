@@ -334,12 +334,14 @@ export default function AgentOrchestration() {
             </section>
 
             {/* CTA section */}
+
+            {/* CTA section */}
             <section className="py-28 bg-gradient-to-br from-purple-950/30 to-gray-900">
                 <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
                     <div className={`transition-all duration-1000 transform ${isVisible.cta ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
                         <h2 className="font-handwritten text-5xl mb-10 text-white animate-glow font-bold tracking-tight">Start Building With LangIQ Today</h2>
                         <p className="text-xl text-gray-300 mb-14 max-w-2xl mx-auto leading-relaxed animate-fade-in delay-300 font-light">
-                            Transform your AI applications with our powerful universal agent orchestration library — supporting both frontier and open source models.
+                            Transform your AI applications with our powerful universal prompt library — supporting both frontier and open source models
                         </p>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-8 justify-center">

@@ -299,29 +299,23 @@ export default function PromptEngineering() {
             </section>
 
             {/* CTA section */}
+
+            {/* CTA section */}
             <section className="py-28 bg-gradient-to-br from-purple-950/30 to-gray-900">
                 <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
                     <div className={`transition-all duration-1000 transform ${isVisible.cta ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
                         <h2 className="font-handwritten text-5xl mb-10 text-white animate-glow font-bold tracking-tight">Start Building With LangIQ Today</h2>
                         <p className="text-xl text-gray-300 mb-14 max-w-2xl mx-auto leading-relaxed animate-fade-in delay-300 font-light">
-                            Generate your AI application with our framework and AI Studio.
+                            Transform your AI applications with our powerful universal prompt library — supporting both frontier and open source models
                         </p>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-8 justify-center">
                         <Link
-                            href="/ai-studio"
-                            className="inline-block bg-purple-600 hover:bg-purple-700 px-10 py-5 rounded-lg text-white font-medium text-lg transition-all shadow-xl hover:shadow-purple-500/20 hover:scale-105 animate-bounce-subtle relative group overflow-hidden"
-                            style={{ animationDelay: "0.2s" }}
-                        >
-                            <span className="relative z-10">Go to AI Studio</span>
-                            <span className="absolute inset-0 bg-gradient-to-r from-purple-700 to-purple-800 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                        </Link>
-                        <Link
-                            href="/docs"
+                            href="/contact"
                             className="inline-block bg-gray-800 hover:bg-gray-700 px-10 py-5 rounded-lg text-white font-medium text-lg transition-all shadow-xl hover:shadow-gray-500/20 hover:scale-105 animate-bounce-subtle relative group overflow-hidden border border-gray-700"
                             style={{ animationDelay: "0.2s" }}
                         >
-                            <span className="relative z-10">View Documentation</span>
+                            <span className="relative z-10">Get Support</span>
                             <span className="absolute inset-0 bg-gradient-to-r from-gray-700 to-gray-800 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                         </Link>
                     </div>
