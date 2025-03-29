@@ -4,60 +4,72 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 // Sample Python code string to avoid JSX evaluation issues
-const codeExample = `from langiq_prompt_library import LangiqClient
+const codeExample = `from langiq_finetune_library import LangiqFineTuner
 
-# Initialize the client with your preferred model
-client = LangiqClient(
+# Initialize the fine-tuner with your preferred model
+tuner = LangiqFineTuner(
   provider="openai",
-  model="gpt-4"
+  base_model="gpt-3.5-turbo"
 )
 
-# Create a prompt with chain-of-thought reasoning
-response = client.generate(
-  prompt="Explain the concept of neural networks",
-  temperature=0.7,
-  chain_of_thought=True,
-  max_tokens=500
+# Prepare your training data
+training_data = tuner.prepare_data(
+  input_file="customer_support_data.jsonl",
+  validation_split=0.2
 )
 
-# Display the response
-print(response.text)
+# Fine-tune the model
+fine_tuned_model = tuner.create_model(
+  training_data=training_data,
+  epochs=3,
+  learning_rate=1e-5
+)
 
-# Get detailed performance metrics
-metrics = client.get_metrics()
-print(f"Response time: {metrics['response_time']}s")
-print(f"Tokens used: {metrics['tokens_used']}")`;
+# Use your fine-tuned model
+response = tuner.generate(
+  model=fine_tuned_model,
+  prompt="How do I reset my password?",
+  temperature=0.3
+)
+
+print(response.text)`;
 
 // JavaScript code example
-const jsCodeExample = `import { LangiqClient } from 'langiq-prompt-library';
+const jsCodeExample = `import { LangiqFineTuner } from 'langiq-finetune-library';
 
-// Initialize the client with your preferred model
-const client = new LangiqClient({
+// Initialize the fine-tuner with your preferred model
+const tuner = new LangiqFineTuner({
   provider: "openai",
-  model: "gpt-4"
+  baseModel: "gpt-3.5-turbo"
 });
 
-// Create a prompt with chain-of-thought reasoning
-async function generateResponse() {
-  const response = await client.generate({
-    prompt: "Explain the concept of neural networks",
-    temperature: 0.7,
-    chainOfThought: true,
-    maxTokens: 500
+// Prepare your training data
+async function fineTuneModel() {
+  const trainingData = await tuner.prepareData({
+    inputFile: "customer_support_data.jsonl",
+    validationSplit: 0.2
   });
 
-  // Display the response
-  console.log(response.text);
+  // Fine-tune the model
+  const fineTunedModel = await tuner.createModel({
+    trainingData,
+    epochs: 3,
+    learningRate: 1e-5
+  });
 
-  // Get detailed performance metrics
-  const metrics = client.getMetrics();
-  console.log(\`Response time: \${metrics.responseTime}s\`);
-  console.log(\`Tokens used: \${metrics.tokensUsed}\`);
+  // Use your fine-tuned model
+  const response = await tuner.generate({
+    model: fineTunedModel,
+    prompt: "How do I reset my password?",
+    temperature: 0.3
+  });
+
+  console.log(response.text);
 }
 
-generateResponse();`;
+fineTuneModel();`;
 
-export default function PromptEngineering() {
+export default function FineTuningPage() {
     // Add state for scroll-based animations
     const [isVisible, setIsVisible] = useState({
         hero: false,
@@ -99,10 +111,10 @@ export default function PromptEngineering() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className={`text-center max-w-3xl mx-auto transition-all duration-1000 transform ${isVisible.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                         <h1 className="font-handwritten text-5xl md:text-7xl mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 animate-pulse-slow font-bold tracking-tight">
-                            LangIQ Prompt Library
+                            LangIQ LLM Fine-Tune Library
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed animate-slide-up delay-300 font-light max-w-2xl mx-auto">
-                            Our production-ready library enables your applications to interface with both frontier LLMs and local open source models through a single, unified API available in JavaScript and Python.
+                            Train LLMs on your data to create models that are experts in your domain, available through our production-ready library in both JavaScript and Python.
                         </p>
                     </div>
                 </div>
@@ -126,7 +138,7 @@ export default function PromptEngineering() {
                         </div>
                     </div>
                     <p className="text-xl text-gray-300 mt-8 mb-10 leading-relaxed animate-slide-up delay-300 text-center max-w-4xl mx-auto font-light">
-                        Design, test, and verify prompt library capabilities using our LangIQ AI Studio — a powerful interface powered by the same LangIQ prompt library you'll use in production.
+                        Design, develop, and validate LLM fine-tuning capabilities with LangIQ AI Studio before implementing them in your production-ready applications.
                     </p>
                 </div>
             </section>
@@ -136,9 +148,9 @@ export default function PromptEngineering() {
                 <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-gray-950 opacity-80"></div>
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className={`text-center mb-16 transition-all duration-1000 transform ${isVisible.intro ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                        <h2 className="font-handwritten text-5xl text-purple-400 mb-6 animate-glow">Library Implementation</h2>
+                        <h2 className="font-handwritten text-5xl text-purple-400 mb-6 animate-glow">Fine-Tune Implementation</h2>
                         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                            Consistent APIs across languages with powerful features for both Python and JavaScript
+                            Make any LLM an expert in your domain with our fine-tuning library in both Python and JavaScript.
                         </p>
                     </div>
 
@@ -173,14 +185,14 @@ export default function PromptEngineering() {
                                 {/* Editor footer */}
                                 <div className="bg-gray-800 px-4 py-1 text-xs text-gray-500 flex justify-between border-t border-gray-700">
                                     <div>Python 3.10.4</div>
-                                    <div>LangIQ Prompt Library v1.2.0</div>
+                                    <div>LangIQ Fine-Tune Library v1.2.0</div>
                                 </div>
                             </div>
                         </div>
                         <div className="lg:col-span-2 space-y-6 animate-fade-in-left order-1 lg:order-2">
                             <h3 className="font-handwritten text-3xl text-purple-400 mb-4">Python Library</h3>
                             <p className="text-gray-300 mb-4 text-lg leading-relaxed">
-                                Our Python library provides a clean, intuitive interface for interacting with various language models. Perfect for data science workflows, backend services, and AI research.
+                                Our Python library provides intuitive interfaces for fine-tuning language models on your domain-specific data. Perfect for customer support, knowledge bases, and specialized AI applications.
                             </p>
                             <ul className="space-y-3">
                                 {["Full asyncio support", "Integrated with popular Python ML frameworks", "Comprehensive error handling", "Built-in caching mechanism"].map((item, index) => (
@@ -200,7 +212,7 @@ export default function PromptEngineering() {
                         <div className="lg:col-span-2 space-y-6 animate-fade-in-right delay-300">
                             <h3 className="font-handwritten text-3xl text-purple-400 mb-4">JavaScript Library</h3>
                             <p className="text-gray-300 mb-4 text-lg leading-relaxed">
-                                Our JavaScript/TypeScript library seamlessly integrates with modern web frameworks and Node.js applications. Perfect for interactive web applications and serverless functions.
+                                Our JavaScript/TypeScript library makes fine-tuning models accessible for web applications. Integrate specialized AI capabilities directly into your customer-facing applications.
                             </p>
                             <ul className="space-y-3">
                                 {["Full TypeScript support", "Promise-based API", "React/Next.js hooks", "Streaming responses"].map((item, index) => (
@@ -242,7 +254,7 @@ export default function PromptEngineering() {
                                 {/* Editor footer */}
                                 <div className="bg-gray-800 px-4 py-1 text-xs text-gray-500 flex justify-between border-t border-gray-700">
                                     <div>Node.js 18.x</div>
-                                    <div>LangIQ Prompt Library v1.2.0</div>
+                                    <div>LangIQ Fine-Tune Library v1.2.0</div>
                                 </div>
                             </div>
                         </div>
@@ -322,7 +334,7 @@ export default function PromptEngineering() {
                     <div className={`transition-all duration-1000 transform ${isVisible.cta ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
                         <h2 className="font-handwritten text-5xl mb-10 text-white animate-glow font-bold tracking-tight">Start Building With LangIQ Today</h2>
                         <p className="text-xl text-gray-300 mb-14 max-w-2xl mx-auto leading-relaxed animate-fade-in delay-300 font-light">
-                            Transform your AI applications with our powerful universal prompt library — supporting both frontier and open source models
+                            Transform your AI applications with our powerful fine-tuning library — supporting both frontier and open-source models.
                         </p>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-8 justify-center">
