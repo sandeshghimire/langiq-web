@@ -3,11 +3,14 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaTwitter, FaLinkedin, FaGithub, FaYoutube } from 'react-icons/fa';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
-import { BiLineChart } from 'react-icons/bi';
+import { BiLineChart, BiCodeAlt, BiMicrochip, BiBot } from 'react-icons/bi';
 import { BsCurrencyDollar, BsLightningCharge, BsPeople } from 'react-icons/bs';
 import { toast } from 'react-hot-toast';
 
+type TabType = 'client' | 'investor';
+
 export default function Contact() {
+    const [activeTab, setActiveTab] = useState<TabType>('client');
     const [formData, setFormData] = useState({
         name: '', email: '', company: '', message: '', interest: 'General Inquiry'
     });
@@ -80,7 +83,7 @@ export default function Contact() {
         {
             icon: <BsCurrencyDollar className="w-10 h-10 text-purple-400" />,
             title: "High Growth Potential",
-            description: "Join us in the rapidly expanding AI market with projected CAGR of 37.3% (2023-2030)"
+            description: "Join us in the rapidly expanding AI market with significant growth projections"
         },
         {
             icon: <BsLightningCharge className="w-10 h-10 text-purple-400" />,
@@ -90,7 +93,7 @@ export default function Contact() {
         {
             icon: <BiLineChart className="w-10 h-10 text-purple-400" />,
             title: "Proven Traction",
-            description: "With established enterprise clients and consistent MRR growth of 22% QoQ"
+            description: "With established enterprise clients and consistent growth quarter over quarter"
         },
         {
             icon: <BsPeople className="w-10 h-10 text-purple-400" />,
@@ -98,6 +101,49 @@ export default function Contact() {
             description: "Founded by AI researchers with prior exits and enterprise AI implementation experience"
         }
     ];
+
+    const clientOfferings = [
+        {
+            icon: <BiCodeAlt className="w-10 h-10 text-purple-400" />,
+            title: "Custom AI Solutions",
+            description: "Tailored AI implementations designed specifically for your unique business challenges"
+        },
+        {
+            icon: <BiMicrochip className="w-10 h-10 text-purple-400" />,
+            title: "LLM Optimization",
+            description: "Fine-tune and optimize large language models for enhanced performance and efficiency"
+        },
+        {
+            icon: <BiBot className="w-10 h-10 text-purple-400" />,
+            title: "Intelligent Agents",
+            description: "Autonomous AI agents that handle complex tasks and workflows with minimal supervision"
+        },
+        {
+            icon: <BsLightningCharge className="w-10 h-10 text-purple-400" />,
+            title: "Rapid Deployment",
+            description: "Get your AI solutions into production quickly with our streamlined implementation process"
+        }
+    ];
+
+    // Tab navigation component
+    const TabNavigation = () => (
+        <div className="max-w-md mx-auto mb-12">
+            <div className="flex rounded-lg bg-gray-800 p-1">
+                {['client', 'investor'].map((tab) => (
+                    <button
+                        key={tab}
+                        onClick={() => setActiveTab(tab as TabType)}
+                        className={`flex-1 py-3 px-4 rounded-lg font-medium transition-all duration-300 ${activeTab === tab
+                            ? 'bg-purple-600 text-white shadow-lg'
+                            : 'text-gray-300 hover:text-white'
+                            }`}
+                    >
+                        {tab === 'client' ? 'For Clients' : 'For Investors'}
+                    </button>
+                ))}
+            </div>
+        </div>
+    );
 
     return (
         <motion.div
@@ -116,62 +162,133 @@ export default function Contact() {
                 </div>
             </section>
 
-            {/* Investor Section */}
-            <section className="py-16 bg-gray-800 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 to-gray-800 z-0"></div>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <motion.div
-                        initial={{ y: 20, opacity: 0 }}
-                        whileInView={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.7 }}
-                        viewport={{ once: true }}
-                        className="text-center mb-12"
-                    >
-                        <h2 className="font-handwritten text-4xl md:text-5xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">
-                            Investor Opportunities
-                        </h2>
-                        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                            Join us on our mission to revolutionize AI implementation for enterprises.
-                            We're seeking strategic partners who share our vision for the future of AI.
-                        </p>
-                    </motion.div>
+            <section className="py-12 bg-gray-900">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <TabNavigation />
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {investorBenefits.map((benefit, index) => (
+                    <AnimatePresence mode="wait">
+                        {activeTab === 'investor' ? (
                             <motion.div
-                                key={index}
-                                initial={{ y: 20, opacity: 0 }}
-                                whileInView={{ y: 0, opacity: 1 }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                viewport={{ once: true }}
-                                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                                className="bg-gray-900/60 backdrop-blur p-6 rounded-xl border border-gray-700"
+                                key="investor-tab"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.3 }}
+                                className="py-8 relative overflow-hidden"
                             >
-                                <div className="mb-4">{benefit.icon}</div>
-                                <h3 className="text-xl font-semibold text-purple-300 mb-2">{benefit.title}</h3>
-                                <p className="text-gray-400">{benefit.description}</p>
-                            </motion.div>
-                        ))}
-                    </div>
+                                <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 to-gray-800 z-0"></div>
+                                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                                    <motion.div
+                                        initial={{ y: 20, opacity: 0 }}
+                                        whileInView={{ y: 0, opacity: 1 }}
+                                        transition={{ duration: 0.7 }}
+                                        viewport={{ once: true }}
+                                        className="text-center mb-12"
+                                    >
+                                        <h2 className="font-handwritten text-4xl md:text-5xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">
+                                            Investor Opportunities
+                                        </h2>
+                                        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                                            Join us on our mission to revolutionize AI implementation for enterprises.
+                                            We're seeking strategic partners who share our vision for the future of AI.
+                                        </p>
+                                    </motion.div>
 
-                    <motion.div
-                        initial={{ y: 20, opacity: 0 }}
-                        whileInView={{ y: 0, opacity: 1 }}
-                        transition={{ duration: 0.7, delay: 0.4 }}
-                        viewport={{ once: true }}
-                        className="mt-12 text-center"
-                    >
-                        <p className="text-gray-300 mb-6">
-                            Currently raising our Series A round to accelerate growth and product development.
-                        </p>
-                        <a href="#contact-form" className="inline-block bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-lg text-white font-medium transition-all transform hover:scale-105">
-                            Request Investor Deck
-                        </a>
-                    </motion.div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                        {investorBenefits.map((benefit, index) => (
+                                            <motion.div
+                                                key={index}
+                                                initial={{ y: 20, opacity: 0 }}
+                                                whileInView={{ y: 0, opacity: 1 }}
+                                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                                viewport={{ once: true }}
+                                                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                                                className="bg-gray-900/60 backdrop-blur p-6 rounded-xl border border-gray-700"
+                                            >
+                                                <div className="mb-4">{benefit.icon}</div>
+                                                <h3 className="text-xl font-semibold text-purple-300 mb-2">{benefit.title}</h3>
+                                                <p className="text-gray-400">{benefit.description}</p>
+                                            </motion.div>
+                                        ))}
+                                    </div>
+
+                                    <motion.div
+                                        initial={{ y: 20, opacity: 0 }}
+                                        whileInView={{ y: 0, opacity: 1 }}
+                                        transition={{ duration: 0.7, delay: 0.4 }}
+                                        viewport={{ once: true }}
+                                        className="mt-12 text-center"
+                                    >
+                                        <p className="text-gray-300 mb-6">
+                                            Currently raising funds to accelerate growth and product development.
+                                        </p>
+                                    </motion.div>
+                                </div>
+                            </motion.div>
+                        ) : (
+                            <motion.div
+                                key="client-tab"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.3 }}
+                                className="py-8 relative overflow-hidden"
+                            >
+                                <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 to-gray-800 z-0"></div>
+                                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                                    <motion.div
+                                        initial={{ y: 20, opacity: 0 }}
+                                        whileInView={{ y: 0, opacity: 1 }}
+                                        transition={{ duration: 0.7 }}
+                                        viewport={{ once: true }}
+                                        className="text-center mb-12"
+                                    >
+                                        <h2 className="font-handwritten text-4xl md:text-5xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+                                            Client Offerings
+                                        </h2>
+                                        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                                            We help businesses transform their operations with cutting-edge AI solutions.
+                                            Our expertise allows you to implement AI effectively and see real results.
+                                        </p>
+                                    </motion.div>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                        {clientOfferings.map((offering, index) => (
+                                            <motion.div
+                                                key={index}
+                                                initial={{ y: 20, opacity: 0 }}
+                                                whileInView={{ y: 0, opacity: 1 }}
+                                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                                viewport={{ once: true }}
+                                                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                                                className="bg-gray-900/60 backdrop-blur p-6 rounded-xl border border-gray-700"
+                                            >
+                                                <div className="mb-4">{offering.icon}</div>
+                                                <h3 className="text-xl font-semibold text-blue-300 mb-2">{offering.title}</h3>
+                                                <p className="text-gray-400">{offering.description}</p>
+                                            </motion.div>
+                                        ))}
+                                    </div>
+
+                                    <motion.div
+                                        initial={{ y: 20, opacity: 0 }}
+                                        whileInView={{ y: 0, opacity: 1 }}
+                                        transition={{ duration: 0.7, delay: 0.4 }}
+                                        viewport={{ once: true }}
+                                        className="mt-12 text-center"
+                                    >
+                                        <p className="text-gray-300 mb-6">
+                                            Contact us to discuss how we can help you implement AI in your business.
+                                        </p>
+                                    </motion.div>
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
             </section>
 
-            <section className="py-16 bg-gray-900" id="contact-form">
+            <section className="py-12 bg-gray-900" id="contact-form">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial={{ y: 20, opacity: 0 }}
@@ -183,20 +300,20 @@ export default function Contact() {
                             <h2 className="font-handwritten text-3xl text-purple-400 mb-6">Get in Touch</h2>
                             <p className="text-gray-300 mb-8">
                                 Whether you're looking to discuss a specific project, learn more about our services,
-                                or explore partnership opportunities, our team is here to help.
+                                or explore {activeTab === 'investor' ? 'investment' : 'partnership'} opportunities, our team is here to help.
                             </p>
 
                             <div className="space-y-6">
                                 <div>
                                     <h3 className="font-handwritten text-2xl text-purple-400 mb-3">Email</h3>
-                                    <p className="text-gray-300">info@langiq.ai</p>
+                                    <p className="text-gray-300">{activeTab === 'investor' ? 'investors@langiq.ai' : 'info@langiq.ai'}</p>
                                 </div>
 
                                 <div>
                                     <h3 className="font-handwritten text-2xl text-purple-400 mb-3">Headquarters</h3>
                                     <p className="text-gray-300">
-                                        101 Innovation Drive<br />
-                                        San Francisco, CA 94105<br />
+                                        1333 Trailside Ct<br />
+                                        San Jose, CA 95138<br />
                                         United States
                                     </p>
                                 </div>
@@ -314,16 +431,21 @@ export default function Contact() {
                                                 onBlur={handleBlur}
                                                 className={inputClasses('interest')}
                                             >
-                                                <option>General Inquiry</option>
-                                                <option>Prompt Engineering</option>
-                                                <option>Retrieval-Augmented Generation</option>
-                                                <option>Tools and MCP</option>
-                                                <option>Model Augmentation</option>
-                                                <option>Fine Tuning</option>
-                                                <option>Agents</option>
-                                                <option>Application Development</option>
-                                                <option>Partnership</option>
-                                                <option>Investment Opportunities</option>
+                                                {activeTab === 'investor' ? (
+                                                    <option>Investment Opportunities</option>
+                                                ) : (
+                                                    <>
+                                                        <option>General Inquiry</option>
+                                                        <option>Prompt Engineering</option>
+                                                        <option>Retrieval-Augmented Generation</option>
+                                                        <option>Tools and MCP</option>
+                                                        <option>Model Augmentation</option>
+                                                        <option>Fine Tuning</option>
+                                                        <option>Agents</option>
+                                                        <option>Application Development</option>
+                                                        <option>Partnership</option>
+                                                    </>
+                                                )}
                                             </select>
                                         </motion.div>
 
@@ -339,6 +461,7 @@ export default function Contact() {
                                                 required
                                                 rows={5}
                                                 className={inputClasses('message')}
+                                                placeholder={activeTab === 'investor' ? 'Please tell us about your investment interests and any questions you have...' : 'How can we help you?'}
                                             ></textarea>
                                             {errors.message && (
                                                 <motion.p
