@@ -49,7 +49,7 @@ export default function Home() {
               className="font-handwritten text-6xl md:text-7xl lg:text-8xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400"
               variants={fadeIn}
             >
-              LangIQ AI Hub
+              framework for LLM Application
             </motion.h1>
             <motion.p
               className="text-xl md:text-2xl text-gray-300 mb-10"
