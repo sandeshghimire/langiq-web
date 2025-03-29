@@ -298,10 +298,19 @@ export default function Contact() {
                     >
                         <div className="transform hover:scale-[1.01] transition-transform duration-300">
                             <h2 className="font-handwritten text-3xl text-purple-400 mb-6">Get in Touch</h2>
-                            <p className="text-gray-300 mb-8">
-                                Whether you're looking to discuss a specific project, learn more about our services,
-                                or explore {activeTab === 'investor' ? 'investment' : 'partnership'} opportunities, our team is here to help.
-                            </p>
+                            {activeTab === 'investor' ? (
+                                <p className="text-gray-300 mb-8">
+                                    We're looking for strategic investors who share our vision for the future of AI.
+                                    If you're interested in exploring investment opportunities with a high-growth
+                                    AI company, our executive team would be delighted to connect with you.
+                                </p>
+                            ) : (
+                                <p className="text-gray-300 mb-8">
+                                    Ready to transform your business with cutting-edge AI solutions?
+                                    Whether you're looking to discuss a specific project, learn more about our services,
+                                    or explore partnership opportunities, our team is here to help you succeed.
+                                </p>
+                            )}
 
                             <div className="space-y-6">
                                 <div>
