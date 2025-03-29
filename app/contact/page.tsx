@@ -1,18 +1,12 @@
 'use client';
-
 import { useState } from 'react';
 import { FaTwitter, FaLinkedin, FaGithub, FaYoutube } from 'react-icons/fa';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 export default function Contact() {
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        company: '',
-        message: '',
-        interest: 'General Inquiry'
+        name: '', email: '', company: '', message: '', interest: 'General Inquiry'
     });
-
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -26,11 +20,8 @@ export default function Contact() {
         const newErrors: { [key: string]: string } = {};
         if (!formData.name.trim()) newErrors.name = 'Name is required';
         if (!formData.email.trim()) newErrors.email = 'Email is required';
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-            newErrors.email = 'Please enter a valid email';
-        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = 'Please enter a valid email';
         if (!formData.message.trim()) newErrors.message = 'Message is required';
-
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -38,24 +29,13 @@ export default function Contact() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (!validateForm()) return;
-
         setIsSubmitting(true);
         setErrors({});
-
-        // Simulating form submission
         setTimeout(() => {
             setIsSubmitting(false);
             setSubmitted(true);
-
-            // Reset form after showing success message
             setTimeout(() => {
-                setFormData({
-                    name: '',
-                    email: '',
-                    company: '',
-                    message: '',
-                    interest: 'General Inquiry'
-                });
+                setFormData({ name: '', email: '', company: '', message: '', interest: 'General Inquiry' });
                 setSubmitted(false);
             }, 5000);
         }, 1500);
@@ -70,23 +50,17 @@ export default function Contact() {
 
     return (
         <div className="min-h-screen">
-            {/* Hero section */}
             <section className="py-16 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-gray-900"></div>
                 <div className="grid-bg absolute inset-0 opacity-10"></div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="text-center max-w-3xl mx-auto">
-                        <h1 className="font-handwritten text-5xl md:text-6xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">
-                            Contact Us
-                        </h1>
-                        <p className="text-xl text-gray-300 mb-10">
-                            Reach out to discuss how LangIQ can help transform your AI strategy
-                        </p>
+                        <h1 className="font-handwritten text-5xl md:text-6xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">Contact Us</h1>
+                        <p className="text-xl text-gray-300 mb-10">Reach out to discuss how LangIQ can help transform your AI strategy</p>
                     </div>
                 </div>
             </section>
 
-            {/* Contact form section */}
             <section className="py-16 bg-gray-900">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -139,9 +113,7 @@ export default function Contact() {
                                         </svg>
                                     </div>
                                     <h3 className="font-handwritten text-2xl text-green-400 mb-4">Message Sent!</h3>
-                                    <p className="text-gray-300">
-                                        Thank you for reaching out. We'll get back to you shortly.
-                                    </p>
+                                    <p className="text-gray-300">Thank you for reaching out. We'll get back to you shortly.</p>
                                 </div>
                             ) : (
                                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -220,14 +192,9 @@ export default function Contact() {
                                         {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
                                     </div>
 
-                                    <button
-                                        type="submit"
-                                        disabled={isSubmitting}
-                                        className={`w-full bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg text-white font-medium transition-all flex items-center justify-center space-x-2 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
-                                    >
-                                        {isSubmitting && (
-                                            <AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" />
-                                        )}
+                                    <button type="submit" disabled={isSubmitting}
+                                        className={`w-full bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg text-white font-medium transition-all flex items-center justify-center space-x-2 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}>
+                                        {isSubmitting && <AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" />}
                                         <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
                                     </button>
                                 </form>
