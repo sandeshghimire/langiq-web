@@ -55,7 +55,7 @@ export default function Home() {
               className="text-xl md:text-2xl text-gray-300 mb-10"
               variants={fadeIn}
             >
-              An AI innovation hub dedicated to empowering organizations with advanced language technologies. Founded by a team of AI researchers, engineers, and industry experts, LangIQ bridges the gap between the potential of large language models and their practical application across industries.
+              A universal framework for LLM application development, designed for organizations of all sizes to adopt AI and language model workflows. Our state-of-the-art AI Studio empowers you to build powerful applications with frontier and open-source language models, customized for your unique challenges.
             </motion.p>
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -98,14 +98,14 @@ export default function Home() {
             viewport={{ once: true, amount: 0.2 }}
           >
             {[
-              { title: 'AI Studio', path: '/ai-studio', description: 'State-of-the-art graphical interface for building AI applications with collaborative workspaces, performance monitoring, and debugging capabilities' },
-              { title: 'Prompt Engineering', path: '/prompt-engineering', description: 'Interface with frontier LLMs from OpenAI, Google, Anthropic, DeepSeek, XAI and optimize prompts for your specific use cases' },
-              { title: 'Retrieval-Augmented Generation', path: '/rag', description: 'Convert your data into vector databases to work with local and frontier embeddings, creating powerful knowledge bases for your applications' },
-              { title: 'Tools and MCP', path: '/tools-mcp', description: 'Comprehensive toolkit for integrating with open-source and open-weight LLMs such as Meta LLAMA, DeepSeek, Microsoft PI, and Alibaba QWN' },
-              { title: 'Model Augmentation', path: '/model-augmentation', description: 'Enhance model knowledge by generating synthetic data based on your existing datasets, creating custom knowledge tailored to your needs' },
-              { title: 'Fine Tuning', path: '/fine-tuning', description: 'State-of-the-art fine-tuning capabilities using Hugging Face transformer pipeline to customize models for your specific requirements' },
-              { title: 'Agents', path: '/agents', description: 'Develop agentic solutions with multiple specialized agents working together to solve your unique business challenges and automate complex workflows' },
-              { title: 'Application Development', path: '/app-dev', description: 'Universal framework for LLM application development designed for startups and organizations of all sizes to adopt AI, ML, and LLM workflows' },
+              { title: 'AI Studio', path: '/ai-studio', description: 'Collaborative graphical interface for AI application development with workspace sharing, performance monitoring, debugging capabilities, and progress tracking' },
+              { title: 'Frontier LLM Integration', path: '/frontier-llm', description: 'Seamless integration with leading models from OpenAI, Google, Anthropic, DeepSeek, and XAI, optimized for your specific business challenges' },
+              { title: 'Open-Source LLMs', path: '/open-source-llm', description: 'Access and deploy powerful open-source and open-weight models including Meta LLAMA, DeepSeek, Microsoft PI, Alibaba QWN, Gemma, and Phi' },
+              { title: 'Retrieval-Augmented Generation', path: '/rag', description: 'Convert your data into vector databases with local and frontier embeddings, creating powerful knowledge bases tailored to your information' },
+              { title: 'Model Augmentation', path: '/model-augmentation', description: 'Enhance model knowledge through state-of-the-art synthetic data generation based on your existing datasets' },
+              { title: 'Fine Tuning', path: '/fine-tuning', description: 'Customize models for your specific requirements using Hugging Face transformer pipeline and advanced fine-tuning techniques' },
+              { title: 'Agent Networks', path: '/agents', description: 'Deploy multiple specialized agents working in concert to solve complex business challenges and automate sophisticated workflows' },
+              { title: 'Custom Solutions', path: '/custom-solutions', description: 'Personalize the AI Studio for your organization\'s unique needs, creating a bespoke environment for your team\'s AI development' },
             ].map((service, index) => (
               <motion.div key={index} variants={cardVariant}>
                 <motion.div
@@ -155,7 +155,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.4 }}
             >
-              <span className="font-semibold text-purple-400">Mission:</span> To provide organizations with the expertise, tools, and applications necessary to transform operations and enhance customer experiences through cutting-edge AI language technologies.
+              <span className="font-semibold text-purple-400">Mission:</span> To democratize AI application development by providing organizations of all sizes with a universal framework that bridges the gap between powerful language models and practical business solutions.
             </motion.p>
             <motion.p
               className="text-xl text-gray-300 mb-10"
@@ -164,7 +164,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.5 }}
             >
-              <span className="font-semibold text-purple-400">Vision:</span> To seamlessly integrate AI language technologies into every organization, enhancing human capabilities, driving innovation, and creating unprecedented value across all sectors of the economy.
+              <span className="font-semibold text-purple-400">Vision:</span> To empower every organization with customized AI capabilities through our intuitive AI Studio, enabling them to harness both frontier and open-source language models for their unique challenges.
             </motion.p>
 
             <motion.div
@@ -175,16 +175,16 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.6 }}
             >
               <div className="bg-gray-800/60 p-4 rounded-lg">
-                <h3 className="text-purple-400 font-semibold mb-2">Innovation & Excellence</h3>
-                <p className="text-gray-300">Pushing the boundaries of AI language technologies while upholding the highest standards in research and client solutions.</p>
+                <h3 className="text-purple-400 font-semibold mb-2">Powerful Collaboration</h3>
+                <p className="text-gray-300">Work together with colleagues on your AI projects, tracking progress and sharing insights through our collaborative workspace environment.</p>
               </div>
               <div className="bg-gray-800/60 p-4 rounded-lg">
-                <h3 className="text-purple-400 font-semibold mb-2">Responsibility & Collaboration</h3>
-                <p className="text-gray-300">Prioritizing ethical AI practices and working closely with clients and partners to achieve shared objectives.</p>
+                <h3 className="text-purple-400 font-semibold mb-2">Model Versatility</h3>
+                <p className="text-gray-300">Seamlessly integrate both frontier and open-source language models, combining their strengths for your specific business requirements.</p>
               </div>
               <div className="bg-gray-800/60 p-4 rounded-lg">
-                <h3 className="text-purple-400 font-semibold mb-2">Education & Impact</h3>
-                <p className="text-gray-300">Democratizing AI knowledge and measuring success by the tangible value created for clients and society.</p>
+                <h3 className="text-purple-400 font-semibold mb-2">End-to-End Development</h3>
+                <p className="text-gray-300">Monitor, debug, and optimize your AI applications through our comprehensive graphical interface designed for developers of all skill levels.</p>
               </div>
             </motion.div>
 
