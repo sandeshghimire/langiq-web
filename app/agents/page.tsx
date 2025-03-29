@@ -3,61 +3,78 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-// Sample Python code string to avoid JSX evaluation issues
-const codeExample = `from langiq_prompt_library import LangiqClient
+// Updated Python code example for agent orchestration
+const codeExample = `from langiq_agents import AgentOrchestrator, Agent, Tool
 
-# Initialize the client with your preferred model
-client = LangiqClient(
-  provider="openai",
-  model="gpt-4"
+# Initialize the orchestrator
+orchestrator = AgentOrchestrator(
+    provider="openai",
+    model="gpt-4"
 )
 
-# Create a prompt with chain-of-thought reasoning
-response = client.generate(
-  prompt="Explain the concept of neural networks",
-  temperature=0.7,
-  chain_of_thought=True,
-  max_tokens=500
+# Create specialized agents with tools
+researcher = Agent("researcher", tools=[
+    Tool.web_search(),
+    Tool.document_analyzer()
+])
+
+coder = Agent("coder", tools=[
+    Tool.code_interpreter(),
+    Tool.version_control()
+])
+
+# Execute multi-agent workflow
+workflow = orchestrator.create_workflow([researcher, coder])
+result = workflow.execute(
+    task="Research and implement a quantum algorithm",
+    max_steps=10,
+    collaboration_strategy="sequential"
 )
 
-# Display the response
-print(response.text)
+print(result.summary)
+print(f"Steps completed: {len(result.steps)}")`;
 
-# Get detailed performance metrics
-metrics = client.get_metrics()
-print(f"Response time: {metrics['response_time']}s")
-print(f"Tokens used: {metrics['tokens_used']}")`;
+// Updated JavaScript code example for agent orchestration
+const jsCodeExample = `import { AgentOrchestrator, Agent, Tool } from 'langiq-agents';
 
-// JavaScript code example
-const jsCodeExample = `import { LangiqClient } from 'langiq-prompt-library';
-
-// Initialize the client with your preferred model
-const client = new LangiqClient({
+// Initialize the orchestrator
+const orchestrator = new AgentOrchestrator({
   provider: "openai",
   model: "gpt-4"
 });
 
-// Create a prompt with chain-of-thought reasoning
-async function generateResponse() {
-  const response = await client.generate({
-    prompt: "Explain the concept of neural networks",
-    temperature: 0.7,
-    chainOfThought: true,
-    maxTokens: 500
+// Create specialized agents with tools
+const researcher = new Agent("researcher", {
+  tools: [
+    Tool.webSearch(),
+    Tool.documentAnalyzer()
+  ]
+});
+
+const coder = new Agent("coder", {
+  tools: [
+    Tool.codeInterpreter(),
+    Tool.versionControl()
+  ]
+});
+
+// Execute multi-agent workflow
+async function runAgentWorkflow() {
+  const workflow = orchestrator.createWorkflow([researcher, coder]);
+  
+  const result = await workflow.execute({
+    task: "Research and implement a quantum algorithm",
+    maxSteps: 10,
+    collaborationStrategy: "sequential"
   });
 
-  // Display the response
-  console.log(response.text);
-
-  // Get detailed performance metrics
-  const metrics = client.getMetrics();
-  console.log(\`Response time: \${metrics.responseTime}s\`);
-  console.log(\`Tokens used: \${metrics.tokensUsed}\`);
+  console.log(result.summary);
+  console.log(\`Steps completed: \${result.steps.length}\`);
 }
 
-generateResponse();`;
+runAgentWorkflow();`;
 
-export default function PromptEngineering() {
+export default function AgentOrchestration() {
     // Add state for scroll-based animations
     const [isVisible, setIsVisible] = useState({
         hero: false,
@@ -99,10 +116,10 @@ export default function PromptEngineering() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className={`text-center max-w-3xl mx-auto transition-all duration-1000 transform ${isVisible.hero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                         <h1 className="font-handwritten text-5xl md:text-7xl mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 animate-pulse-slow font-bold tracking-tight">
-                            LangIQ Prompt Library
+                            LangIQ Agent Orchestration
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed animate-slide-up delay-300 font-light max-w-2xl mx-auto">
-                            LangIQ Agents Orchestration Library: The LangIQ Agents Library is a state-of-the-art, production-ready agent orchestration library. This library enables you to develop agentic workflows, adding multiple multimodal agents with tools and MCP, enabling you to develop a feature-rich app. You can use our LangIQ AI Studio to design and develop an agentic framework or use our state-of-the-art library available in JavaScript and Python to develop your next big application. Our LangIQ AI Studio is powered by the LangIQ Agents Orchestration Library.
+                            Build sophisticated AI applications with our state-of-the-art agent orchestration library. Create, deploy, and manage multiple specialized agents with powerful tools and Multi-Agent Collaboration Protocol.
                         </p>
                     </div>
                 </div>
@@ -263,33 +280,33 @@ export default function PromptEngineering() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {[
                             {
-                                title: "Universal Model Access",
-                                description: "Connect your applications to both frontier LLMs (OpenAI, Google, Anthropic) and local open source models (Llama, Mistral, Mixtral) through a unified interface.",
+                                title: "Multi-Agent Orchestration",
+                                description: "Coordinate multiple specialized agents to tackle complex tasks through sophisticated collaboration protocols.",
                                 icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                             },
                             {
-                                title: "Production Ready",
-                                description: "Build applications with our production-ready library available in both JavaScript and Python, ensuring reliable performance in any environment.",
+                                title: "Extensive Tool Library",
+                                description: "Access 20+ built-in tools including web search, code interpretation, document analysis, and custom tool creation.",
                                 icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
                             },
                             {
-                                title: "Advanced Prompting",
-                                description: "Implement sophisticated prompt engineering strategies with simple API calls to optimize your model interactions and outputs.",
+                                title: "Workflow Management",
+                                description: "Design and control complex agent workflows with built-in state management and error recovery.",
                                 icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                             },
                             {
-                                title: "AI Studio Integration",
-                                description: "Design, test, and verify prompt capabilities using our LangIQ AI Studio before implementing them in your production applications.",
+                                title: "Real-time Monitoring",
+                                description: "Track agent activities, collaboration patterns, and performance metrics in real-time.",
                                 icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                             },
                             {
-                                title: "Performance Tracking",
-                                description: "Monitor response times, token usage, and cost metrics to optimize your implementation and track usage patterns across different LLMs.",
+                                title: "Memory & Context",
+                                description: "Maintain conversation history and shared context across multiple agents and workflow steps.",
                                 icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             },
                             {
-                                title: "Local & Cloud Flexibility",
-                                description: "Choose between cloud-based frontier models or locally hosted open weight models based on your privacy, cost, and performance requirements.",
+                                title: "Flexible Deployment",
+                                description: "Deploy agents on cloud or edge environments with support for various compute configurations.",
                                 icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
                             }
                         ].map((feature, index) => (
