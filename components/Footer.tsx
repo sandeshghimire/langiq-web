@@ -95,10 +95,6 @@ export default function Footer() {
                         <ul className="space-y-3">
                             {[
                                 { name: 'About Us', path: '/about', icon: <FaInfoCircle className="text-purple-400" /> },
-                                { name: 'Team', path: '/team', icon: <FaUsers className="text-purple-400" /> },
-                                { name: 'Careers', path: '/careers', icon: <FaBriefcase className="text-purple-400" /> },
-                                { name: 'Blog', path: '/blog', icon: <FaBookOpen className="text-purple-400" /> },
-                                { name: 'Case Studies', path: '/case-studies', icon: <FaChartBar className="text-purple-400" /> },
                                 { name: 'Contact', path: '/contact', icon: <FaEnvelope className="text-purple-400" /> },
                             ].map((link) => (
                                 <li key={link.path}>
