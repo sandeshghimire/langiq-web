@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { FaTwitter, FaLinkedin, FaGithub, FaYoutube } from 'react-icons/fa';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -13,15 +15,32 @@ export default function Contact() {
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
+    const validateForm = () => {
+        const newErrors: { [key: string]: string } = {};
+        if (!formData.name.trim()) newErrors.name = 'Name is required';
+        if (!formData.email.trim()) newErrors.email = 'Email is required';
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            newErrors.email = 'Please enter a valid email';
+        }
+        if (!formData.message.trim()) newErrors.message = 'Message is required';
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        if (!validateForm()) return;
+
         setIsSubmitting(true);
+        setErrors({});
 
         // Simulating form submission
         setTimeout(() => {
@@ -41,6 +60,13 @@ export default function Contact() {
             }, 5000);
         }, 1500);
     };
+
+    const socialLinks = [
+        { name: 'Twitter', icon: <FaTwitter className="w-6 h-6" />, url: '#' },
+        { name: 'LinkedIn', icon: <FaLinkedin className="w-6 h-6" />, url: '#' },
+        { name: 'GitHub', icon: <FaGithub className="w-6 h-6" />, url: '#' },
+        { name: 'YouTube', icon: <FaYoutube className="w-6 h-6" />, url: '#' }
+    ];
 
     return (
         <div className="min-h-screen">
@@ -64,7 +90,7 @@ export default function Contact() {
             <section className="py-16 bg-gray-900">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        <div>
+                        <div className="transform hover:scale-[1.01] transition-transform duration-300">
                             <h2 className="font-handwritten text-3xl text-purple-400 mb-6">Get in Touch</h2>
                             <p className="text-gray-300 mb-8">
                                 Whether you're looking to discuss a specific project, learn more about our services,
@@ -88,14 +114,15 @@ export default function Contact() {
 
                                 <div>
                                     <h3 className="font-handwritten text-2xl text-purple-400 mb-3">Follow Us</h3>
-                                    <div className="flex space-x-4">
-                                        {["Twitter", "LinkedIn", "GitHub", "YouTube"].map((social, index) => (
+                                    <div className="flex space-x-6">
+                                        {socialLinks.map((social, index) => (
                                             <a
                                                 key={index}
-                                                href="#"
-                                                className="text-gray-400 hover:text-purple-400 transition-colors"
+                                                href={social.url}
+                                                className="text-gray-400 hover:text-purple-400 transition-colors duration-300 transform hover:scale-110"
+                                                aria-label={social.name}
                                             >
-                                                {social}
+                                                {social.icon}
                                             </a>
                                         ))}
                                     </div>
@@ -103,9 +130,14 @@ export default function Contact() {
                             </div>
                         </div>
 
-                        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 transform hover:shadow-xl transition-all duration-300">
                             {submitted ? (
-                                <div className="text-center py-8">
+                                <div className="text-center py-8 animate-fade-in">
+                                    <div className="w-16 h-16 bg-green-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
                                     <h3 className="font-handwritten text-2xl text-green-400 mb-4">Message Sent!</h3>
                                     <p className="text-gray-300">
                                         Thank you for reaching out. We'll get back to you shortly.
@@ -124,6 +156,7 @@ export default function Contact() {
                                             required
                                             className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500"
                                         />
+                                        {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
                                     </div>
 
                                     <div>
@@ -137,6 +170,7 @@ export default function Contact() {
                                             required
                                             className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500"
                                         />
+                                        {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
                                     </div>
 
                                     <div>
@@ -183,14 +217,18 @@ export default function Contact() {
                                             rows={5}
                                             className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500"
                                         ></textarea>
+                                        {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
                                     </div>
 
                                     <button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className={`w-full bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg text-white font-medium transition-all ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                                        className={`w-full bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg text-white font-medium transition-all flex items-center justify-center space-x-2 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                                     >
-                                        {isSubmitting ? 'Sending...' : 'Send Message'}
+                                        {isSubmitting && (
+                                            <AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" />
+                                        )}
+                                        <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
                                     </button>
                                 </form>
                             )}
