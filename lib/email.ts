@@ -78,7 +78,10 @@ export function getEmailConfig(service: string, email: string, password: string)
 /**
  * Send a test email to verify configuration
  */
-export async function sendTestEmail(transporter: nodemailer.Transporter, fromEmail: string) {
+export async function sendTestEmail(
+    transporter: ReturnType<typeof nodemailer.createTransport>,
+    fromEmail: string
+) {
     try {
         const info = await transporter.sendMail({
             from: `"Test" <${fromEmail}>`,
