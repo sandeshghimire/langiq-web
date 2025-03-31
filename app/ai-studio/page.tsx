@@ -58,7 +58,7 @@ export default function Home() {
 
           {/* Download section */}
           <div className="mt-12 text-center">
-            <h3 className="text-2xl font-semibold text-purple-400 mb-8">Download AI Studio</h3>
+            <h3 className="text-2xl font-semibold text-purple-400 mb-8">Download AI Studio (Coming Soon)</h3>
             <div className="flex flex-wrap justify-center gap-6">
               <a
                 href="#windows-x86"

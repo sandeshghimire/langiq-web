@@ -108,13 +108,13 @@ export default function Contact() {
         },
         {
             icon: <BiLineChart className="w-10 h-10 text-purple-400" />,
-            title: "Proven Traction",
-            description: "With established enterprise clients and consistent growth quarter over quarter"
+            title: "Market Opportunity",
+            description: "Positioned at the forefront of the rapidly expanding AI implementation market"
         },
         {
             icon: <BsPeople className="w-10 h-10 text-purple-400" />,
             title: "Expert Team",
-            description: "Founded by AI researchers with prior exits and enterprise AI implementation experience"
+            description: "Founded by Silicon Valley startup veterans with entrepreneurial experience"
         }
     ];
 
