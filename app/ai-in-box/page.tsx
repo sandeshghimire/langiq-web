@@ -157,31 +157,87 @@ export default function Home() {
             </div>
           </div>
 
-
-
           {/* Included Software Section */}
           <div className="bg-gray-800 p-8 rounded-xl border border-purple-500/30 mb-16 shadow-lg">
             <h3 className="text-2xl font-semibold text-purple-400 mb-4 text-center">Included Software</h3>
             <div className="text-gray-300">
-              <p className="mb-4">Every LangIQ AI Box comes pre-installed with:</p>
-              <ul className="space-y-2 mb-4">
-                <li>• Ubuntu-based OS optimized for AI/ML workloads</li>
-                <li>• GPU-accelerated AI and ML development libraries</li>
-                <li>• CUDA, cuDNN, and TensorRT pre-configured for maximum performance</li>
-                <li>• Complete LangIQ library suite:</li>
-                <ul className="pl-6 space-y-1 mt-2">
-                  <li>- LangIQ Prompt Library — Streamline prompt engineering with templates and optimization tools</li>
-                  <li>- LangIQ RAG/CAG Library — Build advanced retrieval and context-augmented systems</li>
-                  <li>- LangIQ Tools and MCP Library — Extend AI capabilities with tools and multi-context processing</li>
-                  <li>- LangIQ LLM Augmentation Library — Enhance models with domain-specific knowledge</li>
-                  <li>- LangIQ LLM Fine-Tune Library — Optimize models for your specific use cases</li>
-                  <li>- LangIQ Agents Orchestration Library — Create and manage AI agent workflows</li>
-                  <li>- LangIQ Application Development Framework — Build production-ready AI applications</li>
+              <p className="mb-4">Every LangIQ AI Box comes pre-installed with our comprehensive software stack, configured for optimal performance:</p>
+
+              {/* System Software */}
+              <div className="mb-6">
+                <h4 className="text-xl font-medium text-purple-300 mb-3">System & Environment</h4>
+                <ul className="space-y-2 mb-4">
+                  <li>• <span className="font-medium">LangIQ OS</span> — Ubuntu-based operating system with custom kernel optimizations for AI/ML workloads</li>
+                  <li>• <span className="font-medium">Hardware Acceleration Suite</span> — GPU-accelerated libraries with automatic scaling and load balancing</li>
+                  <li>• <span className="font-medium">Performance Toolkit</span> — CUDA, cuDNN, and TensorRT pre-configured with optimized parameters</li>
+                  <li>• <span className="font-medium">Development Environment</span> — Jupyter, VSCode, and PyCharm with LangIQ extensions pre-installed</li>
                 </ul>
-                <li>• License for LangIQ AI Studio</li>
-                <li>• One year of software updates and security patches</li>
-                <li>• Priority access to new LangIQ library releases</li>
-              </ul>
+              </div>
+
+              {/* LangIQ Libraries */}
+              <div className="mb-6">
+                <h4 className="text-xl font-medium text-purple-300 mb-3">LangIQ Library Suite</h4>
+                <p className="mb-3">Our comprehensive collection of libraries designed to accelerate AI development and deployment:</p>
+                <ul className="pl-2 space-y-3 mb-4">
+                  <li className="border-l-2 border-purple-500/50 pl-4 py-1">
+                    <span className="font-medium text-purple-200">LangIQ Prompt Library</span>
+                    <p className="mt-1">Streamline prompt engineering with templates, versioning, and optimization tools. Includes 200+ prompt templates for common tasks and automated prompt testing framework.</p>
+                  </li>
+                  <li className="border-l-2 border-purple-500/50 pl-4 py-1">
+                    <span className="font-medium text-purple-200">LangIQ RAG/CAG Library</span>
+                    <p className="mt-1">Build advanced retrieval and context-augmented systems with support for vector databases, hybrid search, and multi-modal context integration. Pre-configured connectors for PostgreSQL, Chroma, Pinecone and more.</p>
+                  </li>
+                  <li className="border-l-2 border-purple-500/50 pl-4 py-1">
+                    <span className="font-medium text-purple-200">LangIQ Tools and MCP Library</span>
+                    <p className="mt-1">Extend AI capabilities with tools and multi-context processing. Includes tool-use frameworks, context window management, and function calling abstractions with 50+ ready-to-use tools.</p>
+                  </li>
+                  <li className="border-l-2 border-purple-500/50 pl-4 py-1">
+                    <span className="font-medium text-purple-200">LangIQ LLM Augmentation Library</span>
+                    <p className="mt-1">Enhance models with domain-specific knowledge through PEFT, LoRA, and QLoRA techniques. Supports knowledge distillation and model merging with automated evaluation pipelines.</p>
+                  </li>
+                  <li className="border-l-2 border-purple-500/50 pl-4 py-1">
+                    <span className="font-medium text-purple-200">LangIQ LLM Fine-Tune Library</span>
+                    <p className="mt-1">Optimize models for specific use cases with easy-to-use APIs for supervised fine-tuning, RLHF, and DPO. Includes data preparation tools and evaluation frameworks.</p>
+                  </li>
+                  <li className="border-l-2 border-purple-500/50 pl-4 py-1">
+                    <span className="font-medium text-purple-200">LangIQ Agents Orchestration Library</span>
+                    <p className="mt-1">Create and manage AI agent workflows with agent communication protocols, memory management, and monitoring tools. Supports multi-agent systems with 20+ agent templates.</p>
+                  </li>
+                  <li className="border-l-2 border-purple-500/50 pl-4 py-1">
+                    <span className="font-medium text-purple-200">LangIQ Application Development Framework</span>
+                    <p className="mt-1">Build production-ready AI applications with authentication, user management, monitoring, and deployment tools. Includes templates for web, mobile, and API-based AI applications.</p>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Additional Software */}
+              <div className="mb-6">
+                <h4 className="text-xl font-medium text-purple-300 mb-3">Tools & Utilities</h4>
+                <ul className="space-y-2 mb-4">
+                  <li>• <span className="font-medium">LangIQ AI Studio</span> — Visual development environment for building and testing AI applications</li>
+                  <li>• <span className="font-medium">LangIQ Monitoring Dashboard</span> — Real-time performance tracking and resource management</li>
+                  <li>• <span className="font-medium">Model Repository Manager</span> — Organize, version and deploy models with one-click inference endpoints</li>
+                  <li>• <span className="font-medium">Data Processing Pipeline</span> — ETL tools optimized for AI training and fine-tuning datasets</li>
+                </ul>
+              </div>
+
+              {/* Support & Updates */}
+              <div className="mb-4">
+                <h4 className="text-xl font-medium text-purple-300 mb-3">Support & Resources</h4>
+                <ul className="space-y-2">
+                  <li>• One year of software updates and security patches with automated deployment</li>
+                  <li>• Priority access to new LangIQ library releases and beta features</li>
+                  <li>• Comprehensive documentation and code examples for all libraries</li>
+                  <li>• Access to LangIQ Learning Hub with tutorials, workshops and certification courses</li>
+                  <li>• Community forum membership with direct access to LangIQ engineers</li>
+                </ul>
+              </div>
+
+              <div className="mt-6 p-4 bg-purple-900/20 rounded-lg border border-purple-500/30">
+                <p className="text-center text-purple-200">
+                  All software components are optimized for your specific hardware configuration and regularly updated to ensure maximum performance and compatibility.
+                </p>
+              </div>
             </div>
           </div>
 
