@@ -98,14 +98,14 @@ export default function Home() {
             viewport={{ once: true, amount: 0.2 }}
           >
             {[
-              { title: 'AI Studio', path: '/ai-studio', description: 'Collaborative graphical interface for AI application development with workspace sharing, performance monitoring, debugging capabilities, and progress tracking' },
-              { title: 'Frontier LLM Integration', path: '/frontier-llm', description: 'Seamless integration with leading models from OpenAI, Google, Anthropic, DeepSeek, and XAI, optimized for your specific business challenges' },
-              { title: 'Open-Source LLMs', path: '/open-source-llm', description: 'Access and deploy powerful open-source and open-weight models including Meta LLAMA, DeepSeek, Microsoft PI, Alibaba QWN, Gemma, and Phi' },
-              { title: 'Retrieval-Augmented Generation', path: '/rag', description: 'Convert your data into vector databases with local and frontier embeddings, creating powerful knowledge bases tailored to your information' },
-              { title: 'Model Augmentation', path: '/model-augmentation', description: 'Enhance model knowledge through state-of-the-art synthetic data generation based on your existing datasets' },
-              { title: 'Fine Tuning', path: '/fine-tuning', description: 'Customize models for your specific requirements using Hugging Face transformer pipeline and advanced fine-tuning techniques' },
-              { title: 'Agent Networks', path: '/agents', description: 'Deploy multiple specialized agents working in concert to solve complex business challenges and automate sophisticated workflows' },
-              { title: 'Custom Solutions', path: '/custom-solutions', description: 'Personalize the AI Studio for your organization\'s unique needs, creating a bespoke environment for your team\'s AI development' },
+              { title: 'AI Studio', path: '/ai-studio', description: 'State-of-the-art graphical interface for building AI applications with collaborative workspaces, performance monitoring, and debugging capabilities' },
+              { title: 'Prompt Engineering', path: '/prompt-engineering', description: 'Interface with frontier LLMs from OpenAI, Google, Anthropic, DeepSeek, XAI and optimize prompts for your specific use cases' },
+              { title: 'Retrieval-Augmented Generation', path: '/rag', description: 'Convert your data into vector databases to work with local and frontier embeddings, creating powerful knowledge bases for your applications' },
+              { title: 'Tools and MCP', path: '/tools-mcp', description: 'Comprehensive toolkit for integrating with open-source and open-weight LLMs such as Meta LLAMA, DeepSeek, Microsoft PI, and Alibaba QWN' },
+              { title: 'Model Augmentation', path: '/model-augmentation', description: 'Enhance model knowledge by generating synthetic data based on your existing datasets, creating custom knowledge tailored to your needs' },
+              { title: 'Fine Tuning', path: '/fine-tuning', description: 'State-of-the-art fine-tuning capabilities using Hugging Face transformer pipeline to customize models for your specific requirements' },
+              { title: 'Agents', path: '/agents', description: 'Develop agentic solutions with multiple specialized agents working together to solve your unique business challenges and automate complex workflows' },
+              { title: 'Application Development', path: '/app-dev', description: 'Universal framework for LLM application development designed for startups and organizations of all sizes to adopt AI, ML, and LLM workflows' },
             ].map((service, index) => (
               <motion.div key={index} variants={cardVariant}>
                 <motion.div
