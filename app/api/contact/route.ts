@@ -3,6 +3,7 @@ import nodemailer from 'nodemailer';
 
 export async function POST(request: Request) {
     try {
+        // Parse the request body
         const body = await request.json();
         const { name, email, company, message, interest, type } = body;
 
@@ -14,111 +15,79 @@ export async function POST(request: Request) {
             );
         }
 
-        // Determine which email to use based on the contact type
-        const toEmail = type === 'investor'
-            ? process.env.INVESTOR_EMAIL
-            : process.env.INFO_EMAIL;
+        // Determine which email configuration to use based on the form type
+        const isInvestor = type === 'investor';
 
-        const fromEmail = type === 'investor'
-            ? process.env.INVESTOR_EMAIL
-            : process.env.INFO_EMAIL;
-
-        // Log email configuration (for debugging)
-        console.log('Email configuration:', {
-            host: process.env.EMAIL_HOST,
-            port: process.env.EMAIL_PORT,
-            fromEmail,
-            toEmail,
-        });
-
-        // Create transporter with the specific settings provided
-        const transporter = nodemailer.createTransport({
-            host: process.env.EMAIL_HOST, // smtp.domain.com
-            port: Number(process.env.EMAIL_PORT), // 465
-            secure: true, // SSL is enabled
+        // Configure email transport
+        const transportConfig = {
+            host: isInvestor
+                ? process.env.INVESTOR_SMTP_SERVER
+                : process.env.INFO_SMTP_SERVER,
+            port: isInvestor
+                ? parseInt(process.env.INVESTOR_SMTP_PORT || '465')
+                : parseInt(process.env.INFO_SMTP_PORT || '465'),
+            secure: isInvestor
+                ? process.env.INVESTOR_SSL === 'true'
+                : process.env.INFO_SSL === 'true',
             auth: {
-                user: fromEmail,
-                pass: process.env.EMAIL_PASSWORD,
-            },
-            debug: process.env.EMAIL_DEBUG === 'true',
-        });
+                user: isInvestor
+                    ? process.env.INVESTOR_EMAIL
+                    : process.env.INFO_EMAIL,
+                pass: isInvestor
+                    ? process.env.INVESTOR_PASSWORD
+                    : process.env.INFO_PASSWORD
+            }
+        };
 
-        // Verify connection configuration
-        try {
-            await transporter.verify();
-            console.log('SMTP connection verified successfully');
-        } catch (verifyError: any) {
-            console.error('SMTP verification error:', verifyError);
-            console.error('Error details:', {
-                code: verifyError.code,
-                command: verifyError.command,
-                responseCode: verifyError.responseCode,
-                response: verifyError.response
-            });
+        // Create transporter
+        const transporter = nodemailer.createTransport(transportConfig);
 
-            return NextResponse.json(
-                {
-                    error: 'Email server connection failed',
-                    details: `${verifyError.message} (Code: ${verifyError.code || 'unknown'})`
-                },
-                { status: 500 }
-            );
-        }
+        // Set up email content
+        const fromEmail = isInvestor
+            ? process.env.INVESTOR_EMAIL
+            : process.env.INFO_EMAIL;
 
-        // Email subject based on type
-        const subject = type === 'investor'
-            ? `Investment Inquiry from ${name}`
-            : `${interest} Inquiry from ${name}`;
+        const companyInfo = company ? `Company: ${company}\n` : '';
 
-        // Compose email content
         const mailOptions = {
-            from: `"LangIQ Contact" <${fromEmail}>`,
-            to: toEmail,
-            replyTo: email,
-            subject: subject,
-            text: `
-Name: ${name}
+            from: fromEmail,
+            to: fromEmail, // Send to the same email address
+            replyTo: email, // Set reply-to as the user's email
+            subject: `${isInvestor ? 'Investor' : 'Client'} Contact: ${interest}`,
+            text: `Name: ${name}
 Email: ${email}
-${company ? `Company: ${company}\n` : ''}
+${companyInfo}
 Interest: ${interest}
 
 Message:
-${message}
-            `,
+${message}`,
             html: `
-                <h2>New Contact Form Submission</h2>
-                <p><strong>Name:</strong> ${name}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                ${company ? `<p><strong>Company:</strong> ${company}</p>` : ''}
-                <p><strong>Interest:</strong> ${interest}</p>
-                <p><strong>Message:</strong></p>
-                <p>${message.replace(/\n/g, '<br/>')}</p>
-            `,
+        <h2>${isInvestor ? 'Investor' : 'Client'} Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        ${company ? `<p><strong>Company:</strong> ${company}</p>` : ''}
+        <p><strong>Interest:</strong> ${interest}</p>
+        <h3>Message:</h3>
+        <p>${message.replace(/\n/g, '<br>')}</p>
+      `
         };
 
-        // Send email with proper error handling
-        try {
-            const info = await transporter.sendMail(mailOptions);
-            console.log('Message sent successfully:', info.messageId);
-            return NextResponse.json({
-                success: true,
-                messageId: info.messageId
-            });
-        } catch (sendError: any) {
-            console.error('Email sending error details:', sendError);
-            return NextResponse.json(
-                {
-                    error: 'Failed to send email',
-                    details: sendError.message
-                },
-                { status: 500 }
-            );
-        }
+        // Send the email
+        await transporter.sendMail(mailOptions);
+
+        // Return success response
+        return NextResponse.json({
+            success: true,
+            message: 'Email sent successfully'
+        });
+
     } catch (error: any) {
-        console.error('Contact API error:', error);
+        console.error('Contact form submission error:', error);
+
+        // Return detailed error for debugging
         return NextResponse.json(
             {
-                error: 'Server error processing your request',
+                error: 'Failed to send message',
                 details: error.message
             },
             { status: 500 }
