@@ -100,8 +100,17 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            Our Expertise
+            Case Studies
           </motion.h2>
+          <motion.p
+            className="text-xl text-gray-300 text-center mb-12 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Discover how organizations are leveraging langiq's powerful framework to transform their AI capabilities and solve real-world challenges.
+          </motion.p>
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
             variants={staggerContainer}
