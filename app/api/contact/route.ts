@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import emailConfig from '@/lib/emailConfig';
 
 export async function POST(request: Request) {
     try {
@@ -18,34 +19,14 @@ export async function POST(request: Request) {
         // Determine which email configuration to use based on the form type
         const isInvestor = type === 'investor';
 
-        // Configure email transport
-        const transportConfig = {
-            host: isInvestor
-                ? process.env.INVESTOR_SMTP_SERVER
-                : process.env.INFO_SMTP_SERVER,
-            port: isInvestor
-                ? parseInt(process.env.INVESTOR_SMTP_PORT || '465')
-                : parseInt(process.env.INFO_SMTP_PORT || '465'),
-            secure: isInvestor
-                ? process.env.INVESTOR_SSL === 'true'
-                : process.env.INFO_SSL === 'true',
-            auth: {
-                user: isInvestor
-                    ? process.env.INVESTOR_EMAIL
-                    : process.env.INFO_EMAIL,
-                pass: isInvestor
-                    ? process.env.INVESTOR_PASSWORD
-                    : process.env.INFO_PASSWORD
-            }
-        };
+        // Get transport config securely
+        const transportConfig = emailConfig.getTransportConfig(isInvestor);
 
         // Create transporter
         const transporter = nodemailer.createTransport(transportConfig);
 
-        // Set up email content
-        const fromEmail = isInvestor
-            ? process.env.INVESTOR_EMAIL
-            : process.env.INFO_EMAIL;
+        // Get email address securely
+        const fromEmail = emailConfig.getEmailAddress(isInvestor);
 
         const companyInfo = company ? `Company: ${company}\n` : '';
 
