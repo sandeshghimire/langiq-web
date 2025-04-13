@@ -10,16 +10,28 @@ const montserrat = Montserrat({
   variable: '--font-montserrat',
 });
 
-// Services data
+// Case studies data
 const services = [
-  { title: 'AI Studio', path: '/ai-studio', description: 'State-of-the-art graphical interface for building AI applications with collaborative workspaces, performance monitoring, and debugging capabilities' },
-  { title: 'Prompt Engineering', path: '/prompt-engineering', description: 'Interface with frontier LLMs from OpenAI, Google, Anthropic, DeepSeek, XAI and optimize prompts for your specific use cases' },
-  { title: 'Retrieval-Augmented Generation', path: '/rag', description: 'Convert your data into vector databases to work with local and frontier embeddings, creating powerful knowledge bases for your applications' },
-  { title: 'Tools and MCP', path: '/tools-mcp', description: 'Comprehensive toolkit for integrating with open-source and open-weight LLMs such as Meta LLAMA, DeepSeek, Microsoft PI, and Alibaba QWN' },
-  { title: 'Model Augmentation', path: '/model-augmentation', description: 'Enhance model knowledge by generating synthetic data based on your existing datasets, creating custom knowledge tailored to your needs' },
-  { title: 'Fine Tuning', path: '/fine-tuning', description: 'State-of-the-art fine-tuning capabilities using Hugging Face transformer pipeline to customize models for your specific requirements' },
-  { title: 'Agents', path: '/agents', description: 'Develop agentic solutions with multiple specialized agents working together to solve your unique business challenges and automate complex workflows' },
-  { title: 'Application Development', path: '/app-dev', description: 'Universal framework for LLM application development designed for startups and organizations of all sizes to adopt AI, ML, and LLM workflows' },
+  { title: 'Agricultural Management', path: '/case-studies/agricultural-management', description: 'AI-powered solutions for optimizing crop yields, resource allocation, and sustainable farming practices' },
+  { title: 'Ecommerce Chatbot', path: '/case-studies/ecommerce-chatbot', description: 'Intelligent customer service automation for online retailers, improving conversion rates and customer satisfaction' },
+  { title: 'Government Assistant', path: '/case-studies/government-assistant', description: 'Streamlining citizen services and administrative processes through conversational AI interfaces' },
+  { title: 'Legal Analysis', path: '/case-studies/legal-analysis', description: 'Advanced document processing and precedent analysis tools for law firms and legal departments' },
+  { title: 'Predictive Maintenance', path: '/case-studies/predictive-maintenance', description: 'ML systems for anticipating equipment failures and optimizing maintenance schedules in manufacturing' },
+  { title: 'Regulatory Reporting', path: '/case-studies/regulatory-reporting', description: 'Automated compliance solutions to streamline reporting processes and reduce regulatory risk' },
+  { title: 'Telecom Optimization', path: '/case-studies/telecom-optimization', description: 'Network performance enhancement and customer experience improvements for telecommunications providers' },
+  { title: 'Education Content', path: '/case-studies/education-content', description: 'Personalized learning materials and curriculum development assistance for educational institutions' },
+  { title: 'Hospitality Feedback', path: '/case-studies/hospitality-feedback', description: 'AI-driven analysis of guest experiences to improve service quality in hotels and resorts' },
+  { title: 'Media Curation', path: '/case-studies/media-curation', description: 'Content recommendation and personalization systems for digital media platforms' },
+  { title: 'Real Estate Analysis', path: '/case-studies/real-estate-analysis', description: 'Market trend prediction and property valuation tools for real estate professionals' },
+  { title: 'Sentiment Analysis', path: '/case-studies/sentiment-analysis', description: 'Social media and customer feedback monitoring to gauge brand perception and market trends' },
+  { title: 'Travel Itinerary', path: '/case-studies/travel-itinerary', description: 'Personalized travel planning assistants for tourism companies and travel agencies' },
+  { title: 'Cybersecurity', path: '/case-studies/cybersecurity', description: 'Threat detection and prevention systems using advanced pattern recognition and anomaly detection' },
+  { title: 'Energy Forecasting', path: '/case-studies/energy-forecasting', description: 'Consumption prediction and optimization solutions for utility companies and energy producers' },
+  { title: 'Insurance Claims', path: '/case-studies/insurance-claims', description: 'Automated claims processing and fraud detection systems for insurance providers' },
+  { title: 'Medical Diagnostics', path: '/case-studies/medical-diagnostics', description: 'Clinical decision support and diagnostic assistance tools for healthcare professionals' },
+  { title: 'Recruitment Analytics', path: '/case-studies/recruitment-analytics', description: 'Talent acquisition optimization and candidate matching for HR departments' },
+  { title: 'Supply Chain', path: '/case-studies/supply-chain', description: 'Logistics optimization and inventory management solutions for global supply chains' },
+  { title: 'Vehicle Analytics', path: '/case-studies/vehicle-analytics', description: 'Fleet management and performance monitoring systems for transportation companies' }
 ];
 
 // Animation variants
