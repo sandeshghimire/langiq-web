@@ -1,7 +1,7 @@
-import { TransportOptions } from 'nodemailer';
+import SMTPTransport from 'nodemailer/lib/smtp-transport';
 
 interface EmailConfig {
-    getTransportConfig: (isInvestor: boolean) => TransportOptions;
+    getTransportConfig: (isInvestor: boolean) => SMTPTransport.Options;
     getEmailAddress: (isInvestor: boolean) => string;
 }
 
