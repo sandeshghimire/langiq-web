@@ -80,7 +80,7 @@ export default function CaseStudyTemplate({
 
             {/* Case Study Content */}
             <section className="py-16">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Challenge */}
                     <motion.div
                         className="mb-12"
@@ -167,7 +167,7 @@ export default function CaseStudyTemplate({
 
             {/* CTA section */}
             <section className="py-20 bg-gradient-to-br from-gray-900/95 to-violet-950/95">
-                <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto text-center px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
