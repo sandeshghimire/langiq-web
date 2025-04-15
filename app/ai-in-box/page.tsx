@@ -34,208 +34,166 @@ export default function Home() {
             <p
               className={`text-xl md:text-2xl text-gray-300 mb-6 transition-all duration-1000 delay-300 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
             >
-              An all-inclusive framework providing you with powerful hardware, optimized OS, and comprehensive LangIQ libraries
+              All-in-one AI hardware, optimized OS, and the complete LangIQ software suite—ready out of the box.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Main content section with hardware info */}
+      {/* Product Lineup */}
       <section className={`py-12 bg-gray-900 transition-all duration-1000 delay-700 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Hardware Lineup Introduction */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-semibold text-purple-400 mb-6">LangIQ AI Box Product Lineup</h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-4">
-              Purpose-built hardware solutions optimized for AI workloads, ranging from inference to training at scale.
-              Each system comes with our complete software stack pre-installed.
+            <h2 className="text-4xl font-bold text-purple-400 mb-4 flex items-center justify-center gap-2">
+              <svg className="w-8 h-8 text-purple-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" /></svg>
+              LangIQ AI Box Lineup
+            </h2>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+              Purpose-built systems for every AI workload—from research to enterprise deployment. Each box ships with our full software stack, pre-configured for performance.
             </p>
-
           </div>
 
-          {/* LangIQ AI Box - x86 (Image on right) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-24">
-            <div className="p-6">
-              <h3 className="text-2xl font-semibold text-purple-400 mb-4">🔹 LangIQ AI Box - x86</h3>
-              <ul className="space-y-3 text-gray-300">
-                <li><span className="font-medium text-purple-300">CPU:</span> 16 cores, 32 threads</li>
-                <li><span className="font-medium text-purple-300">GPU:</span> 40-core high-performance</li>
-                <li><span className="font-medium text-purple-300">Memory:</span> 128GB RAM</li>
-                <li><span className="font-medium text-purple-300">Storage:</span> 4TB SSD</li>
-                <li><span className="font-medium text-purple-300">Cooling:</span> Advanced liquid cooling system for sustained performance</li>
-                <li><span className="font-medium text-purple-300">Connectivity:</span> 10Gb Ethernet, WiFi 6E, Bluetooth 5.2</li>
-                <li><span className="font-medium text-purple-300">Best for:</span> Model inference, small to mid-size model training and augmentation</li>
-                <li><span className="font-medium text-purple-300">Ideal use cases:</span> Research prototyping, educational environments, small business AI integration</li>
-              </ul>
+          {/* Product Cards */}
+          <div className="space-y-24">
+            {/* x86 */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div className="p-6">
+                <h3 className="text-2xl font-semibold text-purple-400 mb-4 flex items-center gap-2">🔹 AI Box - x86</h3>
+                <dl className="space-y-2 text-gray-300">
+                  <div><dt className="font-medium text-purple-300 inline">CPU:</dt> <dd className="inline">16 cores / 32 threads</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">GPU:</dt> <dd className="inline">40-core high-performance</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Memory:</dt> <dd className="inline">128GB RAM</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Storage:</dt> <dd className="inline">4TB SSD</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Cooling:</dt> <dd className="inline">Advanced liquid cooling</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Connectivity:</dt> <dd className="inline">10GbE, WiFi 6E, Bluetooth 5.2</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Best for:</dt> <dd className="inline">Inference, small/mid model training</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Use cases:</dt> <dd className="inline">Prototyping, education, SMB AI</dd></div>
+                </dl>
+              </div>
+              <div className="rounded-xl overflow-hidden shadow-lg hover:shadow-purple-500/30 transition-all duration-500">
+                <Image src="/ai-box-standard.jpg" alt="LangIQ AI Box - x86" width={800} height={600} className="w-full h-auto object-cover" />
+              </div>
             </div>
-            <div className="rounded-xl overflow-hidden shadow-lg hover:shadow-purple-500/30 transition-all duration-500">
-              <Image
-                src="/ai-box-standard.jpg"
-                alt="LangIQ AI Box - x86"
-                width={800}
-                height={600}
-                className="w-full h-auto object-cover"
-              />
-            </div>
-          </div>
 
-          {/* LangIQ AI Box Plus - ARM64 (Image on left) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-24">
-            <div className="rounded-xl overflow-hidden shadow-lg hover:shadow-purple-500/30 transition-all duration-500 order-2 md:order-1">
-              <Image
-                src="/ai-box-plus.jpg"
-                alt="LangIQ AI Box Plus - ARM64"
-                width={800}
-                height={600}
-                className="w-full h-auto object-cover"
-              />
+            {/* Plus - ARM64 */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div className="rounded-xl overflow-hidden shadow-lg hover:shadow-purple-500/30 transition-all duration-500 order-2 md:order-1">
+                <Image src="/ai-box-plus.jpg" alt="LangIQ AI Box Plus - ARM64" width={800} height={600} className="w-full h-auto object-cover" />
+              </div>
+              <div className="p-6 order-1 md:order-2">
+                <h3 className="text-2xl font-semibold text-purple-400 mb-4 flex items-center gap-2">🔹 AI Box Plus - ARM64</h3>
+                <dl className="space-y-2 text-gray-300">
+                  <div><dt className="font-medium text-purple-300 inline">CPU:</dt> <dd className="inline">20-core ARM x64</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">GPU:</dt> <dd className="inline">NVIDIA GB10 Superchip</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Memory:</dt> <dd className="inline">128GB RAM</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Storage:</dt> <dd className="inline">4TB SSD</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Power:</dt> <dd className="inline">Up to 40% less than x86</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Thermals:</dt> <dd className="inline">24/7 operation, low noise</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Best for:</dt> <dd className="inline">Mid/high inference, mid training</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Use cases:</dt> <dd className="inline">Production, continuous workloads, SME AI</dd></div>
+                </dl>
+              </div>
             </div>
-            <div className="p-6 order-1 md:order-2">
-              <h3 className="text-2xl font-semibold text-purple-400 mb-4">🔹 LangIQ AI Box Plus - ARM64</h3>
-              <ul className="space-y-3 text-gray-300">
-                <li><span className="font-medium text-purple-300">CPU:</span> 20-core ARM x64</li>
-                <li><span className="font-medium text-purple-300">GPU:</span> NVIDIA GB10 Superchip</li>
-                <li><span className="font-medium text-purple-300">Memory:</span> 128GB RAM</li>
-                <li><span className="font-medium text-purple-300">Storage:</span> 4TB SSD</li>
-                <li><span className="font-medium text-purple-300">Power efficiency:</span> Up to 40% lower power consumption vs x86 equivalent</li>
-                <li><span className="font-medium text-purple-300">Thermal design:</span> Optimized for 24/7 operation with minimal noise</li>
-                <li><span className="font-medium text-purple-300">Best for:</span> Medium to high-end model inference, mid-size model training</li>
-                <li><span className="font-medium text-purple-300">Ideal use cases:</span> Production deployment, continuous inference workloads, SME AI solutions</li>
-              </ul>
-            </div>
-          </div>
 
-          {/* LangIQ AI Box Pro - ARM64 (Image on right) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-24">
-            <div className="p-6">
-              <h3 className="text-2xl font-semibold text-purple-400 mb-4">🔹 LangIQ AI Box Pro - ARM64</h3>
-              <ul className="space-y-3 text-gray-300">
-                <li><span className="font-medium text-purple-300">GPU:</span> 1x NVIDIA Blackwell Ultra</li>
-                <li><span className="font-medium text-purple-300">CPU:</span> 1x Grace-72 Core Neoverse V2</li>
-                <li><span className="font-medium text-purple-300">GPU Memory:</span> Up to 288GB HBM3e | 8 TB/s</li>
-                <li><span className="font-medium text-purple-300">CPU Memory:</span> Up to 496GB LPDDR5X | Up to 396 GB/s</li>
-                <li><span className="font-medium text-purple-300">Hardware acceleration:</span> Dedicated tensor cores for AI/ML operations</li>
-                <li><span className="font-medium text-purple-300">Expansion:</span> Support for additional GPUs and NVMe storage</li>
-                <li><span className="font-medium text-purple-300">Best for:</span> Advanced AI workloads, optimized for medium to high-end model inference and training</li>
-                <li><span className="font-medium text-purple-300">Ideal use cases:</span> Enterprise AI development, computer vision applications, large language model fine-tuning</li>
-              </ul>
+            {/* Pro - ARM64 */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div className="p-6">
+                <h3 className="text-2xl font-semibold text-purple-400 mb-4 flex items-center gap-2">🔹 AI Box Pro - ARM64</h3>
+                <dl className="space-y-2 text-gray-300">
+                  <div><dt className="font-medium text-purple-300 inline">GPU:</dt> <dd className="inline">1x NVIDIA Blackwell Ultra</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">CPU:</dt> <dd className="inline">1x Grace-72 Core Neoverse V2</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">GPU Mem:</dt> <dd className="inline">Up to 288GB HBM3e</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">CPU Mem:</dt> <dd className="inline">Up to 496GB LPDDR5X</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Accel:</dt> <dd className="inline">Dedicated tensor cores</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Expansion:</dt> <dd className="inline">Add GPUs/NVMe</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Best for:</dt> <dd className="inline">Advanced AI, high-end training</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Use cases:</dt> <dd className="inline">Enterprise, CV, LLM fine-tuning</dd></div>
+                </dl>
+              </div>
+              <div className="rounded-xl overflow-hidden shadow-lg hover:shadow-purple-500/30 transition-all duration-500">
+                <Image src="/ai-box-pro.jpg" alt="LangIQ AI Box Pro - ARM64" width={800} height={600} className="w-full h-auto object-cover" />
+              </div>
             </div>
-            <div className="rounded-xl overflow-hidden shadow-lg hover:shadow-purple-500/30 transition-all duration-500">
-              <Image
-                src="/ai-box-pro.jpg"
-                alt="LangIQ AI Box Pro - ARM64"
-                width={800}
-                height={600}
-                className="w-full h-auto object-cover"
-              />
-            </div>
-          </div>
 
-          {/* LangIQ AI Box Pro MAX - ARM64 (Image on left) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-24">
-            <div className="rounded-xl overflow-hidden shadow-lg hover:shadow-purple-500/30 transition-all duration-500 order-2 md:order-1">
-              <Image
-                src="/ai-box-pro-max.jpg"
-                alt="LangIQ AI Box Pro MAX - ARM64"
-                width={800}
-                height={600}
-                className="w-full h-auto object-cover"
-              />
-            </div>
-            <div className="p-6 order-1 md:order-2">
-              <h3 className="text-2xl font-semibold text-purple-400 mb-4">🔹 LangIQ AI Box Pro MAX - ARM64</h3>
-              <ul className="space-y-3 text-gray-300">
-                <li><span className="font-medium text-purple-300">CPU:</span> AMD Threadripper with 192 cores</li>
-                <li><span className="font-medium text-purple-300">GPU:</span> Multiple NVIDIA RTX PRO 6000 Blackwell Workstation Edition (up to 4x)</li>
-                <li><span className="font-medium text-purple-300">Memory:</span> Up to 1TB RAM</li>
-                <li><span className="font-medium text-purple-300">Storage:</span> 36TB SSD</li>
-                <li><span className="font-medium text-purple-300">Networking:</span> Dual 100Gb Ethernet with RDMA support</li>
-                <li><span className="font-medium text-purple-300">Form factor:</span> Rack-mountable with redundant power supply</li>
-                <li><span className="font-medium text-purple-300">Best for:</span> AI power users requiring high-end inference and mid-size model training at scale</li>
-                <li><span className="font-medium text-purple-300">Ideal use cases:</span> Research labs, AI-driven organizations, multi-model inference services, custom model development</li>
-              </ul>
+            {/* Pro MAX - ARM64 */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div className="rounded-xl overflow-hidden shadow-lg hover:shadow-purple-500/30 transition-all duration-500 order-2 md:order-1">
+                <Image src="/ai-box-pro-max.jpg" alt="LangIQ AI Box Pro MAX - ARM64" width={800} height={600} className="w-full h-auto object-cover" />
+              </div>
+              <div className="p-6 order-1 md:order-2">
+                <h3 className="text-2xl font-semibold text-purple-400 mb-4 flex items-center gap-2">🔹 AI Box Pro MAX - ARM64</h3>
+                <dl className="space-y-2 text-gray-300">
+                  <div><dt className="font-medium text-purple-300 inline">CPU:</dt> <dd className="inline">AMD Threadripper, 192 cores</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">GPU:</dt> <dd className="inline">Up to 4x NVIDIA RTX PRO 6000 Blackwell</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Memory:</dt> <dd className="inline">Up to 1TB RAM</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Storage:</dt> <dd className="inline">36TB SSD</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Networking:</dt> <dd className="inline">Dual 100GbE, RDMA</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Form:</dt> <dd className="inline">Rack-mount, redundant PSU</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Best for:</dt> <dd className="inline">Power users, scale training</dd></div>
+                  <div><dt className="font-medium text-purple-300 inline">Use cases:</dt> <dd className="inline">Labs, orgs, multi-model, custom dev</dd></div>
+                </dl>
+              </div>
             </div>
           </div>
 
           {/* Included Software Section */}
-          <div className="bg-gray-800 p-8 rounded-xl border border-purple-500/30 mb-16 shadow-lg">
-            <h3 className="text-2xl font-semibold text-purple-400 mb-4 text-center">Included Software</h3>
+          <div className="bg-gray-800 p-8 rounded-xl border border-purple-500/30 my-20 shadow-lg">
+            <h3 className="text-2xl font-semibold text-purple-400 mb-4 text-center flex items-center gap-2 justify-center">
+              <svg className="w-6 h-6 text-purple-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" /></svg>
+              What's Inside
+            </h3>
             <div className="text-gray-300">
-              <p className="mb-4">Every LangIQ AI Box comes pre-installed with our comprehensive software stack, configured for optimal performance:</p>
-
-              {/* System Software */}
-              <div className="mb-6">
-                <h4 className="text-xl font-medium text-purple-300 mb-3">System & Environment</h4>
-                <ul className="space-y-2 mb-4">
-                  <li>• <span className="font-medium">LangIQ OS</span> — Ubuntu-based operating system with custom kernel optimizations for AI/ML workloads</li>
-                  <li>• <span className="font-medium">Hardware Acceleration Suite</span> — GPU-accelerated libraries with automatic scaling and load balancing</li>
-                  <li>• <span className="font-medium">Performance Toolkit</span> — CUDA, cuDNN, and TensorRT pre-configured with optimized parameters</li>
-                  <li>• <span className="font-medium">Development Environment</span> — Jupyter, VSCode, and PyCharm with LangIQ extensions pre-installed</li>
-                </ul>
+              <p className="mb-4 text-center">Every AI Box includes a fully-optimized software stack for AI/ML development and deployment:</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* System Software */}
+                <div>
+                  <h4 className="text-xl font-medium text-purple-300 mb-3">System & Environment</h4>
+                  <ul className="space-y-2 mb-4">
+                    <li>• <span className="font-medium">LangIQ OS</span>: Ubuntu-based, custom kernel for AI/ML</li>
+                    <li>• <span className="font-medium">Hardware Acceleration Suite</span>: GPU libraries, auto scaling</li>
+                    <li>• <span className="font-medium">Performance Toolkit</span>: CUDA, cuDNN, TensorRT pre-tuned</li>
+                    <li>• <span className="font-medium">Dev Environment</span>: Jupyter, VSCode, PyCharm, LangIQ plugins</li>
+                  </ul>
+                </div>
+                {/* LangIQ Libraries */}
+                <div>
+                  <h4 className="text-xl font-medium text-purple-300 mb-3">LangIQ Library Suite</h4>
+                  <ul className="pl-2 space-y-3 mb-4">
+                    <li className="border-l-2 border-purple-500/50 pl-4 py-1"><span className="font-medium text-purple-200">Prompt Library</span>: 200+ templates, versioning, testing</li>
+                    <li className="border-l-2 border-purple-500/50 pl-4 py-1"><span className="font-medium text-purple-200">RAG/CAG Library</span>: Vector DBs, hybrid/multimodal, connectors</li>
+                    <li className="border-l-2 border-purple-500/50 pl-4 py-1"><span className="font-medium text-purple-200">Tools & MCP</span>: Tool-use, context mgmt, 50+ tools</li>
+                    <li className="border-l-2 border-purple-500/50 pl-4 py-1"><span className="font-medium text-purple-200">LLM Augmentation</span>: PEFT, LoRA, QLoRA, distillation</li>
+                    <li className="border-l-2 border-purple-500/50 pl-4 py-1"><span className="font-medium text-purple-200">LLM Fine-Tune</span>: SFT, RLHF, DPO, data tools</li>
+                    <li className="border-l-2 border-purple-500/50 pl-4 py-1"><span className="font-medium text-purple-200">Agents Orchestration</span>: Multi-agent, memory, monitoring</li>
+                    <li className="border-l-2 border-purple-500/50 pl-4 py-1"><span className="font-medium text-purple-200">App Dev Framework</span>: Auth, user mgmt, deploy templates</li>
+                  </ul>
+                </div>
               </div>
-
-              {/* LangIQ Libraries */}
-              <div className="mb-6">
-                <h4 className="text-xl font-medium text-purple-300 mb-3">LangIQ Library Suite</h4>
-                <p className="mb-3">Our comprehensive collection of libraries designed to accelerate AI development and deployment:</p>
-                <ul className="pl-2 space-y-3 mb-4">
-                  <li className="border-l-2 border-purple-500/50 pl-4 py-1">
-                    <span className="font-medium text-purple-200">LangIQ Prompt Library</span>
-                    <p className="mt-1">Streamline prompt engineering with templates, versioning, and optimization tools. Includes 200+ prompt templates for common tasks and automated prompt testing framework.</p>
-                  </li>
-                  <li className="border-l-2 border-purple-500/50 pl-4 py-1">
-                    <span className="font-medium text-purple-200">LangIQ RAG/CAG Library</span>
-                    <p className="mt-1">Build advanced retrieval and context-augmented systems with support for vector databases, hybrid search, and multi-modal context integration. Pre-configured connectors for PostgreSQL, Chroma, Pinecone and more.</p>
-                  </li>
-                  <li className="border-l-2 border-purple-500/50 pl-4 py-1">
-                    <span className="font-medium text-purple-200">LangIQ Tools and MCP Library</span>
-                    <p className="mt-1">Extend AI capabilities with tools and multi-context processing. Includes tool-use frameworks, context window management, and function calling abstractions with 50+ ready-to-use tools.</p>
-                  </li>
-                  <li className="border-l-2 border-purple-500/50 pl-4 py-1">
-                    <span className="font-medium text-purple-200">LangIQ LLM Augmentation Library</span>
-                    <p className="mt-1">Enhance models with domain-specific knowledge through PEFT, LoRA, and QLoRA techniques. Supports knowledge distillation and model merging with automated evaluation pipelines.</p>
-                  </li>
-                  <li className="border-l-2 border-purple-500/50 pl-4 py-1">
-                    <span className="font-medium text-purple-200">LangIQ LLM Fine-Tune Library</span>
-                    <p className="mt-1">Optimize models for specific use cases with easy-to-use APIs for supervised fine-tuning, RLHF, and DPO. Includes data preparation tools and evaluation frameworks.</p>
-                  </li>
-                  <li className="border-l-2 border-purple-500/50 pl-4 py-1">
-                    <span className="font-medium text-purple-200">LangIQ Agents Orchestration Library</span>
-                    <p className="mt-1">Create and manage AI agent workflows with agent communication protocols, memory management, and monitoring tools. Supports multi-agent systems with 20+ agent templates.</p>
-                  </li>
-                  <li className="border-l-2 border-purple-500/50 pl-4 py-1">
-                    <span className="font-medium text-purple-200">LangIQ Application Development Framework</span>
-                    <p className="mt-1">Build production-ready AI applications with authentication, user management, monitoring, and deployment tools. Includes templates for web, mobile, and API-based AI applications.</p>
-                  </li>
-                </ul>
-              </div>
-
               {/* Additional Software */}
-              <div className="mb-6">
-                <h4 className="text-xl font-medium text-purple-300 mb-3">Tools & Utilities</h4>
-                <ul className="space-y-2 mb-4">
-                  <li>• <span className="font-medium">LangIQ AI Studio</span> — Visual development environment for building and testing AI applications</li>
-                  <li>• <span className="font-medium">LangIQ Monitoring Dashboard</span> — Real-time performance tracking and resource management</li>
-                  <li>• <span className="font-medium">Model Repository Manager</span> — Organize, version and deploy models with one-click inference endpoints</li>
-                  <li>• <span className="font-medium">Data Processing Pipeline</span> — ETL tools optimized for AI training and fine-tuning datasets</li>
-                </ul>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div>
+                  <h4 className="text-xl font-medium text-purple-300 mb-3">Tools & Utilities</h4>
+                  <ul className="space-y-2 mb-4">
+                    <li>• <span className="font-medium">AI Studio</span>: Visual AI app builder</li>
+                    <li>• <span className="font-medium">Monitoring Dashboard</span>: Real-time tracking</li>
+                    <li>• <span className="font-medium">Model Repo Manager</span>: Version, deploy, endpoints</li>
+                    <li>• <span className="font-medium">Data Pipeline</span>: ETL for AI datasets</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-xl font-medium text-purple-300 mb-3">Support & Resources</h4>
+                  <ul className="space-y-2">
+                    <li>• 1 year updates & security patches</li>
+                    <li>• Early access to new features</li>
+                    <li>• Full docs & code samples</li>
+                    <li>• Learning Hub: tutorials, workshops, certs</li>
+                    <li>• Community forum & direct engineer access</li>
+                  </ul>
+                </div>
               </div>
-
-              {/* Support & Updates */}
-              <div className="mb-4">
-                <h4 className="text-xl font-medium text-purple-300 mb-3">Support & Resources</h4>
-                <ul className="space-y-2">
-                  <li>• One year of software updates and security patches with automated deployment</li>
-                  <li>• Priority access to new LangIQ library releases and beta features</li>
-                  <li>• Comprehensive documentation and code examples for all libraries</li>
-                  <li>• Access to LangIQ Learning Hub with tutorials, workshops and certification courses</li>
-                  <li>• Community forum membership with direct access to LangIQ engineers</li>
-                </ul>
-              </div>
-
               <div className="mt-6 p-4 bg-purple-900/20 rounded-lg border border-purple-500/30">
                 <p className="text-center text-purple-200">
-                  All software components are optimized for your specific hardware configuration and regularly updated to ensure maximum performance and compatibility.
+                  All software is tuned for your hardware and updated regularly for peak performance and compatibility.
                 </p>
               </div>
             </div>
@@ -243,24 +201,23 @@ export default function Home() {
 
           {/* FAQ Section */}
           <div className="mb-16">
-
-            <h3 className="text-3xl font-semibold text-purple-400 mb-10 text-center">Frequently Asked Questions</h3>
+            <h3 className="text-3xl font-semibold text-purple-400 mb-10 text-center">FAQ</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-gray-800/50 p-6 rounded-xl">
-                <h4 className="text-xl font-medium text-purple-400 mb-2">Is custom configuration available?</h4>
-                <p className="text-gray-300">Yes, we offer customization options for all AI Box models to meet your specific requirements. Contact our team for details.</p>
+                <h4 className="text-xl font-medium text-purple-400 mb-2">Custom configuration?</h4>
+                <p className="text-gray-300">Yes! All models can be customized. Contact us for tailored specs.</p>
               </div>
               <div className="bg-gray-800/50 p-6 rounded-xl">
                 <h4 className="text-xl font-medium text-purple-400 mb-2">What support is included?</h4>
-                <p className="text-gray-300">Each AI Box includes 12 months of priority technical support covering both hardware and software components.</p>
+                <p className="text-gray-300">12 months of priority support for hardware and software.</p>
               </div>
               <div className="bg-gray-800/50 p-6 rounded-xl">
-                <h4 className="text-xl font-medium text-purple-400 mb-2">Can I run third-party AI frameworks?</h4>
-                <p className="text-gray-300">Absolutely. While our LangIQ libraries are pre-installed, the systems support all major AI frameworks including PyTorch, TensorFlow, and JAX.</p>
+                <h4 className="text-xl font-medium text-purple-400 mb-2">Third-party AI frameworks?</h4>
+                <p className="text-gray-300">Absolutely. PyTorch, TensorFlow, JAX, and more are fully supported.</p>
               </div>
               <div className="bg-gray-800/50 p-6 rounded-xl">
-                <h4 className="text-xl font-medium text-purple-400 mb-2">What's the typical delivery timeframe?</h4>
-                <p className="text-gray-300">Standard configurations ship within 2-3 weeks. Custom configurations may take 4-6 weeks depending on specifications.</p>
+                <h4 className="text-xl font-medium text-purple-400 mb-2">Delivery timeframe?</h4>
+                <p className="text-gray-300">Standard: 2-3 weeks. Custom: 4-6 weeks, depending on specs.</p>
               </div>
             </div>
           </div>

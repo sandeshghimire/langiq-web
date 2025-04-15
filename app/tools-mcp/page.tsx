@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 // Sample Python code string to avoid JSX evaluation issues
 const codeExample = `from langiq_prompt_library import LangiqClient
@@ -66,13 +66,19 @@ export default function PromptEngineering() {
         features: false,
         cta: false
     });
+    // Section refs for smooth scroll
+    const heroRef = useRef(null);
+    const pythonRef = useRef(null);
+    const jsRef = useRef(null);
+    const featuresRef = useRef(null);
+    const ctaRef = useRef(null);
+    // Back to top button state
+    const [showTop, setShowTop] = useState(false);
 
-    // Effect for scroll-based animations
+    // Effect for scroll-based animations and back-to-top
     useEffect(() => {
         const handleScroll = () => {
             const scrollPosition = window.scrollY + window.innerHeight;
-
-            // Update visibility state based on scroll position
             setIsVisible({
                 hero: scrollPosition > 200,
                 image: scrollPosition > 600,
@@ -80,20 +86,35 @@ export default function PromptEngineering() {
                 features: scrollPosition > 1800,
                 cta: scrollPosition > 2600
             });
+            setShowTop(window.scrollY > 400);
         };
-
-        // Add scroll event listener
         window.addEventListener('scroll', handleScroll);
-        handleScroll(); // Initial check
-
-        // Cleanup
+        handleScroll();
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Smooth scroll handler
+    const scrollToSection = (ref: any) => {
+        if (ref.current) {
+            ref.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-950">
+        <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-950 relative">
+            {/* Sticky Navigation Bar */}
+            <nav className="sticky top-0 z-30 bg-gray-950/80 backdrop-blur border-b border-purple-900/20 shadow-sm">
+                <ul className="flex justify-center gap-6 py-3 text-sm md:text-base font-medium">
+                    <li><button aria-label="Overview" className="hover:text-purple-400 focus:text-purple-400 transition-colors" onClick={() => scrollToSection(heroRef)}>Overview</button></li>
+                    <li><button aria-label="Python" className="hover:text-purple-400 focus:text-purple-400 transition-colors" onClick={() => scrollToSection(pythonRef)}>Python</button></li>
+                    <li><button aria-label="JavaScript" className="hover:text-purple-400 focus:text-purple-400 transition-colors" onClick={() => scrollToSection(jsRef)}>JavaScript</button></li>
+                    <li><button aria-label="Features" className="hover:text-purple-400 focus:text-purple-400 transition-colors" onClick={() => scrollToSection(featuresRef)}>Features</button></li>
+                    <li><button aria-label="Get Started" className="hover:text-purple-400 focus:text-purple-400 transition-colors" onClick={() => scrollToSection(ctaRef)}>Get Started</button></li>
+                </ul>
+            </nav>
+
             {/* Hero section with animated gradient */}
-            <section className="py-20 relative overflow-hidden">
+            <section ref={heroRef} className="py-20 relative overflow-hidden" aria-label="Overview">
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-gray-900 animate-gradient-slow"></div>
                 <div className="grid-bg absolute inset-0 opacity-10 animate-pulse-slower"></div>
                 <div className="mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -109,7 +130,7 @@ export default function PromptEngineering() {
             </section>
 
             {/* Hero image section */}
-            <section className="py-16 relative">
+            <section className="py-16 relative" aria-label="AI Studio Image">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className={`relative rounded-xl overflow-hidden shadow-2xl border border-purple-700/30 transition-all duration-1000 transform ${isVisible.image ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
                         <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 animate-pulse-slow"></div>
@@ -132,7 +153,7 @@ export default function PromptEngineering() {
             </section>
 
             {/* Introduction section with Python code editor */}
-            <section className="py-28 relative">
+            <section ref={pythonRef} className="py-28 relative" aria-label="Python Example">
                 <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-gray-950 opacity-80"></div>
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className={`text-center mb-16 transition-all duration-1000 transform ${isVisible.intro ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -196,7 +217,7 @@ export default function PromptEngineering() {
                     </div>
 
                     {/* JavaScript section with code and description side by side - reversed order */}
-                    <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16 items-center">
+                    <div ref={jsRef} className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16 items-center" aria-label="JavaScript Example">
                         <div className="lg:col-span-2 space-y-6 animate-fade-in-right delay-300">
                             <h3 className="font-handwritten text-3xl text-purple-400 mb-4">JavaScript Tools and MCP Library</h3>
                             <p className="text-gray-300 mb-4 text-lg leading-relaxed">
@@ -251,7 +272,7 @@ export default function PromptEngineering() {
             </section>
 
             {/* Features section with cards */}
-            <section className="py-28 bg-gradient-to-b from-gray-950 to-purple-950/30">
+            <section ref={featuresRef} className="py-28 bg-gradient-to-b from-gray-950 to-purple-950/30" aria-label="Key Features">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className={`text-center mb-20 transition-all duration-1000 transform ${isVisible.features ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                         <h2 className="font-handwritten text-5xl text-purple-400 mb-8 animate-glow">Key Features</h2>
@@ -317,7 +338,7 @@ export default function PromptEngineering() {
             </section>
 
             {/* CTA section */}
-            <section className="py-28 bg-gradient-to-br from-purple-950/30 to-gray-900">
+            <section ref={ctaRef} className="py-28 bg-gradient-to-br from-purple-950/30 to-gray-900" aria-label="Get Started">
                 <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
                     <div className={`transition-all duration-1000 transform ${isVisible.cta ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
                         <h2 className="font-handwritten text-5xl mb-10 text-white animate-glow font-bold tracking-tight">Start Building With LangIQ Today</h2>
@@ -337,6 +358,17 @@ export default function PromptEngineering() {
                     </div>
                 </div>
             </section>
+
+            {/* Back to Top Button */}
+            {showTop && (
+                <button
+                    aria-label="Back to top"
+                    onClick={() => scrollToSection(heroRef)}
+                    className="fixed bottom-8 right-8 z-40 bg-purple-700 hover:bg-purple-500 text-white p-3 rounded-full shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-purple-400 animate-bounce-subtle"
+                >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" /></svg>
+                </button>
+            )}
         </div>
     );
 }

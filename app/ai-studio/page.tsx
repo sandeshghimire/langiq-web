@@ -58,44 +58,45 @@ export default function Home() {
 
           {/* Download section */}
           <div className="mt-12 text-center">
-            <h3 className="text-2xl font-semibold text-purple-400 mb-8">Download AI Studio (Coming Soon)</h3>
+            <h3 className="text-2xl font-semibold text-purple-400 mb-4">Download AI Studio</h3>
+            <p className="text-gray-400 mb-8">Public downloads launching soon. Stay tuned!</p>
             <div className="flex flex-wrap justify-center gap-6">
-              <a
-                href="#windows-x86"
-                className="inline-flex items-center gap-3 bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg text-white font-medium transition-all duration-300 shadow-lg hover:shadow-purple-500/30 hover:scale-105"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v18m0 0h13V3H9z M9 15H3V9h6v6z" />
-                </svg>
-                <span>Windows (x86)</span>
-              </a>
-              <a
-                href="#windows-arm64"
-                className="inline-flex items-center gap-3 bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg text-white font-medium transition-all duration-300 shadow-lg hover:shadow-purple-500/30 hover:scale-105"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v18m0 0h13V3H9z M9 15H3V9h6v6z" />
-                </svg>
-                <span>Windows (ARM64)</span>
-              </a>
-              <a
-                href="#linux"
-                className="inline-flex items-center gap-3 bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg text-white font-medium transition-all duration-300 shadow-lg hover:shadow-purple-500/30 hover:scale-105"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2m14 0v5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9" />
-                </svg>
-                <span>Linux</span>
-              </a>
-              <a
-                href="#macos"
-                className="inline-flex items-center gap-3 bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg text-white font-medium transition-all duration-300 shadow-lg hover:shadow-purple-500/30 hover:scale-105"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z M12 4v2m5.66 2.34l-1.41 1.41M20 12h-2m-1.93 6.07l-1.41-1.41M12 18v2M7.76 16.66l-1.41 1.41M4 12H2m3.34-5.66l-1.41-1.41" />
-                </svg>
-                <span>macOS</span>
-              </a>
+              {[
+                {
+                  label: 'Windows (x86)', icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v18m0 0h13V3H9z M9 15H3V9h6v6z" /></svg>
+                  )
+                },
+                {
+                  label: 'Windows (ARM64)', icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v18m0 0h13V3H9z M9 15H3V9h6v6z" /></svg>
+                  )
+                },
+                {
+                  label: 'Linux', icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2m14 0v5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9" /></svg>
+                  )
+                },
+                {
+                  label: 'macOS', icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z M12 4v2m5.66 2.34l-1.41 1.41M20 12h-2m-1.93 6.07l-1.41-1.41M12 18v2M7.76 16.66l-1.41 1.41M4 12H2m3.34-5.66l-1.41-1.41" /></svg>
+                  )
+                },
+              ].map((platform, idx) => (
+                <button
+                  key={platform.label}
+                  type="button"
+                  disabled
+                  aria-disabled="true"
+                  className="inline-flex items-center gap-3 bg-purple-700/60 cursor-not-allowed px-6 py-3 rounded-lg text-white font-medium transition-all duration-300 shadow-lg opacity-70 border-2 border-dashed border-purple-400 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 relative group"
+                  tabIndex={-1}
+                  title="Download not available yet"
+                >
+                  {platform.icon}
+                  <span>{platform.label}</span>
+                  <span className="absolute -top-3 right-2 bg-yellow-400 text-xs text-gray-900 px-2 py-0.5 rounded shadow group-hover:scale-110 transition-transform">Soon</span>
+                </button>
+              ))}
             </div>
           </div>
         </div>

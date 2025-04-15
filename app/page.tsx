@@ -59,7 +59,7 @@ export default function Home() {
   return (
     <div className={`min-h-screen ${montserrat.className}`}>
       {/* Hero section */}
-      <section className="py-20 relative overflow-hidden">
+      <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-violet-900/40 to-gray-900/90"></div>
         <div className="grid-bg absolute inset-0 opacity-20"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -70,30 +70,40 @@ export default function Home() {
             variants={staggerContainer}
           >
             <motion.h1
-              className="font-handwritten text-6xl md:text-7xl lg:text-8xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400"
+              className="font-handwritten text-6xl md:text-7xl lg:text-8xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400"
               variants={fadeIn}
             >
-              framework for LLM Application
+              Build Next-Gen LLM Applications
             </motion.h1>
-            <motion.p
-              className="text-xl md:text-2xl text-gray-300 mb-10"
+            <motion.h2
+              className="text-2xl md:text-3xl text-gray-200 mb-6 font-medium"
               variants={fadeIn}
             >
-              A universal framework for LLM application development, designed for organizations of all sizes to adopt AI and language model workflows. Our state-of-the-art AI Studio empowers you to build powerful applications with frontier and open-source language models, customized for your unique challenges.
+              The universal framework for AI-driven innovation
+            </motion.h2>
+            <motion.p
+              className="text-lg md:text-xl text-gray-300 mb-10"
+              variants={fadeIn}
+            >
+              Empower your organization to create, deploy, and manage powerful language model applications. langiq's AI Studio bridges the gap between cutting-edge models and real-world business needs.
             </motion.p>
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center"
               variants={fadeIn}
             >
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.96 }}>
                 <Link href="/ai-studio"
-                  className="bg-purple-600 hover:bg-purple-700 px-8 py-3 rounded-lg text-white font-medium transition-all shadow-lg hover:shadow-purple-500/30 inline-block">
-                  Explore AI Studio
+                  className="bg-purple-600 hover:bg-purple-700 px-8 py-3 rounded-lg text-white font-semibold text-lg transition-all shadow-lg hover:shadow-purple-500/40 inline-block focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  aria-label="Explore AI Studio"
+                >
+                  Get Started with AI Studio
                 </Link>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.96 }}>
                 <Link href="/about"
-                  className="bg-gray-800 hover:bg-gray-700 px-8 py-3 rounded-lg text-white font-medium transition-colors inline-block">
+                  className="bg-gray-800 hover:bg-gray-700 px-8 py-3 rounded-lg text-white font-semibold text-lg transition-colors inline-block focus:outline-none focus:ring-2 focus:ring-purple-400"
+                  aria-label="Learn more about langiq"
+                >
                   Learn More
                 </Link>
               </motion.div>
@@ -106,22 +116,22 @@ export default function Home() {
       <section className="py-16 bg-gray-900/95">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
-            className="font-handwritten text-4xl md:text-5xl text-center mb-16 text-purple-400"
+            className="font-handwritten text-4xl md:text-5xl text-center mb-6 text-purple-400"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            Case Studies
+            Explore Our Case Studies
           </motion.h2>
           <motion.p
-            className="text-xl text-gray-300 text-center mb-12 max-w-3xl mx-auto"
+            className="text-lg text-gray-300 text-center mb-12 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Discover how organizations are leveraging langiq's powerful framework to transform their AI capabilities and solve real-world challenges.
+            See how organizations use langiq to accelerate AI adoption, streamline workflows, and unlock new business value across industries.
           </motion.p>
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
@@ -134,18 +144,19 @@ export default function Home() {
               <motion.div key={index} variants={cardVariant}>
                 <motion.div
                   whileHover={{
-                    scale: 1.03,
-                    boxShadow: "0 10px 25px -5px rgba(124, 58, 237, 0.3)",
+                    scale: 1.04,
+                    boxShadow: "0 10px 25px -5px rgba(124, 58, 237, 0.25)",
                     borderColor: "#a78bfa"
                   }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.18 }}
                 >
                   <Link
                     href={service.path}
-                    className="bg-gray-800 hover:bg-gray-750 p-6 rounded-xl transition-all border border-gray-700 block h-full"
+                    className="bg-gray-800 hover:bg-gray-750 p-6 rounded-xl transition-all border border-gray-700 block h-full focus:outline-none focus:ring-2 focus:ring-purple-400"
+                    aria-label={`Read case study: ${service.title}`}
                   >
                     <h3 className="font-handwritten text-2xl text-purple-400 mb-3">{service.title}</h3>
-                    <p className="text-gray-300">{service.description}</p>
+                    <p className="text-gray-300 text-base">{service.description}</p>
                   </Link>
                 </motion.div>
               </motion.div>
@@ -179,7 +190,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.4 }}
             >
-              <span className="font-semibold text-purple-400">Mission:</span> To democratize AI application development by providing organizations of all sizes with a universal framework that bridges the gap between powerful language models and practical business solutions.
+              <span className="font-semibold text-purple-400">Mission:</span> Democratize AI application development for all organizations by providing a universal framework that bridges the gap between powerful language models and practical business solutions.
             </motion.p>
             <motion.p
               className="text-xl text-gray-300 mb-10"
@@ -188,7 +199,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.5 }}
             >
-              <span className="font-semibold text-purple-400">Vision:</span> To empower every organization with customized AI capabilities through our intuitive AI Studio, enabling them to harness both frontier and open-source language models for their unique challenges.
+              <span className="font-semibold text-purple-400">Vision:</span> Empower every organization with custom AI capabilities through our intuitive AI Studio, enabling them to harness both frontier and open-source language models for their unique challenges.
             </motion.p>
 
             <motion.div
@@ -199,22 +210,22 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.6 }}
             >
               <div className="bg-gray-800/60 p-4 rounded-lg">
-                <h3 className="text-purple-400 font-semibold mb-2">Powerful Collaboration</h3>
-                <p className="text-gray-300">Work together with colleagues on your AI projects, tracking progress and sharing insights through our collaborative workspace environment.</p>
+                <h3 className="text-purple-400 font-semibold mb-2">Collaborative Workspace</h3>
+                <p className="text-gray-300">Work with your team on AI projects, track progress, and share insights in a secure, collaborative environment.</p>
               </div>
               <div className="bg-gray-800/60 p-4 rounded-lg">
                 <h3 className="text-purple-400 font-semibold mb-2">Model Versatility</h3>
-                <p className="text-gray-300">Seamlessly integrate both frontier and open-source language models, combining their strengths for your specific business requirements.</p>
+                <p className="text-gray-300">Integrate both frontier and open-source language models, combining their strengths for your business needs.</p>
               </div>
               <div className="bg-gray-800/60 p-4 rounded-lg">
                 <h3 className="text-purple-400 font-semibold mb-2">End-to-End Development</h3>
-                <p className="text-gray-300">Monitor, debug, and optimize your AI applications through our comprehensive graphical interface designed for developers of all skill levels.</p>
+                <p className="text-gray-300">Monitor, debug, and optimize your AI applications with our comprehensive graphical interface for all skill levels.</p>
               </div>
             </motion.div>
 
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.07 }}
+              whileTap={{ scale: 0.96 }}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -222,7 +233,8 @@ export default function Home() {
             >
               <Link
                 href="/contact"
-                className="inline-block bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-lg text-white font-medium text-lg transition-all shadow-lg hover:shadow-purple-500/30"
+                className="inline-block bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-lg text-white font-semibold text-lg transition-all shadow-lg hover:shadow-purple-500/40 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                aria-label="Contact langiq to start building"
               >
                 Start Building Today
               </Link>
