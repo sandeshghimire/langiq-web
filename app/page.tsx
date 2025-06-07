@@ -48,11 +48,11 @@ export default function Home() {
   };
 
   return (
-    <div className={`relative ${montserrat.className}`}>
+    <div className={`relative bg-gray-900 min-h-screen ${montserrat.className}`}>
       {/* Scroll Progress Indicator */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-800 z-50">
+      <div className="fixed top-0 left-0 w-full h-1 bg-gray-800/50 z-50 backdrop-blur-sm">
         <div
-          className="h-full bg-gradient-to-r from-purple-500 to-cyan-500 transition-all duration-300"
+          className="h-full bg-gradient-to-r from-purple-500 via-purple-400 to-cyan-400 transition-all duration-300 shadow-lg"
           style={{ width: `${((activeSection + 1) / totalSections) * 100}%` }}
         />
       </div>
@@ -63,9 +63,9 @@ export default function Home() {
           <button
             key={index}
             onClick={() => scrollToSection(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${activeSection === index
-              ? 'bg-purple-500 scale-125'
-              : 'bg-gray-600 hover:bg-gray-400'
+            className={`w-3 h-3 rounded-full transition-all duration-300 backdrop-blur-sm ${activeSection === index
+              ? 'bg-gradient-to-r from-purple-500 to-cyan-400 scale-125 shadow-lg shadow-purple-500/30'
+              : 'bg-gray-600/70 hover:bg-gray-400/70 border border-gray-500/30'
               }`}
             aria-label={`Go to section ${index + 1}`}
           />
@@ -79,7 +79,7 @@ export default function Home() {
             onClick={() => scrollToSection(activeSection + 1)}
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="text-white/70 hover:text-white transition-colors"
+            className="text-white/70 hover:text-white transition-all duration-300 p-2 rounded-full backdrop-blur-sm bg-gray-800/30 border border-gray-600/30 hover:border-purple-500/50"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
@@ -90,7 +90,7 @@ export default function Home() {
 
       <div
         id="scroll-container"
-        className="h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden scroll-smooth"
+        className="h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden scroll-smooth bg-gray-900"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         <style jsx>{`
