@@ -17,33 +17,91 @@ const montserrat = Montserrat({
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState(0);
-  const totalSections = 5; // Updated from 4 to 5
+  const [isScrolling, setIsScrolling] = useState(false);
+  const totalSections = 5;
 
   useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+
     const handleScroll = () => {
       const scrollContainer = document.getElementById('scroll-container');
-      if (scrollContainer) {
+      if (scrollContainer && !isScrolling) {
         const scrollTop = scrollContainer.scrollTop;
-        const windowHeight = window.innerHeight;
-        const currentSection = Math.round(scrollTop / windowHeight);
-        setActiveSection(currentSection);
+        const containerHeight = scrollContainer.clientHeight;
+
+        // More accurate section detection
+        const currentSection = Math.floor((scrollTop + containerHeight / 2) / containerHeight);
+        const boundedSection = Math.max(0, Math.min(currentSection, totalSections - 1));
+
+        setActiveSection(boundedSection);
+      }
+
+      // Clear existing timeout and set a new one
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        setIsScrolling(false);
+      }, 150);
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Only handle navigation keys when not focused on an input element
+      if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) {
+        return;
+      }
+
+      if (event.key === 'ArrowDown' || event.key === 'PageDown') {
+        event.preventDefault();
+        if (activeSection < totalSections - 1) {
+          scrollToSection(activeSection + 1);
+        }
+      } else if (event.key === 'ArrowUp' || event.key === 'PageUp') {
+        event.preventDefault();
+        if (activeSection > 0) {
+          scrollToSection(activeSection - 1);
+        }
+      } else if (event.key === 'Home') {
+        event.preventDefault();
+        scrollToSection(0);
+      } else if (event.key === 'End') {
+        event.preventDefault();
+        scrollToSection(totalSections - 1);
       }
     };
 
     const scrollContainer = document.getElementById('scroll-container');
     if (scrollContainer) {
-      scrollContainer.addEventListener('scroll', handleScroll);
-      return () => scrollContainer.removeEventListener('scroll', handleScroll);
+      scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
+      document.addEventListener('keydown', handleKeyDown);
+
+      // Initial section detection
+      handleScroll();
+
+      return () => {
+        scrollContainer.removeEventListener('scroll', handleScroll);
+        document.removeEventListener('keydown', handleKeyDown);
+        clearTimeout(scrollTimeout);
+      };
     }
-  }, []);
+  }, [isScrolling, totalSections, activeSection]);
 
   const scrollToSection = (sectionIndex: number) => {
     const scrollContainer = document.getElementById('scroll-container');
-    if (scrollContainer) {
+    if (scrollContainer && sectionIndex !== activeSection) {
+      setIsScrolling(true);
+
+      const containerHeight = scrollContainer.clientHeight;
+      const targetScrollTop = sectionIndex * containerHeight;
+
       scrollContainer.scrollTo({
-        top: sectionIndex * window.innerHeight,
+        top: targetScrollTop,
         behavior: 'smooth'
       });
+
+      // Let the scroll event handler update the active section naturally
+      // Reset scrolling flag after animation
+      setTimeout(() => {
+        setIsScrolling(false);
+      }, 600);
     }
   };
 
@@ -91,11 +149,46 @@ export default function Home() {
       <div
         id="scroll-container"
         className="h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden scroll-smooth bg-gray-900"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        style={{
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+          scrollSnapType: 'y mandatory',
+          overscrollBehavior: 'contain',
+          touchAction: 'pan-y',
+          position: 'relative',
+          zIndex: 1
+        }}
       >
         <style jsx>{`
           #scroll-container::-webkit-scrollbar {
             display: none;
+          }
+          #scroll-container {
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-stop: always;
+          }
+          
+          /* Ensure consistent scroll snap behavior */
+          @supports (scroll-snap-type: y mandatory) {
+            #scroll-container {
+              scroll-snap-type: y mandatory;
+            }
+          }
+          
+          /* Optimize for different devices */
+          @media (hover: hover) and (pointer: fine) {
+            /* Desktop - stricter snapping */
+            #scroll-container {
+              scroll-snap-type: y mandatory;
+            }
+          }
+          
+          @media (hover: none) and (pointer: coarse) {
+            /* Mobile - more flexible snapping */
+            #scroll-container {
+              scroll-snap-type: y proximity;
+            }
           }
         `}</style>
 
