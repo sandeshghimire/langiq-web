@@ -37,7 +37,7 @@ export default function ChallengeSection() {
         <section className="h-screen flex flex-col justify-center py-10 bg-gray-900/95 snap-start" id="challenge">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <motion.h2
-                    className="font-handwritten text-4xl md:text-5xl text-center mb-12 text-purple-400"
+                    className="font-handwritten text-4xl md:text-5xl text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -53,22 +53,22 @@ export default function ChallengeSection() {
                     viewport={{ once: true, amount: 0.1 }}
                 >
                     <motion.h3
-                        className="font-handwritten text-3xl md:text-4xl text-center mb-8 text-cyan-400"
+                        className="font-handwritten text-2xl md:text-3xl text-center mb-8 text-cyan-400"
                         variants={fadeIn}
                     >
                         From Potential to Practical LLM Integration
                     </motion.h3>
                     <motion.p
-                        className="text-lg text-gray-300 mb-10 text-center max-w-3xl mx-auto"
+                        className="text-lg text-gray-300 mb-12 text-center max-w-4xl mx-auto leading-relaxed"
                         variants={fadeIn}
                     >
                         Many organizations recognize the immense potential of LLMs but face significant hurdles in effectively migrating their existing processes. Key challenges include:
                     </motion.p>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                         {challenges.map((challenge, index) => (
-                            <motion.div key={index} variants={cardVariant} className="bg-gray-800 p-6 rounded-xl border border-gray-700">
-                                <h4 className="font-semibold text-xl text-purple-400 mb-2">{challenge.title}</h4>
-                                <p className="text-gray-300">{challenge.description}</p>
+                            <motion.div key={index} variants={cardVariant} className="bg-gray-800/60 backdrop-blur-sm p-6 rounded-xl border border-gray-600/30 hover:border-purple-500/30 transition-all duration-300">
+                                <h4 className="font-semibold text-xl text-purple-400 mb-3">{challenge.title}</h4>
+                                <p className="text-gray-300 leading-relaxed">{challenge.description}</p>
                             </motion.div>
                         ))}
                     </div>

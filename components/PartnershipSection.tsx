@@ -18,8 +18,9 @@ export default function PartnershipSection() {
     ];
 
     return (
-        <section className="h-screen flex flex-col justify-center py-10 bg-gradient-to-br from-gray-900/95 to-violet-950/95 snap-start" id="partnership">
-            <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 w-full">
+        <section className="h-screen flex flex-col justify-center py-10 bg-gray-900/95 snap-start" id="partnership">
+            <div className="absolute inset-0 bg-gradient-to-br from-violet-900/20 to-gray-900/40"></div>
+            <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 w-full relative z-10">
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
@@ -27,7 +28,7 @@ export default function PartnershipSection() {
                     transition={{ duration: 0.8 }}
                 >
                     <motion.h2
-                        className="font-handwritten text-4xl md:text-5xl mb-10 text-white"
+                        className="font-handwritten text-4xl md:text-5xl mb-12 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400"
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -37,7 +38,7 @@ export default function PartnershipSection() {
                     </motion.h2>
 
                     <motion.div
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10"
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -47,16 +48,16 @@ export default function PartnershipSection() {
                             <motion.div
                                 key={index}
                                 variants={cardVariant}
-                                className={`bg-gray-800/60 p-4 rounded-lg ${index === 3 && 'md:col-start-1 lg:col-start-auto'} ${index === 4 && 'md:col-start-2 lg:col-start-auto md:col-span-1 lg:col-span-1'}`}
+                                className={`bg-gray-800/60 backdrop-blur-sm p-6 rounded-xl border border-gray-600/30 hover:border-purple-500/30 transition-all duration-300 ${index === 3 && 'md:col-start-1 lg:col-start-auto'} ${index === 4 && 'md:col-start-2 lg:col-start-auto md:col-span-1 lg:col-span-1'}`}
                             >
-                                <h3 className="text-purple-400 font-semibold text-xl mb-2">{point.title}</h3>
-                                <p className="text-gray-300">{point.description}</p>
+                                <h3 className="text-purple-400 font-semibold text-xl mb-3">{point.title}</h3>
+                                <p className="text-gray-300 leading-relaxed">{point.description}</p>
                             </motion.div>
                         ))}
                     </motion.div>
 
                     <motion.p
-                        className="text-lg text-gray-300 mb-10"
+                        className="text-lg text-gray-300 mb-12 leading-relaxed"
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -75,7 +76,7 @@ export default function PartnershipSection() {
                     >
                         <Link
                             href="/contact"
-                            className="inline-block bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-lg text-white font-medium text-lg transition-all shadow-lg hover:shadow-purple-500/30"
+                            className="inline-block bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 px-8 py-4 rounded-xl text-white font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-purple-500/30"
                         >
                             Start Your Migration
                         </Link>
