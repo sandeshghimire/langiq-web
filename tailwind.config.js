@@ -85,6 +85,11 @@ module.exports = {
                 'gradient-conic':
                     'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
             },
+            transitionTimingFunction: {
+                'in-out-cubic': 'cubic-bezier(0.4, 0, 0.2, 1)',
+                'in-out-quart': 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                'in-out-smooth': 'cubic-bezier(0.23, 1, 0.32, 1)',
+            },
         },
     },
     plugins: [],

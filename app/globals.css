@@ -261,3 +261,71 @@ p {
   opacity: 0;
   animation: fadeIn 0.5s ease forwards;
 }
+
+/* Enhanced Smooth Scrolling Optimizations */
+
+/* Global smooth scrolling with better performance */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Optimize for smooth animations */
+* {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Enhanced scroll container optimizations */
+.scroll-container-enhanced {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: y mandatory;
+  scroll-snap-stop: always;
+  overscroll-behavior: contain;
+  transform: translateZ(0);
+  /* Hardware acceleration */
+  will-change: scroll-position;
+  contain: layout style paint;
+}
+
+/* Smooth transitions for scroll indicators */
+.scroll-indicator {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+}
+
+/* Performance optimizations for animations */
+.animate-optimized {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .scroll-container-enhanced {
+    scroll-behavior: auto;
+  }
+}
+
+/* Enhanced easing curves for smoother animations */
+.ease-in-out-cubic {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ease-in-out-quart {
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.ease-in-out-smooth {
+  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}
