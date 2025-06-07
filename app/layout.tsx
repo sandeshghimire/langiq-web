@@ -3,12 +3,10 @@ import { Montserrat } from "next/font/google";
 import { Caveat } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import AnimatedLayout from "../components/AnimatedLayout";
 import BackgroundWrapper from "../components/BackgroundWrapper";
 import { Toaster } from 'react-hot-toast';
 import Script from "next/script";
-import ConditionalFooter from "../components/ConditionalFooter";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -115,7 +113,6 @@ export default function RootLayout({
         <AnimatedLayout>
           {children}
         </AnimatedLayout>
-        <ConditionalFooter />
         <Toaster position="top-right" />
       </body>
     </html>

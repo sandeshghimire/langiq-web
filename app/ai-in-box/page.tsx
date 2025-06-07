@@ -19,12 +19,12 @@ export default function Home() {
   }, []);
 
   return (
-    <div className={`min-h-screen ${montserrat.className}`}>
-      {/* Hero section */}
-      <section className="py-20 relative overflow-hidden">
+    <div className={`${montserrat.className} snap-y snap-mandatory overflow-y-scroll h-screen`}>
+      {/* Hero section - Full Screen */}
+      <section className="min-h-screen py-20 relative overflow-hidden flex items-center snap-start snap-always">
         <div className="absolute inset-0 bg-gradient-to-br from-violet-900/20 to-gray-900"></div>
         <div className="grid-bg absolute inset-0 opacity-10"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="text-center max-w-3xl mx-auto">
             <h1
               className={`font-handwritten text-6xl md:text-7xl lg:text-8xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400 transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
@@ -34,29 +34,40 @@ export default function Home() {
             <p
               className={`text-xl md:text-2xl text-gray-300 mb-6 transition-all duration-1000 delay-300 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
             >
-              An all-inclusive framework providing you with powerful hardware, optimized OS, and comprehensive LangIQ libraries
+              Pre-configured AI LLM box solutions where our OS and software stack come pre-installed, helping you seamlessly transition your business to the future of work with LLMs
+            </p>
+            <p
+              className={`text-lg md:text-xl text-gray-400 mb-8 transition-all duration-1000 delay-500 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+            >
+              At LangIQ.ai, we empower your organization to migrate from traditional operations to intelligent, LLM-based workflows, ensuring you unlock transformative efficiencies and achieve measurable business impact
             </p>
           </div>
         </div>
       </section>
 
-      {/* Main content section with hardware info */}
-      <section className={`py-12 bg-gray-900 transition-all duration-1000 delay-700 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Hardware Lineup Introduction */}
-          <div className="text-center mb-16">
+      {/* Hardware Lineup Introduction - Full Screen */}
+      <section className={`min-h-screen bg-gray-900 transition-all duration-1000 delay-700 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} flex items-center snap-start snap-always`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="text-center">
             <h2 className="text-3xl font-semibold text-purple-400 mb-6">LangIQ AI Box Product Lineup</h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-4">
-              Purpose-built hardware solutions optimized for AI workloads, ranging from inference to training at scale.
-              Each system comes with our complete software stack pre-installed.
+              We provide entry-level, mid-tier, and state-of-the-art hardware solutions optimized for AI workloads, ranging from inference to training at scale.
+              Each system comes with our complete software stack pre-installed to help businesses transform their operations.
             </p>
-
+            <p className="text-lg text-gray-400 max-w-4xl mx-auto">
+              From small businesses taking their first steps into AI to enterprises requiring cutting-edge performance,
+              our AI Box lineup ensures you have the right foundation to unlock transformative efficiencies with LLMs.
+            </p>
           </div>
+        </div>
+      </section>
 
-          {/* LangIQ AI Box - x86 (Image on right) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-24">
+      {/* LangIQ AI Box - x86 - Full Screen */}
+      <section className="min-h-screen bg-gray-900 flex items-center snap-start snap-always">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="p-6">
-              <h3 className="text-2xl font-semibold text-purple-400 mb-4">🔹 LangIQ AI Box - x86</h3>
+              <h3 className="text-2xl font-semibold text-purple-400 mb-4">🔹 LangIQ AI Box - x86 (Entry Level)</h3>
               <ul className="space-y-3 text-gray-300">
                 <li><span className="font-medium text-purple-300">CPU:</span> 16 cores, 32 threads</li>
                 <li><span className="font-medium text-purple-300">GPU:</span> 40-core high-performance</li>
@@ -65,7 +76,7 @@ export default function Home() {
                 <li><span className="font-medium text-purple-300">Cooling:</span> Advanced liquid cooling system for sustained performance</li>
                 <li><span className="font-medium text-purple-300">Connectivity:</span> 10Gb Ethernet, WiFi 6E, Bluetooth 5.2</li>
                 <li><span className="font-medium text-purple-300">Best for:</span> Model inference, small to mid-size model training and augmentation</li>
-                <li><span className="font-medium text-purple-300">Ideal use cases:</span> Research prototyping, educational environments, small business AI integration</li>
+                <li><span className="font-medium text-purple-300">Business transformation:</span> Perfect for small businesses starting their LLM journey and transitioning to intelligent workflows</li>
               </ul>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg hover:shadow-purple-500/30 transition-all duration-500">
@@ -78,9 +89,13 @@ export default function Home() {
               />
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* LangIQ AI Box Plus - ARM64 (Image on left) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-24">
+      {/* LangIQ AI Box Plus - ARM64 - Full Screen */}
+      <section className="min-h-screen bg-gray-900 flex items-center snap-start snap-always">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="rounded-xl overflow-hidden shadow-lg hover:shadow-purple-500/30 transition-all duration-500 order-2 md:order-1">
               <Image
                 src="/ai-box-plus.jpg"
@@ -91,7 +106,7 @@ export default function Home() {
               />
             </div>
             <div className="p-6 order-1 md:order-2">
-              <h3 className="text-2xl font-semibold text-purple-400 mb-4">🔹 LangIQ AI Box Plus - ARM64</h3>
+              <h3 className="text-2xl font-semibold text-purple-400 mb-4">🔹 LangIQ AI Box Plus - ARM64 (Mid-Tier)</h3>
               <ul className="space-y-3 text-gray-300">
                 <li><span className="font-medium text-purple-300">CPU:</span> 20-core ARM x64</li>
                 <li><span className="font-medium text-purple-300">GPU:</span> NVIDIA GB10 Superchip</li>
@@ -100,15 +115,19 @@ export default function Home() {
                 <li><span className="font-medium text-purple-300">Power efficiency:</span> Up to 40% lower power consumption vs x86 equivalent</li>
                 <li><span className="font-medium text-purple-300">Thermal design:</span> Optimized for 24/7 operation with minimal noise</li>
                 <li><span className="font-medium text-purple-300">Best for:</span> Medium to high-end model inference, mid-size model training</li>
-                <li><span className="font-medium text-purple-300">Ideal use cases:</span> Production deployment, continuous inference workloads, SME AI solutions</li>
+                <li><span className="font-medium text-purple-300">Business transformation:</span> Ideal for growing businesses scaling their LLM operations and achieving measurable impact</li>
               </ul>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* LangIQ AI Box Pro - ARM64 (Image on right) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-24">
+      {/* LangIQ AI Box Pro - ARM64 - Full Screen */}
+      <section className="min-h-screen bg-gray-900 flex items-center snap-start snap-always">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="p-6">
-              <h3 className="text-2xl font-semibold text-purple-400 mb-4">🔹 LangIQ AI Box Pro - ARM64</h3>
+              <h3 className="text-2xl font-semibold text-purple-400 mb-4">🔹 LangIQ AI Box Pro - ARM64 (State-of-the-Art)</h3>
               <ul className="space-y-3 text-gray-300">
                 <li><span className="font-medium text-purple-300">GPU:</span> 1x NVIDIA Blackwell Ultra</li>
                 <li><span className="font-medium text-purple-300">CPU:</span> 1x Grace-72 Core Neoverse V2</li>
@@ -117,7 +136,7 @@ export default function Home() {
                 <li><span className="font-medium text-purple-300">Hardware acceleration:</span> Dedicated tensor cores for AI/ML operations</li>
                 <li><span className="font-medium text-purple-300">Expansion:</span> Support for additional GPUs and NVMe storage</li>
                 <li><span className="font-medium text-purple-300">Best for:</span> Advanced AI workloads, optimized for medium to high-end model inference and training</li>
-                <li><span className="font-medium text-purple-300">Ideal use cases:</span> Enterprise AI development, computer vision applications, large language model fine-tuning</li>
+                <li><span className="font-medium text-purple-300">Business transformation:</span> Enterprise-grade solution for organizations demanding cutting-edge LLM performance and transformative efficiencies</li>
               </ul>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg hover:shadow-purple-500/30 transition-all duration-500">
@@ -130,9 +149,13 @@ export default function Home() {
               />
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* LangIQ AI Box Pro MAX - ARM64 (Image on left) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-24">
+      {/* LangIQ AI Box Pro MAX - ARM64 - Full Screen */}
+      <section className="min-h-screen bg-gray-900 flex items-center snap-start snap-always">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="rounded-xl overflow-hidden shadow-lg hover:shadow-purple-500/30 transition-all duration-500 order-2 md:order-1">
               <Image
                 src="/ai-box-pro-max.jpg"
@@ -143,7 +166,7 @@ export default function Home() {
               />
             </div>
             <div className="p-6 order-1 md:order-2">
-              <h3 className="text-2xl font-semibold text-purple-400 mb-4">🔹 LangIQ AI Box Pro MAX - ARM64</h3>
+              <h3 className="text-2xl font-semibold text-purple-400 mb-4">🔹 LangIQ AI Box Pro MAX - ARM64 (Ultimate Enterprise)</h3>
               <ul className="space-y-3 text-gray-300">
                 <li><span className="font-medium text-purple-300">CPU:</span> AMD Threadripper with 192 cores</li>
                 <li><span className="font-medium text-purple-300">GPU:</span> Multiple NVIDIA RTX PRO 6000 Blackwell Workstation Edition (up to 4x)</li>
@@ -152,16 +175,20 @@ export default function Home() {
                 <li><span className="font-medium text-purple-300">Networking:</span> Dual 100Gb Ethernet with RDMA support</li>
                 <li><span className="font-medium text-purple-300">Form factor:</span> Rack-mountable with redundant power supply</li>
                 <li><span className="font-medium text-purple-300">Best for:</span> AI power users requiring high-end inference and mid-size model training at scale</li>
-                <li><span className="font-medium text-purple-300">Ideal use cases:</span> Research labs, AI-driven organizations, multi-model inference services, custom model development</li>
+                <li><span className="font-medium text-purple-300">Business transformation:</span> The ultimate solution for large enterprises ready to completely revolutionize their operations with the most advanced LLM capabilities</li>
               </ul>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Included Software Section */}
-          <div className="bg-gray-800 p-8 rounded-xl border border-purple-500/30 mb-16 shadow-lg">
-            <h3 className="text-2xl font-semibold text-purple-400 mb-4 text-center">Included Software</h3>
+      {/* Included Software Section - Full Screen */}
+      <section className="min-h-screen bg-gray-900 flex items-center py-12 snap-start snap-always">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="bg-gray-800 p-8 rounded-xl border border-purple-500/30 shadow-lg max-h-[90vh] overflow-y-auto">
+            <h3 className="text-2xl font-semibold text-purple-400 mb-4 text-center">Pre-Installed Software Stack</h3>
             <div className="text-gray-300">
-              <p className="mb-4">Every LangIQ AI Box comes pre-installed with our comprehensive software stack, configured for optimal performance:</p>
+              <p className="mb-4">Every LangIQ AI Box comes with our comprehensive software stack pre-configured and optimized for your hardware, enabling immediate deployment of LLM-based workflows:</p>
 
               {/* System Software */}
               <div className="mb-6">
@@ -235,37 +262,119 @@ export default function Home() {
 
               <div className="mt-6 p-4 bg-purple-900/20 rounded-lg border border-purple-500/30">
                 <p className="text-center text-purple-200">
-                  All software components are optimized for your specific hardware configuration and regularly updated to ensure maximum performance and compatibility.
+                  All software components are pre-configured and optimized for your specific hardware configuration, ensuring immediate readiness for business transformation and LLM deployment.
                 </p>
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* FAQ Section */}
-          <div className="mb-16">
+      {/* Business Transformation Section - Full Screen */}
+      <section className="min-h-screen bg-gradient-to-br from-gray-900 to-purple-900/20 flex items-center py-12 snap-start snap-always">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-semibold text-purple-400 mb-6">Transform Your Business Operations</h3>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
+              Seamlessly transition from traditional operations to intelligent, LLM-based workflows with our pre-configured solutions
+            </p>
+          </div>
 
-            <h3 className="text-3xl font-semibold text-purple-400 mb-10 text-center">Frequently Asked Questions</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-gray-800/50 p-6 rounded-xl">
-                <h4 className="text-xl font-medium text-purple-400 mb-2">Is custom configuration available?</h4>
-                <p className="text-gray-300">Yes, we offer customization options for all AI Box models to meet your specific requirements. Contact our team for details.</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-gray-800/50 p-6 rounded-xl border border-purple-500/30">
+              <div className="text-center mb-4">
+                <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">🚀</span>
+                </div>
+                <h4 className="text-xl font-medium text-purple-400 mb-2">Entry Level</h4>
               </div>
-              <div className="bg-gray-800/50 p-6 rounded-xl">
-                <h4 className="text-xl font-medium text-purple-400 mb-2">What support is included?</h4>
-                <p className="text-gray-300">Each AI Box includes 12 months of priority technical support covering both hardware and software components.</p>
+              <p className="text-gray-300 text-center">
+                Perfect for small businesses taking their first steps into AI. Start your LLM journey with our x86 AI Box and begin transforming workflows immediately.
+              </p>
+            </div>
+
+            <div className="bg-gray-800/50 p-6 rounded-xl border border-purple-500/30">
+              <div className="text-center mb-4">
+                <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">📈</span>
+                </div>
+                <h4 className="text-xl font-medium text-purple-400 mb-2">Mid-Tier</h4>
               </div>
-              <div className="bg-gray-800/50 p-6 rounded-xl">
-                <h4 className="text-xl font-medium text-purple-400 mb-2">Can I run third-party AI frameworks?</h4>
-                <p className="text-gray-300">Absolutely. While our LangIQ libraries are pre-installed, the systems support all major AI frameworks including PyTorch, TensorFlow, and JAX.</p>
+              <p className="text-gray-300 text-center">
+                Scale your AI operations with our Plus and Pro models. Achieve measurable business impact while maintaining efficiency and cost-effectiveness.
+              </p>
+            </div>
+
+            <div className="bg-gray-800/50 p-6 rounded-xl border border-purple-500/30">
+              <div className="text-center mb-4">
+                <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">⚡</span>
+                </div>
+                <h4 className="text-xl font-medium text-purple-400 mb-2">State-of-the-Art</h4>
               </div>
-              <div className="bg-gray-800/50 p-6 rounded-xl">
-                <h4 className="text-xl font-medium text-purple-400 mb-2">What's the typical delivery timeframe?</h4>
-                <p className="text-gray-300">Standard configurations ship within 2-3 weeks. Custom configurations may take 4-6 weeks depending on specifications.</p>
-              </div>
+              <p className="text-gray-300 text-center">
+                Complete business transformation with our Pro MAX. Unlock the full potential of LLMs for enterprise-level operations and revolutionary efficiency gains.
+              </p>
             </div>
           </div>
 
-          {/* Call to Action */}
+          <div className="mt-12 text-center">
+            <div className="bg-gradient-to-r from-purple-900/30 to-cyan-900/30 p-8 rounded-xl border border-purple-500/30">
+              <h4 className="text-2xl font-medium text-purple-300 mb-4">Ready to Transform Your Business?</h4>
+              <p className="text-lg text-gray-300 mb-6 max-w-3xl mx-auto">
+                Our pre-configured AI LLM box solutions eliminate the complexity of setup and deployment.
+                With everything pre-installed and optimized, you can focus on transforming your business operations
+                rather than managing infrastructure.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4 text-purple-200">
+                <span className="bg-purple-800/50 px-4 py-2 rounded-lg">✓ Pre-configured OS & Software</span>
+                <span className="bg-purple-800/50 px-4 py-2 rounded-lg">✓ Immediate LLM Deployment</span>
+                <span className="bg-purple-800/50 px-4 py-2 rounded-lg">✓ Business-Ready Solutions</span>
+                <span className="bg-purple-800/50 px-4 py-2 rounded-lg">✓ Measurable Impact</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section - Full Screen */}
+      <section className="min-h-screen bg-gray-900 flex items-center py-12 snap-start snap-always">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div>
+            <h3 className="text-3xl font-semibold text-purple-400 mb-10 text-center">Frequently Asked Questions</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gray-800/50 p-6 rounded-xl border border-purple-500/30">
+                <h4 className="text-xl font-medium text-purple-400 mb-2">Is custom configuration available?</h4>
+                <p className="text-gray-300">Yes, we offer extensive customization options for all AI Box models including memory upgrades, storage expansion, and specialized GPU configurations to meet your specific LLM requirements.</p>
+              </div>
+              <div className="bg-gray-800/50 p-6 rounded-xl border border-purple-500/30">
+                <h4 className="text-xl font-medium text-purple-400 mb-2">What support is included?</h4>
+                <p className="text-gray-300">Each AI Box includes 12 months of priority technical support covering hardware, software, and LangIQ library assistance, plus dedicated consultation for business transformation strategies.</p>
+              </div>
+              <div className="bg-gray-800/50 p-6 rounded-xl border border-purple-500/30">
+                <h4 className="text-xl font-medium text-purple-400 mb-2">Can I run third-party AI frameworks?</h4>
+                <p className="text-gray-300">Absolutely. While our LangIQ libraries are pre-installed and optimized, the systems support all major AI frameworks including PyTorch, TensorFlow, JAX, and Hugging Face transformers.</p>
+              </div>
+              <div className="bg-gray-800/50 p-6 rounded-xl border border-purple-500/30">
+                <h4 className="text-xl font-medium text-purple-400 mb-2">What's the typical delivery timeframe?</h4>
+                <p className="text-gray-300">Standard configurations ship within 2-3 weeks with white-glove setup service. Custom configurations take 4-6 weeks and include personalized configuration for your business needs.</p>
+              </div>
+              <div className="bg-gray-800/50 p-6 rounded-xl border border-purple-500/30">
+                <h4 className="text-xl font-medium text-purple-400 mb-2">Do you provide training and onboarding?</h4>
+                <p className="text-gray-300">Yes, every AI Box purchase includes comprehensive onboarding sessions, team training workshops, and access to our LangIQ Academy for ongoing skill development.</p>
+              </div>
+              <div className="bg-gray-800/50 p-6 rounded-xl border border-purple-500/30">
+                <h4 className="text-xl font-medium text-purple-400 mb-2">What about data security and compliance?</h4>
+                <p className="text-gray-300">All AI Boxes come with enterprise-grade security features, encryption at rest and in transit, and compliance frameworks for GDPR, HIPAA, and SOC 2 requirements.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action - Full Screen */}
+      <section className="min-h-screen bg-gray-900 flex items-center snap-start snap-always">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center">
             <Link
               href="/contact"
