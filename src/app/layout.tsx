@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Roboto, Poppins, Open_Sans } from "next/font/google";
 import "./globals.css";
+import "../styles/fonts.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -11,6 +12,34 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ['latin'],
+  display: 'swap',
+})
+
+const poppins = Poppins({
+  variable: "--font-poppins",
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+})
+
+const roboto = Roboto({
+  variable: "--font-roboto",
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+})
+
+const openSans = Open_Sans({
+  variable: "--font-open-sans",
+  subsets: ['latin'],
+  display: 'swap',
+})
+
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${poppins.variable} ${roboto.variable} ${openSans.variable} ${inter.className} antialiased`}
       >
         {children}
       </body>

@@ -1,0 +1,122 @@
+/* Font utility classes for easy usage throughout the project */
+
+/* Inter font family */
+.font-inter {
+    font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* Poppins font family */
+.font-poppins {
+    font-family: var(--font-poppins), system-ui, sans-serif;
+}
+
+/* Roboto font family */
+.font-roboto {
+    font-family: var(--font-roboto), system-ui, sans-serif;
+}
+
+/* Open Sans font family */
+.font-open-sans {
+    font-family: var(--font-open-sans), system-ui, sans-serif;
+}
+
+/* Helvetica Neue fallback */
+.font-helvetica {
+    font-family: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+}
+
+/* Font weight utilities for each font */
+.font-inter-light {
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-weight: 300;
+}
+
+.font-inter-normal {
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-weight: 400;
+}
+
+.font-inter-medium {
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-weight: 500;
+}
+
+.font-inter-semibold {
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-weight: 600;
+}
+
+.font-inter-bold {
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-weight: 700;
+}
+
+.font-poppins-light {
+    font-family: var(--font-poppins), system-ui, sans-serif;
+    font-weight: 300;
+}
+
+.font-poppins-normal {
+    font-family: var(--font-poppins), system-ui, sans-serif;
+    font-weight: 400;
+}
+
+.font-poppins-medium {
+    font-family: var(--font-poppins), system-ui, sans-serif;
+    font-weight: 500;
+}
+
+.font-poppins-semibold {
+    font-family: var(--font-poppins), system-ui, sans-serif;
+    font-weight: 600;
+}
+
+.font-poppins-bold {
+    font-family: var(--font-poppins), system-ui, sans-serif;
+    font-weight: 700;
+}
+
+.font-roboto-light {
+    font-family: var(--font-roboto), system-ui, sans-serif;
+    font-weight: 300;
+}
+
+.font-roboto-normal {
+    font-family: var(--font-roboto), system-ui, sans-serif;
+    font-weight: 400;
+}
+
+.font-roboto-medium {
+    font-family: var(--font-roboto), system-ui, sans-serif;
+    font-weight: 500;
+}
+
+.font-roboto-bold {
+    font-family: var(--font-roboto), system-ui, sans-serif;
+    font-weight: 700;
+}
+
+.font-open-sans-light {
+    font-family: var(--font-open-sans), system-ui, sans-serif;
+    font-weight: 300;
+}
+
+.font-open-sans-normal {
+    font-family: var(--font-open-sans), system-ui, sans-serif;
+    font-weight: 400;
+}
+
+.font-open-sans-medium {
+    font-family: var(--font-open-sans), system-ui, sans-serif;
+    font-weight: 500;
+}
+
+.font-open-sans-semibold {
+    font-family: var(--font-open-sans), system-ui, sans-serif;
+    font-weight: 600;
+}
+
+.font-open-sans-bold {
+    font-family: var(--font-open-sans), system-ui, sans-serif;
+    font-weight: 700;
+}

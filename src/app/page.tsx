@@ -2,102 +2,120 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen p-8 bg-white dark:bg-gray-900">
+      <div className="max-w-6xl mx-auto space-y-12">
+        <header className="text-center mb-16">
+          <h1 className="font-inter-bold text-4xl text-gray-800 dark:text-white mb-4">
+            Font Showcase
+          </h1>
+          <p className="font-open-sans text-lg text-gray-600 dark:text-gray-300">
+            Demonstrating Inter, Poppins, Roboto, Helvetica Neue, and Open Sans fonts
+          </p>
+        </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        {/* Inter Font Examples */}
+        <section className="space-y-4">
+          <h2 className="font-inter-semibold text-2xl text-gray-800 dark:text-white border-b pb-2">
+            Inter Font Family
+          </h2>
+          <div className="grid gap-4">
+            <p className="font-inter-light text-lg">Inter Light: The quick brown fox jumps over the lazy dog</p>
+            <p className="font-inter-normal text-lg">Inter Regular: The quick brown fox jumps over the lazy dog</p>
+            <p className="font-inter-medium text-lg">Inter Medium: The quick brown fox jumps over the lazy dog</p>
+            <p className="font-inter-semibold text-lg">Inter Semibold: The quick brown fox jumps over the lazy dog</p>
+            <p className="font-inter-bold text-lg">Inter Bold: The quick brown fox jumps over the lazy dog</p>
+          </div>
+        </section>
+
+        {/* Poppins Font Examples */}
+        <section className="space-y-4">
+          <h2 className="font-poppins-semibold text-2xl text-gray-800 dark:text-white border-b pb-2">
+            Poppins Font Family
+          </h2>
+          <div className="grid gap-4">
+            <p className="font-poppins-light text-lg">Poppins Light: The quick brown fox jumps over the lazy dog</p>
+            <p className="font-poppins-normal text-lg">Poppins Regular: The quick brown fox jumps over the lazy dog</p>
+            <p className="font-poppins-medium text-lg">Poppins Medium: The quick brown fox jumps over the lazy dog</p>
+            <p className="font-poppins-semibold text-lg">Poppins Semibold: The quick brown fox jumps over the lazy dog</p>
+            <p className="font-poppins-bold text-lg">Poppins Bold: The quick brown fox jumps over the lazy dog</p>
+          </div>
+        </section>
+
+        {/* Roboto Font Examples */}
+        <section className="space-y-4">
+          <h2 className="font-roboto-bold text-2xl text-gray-800 dark:text-white border-b pb-2">
+            Roboto Font Family
+          </h2>
+          <div className="grid gap-4">
+            <p className="font-roboto-light text-lg">Roboto Light: The quick brown fox jumps over the lazy dog</p>
+            <p className="font-roboto-normal text-lg">Roboto Regular: The quick brown fox jumps over the lazy dog</p>
+            <p className="font-roboto-medium text-lg">Roboto Medium: The quick brown fox jumps over the lazy dog</p>
+            <p className="font-roboto-bold text-lg">Roboto Bold: The quick brown fox jumps over the lazy dog</p>
+          </div>
+        </section>
+
+        {/* Open Sans Font Examples */}
+        <section className="space-y-4">
+          <h2 className="font-open-sans-bold text-2xl text-gray-800 dark:text-white border-b pb-2">
+            Open Sans Font Family
+          </h2>
+          <div className="grid gap-4">
+            <p className="font-open-sans-light text-lg">Open Sans Light: The quick brown fox jumps over the lazy dog</p>
+            <p className="font-open-sans-normal text-lg">Open Sans Regular: The quick brown fox jumps over the lazy dog</p>
+            <p className="font-open-sans-medium text-lg">Open Sans Medium: The quick brown fox jumps over the lazy dog</p>
+            <p className="font-open-sans-semibold text-lg">Open Sans Semibold: The quick brown fox jumps over the lazy dog</p>
+            <p className="font-open-sans-bold text-lg">Open Sans Bold: The quick brown fox jumps over the lazy dog</p>
+          </div>
+        </section>
+
+        {/* Helvetica Neue Examples */}
+        <section className="space-y-4">
+          <h2 className="font-helvetica text-2xl font-bold text-gray-800 dark:text-white border-b pb-2">
+            Helvetica Neue Font Family (System Fallback)
+          </h2>
+          <div className="grid gap-4">
+            <p className="font-helvetica text-lg font-light">Helvetica Neue Light: The quick brown fox jumps over the lazy dog</p>
+            <p className="font-helvetica text-lg font-normal">Helvetica Neue Regular: The quick brown fox jumps over the lazy dog</p>
+            <p className="font-helvetica text-lg font-medium">Helvetica Neue Medium: The quick brown fox jumps over the lazy dog</p>
+            <p className="font-helvetica text-lg font-semibold">Helvetica Neue Semibold: The quick brown fox jumps over the lazy dog</p>
+            <p className="font-helvetica text-lg font-bold">Helvetica Neue Bold: The quick brown fox jumps over the lazy dog</p>
+          </div>
+        </section>
+
+        {/* Usage Examples */}
+        <section className="space-y-4">
+          <h2 className="font-inter-bold text-2xl text-gray-800 dark:text-white border-b pb-2">
+            Real-world Usage Examples
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="space-y-4 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+              <h3 className="font-poppins-semibold text-xl text-gray-800 dark:text-white">
+                Article Title with Poppins
+              </h3>
+              <p className="font-open-sans text-gray-600 dark:text-gray-300 leading-relaxed">
+                This is a paragraph using Open Sans font. It's highly readable and works great for body text.
+                The font has excellent legibility at various sizes and is perfect for longer content.
+              </p>
+              <div className="font-inter text-sm text-gray-500 dark:text-gray-400">
+                Posted on June 12, 2025 using Inter font
+              </div>
+            </div>
+
+            <div className="space-y-4 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+              <h3 className="font-roboto-bold text-xl text-gray-800 dark:text-white">
+                Technical Content with Roboto
+              </h3>
+              <p className="font-roboto text-gray-600 dark:text-gray-300 leading-relaxed">
+                Roboto is excellent for technical documentation and interfaces. It maintains great readability
+                while providing a modern, clean appearance that works well in digital environments.
+              </p>
+              <div className="font-helvetica text-sm text-gray-500 dark:text-gray-400">
+                System font fallback example
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
