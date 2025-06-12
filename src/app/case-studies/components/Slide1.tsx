@@ -1,4 +1,8 @@
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { getMDXFiles } from "@/utils/mdxUtils";
+import MDXCard from "@/components/MDXCard";
+import type { MDXMetadata } from "@/utils/mdxUtils";
 
 interface Slide1Props {
     slideVariants: any;
@@ -9,10 +13,30 @@ interface Slide1Props {
 }
 
 export default function Slide1({ slideVariants, itemVariants, isActive, scrollToSlide, setRef }: Slide1Props) {
+    const [mdxFiles, setMdxFiles] = useState<MDXMetadata[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function loadMdxFiles() {
+            try {
+                const files = await getMDXFiles();
+                setMdxFiles(files);
+            } catch (error) {
+                console.error('Failed to load MDX files:', error);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        if (isActive) {
+            loadMdxFiles();
+        }
+    }, [isActive]);
+
     return (
         <motion.div
             ref={setRef}
-            className="flex flex-col items-center justify-center h-screen w-full snap-start bg-transparent backdrop-blur-sm px-4 md:px-12 relative border border-gray-200/20"
+            className="flex flex-col items-center justify-start h-screen w-full mt-80 snap-start bg-transparent backdrop-blur-sm px-4 md:px-12 relative border border-gray-200/20 overflow-y-auto pt-12"
             initial="hidden"
             animate={isActive ? "visible" : "hidden"}
             variants={slideVariants}
@@ -21,14 +45,33 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-4xl md:text-5xl font-bold mb-6 text-center"
                 variants={itemVariants}
             >
-                Introduction
+                Case Studies
             </motion.h1>
             <motion.p
-                className="text-xl md:text-lg max-w-4xl text-center"
+                className="text-xl md:text-lg max-w-4xl text-center mb-12"
                 variants={itemVariants}
             >
-                Welcome to our presentation. This is the first slide containing some introductory text.
+                Explore our collection of case studies and research papers.
             </motion.p>
+
+            <motion.div
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl mb-16"
+                variants={itemVariants}
+            >
+                {loading ? (
+                    <motion.div className="col-span-full flex justify-center" variants={itemVariants}>
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+                    </motion.div>
+                ) : mdxFiles.length > 0 ? (
+                    mdxFiles.map((mdx) => (
+                        <MDXCard key={mdx.slug} mdx={mdx} variants={itemVariants} />
+                    ))
+                ) : (
+                    <motion.p className="text-center col-span-full text-gray-400" variants={itemVariants}>
+                        No case studies available at the moment.
+                    </motion.p>
+                )}
+            </motion.div>
 
             {/* Bouncing down arrow */}
             <motion.div
