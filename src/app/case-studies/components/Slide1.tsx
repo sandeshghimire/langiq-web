@@ -36,7 +36,7 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
     return (
         <motion.div
             ref={setRef}
-            className="flex flex-col items-center justify-start h-screen w-full mt-80 snap-start bg-transparent backdrop-blur-sm px-4 md:px-12 relative border border-gray-200/20 overflow-y-auto pt-12"
+            className="flex flex-col items-center justify-center h-screen w-full snap-start bg-transparent backdrop-blur-sm px-4 md:px-12 relative border border-gray-200/20 overflow-y-auto py-12"
             initial="hidden"
             animate={isActive ? "visible" : "hidden"}
             variants={slideVariants}
