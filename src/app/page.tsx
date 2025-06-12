@@ -38,9 +38,9 @@ export default function Home() {
   // Animation variants
   const slideVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
-      transition: { 
+      transition: {
         duration: 0.5,
         when: "beforeChildren",
         staggerChildren: 0.2
@@ -50,8 +50,8 @@ export default function Home() {
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: { 
-      y: 0, 
+    visible: {
+      y: 0,
       opacity: 1,
       transition: { duration: 0.5 }
     }
@@ -67,13 +67,13 @@ export default function Home() {
         animate={currentSlide === 1 ? "visible" : "hidden"}
         variants={slideVariants}
       >
-        <motion.h1 
+        <motion.h1
           className="text-5xl md:text-7xl font-bold mb-6 text-center"
           variants={itemVariants}
         >
           Introduction
         </motion.h1>
-        <motion.p 
+        <motion.p
           className="text-xl md:text-2xl max-w-4xl text-center"
           variants={itemVariants}
         >
@@ -89,13 +89,13 @@ export default function Home() {
         animate={currentSlide === 2 ? "visible" : "hidden"}
         variants={slideVariants}
       >
-        <motion.h1 
+        <motion.h1
           className="text-5xl md:text-7xl font-bold mb-6 text-center"
           variants={itemVariants}
         >
           About Us
         </motion.h1>
-        <motion.p 
+        <motion.p
           className="text-xl md:text-2xl max-w-4xl text-center"
           variants={itemVariants}
         >
@@ -111,13 +111,13 @@ export default function Home() {
         animate={currentSlide === 3 ? "visible" : "hidden"}
         variants={slideVariants}
       >
-        <motion.h1 
+        <motion.h1
           className="text-5xl md:text-7xl font-bold mb-6 text-center"
           variants={itemVariants}
         >
           Our Mission
         </motion.h1>
-        <motion.p 
+        <motion.p
           className="text-xl md:text-2xl max-w-4xl text-center"
           variants={itemVariants}
         >
@@ -133,13 +133,13 @@ export default function Home() {
         animate={currentSlide === 4 ? "visible" : "hidden"}
         variants={slideVariants}
       >
-        <motion.h1 
+        <motion.h1
           className="text-5xl md:text-7xl font-bold mb-6 text-center"
           variants={itemVariants}
         >
           Get In Touch
         </motion.h1>
-        <motion.p 
+        <motion.p
           className="text-xl md:text-2xl max-w-4xl text-center"
           variants={itemVariants}
         >
