@@ -23,7 +23,7 @@ export function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
     return (
-        <header className={`sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 ${poppins.className}`}>
+        <header className={`sticky top-0 z-50 w-full border-b bg-background/70 backdrop-blur-md supports-[backdrop-filter]:bg-background/40 ${poppins.className}`}>
             <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Logo */}
                 <div className="flex items-center">
@@ -38,7 +38,7 @@ export function Header() {
                         <NavigationMenuList>
                             <NavigationMenuItem>
                                 <NavigationMenuLink
-                                    className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                                    className="group inline-flex h-10 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-colors hover:font-bold focus:font-bold focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:font-bold data-[state=open]:font-bold"
                                     href="/"
                                 >
                                     Home
@@ -46,7 +46,7 @@ export function Header() {
                             </NavigationMenuItem>
                             <NavigationMenuItem>
                                 <NavigationMenuLink
-                                    className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                                    className="group inline-flex h-10 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-colors hover:font-bold focus:font-bold focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:font-bold data-[state=open]:font-bold"
                                     href="/ai-studio"
                                 >
                                     AI Studio
@@ -54,7 +54,7 @@ export function Header() {
                             </NavigationMenuItem>
                             <NavigationMenuItem>
                                 <NavigationMenuLink
-                                    className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                                    className="group inline-flex h-10 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-colors hover:font-bold focus:font-bold focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:font-bold data-[state=open]:font-bold"
                                     href="/hardware"
                                 >
                                     Hardware
@@ -62,7 +62,7 @@ export function Header() {
                             </NavigationMenuItem>
                             <NavigationMenuItem>
                                 <NavigationMenuLink
-                                    className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                                    className="group inline-flex h-10 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-colors hover:font-bold focus:font-bold focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:font-bold data-[state=open]:font-bold"
                                     href="/prompt"
                                 >
                                     Prompt
@@ -70,7 +70,7 @@ export function Header() {
                             </NavigationMenuItem>
                             <NavigationMenuItem>
                                 <NavigationMenuLink
-                                    className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                                    className="group inline-flex h-10 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-colors hover:font-bold focus:font-bold focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:font-bold data-[state=open]:font-bold"
                                     href="/rag"
                                 >
                                     RAG
@@ -78,7 +78,7 @@ export function Header() {
                             </NavigationMenuItem>
                             <NavigationMenuItem>
                                 <NavigationMenuLink
-                                    className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                                    className="group inline-flex h-10 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-colors hover:font-bold focus:font-bold focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:font-bold data-[state=open]:font-bold"
                                     href="/tools"
                                 >
                                     Tools
@@ -86,7 +86,7 @@ export function Header() {
                             </NavigationMenuItem>
                             <NavigationMenuItem>
                                 <NavigationMenuLink
-                                    className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                                    className="group inline-flex h-10 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-colors hover:font-bold focus:font-bold focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:font-bold data-[state=open]:font-bold"
                                     href="/augmentation"
                                 >
                                     Augmentation
@@ -94,7 +94,7 @@ export function Header() {
                             </NavigationMenuItem>
                             <NavigationMenuItem>
                                 <NavigationMenuLink
-                                    className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                                    className="group inline-flex h-10 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-colors hover:font-bold focus:font-bold focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:font-bold data-[state=open]:font-bold"
                                     href="/fine-tuning"
                                 >
                                     Fine Tuning
@@ -102,7 +102,7 @@ export function Header() {
                             </NavigationMenuItem>
                             <NavigationMenuItem>
                                 <NavigationMenuLink
-                                    className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                                    className="group inline-flex h-10 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-colors hover:font-bold focus:font-bold focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:font-bold data-[state=open]:font-bold"
                                     href="/agents"
                                 >
                                     Agents
@@ -110,7 +110,7 @@ export function Header() {
                             </NavigationMenuItem>
                             <NavigationMenuItem>
                                 <NavigationMenuLink
-                                    className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                                    className="group inline-flex h-10 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-colors hover:font-bold focus:font-bold focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:font-bold data-[state=open]:font-bold"
                                     href="/case-studies"
                                 >
                                     Case Studies
@@ -118,7 +118,7 @@ export function Header() {
                             </NavigationMenuItem>
                             <NavigationMenuItem>
                                 <NavigationMenuLink
-                                    className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                                    className="group inline-flex h-10 w-max items-center justify-center px-4 py-2 text-sm font-medium transition-colors hover:font-bold focus:font-bold focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:font-bold data-[state=open]:font-bold"
                                     href="/contact"
                                 >
                                     Contact
@@ -149,77 +149,77 @@ export function Header() {
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t bg-background">
                         <Link
                             href="/"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
+                            className="block px-3 py-2 text-base font-medium text-foreground hover:font-bold"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Home
                         </Link>
                         <Link
                             href="/ai-studio"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
+                            className="block px-3 py-2 text-base font-medium text-foreground hover:font-bold"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             AI Studio
                         </Link>
                         <Link
                             href="/hardware"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
+                            className="block px-3 py-2 text-base font-medium text-foreground hover:font-bold"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Hardware
                         </Link>
                         <Link
                             href="/prompt"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
+                            className="block px-3 py-2 text-base font-medium text-foreground hover:font-bold"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Prompt
                         </Link>
                         <Link
                             href="/rag"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
+                            className="block px-3 py-2 text-base font-medium text-foreground hover:font-bold"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             RAG
                         </Link>
                         <Link
                             href="/tools"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
+                            className="block px-3 py-2 text-base font-medium text-foreground hover:font-bold"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Tools
                         </Link>
                         <Link
                             href="/augmentation"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
+                            className="block px-3 py-2 text-base font-medium text-foreground hover:font-bold"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Augmentation
                         </Link>
                         <Link
                             href="/fine-tuning"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
+                            className="block px-3 py-2 text-base font-medium text-foreground hover:font-bold"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Fine Tuning
                         </Link>
                         <Link
                             href="/agents"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
+                            className="block px-3 py-2 text-base font-medium text-foreground hover:font-bold"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Agents
                         </Link>
                         <Link
                             href="/case-studies"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
+                            className="block px-3 py-2 text-base font-medium text-foreground hover:font-bold"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Case Studies
                         </Link>
                         <Link
                             href="/contact"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
+                            className="block px-3 py-2 text-base font-medium text-foreground hover:font-bold"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
                             Contact
