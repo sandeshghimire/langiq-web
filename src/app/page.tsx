@@ -62,7 +62,7 @@ export default function Home() {
       {/* Slide 1 */}
       <motion.div
         ref={el => slideRefs.current[0] = el}
-        className="flex flex-col items-center justify-center h-screen w-full snap-start bg-gray-50 px-4 md:px-12"
+        className="flex flex-col items-center justify-center h-screen w-full snap-start bg-gray-50 px-4 md:px-12 relative"
         initial="hidden"
         animate={currentSlide === 1 ? "visible" : "hidden"}
         variants={slideVariants}
@@ -79,6 +79,28 @@ export default function Home() {
         >
           Welcome to our presentation. This is the first slide containing some introductory text.
         </motion.p>
+        
+        {/* Bouncing down arrow */}
+        <motion.div 
+          className="absolute bottom-10 cursor-pointer animate-bounce"
+          onClick={() => scrollToSlide(2)}
+          variants={itemVariants}
+        >
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="40" 
+            height="40" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="2" 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            className="text-blue-600"
+          >
+            <path d="M12 5v14M19 12l-7 7-7-7" />
+          </svg>
+        </motion.div>
       </motion.div>
 
       {/* Slide 2 */}
