@@ -21,14 +21,33 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-4xl md:text-5xl font-bold mb-6 text-center"
                 variants={itemVariants}
             >
-                Welcome to Our Presentation
+                Welcome to LangIQ
             </motion.h1>
             <motion.p
-                className="text-xl md:text-lg max-w-4xl text-center"
+                className="text-xl md:text-lg max-w-4xl text-center mb-8"
                 variants={itemVariants}
             >
-                Welcome to our presentation. This is the first slide containing some introductory text.
+                Please select your account type to proceed
             </motion.p>
+
+            <motion.div
+                className="flex flex-col md:flex-row gap-6 mt-4"
+                variants={itemVariants}
+            >
+                <button
+                    onClick={() => scrollToSlide(2)}
+                    className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg transition-all text-lg font-semibold"
+                >
+                    Client Form
+                </button>
+
+                <button
+                    onClick={() => scrollToSlide(3)}
+                    className="px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg shadow-lg transition-all text-lg font-semibold"
+                >
+                    Investor Information
+                </button>
+            </motion.div>
 
             {/* Bouncing down arrow */}
             <motion.div

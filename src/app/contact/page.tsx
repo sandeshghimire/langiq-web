@@ -89,6 +89,7 @@ export default function Home() {
         slideVariants={slideVariants}
         itemVariants={itemVariants}
         isActive={currentSlide === 4}
+        scrollToSlide={scrollToSlide}
         setRef={el => slideRefs.current[3] = el}
       />
 
