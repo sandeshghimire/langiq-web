@@ -50,7 +50,7 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: oklch(0.97 0.001 106.424);
   --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.141 0.005 285.823);
@@ -120,10 +120,16 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    font-family: var(--font-poppins), sans-serif;
   }
 
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-poppins);
+    font-family: var(--font-poppins), sans-serif;
+    font-size: 0.96rem;
+  }
+
+  html, input, button, textarea, select {
+    font-family: var(--font-poppins), sans-serif;
   }
 }
