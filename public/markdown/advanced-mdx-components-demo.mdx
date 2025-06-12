@@ -1,0 +1,139 @@
+---
+title: "Advanced MDX Components Demo"
+description: "Demonstrating advanced MDX features using @next/mdx, @mdx-js/loader, @mdx-js/react, and TypeScript"
+date: "2025-06-12"
+author: "Development Team"
+tags: ["mdx", "next.js", "react", "typescript", "advanced"]
+---
+
+import { useState } from 'react';
+
+# Advanced MDX Components Demo
+
+This document demonstrates how to use the full power of MDX by combining Markdown with React components.
+
+## Interactive Components in MDX
+
+MDX allows us to define and use React components directly within our markdown. Here's an example of a counter component:
+
+export const Counter = () => {
+  const [count, setCount] = useState(0);
+  return (
+    <div className="p-4 border border-blue-500 rounded-lg my-4">
+      <p className="font-bold mb-2">Current count: {count}</p>
+      <button 
+        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mr-2"
+        onClick={() => setCount(count + 1)}
+      >
+        Increment
+      </button>
+      <button 
+        className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded"
+        onClick={() => setCount(0)}
+      >
+        Reset
+      </button>
+    </div>
+  );
+};
+
+<Counter />
+
+## Custom Styled Components
+
+We can create custom styled components for common elements:
+
+export const InfoBox = ({ children, title }) => (
+  <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-900 p-4 my-4">
+    <h4 className="font-bold">{title}</h4>
+    <div>{children}</div>
+  </div>
+);
+
+export const WarningBox = ({ children, title }) => (
+  <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-900 p-4 my-4">
+    <h4 className="font-bold">{title}</h4>
+    <div>{children}</div>
+  </div>
+);
+
+<InfoBox title="Important Information">
+  This is a custom info box component that can be reused throughout your MDX files.
+  It's great for highlighting important information.
+</InfoBox>
+
+<WarningBox title="Warning">
+  Be careful when working with MDX components! Make sure you properly configure your Next.js to handle them.
+</WarningBox>
+
+## TypeScript Integration
+
+With `@types/mdx`, we can ensure our MDX components are properly typed:
+
+```typescript
+// Example of TypeScript interfaces for MDX components
+interface InfoBoxProps {
+  title: string;
+  children: React.ReactNode;
+}
+
+const InfoBox = ({ title, children }: InfoBoxProps) => (
+  // Component implementation
+);
+```
+
+## Technical Implementation Details
+
+Here's how we've configured MDX in our Next.js project:
+
+1. Installed required packages:
+   - `@next/mdx` - Next.js plugin for MDX support
+   - `@mdx-js/loader` - Loader for webpack to process MDX files
+   - `@mdx-js/react` - React integration for MDX
+   - `@types/mdx` - TypeScript definitions for MDX
+
+2. Created MDX configuration in `next.config.ts`:
+
+```typescript
+import createMDX from '@next/mdx';
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
+
+const withMDX = createMDX({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [rehypeHighlight],
+  },
+});
+
+const nextConfig = {
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+};
+
+export default withMDX(nextConfig);
+```
+
+3. Created an MDX provider to provide custom components:
+
+```typescript
+import { MDXProvider } from '@mdx-js/react';
+import { ReactNode } from 'react';
+
+const components = {
+  h1: (props: any) => <h1 className="text-3xl font-bold mb-4" {...props} />,
+  // Additional component overrides
+};
+
+interface MDXWrapperProps {
+  children: ReactNode;
+}
+
+export function MDXWrapper({ children }: MDXWrapperProps) {
+  return <MDXProvider components={components}>{children}</MDXProvider>;
+}
+```
+
+## Conclusion
+
+MDX provides a powerful way to combine the simplicity of markdown with the full power of React components. With proper TypeScript integration, we get the best of all worlds: rich content creation, interactive components, and type safety.
