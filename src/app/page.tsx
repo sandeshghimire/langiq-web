@@ -79,23 +79,23 @@ export default function Home() {
         >
           Welcome to our presentation. This is the first slide containing some introductory text.
         </motion.p>
-        
+
         {/* Bouncing down arrow */}
-        <motion.div 
+        <motion.div
           className="absolute bottom-10 cursor-pointer animate-bounce"
           onClick={() => scrollToSlide(2)}
           variants={itemVariants}
         >
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            width="40" 
-            height="40" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="currentColor" 
-            strokeWidth="2" 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height="40"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className="text-blue-600"
           >
             <path d="M12 5v14M19 12l-7 7-7-7" />
