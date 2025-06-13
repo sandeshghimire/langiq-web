@@ -20,14 +20,20 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                 className="text-4xl md:text-5xl font-bold mb-6 text-center"
                 variants={itemVariants}
             >
-                How
+                How we solve promblems
             </motion.h1>
-            <motion.p
-                className="text-xl md:text-lg max-w-4xl text-center"
+            <motion.div
+                className="max-w-7xl text-center"
                 variants={itemVariants}
             >
-                We are a team of professionals dedicated to creating innovative solutions.
-            </motion.p>
+                <ul className="text-left list-disc space-y-2 inline-block mx-auto text-lg">
+                    <li>Dedicated RAG Library: LangIQ.ai offers a specific "LangIQ RAG Library" providing tools to build robust vector search and retrieval pipelines, enabling LLMs to access external knowledge.</li>
+                    <li>Integrated AI Studio Capability: Its AI Studio Platform features "Vector Database & Knowledge Management" to ingest diverse data into optimized vector databases, directly facilitating RAG for contextually relevant answers.</li>
+                    <li>Visual RAG Pipeline Construction: Within the AI Studio, users can employ graphical workflow tools to visually construct and implement RAG pipelines without extensive manual coding.</li>
+                    <li>Data Ingestion and Vectorization: The platform supports ingesting various data formats (documents, PDFs, databases) and converts them into vector embeddings, making them searchable for RAG applications through connectors to vector and traditional databases.</li>
+                    <li>Semantic Search for Augmentation: LangIQ's RAG systems perform semantic searches on these vectorized knowledge bases to retrieve relevant information, which is then used to augment LLM responses, enhancing accuracy and reducing hallucinations.</li>
+                </ul>
+            </motion.div>
         </motion.div>
     );
 }

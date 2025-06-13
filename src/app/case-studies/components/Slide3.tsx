@@ -23,7 +23,7 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef }
                 Why
             </motion.h1>
             <motion.p
-                className="text-xl md:text-lg max-w-4xl text-center"
+                className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
                 Why is to deliver exceptional value through technology and creative thinking.

@@ -127,6 +127,7 @@
     @apply bg-background text-foreground;
     font-family: var(--font-poppins), sans-serif;
     font-size: 0.96rem;
+    line-height: 1.8;
   }
 
   html,
@@ -135,6 +136,19 @@
   textarea,
   select {
     font-family: var(--font-poppins), sans-serif;
+  }
+
+  p {
+    line-height: 1.7;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.4;
   }
 }
 

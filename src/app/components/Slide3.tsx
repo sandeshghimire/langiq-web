@@ -23,10 +23,10 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef }
                 Why do web developers need AI?
             </motion.h1>
             <motion.div
-                className="max-w-4xl text-center"
+                className="max-w-7xl text-center"
                 variants={itemVariants}
             >
-                <ul className="text-left list-disc space-y-2 inline-block mx-auto">
+                <ul className="text-left list-disc space-y-2 inline-block mx-auto text-lg">
                     <li>Visual AI Builder: Low-code studio integrating multiple LLMs (OpenAI, Google, Anthropic) in one interface</li>
                     <li>Plug-and-Play Hardware: Pre-configured AI Box systems with optimized software stack ready out of the box</li>
                     <li>Modular Libraries: Python/JavaScript APIs for prompting, RAG, tools, fine-tuning, and multi-agent workflows</li>

@@ -21,13 +21,13 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-4xl md:text-5xl font-bold mb-6 text-center"
                 variants={itemVariants}
             >
-                Introduction
+                Retrieval-Augmented Generation (RAG)
             </motion.h1>
             <motion.p
-                className="text-xl md:text-lg max-w-4xl text-center"
+                className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
-                Welcome to our presentation. This is the first slide containing some introductory text.
+                Retrieval-Augmented Generation (RAG) is a technique designed to improve the responses of Large Language Models (LLMs). Its primary function is to ground LLM outputs in specific external or proprietary knowledge, making the generated text more contextually relevant, accurate, and personalized
             </motion.p>
 
             {/* Bouncing down arrow */}

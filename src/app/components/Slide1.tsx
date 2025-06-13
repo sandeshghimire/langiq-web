@@ -24,7 +24,7 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 Lang - IQ
             </motion.h1>
             <motion.p
-                className="text-xl md:text-lg max-w-4xl text-center"
+                className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
                 Our Core Mission: To Seamlessly Transition Your Business to the Future of Work with LLMs. At LangIQ.ai, we empower your organization to migrate from traditional operations to intelligent, LLM-based workflows, ensuring you unlock transformative efficiencies and achieve measurable business impact.

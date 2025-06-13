@@ -23,7 +23,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                 How
             </motion.h1>
             <motion.p
-                className="text-xl md:text-lg max-w-4xl text-center"
+                className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
                 We are a team of professionals dedicated to creating innovative solutions.

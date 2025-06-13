@@ -48,7 +48,7 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 Case Studies
             </motion.h1>
             <motion.p
-                className="text-xl md:text-lg max-w-4xl text-center mb-12"
+                className="text-xl md:text-lg max-w-7xl text-center mb-12"
                 variants={itemVariants}
             >
                 Explore our collection of case studies and research papers.

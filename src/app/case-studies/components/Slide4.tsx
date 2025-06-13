@@ -23,7 +23,7 @@ export default function Slide4({ slideVariants, itemVariants, isActive, setRef }
                 Advantages
             </motion.h1>
             <motion.p
-                className="text-xl md:text-lg max-w-4xl text-center"
+                className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
                 Feel free to reach out to us for any inquiries or collaboration opportunities.
