@@ -11,29 +11,50 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
     return (
         <motion.div
             ref={setRef}
-            className="flex flex-col items-center justify-center h-screen w-full snap-start bg-transparent backdrop-blur-sm px-4 md:px-12 relative border border-gray-200/20"
+            className="flex items-center justify-center h-screen w-full snap-start bg-transparent backdrop-blur-sm px-4 md:px-12 relative border border-gray-200/20"
             initial="hidden"
             animate={isActive ? "visible" : "hidden"}
             variants={slideVariants}
         >
-            <motion.h1
-                className="text-4xl md:text-5xl font-bold mb-6 text-center"
-                variants={itemVariants}
-            >
-                How we solve promblems
-            </motion.h1>
-            <motion.div
-                className="max-w-7xl text-center"
-                variants={itemVariants}
-            >
-                <ul className="text-left list-disc space-y-2 inline-block mx-auto text-lg">
-                    <li>Visual AI Builder: Low-code studio integrating multiple LLMs (OpenAI, Google, Anthropic) in one interface</li>
-                    <li>Plug-and-Play Hardware: Pre-configured AI Box systems with optimized software stack ready out of the box</li>
-                    <li>Modular Libraries: Python/JavaScript APIs for prompting, RAG, tools, fine-tuning, and multi-agent workflows</li>
-                    <li>Data Integration: Converts documents to vector databases, generates synthetic data, fine-tunes on proprietary data</li>
-                    <li>Auto App Generation: Scaffolds complete AI applications with backend, UI, and deployment from configuration settings</li>
-                </ul>
-            </motion.div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center max-w-7xl w-full">
+                {/* Left Column - Title */}
+                <motion.div
+                    className="text-center md:text-left"
+                    variants={itemVariants}
+                >
+                    <motion.h1
+                        className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
+                        variants={itemVariants}
+                    >
+                        How We Solve Problems
+                    </motion.h1>
+                    <motion.div 
+                        className="h-1 w-20 bg-gradient-to-r from-green-600 to-blue-600 mx-auto md:mx-0"
+                        variants={itemVariants}
+                    />
+                </motion.div>
+
+                {/* Right Column - Solutions */}
+                <motion.div
+                    className="space-y-6"
+                    variants={itemVariants}
+                >
+                    <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
+                        <h3 className="font-semibold text-lg mb-2 text-blue-600">Visual AI Builder</h3>
+                        <p className="text-gray-600">Low-code studio integrating multiple LLMs (OpenAI, Google, Anthropic) in one interface</p>
+                    </motion.div>
+                    
+                    <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
+                        <h3 className="font-semibold text-lg mb-2 text-green-600">Plug-and-Play Hardware</h3>
+                        <p className="text-gray-600">Pre-configured AI Box systems with optimized software stack ready out of the box</p>
+                    </motion.div>
+                    
+                    <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
+                        <h3 className="font-semibold text-lg mb-2 text-purple-600">Modular Libraries</h3>
+                        <p className="text-gray-600">Python/JavaScript APIs for prompting, RAG, tools, fine-tuning, and multi-agent workflows</p>
+                    </motion.div>
+                </motion.div>
+            </div>
         </motion.div>
     );
 }

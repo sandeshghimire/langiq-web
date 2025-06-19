@@ -11,29 +11,50 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef }
     return (
         <motion.div
             ref={setRef}
-            className="flex flex-col items-center justify-center h-screen w-full snap-start bg-transparent backdrop-blur-sm px-4 md:px-12 relative border border-gray-200/20"
+            className="flex items-center justify-center h-screen w-full snap-start bg-transparent backdrop-blur-sm px-4 md:px-12 relative border border-gray-200/20"
             initial="hidden"
             animate={isActive ? "visible" : "hidden"}
             variants={slideVariants}
         >
-            <motion.h1
-                className="text-4xl md:text-5xl font-bold mb-6 text-center"
-                variants={itemVariants}
-            >
-                Why do web developers need AI?
-            </motion.h1>
-            <motion.div
-                className="max-w-7xl text-center"
-                variants={itemVariants}
-            >
-                <ul className="text-left list-disc space-y-2 inline-block mx-auto text-lg">
-                    <li>Visual AI Builder: Low-code studio integrating multiple LLMs (OpenAI, Google, Anthropic) in one interface</li>
-                    <li>Plug-and-Play Hardware: Pre-configured AI Box systems with optimized software stack ready out of the box</li>
-                    <li>Modular Libraries: Python/JavaScript APIs for prompting, RAG, tools, fine-tuning, and multi-agent workflows</li>
-                    <li>Data Integration: Converts documents to vector databases, generates synthetic data, fine-tunes on proprietary data</li>
-                    <li>Auto App Generation: Scaffolds complete AI applications with backend, UI, and deployment from configuration settings</li>
-                </ul>
-            </motion.div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center max-w-7xl w-full">
+                {/* Left Column - Content */}
+                <motion.div
+                    className="space-y-6 order-2 md:order-1"
+                    variants={itemVariants}
+                >
+                    <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
+                        <h3 className="font-semibold text-lg mb-2 text-orange-600">Efficiency & Speed</h3>
+                        <p className="text-gray-600">AI accelerates development cycles and automates repetitive tasks</p>
+                    </motion.div>
+                    
+                    <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
+                        <h3 className="font-semibold text-lg mb-2 text-teal-600">Enhanced User Experience</h3>
+                        <p className="text-gray-600">Create intelligent, personalized applications that adapt to user needs</p>
+                    </motion.div>
+                    
+                    <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
+                        <h3 className="font-semibold text-lg mb-2 text-indigo-600">Competitive Advantage</h3>
+                        <p className="text-gray-600">Stay ahead with cutting-edge AI-powered solutions and features</p>
+                    </motion.div>
+                </motion.div>
+
+                {/* Right Column - Title */}
+                <motion.div
+                    className="text-center md:text-right order-1 md:order-2"
+                    variants={itemVariants}
+                >
+                    <motion.h1
+                        className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent"
+                        variants={itemVariants}
+                    >
+                        Why Do Web Developers Need AI?
+                    </motion.h1>
+                    <motion.div 
+                        className="h-1 w-20 bg-gradient-to-r from-orange-600 to-pink-600 mx-auto md:ml-auto"
+                        variants={itemVariants}
+                    />
+                </motion.div>
+            </div>
         </motion.div>
     );
 }
