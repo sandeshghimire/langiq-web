@@ -18,7 +18,7 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
             variants={slideVariants}
         >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center max-w-7xl w-full">
-                {/* Left Column - Title */}
+                {/* Left Column - Content */}
                 <motion.div
                     className="text-center md:text-left"
                     variants={itemVariants}
@@ -33,13 +33,6 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                         className="h-1 w-20 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto md:mx-0 mb-6"
                         variants={itemVariants}
                     />
-                </motion.div>
-
-                {/* Right Column - Mission Statement */}
-                <motion.div
-                    className="text-center md:text-left"
-                    variants={itemVariants}
-                >
                     <motion.h2
                         className="text-2xl md:text-3xl font-semibold mb-6 text-gray-700"
                         variants={itemVariants}
@@ -52,6 +45,14 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                     >
                         To Seamlessly Transition Your Business to the Future of Work with LLMs. At LangIQ.ai, we empower your organization to migrate from traditional operations to intelligent, LLM-based workflows, ensuring you unlock transformative efficiencies and achieve measurable business impact.
                     </motion.p>
+                </motion.div>
+
+                {/* Right Column - Empty for now */}
+                <motion.div
+                    className="hidden md:block"
+                    variants={itemVariants}
+                >
+                    {/* Empty space for future content */}
                 </motion.div>
             </div>
 

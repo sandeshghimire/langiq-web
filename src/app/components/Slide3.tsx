@@ -19,28 +19,7 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef }
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center max-w-7xl w-full">
                 {/* Left Column - Content */}
                 <motion.div
-                    className="space-y-6 order-2 md:order-1"
-                    variants={itemVariants}
-                >
-                    <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
-                        <h3 className="font-semibold text-lg mb-2 text-orange-600">Efficiency & Speed</h3>
-                        <p className="text-gray-600">AI accelerates development cycles and automates repetitive tasks</p>
-                    </motion.div>
-                    
-                    <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
-                        <h3 className="font-semibold text-lg mb-2 text-teal-600">Enhanced User Experience</h3>
-                        <p className="text-gray-600">Create intelligent, personalized applications that adapt to user needs</p>
-                    </motion.div>
-                    
-                    <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
-                        <h3 className="font-semibold text-lg mb-2 text-indigo-600">Competitive Advantage</h3>
-                        <p className="text-gray-600">Stay ahead with cutting-edge AI-powered solutions and features</p>
-                    </motion.div>
-                </motion.div>
-
-                {/* Right Column - Title */}
-                <motion.div
-                    className="text-center md:text-right order-1 md:order-2"
+                    className="text-center md:text-left"
                     variants={itemVariants}
                 >
                     <motion.h1
@@ -50,9 +29,34 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef }
                         Why Do Web Developers Need AI?
                     </motion.h1>
                     <motion.div 
-                        className="h-1 w-20 bg-gradient-to-r from-orange-600 to-pink-600 mx-auto md:ml-auto"
+                        className="h-1 w-20 bg-gradient-to-r from-orange-600 to-pink-600 mx-auto md:mx-0 mb-8"
                         variants={itemVariants}
                     />
+                    
+                    <div className="space-y-6">
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
+                            <h3 className="font-semibold text-lg mb-2 text-orange-600">Efficiency & Speed</h3>
+                            <p className="text-gray-600">AI accelerates development cycles and automates repetitive tasks</p>
+                        </motion.div>
+                        
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
+                            <h3 className="font-semibold text-lg mb-2 text-teal-600">Enhanced User Experience</h3>
+                            <p className="text-gray-600">Create intelligent, personalized applications that adapt to user needs</p>
+                        </motion.div>
+                        
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
+                            <h3 className="font-semibold text-lg mb-2 text-indigo-600">Competitive Advantage</h3>
+                            <p className="text-gray-600">Stay ahead with cutting-edge AI-powered solutions and features</p>
+                        </motion.div>
+                    </div>
+                </motion.div>
+
+                {/* Right Column - Empty for now */}
+                <motion.div
+                    className="hidden md:block"
+                    variants={itemVariants}
+                >
+                    {/* Empty space for future content */}
                 </motion.div>
             </div>
         </motion.div>
