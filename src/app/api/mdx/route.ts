@@ -16,10 +16,22 @@ export async function GET() {
     const mdxDir = path.join(process.cwd(), 'public/markdown');
 
     try {
-        // Get all MDX files
-        const fileNames = fs.readdirSync(mdxDir).filter(file =>
-            file.endsWith('.mdx') || file.endsWith('.md')
-        );
+        // Get all MDX files, but filter out demo/component files
+        const fileNames = fs.readdirSync(mdxDir).filter(file => {
+            if (!file.endsWith('.mdx') && !file.endsWith('.md')) return false;
+
+            // Skip demo and component files that contain React code
+            if (file.includes('demo') || file.includes('component')) return false;
+
+            const fullPath = path.join(mdxDir, file);
+            const fileContents = fs.readFileSync(fullPath, 'utf8');
+            const { content } = matter(fileContents);
+
+            // Skip files with imports/exports
+            if (content.includes('import {') || content.includes('export ')) return false;
+
+            return true;
+        });
 
         // Map through each file to get metadata
         const mdxData = fileNames.map(fileName => {

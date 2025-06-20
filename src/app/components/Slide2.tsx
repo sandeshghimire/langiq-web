@@ -11,40 +11,40 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
     // Animation variants for the data processing
     const particleVariants = {
         hidden: { opacity: 0, scale: 0 },
-        visible: { 
-            opacity: [0, 1, 0], 
+        visible: {
+            opacity: [0, 1, 0],
             scale: [0, 1, 0],
-            transition: { 
-                duration: 3, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
-            } 
+            transition: {
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+            }
         }
     };
 
     const flowVariants = {
         hidden: { pathLength: 0, opacity: 0 },
-        visible: { 
-            pathLength: 1, 
+        visible: {
+            pathLength: 1,
             opacity: 1,
-            transition: { 
-                duration: 2, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
-            } 
+            transition: {
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+            }
         }
     };
 
     const pulseVariants = {
         hidden: { scale: 1, opacity: 0.7 },
-        visible: { 
-            scale: [1, 1.1, 1], 
+        visible: {
+            scale: [1, 1.1, 1],
             opacity: [0.7, 1, 0.7],
-            transition: { 
-                duration: 2, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
-            } 
+            transition: {
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+            }
         }
     };
 
@@ -68,22 +68,22 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     >
                         How We Solve Problems
                     </motion.h1>
-                    <motion.div 
+                    <motion.div
                         className="h-1 w-20 bg-gradient-to-r from-green-600 to-blue-600 mx-auto md:mx-0 mb-8"
                         variants={itemVariants}
                     />
-                    
+
                     <div className="space-y-6">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
                             <h3 className="font-semibold text-lg mb-2 text-blue-600">Visual AI Builder</h3>
                             <p className="text-gray-600">Low-code studio integrating multiple LLMs (OpenAI, Google, Anthropic) in one interface</p>
                         </motion.div>
-                        
+
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
                             <h3 className="font-semibold text-lg mb-2 text-green-600">Plug-and-Play Hardware</h3>
                             <p className="text-gray-600">Pre-configured AI Box systems with optimized software stack ready out of the box</p>
                         </motion.div>
-                        
+
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
                             <h3 className="font-semibold text-lg mb-2 text-purple-600">Modular Libraries</h3>
                             <p className="text-gray-600">Python/JavaScript APIs for prompting, RAG, tools, fine-tuning, and multi-agent workflows</p>
@@ -171,13 +171,13 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                                 fill="#9333ea"
                                 variants={{
                                     hidden: { opacity: 0 },
-                                    visible: { 
+                                    visible: {
                                         opacity: [0, 1, 0],
-                                        transition: { 
-                                            duration: 1.5, 
-                                            repeat: Infinity, 
-                                            delay: i * 0.3 
-                                        } 
+                                        transition: {
+                                            duration: 1.5,
+                                            repeat: Infinity,
+                                            delay: i * 0.3
+                                        }
                                     }
                                 }}
                             />

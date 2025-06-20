@@ -51,7 +51,7 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-xl md:text-lg max-w-7xl text-center mb-12"
                 variants={itemVariants}
             >
-                Explore our collection of case studies and research papers.
+                Explore our collection of case studies and research papers. Click on any card to read the full case study.
             </motion.p>
 
             <motion.div
