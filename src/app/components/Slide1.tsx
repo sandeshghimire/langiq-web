@@ -76,11 +76,30 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                         Language Intelligence
                     </motion.h2>
                     <motion.p
-                        className="text-lg md:text-xl leading-relaxed text-gray-600 font-black"
+                        className="text-lg md:text-xl leading-relaxed text-gray-600 font-black mb-6"
                         variants={itemVariants}
                     >
                         To Seamlessly Transition Your Business to the Future of Work with LLMs. At LangIQ.ai, we empower your organization to migrate from traditional operations to intelligent, LLM-based workflows, ensuring you unlock transformative efficiencies and achieve measurable business impact.
                     </motion.p>
+
+                    {/* Security & Privacy Badge */}
+                    <motion.div
+                        className="flex items-center gap-3 justify-center md:justify-start"
+                        variants={itemVariants}
+                    >
+                        <div className="flex items-center gap-2 bg-green-50 border border-green-200 px-3 py-2 rounded-full">
+                            <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 1L5 3v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V3l-5-2z" clipRule="evenodd" />
+                            </svg>
+                            <span className="text-xs font-semibold text-green-700">Enterprise Security</span>
+                        </div>
+                        <div className="flex items-center gap-2 bg-blue-50 border border-blue-200 px-3 py-2 rounded-full">
+                            <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M18 8a6 6 0 01-7.743 5.743L10 14l-1 1-1 1H6v2H2v-4l4.257-4.257A6 6 0 1118 8zm-6-4a1 1 0 100 2 2 2 0 012 2 1 1 0 102 0 4 4 0 00-4-4z" clipRule="evenodd" />
+                            </svg>
+                            <span className="text-xs font-semibold text-blue-700">Privacy First</span>
+                        </div>
+                    </motion.div>
                 </motion.div>
 
                 {/* Right Column - LLM Processing Animation */}
@@ -88,17 +107,35 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                     className="hidden md:flex flex-col items-center justify-center relative h-96"
                     variants={itemVariants}
                 >
+                    {/* Security Shield */}
+                    <motion.div
+                        className="absolute top-0 right-0 z-10"
+                        animate={{
+                            scale: [1, 1.05, 1],
+                            rotate: [0, 2, -2, 0]
+                        }}
+                        transition={{ duration: 4, repeat: Infinity }}
+                    >
+                        <div className="bg-gradient-to-r from-green-500 to-emerald-500 p-2 rounded-full shadow-lg">
+                            <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 1L5 3v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V3l-5-2z" clipRule="evenodd" />
+                            </svg>
+                        </div>
+                    </motion.div>
+
                     {/* Unstructured Data */}
                     <motion.div
                         className="absolute top-0 left-0"
                         variants={floatingVariants}
                         animate="animate"
                     >
-                        <div className="bg-gradient-to-r from-red-100 to-orange-100 p-3 rounded-lg border border-red-200">
+                        <div className="bg-gradient-to-r from-red-100 to-orange-100 p-3 rounded-lg border border-red-200 relative">
                             <div className="text-xs text-red-600 font-medium mb-1">Unstructured Data</div>
                             <div className="text-gray-400 text-xs">
                                 Raw text, emails, docs...
                             </div>
+                            {/* Privacy indicator */}
+                            <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
                         </div>
                     </motion.div>
 
@@ -128,6 +165,16 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                             <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
                                 <div className="text-blue-600 font-bold text-sm">LLM</div>
                             </div>
+                            {/* Security lock overlay */}
+                            <motion.div
+                                className="absolute -top-2 -right-2 bg-green-500 rounded-full p-1"
+                                animate={{ opacity: [0.7, 1, 0.7] }}
+                                transition={{ duration: 2, repeat: Infinity }}
+                            >
+                                <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                                </svg>
+                            </motion.div>
                             {/* Processing rings */}
                             <motion.div
                                 className="absolute inset-0 border-2 border-blue-300 rounded-full"
@@ -149,11 +196,13 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                         animate="animate"
                         transition={{ delay: 1 }}
                     >
-                        <div className="bg-gradient-to-r from-green-100 to-emerald-100 p-3 rounded-lg border border-green-200">
+                        <div className="bg-gradient-to-r from-green-100 to-emerald-100 p-3 rounded-lg border border-green-200 relative">
                             <div className="text-xs text-green-600 font-medium mb-1">Structured Data</div>
                             <div className="text-gray-400 text-xs">
                                 JSON, tables, insights...
                             </div>
+                            {/* Privacy indicator */}
+                            <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
                         </div>
                     </motion.div>
 
@@ -164,7 +213,7 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                         animate={{ opacity: [0.5, 1, 0.5] }}
                         transition={{ duration: 2, repeat: Infinity }}
                     >
-                        <div className="text-xs text-gray-500 font-medium">Processing...</div>
+                        <div className="text-xs text-gray-500 font-medium">Secure Processing...</div>
                     </motion.div>
 
                     <motion.div
@@ -173,7 +222,19 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                         animate={{ opacity: [0.5, 1, 0.5] }}
                         transition={{ duration: 2, repeat: Infinity, delay: 1 }}
                     >
-                        <div className="text-xs text-gray-500 font-medium">Analyzing...</div>
+                        <div className="text-xs text-gray-500 font-medium">Private Analysis...</div>
+                    </motion.div>
+
+                    {/* Encrypted Data Flow Label */}
+                    <motion.div
+                        className="absolute"
+                        style={{ top: '45%', left: '25%' }}
+                        animate={{ opacity: [0.3, 0.8, 0.3] }}
+                        transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
+                    >
+                        <div className="text-xs text-green-600 font-medium bg-green-50 px-2 py-1 rounded border border-green-200">
+                            🔒 Encrypted
+                        </div>
                     </motion.div>
 
                     {/* Connection Lines */}
