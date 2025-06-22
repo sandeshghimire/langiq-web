@@ -7,7 +7,7 @@ export async function GET(
     request: Request,
     { params }: { params: { slug: string } }
 ) {
-    const { slug } = params;
+    const { slug } = await params;
     const mdxDir = path.join(process.cwd(), 'public/markdown');
 
     try {

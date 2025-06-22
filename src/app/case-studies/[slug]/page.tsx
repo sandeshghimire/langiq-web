@@ -33,7 +33,8 @@ async function getCaseStudy(slug: string) {
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: CaseStudyPageProps): Promise<Metadata> {
-    const caseStudy = await getCaseStudy(params.slug);
+    const { slug } = await params;
+    const caseStudy = await getCaseStudy(slug);
 
     if (!caseStudy) {
         return {
@@ -124,18 +125,19 @@ const mdxComponents = {
 };
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
-    const caseStudy = await getCaseStudy(params.slug);
-    const { previous, next } = await getAdjacentCaseStudies(params.slug);
+    const { slug } = await params;
+    const caseStudy = await getCaseStudy(slug);
+    const { previous, next } = await getAdjacentCaseStudies(slug);
 
     if (!caseStudy) {
         notFound();
     }
 
     return (
-        <div className="min-h-screen bg-white text-gray-900">
+        <div className="min-h-screen text-gray-900 p-24">
             {/* Header */}
-            <div className="bg-gray-50 border-b border-gray-200">
-                <div className="max-w-6xl mx-auto px-4 py-6">
+            <div className="">
+                <div className="max-w-7xl mx-auto px-4 py-6">
                     <Breadcrumb
                         items={[
                             { label: "Case Studies", href: "/case-studies" },
