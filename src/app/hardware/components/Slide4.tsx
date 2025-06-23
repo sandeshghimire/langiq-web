@@ -93,96 +93,176 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     </div>
                 </motion.div>
 
-                {/* Right Column - LLM Processing Animation */}
+                {/* Right Column - AI Box Solution Animation */}
                 <motion.div
                     className="hidden md:block relative h-96"
                     variants={itemVariants}
                 >
                     <svg className="w-full h-full" viewBox="0 0 400 400">
-                        {/* Structured Data Input */}
-                        <motion.g variants={itemVariants}>
-                            <rect x="20" y="50" width="80" height="60" rx="8" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
-                            <text x="60" y="75" textAnchor="middle" className="text-xs fill-green-600 font-medium">Structured</text>
-                            <text x="60" y="90" textAnchor="middle" className="text-xs fill-green-600 font-medium">Data</text>
-                        </motion.g>
-
-                        {/* Unstructured Data Input */}
-                        <motion.g variants={itemVariants}>
-                            <rect x="20" y="150" width="80" height="60" rx="8" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
-                            <text x="60" y="175" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Unstructured</text>
-                            <text x="60" y="190" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Data</text>
-                        </motion.g>
-
-                        {/* LLM Processing Core */}
+                        {/* AI Box Container - Secure Boundary */}
                         <motion.g variants={pulseVariants}>
-                            <circle cx="200" cy="150" r="50" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="3" />
-                            <text x="200" y="145" textAnchor="middle" className="text-sm fill-purple-600 font-bold">LLM</text>
-                            <text x="200" y="160" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Processing</text>
+                            <rect x="80" y="60" width="240" height="200" rx="15"
+                                fill="rgba(34, 197, 94, 0.1)"
+                                stroke="#22c55e"
+                                strokeWidth="3"
+                                strokeDasharray="8,4" />
+                            <text x="200" y="50" textAnchor="middle" className="text-sm fill-green-600 font-bold">AI Box - Secure Environment</text>
                         </motion.g>
 
-                        {/* Output */}
+                        {/* Data Input Sources */}
                         <motion.g variants={itemVariants}>
-                            <rect x="300" y="120" width="80" height="60" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
-                            <text x="340" y="145" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Processed</text>
-                            <text x="340" y="160" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Output</text>
+                            <circle cx="40" cy="100" r="15" fill="rgba(59, 130, 246, 0.3)" stroke="#3b82f6" strokeWidth="2" />
+                            <text x="40" y="105" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Data</text>
                         </motion.g>
 
-                        {/* Data Flow Lines */}
+                        <motion.g variants={itemVariants}>
+                            <circle cx="40" cy="150" r="15" fill="rgba(147, 51, 234, 0.3)" stroke="#9333ea" strokeWidth="2" />
+                            <text x="40" y="155" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Files</text>
+                        </motion.g>
+
+                        <motion.g variants={itemVariants}>
+                            <circle cx="40" cy="200" r="15" fill="rgba(245, 158, 11, 0.3)" stroke="#f59e0b" strokeWidth="2" />
+                            <text x="40" y="205" textAnchor="middle" className="text-xs fill-amber-600 font-medium">API</text>
+                        </motion.g>
+
+                        {/* AI Processing Core */}
+                        <motion.g variants={pulseVariants}>
+                            <rect x="140" y="120" width="120" height="80" rx="10"
+                                fill="rgba(16, 185, 129, 0.2)"
+                                stroke="#10b981"
+                                strokeWidth="2" />
+                            <text x="200" y="150" textAnchor="middle" className="text-sm fill-emerald-600 font-bold">AI Processing</text>
+                            <text x="200" y="170" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">On-Premise</text>
+                        </motion.g>
+
+                        {/* Cost Indicator */}
+                        <motion.g variants={itemVariants}>
+                            <circle cx="120" cy="90" r="12" fill="rgba(34, 197, 94, 0.3)" stroke="#22c55e" strokeWidth="2" />
+                            <text x="120" y="95" textAnchor="middle" className="text-xs fill-green-600 font-bold">$</text>
+                        </motion.g>
+
+                        {/* Performance Indicator */}
+                        <motion.g variants={itemVariants}>
+                            <polygon points="280,90 292,100 280,110 268,100"
+                                fill="rgba(239, 68, 68, 0.3)"
+                                stroke="#ef4444"
+                                strokeWidth="2" />
+                            <text x="280" y="85" textAnchor="middle" className="text-xs fill-red-600 font-medium">Fast</text>
+                        </motion.g>
+
+                        {/* Security Shield */}
+                        <motion.g variants={pulseVariants}>
+                            <path d="M200 280 L190 290 L200 305 L210 290 Z"
+                                fill="rgba(59, 130, 246, 0.3)"
+                                stroke="#3b82f6"
+                                strokeWidth="2" />
+                            <text x="200" y="325" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Secure</text>
+                        </motion.g>
+
+                        {/* Data Flow Lines with Security */}
                         <motion.path
-                            d="M100 80 Q150 80 150 150"
+                            d="M55 100 Q90 100 100 120"
                             stroke="#22c55e"
-                            strokeWidth="2"
+                            strokeWidth="3"
                             fill="none"
                             variants={flowVariants}
                         />
                         <motion.path
-                            d="M100 180 Q150 180 150 150"
-                            stroke="#3b82f6"
-                            strokeWidth="2"
+                            d="M55 150 Q90 150 120 140"
+                            stroke="#22c55e"
+                            strokeWidth="3"
                             fill="none"
                             variants={flowVariants}
                         />
                         <motion.path
-                            d="M250 150 Q275 150 300 150"
+                            d="M55 200 Q90 200 100 180"
+                            stroke="#22c55e"
+                            strokeWidth="3"
+                            fill="none"
+                            variants={flowVariants}
+                        />
+
+                        {/* Output Arrows */}
+                        <motion.path
+                            d="M260 160 Q300 160 340 140"
                             stroke="#10b981"
-                            strokeWidth="2"
+                            strokeWidth="3"
+                            fill="none"
+                            variants={flowVariants}
+                        />
+                        <motion.path
+                            d="M260 160 Q300 160 340 180"
+                            stroke="#10b981"
+                            strokeWidth="3"
                             fill="none"
                             variants={flowVariants}
                         />
 
-                        {/* Animated Data Particles */}
-                        {[...Array(6)].map((_, i) => (
-                            <motion.circle
-                                key={i}
-                                cx={120 + i * 30}
-                                cy={130 + Math.sin(i) * 40}
-                                r="3"
-                                fill={i % 2 === 0 ? "#22c55e" : "#3b82f6"}
-                                variants={particleVariants}
-                                style={{ animationDelay: `${i * 0.5}s` }}
-                            />
-                        ))}
+                        {/* Output Results */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="340" y="125" width="50" height="30" rx="5"
+                                fill="rgba(16, 185, 129, 0.2)"
+                                stroke="#10b981"
+                                strokeWidth="2" />
+                            <text x="365" y="145" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Results</text>
+                        </motion.g>
 
-                        {/* Processing Indicators */}
-                        {[...Array(3)].map((_, i) => (
+                        <motion.g variants={itemVariants}>
+                            <rect x="340" y="165" width="50" height="30" rx="5"
+                                fill="rgba(16, 185, 129, 0.2)"
+                                stroke="#10b981"
+                                strokeWidth="2" />
+                            <text x="365" y="185" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Insights</text>
+                        </motion.g>
+
+                        {/* Animated Security Particles */}
+                        {[...Array(8)].map((_, i) => (
                             <motion.circle
                                 key={i}
-                                cx={180 + i * 20}
-                                cy={150}
+                                cx={90 + (i % 4) * 60}
+                                cy={70 + Math.floor(i / 4) * 180}
                                 r="2"
-                                fill="#9333ea"
+                                fill="#22c55e"
                                 variants={{
-                                    hidden: { opacity: 0 },
+                                    hidden: { opacity: 0, scale: 0 },
                                     visible: {
                                         opacity: [0, 1, 0],
+                                        scale: [0, 1.5, 0],
                                         transition: {
-                                            duration: 1.5,
+                                            duration: 2,
                                             repeat: Infinity,
-                                            delay: i * 0.3
+                                            delay: i * 0.25,
+                                            ease: "easeInOut"
                                         }
                                     }
                                 }}
                             />
+                        ))}
+
+                        {/* Cost Efficiency Indicators */}
+                        {[...Array(3)].map((_, i) => (
+                            <motion.text
+                                key={i}
+                                x={150 + i * 30}
+                                y={240}
+                                textAnchor="middle"
+                                className="text-xs fill-green-600 font-bold"
+                                variants={{
+                                    hidden: { opacity: 0, y: 10 },
+                                    visible: {
+                                        opacity: [0, 1, 0],
+                                        y: [10, 0, -10],
+                                        transition: {
+                                            duration: 2,
+                                            repeat: Infinity,
+                                            delay: i * 0.4,
+                                            ease: "easeInOut"
+                                        }
+                                    }
+                                }}
+                            >
+                                $
+                            </motion.text>
                         ))}
                     </svg>
 
@@ -191,13 +271,25 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="absolute top-4 left-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
                         variants={itemVariants}
                     >
-                        Multi-Modal Input
+                        Data Sovereignty
+                    </motion.div>
+                    <motion.div
+                        className="absolute top-4 right-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
+                        variants={itemVariants}
+                    >
+                        Cost Effective
+                    </motion.div>
+                    <motion.div
+                        className="absolute bottom-4 left-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
+                        variants={itemVariants}
+                    >
+                        Low Latency
                     </motion.div>
                     <motion.div
                         className="absolute bottom-4 right-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
                         variants={itemVariants}
                     >
-                        Intelligent Output
+                        Ready to Deploy
                     </motion.div>
                 </motion.div>
             </div>
