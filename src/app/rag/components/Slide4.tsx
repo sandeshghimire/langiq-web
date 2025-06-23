@@ -8,27 +8,53 @@ interface Slide2Props {
 }
 
 export default function Slide2({ slideVariants, itemVariants, isActive, setRef }: Slide2Props) {
-    // Animation variants for the data processing
-    const particleVariants = {
-        hidden: { opacity: 0, scale: 0 },
+    // Animation variants for RAG workflow
+    const documentVariants = {
+        hidden: { opacity: 0, y: 20 },
         visible: {
-            opacity: [0, 1, 0],
-            scale: [0, 1, 0],
+            opacity: 1,
+            y: 0,
             transition: {
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
+                duration: 0.8,
+                staggerChildren: 0.2
             }
         }
     };
 
-    const flowVariants = {
+    const searchVariants = {
+        hidden: { scale: 0, opacity: 0 },
+        visible: {
+            scale: [0, 1.2, 1],
+            opacity: 1,
+            transition: {
+                duration: 1.5,
+                repeat: Infinity,
+                repeatDelay: 2
+            }
+        }
+    };
+
+    const retrievalVariants = {
         hidden: { pathLength: 0, opacity: 0 },
         visible: {
             pathLength: 1,
             opacity: 1,
             transition: {
-                duration: 2,
+                duration: 1.5,
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatDelay: 1
+            }
+        }
+    };
+
+    const citationVariants = {
+        hidden: { opacity: 0, scale: 0.8 },
+        visible: {
+            opacity: [0, 1, 1, 0],
+            scale: [0.8, 1, 1, 0.8],
+            transition: {
+                duration: 3,
                 repeat: Infinity,
                 ease: "easeInOut"
             }
@@ -93,111 +119,180 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     </div>
                 </motion.div>
 
-                {/* Right Column - LLM Processing Animation */}
+                {/* Right Column - RAG Problem-Solving Animation */}
                 <motion.div
                     className="hidden md:block relative h-96"
                     variants={itemVariants}
                 >
                     <svg className="w-full h-full" viewBox="0 0 400 400">
-                        {/* Structured Data Input */}
-                        <motion.g variants={itemVariants}>
-                            <rect x="20" y="50" width="80" height="60" rx="8" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
-                            <text x="60" y="75" textAnchor="middle" className="text-xs fill-green-600 font-medium">Structured</text>
-                            <text x="60" y="90" textAnchor="middle" className="text-xs fill-green-600 font-medium">Data</text>
+                        {/* Knowledge Base */}
+                        <motion.g variants={documentVariants}>
+                            <rect x="20" y="20" width="60" height="40" rx="4" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
+                            <text x="50" y="35" textAnchor="middle" className="text-xs fill-green-600 font-medium">Docs</text>
+                            <text x="50" y="48" textAnchor="middle" className="text-xs fill-green-600 font-medium">KB</text>
                         </motion.g>
 
-                        {/* Unstructured Data Input */}
-                        <motion.g variants={itemVariants}>
-                            <rect x="20" y="150" width="80" height="60" rx="8" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
-                            <text x="60" y="175" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Unstructured</text>
-                            <text x="60" y="190" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Data</text>
+                        <motion.g variants={documentVariants}>
+                            <rect x="20" y="80" width="60" height="40" rx="4" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
+                            <text x="50" y="95" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Real-time</text>
+                            <text x="50" y="108" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Data</text>
                         </motion.g>
 
-                        {/* LLM Processing Core */}
+                        <motion.g variants={documentVariants}>
+                            <rect x="20" y="140" width="60" height="40" rx="4" fill="rgba(168, 85, 247, 0.2)" stroke="#a855f7" strokeWidth="2" />
+                            <text x="50" y="155" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Verified</text>
+                            <text x="50" y="168" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Sources</text>
+                        </motion.g>
+
+                        {/* Query Input */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="20" y="220" width="80" height="40" rx="6" fill="rgba(239, 68, 68, 0.2)" stroke="#ef4444" strokeWidth="2" />
+                            <text x="60" y="235" textAnchor="middle" className="text-xs fill-red-600 font-medium">User Query</text>
+                            <text x="60" y="248" textAnchor="middle" className="text-xs fill-red-600 font-medium">Intent</text>
+                        </motion.g>
+
+                        {/* Semantic Search Engine */}
+                        <motion.g variants={searchVariants}>
+                            <circle cx="160" cy="130" r="30" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="3" />
+                            <text x="160" y="125" textAnchor="middle" className="text-xs fill-emerald-600 font-bold">Semantic</text>
+                            <text x="160" y="138" textAnchor="middle" className="text-xs fill-emerald-600 font-bold">Search</text>
+                        </motion.g>
+
+                        {/* RAG Pipeline */}
                         <motion.g variants={pulseVariants}>
-                            <circle cx="200" cy="150" r="50" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="3" />
-                            <text x="200" y="145" textAnchor="middle" className="text-sm fill-purple-600 font-bold">LLM</text>
-                            <text x="200" y="160" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Processing</text>
+                            <rect x="240" y="100" width="80" height="60" rx="8" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="3" />
+                            <text x="280" y="120" textAnchor="middle" className="text-xs fill-purple-600 font-bold">RAG</text>
+                            <text x="280" y="133" textAnchor="middle" className="text-xs fill-purple-600 font-bold">Pipeline</text>
+                            <text x="280" y="146" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Grounded</text>
                         </motion.g>
 
-                        {/* Output */}
+                        {/* Grounded Response */}
                         <motion.g variants={itemVariants}>
-                            <rect x="300" y="120" width="80" height="60" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
-                            <text x="340" y="145" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Processed</text>
-                            <text x="340" y="160" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Output</text>
+                            <rect x="300" y="200" width="80" height="50" rx="6" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
+                            <text x="340" y="220" textAnchor="middle" className="text-xs fill-green-600 font-medium">Accurate</text>
+                            <text x="340" y="233" textAnchor="middle" className="text-xs fill-green-600 font-medium">Response</text>
                         </motion.g>
 
-                        {/* Data Flow Lines */}
+                        {/* Source Citations */}
+                        <motion.g variants={citationVariants}>
+                            <rect x="300" y="270" width="80" height="40" rx="4" fill="rgba(245, 158, 11, 0.2)" stroke="#f59e0b" strokeWidth="2" />
+                            <text x="340" y="285" textAnchor="middle" className="text-xs fill-amber-600 font-medium">Source</text>
+                            <text x="340" y="298" textAnchor="middle" className="text-xs fill-amber-600 font-medium">Citations</text>
+                        </motion.g>
+
+                        {/* Retrieval Flow Lines */}
                         <motion.path
-                            d="M100 80 Q150 80 150 150"
+                            d="M80 40 Q120 40 130 130"
                             stroke="#22c55e"
                             strokeWidth="2"
                             fill="none"
-                            variants={flowVariants}
+                            variants={retrievalVariants}
                         />
                         <motion.path
-                            d="M100 180 Q150 180 150 150"
+                            d="M80 100 Q120 100 130 130"
                             stroke="#3b82f6"
                             strokeWidth="2"
                             fill="none"
-                            variants={flowVariants}
+                            variants={retrievalVariants}
                         />
                         <motion.path
-                            d="M250 150 Q275 150 300 150"
-                            stroke="#10b981"
+                            d="M80 160 Q120 160 130 130"
+                            stroke="#a855f7"
                             strokeWidth="2"
                             fill="none"
-                            variants={flowVariants}
+                            variants={retrievalVariants}
                         />
 
-                        {/* Animated Data Particles */}
-                        {[...Array(6)].map((_, i) => (
-                            <motion.circle
-                                key={i}
-                                cx={120 + i * 30}
-                                cy={130 + Math.sin(i) * 40}
-                                r="3"
-                                fill={i % 2 === 0 ? "#22c55e" : "#3b82f6"}
-                                variants={particleVariants}
-                                style={{ animationDelay: `${i * 0.5}s` }}
-                            />
-                        ))}
+                        {/* Query to Search */}
+                        <motion.path
+                            d="M100 240 Q130 240 130 160"
+                            stroke="#ef4444"
+                            strokeWidth="2"
+                            fill="none"
+                            variants={retrievalVariants}
+                        />
 
-                        {/* Processing Indicators */}
-                        {[...Array(3)].map((_, i) => (
+                        {/* Search to RAG */}
+                        <motion.path
+                            d="M190 130 Q215 130 240 130"
+                            stroke="#10b981"
+                            strokeWidth="3"
+                            fill="none"
+                            variants={retrievalVariants}
+                        />
+
+                        {/* RAG to Response */}
+                        <motion.path
+                            d="M280 160 Q280 180 340 200"
+                            stroke="#9333ea"
+                            strokeWidth="2"
+                            fill="none"
+                            variants={retrievalVariants}
+                        />
+
+                        {/* Response to Citations */}
+                        <motion.path
+                            d="M340 250 Q340 260 340 270"
+                            stroke="#22c55e"
+                            strokeWidth="2"
+                            fill="none"
+                            variants={retrievalVariants}
+                        />
+
+                        {/* Semantic Matching Particles */}
+                        {[...Array(8)].map((_, i) => (
                             <motion.circle
                                 key={i}
-                                cx={180 + i * 20}
-                                cy={150}
+                                cx={110 + i * 15}
+                                cy={130 + Math.sin(i * 0.8) * 20}
                                 r="2"
-                                fill="#9333ea"
+                                fill={["#22c55e", "#3b82f6", "#a855f7", "#10b981"][i % 4]}
                                 variants={{
                                     hidden: { opacity: 0 },
                                     visible: {
                                         opacity: [0, 1, 0],
+                                        x: [0, 20, 40],
                                         transition: {
-                                            duration: 1.5,
+                                            duration: 2,
                                             repeat: Infinity,
-                                            delay: i * 0.3
+                                            delay: i * 0.25
                                         }
                                     }
                                 }}
                             />
                         ))}
+
+                        {/* Verification Checkmarks */}
+                        <motion.g variants={citationVariants}>
+                            <circle cx="360" cy="180" r="8" fill="#22c55e" opacity="0.8" />
+                            <path d="M356 180 L359 183 L364 177" stroke="white" strokeWidth="2" fill="none" />
+                        </motion.g>
                     </svg>
 
-                    {/* Floating Labels */}
+                    {/* Dynamic Labels */}
                     <motion.div
                         className="absolute top-4 left-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
                         variants={itemVariants}
                     >
-                        Multi-Modal Input
+                        Verified Knowledge Base
+                    </motion.div>
+                    <motion.div
+                        className="absolute top-4 right-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
+                        variants={itemVariants}
+                    >
+                        Semantic Understanding
+                    </motion.div>
+                    <motion.div
+                        className="absolute bottom-4 left-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
+                        variants={itemVariants}
+                    >
+                        Real-time Retrieval
                     </motion.div>
                     <motion.div
                         className="absolute bottom-4 right-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
                         variants={itemVariants}
                     >
-                        Intelligent Output
+                        Traceable Sources
                     </motion.div>
                 </motion.div>
             </div>

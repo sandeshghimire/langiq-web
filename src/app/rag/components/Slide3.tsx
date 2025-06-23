@@ -8,12 +8,25 @@ interface Slide2Props {
 }
 
 export default function Slide2({ slideVariants, itemVariants, isActive, setRef }: Slide2Props) {
-    // Animation variants for the data processing
-    const particleVariants = {
+    // Animation variants for RAG problems visualization
+    const problemVariants = {
         hidden: { opacity: 0, scale: 0 },
         visible: {
-            opacity: [0, 1, 0],
-            scale: [0, 1, 0],
+            opacity: [0, 1, 0.5],
+            scale: [0, 1.2, 1],
+            transition: {
+                duration: 2.5,
+                repeat: Infinity,
+                ease: "easeInOut"
+            }
+        }
+    };
+
+    const disconnectedVariants = {
+        hidden: { pathLength: 0, opacity: 0 },
+        visible: {
+            pathLength: [0, 1, 0],
+            opacity: [0, 0.8, 0],
             transition: {
                 duration: 3,
                 repeat: Infinity,
@@ -22,26 +35,13 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
         }
     };
 
-    const flowVariants = {
-        hidden: { pathLength: 0, opacity: 0 },
+    const isolatedVariants = {
+        hidden: { scale: 1, opacity: 0.5 },
         visible: {
-            pathLength: 1,
-            opacity: 1,
+            scale: [1, 0.9, 1],
+            opacity: [0.5, 0.8, 0.5],
             transition: {
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-            }
-        }
-    };
-
-    const pulseVariants = {
-        hidden: { scale: 1, opacity: 0.7 },
-        visible: {
-            scale: [1, 1.1, 1],
-            opacity: [0.7, 1, 0.7],
-            transition: {
-                duration: 2,
+                duration: 2.5,
                 repeat: Infinity,
                 ease: "easeInOut"
             }
@@ -91,111 +91,144 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     </div>
                 </motion.div>
 
-                {/* Right Column - LLM Processing Animation */}
+                {/* Right Column - RAG Problems Animation */}
                 <motion.div
                     className="hidden md:block relative h-96"
                     variants={itemVariants}
                 >
                     <svg className="w-full h-full" viewBox="0 0 400 400">
-                        {/* Structured Data Input */}
+                        {/* Isolated LLM */}
+                        <motion.g variants={isolatedVariants}>
+                            <circle cx="200" cy="200" r="45" fill="rgba(239, 68, 68, 0.2)" stroke="#ef4444" strokeWidth="3" strokeDasharray="5,5" />
+                            <text x="200" y="195" textAnchor="middle" className="text-sm fill-red-600 font-bold">LLM</text>
+                            <text x="200" y="210" textAnchor="middle" className="text-xs fill-red-600 font-medium">Isolated</text>
+                        </motion.g>
+
+                        {/* Outdated Knowledge Base */}
                         <motion.g variants={itemVariants}>
-                            <rect x="20" y="50" width="80" height="60" rx="8" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
-                            <text x="60" y="75" textAnchor="middle" className="text-xs fill-green-600 font-medium">Structured</text>
-                            <text x="60" y="90" textAnchor="middle" className="text-xs fill-green-600 font-medium">Data</text>
+                            <rect x="50" y="50" width="70" height="50" rx="6" fill="rgba(251, 146, 60, 0.2)" stroke="#fb923c" strokeWidth="2" />
+                            <text x="85" y="70" textAnchor="middle" className="text-xs fill-orange-600 font-medium">Outdated</text>
+                            <text x="85" y="85" textAnchor="middle" className="text-xs fill-orange-600 font-medium">Knowledge</text>
+                            {/* Clock icon indicating old data */}
+                            <circle cx="110" cy="60" r="8" fill="none" stroke="#fb923c" strokeWidth="1.5" />
+                            <path d="M110 55 L110 60 L113 63" stroke="#fb923c" strokeWidth="1.5" fill="none" />
                         </motion.g>
 
-                        {/* Unstructured Data Input */}
+                        {/* Disconnected Documents */}
                         <motion.g variants={itemVariants}>
-                            <rect x="20" y="150" width="80" height="60" rx="8" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
-                            <text x="60" y="175" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Unstructured</text>
-                            <text x="60" y="190" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Data</text>
+                            <rect x="280" y="60" width="70" height="50" rx="6" fill="rgba(156, 163, 175, 0.2)" stroke="#9ca3af" strokeWidth="2" />
+                            <text x="315" y="80" textAnchor="middle" className="text-xs fill-gray-600 font-medium">Private</text>
+                            <text x="315" y="95" textAnchor="middle" className="text-xs fill-gray-600 font-medium">Docs</text>
+                            {/* Lock icon */}
+                            <rect x="330" y="65" width="6" height="8" rx="1" fill="none" stroke="#9ca3af" strokeWidth="1" />
+                            <circle cx="333" cy="67" r="2" fill="none" stroke="#9ca3af" strokeWidth="1" />
                         </motion.g>
 
-                        {/* LLM Processing Core */}
-                        <motion.g variants={pulseVariants}>
-                            <circle cx="200" cy="150" r="50" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="3" />
-                            <text x="200" y="145" textAnchor="middle" className="text-sm fill-purple-600 font-bold">LLM</text>
-                            <text x="200" y="160" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Processing</text>
+                        {/* Hallucination Indicators */}
+                        <motion.g variants={problemVariants}>
+                            <circle cx="320" cy="200" r="25" fill="rgba(239, 68, 68, 0.1)" stroke="#ef4444" strokeWidth="2" />
+                            <text x="320" y="200" textAnchor="middle" className="text-xs fill-red-600 font-bold">?</text>
+                            <text x="320" y="230" textAnchor="middle" className="text-xs fill-red-600 font-medium">Hallucination</text>
                         </motion.g>
 
-                        {/* Output */}
-                        <motion.g variants={itemVariants}>
-                            <rect x="300" y="120" width="80" height="60" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
-                            <text x="340" y="145" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Processed</text>
-                            <text x="340" y="160" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Output</text>
+                        <motion.g variants={problemVariants}>
+                            <circle cx="80" cy="200" r="25" fill="rgba(245, 101, 101, 0.1)" stroke="#f56565" strokeWidth="2" />
+                            <text x="80" y="200" textAnchor="middle" className="text-xs fill-red-500 font-bold">✗</text>
+                            <text x="80" y="230" textAnchor="middle" className="text-xs fill-red-500 font-medium">Inaccurate</text>
                         </motion.g>
 
-                        {/* Data Flow Lines */}
+                        {/* Broken Connection Lines */}
                         <motion.path
-                            d="M100 80 Q150 80 150 150"
-                            stroke="#22c55e"
+                            d="M120 75 Q160 75 160 180"
+                            stroke="#fb923c"
                             strokeWidth="2"
+                            strokeDasharray="8,4"
                             fill="none"
-                            variants={flowVariants}
+                            variants={disconnectedVariants}
                         />
                         <motion.path
-                            d="M100 180 Q150 180 150 150"
-                            stroke="#3b82f6"
+                            d="M280 85 Q240 85 240 180"
+                            stroke="#9ca3af"
                             strokeWidth="2"
+                            strokeDasharray="8,4"
                             fill="none"
-                            variants={flowVariants}
-                        />
-                        <motion.path
-                            d="M250 150 Q275 150 300 150"
-                            stroke="#10b981"
-                            strokeWidth="2"
-                            fill="none"
-                            variants={flowVariants}
+                            variants={disconnectedVariants}
                         />
 
-                        {/* Animated Data Particles */}
-                        {[...Array(6)].map((_, i) => (
-                            <motion.circle
+                        {/* Question Mark Particles around LLM */}
+                        {[...Array(4)].map((_, i) => (
+                            <motion.text
                                 key={i}
-                                cx={120 + i * 30}
-                                cy={130 + Math.sin(i) * 40}
-                                r="3"
-                                fill={i % 2 === 0 ? "#22c55e" : "#3b82f6"}
-                                variants={particleVariants}
-                                style={{ animationDelay: `${i * 0.5}s` }}
-                            />
+                                x={200 + Math.cos(i * Math.PI / 2) * 70}
+                                y={200 + Math.sin(i * Math.PI / 2) * 70}
+                                textAnchor="middle"
+                                className="text-lg fill-red-400 font-bold"
+                                variants={{
+                                    hidden: { opacity: 0, scale: 0 },
+                                    visible: {
+                                        opacity: [0, 1, 0],
+                                        scale: [0, 1.2, 0],
+                                        transition: {
+                                            duration: 2,
+                                            repeat: Infinity,
+                                            delay: i * 0.5
+                                        }
+                                    }
+                                }}
+                            >
+                                ?
+                            </motion.text>
                         ))}
 
-                        {/* Processing Indicators */}
+                        {/* Warning indicators */}
                         {[...Array(3)].map((_, i) => (
                             <motion.circle
                                 key={i}
                                 cx={180 + i * 20}
-                                cy={150}
+                                cy={180}
                                 r="2"
-                                fill="#9333ea"
+                                fill="#ef4444"
                                 variants={{
                                     hidden: { opacity: 0 },
                                     visible: {
                                         opacity: [0, 1, 0],
                                         transition: {
-                                            duration: 1.5,
+                                            duration: 1.8,
                                             repeat: Infinity,
-                                            delay: i * 0.3
+                                            delay: i * 0.4
                                         }
                                     }
                                 }}
                             />
                         ))}
+
+                        {/* Compliance Issues */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="50" y="280" width="80" height="40" rx="6" fill="rgba(185, 28, 28, 0.1)" stroke="#b91c1c" strokeWidth="2" />
+                            <text x="90" y="295" textAnchor="middle" className="text-xs fill-red-700 font-medium">No Source</text>
+                            <text x="90" y="310" textAnchor="middle" className="text-xs fill-red-700 font-medium">Attribution</text>
+                        </motion.g>
+
+                        {/* Knowledge Gaps */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="270" y="280" width="80" height="40" rx="6" fill="rgba(75, 85, 99, 0.1)" stroke="#4b5563" strokeWidth="2" strokeDasharray="3,3" />
+                            <text x="310" y="295" textAnchor="middle" className="text-xs fill-gray-600 font-medium">Knowledge</text>
+                            <text x="310" y="310" textAnchor="middle" className="text-xs fill-gray-600 font-medium">Gaps</text>
+                        </motion.g>
                     </svg>
 
-                    {/* Floating Labels */}
+                    {/* Problem Labels */}
                     <motion.div
-                        className="absolute top-4 left-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
+                        className="absolute top-4 left-4 text-xs font-medium text-red-600 bg-red-50/80 backdrop-blur-sm rounded px-2 py-1 border border-red-200"
                         variants={itemVariants}
                     >
-                        Multi-Modal Input
+                        Information Silos
                     </motion.div>
                     <motion.div
-                        className="absolute bottom-4 right-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
+                        className="absolute bottom-4 right-4 text-xs font-medium text-orange-600 bg-orange-50/80 backdrop-blur-sm rounded px-2 py-1 border border-orange-200"
                         variants={itemVariants}
                     >
-                        Intelligent Output
+                        Unreliable Responses
                     </motion.div>
                 </motion.div>
             </div>
