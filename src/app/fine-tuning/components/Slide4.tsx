@@ -66,29 +66,29 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
                         variants={itemVariants}
                     >
-                        How Agents Orchestration Solve Problems
+                        How Does Fine-Tuning Solve These Problems?
                     </motion.h1>
 
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Enables sophisticated problem-solving by combining multiple specialized agents with complementary capabilities</p>
+                            <p className="text-gray-600">Creates specialized models deeply trained on organization-specific data and use cases</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Provides intelligent coordination ensuring proper sequencing, decision-making, and information sharing between agents</p>
+                            <p className="text-gray-600">Develops AI systems that naturally understand company terminology, processes, and quality requirements</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Automates complex, multi-step business processes reducing manual intervention and increasing operational efficiency</p>
+                            <p className="text-gray-600">Achieves superior accuracy on specialized tasks through dedicated model training rather than generic responses</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Offers scalable architecture supporting both simple workflows and enterprise-level process automation requirements</p>
+                            <p className="text-gray-600">Enables development of proprietary AI capabilities providing competitive advantage and unique value proposition</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Delivers autonomous execution capability with built-in monitoring, error handling, and workflow management</p>
+                            <p className="text-gray-600">Provides complete control over model behavior, capabilities, and performance characteristics</p>
                         </motion.div>
                     </div>
                 </motion.div>

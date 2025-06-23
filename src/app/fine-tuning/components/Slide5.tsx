@@ -66,29 +66,29 @@ export default function Slide5({ slideVariants, itemVariants, isActive, setRef }
                         className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
                         variants={itemVariants}
                     >
-                        Advantages of Agents Orchestration
+                        Advantages of Fine-Tuning Library
                     </motion.h1>
 
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Complex Problem Solving: Handle sophisticated, multi-step processes requiring diverse skills and coordination</p>
+                            <p className="text-gray-600">Specialized Accuracy: Achieve superior performance on domain-specific tasks through targeted model training</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Process Automation: Automate entire business workflows from initiation to completion without human intervention</p>
+                            <p className="text-gray-600">Proprietary Capabilities: Develop unique AI systems providing competitive advantage and intellectual property value</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Scalable Architecture: Support both simple task coordination and enterprise-level process orchestration requirements</p>
+                            <p className="text-gray-600">Perfect Alignment: Ensure AI responses match organizational standards, terminology, and quality requirements</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Intelligent Coordination: Advanced protocol ensures optimal agent collaboration and workflow execution</p>
+                            <p className="text-gray-600">Complete Control: Full ownership and customization of model behavior, capabilities, and performance characteristics</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Operational Efficiency: Dramatically reduce manual work through autonomous execution of complex business processes</p>
+                            <p className="text-gray-600">Scalable Process: Streamlined pipeline enables rapid development and deployment of multiple specialized models</p>
                         </motion.div>
                     </div>
                 </motion.div>

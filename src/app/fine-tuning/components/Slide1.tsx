@@ -21,13 +21,14 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-4xl md:text-5xl font-bold mb-6 text-center"
                 variants={itemVariants}
             >
-                Agent Orchestration
+                LLM Fine-Tuning
             </motion.h1>
             <motion.p
                 className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
-                LangIQ's Agents Library revolutionizes complex problem-solving by enabling multiple specialized AI agents to collaborate intelligently on sophisticated, multi-step workflows. This orchestration framework coordinates diverse AI capabilities, manages inter-agent communication, and automates complex business processes that require multiple skills and sequential decision-making.
+                LangIQ's Fine-Tuning Library provides comprehensive tools for creating specialized Large Language Models tailored to specific datasets, tasks, and organizational requirements. This end-to-end solution transforms foundation models into highly accurate, domain-specific AI systems through advanced training techniques, intelligent data preparation, and continuous performance monitoring.
+
             </motion.p>
 
             {/* Bouncing down arrow */}

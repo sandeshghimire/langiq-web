@@ -66,30 +66,29 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
                         variants={itemVariants}
                     >
-                        What is Agent Orchestration?
+                        What is the Fine-Tuning Library?
                     </motion.h1>
 
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Multi-agent framework enabling specialized AI agents to collaborate on complex, multi-step problem-solving workflows</p>
-                        </motion.div>
-
-
-                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Agent role definition system allowing customization of individual agent capabilities, tools, and expertise areas</p>
+                            <p className="text-gray-600">Complete pipeline for custom model training using organization-specific datasets and requirements</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Proprietary Multi-Agent Collaboration Protocol (MACP) managing communication, coordination, and workflow execution</p>
+                            <p className="text-gray-600">Intelligent data preparation tools including cleaning, formatting, augmentation, and quality validation processes</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Flexible execution patterns supporting sequential, parallel, and conditional agent interactions based on workflow requirements</p>
+                            <p className="text-gray-600">Advanced training techniques leveraging LoRA, PEFT, and provider APIs like OpenAI's fine-tuning services</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Shared memory and context management ensuring seamless information flow between agents throughout complex processes</p>
+                            <p className="text-gray-600">Comprehensive monitoring dashboard tracking training analytics, loss curves, validation metrics, and convergence patterns</p>
+                        </motion.div>
+
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
+                            <p className="text-gray-600">Model comparison and benchmarking capabilities enabling data-driven selection and performance optimization</p>
                         </motion.div>
                     </div>
                 </motion.div>
@@ -205,3 +204,4 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
         </motion.div>
     );
 }
+
