@@ -21,13 +21,13 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-4xl md:text-5xl font-bold mb-6 text-center"
                 variants={itemVariants}
             >
-                Retrieval-Augmented Generation (RAG)
+                LangIQ - AI Studio
             </motion.h1>
             <motion.p
                 className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
-                Retrieval-Augmented Generation (RAG) is a technique designed to improve the responses of Large Language Models (LLMs). Its primary function is to ground LLM outputs in specific external or proprietary knowledge, making the generated text more contextually relevant, accurate, and personalized
+                AI Studio is LangIQ's visual, low-code development environment that transforms complex AI workflow creation into an intuitive drag-and-drop experience. This collaborative platform accelerates LLM application development by abstracting technical complexities, enabling both technical and non-technical teams to build sophisticated AI solutions rapidly without extensive manual coding expertise.
             </motion.p>
 
             {/* Bouncing down arrow */}
