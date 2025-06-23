@@ -66,31 +66,27 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
                         variants={itemVariants}
                     >
-                        Why AI Studio?
+                        Why is Prompt Engineering Required?
                     </motion.h1>
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">  Complex business processes require diverse skills and capabilities that single AI models cannot effectively handle</p>
-                        </motion.div>
-
-
-                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">  Multi-step workflows demand coordination, decision-making, and handoffs between different specialized functions</p>
+                            <p className="text-gray-600">Different LLM providers have varying API formats, authentication methods, and response structures</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600"> Organizations need AI systems capable of autonomous execution of sophisticated processes without human intervention</p>
+                            <p className="text-gray-600">Effective prompt crafting requires iterative testing, version management, and collaborative refinement processes</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">   Traditional single-agent approaches lack the specialization and coordination required for enterprise-level automation</p>
+                            <p className="text-gray-600">Production applications need reliable caching, error handling, and performance optimization for user experience</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">  Business efficiency demands AI solutions that can handle end-to-end processes rather than individual tasks</p>
+                            <p className="text-gray-600">Organizations require consistent interfaces to avoid vendor lock-in and enable flexible model switching</p>
+                        </motion.div>
+
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
+                            <p className="text-gray-600">Complex prompting techniques like chain-of-thought reasoning demand specialized tools and structured approaches</p>
                         </motion.div>
                     </div>
                 </motion.div>

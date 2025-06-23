@@ -21,13 +21,14 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-4xl md:text-5xl font-bold mb-6 text-center"
                 variants={itemVariants}
             >
-                LangIQ - AI Studio
+                Prompt Engineering
             </motion.h1>
             <motion.p
                 className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
-                AI Studio is LangIQ's visual, low-code development environment that transforms complex AI workflow creation into an intuitive drag-and-drop experience. This collaborative platform accelerates LLM application development by abstracting technical complexities, enabling both technical and non-technical teams to build sophisticated AI solutions rapidly without extensive manual coding expertise.
+                LangIQ's Prompt Library provides a unified API for interacting with diverse Large Language Models, abstracting the complexities of different provider interfaces behind a consistent development experience. This comprehensive toolkit enables developers to craft, test, and optimize prompts efficiently while supporting asynchronous operations, caching, and performance tracking.
+
             </motion.p>
 
             {/* Bouncing down arrow */}
