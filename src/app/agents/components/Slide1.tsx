@@ -21,13 +21,13 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-4xl md:text-5xl font-bold mb-6 text-center"
                 variants={itemVariants}
             >
-                LangIQ - AI Studio
+                Agent Orchestration
             </motion.h1>
             <motion.p
                 className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
-                AI Studio is LangIQ's visual, low-code development environment that transforms complex AI workflow creation into an intuitive drag-and-drop experience. This collaborative platform accelerates LLM application development by abstracting technical complexities, enabling both technical and non-technical teams to build sophisticated AI solutions rapidly without extensive manual coding expertise.
+                LangIQ's Agents Library revolutionizes complex problem-solving by enabling multiple specialized AI agents to collaborate intelligently on sophisticated, multi-step workflows. This orchestration framework coordinates diverse AI capabilities, manages inter-agent communication, and automates complex business processes that require multiple skills and sequential decision-making.
             </motion.p>
 
             {/* Bouncing down arrow */}
