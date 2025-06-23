@@ -8,12 +8,6 @@ import Breadcrumb from "@/components/ui/breadcrumb-custom";
 import type { Metadata } from "next";
 import { getAdjacentCaseStudies } from "@/utils/navigationUtils";
 
-interface CaseStudyPageProps {
-    params: {
-        slug: string;
-    };
-}
-
 async function getCaseStudy(slug: string) {
     try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/mdx/${slug}`, {
@@ -32,7 +26,7 @@ async function getCaseStudy(slug: string) {
 }
 
 // Generate metadata for SEO
-export async function generateMetadata({ params }: CaseStudyPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
     const caseStudy = await getCaseStudy(slug);
 
@@ -124,7 +118,7 @@ const mdxComponents = {
     ),
 };
 
-export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
+export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     const caseStudy = await getCaseStudy(slug);
     const { previous, next } = await getAdjacentCaseStudies(slug);

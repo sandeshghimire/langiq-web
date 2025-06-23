@@ -75,6 +75,7 @@ export default function Home() {
         slideVariants={slideVariants}
         itemVariants={itemVariants}
         isActive={currentSlide === 2}
+        scrollToSlide={scrollToSlide}
         setRef={el => slideRefs.current[1] = el}
       />
 
@@ -82,6 +83,7 @@ export default function Home() {
         slideVariants={slideVariants}
         itemVariants={itemVariants}
         isActive={currentSlide === 3}
+        scrollToSlide={scrollToSlide}
         setRef={el => slideRefs.current[2] = el}
       />
 
@@ -89,6 +91,7 @@ export default function Home() {
         slideVariants={slideVariants}
         itemVariants={itemVariants}
         isActive={currentSlide === 4}
+        scrollToSlide={scrollToSlide}
         setRef={el => slideRefs.current[3] = el}
       />
 

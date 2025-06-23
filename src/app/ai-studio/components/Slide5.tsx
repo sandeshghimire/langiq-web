@@ -17,7 +17,6 @@ export default function Slide5({ slideVariants, itemVariants, isActive, setRef }
             transition: {
                 duration: 3,
                 repeat: Infinity,
-                ease: "easeInOut"
             }
         }
     };
@@ -30,7 +29,6 @@ export default function Slide5({ slideVariants, itemVariants, isActive, setRef }
             transition: {
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut"
             }
         }
     };
@@ -43,7 +41,6 @@ export default function Slide5({ slideVariants, itemVariants, isActive, setRef }
             transition: {
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut"
             }
         }
     };
@@ -55,7 +52,7 @@ export default function Slide5({ slideVariants, itemVariants, isActive, setRef }
             opacity: 1,
             transition: {
                 duration: 0.5,
-                ease: "backOut"
+
             }
         }
     };
@@ -68,7 +65,6 @@ export default function Slide5({ slideVariants, itemVariants, isActive, setRef }
             transition: {
                 duration: 3,
                 repeat: Infinity,
-                ease: "easeInOut",
                 times: [0, 0.5, 1]
             }
         }

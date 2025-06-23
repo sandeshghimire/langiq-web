@@ -41,7 +41,6 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
             opacity: 1,
             transition: {
                 duration: 1.5,
-                ease: "easeInOut",
                 repeat: Infinity,
                 repeatDelay: 1
             }
@@ -56,7 +55,6 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
             transition: {
                 duration: 3,
                 repeat: Infinity,
-                ease: "easeInOut"
             }
         }
     };
@@ -69,7 +67,6 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
             transition: {
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut"
             }
         }
     };

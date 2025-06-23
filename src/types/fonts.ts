@@ -45,7 +45,18 @@ export function getFontClass(family: FontFamily, weight?: FontWeight): string {
         weight = 'normal';
     }
 
-    return fontClasses[family][weight];
+    const familyFonts = fontClasses[family];
+    if (typeof familyFonts === 'string') {
+        return familyFonts;
+    }
+
+    // Handle case where weight doesn't exist for this font family
+    if (weight in familyFonts) {
+        return (familyFonts as any)[weight];
+    }
+
+    // Fallback to normal weight if specific weight doesn't exist
+    return (familyFonts as any)['normal'] || '';
 }
 
 // Commonly used font combinations

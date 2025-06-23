@@ -17,7 +17,6 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
             transition: {
                 duration: 3,
                 repeat: Infinity,
-                ease: "easeInOut"
             }
         }
     };
@@ -30,7 +29,6 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
             transition: {
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut"
             }
         }
     };
@@ -43,7 +41,6 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
             transition: {
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut"
             }
         }
     };
@@ -229,8 +226,8 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                                         transition: {
                                             duration: 4,
                                             repeat: Infinity,
-                                            delay: i * 0.5,
-                                            ease: "easeInOut"
+                                            delay: i * 0.5
+                                            
                                         }
                                     }
                                 }}
@@ -253,8 +250,8 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                                         transition: {
                                             duration: 2,
                                             repeat: Infinity,
-                                            delay: i * 0.2,
-                                            ease: "easeInOut"
+                                            delay: i * 0.2
+                                            
                                         }
                                     }
                                 }}
@@ -280,8 +277,8 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                                         transition: {
                                             duration: 3,
                                             repeat: Infinity,
-                                            delay: i * 0.8,
-                                            ease: "easeOut"
+                                            delay: i * 0.8
+                                            
                                         }
                                     }
                                 }}

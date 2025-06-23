@@ -57,7 +57,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef, 
             case "email":
                 if (!value) {
                     errorMessage = "Email is required";
-                } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+                } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2}$/i.test(value)) {
                     errorMessage = "Invalid email address";
                 }
                 break;
@@ -95,7 +95,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef, 
         if (!formData.email) {
             newErrors.email = "Email is required";
             isValid = false;
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2}$/i.test(formData.email)) {
             newErrors.email = "Invalid email address";
             isValid = false;
         }

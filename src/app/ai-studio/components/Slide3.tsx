@@ -17,7 +17,6 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef }
             transition: {
                 duration: 3,
                 repeat: Infinity,
-                ease: "easeInOut"
             }
         }
     };
@@ -30,7 +29,6 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef }
             transition: {
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut"
             }
         }
     };
@@ -43,7 +41,6 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef }
             transition: {
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut"
             }
         }
     };
@@ -170,7 +167,7 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef }
                                     hidden: { rotate: 0 },
                                     visible: {
                                         rotate: 360,
-                                        transition: { duration: 4, repeat: Infinity, ease: "linear" }
+                                        transition: { duration: 4, repeat: Infinity}
                                     }
                                 }}
                             />
@@ -185,7 +182,7 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef }
                                     hidden: { rotate: 0 },
                                     visible: {
                                         rotate: -360,
-                                        transition: { duration: 3, repeat: Infinity, ease: "linear" }
+                                        transition: { duration: 3, repeat: Infinity}
                                     }
                                 }}
                             />

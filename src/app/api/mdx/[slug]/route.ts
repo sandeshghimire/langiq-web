@@ -5,7 +5,7 @@ import matter from 'gray-matter';
 
 export async function GET(
     request: Request,
-    { params }: { params: { slug: string } }
+    { params }: { params: Promise<{ slug: string }> }
 ) {
     const { slug } = await params;
     const mdxDir = path.join(process.cwd(), 'public/markdown');
