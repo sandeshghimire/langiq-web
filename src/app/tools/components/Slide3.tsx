@@ -70,27 +70,23 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     </motion.h1>
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">  Complex business processes require diverse skills and capabilities that single AI models cannot effectively handle</p>
-                        </motion.div>
-
-
-                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">  Multi-step workflows demand coordination, decision-making, and handoffs between different specialized functions</p>
+                            <p className="text-gray-600">Standard LLMs are limited to text generation without ability to perform actions or access current information</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600"> Organizations need AI systems capable of autonomous execution of sophisticated processes without human intervention</p>
+                            <p className="text-gray-600">Business processes require AI systems that can interact with existing enterprise tools and databases</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">   Traditional single-agent approaches lack the specialization and coordination required for enterprise-level automation</p>
+                            <p className="text-gray-600">Users need AI assistants capable of executing tasks rather than just providing conversational responses</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">  Business efficiency demands AI solutions that can handle end-to-end processes rather than individual tasks</p>
+                            <p className="text-gray-600">Organizations require integration between AI systems and their specific business applications and workflows</p>
+                        </motion.div>
+
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
+                            <p className="text-gray-600">Complex problem-solving often demands multiple tools working together in coordinated sequences</p>
                         </motion.div>
                     </div>
                 </motion.div>

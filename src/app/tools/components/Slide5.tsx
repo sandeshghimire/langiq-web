@@ -7,7 +7,7 @@ interface Slide2Props {
     setRef: (el: HTMLDivElement | null) => void;
 }
 
-export default function Slide5({ slideVariants, itemVariants, isActive, setRef }: Slide2Props) {
+export default function Slide2({ slideVariants, itemVariants, isActive, setRef }: Slide2Props) {
     // Animation variants for the data processing
     const particleVariants = {
         hidden: { opacity: 0, scale: 0 },
@@ -72,27 +72,23 @@ export default function Slide5({ slideVariants, itemVariants, isActive, setRef }
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600"> Multi-agent framework enabling specialized AI agents to collaborate on complex, multi-step problem-solving workflows</p>
-                        </motion.div>
-
-
-                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">  Agent role definition system allowing customization of individual agent capabilities, tools, and expertise areas</p>
+                            <p className="text-gray-600">Extended Capabilities: Transform LLMs from text generators into powerful agents capable of real-world actions</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600"> Multi-Agent Collaboration Protocol (MACP) managing communication, coordination, and workflow execution</p>
+                            <p className="text-gray-600">Live Data Access: Enable AI to fetch current information eliminating outdated responses and static knowledge</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">  Flexible execution patterns supporting sequential, parallel, and conditional agent interactions based on workflow requirements</p>
+                            <p className="text-gray-600">Enterprise Integration: Seamlessly connect AI with existing business systems and proprietary applications</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">  Shared memory and context management ensuring seamless information flow between agents throughout complex processes</p>
+                            <p className="text-gray-600">Custom Workflows: Build sophisticated multi-tool processes tailored to specific organizational requirements</p>
+                        </motion.div>
+
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
+                            <p className="text-gray-600">Reliable Execution: Proprietary MCP protocol ensures consistent, error-handled tool interactions and responses</p>
                         </motion.div>
                     </div>
                 </motion.div>

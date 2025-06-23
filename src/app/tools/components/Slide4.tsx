@@ -72,27 +72,23 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600"> Multi-agent framework enabling specialized AI agents to collaborate on complex, multi-step problem-solving workflows</p>
-                        </motion.div>
-
-
-                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">  Agent role definition system allowing customization of individual agent capabilities, tools, and expertise areas</p>
+                            <p className="text-gray-600">Extends LLM capabilities beyond text to include real-world actions and live data interactions</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600"> Multi-Agent Collaboration Protocol (MACP) managing communication, coordination, and workflow execution</p>
+                            <p className="text-gray-600">Provides standardized protocol ensuring reliable communication between AI models and external systems</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">  Flexible execution patterns supporting sequential, parallel, and conditional agent interactions based on workflow requirements</p>
+                            <p className="text-gray-600">Enables AI agents to perform multi-step workflows combining various tools and services seamlessly</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">  Shared memory and context management ensuring seamless information flow between agents throughout complex processes</p>
+                            <p className="text-gray-600">Offers plug-and-play integration with existing enterprise systems through customizable tool interfaces</p>
+                        </motion.div>
+
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
+                            <p className="text-gray-600">Transforms passive AI responses into active problem-solving through coordinated tool utilization</p>
                         </motion.div>
                     </div>
                 </motion.div>
