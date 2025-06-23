@@ -66,7 +66,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
                         variants={itemVariants}
                     >
-                        What is the Fine-Tuning Library?
+                        What is LLM Fine-Tuning?
                     </motion.h1>
 
 
@@ -99,91 +99,142 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     variants={itemVariants}
                 >
                     <svg className="w-full h-full" viewBox="0 0 400 400">
-                        {/* Structured Data Input */}
+                        {/* Training Data Input */}
                         <motion.g variants={itemVariants}>
-                            <rect x="20" y="50" width="80" height="60" rx="8" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
-                            <text x="60" y="75" textAnchor="middle" className="text-xs fill-green-600 font-medium">Structured</text>
-                            <text x="60" y="90" textAnchor="middle" className="text-xs fill-green-600 font-medium">Data</text>
+                            <rect x="20" y="40" width="80" height="50" rx="8" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
+                            <text x="60" y="60" textAnchor="middle" className="text-xs fill-green-600 font-medium">Training</text>
+                            <text x="60" y="75" textAnchor="middle" className="text-xs fill-green-600 font-medium">Data</text>
                         </motion.g>
 
-                        {/* Unstructured Data Input */}
+                        {/* Validation Data Input */}
                         <motion.g variants={itemVariants}>
-                            <rect x="20" y="150" width="80" height="60" rx="8" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
-                            <text x="60" y="175" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Unstructured</text>
-                            <text x="60" y="190" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Data</text>
+                            <rect x="20" y="110" width="80" height="50" rx="8" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
+                            <text x="60" y="130" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Validation</text>
+                            <text x="60" y="145" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Data</text>
                         </motion.g>
 
-                        {/* LLM Processing Core */}
+                        {/* Base Model */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="20" y="180" width="80" height="50" rx="8" fill="rgba(168, 85, 247, 0.2)" stroke="#a855f7" strokeWidth="2" />
+                            <text x="60" y="200" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Base</text>
+                            <text x="60" y="215" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Model</text>
+                        </motion.g>
+
+                        {/* Fine-Tuning Process Core */}
                         <motion.g variants={pulseVariants}>
-                            <circle cx="200" cy="150" r="50" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="3" />
-                            <text x="200" y="145" textAnchor="middle" className="text-sm fill-purple-600 font-bold">LLM</text>
-                            <text x="200" y="160" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Processing</text>
+                            <circle cx="200" cy="135" r="55" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="3" />
+                            <text x="200" y="125" textAnchor="middle" className="text-sm fill-purple-600 font-bold">Fine-Tuning</text>
+                            <text x="200" y="140" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Process</text>
+                            <text x="200" y="155" textAnchor="middle" className="text-xs fill-purple-600 font-medium">LoRA/PEFT</text>
                         </motion.g>
 
-                        {/* Output */}
+                        {/* Fine-Tuned Model Output */}
                         <motion.g variants={itemVariants}>
-                            <rect x="300" y="120" width="80" height="60" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
-                            <text x="340" y="145" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Processed</text>
-                            <text x="340" y="160" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Output</text>
+                            <rect x="300" y="80" width="80" height="50" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
+                            <text x="340" y="100" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Fine-Tuned</text>
+                            <text x="340" y="115" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Model</text>
+                        </motion.g>
+
+                        {/* Metrics Dashboard */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="300" y="150" width="80" height="50" rx="8" fill="rgba(245, 158, 11, 0.2)" stroke="#f59e0b" strokeWidth="2" />
+                            <text x="340" y="170" textAnchor="middle" className="text-xs fill-amber-600 font-medium">Training</text>
+                            <text x="340" y="185" textAnchor="middle" className="text-xs fill-amber-600 font-medium">Metrics</text>
                         </motion.g>
 
                         {/* Data Flow Lines */}
                         <motion.path
-                            d="M100 80 Q150 80 150 150"
+                            d="M100 65 Q130 65 145 135"
                             stroke="#22c55e"
                             strokeWidth="2"
                             fill="none"
                             variants={flowVariants}
                         />
                         <motion.path
-                            d="M100 180 Q150 180 150 150"
+                            d="M100 135 Q130 135 145 135"
                             stroke="#3b82f6"
                             strokeWidth="2"
                             fill="none"
                             variants={flowVariants}
                         />
                         <motion.path
-                            d="M250 150 Q275 150 300 150"
+                            d="M100 205 Q130 205 145 135"
+                            stroke="#a855f7"
+                            strokeWidth="2"
+                            fill="none"
+                            variants={flowVariants}
+                        />
+                        <motion.path
+                            d="M255 120 Q280 100 300 105"
                             stroke="#10b981"
                             strokeWidth="2"
                             fill="none"
                             variants={flowVariants}
                         />
+                        <motion.path
+                            d="M255 150 Q280 160 300 175"
+                            stroke="#f59e0b"
+                            strokeWidth="2"
+                            fill="none"
+                            variants={flowVariants}
+                        />
 
-                        {/* Animated Data Particles */}
-                        {[...Array(6)].map((_, i) => (
+                        {/* Training Data Particles */}
+                        {[...Array(8)].map((_, i) => (
                             <motion.circle
                                 key={i}
-                                cx={120 + i * 30}
-                                cy={130 + Math.sin(i) * 40}
-                                r="3"
-                                fill={i % 2 === 0 ? "#22c55e" : "#3b82f6"}
+                                cx={120 + i * 15}
+                                cy={100 + Math.sin(i * 0.8) * 30}
+                                r="2.5"
+                                fill={i % 3 === 0 ? "#22c55e" : i % 3 === 1 ? "#3b82f6" : "#a855f7"}
                                 variants={particleVariants}
-                                style={{ animationDelay: `${i * 0.5}s` }}
+                                style={{ animationDelay: `${i * 0.3}s` }}
                             />
                         ))}
 
-                        {/* Processing Indicators */}
-                        {[...Array(3)].map((_, i) => (
+                        {/* Training Progress Indicators */}
+                        {[...Array(5)].map((_, i) => (
                             <motion.circle
                                 key={i}
-                                cx={180 + i * 20}
-                                cy={150}
-                                r="2"
+                                cx={175 + i * 10}
+                                cy={135}
+                                r="1.5"
                                 fill="#9333ea"
                                 variants={{
-                                    hidden: { opacity: 0 },
+                                    hidden: { opacity: 0, scale: 0 },
                                     visible: {
-                                        opacity: [0, 1, 0],
+                                        opacity: [0, 1, 0.3],
+                                        scale: [0, 1.2, 1],
                                         transition: {
-                                            duration: 1.5,
+                                            duration: 2,
                                             repeat: Infinity,
-                                            delay: i * 0.3
+                                            delay: i * 0.2
                                         }
                                     }
                                 }}
                             />
                         ))}
+
+                        {/* Loss Curve Visualization */}
+                        <motion.path
+                            d="M160 170 Q180 160 200 165 Q220 155 240 150"
+                            stroke="#f59e0b"
+                            strokeWidth="1.5"
+                            fill="none"
+                            strokeDasharray="2,2"
+                            variants={{
+                                hidden: { pathLength: 0, opacity: 0 },
+                                visible: {
+                                    pathLength: 1,
+                                    opacity: 0.8,
+                                    transition: {
+                                        duration: 3,
+                                        repeat: Infinity,
+                                        ease: "easeInOut"
+                                    }
+                                }
+                            }}
+                        />
                     </svg>
 
                     {/* Floating Labels */}
@@ -191,13 +242,19 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="absolute top-4 left-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
                         variants={itemVariants}
                     >
-                        Multi-Modal Input
+                        Custom Training Pipeline
                     </motion.div>
                     <motion.div
                         className="absolute bottom-4 right-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
                         variants={itemVariants}
                     >
-                        Intelligent Output
+                        Optimized Model & Analytics
+                    </motion.div>
+                    <motion.div
+                        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mt-16 text-xs font-medium text-purple-600 bg-purple-50/80 backdrop-blur-sm rounded px-2 py-1"
+                        variants={itemVariants}
+                    >
+                        Real-time Monitoring
                     </motion.div>
                 </motion.div>
             </div>

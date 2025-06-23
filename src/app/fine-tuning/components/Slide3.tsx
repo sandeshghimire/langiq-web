@@ -66,7 +66,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
                         variants={itemVariants}
                     >
-                        Why is Fine-Tuning Required?
+                        Why Fine-Tuning?
                     </motion.h1>
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
@@ -91,111 +91,141 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     </div>
                 </motion.div>
 
-                {/* Right Column - LLM Processing Animation */}
+                {/* Right Column - Generic vs Fine-tuned Model Animation */}
                 <motion.div
                     className="hidden md:block relative h-96"
                     variants={itemVariants}
                 >
                     <svg className="w-full h-full" viewBox="0 0 400 400">
-                        {/* Structured Data Input */}
+                        {/* Generic Model (Left Side) */}
                         <motion.g variants={itemVariants}>
-                            <rect x="20" y="50" width="80" height="60" rx="8" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
-                            <text x="60" y="75" textAnchor="middle" className="text-xs fill-green-600 font-medium">Structured</text>
-                            <text x="60" y="90" textAnchor="middle" className="text-xs fill-green-600 font-medium">Data</text>
+                            <rect x="20" y="60" width="120" height="80" rx="12" fill="rgba(239, 68, 68, 0.1)" stroke="#ef4444" strokeWidth="2" strokeDasharray="5,5" />
+                            <text x="80" y="85" textAnchor="middle" className="text-sm fill-red-600 font-bold">Generic Model</text>
+                            <text x="80" y="105" textAnchor="middle" className="text-xs fill-red-500">Limited Knowledge</text>
+                            <text x="80" y="120" textAnchor="middle" className="text-xs fill-red-500">Generic Responses</text>
                         </motion.g>
 
-                        {/* Unstructured Data Input */}
+                        {/* Fine-tuned Model (Right Side) */}
                         <motion.g variants={itemVariants}>
-                            <rect x="20" y="150" width="80" height="60" rx="8" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
-                            <text x="60" y="175" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Unstructured</text>
-                            <text x="60" y="190" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Data</text>
+                            <rect x="260" y="60" width="120" height="80" rx="12" fill="rgba(34, 197, 94, 0.1)" stroke="#22c55e" strokeWidth="2" />
+                            <text x="320" y="85" textAnchor="middle" className="text-sm fill-green-600 font-bold">Fine-tuned Model</text>
+                            <text x="320" y="105" textAnchor="middle" className="text-xs fill-green-500">Specialized Knowledge</text>
+                            <text x="320" y="120" textAnchor="middle" className="text-xs fill-green-500">Domain-specific</text>
                         </motion.g>
 
-                        {/* LLM Processing Core */}
-                        <motion.g variants={pulseVariants}>
-                            <circle cx="200" cy="150" r="50" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="3" />
-                            <text x="200" y="145" textAnchor="middle" className="text-sm fill-purple-600 font-bold">LLM</text>
-                            <text x="200" y="160" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Processing</text>
-                        </motion.g>
-
-                        {/* Output */}
+                        {/* Industry Data Inputs */}
                         <motion.g variants={itemVariants}>
-                            <rect x="300" y="120" width="80" height="60" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
-                            <text x="340" y="145" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Processed</text>
-                            <text x="340" y="160" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Output</text>
+                            <rect x="20" y="180" width="70" height="40" rx="6" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="1" />
+                            <text x="55" y="195" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Industry</text>
+                            <text x="55" y="210" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Data</text>
                         </motion.g>
 
-                        {/* Data Flow Lines */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="20" y="240" width="70" height="40" rx="6" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="1" />
+                            <text x="55" y="255" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Company</text>
+                            <text x="55" y="270" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Processes</text>
+                        </motion.g>
+
+                        <motion.g variants={itemVariants}>
+                            <rect x="20" y="300" width="70" height="40" rx="6" fill="rgba(251, 146, 60, 0.2)" stroke="#fb923e" strokeWidth="1" />
+                            <text x="55" y="315" textAnchor="middle" className="text-xs fill-orange-600 font-medium">Domain</text>
+                            <text x="55" y="330" textAnchor="middle" className="text-xs fill-orange-600 font-medium">Expertise</text>
+                        </motion.g>
+
+                        {/* Transformation Arrow */}
+                        <motion.g variants={flowVariants}>
+                            <path d="M150 100 Q200 100 250 100" stroke="#6b7280" strokeWidth="3" fill="none" markerEnd="url(#arrowhead)" />
+                            <text x="200" y="90" textAnchor="middle" className="text-xs fill-gray-600 font-medium">Fine-tuning</text>
+                        </motion.g>
+
+                        {/* Data Flow to Fine-tuning */}
                         <motion.path
-                            d="M100 80 Q150 80 150 150"
-                            stroke="#22c55e"
-                            strokeWidth="2"
-                            fill="none"
-                            variants={flowVariants}
-                        />
-                        <motion.path
-                            d="M100 180 Q150 180 150 150"
+                            d="M90 200 Q150 200 180 150 Q200 120 250 100"
                             stroke="#3b82f6"
                             strokeWidth="2"
                             fill="none"
                             variants={flowVariants}
+                            strokeDasharray="3,3"
                         />
                         <motion.path
-                            d="M250 150 Q275 150 300 150"
-                            stroke="#10b981"
+                            d="M90 260 Q150 260 180 200 Q200 150 250 100"
+                            stroke="#9333ea"
                             strokeWidth="2"
                             fill="none"
                             variants={flowVariants}
+                            strokeDasharray="3,3"
+                        />
+                        <motion.path
+                            d="M90 320 Q150 320 180 250 Q200 180 250 100"
+                            stroke="#fb923e"
+                            strokeWidth="2"
+                            fill="none"
+                            variants={flowVariants}
+                            strokeDasharray="3,3"
                         />
 
-                        {/* Animated Data Particles */}
-                        {[...Array(6)].map((_, i) => (
-                            <motion.circle
-                                key={i}
-                                cx={120 + i * 30}
-                                cy={130 + Math.sin(i) * 40}
-                                r="3"
-                                fill={i % 2 === 0 ? "#22c55e" : "#3b82f6"}
-                                variants={particleVariants}
-                                style={{ animationDelay: `${i * 0.5}s` }}
-                            />
+                        {/* Problem indicators for Generic Model */}
+                        {[...Array(3)].map((_, i) => (
+                            <motion.g key={i} variants={{
+                                hidden: { opacity: 0 },
+                                visible: {
+                                    opacity: [0, 1, 0],
+                                    transition: {
+                                        duration: 2,
+                                        repeat: Infinity,
+                                        delay: i * 0.5
+                                    }
+                                }
+                            }}>
+                                <circle cx={60 + i * 15} cy={160} r="3" fill="#ef4444" />
+                                <text x={60 + i * 15} y={155} textAnchor="middle" className="text-xs fill-red-500">!</text>
+                            </motion.g>
                         ))}
 
-                        {/* Processing Indicators */}
+                        {/* Success indicators for Fine-tuned Model */}
                         {[...Array(3)].map((_, i) => (
-                            <motion.circle
-                                key={i}
-                                cx={180 + i * 20}
-                                cy={150}
-                                r="2"
-                                fill="#9333ea"
-                                variants={{
-                                    hidden: { opacity: 0 },
-                                    visible: {
-                                        opacity: [0, 1, 0],
-                                        transition: {
-                                            duration: 1.5,
-                                            repeat: Infinity,
-                                            delay: i * 0.3
-                                        }
+                            <motion.g key={i} variants={{
+                                hidden: { opacity: 0 },
+                                visible: {
+                                    opacity: [0, 1, 0],
+                                    transition: {
+                                        duration: 2,
+                                        repeat: Infinity,
+                                        delay: i * 0.3 + 1
                                     }
-                                }}
-                            />
+                                }
+                            }}>
+                                <circle cx={300 + i * 15} cy={160} r="3" fill="#22c55e" />
+                                <text x={300 + i * 15} y={165} textAnchor="middle" className="text-xs fill-green-600">✓</text>
+                            </motion.g>
                         ))}
+
+                        {/* Arrow marker definition */}
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280" />
+                            </marker>
+                        </defs>
                     </svg>
 
                     {/* Floating Labels */}
                     <motion.div
-                        className="absolute top-4 left-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
+                        className="absolute top-4 left-4 text-xs font-medium text-red-600 bg-red-50/80 backdrop-blur-sm rounded px-2 py-1 border border-red-200"
                         variants={itemVariants}
                     >
-                        Multi-Modal Input
+                        Generic Limitations
                     </motion.div>
                     <motion.div
-                        className="absolute bottom-4 right-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
+                        className="absolute top-4 right-4 text-xs font-medium text-green-600 bg-green-50/80 backdrop-blur-sm rounded px-2 py-1 border border-green-200"
                         variants={itemVariants}
                     >
-                        Intelligent Output
+                        Specialized Capabilities
+                    </motion.div>
+                    <motion.div
+                        className="absolute bottom-4 left-4 text-xs font-medium text-blue-600 bg-blue-50/80 backdrop-blur-sm rounded px-2 py-1 border border-blue-200"
+                        variants={itemVariants}
+                    >
+                        Training Data
                     </motion.div>
                 </motion.div>
             </div>

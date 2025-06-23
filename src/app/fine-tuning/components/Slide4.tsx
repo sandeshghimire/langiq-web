@@ -93,97 +93,185 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     </div>
                 </motion.div>
 
-                {/* Right Column - LLM Processing Animation */}
+                {/* Right Column - Fine-Tuning Process Animation */}
                 <motion.div
                     className="hidden md:block relative h-96"
                     variants={itemVariants}
                 >
                     <svg className="w-full h-full" viewBox="0 0 400 400">
-                        {/* Structured Data Input */}
+                        {/* Generic Model Input */}
                         <motion.g variants={itemVariants}>
-                            <rect x="20" y="50" width="80" height="60" rx="8" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
-                            <text x="60" y="75" textAnchor="middle" className="text-xs fill-green-600 font-medium">Structured</text>
-                            <text x="60" y="90" textAnchor="middle" className="text-xs fill-green-600 font-medium">Data</text>
+                            <rect x="20" y="60" width="80" height="50" rx="8" fill="rgba(156, 163, 175, 0.2)" stroke="#9ca3af" strokeWidth="2" />
+                            <text x="60" y="80" textAnchor="middle" className="text-xs fill-gray-600 font-medium">Generic</text>
+                            <text x="60" y="95" textAnchor="middle" className="text-xs fill-gray-600 font-medium">Model</text>
                         </motion.g>
 
-                        {/* Unstructured Data Input */}
+                        {/* Organization Data */}
                         <motion.g variants={itemVariants}>
-                            <rect x="20" y="150" width="80" height="60" rx="8" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
-                            <text x="60" y="175" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Unstructured</text>
-                            <text x="60" y="190" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Data</text>
+                            <rect x="20" y="140" width="80" height="50" rx="8" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
+                            <text x="60" y="160" textAnchor="middle" className="text-xs fill-green-600 font-medium">Company</text>
+                            <text x="60" y="175" textAnchor="middle" className="text-xs fill-green-600 font-medium">Data</text>
                         </motion.g>
 
-                        {/* LLM Processing Core */}
+                        {/* Fine-Tuning Process */}
                         <motion.g variants={pulseVariants}>
-                            <circle cx="200" cy="150" r="50" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="3" />
-                            <text x="200" y="145" textAnchor="middle" className="text-sm fill-purple-600 font-bold">LLM</text>
-                            <text x="200" y="160" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Processing</text>
+                            <rect x="150" y="100" width="100" height="80" rx="12" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="3" />
+                            <text x="200" y="125" textAnchor="middle" className="text-sm fill-purple-600 font-bold">Fine-Tuning</text>
+                            <text x="200" y="140" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Process</text>
+                            <text x="200" y="155" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Training</text>
+                            <text x="200" y="170" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Optimization</text>
                         </motion.g>
 
-                        {/* Output */}
+                        {/* Specialized Model Output */}
                         <motion.g variants={itemVariants}>
-                            <rect x="300" y="120" width="80" height="60" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
-                            <text x="340" y="145" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Processed</text>
-                            <text x="340" y="160" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Output</text>
+                            <rect x="300" y="100" width="80" height="80" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
+                            <text x="340" y="125" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Specialized</text>
+                            <text x="340" y="140" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Model</text>
+                            <text x="340" y="155" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Domain</text>
+                            <text x="340" y="170" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Expert</text>
                         </motion.g>
 
-                        {/* Data Flow Lines */}
+                        {/* Data Flow Lines with Arrows */}
                         <motion.path
-                            d="M100 80 Q150 80 150 150"
+                            d="M100 85 L150 120"
+                            stroke="#9ca3af"
+                            strokeWidth="2"
+                            fill="none"
+                            markerEnd="url(#arrowhead-gray)"
+                            variants={flowVariants}
+                        />
+                        <motion.path
+                            d="M100 165 L150 160"
                             stroke="#22c55e"
                             strokeWidth="2"
                             fill="none"
+                            markerEnd="url(#arrowhead-green)"
                             variants={flowVariants}
                         />
                         <motion.path
-                            d="M100 180 Q150 180 150 150"
-                            stroke="#3b82f6"
-                            strokeWidth="2"
-                            fill="none"
-                            variants={flowVariants}
-                        />
-                        <motion.path
-                            d="M250 150 Q275 150 300 150"
+                            d="M250 140 L300 140"
                             stroke="#10b981"
-                            strokeWidth="2"
+                            strokeWidth="3"
                             fill="none"
+                            markerEnd="url(#arrowhead-emerald)"
                             variants={flowVariants}
                         />
 
-                        {/* Animated Data Particles */}
-                        {[...Array(6)].map((_, i) => (
-                            <motion.circle
-                                key={i}
-                                cx={120 + i * 30}
-                                cy={130 + Math.sin(i) * 40}
-                                r="3"
-                                fill={i % 2 === 0 ? "#22c55e" : "#3b82f6"}
-                                variants={particleVariants}
-                                style={{ animationDelay: `${i * 0.5}s` }}
-                            />
-                        ))}
+                        {/* Arrow Markers */}
+                        <defs>
+                            <marker id="arrowhead-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#9ca3af" />
+                            </marker>
+                            <marker id="arrowhead-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#22c55e" />
+                            </marker>
+                            <marker id="arrowhead-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#10b981" />
+                            </marker>
+                        </defs>
 
-                        {/* Processing Indicators */}
-                        {[...Array(3)].map((_, i) => (
+                        {/* Training Data Particles */}
+                        {[...Array(8)].map((_, i) => (
                             <motion.circle
                                 key={i}
-                                cx={180 + i * 20}
-                                cy={150}
+                                cx={120 + i * 15}
+                                cy={140 + Math.sin(i * 0.8) * 20}
                                 r="2"
-                                fill="#9333ea"
+                                fill="#22c55e"
                                 variants={{
-                                    hidden: { opacity: 0 },
+                                    hidden: { opacity: 0, x: -20 },
                                     visible: {
                                         opacity: [0, 1, 0],
+                                        x: [0, 130, 0],
                                         transition: {
-                                            duration: 1.5,
+                                            duration: 3,
                                             repeat: Infinity,
-                                            delay: i * 0.3
+                                            delay: i * 0.2
                                         }
                                     }
                                 }}
                             />
                         ))}
+
+                        {/* Improvement Indicators */}
+                        {[...Array(4)].map((_, i) => (
+                            <motion.g key={i}>
+                                <motion.circle
+                                    cx={320 + (i % 2) * 20}
+                                    cy={120 + Math.floor(i / 2) * 40}
+                                    r="3"
+                                    fill="#10b981"
+                                    variants={{
+                                        hidden: { scale: 0, opacity: 0 },
+                                        visible: {
+                                            scale: [0, 1.2, 1],
+                                            opacity: [0, 1, 0.8],
+                                            transition: {
+                                                duration: 2,
+                                                repeat: Infinity,
+                                                delay: i * 0.5
+                                            }
+                                        }
+                                    }}
+                                />
+                                <motion.text
+                                    x={320 + (i % 2) * 20}
+                                    y={115 + Math.floor(i / 2) * 40}
+                                    textAnchor="middle"
+                                    className="text-xs fill-emerald-600 font-bold"
+                                    variants={{
+                                        hidden: { opacity: 0 },
+                                        visible: {
+                                            opacity: [0, 1, 0],
+                                            transition: {
+                                                duration: 2,
+                                                repeat: Infinity,
+                                                delay: i * 0.5
+                                            }
+                                        }
+                                    }}
+                                >
+                                    ✓
+                                </motion.text>
+                            </motion.g>
+                        ))}
+
+                        {/* Process Gears */}
+                        <motion.g
+                            variants={{
+                                hidden: { rotate: 0 },
+                                visible: {
+                                    rotate: 360,
+                                    transition: {
+                                        duration: 4,
+                                        repeat: Infinity,
+                                        ease: "linear"
+                                    }
+                                }
+                            }}
+                            style={{ transformOrigin: "180px 140px" }}
+                        >
+                            <circle cx="180" cy="140" r="8" fill="none" stroke="#9333ea" strokeWidth="2" />
+                            <circle cx="180" cy="140" r="4" fill="#9333ea" />
+                        </motion.g>
+
+                        <motion.g
+                            variants={{
+                                hidden: { rotate: 0 },
+                                visible: {
+                                    rotate: -360,
+                                    transition: {
+                                        duration: 3,
+                                        repeat: Infinity,
+                                        ease: "linear"
+                                    }
+                                }
+                            }}
+                            style={{ transformOrigin: "220px 140px" }}
+                        >
+                            <circle cx="220" cy="140" r="6" fill="none" stroke="#9333ea" strokeWidth="2" />
+                            <circle cx="220" cy="140" r="3" fill="#9333ea" />
+                        </motion.g>
                     </svg>
 
                     {/* Floating Labels */}
@@ -191,13 +279,19 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="absolute top-4 left-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
                         variants={itemVariants}
                     >
-                        Multi-Modal Input
+                        Base + Training Data
                     </motion.div>
                     <motion.div
                         className="absolute bottom-4 right-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
                         variants={itemVariants}
                     >
-                        Intelligent Output
+                        Domain-Specific AI
+                    </motion.div>
+                    <motion.div
+                        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -mt-12 text-xs font-medium text-purple-600 bg-purple-50/80 backdrop-blur-sm rounded px-2 py-1"
+                        variants={itemVariants}
+                    >
+                        Transformation
                     </motion.div>
                 </motion.div>
             </div>
