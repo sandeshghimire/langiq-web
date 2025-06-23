@@ -21,13 +21,14 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-4xl md:text-5xl font-bold mb-6 text-center"
                 variants={itemVariants}
             >
-                LangIQ - AI Studio
+                Tools & MCP (Model Context Protocol)
             </motion.h1>
             <motion.p
                 className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
-                AI Studio is LangIQ's visual, low-code development environment that transforms complex AI workflow creation into an intuitive drag-and-drop experience. This collaborative platform accelerates LLM application development by abstracting technical complexities, enabling both technical and non-technical teams to build sophisticated AI solutions rapidly without extensive manual coding expertise.
+                LangIQ's Tools Library revolutionizes AI capabilities by enabling Large Language Models to interact with external systems, APIs, and services beyond text generation. With over 100 pre-built tools and proprietary Model Context Protocol, this framework transforms static AI into dynamic agents capable of real-world actions and live data access.
+
             </motion.p>
 
             {/* Bouncing down arrow */}

@@ -66,31 +66,27 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
                         variants={itemVariants}
                     >
-                        Why AI Studio?
+                        Why is RAG Required?
                     </motion.h1>
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">  Complex business processes require diverse skills and capabilities that single AI models cannot effectively handle</p>
-                        </motion.div>
-
-
-                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">  Multi-step workflows demand coordination, decision-making, and handoffs between different specialized functions</p>
+                            <p className="text-gray-600">Standard LLMs lack access to organization-specific, proprietary information and recent data updates</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600"> Organizations need AI systems capable of autonomous execution of sophisticated processes without human intervention</p>
+                            <p className="text-gray-600">AI responses often contain hallucinations or outdated information when operating without contextual grounding</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">   Traditional single-agent approaches lack the specialization and coordination required for enterprise-level automation</p>
+                            <p className="text-gray-600">Organizations need AI systems that can leverage their extensive knowledge bases and documentation</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">  Business efficiency demands AI solutions that can handle end-to-end processes rather than individual tasks</p>
+                            <p className="text-gray-600">Traditional search methods fail to capture semantic relationships and contextual relevance in complex queries</p>
+                        </motion.div>
+
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
+                            <p className="text-gray-600">Compliance and accuracy requirements demand transparent source attribution for AI-generated responses and recommendations</p>
                         </motion.div>
                     </div>
                 </motion.div>

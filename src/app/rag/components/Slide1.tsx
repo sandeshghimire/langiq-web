@@ -21,13 +21,14 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-4xl md:text-5xl font-bold mb-6 text-center"
                 variants={itemVariants}
             >
-                LangIQ - AI Studio
+                RAG (Retrieval-Augmented Generation)
             </motion.h1>
             <motion.p
                 className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
-                AI Studio is LangIQ's visual, low-code development environment that transforms complex AI workflow creation into an intuitive drag-and-drop experience. This collaborative platform accelerates LLM application development by abstracting technical complexities, enabling both technical and non-technical teams to build sophisticated AI solutions rapidly without extensive manual coding expertise.
+                LangIQ's RAG Library transforms how organizations leverage their proprietary knowledge by enabling Large Language Models to access, retrieve, and integrate relevant information from internal documents and databases. This powerful system grounds AI responses in factual, up-to-date organizational knowledge, dramatically reducing hallucinations while providing accurate, contextually relevant answers.
+
             </motion.p>
 
             {/* Bouncing down arrow */}
