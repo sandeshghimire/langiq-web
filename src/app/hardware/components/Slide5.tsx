@@ -204,7 +204,3 @@ export default function Slide5({ slideVariants, itemVariants, isActive, setRef }
         </motion.div>
     );
 }
-            </div >
-        </motion.div >
-    );
-}
