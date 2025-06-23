@@ -94,84 +94,155 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     </div>
                 </motion.div>
 
-                {/* Right Column - LLM Processing Animation */}
+                {/* Right Column - Agent Orchestration Animation */}
                 <motion.div
                     className="hidden md:block relative h-96"
                     variants={itemVariants}
                 >
                     <svg className="w-full h-full" viewBox="0 0 400 400">
-                        {/* Structured Data Input */}
+                        {/* Input Task */}
                         <motion.g variants={itemVariants}>
-                            <rect x="20" y="50" width="80" height="60" rx="8" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
-                            <text x="60" y="75" textAnchor="middle" className="text-xs fill-green-600 font-medium">Structured</text>
-                            <text x="60" y="90" textAnchor="middle" className="text-xs fill-green-600 font-medium">Data</text>
+                            <rect x="20" y="180" width="80" height="40" rx="8" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
+                            <text x="60" y="195" textAnchor="middle" className="text-xs fill-green-600 font-medium">Complex</text>
+                            <text x="60" y="207" textAnchor="middle" className="text-xs fill-green-600 font-medium">Task</text>
                         </motion.g>
 
-                        {/* Unstructured Data Input */}
-                        <motion.g variants={itemVariants}>
-                            <rect x="20" y="150" width="80" height="60" rx="8" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
-                            <text x="60" y="175" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Unstructured</text>
-                            <text x="60" y="190" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Data</text>
-                        </motion.g>
-
-                        {/* LLM Processing Core */}
+                        {/* Research Agent */}
                         <motion.g variants={pulseVariants}>
-                            <circle cx="200" cy="150" r="50" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="3" />
-                            <text x="200" y="145" textAnchor="middle" className="text-sm fill-purple-600 font-bold">LLM</text>
-                            <text x="200" y="160" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Processing</text>
+                            <circle cx="160" cy="80" r="25" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
+                            <text x="160" y="77" textAnchor="middle" className="text-xs fill-blue-600 font-bold">Research</text>
+                            <text x="160" y="88" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Agent</text>
                         </motion.g>
 
-                        {/* Output */}
+                        {/* Analysis Agent */}
+                        <motion.g variants={pulseVariants}>
+                            <circle cx="240" cy="120" r="25" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="2" />
+                            <text x="240" y="117" textAnchor="middle" className="text-xs fill-purple-600 font-bold">Analysis</text>
+                            <text x="240" y="128" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Agent</text>
+                        </motion.g>
+
+                        {/* Coordination Hub - MACP */}
+                        <motion.g variants={pulseVariants}>
+                            <rect x="170" y="170" width="60" height="60" rx="12" fill="rgba(245, 101, 101, 0.2)" stroke="#f56565" strokeWidth="3" />
+                            <text x="200" y="190" textAnchor="middle" className="text-xs fill-red-600 font-bold">MACP</text>
+                            <text x="200" y="202" textAnchor="middle" className="text-xs fill-red-600 font-medium">Protocol</text>
+                            <text x="200" y="214" textAnchor="middle" className="text-xs fill-red-600 font-medium">Hub</text>
+                        </motion.g>
+
+                        {/* Writing Agent */}
+                        <motion.g variants={pulseVariants}>
+                            <circle cx="160" cy="280" r="25" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
+                            <text x="160" y="277" textAnchor="middle" className="text-xs fill-emerald-600 font-bold">Writing</text>
+                            <text x="160" y="288" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Agent</text>
+                        </motion.g>
+
+                        {/* Review Agent */}
+                        <motion.g variants={pulseVariants}>
+                            <circle cx="240" cy="240" r="25" fill="rgba(251, 146, 60, 0.2)" stroke="#fb923c" strokeWidth="2" />
+                            <text x="240" y="237" textAnchor="middle" className="text-xs fill-orange-600 font-bold">Review</text>
+                            <text x="240" y="248" textAnchor="middle" className="text-xs fill-orange-600 font-medium">Agent</text>
+                        </motion.g>
+
+                        {/* Final Output */}
                         <motion.g variants={itemVariants}>
-                            <rect x="300" y="120" width="80" height="60" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
-                            <text x="340" y="145" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Processed</text>
-                            <text x="340" y="160" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Output</text>
+                            <rect x="300" y="180" width="80" height="40" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
+                            <text x="340" y="195" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Coordinated</text>
+                            <text x="340" y="207" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Solution</text>
                         </motion.g>
 
-                        {/* Data Flow Lines */}
+                        {/* Communication Flow Lines */}
                         <motion.path
-                            d="M100 80 Q150 80 150 150"
+                            d="M100 200 Q130 140 135 80"
                             stroke="#22c55e"
                             strokeWidth="2"
                             fill="none"
                             variants={flowVariants}
                         />
                         <motion.path
-                            d="M100 180 Q150 180 150 150"
+                            d="M185 80 Q212 100 215 120"
                             stroke="#3b82f6"
                             strokeWidth="2"
                             fill="none"
                             variants={flowVariants}
                         />
                         <motion.path
-                            d="M250 150 Q275 150 300 150"
+                            d="M170 200 Q140 240 135 280"
+                            stroke="#f56565"
+                            strokeWidth="2"
+                            fill="none"
+                            variants={flowVariants}
+                        />
+                        <motion.path
+                            d="M185 280 Q212 260 215 240"
                             stroke="#10b981"
                             strokeWidth="2"
                             fill="none"
                             variants={flowVariants}
                         />
+                        <motion.path
+                            d="M230 200 Q265 200 300 200"
+                            stroke="#fb923c"
+                            strokeWidth="2"
+                            fill="none"
+                            variants={flowVariants}
+                        />
 
-                        {/* Animated Data Particles */}
-                        {[...Array(6)].map((_, i) => (
+                        {/* Coordination Lines to MACP Hub */}
+                        <motion.path
+                            d="M160 105 Q165 140 175 170"
+                            stroke="#f56565"
+                            strokeWidth="1"
+                            strokeDasharray="4,4"
+                            fill="none"
+                            variants={flowVariants}
+                        />
+                        <motion.path
+                            d="M240 145 Q235 160 225 170"
+                            stroke="#f56565"
+                            strokeWidth="1"
+                            strokeDasharray="4,4"
+                            fill="none"
+                            variants={flowVariants}
+                        />
+                        <motion.path
+                            d="M160 255 Q165 240 175 230"
+                            stroke="#f56565"
+                            strokeWidth="1"
+                            strokeDasharray="4,4"
+                            fill="none"
+                            variants={flowVariants}
+                        />
+                        <motion.path
+                            d="M240 215 Q235 205 225 230"
+                            stroke="#f56565"
+                            strokeWidth="1"
+                            strokeDasharray="4,4"
+                            fill="none"
+                            variants={flowVariants}
+                        />
+
+                        {/* Animated Data Particles flowing between agents */}
+                        {[...Array(8)].map((_, i) => (
                             <motion.circle
                                 key={i}
-                                cx={120 + i * 30}
-                                cy={130 + Math.sin(i) * 40}
-                                r="3"
-                                fill={i % 2 === 0 ? "#22c55e" : "#3b82f6"}
+                                cx={120 + i * 25}
+                                cy={150 + Math.sin(i * 2) * 60}
+                                r="2"
+                                fill={["#3b82f6", "#9333ea", "#10b981", "#fb923c"][i % 4]}
                                 variants={particleVariants}
-                                style={{ animationDelay: `${i * 0.5}s` }}
+                                style={{ animationDelay: `${i * 0.4}s` }}
                             />
                         ))}
 
-                        {/* Processing Indicators */}
-                        {[...Array(3)].map((_, i) => (
-                            <motion.circle
+                        {/* Shared Memory Indicators */}
+                        {[...Array(4)].map((_, i) => (
+                            <motion.rect
                                 key={i}
-                                cx={180 + i * 20}
-                                cy={150}
-                                r="2"
-                                fill="#9333ea"
+                                x={190 + i * 5}
+                                y={195 + i * 2}
+                                width="2"
+                                height="8"
+                                fill="#f56565"
                                 variants={{
                                     hidden: { opacity: 0 },
                                     visible: {
@@ -179,7 +250,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                                         transition: {
                                             duration: 1.5,
                                             repeat: Infinity,
-                                            delay: i * 0.3
+                                            delay: i * 0.2
                                         }
                                     }
                                 }}
@@ -192,13 +263,19 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="absolute top-4 left-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
                         variants={itemVariants}
                     >
-                        Multi-Modal Input
+                        Multi-Agent Workflow
                     </motion.div>
                     <motion.div
                         className="absolute bottom-4 right-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
                         variants={itemVariants}
                     >
-                        Intelligent Output
+                        Coordinated Results
+                    </motion.div>
+                    <motion.div
+                        className="absolute top-16 right-8 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
+                        variants={itemVariants}
+                    >
+                        MACP Protocol
                     </motion.div>
                 </motion.div>
             </div>
