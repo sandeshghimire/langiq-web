@@ -72,27 +72,23 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600"> Multi-agent framework enabling specialized AI agents to collaborate on complex, multi-step problem-solving workflows</p>
-                        </motion.div>
-
-
-                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">  Agent role definition system allowing customization of individual agent capabilities, tools, and expertise areas</p>
+                            <p className="text-gray-600">Democratizes AI development by providing visual tools accessible to non-technical team members</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600"> Multi-Agent Collaboration Protocol (MACP) managing communication, coordination, and workflow execution</p>
+                            <p className="text-gray-600">Streamlines workflow creation through pre-built components and templates for common AI patterns</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">  Flexible execution patterns supporting sequential, parallel, and conditional agent interactions based on workflow requirements</p>
+                            <p className="text-gray-600">Centralizes project management with shared workspaces, progress tracking, and audit trails</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">  Shared memory and context management ensuring seamless information flow between agents throughout complex processes</p>
+                            <p className="text-gray-600">Automates deployment processes with integrated CI/CD tools and monitoring capabilities</p>
+                        </motion.div>
+
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
+                            <p className="text-gray-600">Reduces development time from weeks to days through rapid prototyping and iterative testing</p>
                         </motion.div>
                     </div>
                 </motion.div>

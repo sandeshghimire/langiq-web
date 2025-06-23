@@ -21,13 +21,13 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-4xl md:text-5xl font-bold mb-6 text-center"
                 variants={itemVariants}
             >
-                Retrieval-Augmented Generation (RAG)
+                Lang - IQ
             </motion.h1>
             <motion.p
-                className="text-xl md:text-lg max-w-7xl text-center"
+                className="text-xl md:text-lg max-w-4xl text-center"
                 variants={itemVariants}
             >
-                Retrieval-Augmented Generation (RAG) is a technique designed to improve the responses of Large Language Models (LLMs). Its primary function is to ground LLM outputs in specific external or proprietary knowledge, making the generated text more contextually relevant, accurate, and personalized
+                Our Core Mission: To Seamlessly Transition Your Business to the Future of Work with LLMs. At LangIQ.ai, we empower your organization to migrate from traditional operations to intelligent, LLM-based workflows, ensuring you unlock transformative efficiencies and achieve measurable business impact.
             </motion.p>
 
             {/* Bouncing down arrow */}

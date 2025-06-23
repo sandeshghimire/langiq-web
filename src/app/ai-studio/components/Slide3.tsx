@@ -70,27 +70,23 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     </motion.h1>
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">  Complex business processes require diverse skills and capabilities that single AI models cannot effectively handle</p>
-                        </motion.div>
-
-
-                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">  Multi-step workflows demand coordination, decision-making, and handoffs between different specialized functions</p>
+                            <p className="text-gray-600">Traditional AI development requires extensive coding expertise, limiting accessibility to specialized developers</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600"> Organizations need AI systems capable of autonomous execution of sophisticated processes without human intervention</p>
+                            <p className="text-gray-600">Complex prompt engineering and model integration create significant barriers for rapid prototyping</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">   Traditional single-agent approaches lack the specialization and coordination required for enterprise-level automation</p>
+                            <p className="text-gray-600">Team collaboration on AI projects often lacks centralized coordination and version management</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">  Business efficiency demands AI solutions that can handle end-to-end processes rather than individual tasks</p>
+                            <p className="text-gray-600">Deployment of AI applications typically involves intricate technical configurations and infrastructure setup</p>
+                        </motion.div>
+
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
+                            <p className="text-gray-600">Organizations need faster time-to-market for AI solutions without compromising quality or functionality</p>
                         </motion.div>
                     </div>
                 </motion.div>
