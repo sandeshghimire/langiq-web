@@ -7,7 +7,7 @@ interface Slide2Props {
     setRef: (el: HTMLDivElement | null) => void;
 }
 
-export default function Slide2({ slideVariants, itemVariants, isActive, setRef }: Slide2Props) {
+export default function Slide5({ slideVariants, itemVariants, isActive, setRef }: Slide2Props) {
     // Animation variants for the data processing
     const particleVariants = {
         hidden: { opacity: 0, scale: 0 },
