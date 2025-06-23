@@ -8,12 +8,25 @@ interface Slide2Props {
 }
 
 export default function Slide2({ slideVariants, itemVariants, isActive, setRef }: Slide2Props) {
-    // Animation variants for the data processing
-    const particleVariants = {
+    // Animation variants for AI concepts
+    const neuronVariants = {
         hidden: { opacity: 0, scale: 0 },
         visible: {
-            opacity: [0, 1, 0],
-            scale: [0, 1, 0],
+            opacity: [0, 1, 0.7, 1],
+            scale: [0, 1.2, 0.8, 1],
+            transition: {
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+            }
+        }
+    };
+
+    const connectionVariants = {
+        hidden: { pathLength: 0, opacity: 0 },
+        visible: {
+            pathLength: 1,
+            opacity: [0, 1, 0.6, 1],
             transition: {
                 duration: 3,
                 repeat: Infinity,
@@ -22,26 +35,13 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
         }
     };
 
-    const flowVariants = {
-        hidden: { pathLength: 0, opacity: 0 },
+    const brainPulseVariants = {
+        hidden: { scale: 1, opacity: 0.5 },
         visible: {
-            pathLength: 1,
-            opacity: 1,
+            scale: [1, 1.15, 1],
+            opacity: [0.5, 1, 0.8, 1],
             transition: {
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-            }
-        }
-    };
-
-    const pulseVariants = {
-        hidden: { scale: 1, opacity: 0.7 },
-        visible: {
-            scale: [1, 1.1, 1],
-            opacity: [0.7, 1, 0.7],
-            transition: {
-                duration: 2,
+                duration: 3,
                 repeat: Infinity,
                 ease: "easeInOut"
             }
@@ -66,7 +66,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
                         variants={itemVariants}
                     >
-                        What is AI
+                        What is AI Studio ?
                     </motion.h1>
 
 
@@ -93,90 +93,133 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     </div>
                 </motion.div>
 
-                {/* Right Column - LLM Processing Animation */}
+                {/* Right Column - AI Concepts Animation */}
                 <motion.div
                     className="hidden md:block relative h-96"
                     variants={itemVariants}
                 >
                     <svg className="w-full h-full" viewBox="0 0 400 400">
-                        {/* Structured Data Input */}
+                        {/* Data Input Layer */}
                         <motion.g variants={itemVariants}>
-                            <rect x="20" y="50" width="80" height="60" rx="8" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
-                            <text x="60" y="75" textAnchor="middle" className="text-xs fill-green-600 font-medium">Structured</text>
-                            <text x="60" y="90" textAnchor="middle" className="text-xs fill-green-600 font-medium">Data</text>
+                            <rect x="20" y="80" width="60" height="40" rx="6" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
+                            <text x="50" y="100" textAnchor="middle" className="text-xs fill-green-600 font-medium">Data</text>
+
+                            <rect x="20" y="140" width="60" height="40" rx="6" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
+                            <text x="50" y="160" textAnchor="middle" className="text-xs fill-green-600 font-medium">Input</text>
+
+                            <rect x="20" y="200" width="60" height="40" rx="6" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
+                            <text x="50" y="220" textAnchor="middle" className="text-xs fill-green-600 font-medium">Signal</text>
                         </motion.g>
 
-                        {/* Unstructured Data Input */}
+                        {/* Neural Network Core */}
+                        <motion.g variants={brainPulseVariants}>
+                            {/* Main AI Brain */}
+                            <ellipse cx="200" cy="160" rx="60" ry="45" fill="rgba(147, 51, 234, 0.15)" stroke="#9333ea" strokeWidth="3" />
+                            <text x="200" y="155" textAnchor="middle" className="text-sm fill-purple-600 font-bold">AI</text>
+                            <text x="200" y="170" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Intelligence</text>
+
+                            {/* Neural Nodes */}
+                            {[
+                                { x: 170, y: 130 }, { x: 200, y: 120 }, { x: 230, y: 130 },
+                                { x: 160, y: 160 }, { x: 240, y: 160 },
+                                { x: 170, y: 190 }, { x: 200, y: 200 }, { x: 230, y: 190 }
+                            ].map((node, i) => (
+                                <motion.circle
+                                    key={i}
+                                    cx={node.x}
+                                    cy={node.y}
+                                    r="4"
+                                    fill="#9333ea"
+                                    variants={neuronVariants}
+                                    style={{ animationDelay: `${i * 0.2}s` }}
+                                />
+                            ))}
+                        </motion.g>
+
+                        {/* AI Capabilities Output */}
                         <motion.g variants={itemVariants}>
-                            <rect x="20" y="150" width="80" height="60" rx="8" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
-                            <text x="60" y="175" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Unstructured</text>
-                            <text x="60" y="190" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Data</text>
+                            <rect x="320" y="60" width="70" height="35" rx="6" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
+                            <text x="355" y="80" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Learning</text>
+
+                            <rect x="320" y="110" width="70" height="35" rx="6" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
+                            <text x="355" y="130" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Reasoning</text>
+
+                            <rect x="320" y="160" width="70" height="35" rx="6" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
+                            <text x="355" y="180" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Problem</text>
+                            <text x="355" y="190" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Solving</text>
+
+                            <rect x="320" y="210" width="70" height="35" rx="6" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
+                            <text x="355" y="230" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Prediction</text>
                         </motion.g>
 
-                        {/* LLM Processing Core */}
-                        <motion.g variants={pulseVariants}>
-                            <circle cx="200" cy="150" r="50" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="3" />
-                            <text x="200" y="145" textAnchor="middle" className="text-sm fill-purple-600 font-bold">LLM</text>
-                            <text x="200" y="160" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Processing</text>
-                        </motion.g>
-
-                        {/* Output */}
-                        <motion.g variants={itemVariants}>
-                            <rect x="300" y="120" width="80" height="60" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
-                            <text x="340" y="145" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Processed</text>
-                            <text x="340" y="160" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Output</text>
-                        </motion.g>
-
-                        {/* Data Flow Lines */}
+                        {/* Neural Connections */}
                         <motion.path
-                            d="M100 80 Q150 80 150 150"
+                            d="M80 100 Q140 100 140 160"
                             stroke="#22c55e"
                             strokeWidth="2"
                             fill="none"
-                            variants={flowVariants}
+                            variants={connectionVariants}
                         />
                         <motion.path
-                            d="M100 180 Q150 180 150 150"
-                            stroke="#3b82f6"
+                            d="M80 160 Q140 160 140 160"
+                            stroke="#22c55e"
                             strokeWidth="2"
                             fill="none"
-                            variants={flowVariants}
+                            variants={connectionVariants}
                         />
                         <motion.path
-                            d="M250 150 Q275 150 300 150"
+                            d="M80 220 Q140 220 140 160"
+                            stroke="#22c55e"
+                            strokeWidth="2"
+                            fill="none"
+                            variants={connectionVariants}
+                        />
+
+                        {/* Output Connections */}
+                        <motion.path
+                            d="M260 140 Q290 120 320 78"
                             stroke="#10b981"
                             strokeWidth="2"
                             fill="none"
-                            variants={flowVariants}
+                            variants={connectionVariants}
+                        />
+                        <motion.path
+                            d="M260 150 Q290 140 320 128"
+                            stroke="#10b981"
+                            strokeWidth="2"
+                            fill="none"
+                            variants={connectionVariants}
+                        />
+                        <motion.path
+                            d="M260 160 Q290 160 320 178"
+                            stroke="#10b981"
+                            strokeWidth="2"
+                            fill="none"
+                            variants={connectionVariants}
+                        />
+                        <motion.path
+                            d="M260 180 Q290 200 320 228"
+                            stroke="#10b981"
+                            strokeWidth="2"
+                            fill="none"
+                            variants={connectionVariants}
                         />
 
-                        {/* Animated Data Particles */}
-                        {[...Array(6)].map((_, i) => (
+                        {/* Animated Information Flow */}
+                        {[...Array(8)].map((_, i) => (
                             <motion.circle
                                 key={i}
-                                cx={120 + i * 30}
-                                cy={130 + Math.sin(i) * 40}
-                                r="3"
-                                fill={i % 2 === 0 ? "#22c55e" : "#3b82f6"}
-                                variants={particleVariants}
-                                style={{ animationDelay: `${i * 0.5}s` }}
-                            />
-                        ))}
-
-                        {/* Processing Indicators */}
-                        {[...Array(3)].map((_, i) => (
-                            <motion.circle
-                                key={i}
-                                cx={180 + i * 20}
-                                cy={150}
+                                cx={120 + i * 25}
+                                cy={140 + Math.sin(i * 0.8) * 30}
                                 r="2"
-                                fill="#9333ea"
+                                fill={`hsl(${120 + i * 30}, 70%, 50%)`}
                                 variants={{
-                                    hidden: { opacity: 0 },
+                                    hidden: { opacity: 0, x: -10 },
                                     visible: {
                                         opacity: [0, 1, 0],
+                                        x: [0, 180, 0],
                                         transition: {
-                                            duration: 1.5,
+                                            duration: 5,
                                             repeat: Infinity,
                                             delay: i * 0.3
                                         }
@@ -184,20 +227,60 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                                 }}
                             />
                         ))}
+
+                        {/* Thinking Indicators around brain */}
+                        {[...Array(6)].map((_, i) => {
+                            const angle = (i * 60) * Math.PI / 180;
+                            const cx = 200 + Math.cos(angle) * 80;
+                            const cy = 160 + Math.sin(angle) * 60;
+                            return (
+                                <motion.circle
+                                    key={i}
+                                    cx={cx}
+                                    cy={cy}
+                                    r="3"
+                                    fill="#9333ea"
+                                    variants={{
+                                        hidden: { opacity: 0, scale: 0 },
+                                        visible: {
+                                            opacity: [0, 1, 0],
+                                            scale: [0, 1.5, 0],
+                                            transition: {
+                                                duration: 2,
+                                                repeat: Infinity,
+                                                delay: i * 0.4
+                                            }
+                                        }
+                                    }}
+                                />
+                            );
+                        })}
                     </svg>
 
                     {/* Floating Labels */}
                     <motion.div
-                        className="absolute top-4 left-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
+                        className="absolute top-4 left-4 text-xs font-medium text-gray-600 bg-white/90 backdrop-blur-sm rounded px-3 py-1.5 shadow-sm"
                         variants={itemVariants}
                     >
-                        Multi-Modal Input
+                        🧠 Artificial Intelligence
                     </motion.div>
                     <motion.div
-                        className="absolute bottom-4 right-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
+                        className="absolute bottom-4 right-4 text-xs font-medium text-gray-600 bg-white/90 backdrop-blur-sm rounded px-3 py-1.5 shadow-sm"
                         variants={itemVariants}
                     >
-                        Intelligent Output
+                        🚀 Intelligent Automation
+                    </motion.div>
+                    <motion.div
+                        className="absolute top-1/2 left-2 text-xs font-medium text-gray-600 bg-white/90 backdrop-blur-sm rounded px-2 py-1"
+                        variants={itemVariants}
+                    >
+                        📊 Data
+                    </motion.div>
+                    <motion.div
+                        className="absolute top-1/2 right-2 text-xs font-medium text-gray-600 bg-white/90 backdrop-blur-sm rounded px-2 py-1"
+                        variants={itemVariants}
+                    >
+                        ⚡ Results
                     </motion.div>
                 </motion.div>
             </div>
