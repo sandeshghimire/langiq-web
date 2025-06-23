@@ -99,86 +99,189 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     variants={itemVariants}
                 >
                     <svg className="w-full h-full" viewBox="0 0 400 400">
-                        {/* Structured Data Input */}
+                        {/* Domain Knowledge Input */}
                         <motion.g variants={itemVariants}>
-                            <rect x="20" y="50" width="80" height="60" rx="8" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
-                            <text x="60" y="75" textAnchor="middle" className="text-xs fill-green-600 font-medium">Structured</text>
-                            <text x="60" y="90" textAnchor="middle" className="text-xs fill-green-600 font-medium">Data</text>
+                            <rect x="10" y="30" width="90" height="50" rx="8" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
+                            <text x="55" y="50" textAnchor="middle" className="text-xs fill-green-600 font-medium">Domain</text>
+                            <text x="55" y="65" textAnchor="middle" className="text-xs fill-green-600 font-medium">Knowledge</text>
                         </motion.g>
 
-                        {/* Unstructured Data Input */}
+                        {/* Behavioral Patterns Input */}
                         <motion.g variants={itemVariants}>
-                            <rect x="20" y="150" width="80" height="60" rx="8" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
-                            <text x="60" y="175" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Unstructured</text>
-                            <text x="60" y="190" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Data</text>
+                            <rect x="10" y="100" width="90" height="50" rx="8" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
+                            <text x="55" y="120" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Behavioral</text>
+                            <text x="55" y="135" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Patterns</text>
                         </motion.g>
 
-                        {/* LLM Processing Core */}
+                        {/* Context Templates Input */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="10" y="170" width="90" height="50" rx="8" fill="rgba(251, 146, 60, 0.2)" stroke="#fb923c" strokeWidth="2" />
+                            <text x="55" y="190" textAnchor="middle" className="text-xs fill-orange-600 font-medium">Context</text>
+                            <text x="55" y="205" textAnchor="middle" className="text-xs fill-orange-600 font-medium">Templates</text>
+                        </motion.g>
+
+                        {/* LoRA/PEFT Input */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="10" y="240" width="90" height="50" rx="8" fill="rgba(168, 85, 247, 0.2)" stroke="#a855f7" strokeWidth="2" />
+                            <text x="55" y="260" textAnchor="middle" className="text-xs fill-purple-600 font-medium">LoRA/PEFT</text>
+                            <text x="55" y="275" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Tuning</text>
+                        </motion.g>
+
+                        {/* Augmented LLM Core */}
                         <motion.g variants={pulseVariants}>
-                            <circle cx="200" cy="150" r="50" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="3" />
-                            <text x="200" y="145" textAnchor="middle" className="text-sm fill-purple-600 font-bold">LLM</text>
-                            <text x="200" y="160" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Processing</text>
+                            <circle cx="200" cy="150" r="60" fill="rgba(147, 51, 234, 0.1)" stroke="#9333ea" strokeWidth="3" />
+                            <circle cx="200" cy="150" r="45" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="2" strokeDasharray="5,5" />
+                            <text x="200" y="140" textAnchor="middle" className="text-sm fill-purple-600 font-bold">Augmented</text>
+                            <text x="200" y="155" textAnchor="middle" className="text-sm fill-purple-600 font-bold">LLM</text>
+                            <text x="200" y="170" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Enhanced</text>
                         </motion.g>
 
-                        {/* Output */}
+                        {/* Enhanced Outputs */}
                         <motion.g variants={itemVariants}>
-                            <rect x="300" y="120" width="80" height="60" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
-                            <text x="340" y="145" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Processed</text>
-                            <text x="340" y="160" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Output</text>
+                            <rect x="300" y="50" width="90" height="45" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
+                            <text x="345" y="70" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Domain-Specific</text>
+                            <text x="345" y="85" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Responses</text>
                         </motion.g>
 
-                        {/* Data Flow Lines */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="300" y="110" width="90" height="45" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
+                            <text x="345" y="130" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Consistent</text>
+                            <text x="345" y="145" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Personality</text>
+                        </motion.g>
+
+                        <motion.g variants={itemVariants}>
+                            <rect x="300" y="170" width="90" height="45" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
+                            <text x="345" y="190" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Optimized</text>
+                            <text x="345" y="205" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Context Use</text>
+                        </motion.g>
+
+                        {/* Augmentation Flow Lines */}
                         <motion.path
-                            d="M100 80 Q150 80 150 150"
+                            d="M100 55 Q130 55 140 90 Q150 125 140 150"
                             stroke="#22c55e"
                             strokeWidth="2"
                             fill="none"
                             variants={flowVariants}
+                            strokeDasharray="3,3"
                         />
                         <motion.path
-                            d="M100 180 Q150 180 150 150"
+                            d="M100 125 Q130 125 140 150"
                             stroke="#3b82f6"
+                            strokeWidth="2"
+                            fill="none"
+                            variants={flowVariants}
+                            strokeDasharray="3,3"
+                        />
+                        <motion.path
+                            d="M100 195 Q130 195 140 180 Q150 165 140 150"
+                            stroke="#fb923c"
+                            strokeWidth="2"
+                            fill="none"
+                            variants={flowVariants}
+                            strokeDasharray="3,3"
+                        />
+                        <motion.path
+                            d="M100 265 Q130 265 140 230 Q150 195 140 150"
+                            stroke="#a855f7"
+                            strokeWidth="2"
+                            fill="none"
+                            variants={flowVariants}
+                            strokeDasharray="3,3"
+                        />
+
+                        {/* Enhanced Output Lines */}
+                        <motion.path
+                            d="M260 130 Q280 130 300 72"
+                            stroke="#10b981"
                             strokeWidth="2"
                             fill="none"
                             variants={flowVariants}
                         />
                         <motion.path
-                            d="M250 150 Q275 150 300 150"
+                            d="M260 150 Q280 150 300 132"
+                            stroke="#10b981"
+                            strokeWidth="2"
+                            fill="none"
+                            variants={flowVariants}
+                        />
+                        <motion.path
+                            d="M260 170 Q280 170 300 192"
                             stroke="#10b981"
                             strokeWidth="2"
                             fill="none"
                             variants={flowVariants}
                         />
 
-                        {/* Animated Data Particles */}
-                        {[...Array(6)].map((_, i) => (
+                        {/* Augmentation Energy Particles */}
+                        {[...Array(8)].map((_, i) => (
                             <motion.circle
                                 key={i}
-                                cx={120 + i * 30}
-                                cy={130 + Math.sin(i) * 40}
-                                r="3"
-                                fill={i % 2 === 0 ? "#22c55e" : "#3b82f6"}
-                                variants={particleVariants}
-                                style={{ animationDelay: `${i * 0.5}s` }}
+                                cx={120 + (i % 4) * 25}
+                                cy={100 + Math.floor(i / 4) * 100}
+                                r="2"
+                                fill={['#22c55e', '#3b82f6', '#fb923c', '#a855f7'][i % 4]}
+                                variants={{
+                                    hidden: { opacity: 0, scale: 0 },
+                                    visible: {
+                                        opacity: [0, 1, 0.3, 1, 0],
+                                        scale: [0, 1, 0.5, 1, 0],
+                                        x: [0, 50, 80],
+                                        transition: {
+                                            duration: 4,
+                                            repeat: Infinity,
+                                            delay: i * 0.5,
+                                            ease: "easeInOut"
+                                        }
+                                    }
+                                }}
                             />
                         ))}
 
-                        {/* Processing Indicators */}
-                        {[...Array(3)].map((_, i) => (
+                        {/* Core Enhancement Indicators */}
+                        {[...Array(5)].map((_, i) => (
                             <motion.circle
                                 key={i}
-                                cx={180 + i * 20}
-                                cy={150}
-                                r="2"
+                                cx={180 + i * 8}
+                                cy={150 + Math.sin(i * 0.8) * 15}
+                                r="1.5"
                                 fill="#9333ea"
                                 variants={{
                                     hidden: { opacity: 0 },
                                     visible: {
-                                        opacity: [0, 1, 0],
+                                        opacity: [0, 1, 0.5, 1, 0],
+                                        scale: [0.5, 1.2, 0.8, 1.2, 0.5],
                                         transition: {
-                                            duration: 1.5,
+                                            duration: 2,
                                             repeat: Infinity,
-                                            delay: i * 0.3
+                                            delay: i * 0.2,
+                                            ease: "easeInOut"
+                                        }
+                                    }
+                                }}
+                            />
+                        ))}
+
+                        {/* Augmentation Waves */}
+                        {[...Array(3)].map((_, i) => (
+                            <motion.circle
+                                key={`wave-${i}`}
+                                cx="200"
+                                cy="150"
+                                r={30 + i * 15}
+                                fill="none"
+                                stroke="#9333ea"
+                                strokeWidth="0.5"
+                                opacity="0.3"
+                                variants={{
+                                    hidden: { scale: 0, opacity: 0 },
+                                    visible: {
+                                        scale: [0, 1.5, 0],
+                                        opacity: [0, 0.6, 0],
+                                        transition: {
+                                            duration: 3,
+                                            repeat: Infinity,
+                                            delay: i * 0.8,
+                                            ease: "easeOut"
                                         }
                                     }
                                 }}
@@ -186,18 +289,24 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         ))}
                     </svg>
 
-                    {/* Floating Labels */}
+                    {/* Updated Floating Labels */}
                     <motion.div
-                        className="absolute top-4 left-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
+                        className="absolute top-2 left-2 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
                         variants={itemVariants}
                     >
-                        Multi-Modal Input
+                        Augmentation Inputs
                     </motion.div>
                     <motion.div
-                        className="absolute bottom-4 right-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
+                        className="absolute bottom-2 right-2 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
                         variants={itemVariants}
                     >
-                        Intelligent Output
+                        Enhanced Capabilities
+                    </motion.div>
+                    <motion.div
+                        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-8 text-xs font-medium text-purple-600 bg-purple-50/80 backdrop-blur-sm rounded px-2 py-1"
+                        variants={itemVariants}
+                    >
+                        Active Augmentation
                     </motion.div>
                 </motion.div>
             </div>

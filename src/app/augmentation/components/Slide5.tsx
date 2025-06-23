@@ -93,92 +93,156 @@ export default function Slide5({ slideVariants, itemVariants, isActive, setRef }
                     </div>
                 </motion.div>
 
-                {/* Right Column - LLM Processing Animation */}
+                {/* Right Column - LLM Augmentation Advantages Animation */}
                 <motion.div
                     className="hidden md:block relative h-96"
                     variants={itemVariants}
                 >
                     <svg className="w-full h-full" viewBox="0 0 400 400">
-                        {/* Structured Data Input */}
+                        {/* Base LLM */}
                         <motion.g variants={itemVariants}>
-                            <rect x="20" y="50" width="80" height="60" rx="8" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
-                            <text x="60" y="75" textAnchor="middle" className="text-xs fill-green-600 font-medium">Structured</text>
-                            <text x="60" y="90" textAnchor="middle" className="text-xs fill-green-600 font-medium">Data</text>
+                            <circle cx="100" cy="200" r="40" fill="rgba(107, 114, 128, 0.2)" stroke="#6b7280" strokeWidth="2" />
+                            <text x="100" y="195" textAnchor="middle" className="text-xs fill-gray-600 font-medium">Base</text>
+                            <text x="100" y="208" textAnchor="middle" className="text-xs fill-gray-600 font-medium">LLM</text>
                         </motion.g>
 
-                        {/* Unstructured Data Input */}
-                        <motion.g variants={itemVariants}>
-                            <rect x="20" y="150" width="80" height="60" rx="8" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
-                            <text x="60" y="175" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Unstructured</text>
-                            <text x="60" y="190" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Data</text>
-                        </motion.g>
-
-                        {/* LLM Processing Core */}
+                        {/* Augmentation Layer */}
                         <motion.g variants={pulseVariants}>
-                            <circle cx="200" cy="150" r="50" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="3" />
-                            <text x="200" y="145" textAnchor="middle" className="text-sm fill-purple-600 font-bold">LLM</text>
-                            <text x="200" y="160" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Processing</text>
+                            <circle cx="200" cy="200" r="50" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="3" />
+                            <text x="200" y="195" textAnchor="middle" className="text-sm fill-purple-600 font-bold">Augmented</text>
+                            <text x="200" y="210" textAnchor="middle" className="text-xs fill-purple-600 font-medium">LLM</text>
                         </motion.g>
 
-                        {/* Output */}
+                        {/* Consistency Icon */}
                         <motion.g variants={itemVariants}>
-                            <rect x="300" y="120" width="80" height="60" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
-                            <text x="340" y="145" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Processed</text>
-                            <text x="340" y="160" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Output</text>
+                            <rect x="290" y="50" width="60" height="40" rx="6" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
+                            <circle cx="310" cy="65" r="3" fill="#22c55e" />
+                            <circle cx="320" cy="65" r="3" fill="#22c55e" />
+                            <circle cx="330" cy="65" r="3" fill="#22c55e" />
+                            <text x="320" y="82" textAnchor="middle" className="text-xs fill-green-600 font-medium">Consistent</text>
                         </motion.g>
 
-                        {/* Data Flow Lines */}
+                        {/* Behavioral Control Icon */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="290" y="110" width="60" height="40" rx="6" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
+                            <path d="M305 125 L315 135 L335 115" stroke="#3b82f6" strokeWidth="2" fill="none" />
+                            <text x="320" y="142" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Controlled</text>
+                        </motion.g>
+
+                        {/* Efficiency Icon */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="290" y="170" width="60" height="40" rx="6" fill="rgba(245, 158, 11, 0.2)" stroke="#f59e0b" strokeWidth="2" />
+                            <path d="M310 185 L320 180 L320 195 L330 190" stroke="#f59e0b" strokeWidth="2" fill="none" />
+                            <text x="320" y="202" textAnchor="middle" className="text-xs fill-amber-600 font-medium">Efficient</text>
+                        </motion.g>
+
+                        {/* Rapid Deployment Icon */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="290" y="230" width="60" height="40" rx="6" fill="rgba(239, 68, 68, 0.2)" stroke="#ef4444" strokeWidth="2" />
+                            <circle cx="315" cy="245" r="2" fill="#ef4444" />
+                            <path d="M315 245 Q325 240 335 250" stroke="#ef4444" strokeWidth="2" fill="none" />
+                            <text x="320" y="262" textAnchor="middle" className="text-xs fill-red-600 font-medium">Rapid</text>
+                        </motion.g>
+
+                        {/* Quality Assurance Icon */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="290" y="290" width="60" height="40" rx="6" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
+                            <path d="M305 305 L315 315 L335 295" stroke="#10b981" strokeWidth="2" fill="none" />
+                            <circle cx="320" cy="305" r="8" fill="none" stroke="#10b981" strokeWidth="1" />
+                            <text x="320" y="322" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Quality</text>
+                        </motion.g>
+
+                        {/* Enhancement Flow Lines */}
                         <motion.path
-                            d="M100 80 Q150 80 150 150"
+                            d="M140 200 Q170 200 150 200"
+                            stroke="#9333ea"
+                            strokeWidth="3"
+                            fill="none"
+                            variants={flowVariants}
+                        />
+
+                        {/* Connection Lines to Advantages */}
+                        <motion.path
+                            d="M250 180 Q270 120 290 70"
                             stroke="#22c55e"
                             strokeWidth="2"
                             fill="none"
                             variants={flowVariants}
+                            style={{ animationDelay: "0.5s" }}
                         />
                         <motion.path
-                            d="M100 180 Q150 180 150 150"
+                            d="M250 190 Q270 150 290 130"
                             stroke="#3b82f6"
                             strokeWidth="2"
                             fill="none"
                             variants={flowVariants}
+                            style={{ animationDelay: "0.7s" }}
                         />
                         <motion.path
-                            d="M250 150 Q275 150 300 150"
+                            d="M250 200 Q270 185 290 190"
+                            stroke="#f59e0b"
+                            strokeWidth="2"
+                            fill="none"
+                            variants={flowVariants}
+                            style={{ animationDelay: "0.9s" }}
+                        />
+                        <motion.path
+                            d="M250 210 Q270 220 290 250"
+                            stroke="#ef4444"
+                            strokeWidth="2"
+                            fill="none"
+                            variants={flowVariants}
+                            style={{ animationDelay: "1.1s" }}
+                        />
+                        <motion.path
+                            d="M250 220 Q270 255 290 310"
                             stroke="#10b981"
                             strokeWidth="2"
                             fill="none"
                             variants={flowVariants}
+                            style={{ animationDelay: "1.3s" }}
                         />
 
-                        {/* Animated Data Particles */}
-                        {[...Array(6)].map((_, i) => (
+                        {/* Augmentation Particles */}
+                        {[...Array(8)].map((_, i) => (
                             <motion.circle
                                 key={i}
-                                cx={120 + i * 30}
-                                cy={130 + Math.sin(i) * 40}
-                                r="3"
-                                fill={i % 2 === 0 ? "#22c55e" : "#3b82f6"}
-                                variants={particleVariants}
-                                style={{ animationDelay: `${i * 0.5}s` }}
+                                cx={160 + (i % 4) * 20}
+                                cy={180 + Math.floor(i / 4) * 40}
+                                r="2"
+                                fill="#9333ea"
+                                variants={{
+                                    hidden: { opacity: 0, scale: 0 },
+                                    visible: {
+                                        opacity: [0, 1, 0],
+                                        scale: [0, 1.5, 0],
+                                        transition: {
+                                            duration: 2,
+                                            repeat: Infinity,
+                                            delay: i * 0.2
+                                        }
+                                    }
+                                }}
                             />
                         ))}
 
-                        {/* Processing Indicators */}
-                        {[...Array(3)].map((_, i) => (
+                        {/* Enhancement Indicators around Augmented LLM */}
+                        {[...Array(6)].map((_, i) => (
                             <motion.circle
                                 key={i}
-                                cx={180 + i * 20}
-                                cy={150}
-                                r="2"
+                                cx={200 + 60 * Math.cos((i * Math.PI) / 3)}
+                                cy={200 + 60 * Math.sin((i * Math.PI) / 3)}
+                                r="3"
                                 fill="#9333ea"
                                 variants={{
                                     hidden: { opacity: 0 },
                                     visible: {
-                                        opacity: [0, 1, 0],
+                                        opacity: [0, 0.8, 0],
+                                        scale: [0.5, 1.2, 0.5],
                                         transition: {
-                                            duration: 1.5,
+                                            duration: 3,
                                             repeat: Infinity,
-                                            delay: i * 0.3
+                                            delay: i * 0.4
                                         }
                                     }
                                 }}
@@ -191,13 +255,13 @@ export default function Slide5({ slideVariants, itemVariants, isActive, setRef }
                         className="absolute top-4 left-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
                         variants={itemVariants}
                     >
-                        Multi-Modal Input
+                        LLM Enhancement
                     </motion.div>
                     <motion.div
                         className="absolute bottom-4 right-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
                         variants={itemVariants}
                     >
-                        Intelligent Output
+                        5 Key Advantages
                     </motion.div>
                 </motion.div>
             </div>
