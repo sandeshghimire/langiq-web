@@ -66,33 +66,29 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
                         variants={itemVariants}
                     >
-                        How AI Studio work?
+                        How LLM Augmentation Solve Problems
                     </motion.h1>
 
 
-                    <div className="space-y-0  ">
-                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600"> Multi-agent framework enabling specialized AI agents to collaborate on complex, multi-step problem-solving workflows</p>
+                    <div className="space-y-4">
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-0 border border-gray-200/20" variants={itemVariants}>
+                            <p className="text-gray-600">Embeds essential domain knowledge directly into model context ensuring consistent access and application</p>
                         </motion.div>
 
-
-                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">  Agent role definition system allowing customization of individual agent capabilities, tools, and expertise areas</p>
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-0 border border-gray-200/20" variants={itemVariants}>
+                            <p className="text-gray-600">Provides stable, predictable responses by incorporating fixed knowledge rather than dynamic retrieval results</p>
                         </motion.div>
 
-                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600"> Multi-Agent Collaboration Protocol (MACP) managing communication, coordination, and workflow execution</p>
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-0 border border-gray-200/20" variants={itemVariants}>
+                            <p className="text-gray-600">Customizes AI behavior and expertise to match organizational requirements and industry standards</p>
                         </motion.div>
 
-                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-
-                            <p className="text-gray-600">  Flexible execution patterns supporting sequential, parallel, and conditional agent interactions based on workflow requirements</p>
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-0 border border-gray-200/20" variants={itemVariants}>
+                            <p className="text-gray-600">Delivers specialized performance without requiring expensive full model retraining or large computational resources</p>
                         </motion.div>
 
-                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">  Shared memory and context management ensuring seamless information flow between agents throughout complex processes</p>
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-0 border border-gray-200/20" variants={itemVariants}>
+                            <p className="text-gray-600">Enables rapid deployment of domain-specific AI solutions through template-based knowledge integration</p>
                         </motion.div>
                     </div>
                 </motion.div>

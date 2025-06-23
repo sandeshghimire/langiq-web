@@ -21,13 +21,14 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-4xl md:text-5xl font-bold mb-6 text-center"
                 variants={itemVariants}
             >
-                LangIQ - AI Studio
+                LLM Augmentation
             </motion.h1>
             <motion.p
                 className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
-                AI Studio is LangIQ's visual, low-code development environment that transforms complex AI workflow creation into an intuitive drag-and-drop experience. This collaborative platform accelerates LLM application development by abstracting technical complexities, enabling both technical and non-technical teams to build sophisticated AI solutions rapidly without extensive manual coding expertise.
+                LangIQ's Augmentation Library enhances Large Language Model performance by strategically incorporating domain-specific knowledge, instructions, and behavioral guidelines directly into the model's context. This approach provides more consistent, specialized responses than dynamic retrieval methods while maintaining computational efficiency for specific use cases and domains.
+
             </motion.p>
 
             {/* Bouncing down arrow */}
