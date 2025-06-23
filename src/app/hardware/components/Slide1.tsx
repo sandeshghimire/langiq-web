@@ -21,13 +21,14 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-4xl md:text-5xl font-bold mb-6 text-center"
                 variants={itemVariants}
             >
-                LangIQ - AI Studio
+                AI Box Hardware
             </motion.h1>
             <motion.p
                 className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
-                AI Studio is LangIQ's visual, low-code development environment that transforms complex AI workflow creation into an intuitive drag-and-drop experience. This collaborative platform accelerates LLM application development by abstracting technical complexities, enabling both technical and non-technical teams to build sophisticated AI solutions rapidly without extensive manual coding expertise.
+                AI Box represents LangIQ's purpose-built, on-premises server solutions optimized for demanding AI and machine learning workloads. These pre-configured systems deliver enterprise-grade performance while ensuring complete data sovereignty, featuring cutting-edge NVIDIA GPUs, specialized processors, and LangIQ's optimized software stack for immediate AI deployment readiness.
+
             </motion.p>
 
             {/* Bouncing down arrow */}
