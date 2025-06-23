@@ -93,182 +93,226 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     </div>
                 </motion.div>
 
-                {/* Right Column - LLM Processing Animation */}
+                {/* Right Column - Prompt Engineering Workflow Animation */}
                 <motion.div
                     className="hidden md:block relative h-96"
                     variants={itemVariants}
                 >
                     <svg className="w-full h-full" viewBox="0 0 400 400">
-                        {/* Prompt Input */}
+                        {/* Raw Prompt Input */}
                         <motion.g variants={itemVariants}>
-                            <rect x="20" y="50" width="80" height="40" rx="8" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
-                            <text x="60" y="75" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Prompt Input</text>
+                            <rect x="20" y="60" width="80" height="50" rx="8" fill="rgba(239, 68, 68, 0.2)" stroke="#ef4444" strokeWidth="2" />
+                            <text x="60" y="80" textAnchor="middle" className="text-xs fill-red-600 font-medium">Raw</text>
+                            <text x="60" y="95" textAnchor="middle" className="text-xs fill-red-600 font-medium">Prompt</text>
                         </motion.g>
 
-                        {/* Template Library */}
-                        <motion.g variants={itemVariants}>
-                            <rect x="20" y="120" width="80" height="40" rx="8" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
-                            <text x="60" y="145" textAnchor="middle" className="text-xs fill-green-600 font-medium">Templates</text>
-                        </motion.g>
-
-                        {/* Prompt Library Core */}
+                        {/* Prompt Engineering Core */}
                         <motion.g variants={pulseVariants}>
-                            <rect x="140" y="85" width="120" height="70" rx="12" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="3" />
-                            <text x="200" y="110" textAnchor="middle" className="text-sm fill-purple-600 font-bold">Prompt Library</text>
-                            <text x="200" y="125" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Processing</text>
-                            <text x="200" y="140" textAnchor="middle" className="text-xs fill-purple-600 font-medium">& Optimization</text>
+                            <rect x="150" y="40" width="100" height="90" rx="12" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="3" />
+                            <text x="200" y="70" textAnchor="middle" className="text-sm fill-purple-600 font-bold">Prompt</text>
+                            <text x="200" y="85" textAnchor="middle" className="text-sm fill-purple-600 font-bold">Engineering</text>
+                            <text x="200" y="105" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Optimization</text>
+                            <text x="200" y="120" textAnchor="middle" className="text-xs fill-purple-600 font-medium">& Testing</text>
                         </motion.g>
 
-                        {/* LLM Providers */}
+                        {/* Engineering Tools */}
                         <motion.g variants={itemVariants}>
-                            <rect x="300" y="40" width="70" height="30" rx="6" fill="rgba(239, 68, 68, 0.2)" stroke="#ef4444" strokeWidth="2" />
-                            <text x="335" y="58" textAnchor="middle" className="text-xs fill-red-600 font-medium">OpenAI</text>
-                        </motion.g>
-                        <motion.g variants={itemVariants}>
-                            <rect x="300" y="80" width="70" height="30" rx="6" fill="rgba(245, 158, 11, 0.2)" stroke="#f59e0b" strokeWidth="2" />
-                            <text x="335" y="98" textAnchor="middle" className="text-xs fill-amber-600 font-medium">Google</text>
-                        </motion.g>
-                        <motion.g variants={itemVariants}>
-                            <rect x="300" y="120" width="70" height="30" rx="6" fill="rgba(168, 85, 247, 0.2)" stroke="#a855f7" strokeWidth="2" />
-                            <text x="335" y="138" textAnchor="middle" className="text-xs fill-violet-600 font-medium">Anthropic</text>
-                        </motion.g>
-                        <motion.g variants={itemVariants}>
-                            <rect x="300" y="160" width="70" height="30" rx="6" fill="rgba(6, 182, 212, 0.2)" stroke="#06b6d4" strokeWidth="2" />
-                            <text x="335" y="178" textAnchor="middle" className="text-xs fill-cyan-600 font-medium">Open Source</text>
+                            <rect x="270" y="50" width="60" height="25" rx="4" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
+                            <text x="300" y="66" textAnchor="middle" className="text-xs fill-green-600 font-medium">Templates</text>
                         </motion.g>
 
-                        {/* Output Results */}
                         <motion.g variants={itemVariants}>
-                            <rect x="140" y="220" width="120" height="50" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
-                            <text x="200" y="240" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Processed Results</text>
-                            <text x="200" y="255" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">& Analytics</text>
+                            <rect x="270" y="85" width="60" height="25" rx="4" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
+                            <text x="300" y="101" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Testing</text>
                         </motion.g>
 
-                        {/* Data Flow Lines */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="270" y="120" width="60" height="25" rx="4" fill="rgba(245, 158, 11, 0.2)" stroke="#f59e0b" strokeWidth="2" />
+                            <text x="300" y="136" textAnchor="middle" className="text-xs fill-amber-600 font-medium">Versioning</text>
+                        </motion.g>
+
+                        {/* Optimized Prompt Output */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="150" y="170" width="100" height="50" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
+                            <text x="200" y="190" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Optimized</text>
+                            <text x="200" y="205" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Prompt</text>
+                        </motion.g>
+
+                        {/* LLM Processing */}
+                        <motion.g variants={pulseVariants}>
+                            <circle cx="80" cy="280" r="35" fill="rgba(168, 85, 247, 0.2)" stroke="#a855f7" strokeWidth="3" />
+                            <text x="80" y="275" textAnchor="middle" className="text-xs fill-violet-600 font-bold">LLM</text>
+                            <text x="80" y="290" textAnchor="middle" className="text-xs fill-violet-600 font-medium">Processing</text>
+                        </motion.g>
+
+                        {/* Enhanced Response */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="160" y="260" width="100" height="50" rx="8" fill="rgba(6, 182, 212, 0.2)" stroke="#06b6d4" strokeWidth="2" />
+                            <text x="210" y="280" textAnchor="middle" className="text-xs fill-cyan-600 font-medium">Enhanced</text>
+                            <text x="210" y="295" textAnchor="middle" className="text-xs fill-cyan-600 font-medium">Response</text>
+                        </motion.g>
+
+                        {/* Analytics & Feedback */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="290" y="260" width="80" height="50" rx="8" fill="rgba(236, 72, 153, 0.2)" stroke="#ec4899" strokeWidth="2" />
+                            <text x="330" y="280" textAnchor="middle" className="text-xs fill-pink-600 font-medium">Analytics</text>
+                            <text x="330" y="295" textAnchor="middle" className="text-xs fill-pink-600 font-medium">& Feedback</text>
+                        </motion.g>
+
+                        {/* Workflow Flow Lines */}
                         <motion.path
-                            d="M100 70 Q120 70 140 100"
-                            stroke="#3b82f6"
-                            strokeWidth="2"
-                            fill="none"
-                            variants={flowVariants}
-                        />
-                        <motion.path
-                            d="M100 140 Q120 140 140 130"
-                            stroke="#22c55e"
-                            strokeWidth="2"
-                            fill="none"
-                            variants={flowVariants}
-                        />
-                        <motion.path
-                            d="M260 100 Q280 100 300 55"
+                            d="M100 85 Q125 85 150 85"
                             stroke="#ef4444"
                             strokeWidth="2"
                             fill="none"
                             variants={flowVariants}
                         />
                         <motion.path
-                            d="M260 110 Q280 110 300 95"
-                            stroke="#f59e0b"
+                            d="M200 130 Q200 150 200 170"
+                            stroke="#10b981"
                             strokeWidth="2"
                             fill="none"
                             variants={flowVariants}
                         />
                         <motion.path
-                            d="M260 120 Q280 120 300 135"
+                            d="M170 220 Q125 220 115 260"
                             stroke="#a855f7"
                             strokeWidth="2"
                             fill="none"
                             variants={flowVariants}
                         />
                         <motion.path
-                            d="M260 140 Q280 140 300 175"
+                            d="M115 285 Q140 285 160 285"
                             stroke="#06b6d4"
                             strokeWidth="2"
                             fill="none"
                             variants={flowVariants}
                         />
                         <motion.path
-                            d="M200 155 Q200 190 200 220"
-                            stroke="#10b981"
+                            d="M260 285 Q275 285 290 285"
+                            stroke="#ec4899"
                             strokeWidth="2"
                             fill="none"
                             variants={flowVariants}
                         />
 
-                        {/* Animated Data Particles */}
-                        {[...Array(8)].map((_, i) => (
-                            <motion.circle
-                                key={i}
-                                cx={120 + i * 20}
-                                cy={110 + Math.sin(i * 0.5) * 30}
-                                r="2"
-                                fill={i % 3 === 0 ? "#3b82f6" : i % 3 === 1 ? "#22c55e" : "#9333ea"}
-                                variants={particleVariants}
-                                style={{ animationDelay: `${i * 0.3}s` }}
-                            />
-                        ))}
+                        {/* Feedback Loop */}
+                        <motion.path
+                            d="M330 260 Q350 200 320 120 Q290 80 250 85"
+                            stroke="#ec4899"
+                            strokeWidth="2"
+                            fill="none"
+                            strokeDasharray="4,4"
+                            variants={flowVariants}
+                        />
 
-                        {/* Processing Indicators in Library */}
-                        {[...Array(4)].map((_, i) => (
+                        {/* Engineering Process Particles */}
+                        {[...Array(6)].map((_, i) => (
                             <motion.circle
-                                key={i}
-                                cx={165 + i * 15}
-                                cy={120}
+                                key={`engineering-${i}`}
+                                cx={160 + i * 15}
+                                cy={85 + Math.sin(i) * 10}
                                 r="2"
-                                fill="#9333ea"
+                                fill={["#9333ea", "#22c55e", "#3b82f6", "#f59e0b"][i % 4]}
                                 variants={{
                                     hidden: { opacity: 0 },
                                     visible: {
                                         opacity: [0, 1, 0],
+                                        y: [0, -10, 0],
                                         transition: {
                                             duration: 2,
                                             repeat: Infinity,
-                                            delay: i * 0.4
+                                            delay: i * 0.3
                                         }
                                     }
                                 }}
                             />
                         ))}
 
-                        {/* Caching Indicator */}
+                        {/* Optimization Indicators */}
+                        {[...Array(3)].map((_, i) => (
+                            <motion.g key={`optimization-${i}`} variants={itemVariants}>
+                                <motion.circle
+                                    cx={180 + i * 20}
+                                    cy={195}
+                                    r="3"
+                                    fill="#10b981"
+                                    variants={{
+                                        hidden: { scale: 0 },
+                                        visible: {
+                                            scale: [0, 1.5, 1],
+                                            transition: {
+                                                duration: 1.5,
+                                                repeat: Infinity,
+                                                delay: i * 0.5
+                                            }
+                                        }
+                                    }}
+                                />
+                                <motion.text
+                                    x={180 + i * 20}
+                                    y={200}
+                                    textAnchor="middle"
+                                    className="text-xs fill-emerald-600 font-bold"
+                                    variants={{
+                                        hidden: { opacity: 0 },
+                                        visible: {
+                                            opacity: 1,
+                                            transition: { delay: 1 }
+                                        }
+                                    }}
+                                >
+                                    ✓
+                                </motion.text>
+                            </motion.g>
+                        ))}
+
+                        {/* Performance Improvement Arrow */}
                         <motion.g variants={itemVariants}>
-                            <circle cx="80" cy="200" r="15" fill="rgba(99, 102, 241, 0.2)" stroke="#6366f1" strokeWidth="2" />
-                            <text x="80" y="205" textAnchor="middle" className="text-xs fill-indigo-600 font-medium">Cache</text>
+                            <motion.path
+                                d="M60 350 L90 350 M85 345 L90 350 L85 355"
+                                stroke="#22c55e"
+                                strokeWidth="2"
+                                fill="none"
+                                variants={{
+                                    hidden: { pathLength: 0 },
+                                    visible: {
+                                        pathLength: 1,
+                                        transition: {
+                                            duration: 2,
+                                            delay: 2
+                                        }
+                                    }
+                                }}
+                            />
+                            <text x="75" y="340" textAnchor="middle" className="text-xs fill-green-600 font-bold">+40% Better</text>
                         </motion.g>
-                        <motion.path
-                            d="M95 200 Q120 200 140 230"
-                            stroke="#6366f1"
-                            strokeWidth="2"
-                            fill="none"
-                            strokeDasharray="3,3"
-                            variants={flowVariants}
-                        />
                     </svg>
 
-                    {/* Floating Labels */}
+                    {/* Floating Process Labels */}
                     <motion.div
                         className="absolute top-4 left-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
                         variants={itemVariants}
                     >
-                        Unified API Interface
+                        Prompt Crafting
                     </motion.div>
                     <motion.div
                         className="absolute top-4 right-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
                         variants={itemVariants}
                     >
-                        Multi-Provider Support
+                        A/B Testing
                     </motion.div>
                     <motion.div
                         className="absolute bottom-4 left-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
                         variants={itemVariants}
                     >
-                        Performance Tracking
+                        Iterative Improvement
                     </motion.div>
                     <motion.div
                         className="absolute bottom-4 right-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
                         variants={itemVariants}
                     >
-                        Async Operations
+                        Performance Analytics
                     </motion.div>
                 </motion.div>
             </div>
