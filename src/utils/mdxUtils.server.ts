@@ -131,11 +131,10 @@ export function getMDXFileFromFS(slug: string): MDXContent | null {
             return null;
         }
 
-        // Fix common MDX parsing issues for content files
+        // Fix common MDX parsing issues for content files (simplified)
         const cleanedContent = content
             .replace(/<(\d+)/g, '&lt;$1') // Fix <number patterns
             .replace(/(\d+)>/g, '$1&gt;') // Fix number> patterns
-            .replace(/\*\*([^*]+)\*\*([A-Z])/g, '**$1** $2') // Fix bold text followed by caps
             .replace(/<([^>]*[^\s>])>/g, (match, p1) => {
                 // Only escape if it doesn't look like valid HTML/JSX
                 if (!/^[a-zA-Z][a-zA-Z0-9]*(\s|$|\/|>)/.test(p1) &&

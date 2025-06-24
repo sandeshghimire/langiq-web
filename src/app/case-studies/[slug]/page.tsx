@@ -9,6 +9,9 @@ import type { Metadata } from "next";
 import { getAdjacentCaseStudies } from "@/utils/navigationUtils";
 import { getMDXFileFromFS } from "@/utils/mdxUtils.server";
 import WavyBackground from "../../components/WavyBackground";
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeSlug from 'rehype-slug';
 
 function getCaseStudy(slug: string) {
     try {
@@ -158,7 +161,20 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 <article className="prose prose-lg max-w-none">
                     {(() => {
                         try {
-                            return <MDXRemote source={caseStudy.content} components={mdxComponents} />;
+                            return (
+                                <MDXRemote
+                                    source={caseStudy.content}
+                                    components={mdxComponents}
+                                    options={{
+                                        mdxOptions: {
+                                            remarkPlugins: [remarkGfm],
+                                            rehypePlugins: [rehypeHighlight, rehypeSlug],
+                                            format: 'mdx',
+                                        },
+                                        parseFrontmatter: false,
+                                    }}
+                                />
+                            );
                         } catch (error) {
                             console.error('MDX compilation error:', error);
                             return (
