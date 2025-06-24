@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import WavyBackground from "./WavyBackground";
 
 interface Slide2Props {
     slideVariants: any;
@@ -11,19 +12,20 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef }
     return (
         <motion.div
             ref={setRef}
-            className="flex flex-col items-center justify-center h-screen w-full snap-start bg-transparent backdrop-blur-sm px-4 md:px-12 relative border border-gray-200/20"
+            className="flex flex-col items-center justify-center h-screen w-full snap-start bg-transparent backdrop-blur-sm px-4 md:px-12 relative border border-gray-200/10"
             initial="hidden"
             animate={isActive ? "visible" : "hidden"}
             variants={slideVariants}
         >
+            <WavyBackground />
             <motion.h1
-                className="text-4xl md:text-5xl font-bold mb-6 text-center"
+                className="text-4xl md:text-5xl font-bold mb-6 text-center relative z-10"
                 variants={itemVariants}
             >
                 Why do web developers need AI?
             </motion.h1>
             <motion.div
-                className="max-w-4xl text-center"
+                className="max-w-4xl text-center relative z-10"
                 variants={itemVariants}
             >
                 <ul className="text-left list-disc space-y-2 inline-block mx-auto">
