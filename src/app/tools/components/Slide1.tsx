@@ -27,7 +27,7 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
-                LangIQ's Tools Library revolutionizes AI capabilities by enabling Large Language Models to interact with external systems, APIs, and services beyond text generation. With over 100 pre-built tools and proprietary Model Context Protocol, this framework transforms static AI into dynamic agents capable of real-world actions and live data access.
+                LangIQ's Tools Library revolutionizes AI capabilities by enabling Large Language Models to interact with external systems, APIs, and services beyond text generation. With over 100 pre-built tools and Model Context Protocol, this framework transforms static AI into dynamic agents capable of real-world actions and live data access.
 
             </motion.p>
 

@@ -63,7 +63,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
                         variants={itemVariants}
                     >
-                        What is the Tools & MCP Library?
+                        What is Tools & MCP ?
                     </motion.h1>
 
 
@@ -77,7 +77,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Proprietary Model Context Protocol (MCP) providing structured, reliable tool invocation and response handling</p>
+                            <p className="text-gray-600">Model Context Protocol (MCP) providing structured, reliable tool invocation and response handling</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
