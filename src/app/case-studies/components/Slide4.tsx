@@ -45,13 +45,13 @@ export default function Slide4({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-4xl md:text-5xl font-bold mb-6 text-center text-gray-900"
                 variants={itemVariants}
             >
-                Case Studies
+                Case Studies - Financial Services
             </motion.h1>
             <motion.p
                 className="text-xl md:text-lg max-w-7xl text-center mb-12 text-gray-700"
                 variants={itemVariants}
             >
-                Explore our collection of case studies and research papers. Click on any card to read the full case study.
+                Institutions that manage money and provide financial products, including banks like JPMorgan Chase, investment firms, insurance companies, credit unions, and newer fintech companies offering digital payment solutions.
             </motion.p>
 
             <motion.div

@@ -45,13 +45,13 @@ export default function Slide3({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-4xl md:text-5xl font-bold mb-6 text-center text-gray-900"
                 variants={itemVariants}
             >
-                Case Studies
+                Case Studies - Healthcare
             </motion.h1>
             <motion.p
                 className="text-xl md:text-lg max-w-7xl text-center mb-12 text-gray-700"
                 variants={itemVariants}
             >
-                Explore our collection of case studies and research papers. Click on any card to read the full case study.
+                Organizations providing medical services, pharmaceutical development, medical device manufacturing, and health insurance, encompassing hospitals, clinics, drug companies like Pfizer, and medical technology firms.
             </motion.p>
 
             <motion.div

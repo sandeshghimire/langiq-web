@@ -45,13 +45,13 @@ export default function Slide2({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-4xl md:text-5xl font-bold mb-6 text-center text-gray-900"
                 variants={itemVariants}
             >
-                Case Studies
+                Case Studies - Technology
             </motion.h1>
             <motion.p
                 className="text-xl md:text-lg max-w-7xl text-center mb-12 text-gray-700"
                 variants={itemVariants}
             >
-                Explore our collection of case studies and research papers. Click on any card to read the full case study.
+                Businesses focused on software development, hardware creation, and digital services, including companies like Google, Microsoft, Apple, and emerging startups in areas like artificial intelligence and cybersecurity.
             </motion.p>
 
             <motion.div

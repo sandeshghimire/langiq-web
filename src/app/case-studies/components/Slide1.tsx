@@ -45,13 +45,13 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-4xl md:text-5xl font-bold mb-6 text-center text-gray-900"
                 variants={itemVariants}
             >
-                Case Studies
+                Case Studies - Manufacturing
             </motion.h1>
             <motion.p
                 className="text-xl md:text-lg max-w-7xl text-center mb-12 text-gray-700"
                 variants={itemVariants}
             >
-                Explore our collection of case studies and research papers. Click on any card to read the full case study.
+                Companies that produce physical goods, such as automotive manufacturers like Ford or Toyota, electronics companies like Samsung, or food processing companies that turn raw materials into finished products.
             </motion.p>
 
             <motion.div
