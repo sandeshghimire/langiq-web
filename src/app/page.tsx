@@ -7,6 +7,7 @@ import Slide3 from "./components/Slide3";
 import Slide4 from "./components/Slide4";
 import Slide5 from "./components/Slide5";
 import NavigationControls from "./components/NavigationControls";
+import WavyBackground from "./components/WavyBackground";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(1);
@@ -63,7 +64,8 @@ export default function Home() {
   };
 
   return (
-    <div className="snap-y snap-mandatory h-screen w-screen overflow-y-scroll overflow-x-hidden">
+    <div className="snap-y snap-mandatory h-screen w-screen overflow-y-scroll overflow-x-hidden relative">
+      <WavyBackground />
       <Slide1
         slideVariants={slideVariants}
         itemVariants={itemVariants}

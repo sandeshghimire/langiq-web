@@ -8,6 +8,7 @@ import Breadcrumb from "@/components/ui/breadcrumb-custom";
 import type { Metadata } from "next";
 import { getAdjacentCaseStudies } from "@/utils/navigationUtils";
 import { getMDXFileFromFS } from "@/utils/mdxUtils.server";
+import WavyBackground from "../../components/WavyBackground";
 
 function getCaseStudy(slug: string) {
     try {
@@ -138,9 +139,10 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
     }
 
     return (
-        <div className="min-h-screen text-gray-900 p-24">
+        <div className="min-h-screen text-gray-900 p-24 relative">
+            <WavyBackground />
             {/* Header */}
-            <div className="">
+            <div className="relative z-10">
                 <div className="max-w-7xl mx-auto px-4 py-6">
                     <Breadcrumb
                         items={[
@@ -152,7 +154,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             </div>
 
             {/* Content */}
-            <div className="max-w-7xl mx-auto px-4 py-12">
+            <div className="max-w-7xl mx-auto px-4 py-12 relative z-10">
                 <article className="prose prose-lg max-w-none">
                     {(() => {
                         try {
