@@ -7,18 +7,28 @@ import { Badge } from "@/components/ui/badge";
 import Breadcrumb from "@/components/ui/breadcrumb-custom";
 import type { Metadata } from "next";
 import { getAdjacentCaseStudies } from "@/utils/navigationUtils";
+import { getMDXFileFromFS } from "@/utils/mdxUtils.server";
 
-async function getCaseStudy(slug: string) {
+function getCaseStudy(slug: string) {
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/mdx/${slug}`, {
-            next: { revalidate: 60 }
-        });
-
-        if (!response.ok) {
-            return null;
+        // Try the slug as-is first
+        let result = getMDXFileFromFS(slug);
+        
+        // If not found and the slug contains encoded characters, try decoding it
+        if (!result && slug.includes('%')) {
+            const decodedSlug = decodeURIComponent(slug);
+            // Create a URL-safe version of the decoded slug
+            const urlSafeSlug = decodedSlug
+                .toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
+                .replace(/\s+/g, '-') // Replace spaces with hyphens
+                .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+                .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
+            
+            result = getMDXFileFromFS(urlSafeSlug);
         }
-
-        return await response.json();
+        
+        return result;
     } catch (error) {
         console.error('Error fetching case study:', error);
         return null;
@@ -28,7 +38,7 @@ async function getCaseStudy(slug: string) {
 // Generate metadata for SEO
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
-    const caseStudy = await getCaseStudy(slug);
+    const caseStudy = getCaseStudy(slug);
 
     if (!caseStudy) {
         return {
@@ -120,7 +130,7 @@ const mdxComponents = {
 
 export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
-    const caseStudy = await getCaseStudy(slug);
+    const caseStudy = getCaseStudy(slug);
     const { previous, next } = await getAdjacentCaseStudies(slug);
 
     if (!caseStudy) {
@@ -217,8 +227,8 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 // Generate static params for better performance
 export async function generateStaticParams() {
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/mdx`);
-        const mdxFiles = await response.json();
+        const { getMDXFilesFromFS } = await import("@/utils/mdxUtils.server");
+        const mdxFiles = getMDXFilesFromFS();
 
         return mdxFiles.map((mdx: any) => ({
             slug: mdx.slug,

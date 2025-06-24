@@ -1,7 +1,3 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-
 export interface MDXMetadata {
     title: string;
     description?: string;
@@ -11,6 +7,12 @@ export interface MDXMetadata {
     [key: string]: any;
 }
 
+export interface MDXContent {
+    metadata: MDXMetadata;
+    content: string;
+}
+
+// Client-side function for fetching MDX files via API
 export async function getMDXFiles(): Promise<MDXMetadata[]> {
     try {
         const response = await fetch('/api/mdx', {

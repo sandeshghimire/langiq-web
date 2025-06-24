@@ -1,19 +1,11 @@
-import { MDXMetadata } from "./mdxUtils";
+import { MDXMetadata, getMDXFilesFromFS } from "./mdxUtils.server";
 
 export async function getAdjacentCaseStudies(currentSlug: string): Promise<{
     previous: MDXMetadata | null;
     next: MDXMetadata | null;
 }> {
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/api/mdx`, {
-            next: { revalidate: 60 }
-        });
-
-        if (!response.ok) {
-            return { previous: null, next: null };
-        }
-
-        const mdxFiles: MDXMetadata[] = await response.json();
+        const mdxFiles: MDXMetadata[] = getMDXFilesFromFS();
         const currentIndex = mdxFiles.findIndex(mdx => mdx.slug === currentSlug);
 
         if (currentIndex === -1) {
