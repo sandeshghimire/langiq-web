@@ -5,11 +5,12 @@ import Slide1 from "./components/Slide1";
 import Slide2 from "./components/Slide2";
 import Slide3 from "./components/Slide3";
 import Slide4 from "./components/Slide4";
+import Slide5 from "./components/Slide5";
 import NavigationControls from "./components/NavigationControls";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(1);
-  const slideRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null]);
+  const slideRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null, null]);
 
   const scrollToSlide = (slideNumber: number) => {
     setCurrentSlide(slideNumber);
@@ -92,10 +93,17 @@ export default function Home() {
         setRef={el => slideRefs.current[3] = el}
       />
 
+      <Slide5
+        slideVariants={slideVariants}
+        itemVariants={itemVariants}
+        isActive={currentSlide === 5}
+        setRef={el => slideRefs.current[4] = el}
+      />
+
       <NavigationControls
         currentSlide={currentSlide}
         scrollToSlide={scrollToSlide}
-        totalSlides={4}
+        totalSlides={5}
       />
     </div>
   );
