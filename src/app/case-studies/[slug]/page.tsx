@@ -174,52 +174,6 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                     })()}
                 </article>
             </div>
-
-            {/* Footer navigation */}
-            <div className="border-t border-gray-200 mt-16 bg-gray-50">
-                <div className="max-w-6xl mx-auto px-4 py-8">
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                        {/* Navigation between case studies */}
-                        <div className="flex gap-4 w-full md:w-auto">
-                            {previous ? (
-                                <Link href={`/case-studies/${previous.slug}`} className="flex-1 md:flex-none">
-                                    <Button variant="outline" className="w-full border-gray-300 hover:border-blue-600 hover:bg-blue-50">
-                                        <ChevronLeft className="mr-2 h-4 w-4" />
-                                        <div className="text-left">
-                                            <div className="text-xs text-gray-500">Previous</div>
-                                            <div className="text-sm truncate max-w-32 text-gray-900">{previous.title}</div>
-                                        </div>
-                                    </Button>
-                                </Link>
-                            ) : (
-                                <div className="flex-1 md:flex-none"></div>
-                            )}
-
-                            {next ? (
-                                <Link href={`/case-studies/${next.slug}`} className="flex-1 md:flex-none">
-                                    <Button variant="outline" className="w-full border-gray-300 hover:border-blue-600 hover:bg-blue-50">
-                                        <div className="text-right">
-                                            <div className="text-xs text-gray-500">Next</div>
-                                            <div className="text-sm truncate max-w-32 text-gray-900">{next.title}</div>
-                                        </div>
-                                        <ChevronRight className="ml-2 h-4 w-4" />
-                                    </Button>
-                                </Link>
-                            ) : (
-                                <div className="flex-1 md:flex-none"></div>
-                            )}
-                        </div>
-
-                        {/* Back to all case studies */}
-                        <Link href="/case-studies">
-                            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                                <ArrowLeft className="mr-2 h-4 w-4" />
-                                View All Case Studies
-                            </Button>
-                        </Link>
-                    </div>
-                </div>
-            </div>
         </div>
     );
 }
