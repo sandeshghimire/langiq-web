@@ -13,7 +13,7 @@ function getCaseStudy(slug: string) {
     try {
         // Try the slug as-is first
         let result = getMDXFileFromFS(slug);
-        
+
         // If not found and the slug contains encoded characters, try decoding it
         if (!result && slug.includes('%')) {
             const decodedSlug = decodeURIComponent(slug);
@@ -24,10 +24,10 @@ function getCaseStudy(slug: string) {
                 .replace(/\s+/g, '-') // Replace spaces with hyphens
                 .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
                 .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
-            
+
             result = getMDXFileFromFS(urlSafeSlug);
         }
-        
+
         return result;
     } catch (error) {
         console.error('Error fetching case study:', error);
