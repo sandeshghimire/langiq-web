@@ -87,27 +87,27 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
                         variants={itemVariants}
                     >
-                        How LLM Augmentation Solves Problems
+                        LLM Augmentation Solutions
                     </motion.h1>
 
                     <div className="space-y-4">
-                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-0 border border-gray-200/20" variants={itemVariants}>
                             <p className="text-gray-600">Embeds essential domain knowledge directly into model context ensuring consistent access and application</p>
                         </motion.div>
 
-                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-0 border border-gray-200/20" variants={itemVariants}>
                             <p className="text-gray-600">Provides stable, predictable responses by incorporating fixed knowledge rather than dynamic retrieval results</p>
                         </motion.div>
 
-                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-0 border border-gray-200/20" variants={itemVariants}>
                             <p className="text-gray-600">Customizes AI behavior and expertise to match organizational requirements and industry standards</p>
                         </motion.div>
 
-                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-0 border border-gray-200/20" variants={itemVariants}>
                             <p className="text-gray-600">Delivers specialized performance without requiring expensive full model retraining or large computational resources</p>
                         </motion.div>
 
-                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-gray-200/20" variants={itemVariants}>
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-0 border border-gray-200/20" variants={itemVariants}>
                             <p className="text-gray-600">Enables rapid deployment of domain-specific AI solutions through template-based knowledge integration</p>
                         </motion.div>
                     </div>
@@ -249,7 +249,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                                         transition: {
                                             duration: 3,
                                             repeat: Infinity,
-                                            
+
                                             delay: i * 0.2
                                         }
                                     }

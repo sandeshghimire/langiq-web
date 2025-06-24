@@ -63,7 +63,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
                         variants={itemVariants}
                     >
-                        How Does Fine-Tuning Solve These Problems?
+                        Fine-Tuning Solutions
                     </motion.h1>
 
 
@@ -242,7 +242,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                                     transition: {
                                         duration: 4,
                                         repeat: Infinity,
-                                        
+
                                     }
                                 }
                             }}
@@ -260,7 +260,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                                     transition: {
                                         duration: 3,
                                         repeat: Infinity,
-                                        
+
                                     }
                                 }
                             }}
