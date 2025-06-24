@@ -27,7 +27,8 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-xl md:text-lg max-w-4xl text-center"
                 variants={itemVariants}
             >
-                Our Core Mission: To Seamlessly Transition Your Business to the Future of Work with LLMs. At LangIQ.ai, we empower your organization to migrate from traditional operations to intelligent, LLM-based workflows, ensuring you unlock transformative efficiencies and achieve measurable business impact.
+                LangIQ is a comprehensive AI solutions provider, offering an integrated suite of software platforms, libraries, and hardware designed to empower organizations to rapidly develop, deploy, and manage sophisticated Large Language Model (LLM) applications. LangIQ's ecosystem addresses the entire AI lifecycle, enabling businesses to build tailored, enterprise-grade AI solutions with enhanced control, efficiency, and performance.
+
             </motion.p>
 
             {/* Bouncing down arrow */}

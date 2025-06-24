@@ -27,11 +27,11 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                 variants={itemVariants}
             >
                 <ul className="text-left list-disc space-y-2 inline-block mx-auto">
-                    <li>Visual AI Builder: Low-code studio integrating multiple LLMs (OpenAI, Google, Anthropic) in one interface</li>
-                    <li>Plug-and-Play Hardware: Pre-configured AI Box systems with optimized software stack ready out of the box</li>
-                    <li>Modular Libraries: Python/JavaScript APIs for prompting, RAG, tools, fine-tuning, and multi-agent workflows</li>
-                    <li>Data Integration: Converts documents to vector databases, generates synthetic data, fine-tunes on proprietary data</li>
-                    <li>Auto App Generation: Scaffolds complete AI applications with backend, UI, and deployment from configuration settings</li>
+                    <li>A provider of an end-to-end ecosystem for building and deploying AI solutions, centered around LLMs</li>
+                    <li>The creator of AI Studio (low-code development), AI Box (on-premises hardware), and specialized libraries (Prompt Engineering, RAG, Tools & MCP, LLM Augmentation, Fine-Tuning, Agents Orchestration)</li>
+                    <li>A company focused on democratizing AI development while offering powerful tools for specialization and enterprise-grade deployment</li>
+                    <li>A platform designed to accelerate AI innovation, ensure data sovereignty, and enhance the capabilities of LLMs for specific business needs</li>
+                    <li>A partner for organizations seeking to integrate advanced AI into their operations with flexibility and control</li>
                 </ul>
             </motion.div>
         </motion.div>
