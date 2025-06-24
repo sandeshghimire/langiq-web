@@ -13,9 +13,10 @@ export interface MDXContent {
 }
 
 // Client-side function for fetching MDX files via API
-export async function getMDXFiles(): Promise<MDXMetadata[]> {
+export async function getMDXFiles(folder?: string): Promise<MDXMetadata[]> {
     try {
-        const response = await fetch('/api/mdx', {
+        const url = folder ? `/api/mdx?folder=${encodeURIComponent(folder)}` : '/api/mdx';
+        const response = await fetch(url, {
             next: { revalidate: 60 } // Revalidate every minute
         });
 

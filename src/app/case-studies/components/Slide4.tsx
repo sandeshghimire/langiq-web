@@ -4,7 +4,7 @@ import { getMDXFiles } from "@/utils/mdxUtils";
 import MDXCard from "@/components/MDXCard";
 import type { MDXMetadata } from "@/utils/mdxUtils";
 
-interface Slide1Props {
+interface Slide4Props {
     slideVariants: any;
     itemVariants: any;
     isActive: boolean;
@@ -12,14 +12,14 @@ interface Slide1Props {
     setRef: (el: HTMLDivElement | null) => void;
 }
 
-export default function Slide1({ slideVariants, itemVariants, isActive, scrollToSlide, setRef }: Slide1Props) {
+export default function Slide4({ slideVariants, itemVariants, isActive, scrollToSlide, setRef }: Slide4Props) {
     const [mdxFiles, setMdxFiles] = useState<MDXMetadata[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function loadMdxFiles() {
             try {
-                const files = await getMDXFiles();
+                const files = await getMDXFiles('case-studies-4');
                 setMdxFiles(files);
             } catch (error) {
                 console.error('Failed to load MDX files:', error);
@@ -71,28 +71,6 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                         No case studies available at the moment.
                     </motion.p>
                 )}
-            </motion.div>
-
-            {/* Bouncing down arrow */}
-            <motion.div
-                className="absolute bottom-10 cursor-pointer animate-bounce"
-                onClick={() => scrollToSlide(2)}
-                variants={itemVariants}
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="40"
-                    height="40"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-gray-700"
-                >
-                    <path d="M12 5v14M19 12l-7 7-7-7" />
-                </svg>
             </motion.div>
         </motion.div>
     );

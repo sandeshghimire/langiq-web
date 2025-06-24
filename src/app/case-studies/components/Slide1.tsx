@@ -19,7 +19,7 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
     useEffect(() => {
         async function loadMdxFiles() {
             try {
-                const files = await getMDXFiles();
+                const files = await getMDXFiles('case-studies-1');
                 setMdxFiles(files);
             } catch (error) {
                 console.error('Failed to load MDX files:', error);

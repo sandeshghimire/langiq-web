@@ -4,7 +4,7 @@ import { getMDXFiles } from "@/utils/mdxUtils";
 import MDXCard from "@/components/MDXCard";
 import type { MDXMetadata } from "@/utils/mdxUtils";
 
-interface Slide1Props {
+interface Slide3Props {
     slideVariants: any;
     itemVariants: any;
     isActive: boolean;
@@ -12,14 +12,14 @@ interface Slide1Props {
     setRef: (el: HTMLDivElement | null) => void;
 }
 
-export default function Slide1({ slideVariants, itemVariants, isActive, scrollToSlide, setRef }: Slide1Props) {
+export default function Slide3({ slideVariants, itemVariants, isActive, scrollToSlide, setRef }: Slide3Props) {
     const [mdxFiles, setMdxFiles] = useState<MDXMetadata[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function loadMdxFiles() {
             try {
-                const files = await getMDXFiles();
+                const files = await getMDXFiles('case-studies-3');
                 setMdxFiles(files);
             } catch (error) {
                 console.error('Failed to load MDX files:', error);
@@ -76,7 +76,7 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
             {/* Bouncing down arrow */}
             <motion.div
                 className="absolute bottom-10 cursor-pointer animate-bounce"
-                onClick={() => scrollToSlide(2)}
+                onClick={() => scrollToSlide(4)}
                 variants={itemVariants}
             >
                 <svg

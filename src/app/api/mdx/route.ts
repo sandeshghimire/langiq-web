@@ -12,18 +12,59 @@ export interface MDXMetadata {
     [key: string]: any;
 }
 
-export async function GET() {
-    const mdxDir = path.join(process.cwd(), 'public/markdown');
+export async function GET(request: Request) {
+    const { searchParams } = new URL(request.url);
+    const folder = searchParams.get('folder');
+
+    let mdxDir = path.join(process.cwd(), 'public/markdown');
+    if (folder) {
+        mdxDir = path.join(mdxDir, folder);
+    }
 
     try {
-        // Get all MDX files, but filter out demo/component files
-        const fileNames = fs.readdirSync(mdxDir).filter(file => {
-            if (!file.endsWith('.mdx') && !file.endsWith('.md')) return false;
+        // Check if directory exists
+        if (!fs.existsSync(mdxDir)) {
+            return NextResponse.json([]);
+        }
+
+        // Get all MDX files, handling both specific folders and recursive search
+        let fileNames: string[] = [];
+        let filePaths: string[] = [];
+
+        if (folder) {
+            // Get files from specific folder only
+            fileNames = fs.readdirSync(mdxDir).filter(file =>
+                file.endsWith('.mdx') || file.endsWith('.md')
+            );
+            filePaths = fileNames.map(fileName => path.join(mdxDir, fileName));
+        } else {
+            // Recursively get all MDX files from all subdirectories
+            function getAllMDXFiles(dir: string): void {
+                const items = fs.readdirSync(dir);
+
+                for (const item of items) {
+                    const fullPath = path.join(dir, item);
+                    const stat = fs.statSync(fullPath);
+
+                    if (stat.isDirectory()) {
+                        getAllMDXFiles(fullPath);
+                    } else if (item.endsWith('.mdx') || item.endsWith('.md')) {
+                        fileNames.push(item);
+                        filePaths.push(fullPath);
+                    }
+                }
+            }
+
+            getAllMDXFiles(mdxDir);
+        }
+
+        // Filter out demo/component files
+        const validFiles = filePaths.filter((fullPath, index) => {
+            const fileName = fileNames[index];
 
             // Skip demo and component files that contain React code
-            if (file.includes('demo') || file.includes('component')) return false;
+            if (fileName.includes('demo') || fileName.includes('component')) return false;
 
-            const fullPath = path.join(mdxDir, file);
             const fileContents = fs.readFileSync(fullPath, 'utf8');
             const { content } = matter(fileContents);
 
@@ -33,15 +74,15 @@ export async function GET() {
             return true;
         });
 
-        // Map through each file to get metadata
-        const mdxData = fileNames.map(fileName => {
-            const fullPath = path.join(mdxDir, fileName);
+        // Map through each valid file to get metadata
+        const mdxData = validFiles.map(fullPath => {
             const fileContents = fs.readFileSync(fullPath, 'utf8');
 
             // Extract metadata using gray-matter
             const { data } = matter(fileContents);
 
             // Create slug from filename
+            const fileName = path.basename(fullPath);
             const slug = fileName.replace(/\.mdx?$/, '');
 
             return {

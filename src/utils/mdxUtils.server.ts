@@ -30,44 +30,49 @@ function createSlugFromFilename(filename: string): string {
 // Server-side function to get all MDX files from filesystem
 export function getMDXFilesFromFS(): MDXMetadata[] {
     const mdxDir = path.join(process.cwd(), 'public/markdown');
+    const allMdxData: MDXMetadata[] = [];
 
     try {
-        // Get all MDX files, but filter out demo/component files
-        const fileNames = fs.readdirSync(mdxDir).filter(file => {
-            if (!file.endsWith('.mdx') && !file.endsWith('.md')) return false;
+        // Function to recursively get MDX files from a directory
+        function getMDXFilesFromDirectory(dir: string): void {
+            const items = fs.readdirSync(dir);
 
-            // Skip demo and component files that contain React code
-            if (file.includes('demo') || file.includes('component')) return false;
+            for (const item of items) {
+                const fullPath = path.join(dir, item);
+                const stat = fs.statSync(fullPath);
 
-            const fullPath = path.join(mdxDir, file);
-            const fileContents = fs.readFileSync(fullPath, 'utf8');
-            const { content } = matter(fileContents);
+                if (stat.isDirectory()) {
+                    // Recursively search subdirectories
+                    getMDXFilesFromDirectory(fullPath);
+                } else if (item.endsWith('.mdx') || item.endsWith('.md')) {
+                    // Skip demo and component files that contain React code
+                    if (item.includes('demo') || item.includes('component')) continue;
 
-            // Skip files with imports/exports
-            if (content.includes('import {') || content.includes('export ')) return false;
+                    try {
+                        const fileContents = fs.readFileSync(fullPath, 'utf8');
+                        const { data, content } = matter(fileContents);
 
-            return true;
-        });
+                        // Skip files with imports/exports
+                        if (content.includes('import {') || content.includes('export ')) continue;
 
-        // Map through each file to get metadata
-        const mdxData = fileNames.map(fileName => {
-            const fullPath = path.join(mdxDir, fileName);
-            const fileContents = fs.readFileSync(fullPath, 'utf8');
+                        // Create URL-safe slug from filename
+                        const slug = createSlugFromFilename(item);
 
-            // Extract metadata using gray-matter
-            const { data } = matter(fileContents);
+                        allMdxData.push({
+                            ...(data as object),
+                            slug,
+                        } as MDXMetadata);
+                    } catch (error) {
+                        console.error(`Error reading file ${fullPath}:`, error);
+                    }
+                }
+            }
+        }
 
-            // Create URL-safe slug from filename
-            const slug = createSlugFromFilename(fileName);
-
-            return {
-                ...(data as object),
-                slug,
-            } as MDXMetadata;
-        });
+        getMDXFilesFromDirectory(mdxDir);
 
         // Sort by date if available
-        return mdxData.sort((a, b) => {
+        return allMdxData.sort((a, b) => {
             if (a.date && b.date) {
                 return new Date(b.date).getTime() - new Date(a.date).getTime();
             }
@@ -84,29 +89,45 @@ export function getMDXFileFromFS(slug: string): MDXContent | null {
     const mdxDir = path.join(process.cwd(), 'public/markdown');
 
     try {
-        // Find the MDX file with the matching slug
-        const fileNames = fs.readdirSync(mdxDir).filter(file =>
-            file.endsWith('.mdx') || file.endsWith('.md')
-        );
+        // Function to recursively search for the file with matching slug
+        function findMDXFileBySlug(dir: string): string | null {
+            const items = fs.readdirSync(dir);
 
-        const matchingFile = fileNames.find(fileName => {
-            const fileSlug = createSlugFromFilename(fileName);
-            return fileSlug === slug;
-        });
+            for (const item of items) {
+                const fullPath = path.join(dir, item);
+                const stat = fs.statSync(fullPath);
 
-        if (!matchingFile) {
+                if (stat.isDirectory()) {
+                    // Recursively search subdirectories
+                    const result = findMDXFileBySlug(fullPath);
+                    if (result) return result;
+                } else if (item.endsWith('.mdx') || item.endsWith('.md')) {
+                    const fileSlug = createSlugFromFilename(item);
+                    if (fileSlug === slug) {
+                        return fullPath;
+                    }
+                }
+            }
             return null;
         }
 
-        const fullPath = path.join(mdxDir, matchingFile);
-        const fileContents = fs.readFileSync(fullPath, 'utf8');
+        const matchingFilePath = findMDXFileBySlug(mdxDir);
+
+        if (!matchingFilePath) {
+            return null;
+        }
+
+        const fileContents = fs.readFileSync(matchingFilePath, 'utf8');
 
         // Extract metadata and content using gray-matter
         const { data, content } = matter(fileContents);
 
+        // Get just the filename for checks
+        const fileName = path.basename(matchingFilePath);
+
         // Check if this is a demo/code file that shouldn't be rendered as content
         if (content.includes('import {') || content.includes('export ') ||
-            matchingFile.includes('demo') || matchingFile.includes('component')) {
+            fileName.includes('demo') || fileName.includes('component')) {
             return null;
         }
 
@@ -125,7 +146,7 @@ export function getMDXFileFromFS(slug: string): MDXContent | null {
             });
 
         // Create URL-safe slug from filename
-        const urlSafeSlug = createSlugFromFilename(matchingFile);
+        const urlSafeSlug = createSlugFromFilename(fileName);
 
         return {
             metadata: {
