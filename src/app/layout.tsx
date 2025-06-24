@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Inter, Roboto, Poppins, Open_Sans } from "next/font/
 import "./globals.css";
 import "../styles/fonts.css";
 import { Header } from "@/components/header";
-
+import Script from "next/script";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -52,6 +52,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
+      <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=G-M8RY6DM9EJ`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-M8RY6DM9EJ');
+          `}
+        </Script>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${poppins.variable} ${roboto.variable} ${openSans.variable} ${inter.className} antialiased h-full overflow-hidden relative`}
       >
