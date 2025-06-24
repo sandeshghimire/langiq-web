@@ -22,19 +22,19 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                 className="text-4xl md:text-5xl font-bold mb-6 text-center relative z-10"
                 variants={itemVariants}
             >
-                How we solve promblems
+                What is Lang-IQ ?
             </motion.h1>
             <motion.div
                 className="max-w-4xl text-center relative z-10"
                 variants={itemVariants}
             >
-                <ul className="text-left list-disc space-y-2 inline-block mx-auto">
-                    <li>A provider of an end-to-end ecosystem for building and deploying AI solutions, centered around LLMs</li>
-                    <li>The creator of AI Studio (low-code development), AI Box (on-premises hardware), and specialized libraries (Prompt Engineering, RAG, Tools & MCP, LLM Augmentation, Fine-Tuning, Agents Orchestration)</li>
-                    <li>A company focused on democratizing AI development while offering powerful tools for specialization and enterprise-grade deployment</li>
-                    <li>A platform designed to accelerate AI innovation, ensure data sovereignty, and enhance the capabilities of LLMs for specific business needs</li>
-                    <li>A partner for organizations seeking to integrate advanced AI into their operations with flexibility and control</li>
-                </ul>
+                <div className="text-left space-y-4 inline-block mx-auto">
+                    <p>We provide of an end-to-end ecosystem for building and deploying AI solutions, centered around LLMs.</p>
+                    <p>We created AI Studio (low-code development), AI Box (on-premises hardware), and specialized libraries (Prompt Engineering, RAG, Tools & MCP, LLM Augmentation, Fine-Tuning, Agents Orchestration).</p>
+                    <p>We focus on democratizing AI development while offering powerful tools for specialization and enterprise-grade deployment.</p>
+                    <p>Our platform is designed to accelerate AI innovation, ensure data sovereignty, and enhance the capabilities of LLMs for specific business needs.</p>
+                    <p>We partner with organizations seeking to integrate advanced AI into their operations with flexibility and control.</p>
+                </div>
             </motion.div>
         </motion.div>
     );

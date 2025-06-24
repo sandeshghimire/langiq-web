@@ -22,19 +22,19 @@ export default function Slide4({ slideVariants, itemVariants, isActive, setRef }
                 className="text-4xl md:text-5xl font-bold mb-6 text-center relative z-10"
                 variants={itemVariants}
             >
-                Advantages of Our Approach
+                LangIQ Advantages
             </motion.h1>
             <motion.div
                 className="max-w-4xl text-center relative z-10"
                 variants={itemVariants}
             >
-                <ul className="text-left list-disc space-y-2 inline-block mx-auto">
-                    <li>Visual AI Builder: Low-code studio integrating multiple LLMs (OpenAI, Google, Anthropic) in one interface</li>
-                    <li>Plug-and-Play Hardware: Pre-configured AI Box systems with optimized software stack ready out of the box</li>
-                    <li>Modular Libraries: Python/JavaScript APIs for prompting, RAG, tools, fine-tuning, and multi-agent workflows</li>
-                    <li>Data Integration: Converts documents to vector databases, generates synthetic data, fine-tunes on proprietary data</li>
-                    <li>Auto App Generation: Scaffolds complete AI applications with backend, UI, and deployment from configuration settings</li>
-                </ul>
+                <div className="text-left space-y-2 inline-block mx-auto">
+                    <div><strong>Comprehensive Ecosystem:</strong> Offers an end-to-end suite of tools and solutions covering the entire AI application lifecycle, from development to deployment and management.</div>
+                    <div><strong>Accelerated Innovation:</strong> Significantly reduces development time and complexity through visual tools, pre-built components, and optimized libraries, enabling faster time-to-market.</div>
+                    <div><strong>Enterprise-Grade Solutions:</strong> Delivers robust, scalable, and secure solutions tailored for demanding organizational needs, including options for data sovereignty (AI Box) and fine-grained control.</div>
+                    <div><strong>Enhanced AI Capabilities & Accuracy:</strong> Enables the creation of highly accurate, context-aware, and specialized AI applications by grounding LLMs with proprietary data, integrating external tools, and allowing deep model customization.</div>
+                    <div><strong>Flexibility and Control:</strong> Provides vendor flexibility for LLMs, customization options across the stack, and full control over AI infrastructure when using AI Box, preventing vendor lock-in.</div>
+                </div>
             </motion.div>
         </motion.div>
     );

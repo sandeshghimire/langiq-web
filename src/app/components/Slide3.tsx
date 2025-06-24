@@ -22,18 +22,18 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef }
                 className="text-4xl md:text-5xl font-bold mb-6 text-center relative z-10"
                 variants={itemVariants}
             >
-                Why do web developers need AI?
+                Why langIQ ?
             </motion.h1>
             <motion.div
                 className="max-w-4xl text-center relative z-10"
                 variants={itemVariants}
             >
-                <ul className="text-left list-disc space-y-2 inline-block mx-auto">
-                    <li>Visual AI Builder: Low-code studio integrating multiple LLMs (OpenAI, Google, Anthropic) in one interface</li>
-                    <li>Plug-and-Play Hardware: Pre-configured AI Box systems with optimized software stack ready out of the box</li>
-                    <li>Modular Libraries: Python/JavaScript APIs for prompting, RAG, tools, fine-tuning, and multi-agent workflows</li>
-                    <li>Data Integration: Converts documents to vector databases, generates synthetic data, fine-tunes on proprietary data</li>
-                    <li>Auto App Generation: Scaffolds complete AI applications with backend, UI, and deployment from configuration settings</li>
+                <ul className="text-left space-y-2 inline-block mx-auto">
+                    <li>Organizations struggle with the complexity, cost, and specialized expertise required for traditional AI and LLM application development</li>
+                    <li>Generic AI models often lack the specific knowledge, context, and capabilities needed for nuanced business tasks and proprietary data integration</li>
+                    <li>There's a growing need for faster development cycles, better collaboration, and more control over AI infrastructure and data security</li>
+                    <li>Integrating diverse LLMs, managing prompts, ensuring accuracy, and enabling AI to perform real-world actions are significant challenges</li>
+                    <li>Businesses require scalable, reliable, and customizable AI solutions that can evolve with their needs and provide a competitive edge</li>
                 </ul>
             </motion.div>
         </motion.div>
