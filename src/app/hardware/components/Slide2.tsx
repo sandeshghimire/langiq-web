@@ -85,7 +85,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
                         variants={itemVariants}
                     >
-                        What is AI Box Hardware?
+                        What is AI in a Box?
                     </motion.h1>
 
 
@@ -95,7 +95,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Pre-installed Ubuntu-based OS with LangIQ's complete software ecosystem and development tools</p>
+                            <p className="text-gray-600">Pre-installed Linux-based OS with LangIQ's complete software ecosystem and development tools</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>

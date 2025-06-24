@@ -21,13 +21,13 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-4xl md:text-5xl font-bold mb-6 text-center"
                 variants={itemVariants}
             >
-                AI Box Hardware
+                AI in a Box
             </motion.h1>
             <motion.p
                 className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
-                AI Box represents LangIQ's purpose-built, on-premises server solutions optimized for demanding AI and machine learning workloads. These pre-configured systems deliver enterprise-grade performance while ensuring complete data sovereignty, featuring cutting-edge NVIDIA GPUs, specialized processors, and LangIQ's optimized software stack for immediate AI deployment readiness.
+                AI in a Box represents LangIQ's purpose-built, on-premises server solutions optimized for demanding AI and machine learning workloads. These pre-configured systems deliver enterprise-grade performance while ensuring complete data sovereignty, featuring cutting-edge NVIDIA GPUs, specialized processors, and LangIQ's optimized software stack for immediate AI deployment readiness.
 
             </motion.p>
 
