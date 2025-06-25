@@ -53,7 +53,7 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef, 
             case "email":
                 if (!value) {
                     errorMessage = "Email is required";
-                } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2}$/i.test(value)) {
+                } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
                     errorMessage = "Invalid email address";
                 }
                 break;
@@ -84,7 +84,7 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef, 
         if (!formData.email) {
             newErrors.email = "Email is required";
             isValid = false;
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2}$/i.test(formData.email)) {
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
             newErrors.email = "Invalid email address";
             isValid = false;
         }
@@ -133,7 +133,7 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef, 
             variants={slideVariants}
         >
             <motion.h1
-                className="text-3xl md:text-4xl font-normal mb-8 text-center text-gray-700"
+                className="text-3xl md:text-4xl font-normal mb-8 text-center text-gray-900"
                 variants={itemVariants}
             >
                 Investor Information
@@ -144,7 +144,7 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef, 
             >
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                        <label htmlFor="name" className="block text-sm text-gray-500 mb-2">Full Name *</label>
+                        <label htmlFor="name" className="block text-sm text-gray-700 mb-2">Full Name *</label>
                         <input
                             type="text"
                             id="name"
@@ -153,16 +153,16 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef, 
                             onChange={handleChange}
                             onBlur={handleBlur}
                             required
-                            className={`w-full px-0 py-2 bg-transparent border-0 border-b ${errors.name ? 'border-gray-300 text-gray-700' : 'border-gray-200'} rounded-none focus:outline-none focus:border-gray-400 transition-colors`}
+                            className={`w-full px-0 py-2 bg-transparent border-0 border-b ${errors.name ? 'border-red-300 text-gray-900' : 'border-gray-200 text-gray-900'} rounded-none focus:outline-none focus:border-gray-400 transition-colors`}
                             placeholder="Your full name"
                         />
                         {errors.name && (
-                            <p className="text-gray-500 text-xs mt-1">{errors.name}</p>
+                            <p className="text-red-500 text-xs mt-1">{errors.name}</p>
                         )}
                     </div>
 
                     <div>
-                        <label htmlFor="email" className="block text-sm text-gray-500 mb-2">Email *</label>
+                        <label htmlFor="email" className="block text-sm text-gray-700 mb-2">Email *</label>
                         <input
                             type="email"
                             id="email"
@@ -171,29 +171,29 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef, 
                             onChange={handleChange}
                             onBlur={handleBlur}
                             required
-                            className={`w-full px-0 py-2 bg-transparent border-0 border-b ${errors.email ? 'border-gray-300 text-gray-700' : 'border-gray-200'} rounded-none focus:outline-none focus:border-gray-400 transition-colors`}
+                            className={`w-full px-0 py-2 bg-transparent border-0 border-b ${errors.email ? 'border-red-300 text-gray-900' : 'border-gray-200 text-gray-900'} rounded-none focus:outline-none focus:border-gray-400 transition-colors`}
                             placeholder="Email address"
                         />
                         {errors.email && (
-                            <p className="text-gray-500 text-xs mt-1">{errors.email}</p>
+                            <p className="text-red-500 text-xs mt-1">{errors.email}</p>
                         )}
                     </div>
 
                     <div>
-                        <label htmlFor="company" className="block text-sm text-gray-500 mb-2">Company/Organization</label>
+                        <label htmlFor="company" className="block text-sm text-gray-700 mb-2">Company/Organization</label>
                         <input
                             type="text"
                             id="company"
                             name="company"
                             value={formData.company}
                             onChange={handleChange}
-                            className="w-full px-0 py-2 bg-transparent border-0 border-b border-gray-200 rounded-none focus:outline-none focus:border-gray-400 transition-colors"
+                            className="w-full px-0 py-2 bg-transparent border-0 border-b border-gray-200 text-gray-900 rounded-none focus:outline-none focus:border-gray-400 transition-colors"
                             placeholder="Company or organization name (optional)"
                         />
                     </div>
 
                     <div>
-                        <label htmlFor="investmentInterest" className="block text-sm text-gray-500 mb-2">Investment Interest *</label>
+                        <label htmlFor="investmentInterest" className="block text-sm text-gray-700 mb-2">Investment Interest *</label>
                         <select
                             id="investmentInterest"
                             name="investmentInterest"
@@ -201,7 +201,7 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef, 
                             onChange={handleChange}
                             onBlur={handleBlur}
                             required
-                            className={`w-full px-0 py-2 bg-transparent border-0 border-b ${errors.investmentInterest ? 'border-gray-300 text-gray-700' : 'border-gray-200'} rounded-none focus:outline-none focus:border-gray-400 transition-colors appearance-none`}
+                            className={`w-full px-0 py-2 bg-transparent border-0 border-b ${errors.investmentInterest ? 'border-red-300 text-gray-900' : 'border-gray-200 text-gray-900'} rounded-none focus:outline-none focus:border-gray-400 transition-colors appearance-none`}
                         >
                             <option value="">Select your interest</option>
                             <option value="equity">Equity Investment</option>
@@ -211,18 +211,18 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef, 
                             <option value="other">Other</option>
                         </select>
                         {errors.investmentInterest && (
-                            <p className="text-gray-500 text-xs mt-1">{errors.investmentInterest}</p>
+                            <p className="text-red-500 text-xs mt-1">{errors.investmentInterest}</p>
                         )}
                     </div>
 
                     <div>
-                        <label htmlFor="investmentRange" className="block text-sm text-gray-500 mb-2">Investment Range</label>
+                        <label htmlFor="investmentRange" className="block text-sm text-gray-700 mb-2">Investment Range</label>
                         <select
                             id="investmentRange"
                             name="investmentRange"
                             value={formData.investmentRange}
                             onChange={handleChange}
-                            className="w-full px-0 py-2 bg-transparent border-0 border-b border-gray-200 rounded-none focus:outline-none focus:border-gray-400 transition-colors appearance-none"
+                            className="w-full px-0 py-2 bg-transparent border-0 border-b border-gray-200 text-gray-900 rounded-none focus:outline-none focus:border-gray-400 transition-colors appearance-none"
                         >
                             <option value="">Select range</option>
                             <option value="< $100K">Less than $100,000</option>
@@ -233,27 +233,27 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef, 
                     </div>
 
                     <div>
-                        <label htmlFor="previousExperience" className="block text-sm text-gray-500 mb-2">Previous Investment Experience</label>
+                        <label htmlFor="previousExperience" className="block text-sm text-gray-700 mb-2">Previous Investment Experience</label>
                         <textarea
                             id="previousExperience"
                             name="previousExperience"
                             value={formData.previousExperience}
                             onChange={handleChange}
                             rows={2}
-                            className="w-full px-0 py-2 bg-transparent border-0 border-b border-gray-200 rounded-none focus:outline-none focus:border-gray-400 transition-colors resize-none"
+                            className="w-full px-0 py-2 bg-transparent border-0 border-b border-gray-200 text-gray-900 rounded-none focus:outline-none focus:border-gray-400 transition-colors resize-none"
                             placeholder="Please describe any relevant investment experience..."
                         />
                     </div>
 
                     <div>
-                        <label htmlFor="questions" className="block text-sm text-gray-500 mb-2">Questions or Comments</label>
+                        <label htmlFor="questions" className="block text-sm text-gray-700 mb-2">Questions or Comments</label>
                         <textarea
                             id="questions"
                             name="questions"
                             value={formData.questions}
                             onChange={handleChange}
                             rows={2}
-                            className="w-full px-0 py-2 bg-transparent border-0 border-b border-gray-200 rounded-none focus:outline-none focus:border-gray-400 transition-colors resize-none"
+                            className="w-full px-0 py-2 bg-transparent border-0 border-b border-gray-200 text-gray-900 rounded-none focus:outline-none focus:border-gray-400 transition-colors resize-none"
                             placeholder="Any questions or specific areas of interest?"
                         />
                     </div>
@@ -262,11 +262,11 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef, 
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className={`w-48 border border-gray-300 text-gray-600 py-3 px-6 hover:bg-gray-50 transition-colors duration-300 text-sm flex items-center justify-center ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                            className={`w-48 border border-gray-300 text-gray-800 py-3 px-6 hover:bg-gray-50 transition-colors duration-300 text-sm flex items-center justify-center ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                         >
                             {isSubmitting ? (
                                 <>
-                                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"></circle>
                                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                     </svg>
@@ -278,7 +278,7 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef, 
                         </button>
                     </div>
 
-                    <div className="text-center text-xs text-gray-400">
+                    <div className="text-center text-xs text-gray-600">
                         <p>Fields marked with * are required</p>
                     </div>
                 </form>
