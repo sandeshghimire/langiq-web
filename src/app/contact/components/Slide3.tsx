@@ -14,8 +14,6 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef, 
         name: "",
         email: "",
         company: "",
-        investmentInterest: "",
-        investmentRange: "",
         previousExperience: "",
         questions: ""
     });
@@ -57,9 +55,6 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef, 
                     errorMessage = "Invalid email address";
                 }
                 break;
-            case "investmentInterest":
-                if (!value) errorMessage = "Please select an investment interest";
-                break;
             default:
                 break;
         }
@@ -89,11 +84,6 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef, 
             isValid = false;
         }
 
-        if (!formData.investmentInterest) {
-            newErrors.investmentInterest = "Please select an investment interest";
-            isValid = false;
-        }
-
         setErrors(newErrors);
         return isValid;
     };
@@ -106,15 +96,27 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef, 
         setIsSubmitting(true);
 
         try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            const response = await fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    type: 'investor',
+                    formData
+                }),
+            });
 
-            console.log("Investor form submitted:", formData);
-            // Here you would typically send this data to your backend
+            const result = await response.json();
 
-            // Navigate to thank you page
-            if (scrollToSlide) {
-                scrollToSlide(4);
+            if (result.success) {
+                console.log("Investor form submitted successfully:", formData);
+                // Navigate to thank you page
+                if (scrollToSlide) {
+                    scrollToSlide(4);
+                }
+            } else {
+                throw new Error(result.message || 'Failed to send email');
             }
         } catch (error) {
             console.error("Form submission error:", error);
@@ -190,46 +192,6 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef, 
                             className="w-full px-0 py-2 bg-transparent border-0 border-b border-gray-200 text-gray-900 rounded-none focus:outline-none focus:border-gray-400 transition-colors"
                             placeholder="Company or organization name (optional)"
                         />
-                    </div>
-
-                    <div>
-                        <label htmlFor="investmentInterest" className="block text-sm text-gray-700 mb-2">Investment Interest *</label>
-                        <select
-                            id="investmentInterest"
-                            name="investmentInterest"
-                            value={formData.investmentInterest}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            required
-                            className={`w-full px-0 py-2 bg-transparent border-0 border-b ${errors.investmentInterest ? 'border-red-300 text-gray-900' : 'border-gray-200 text-gray-900'} rounded-none focus:outline-none focus:border-gray-400 transition-colors appearance-none`}
-                        >
-                            <option value="">Select your interest</option>
-                            <option value="equity">Equity Investment</option>
-                            <option value="venture">Venture Capital</option>
-                            <option value="angel">Angel Investor</option>
-                            <option value="partnership">Strategic Partnership</option>
-                            <option value="other">Other</option>
-                        </select>
-                        {errors.investmentInterest && (
-                            <p className="text-red-500 text-xs mt-1">{errors.investmentInterest}</p>
-                        )}
-                    </div>
-
-                    <div>
-                        <label htmlFor="investmentRange" className="block text-sm text-gray-700 mb-2">Investment Range</label>
-                        <select
-                            id="investmentRange"
-                            name="investmentRange"
-                            value={formData.investmentRange}
-                            onChange={handleChange}
-                            className="w-full px-0 py-2 bg-transparent border-0 border-b border-gray-200 text-gray-900 rounded-none focus:outline-none focus:border-gray-400 transition-colors appearance-none"
-                        >
-                            <option value="">Select range</option>
-                            <option value="< $100K">Less than $100,000</option>
-                            <option value="$100K-$500K">$100,000 - $500,000</option>
-                            <option value="$500K-$1M">$500,000 - $1 million</option>
-                            <option value="> $1M">Over $1 million</option>
-                        </select>
                     </div>
 
                     <div>

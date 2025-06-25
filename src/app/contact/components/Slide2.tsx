@@ -117,15 +117,27 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef, 
         setIsSubmitting(true);
 
         try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            const response = await fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    type: 'client',
+                    formData
+                }),
+            });
 
-            console.log("Client form submitted:", formData);
-            // Here you would typically send this data to your backend
+            const result = await response.json();
 
-            // Navigate to thank you page
-            if (scrollToSlide) {
-                scrollToSlide(4);
+            if (result.success) {
+                console.log("Client form submitted successfully:", formData);
+                // Navigate to thank you page
+                if (scrollToSlide) {
+                    scrollToSlide(4);
+                }
+            } else {
+                throw new Error(result.message || 'Failed to send email');
             }
         } catch (error) {
             console.error("Form submission error:", error);
