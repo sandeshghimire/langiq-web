@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter, Roboto, Poppins, Open_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 import "../styles/fonts.css";
 import { Header } from "@/components/header";
@@ -84,6 +85,7 @@ export default function RootLayout({
         </div>
         <main className="h-full w-full overflow-auto relative z-10">
           {children}
+          <Analytics />
         </main>
       </body>
     </html>
