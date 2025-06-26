@@ -27,8 +27,7 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
-                LangIQ's RAG Library transforms how organizations leverage their proprietary knowledge by enabling Large Language Models to access, retrieve, and integrate relevant information from internal documents and databases. This powerful system grounds AI responses in factual, up-to-date organizational knowledge, dramatically reducing hallucinations while providing accurate, contextually relevant answers.
-
+                RAG combines language models with external knowledge retrieval. It searches databases for relevant information, then feeds this context with queries to the AI. This provides up-to-date, specific information beyond training data, reducing hallucinations. LangIQ developed a secure RAG system that converts enterprise information into vector databases, ensuring accurate, reliable responses.
             </motion.p>
 
             {/* Bouncing down arrow */}
@@ -55,3 +54,4 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
         </motion.div>
     );
 }
+

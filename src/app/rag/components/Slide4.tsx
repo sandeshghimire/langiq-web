@@ -89,11 +89,22 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
                         variants={itemVariants}
                     >
-                        RAG Solutions?
+                        Secure RAG Solutions
                     </motion.h1>
 
-
                     <div className="space-y-0  ">
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
+                            <p className="text-gray-600">Ensures complete data privacy with on-premises deployment protecting sensitive organizational information</p>
+                        </motion.div>
+
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
+                            <p className="text-gray-600">Provides enterprise-grade security with encryption, access controls, and comprehensive audit trails</p>
+                        </motion.div>
+
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
+                            <p className="text-gray-600">Maintains safety standards with content filtering and compliance with regulatory frameworks</p>
+                        </motion.div>
+
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
                             <p className="text-gray-600">Grounds LLM responses in verified, organization-specific documents ensuring accuracy and relevance</p>
                         </motion.div>

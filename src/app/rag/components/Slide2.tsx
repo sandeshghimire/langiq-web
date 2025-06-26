@@ -68,24 +68,27 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
 
 
                     <div className="space-y-0  ">
+
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Comprehensive document ingestion system supporting PDFs, Word documents, Excel spreadsheets, and database connections</p>
+                            <p className="text-gray-600">LangIQ's secure RAG system that converts enterprise information into optimized vector databases for enhanced retrieval</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Advanced vector database integration with popular stores like Chroma and Pinecone for semantic search</p>
+                            <p className="text-gray-600">RAG combines language models with external knowledge retrieval, searching databases for relevant information beyond training data</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Intelligent text chunking algorithms optimizing document segmentation for enhanced retrieval accuracy and performance</p>
+                            <p className="text-gray-600">Feeds contextual information with queries to AI systems, providing up-to-date and specific responses that reduce hallucinations</p>
+                        </motion.div>
+
+
+
+                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
+                            <p className="text-gray-600">Ensures accurate and reliable responses by grounding AI outputs in verified enterprise data sources and documentation</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Semantic search capabilities enabling contextual information retrieval based on meaning rather than keyword matching</p>
-                        </motion.div>
-
-                        <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Citation tracking system providing transparent source attribution for all retrieved information and generated responses</p>
+                            <p className="text-gray-600">Advanced security features protect sensitive information while maintaining high-performance semantic search capabilities</p>
                         </motion.div>
                     </div>
                 </motion.div>

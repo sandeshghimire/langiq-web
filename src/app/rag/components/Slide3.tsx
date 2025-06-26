@@ -67,23 +67,23 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     </motion.h1>
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Standard LLMs lack access to organization-specific, proprietary information and recent data updates</p>
+                            <p className="text-gray-600">RAG ensures complete data privacy by keeping sensitive enterprise information within secure, isolated environments</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">AI responses often contain hallucinations or outdated information when operating without contextual grounding</p>
+                            <p className="text-gray-600">Enhanced security through controlled access to proprietary knowledge bases without exposing data to external AI services</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Organizations need AI systems that can leverage their extensive knowledge bases and documentation</p>
+                            <p className="text-gray-600">Safety mechanisms prevent hallucinations by grounding responses in verified, organization-specific documentation</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Traditional search methods fail to capture semantic relationships and contextual relevance in complex queries</p>
+                            <p className="text-gray-600">LangIQ's secure RAG architecture maintains strict compliance standards while providing transparent source attribution</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Compliance and accuracy requirements demand transparent source attribution for AI-generated responses and recommendations</p>
+                            <p className="text-gray-600">Complete control over information access with encrypted vector databases and role-based security protocols</p>
                         </motion.div>
                     </div>
                 </motion.div>
