@@ -73,7 +73,7 @@ export default function Slide5({ slideVariants, itemVariants, isActive, setRef }
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Cost Optimization: Intelligent caching and streaming reduce token usage and operational expenses</p>
+                            <p className="text-gray-600">Data Privacy & Security: Enterprise-grade encryption and secure data handling with zero data retention policies</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
@@ -85,7 +85,7 @@ export default function Slide5({ slideVariants, itemVariants, isActive, setRef }
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Scalability: Asynchronous architecture supports high-volume, concurrent AI operations without performance degradation</p>
+                            <p className="text-gray-600">Enterprise Reliability: Asynchronous architecture with data safety protocols supports high-volume operations</p>
                         </motion.div>
                     </div>
                 </motion.div>

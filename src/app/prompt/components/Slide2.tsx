@@ -69,23 +69,23 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Unified API interface supporting multiple LLM providers including OpenAI, Google, Anthropic, and open-source models</p>
+                            <p className="text-gray-600">Unified API library in Python and JavaScript for seamless integration with local and frontier LLMs including OpenAI, Google, Anthropic, and open-source models</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Advanced prompt editor with version control, real-time testing, and collaborative development capabilities</p>
+                            <p className="text-gray-600">Purpose-built collection of 250+ customer-optimized prompts with enterprise-grade data privacy, security, and reliability for custom LLM applications</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Asynchronous operation support with Promise-based architecture for non-blocking, scalable AI interactions</p>
+                            <p className="text-gray-600">Integrated LLM workflow with Promise-based architecture ensuring data safety, end-to-end encryption, and non-blocking scalable AI interactions</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Built-in response caching system reducing costs and improving application response times significantly</p>
+                            <p className="text-gray-600">Secure response caching system with privacy-first design, reducing costs while maintaining data confidentiality and improving response times</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Comprehensive performance tracking including response times, token consumption, and model comparison analytics</p>
+                            <p className="text-gray-600">Enterprise-grade performance tracking with security auditing, compliance monitoring, token consumption analytics, and private model comparison capabilities</p>
                         </motion.div>
                     </div>
                 </motion.div>

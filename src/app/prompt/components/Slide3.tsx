@@ -67,23 +67,23 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     </motion.h1>
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Different LLM providers have varying API formats, authentication methods, and response structures</p>
+                            <p className="text-gray-600">Unified API library in Python and JavaScript to interface with local and frontier LLMs seamlessly</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Effective prompt crafting requires iterative testing, version management, and collaborative refinement processes</p>
+                            <p className="text-gray-600">Purpose-built 250+ customer optimized prompts with data privacy, security and reliability for LLM applications</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Production applications need reliable caching, error handling, and performance optimization for user experience</p>
+                            <p className="text-gray-600">Enterprise-grade security features ensuring data safety, privacy protection and compliance standards</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Organizations require consistent interfaces to avoid vendor lock-in and enable flexible model switching</p>
+                            <p className="text-gray-600">Develop custom enterprise-grade LLM applications by integrating secure LLM workflows with confidence</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Complex prompting techniques like chain-of-thought reasoning demand specialized tools and structured approaches</p>
+                            <p className="text-gray-600">Built-in data encryption, access controls and audit trails for maximum security and privacy compliance</p>
                         </motion.div>
                     </div>
                 </motion.div>

@@ -27,8 +27,7 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
-                LangIQ's Prompt Library provides a unified API for interacting with diverse Large Language Models, abstracting the complexities of different provider interfaces behind a consistent development experience. This comprehensive toolkit enables developers to craft, test, and optimize prompts efficiently while supporting asynchronous operations, caching, and performance tracking.
-
+                LangIQ's Prompt Engineering Library provides a unified API in Python and JavaScript for interfacing with local and frontier LLMs, featuring 250+ customer-optimized prompts. Built with enterprise-grade data privacy, security, and reliability at its core, this comprehensive toolkit enables developers to craft custom LLM applications by integrating secure LLM workflows with purpose-built safety and privacy controls.
             </motion.p>
 
             {/* Bouncing down arrow */}
@@ -55,3 +54,4 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
         </motion.div>
     );
 }
+
