@@ -94,23 +94,23 @@ export default function Slide5({ slideVariants, itemVariants, isActive, setRef }
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Data Security: Complete on-premises processing ensures sensitive data never leaves organizational boundaries</p>
+                            <p className="text-gray-600">Data Privacy: Local inference and training hardware ensures sensitive organizational data never leaves premises</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Cost Efficiency: Significant long-term savings compared to cloud GPU instances for high-volume operations</p>
+                            <p className="text-gray-600">Security Control: Purpose-built systems for open-source LLM development with enterprise-grade security measures</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Performance Optimization: Dedicated resources deliver consistent, predictable performance for critical applications</p>
+                            <p className="text-gray-600">Reliability Assurance: Dedicated hardware for model development delivers consistent performance for critical workflows</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Rapid Deployment: Pre-configured systems ready for immediate use within 2-3 weeks delivery timeframe</p>
+                            <p className="text-gray-600">Custom Integration: Flexible LLM workflow integration enables custom enterprise-grade application development</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Full Control: Complete customization flexibility over hardware, software, and security configurations</p>
+                            <p className="text-gray-600">Data Safety: Complete control over open-weight LLM processing ensures maximum data protection and compliance</p>
                         </motion.div>
                     </div>
                 </motion.div>

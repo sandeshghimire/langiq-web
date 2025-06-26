@@ -69,23 +69,23 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Provides complete data sovereignty by processing all AI workloads within organizational premises</p>
+                            <p className="text-gray-600">Purpose-built hardware for every level of model inference, training and development to deploy local open-source LLMs</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Delivers cost-effective long-term solution for organizations with consistent high-volume AI requirements</p>
+                            <p className="text-gray-600">Ensures complete data safety, security and privacy by processing all AI workloads within organizational premises</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Ensures predictable, low-latency performance through dedicated hardware resources and optimized configurations</p>
+                            <p className="text-gray-600">Delivers reliable enterprise-grade LLM applications through dedicated local hardware for custom model development</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Offers full customization control over hardware specifications, software configurations, and security protocols</p>
+                            <p className="text-gray-600">Integrates seamlessly with LLM workflows enabling cost-effective development of custom enterprise solutions</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Enables immediate deployment with pre-configured software stack eliminating complex setup procedures</p>
+                            <p className="text-gray-600">Provides secure infrastructure for open-weight model fine-tuning with complete data sovereignty and privacy control</p>
                         </motion.div>
                     </div>
                 </motion.div>
