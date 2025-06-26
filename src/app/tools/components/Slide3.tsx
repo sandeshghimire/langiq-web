@@ -63,27 +63,27 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
                         variants={itemVariants}
                     >
-                        Why are Tools & MCP ?
+                        Why Tools & MCP ?
                     </motion.h1>
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Standard LLMs are limited to text generation without ability to perform actions or access current information</p>
+                            <p className="text-gray-600">Standard LLMs are limited to secure text generation without ability to perform authenticated actions or access verified current information</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Business processes require AI systems that can interact with existing enterprise tools and databases</p>
+                            <p className="text-gray-600">Business processes require reliable AI systems that can securely interact with enterprise tools while maintaining data privacy</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Users need AI assistants capable of executing tasks rather than just providing conversational responses</p>
+                            <p className="text-gray-600">Users need trustworthy AI assistants capable of executing tasks safely rather than just providing conversational responses</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Organizations require integration between AI systems and their specific business applications and workflows</p>
+                            <p className="text-gray-600">Organizations require secure integration between AI systems and their confidential business applications with reliable workflows</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Complex problem-solving often demands multiple tools working together in coordinated sequences</p>
+                            <p className="text-gray-600">Complex problem-solving demands multiple trusted tools working together in secure, coordinated sequences with data protection</p>
                         </motion.div>
                     </div>
                 </motion.div>

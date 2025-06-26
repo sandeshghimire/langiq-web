@@ -69,23 +69,23 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Comprehensive framework enabling LLMs to interact with external tools, services, and APIs dynamically</p>
+                            <p className="text-gray-600">Comprehensive secure framework enabling LLMs to interact with external tools, services, and APIs dynamically</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Over 100 pre-built tools including web search, calculators, code execution, file systems, and database access</p>
+                            <p className="text-gray-600">Over 100 reliable pre-built tools including web search, calculators, code execution, file systems, and database access</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Model Context Protocol (MCP) providing structured, reliable tool invocation and response handling</p>
+                            <p className="text-gray-600">Model Context Protocol (MCP) providing structured, reliable and secure tool invocation and response handling</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Custom tool development framework allowing organizations to integrate their specific systems and workflows</p>
+                            <p className="text-gray-600">Custom tool development framework with privacy controls allowing organizations to integrate their specific systems securely</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Real-time data access capabilities enabling AI to fetch live information like stock prices, weather, and news</p>
+                            <p className="text-gray-600">Real-time secure data access capabilities enabling AI to fetch live information like stock prices, weather, and news</p>
                         </motion.div>
                     </div>
                 </motion.div>

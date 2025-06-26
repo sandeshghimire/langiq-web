@@ -69,23 +69,23 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Extended Capabilities: Transform LLMs from text generators into powerful agents capable of real-world actions</p>
+                            <p className="text-gray-600">Extended Capabilities: Transform LLMs from text generators into secure, powerful agents with controlled real-world action execution</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Live Data Access: Enable AI to fetch current information eliminating outdated responses and static knowledge</p>
+                            <p className="text-gray-600">Live Data Access: Enable AI to fetch current information with encrypted connections, eliminating outdated responses and stale knowledge</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Enterprise Integration: Seamlessly connect AI with existing business systems and proprietary applications</p>
+                            <p className="text-gray-600">Enterprise Integration: Securely connect AI with existing business systems while maintaining data privacy and access controls</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Custom Workflows: Build sophisticated multi-tool processes tailored to specific organizational requirements</p>
+                            <p className="text-gray-600">Custom Workflows: Build authenticated multi-tool processes with audit trails tailored to specific organizational requirements</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Reliable Execution: Proprietary MCP protocol ensures consistent, error-handled tool interactions and responses</p>
+                            <p className="text-gray-600">Reliable Execution: Proprietary MCP protocol ensures consistent, secure, error-handled tool interactions with verified responses</p>
                         </motion.div>
                     </div>
                 </motion.div>
