@@ -115,151 +115,144 @@ export default function Slide5({ slideVariants, itemVariants, isActive, setRef }
                     </div>
                 </motion.div>
 
-                {/* Right Column - Multi-Agent Collaboration Animation */}
+                {/* Right Column - AI Studio GUI Animation */}
                 <motion.div
                     className="hidden md:block relative h-96"
                     variants={itemVariants}
                 >
                     <svg className="w-full h-full" viewBox="0 0 400 400">
-                        {/* Shared Memory/Context Center */}
-                        <motion.g variants={pulseVariants}>
-                            <circle cx="200" cy="200" r="40" fill="rgba(147, 51, 234, 0.1)" stroke="#9333ea" strokeWidth="2" strokeDasharray="5,5" />
-                            <text x="200" y="195" textAnchor="middle" className="text-xs fill-purple-600 font-bold">Shared</text>
-                            <text x="200" y="208" textAnchor="middle" className="text-xs fill-purple-600 font-bold">Memory</text>
+                        {/* GUI Interface Frame */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="50" y="50" width="300" height="200" rx="8" fill="rgba(59, 130, 246, 0.05)" stroke="#3b82f6" strokeWidth="2" />
+                            <rect x="50" y="50" width="300" height="30" rx="8" fill="rgba(59, 130, 246, 0.1)" />
+                            <circle cx="70" cy="65" r="4" fill="#ef4444" />
+                            <circle cx="85" cy="65" r="4" fill="#f59e0b" />
+                            <circle cx="100" cy="65" r="4" fill="#10b981" />
+                            <text x="200" y="70" textAnchor="middle" className="text-xs fill-blue-600 font-medium">AI Studio GUI</text>
                         </motion.g>
 
-                        {/* Agent 1 - Research Agent */}
+                        {/* Design Canvas */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="70" y="100" width="120" height="80" rx="4" fill="rgba(16, 185, 129, 0.1)" stroke="#10b981" strokeWidth="1" strokeDasharray="3,3" />
+                            <text x="130" y="135" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Design</text>
+                            <text x="130" y="150" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Canvas</text>
+                        </motion.g>
+
+                        {/* Workflow Nodes */}
                         <motion.g variants={agentVariants}>
-                            <circle cx="120" cy="120" r="25" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
-                            <text x="120" y="118" textAnchor="middle" className="text-xs fill-green-600 font-medium">Research</text>
-                            <text x="120" y="130" textAnchor="middle" className="text-xs fill-green-600 font-medium">Agent</text>
+                            <rect x="210" y="100" width="50" height="25" rx="4" fill="rgba(147, 51, 234, 0.1)" stroke="#9333ea" strokeWidth="1" />
+                            <text x="235" y="116" textAnchor="middle" className="text-xs fill-purple-600 font-medium">LLM</text>
                         </motion.g>
 
-                        {/* Agent 2 - Analysis Agent */}
                         <motion.g variants={agentVariants}>
-                            <circle cx="280" cy="120" r="25" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
-                            <text x="280" y="118" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Analysis</text>
-                            <text x="280" y="130" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Agent</text>
+                            <rect x="280" y="100" width="50" height="25" rx="4" fill="rgba(34, 197, 94, 0.1)" stroke="#22c55e" strokeWidth="1" />
+                            <text x="305" y="116" textAnchor="middle" className="text-xs fill-green-600 font-medium">Test</text>
                         </motion.g>
 
-                        {/* Agent 3 - Coordination Agent */}
                         <motion.g variants={agentVariants}>
-                            <circle cx="120" cy="280" r="25" fill="rgba(251, 146, 60, 0.2)" stroke="#fb923c" strokeWidth="2" />
-                            <text x="120" y="278" textAnchor="middle" className="text-xs fill-orange-600 font-medium">Coordinator</text>
-                            <text x="120" y="290" textAnchor="middle" className="text-xs fill-orange-600 font-medium">Agent</text>
+                            <rect x="210" y="140" width="50" height="25" rx="4" fill="rgba(251, 146, 60, 0.1)" stroke="#fb923c" strokeWidth="1" />
+                            <text x="235" y="156" textAnchor="middle" className="text-xs fill-orange-600 font-medium">Verify</text>
                         </motion.g>
 
-                        {/* Agent 4 - Execution Agent */}
                         <motion.g variants={agentVariants}>
-                            <circle cx="280" cy="280" r="25" fill="rgba(236, 72, 153, 0.2)" stroke="#ec4899" strokeWidth="2" />
-                            <text x="280" y="278" textAnchor="middle" className="text-xs fill-pink-600 font-medium">Execution</text>
-                            <text x="280" y="290" textAnchor="middle" className="text-xs fill-pink-600 font-medium">Agent</text>
+                            <rect x="280" y="140" width="50" height="25" rx="4" fill="rgba(236, 72, 153, 0.1)" stroke="#ec4899" strokeWidth="1" />
+                            <text x="305" y="156" textAnchor="middle" className="text-xs fill-pink-600 font-medium">Deploy</text>
                         </motion.g>
 
-                        {/* Communication Lines between Agents */}
+                        {/* Connection Lines */}
                         <motion.path
-                            d="M145 120 L175 180"
-                            stroke="#22c55e"
+                            d="M190 140 L210 112"
+                            stroke="#10b981"
                             strokeWidth="2"
                             fill="none"
                             variants={communicationVariants}
-                            style={{ animationDelay: "0s" }}
                         />
                         <motion.path
-                            d="M255 120 L225 180"
+                            d="M260 112 L280 112"
                             stroke="#3b82f6"
                             strokeWidth="2"
                             fill="none"
                             variants={communicationVariants}
-                            style={{ animationDelay: "0.5s" }}
                         />
                         <motion.path
-                            d="M145 280 L175 220"
+                            d="M260 152 L280 152"
                             stroke="#fb923c"
                             strokeWidth="2"
                             fill="none"
                             variants={communicationVariants}
-                            style={{ animationDelay: "1s" }}
-                        />
-                        <motion.path
-                            d="M255 280 L225 220"
-                            stroke="#ec4899"
-                            strokeWidth="2"
-                            fill="none"
-                            variants={communicationVariants}
-                            style={{ animationDelay: "1.5s" }}
                         />
 
-                        {/* Cross-Agent Communication */}
-                        <motion.path
-                            d="M145 120 L255 120"
-                            stroke="#10b981"
-                            strokeWidth="1.5"
-                            fill="none"
-                            strokeDasharray="3,3"
-                            variants={communicationVariants}
-                            style={{ animationDelay: "2s" }}
-                        />
-                        <motion.path
-                            d="M145 280 L255 280"
-                            stroke="#10b981"
-                            strokeWidth="1.5"
-                            fill="none"
-                            strokeDasharray="3,3"
-                            variants={communicationVariants}
-                            style={{ animationDelay: "2.5s" }}
-                        />
+                        {/* Security Shield */}
+                        <motion.g variants={pulseVariants}>
+                            <path d="M80 270 L80 300 Q80 310 90 310 L110 310 Q120 310 120 300 L120 285 Q120 275 110 275 L100 275 L100 270 Q100 260 90 260 Q80 260 80 270 Z"
+                                fill="rgba(16, 185, 129, 0.1)" stroke="#10b981" strokeWidth="1.5" />
+                            <text x="100" y="295" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Security</text>
+                        </motion.g>
 
-                        {/* Workflow Data Particles */}
-                        {[...Array(8)].map((_, i) => (
+                        {/* Data Privacy Icon */}
+                        <motion.g variants={pulseVariants}>
+                            <rect x="160" y="270" width="40" height="30" rx="4" fill="rgba(147, 51, 234, 0.1)" stroke="#9333ea" strokeWidth="1.5" />
+                            <circle cx="180" cy="278" r="3" fill="none" stroke="#9333ea" strokeWidth="1" />
+                            <rect x="177" y="282" width="6" height="8" rx="1" fill="rgba(147, 51, 234, 0.2)" />
+                            <text x="180" y="295" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Privacy</text>
+                        </motion.g>
+
+                        {/* Encryption Badge */}
+                        <motion.g variants={pulseVariants}>
+                            <rect x="250" y="270" width="50" height="30" rx="4" fill="rgba(251, 146, 60, 0.1)" stroke="#fb923c" strokeWidth="1.5" />
+                            <path d="M265 280 L275 275 L285 280 L285 290 L275 295 L265 290 Z"
+                                fill="none" stroke="#fb923c" strokeWidth="1" />
+                            <text x="275" y="295" textAnchor="middle" className="text-xs fill-orange-600 font-medium">Encrypted</text>
+                        </motion.g>
+
+                        {/* Data Flow Particles */}
+                        {[...Array(6)].map((_, i) => (
                             <motion.circle
                                 key={i}
-                                cx={150 + (i % 4) * 25}
-                                cy={150 + Math.floor(i / 4) * 100}
+                                cx={80 + i * 40}
+                                cy={320}
                                 r="2"
-                                fill={["#22c55e", "#3b82f6", "#fb923c", "#ec4899"][i % 4]}
+                                fill={["#10b981", "#3b82f6", "#9333ea"][i % 3]}
                                 variants={{
-                                    hidden: { opacity: 0, scale: 0 },
+                                    hidden: { opacity: 0, x: -20 },
                                     visible: {
                                         opacity: [0, 1, 0],
-                                        scale: [0, 1.5, 0],
+                                        x: [0, 20, 40],
                                         transition: {
                                             duration: 2,
                                             repeat: Infinity,
-                                            delay: i * 0.25
+                                            delay: i * 0.3
                                         }
                                     }
                                 }}
                             />
                         ))}
 
-                        {/* MACP Protocol Indicators */}
+                        {/* Status Indicators */}
                         <motion.g variants={itemVariants}>
-                            <rect x="320" y="20" width="60" height="30" rx="4" fill="rgba(168, 85, 247, 0.1)" stroke="#a855f7" strokeWidth="1" />
-                            <text x="350" y="32" textAnchor="middle" className="text-xs fill-purple-600 font-medium">MACP</text>
-                            <text x="350" y="44" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Protocol</text>
+                            <rect x="320" y="20" width="60" height="25" rx="4" fill="rgba(16, 185, 129, 0.1)" stroke="#10b981" strokeWidth="1" />
+                            <circle cx="330" cy="32" r="3" fill="#10b981" />
+                            <text x="345" y="37" className="text-xs fill-emerald-600 font-medium">Active</text>
                         </motion.g>
 
-                        {/* Workflow Status */}
                         <motion.g variants={itemVariants}>
-                            <rect x="20" y="350" width="80" height="30" rx="4" fill="rgba(16, 185, 129, 0.1)" stroke="#10b981" strokeWidth="1" />
-                            <text x="60" y="362" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Workflow</text>
-                            <text x="60" y="374" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Active</text>
+                            <rect x="20" y="350" width="70" height="25" rx="4" fill="rgba(59, 130, 246, 0.1)" stroke="#3b82f6" strokeWidth="1" />
+                            <text x="55" y="367" textAnchor="middle" className="text-xs fill-blue-600 font-medium">GUI Studio</text>
                         </motion.g>
                     </svg>
 
                     {/* Floating Labels */}
                     <motion.div
-                        className="absolute top-4 left-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
+                        className="absolute top-4 left-4 text-xs font-medium text-gray-600 bg-white/90 backdrop-blur-sm rounded px-2 py-1 border border-gray-200/30"
                         variants={itemVariants}
                     >
-                        Multi-Agent Framework
+                        Visual Development
                     </motion.div>
                     <motion.div
-                        className="absolute bottom-4 right-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
+                        className="absolute bottom-4 right-4 text-xs font-medium text-gray-600 bg-white/90 backdrop-blur-sm rounded px-2 py-1 border border-gray-200/30"
                         variants={itemVariants}
                     >
-                        Collaborative Intelligence
+                        Enterprise Security
                     </motion.div>
                 </motion.div>
             </div>
