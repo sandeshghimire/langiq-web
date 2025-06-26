@@ -94,23 +94,23 @@ export default function Slide5({ slideVariants, itemVariants, isActive, setRef }
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">GUI-based design interface enabling visual creation and testing of custom enterprise LLM applications</p>
+                            <p className="text-gray-600">Frontend GUI-based application for designing, developing, testing and verifying custom enterprise-grade LLM applications</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Integrated development environment with built-in verification tools for LLM workflow validation and testing</p>
+                            <p className="text-gray-600">Visual development environment with integrated LLM workflow builder and comprehensive verification testing tools</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Enterprise-grade security framework with encrypted data handling and privacy-compliant processing pipelines</p>
+                            <p className="text-gray-600">Enterprise-grade data safety protocols with end-to-end encryption and privacy-compliant processing pipelines</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Comprehensive data safety protocols including secure model deployment and protected API communication channels</p>
+                            <p className="text-gray-600">Advanced security framework featuring secure model deployment, encrypted API channels and comprehensive data protection</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Role-based access control and audit logging ensuring secure collaboration while maintaining data privacy standards</p>
+                            <p className="text-gray-600">Role-based access control with audit logging and privacy standards ensuring secure collaboration and data governance</p>
                         </motion.div>
                     </div>
                 </motion.div>
