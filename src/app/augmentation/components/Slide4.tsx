@@ -92,23 +92,23 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
 
                     <div className="space-y-4">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-0 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Embeds essential domain knowledge directly into model context ensuring consistent access and application</p>
+                            <p className="text-gray-600">Securely embeds essential domain knowledge directly into model context ensuring consistent access and protected application</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-0 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Provides stable, predictable responses by incorporating fixed knowledge rather than dynamic retrieval results</p>
+                            <p className="text-gray-600">Provides stable, reliable responses by incorporating verified knowledge rather than dynamic retrieval with privacy protection</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-0 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Customizes AI behavior and expertise to match organizational requirements and industry standards</p>
+                            <p className="text-gray-600">Customizes AI behavior securely to match organizational requirements and compliance standards with data governance</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-0 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Delivers specialized performance without requiring expensive full model retraining or large computational resources</p>
+                            <p className="text-gray-600">Delivers reliable specialized performance without exposing sensitive data or requiring expensive full model retraining</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-0 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Enables rapid deployment of domain-specific AI solutions through template-based knowledge integration</p>
+                            <p className="text-gray-600">Enables secure rapid deployment of domain-specific AI solutions through validated template-based knowledge integration</p>
                         </motion.div>
                     </div>
                 </motion.div>

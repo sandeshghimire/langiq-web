@@ -27,7 +27,7 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
-                LangIQ's Augmentation Library enhances Large Language Model performance by strategically incorporating domain-specific knowledge, instructions, and behavioral guidelines directly into the model's context. This approach provides more consistent, specialized responses than dynamic retrieval methods while maintaining computational efficiency for specific use cases and domains.
+                LangIQ's Augmentation Library securely enhances Large Language Model performance by strategically incorporating domain-specific knowledge, instructions, and behavioral guidelines directly into the model's context. This reliable approach provides more consistent, specialized responses than dynamic retrieval methods while maintaining computational efficiency and data privacy for specific use cases and domains.
 
             </motion.p>
 

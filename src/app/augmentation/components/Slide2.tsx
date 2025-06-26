@@ -69,23 +69,23 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Strategic injection of domain-specific knowledge, facts, and guidelines directly into model prompts and context</p>
+                            <p className="text-gray-600">Strategic injection of verified domain-specific knowledge with encrypted storage and controlled access to sensitive facts and guidelines</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Behavioral adaptation techniques customizing AI personality, tone, and response patterns for specific applications</p>
+                            <p className="text-gray-600">Behavioral adaptation with privacy-preserving techniques ensuring consistent AI personality while protecting user interaction patterns</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Lightweight fine-tuning methods using LoRA and PEFT for efficient model customization without full retraining</p>
+                            <p className="text-gray-600">Secure lightweight fine-tuning using LoRA and PEFT with model integrity verification for reliable customization without compromising base weights</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Context optimization tools maximizing the effectiveness of limited token windows through intelligent information prioritization</p>
+                            <p className="text-gray-600">Context optimization with data sanitization tools maximizing token effectiveness through secure information prioritization and privacy filtering</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Template-based knowledge integration enabling consistent domain expertise across multiple interactions</p>
+                            <p className="text-gray-600">Template-based knowledge integration with access controls enabling consistent domain expertise while maintaining data confidentiality across interactions</p>
                         </motion.div>
                     </div>
                 </motion.div>
@@ -227,7 +227,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                                             duration: 4,
                                             repeat: Infinity,
                                             delay: i * 0.5
-                                            
+
                                         }
                                     }
                                 }}
@@ -251,7 +251,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                                             duration: 2,
                                             repeat: Infinity,
                                             delay: i * 0.2
-                                            
+
                                         }
                                     }
                                 }}
@@ -278,7 +278,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                                             duration: 3,
                                             repeat: Infinity,
                                             delay: i * 0.8
-                                            
+
                                         }
                                     }
                                 }}

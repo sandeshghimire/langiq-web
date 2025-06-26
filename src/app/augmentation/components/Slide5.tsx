@@ -69,23 +69,23 @@ export default function Slide5({ slideVariants, itemVariants, isActive, setRef }
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Consistent Expertise: Provides reliable domain knowledge without variability of dynamic retrieval systems</p>
+                            <p className="text-gray-600">Consistent Expertise: Provides reliable, secure domain knowledge with predictable responses and verified accuracy standards</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Behavioral Control: Precisely customize AI personality and response patterns for specific applications</p>
+                            <p className="text-gray-600">Behavioral Control: Precisely customize AI personality with privacy-preserving response patterns and compliance safeguards</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Resource Efficiency: Achieve specialization without expensive full model retraining or massive computational requirements</p>
+                            <p className="text-gray-600">Resource Efficiency: Achieve secure specialization without exposing sensitive data through full model retraining processes</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Rapid Deployment: Quick implementation of domain expertise through template-based knowledge integration methods</p>
+                            <p className="text-gray-600">Rapid Deployment: Quick, reliable implementation with encrypted knowledge integration and robust error handling mechanisms</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Quality Assurance: Guaranteed consistency in responses and adherence to organizational guidelines and standards</p>
+                            <p className="text-gray-600">Quality Assurance: Guaranteed consistency with built-in validation, audit trails, and adherence to security standards</p>
                         </motion.div>
                     </div>
                 </motion.div>

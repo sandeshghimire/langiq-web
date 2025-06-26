@@ -67,23 +67,23 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     </motion.h1>
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Generic LLMs lack specialized domain knowledge required for industry-specific applications and expertise</p>
+                            <p className="text-gray-600">Generic LLMs pose security risks lacking verified domain knowledge and exposing sensitive data to external systems</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Dynamic retrieval systems may introduce inconsistency or irrelevant information during critical interactions</p>
+                            <p className="text-gray-600">Dynamic retrieval systems compromise privacy and reliability by introducing uncontrolled data sources during critical operations</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Organizations need AI systems reflecting their specific terminology, processes, and operational guidelines</p>
+                            <p className="text-gray-600">Organizations require secure AI systems with auditable responses reflecting their confidential processes and compliance standards</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Some use cases require guaranteed consistency in responses rather than dynamic, context-dependent variations</p>
+                            <p className="text-gray-600">Mission-critical applications demand guaranteed reliability and data protection rather than unpredictable external dependencies</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Specialized domains demand deep expertise that general-purpose models cannot reliably provide</p>
+                            <p className="text-gray-600">Regulated industries require trusted, privacy-compliant expertise that general-purpose models cannot securely provide</p>
                         </motion.div>
                     </div>
                 </motion.div>
