@@ -96,151 +96,177 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     variants={itemVariants}
                 >
                     <svg className="w-full h-full" viewBox="0 0 400 400">
-                        {/* Visual Workflow Builder */}
+                        {/* GUI Design Interface */}
                         <motion.g variants={itemVariants}>
-                            <rect x="20" y="40" width="100" height="50" rx="8" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
-                            <text x="70" y="60" textAnchor="middle" className="text-xs fill-green-600 font-medium">Visual</text>
-                            <text x="70" y="75" textAnchor="middle" className="text-xs fill-green-600 font-medium">Builder</text>
+                            <rect x="30" y="40" width="80" height="60" rx="6" fill="rgba(34, 197, 94, 0.15)" stroke="#22c55e" strokeWidth="1.5" />
+                            <text x="70" y="60" textAnchor="middle" className="text-xs fill-green-700 font-medium">GUI</text>
+                            <text x="70" y="75" textAnchor="middle" className="text-xs fill-green-700 font-medium">Designer</text>
+                            <text x="70" y="90" textAnchor="middle" className="text-xs fill-green-700 font-medium">Interface</text>
                         </motion.g>
 
-                        {/* Pre-built Components */}
+                        {/* LLM Workflow Builder */}
                         <motion.g variants={itemVariants}>
-                            <rect x="150" y="40" width="100" height="50" rx="8" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" strokeWidth="2" />
-                            <text x="200" y="60" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Pre-built</text>
-                            <text x="200" y="75" textAnchor="middle" className="text-xs fill-blue-600 font-medium">Components</text>
+                            <rect x="130" y="40" width="80" height="60" rx="6" fill="rgba(59, 130, 246, 0.15)" stroke="#3b82f6" strokeWidth="1.5" />
+                            <text x="170" y="60" textAnchor="middle" className="text-xs fill-blue-700 font-medium">LLM</text>
+                            <text x="170" y="75" textAnchor="middle" className="text-xs fill-blue-700 font-medium">Workflow</text>
+                            <text x="170" y="90" textAnchor="middle" className="text-xs fill-blue-700 font-medium">Builder</text>
                         </motion.g>
 
-                        {/* Team Workspace */}
+                        {/* Security & Privacy Layer */}
                         <motion.g variants={pulseVariants}>
-                            <rect x="85" y="120" width="130" height="80" rx="12" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="3" />
-                            <text x="150" y="145" textAnchor="middle" className="text-sm fill-purple-600 font-bold">Team Workspace</text>
-                            <text x="150" y="165" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Shared Project</text>
-                            <text x="150" y="180" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Management</text>
+                            <rect x="230" y="40" width="80" height="60" rx="6" fill="rgba(239, 68, 68, 0.15)" stroke="#ef4444" strokeWidth="2" />
+                            <text x="270" y="60" textAnchor="middle" className="text-xs fill-red-700 font-semibold">Security</text>
+                            <text x="270" y="75" textAnchor="middle" className="text-xs fill-red-700 font-semibold">& Privacy</text>
+                            <text x="270" y="90" textAnchor="middle" className="text-xs fill-red-700 font-semibold">Layer</text>
                         </motion.g>
 
-                        {/* Deployment Pipeline */}
+                        {/* Testing & Verification */}
                         <motion.g variants={itemVariants}>
-                            <rect x="280" y="120" width="100" height="80" rx="8" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
-                            <text x="330" y="145" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Auto</text>
-                            <text x="330" y="160" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">Deployment</text>
-                            <text x="330" y="175" textAnchor="middle" className="text-xs fill-emerald-600 font-medium">& Monitoring</text>
+                            <rect x="80" y="130" width="80" height="60" rx="6" fill="rgba(147, 51, 234, 0.15)" stroke="#9333ea" strokeWidth="1.5" />
+                            <text x="120" y="150" textAnchor="middle" className="text-xs fill-purple-700 font-medium">Testing &</text>
+                            <text x="120" y="165" textAnchor="middle" className="text-xs fill-purple-700 font-medium">Verification</text>
+                            <text x="120" y="180" textAnchor="middle" className="text-xs fill-purple-700 font-medium">Engine</text>
                         </motion.g>
 
-                        {/* Rapid Prototyping */}
+                        {/* Enterprise Integration */}
                         <motion.g variants={itemVariants}>
-                            <rect x="85" y="240" width="130" height="50" rx="8" fill="rgba(245, 158, 11, 0.2)" stroke="#f59e0b" strokeWidth="2" />
-                            <text x="150" y="260" textAnchor="middle" className="text-xs fill-amber-600 font-medium">Rapid Prototyping</text>
-                            <text x="150" y="275" textAnchor="middle" className="text-xs fill-amber-600 font-medium">Weeks → Days</text>
+                            <rect x="180" y="130" width="80" height="60" rx="6" fill="rgba(16, 185, 129, 0.15)" stroke="#10b981" strokeWidth="1.5" />
+                            <text x="220" y="150" textAnchor="middle" className="text-xs fill-emerald-700 font-medium">Enterprise</text>
+                            <text x="220" y="165" textAnchor="middle" className="text-xs fill-emerald-700 font-medium">Integration</text>
+                            <text x="220" y="180" textAnchor="middle" className="text-xs fill-emerald-700 font-medium">Hub</text>
                         </motion.g>
 
-                        {/* Workflow Connections */}
+                        {/* Custom LLM Applications */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="130" y="220" width="80" height="60" rx="6" fill="rgba(245, 158, 11, 0.15)" stroke="#f59e0b" strokeWidth="1.5" />
+                            <text x="170" y="240" textAnchor="middle" className="text-xs fill-amber-700 font-medium">Custom LLM</text>
+                            <text x="170" y="255" textAnchor="middle" className="text-xs fill-amber-700 font-medium">Applications</text>
+                            <text x="170" y="270" textAnchor="middle" className="text-xs fill-amber-700 font-medium">Output</text>
+                        </motion.g>
+
+                        {/* Clean Flow Connections */}
                         <motion.path
-                            d="M70 90 Q70 105 85 120"
+                            d="M70 100 L120 130"
                             stroke="#22c55e"
                             strokeWidth="2"
                             fill="none"
+                            strokeDasharray="4,2"
                             variants={flowVariants}
                         />
                         <motion.path
-                            d="M200 90 Q200 105 215 120"
+                            d="M170 100 L170 130"
                             stroke="#3b82f6"
                             strokeWidth="2"
                             fill="none"
+                            strokeDasharray="4,2"
                             variants={flowVariants}
                         />
                         <motion.path
-                            d="M215 160 Q247 160 280 160"
+                            d="M270 100 L220 130"
+                            stroke="#ef4444"
+                            strokeWidth="2"
+                            fill="none"
+                            strokeDasharray="4,2"
+                            variants={flowVariants}
+                        />
+                        <motion.path
+                            d="M120 190 L170 220"
+                            stroke="#9333ea"
+                            strokeWidth="2"
+                            fill="none"
+                            strokeDasharray="4,2"
+                            variants={flowVariants}
+                        />
+                        <motion.path
+                            d="M220 190 L170 220"
                             stroke="#10b981"
                             strokeWidth="2"
                             fill="none"
-                            variants={flowVariants}
-                        />
-                        <motion.path
-                            d="M150 200 Q150 220 150 240"
-                            stroke="#f59e0b"
-                            strokeWidth="2"
-                            fill="none"
+                            strokeDasharray="4,2"
                             variants={flowVariants}
                         />
 
-                        {/* Animated Workflow Particles */}
-                        {[...Array(5)].map((_, i) => (
-                            <motion.circle
-                                key={i}
-                                cx={70 + i * 40}
-                                cy={110 + Math.sin(i) * 10}
-                                r="3"
-                                fill={["#22c55e", "#3b82f6", "#9333ea", "#10b981", "#f59e0b"][i]}
-                                variants={particleVariants}
-                                style={{ animationDelay: `${i * 0.3}s` }}
+                        {/* Security Shield Icon */}
+                        <motion.g variants={itemVariants}>
+                            <path
+                                d="M270 55 L275 50 L280 55 L280 75 L275 80 L270 75 Z"
+                                fill="#ef4444"
+                                opacity="0.8"
                             />
-                        ))}
+                            <circle cx="275" cy="65" r="3" fill="white" />
+                        </motion.g>
 
-                        {/* Team Collaboration Icons */}
+                        {/* Data Flow Indicators */}
                         {[...Array(3)].map((_, i) => (
-                            <motion.circle
+                            <motion.rect
                                 key={i}
-                                cx={130 + i * 20}
-                                cy={160}
-                                r="4"
-                                fill="#9333ea"
+                                x={150 + i * 15}
+                                y={110 + i * 5}
+                                width="8"
+                                height="2"
+                                rx="1"
+                                fill={["#22c55e", "#3b82f6", "#ef4444"][i]}
                                 variants={{
-                                    hidden: { scale: 0, opacity: 0 },
+                                    hidden: { opacity: 0, x: 150 + i * 15 },
                                     visible: {
-                                        scale: [0, 1.2, 1],
-                                        opacity: [0, 1, 0.8],
+                                        opacity: [0, 1, 0],
+                                        x: [150 + i * 15, 200 + i * 15, 250 + i * 15],
                                         transition: {
                                             duration: 2,
                                             repeat: Infinity,
-                                            delay: i * 0.4
+                                            delay: i * 0.5
                                         }
                                     }
                                 }}
                             />
                         ))}
 
-                        {/* Progress Indicators */}
+                        {/* Clean Progress Bar */}
                         <motion.rect
-                            x="290"
-                            y="190"
-                            width="80"
-                            height="4"
-                            rx="2"
-                            fill="rgba(16, 185, 129, 0.3)"
+                            x="80"
+                            y="300"
+                            width="180"
+                            height="3"
+                            rx="1.5"
+                            fill="rgba(156, 163, 175, 0.3)"
                             variants={itemVariants}
                         />
                         <motion.rect
-                            x="290"
-                            y="190"
+                            x="80"
+                            y="300"
                             width="0"
-                            height="4"
-                            rx="2"
+                            height="3"
+                            rx="1.5"
                             fill="#10b981"
                             variants={{
                                 hidden: { width: 0 },
                                 visible: {
-                                    width: [0, 80, 0],
+                                    width: [0, 180],
                                     transition: {
                                         duration: 3,
                                         repeat: Infinity,
+                                        repeatDelay: 1
                                     }
                                 }
                             }}
                         />
+                        <text x="170" y="320" textAnchor="middle" className="text-xs fill-gray-600 font-medium">
+                            LLM Application Development Progress
+                        </text>
                     </svg>
 
-                    {/* Floating Labels */}
+                    {/* Updated Floating Labels */}
                     <motion.div
-                        className="absolute top-4 left-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
+                        className="absolute top-4 left-4 text-xs font-medium text-gray-700 bg-white/90 backdrop-blur-sm rounded px-3 py-1.5 border border-gray-200/50"
                         variants={itemVariants}
                     >
-                        Visual AI Development
+                        GUI-Based LLM Development
                     </motion.div>
                     <motion.div
-                        className="absolute bottom-4 right-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
+                        className="absolute bottom-4 right-4 text-xs font-medium text-gray-700 bg-white/90 backdrop-blur-sm rounded px-3 py-1.5 border border-gray-200/50"
                         variants={itemVariants}
                     >
-                        Streamlined Deployment
+                        Secure Enterprise Applications
                     </motion.div>
                 </motion.div>
             </div>
