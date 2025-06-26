@@ -51,7 +51,7 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-xl md:text-lg max-w-7xl text-center mb-12 text-gray-700"
                 variants={itemVariants}
             >
-                Companies that produce physical goods, such as automotive manufacturers like Ford or Toyota, electronics companies like Samsung, or food processing companies that turn raw materials into finished products.
+                Companies that produce physical goods with secure supply chains and privacy-compliant operations, such as automotive manufacturers like Ford or Toyota with encrypted IoT systems, electronics companies like Samsung with secure production data, or food processing companies ensuring reliable traceability from raw materials to finished products.
             </motion.p>
 
             <motion.div
