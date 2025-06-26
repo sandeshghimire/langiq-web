@@ -27,7 +27,7 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
-                LangIQ's Fine-Tuning Library provides comprehensive tools for creating specialized Large Language Models tailored to specific datasets, tasks, and organizational requirements. This end-to-end solution transforms foundation models into highly accurate, domain-specific AI systems through advanced training techniques, intelligent data preparation, and continuous performance monitoring.
+                LangIQ's Fine-Tuning Library provides comprehensive tools for creating specialized Large Language Models tailored to specific datasets, tasks, and organizational requirements. This secure, end-to-end solution transforms foundation models into highly accurate, domain-specific AI systems through privacy-preserving training techniques, encrypted data preparation, and continuous reliability monitoring with audit capabilities.
 
             </motion.p>
 

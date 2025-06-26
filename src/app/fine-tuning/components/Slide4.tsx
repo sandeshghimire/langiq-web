@@ -69,23 +69,23 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Creates specialized models deeply trained on organization-specific data and use cases</p>
+                            <p className="text-gray-600">Creates secure specialized models trained on protected organization-specific data with privacy-preserving techniques</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Develops AI systems that naturally understand company terminology, processes, and quality requirements</p>
+                            <p className="text-gray-600">Develops reliable AI systems that securely understand company terminology, processes, and quality requirements</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Achieves superior accuracy on specialized tasks through dedicated model training rather than generic responses</p>
+                            <p className="text-gray-600">Achieves consistent superior accuracy on specialized tasks through secure dedicated model training rather than generic responses</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Enables development of proprietary AI capabilities providing competitive advantage and unique value proposition</p>
+                            <p className="text-gray-600">Enables development of secure proprietary AI capabilities providing competitive advantage and unique value proposition</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Provides complete control over model behavior, capabilities, and performance characteristics</p>
+                            <p className="text-gray-600">Provides complete control over model behavior, data privacy, and reliable performance characteristics</p>
                         </motion.div>
                     </div>
                 </motion.div>

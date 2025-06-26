@@ -69,28 +69,28 @@ export default function Slide5({ slideVariants, itemVariants, isActive, setRef }
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Complex Problem Solving: Handle sophisticated, multi-step processes requiring diverse skills and coordination</p>
+                            <p className="text-gray-600">Complex Problem Solving: Handle sophisticated, multi-step processes with secure coordination and encrypted communications between specialized agents</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Process Automation: Automate entire business workflows from initiation to completion without human intervention</p>
+                            <p className="text-gray-600">Process Automation: Automate entire business workflows with privacy-preserving execution and reliable failover mechanisms ensuring zero data exposure</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Scalable Architecture: Support both simple task coordination and enterprise-level process orchestration requirements</p>
+                            <p className="text-gray-600">Scalable Architecture: Support secure task coordination and enterprise-level orchestration with built-in compliance and audit trail capabilities</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Intelligent Coordination: Advanced protocol ensures optimal agent collaboration and workflow execution</p>
+                            <p className="text-gray-600">Intelligent Coordination: Advanced secure protocols ensure optimal agent collaboration with encrypted workflows and reliable execution monitoring</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Operational Efficiency: Dramatically reduce manual work through autonomous execution of complex business processes</p>
+                            <p className="text-gray-600">Operational Efficiency: Dramatically reduce manual work through autonomous execution with privacy-first design and guaranteed process reliability</p>
                         </motion.div>
                     </div>
                 </motion.div>
 
-                {/* Right Column - Agent Orchestration Animation */}
+                {/* Right Column - Agent & Agentic Solution  Animation */}
                 <motion.div
                     className="hidden md:block relative h-96"
                     variants={itemVariants}

@@ -67,23 +67,23 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     </motion.h1>
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Foundation models lack specialized knowledge and terminology specific to individual organizations and industries</p>
+                            <p className="text-gray-600">Foundation models lack secure specialized knowledge and confidential terminology specific to individual organizations and industries</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Generic AI responses may not align with company-specific processes, guidelines, and quality standards</p>
+                            <p className="text-gray-600">Generic AI responses may not align with company-specific security processes, compliance guidelines, and quality standards</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Certain domains require deep specialization that cannot be achieved through prompting or augmentation alone</p>
+                            <p className="text-gray-600">Certain domains require reliable deep specialization that cannot be achieved through prompting or augmentation alone</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Organizations need AI systems that understand their unique data patterns and business contexts</p>
+                            <p className="text-gray-600">Organizations need trusted AI systems that understand their unique data patterns and confidential business contexts</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Competitive advantage often requires proprietary AI capabilities tailored to specific use cases</p>
+                            <p className="text-gray-600">Competitive advantage often requires secure proprietary AI capabilities tailored to specific use cases</p>
                         </motion.div>
                     </div>
                 </motion.div>

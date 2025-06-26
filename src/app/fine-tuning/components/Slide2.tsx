@@ -69,23 +69,23 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Complete pipeline for custom model training using organization-specific datasets and requirements</p>
+                            <p className="text-gray-600">Secure end-to-end pipeline for custom model training using encrypted organization-specific datasets and compliance requirements</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Intelligent data preparation tools including cleaning, formatting, augmentation, and quality validation processes</p>
+                            <p className="text-gray-600">Privacy-preserving data preparation tools including secure cleaning, formatting, augmentation, and quality validation processes</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Advanced training techniques leveraging LoRA, PEFT, and provider APIs like OpenAI's fine-tuning services</p>
+                            <p className="text-gray-600">Enterprise-grade training techniques leveraging secure LoRA, PEFT, and trusted provider APIs like OpenAI's fine-tuning services</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Comprehensive monitoring dashboard tracking training analytics, loss curves, validation metrics, and convergence patterns</p>
+                            <p className="text-gray-600">Reliable monitoring dashboard tracking secure training analytics, loss curves, validation metrics, and convergence patterns</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Model comparison and benchmarking capabilities enabling data-driven selection and performance optimization</p>
+                            <p className="text-gray-600">Auditable model comparison and benchmarking capabilities enabling secure data-driven selection and performance optimization</p>
                         </motion.div>
                     </div>
                 </motion.div>

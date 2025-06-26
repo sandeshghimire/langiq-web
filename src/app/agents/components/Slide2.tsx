@@ -63,35 +63,35 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
                         variants={itemVariants}
                     >
-                        What is Agent Orchestration?
+                        What is Agent & Agentic Solution ?
                     </motion.h1>
 
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Multi-agent framework enabling specialized AI agents to collaborate on complex, multi-step problem-solving workflows</p>
+                            <p className="text-gray-600">Zero-trust multi-agent framework enabling isolated AI agents to collaborate securely on encrypted, multi-step problem-solving workflows</p>
                         </motion.div>
 
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Agent role definition system allowing customization of individual agent capabilities, tools, and expertise areas</p>
+                            <p className="text-gray-600">Secure agent role definition system with permission-based access controls for customizing individual agent capabilities and restricted expertise areas</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Proprietary Multi-Agent Collaboration Protocol (MACP) managing communication, coordination, and workflow execution</p>
+                            <p className="text-gray-600">Proprietary Multi-Agent Collaboration Protocol (MACP) with end-to-end encryption managing secure communication and verified workflow execution</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Flexible execution patterns supporting sequential, parallel, and conditional agent interactions based on workflow requirements</p>
+                            <p className="text-gray-600">Fault-tolerant execution patterns with rollback capabilities supporting sequential, parallel, and conditional agent interactions with audit trails</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Shared memory and context management ensuring seamless information flow between agents throughout complex processes</p>
+                            <p className="text-gray-600">Encrypted shared memory and context isolation ensuring secure information flow between agents with data integrity verification</p>
                         </motion.div>
                     </div>
                 </motion.div>
 
-                {/* Right Column - Agent Orchestration Animation */}
+                {/* Right Column - Agent & Agentic Solution  Animation */}
                 <motion.div
                     className="hidden md:block relative h-96"
                     variants={itemVariants}

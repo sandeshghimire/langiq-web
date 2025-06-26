@@ -69,28 +69,28 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Enables sophisticated problem-solving by combining multiple specialized agents with complementary capabilities</p>
+                            <p className="text-gray-600">Enables secure problem-solving by combining multiple specialized agents with encrypted communication and complementary capabilities</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Provides intelligent coordination ensuring proper sequencing, decision-making, and information sharing between agents</p>
+                            <p className="text-gray-600">Provides reliable coordination with privacy-first design ensuring secure sequencing, decision-making, and protected information sharing</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Automates complex, multi-step business processes reducing manual intervention and increasing operational efficiency</p>
+                            <p className="text-gray-600">Automates complex processes with built-in security controls reducing manual intervention while maintaining data privacy and operational efficiency</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Offers scalable architecture supporting both simple workflows and enterprise-level process automation requirements</p>
+                            <p className="text-gray-600">Offers secure scalable architecture with privacy compliance supporting trusted workflows and enterprise-level automation requirements</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Delivers autonomous execution capability with built-in monitoring, error handling, and workflow management</p>
+                            <p className="text-gray-600">Delivers reliable autonomous execution with security monitoring, encrypted error handling, and privacy-aware workflow management</p>
                         </motion.div>
                     </div>
                 </motion.div>
 
-                {/* Right Column - Agent Orchestration Animation */}
+                {/* Right Column - Agent & Agentic Solution  Animation */}
                 <motion.div
                     className="hidden md:block relative h-96"
                     variants={itemVariants}

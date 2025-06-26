@@ -67,28 +67,28 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     </motion.h1>
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Complex business processes require diverse skills and capabilities that single AI models cannot effectively handle</p>
+                            <p className="text-gray-600">Complex business processes require diverse skills and secure capabilities that single AI models cannot effectively handle</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Multi-step workflows demand coordination, decision-making, and handoffs between different specialized functions</p>
+                            <p className="text-gray-600">Multi-step workflows demand reliable coordination, secure decision-making, and trusted handoffs between specialized functions</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Organizations need AI systems capable of autonomous execution of sophisticated processes without human intervention</p>
+                            <p className="text-gray-600">Organizations need privacy-preserving AI systems capable of autonomous execution of sophisticated processes with minimal human oversight</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Traditional single-agent approaches lack the specialization and coordination required for enterprise-level automation</p>
+                            <p className="text-gray-600">Traditional single-agent approaches lack the secure specialization and reliable coordination required for enterprise-level automation</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Business efficiency demands AI solutions that can handle end-to-end processes rather than individual tasks</p>
+                            <p className="text-gray-600">Business efficiency demands secure AI solutions that can handle end-to-end processes with data protection and operational reliability</p>
                         </motion.div>
                     </div>
                 </motion.div>
 
-                {/* Right Column - Agent Orchestration Animation */}
+                {/* Right Column - Agent & Agentic Solution  Animation */}
                 <motion.div
                     className="hidden md:block relative h-96"
                     variants={itemVariants}

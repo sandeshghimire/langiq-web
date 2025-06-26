@@ -69,23 +69,23 @@ export default function Slide5({ slideVariants, itemVariants, isActive, setRef }
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Specialized Accuracy: Achieve superior performance on domain-specific tasks through targeted model training</p>
+                            <p className="text-gray-600">Specialized Accuracy: Achieve superior, reliable performance on domain-specific tasks through secure, targeted model training</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Proprietary Capabilities: Develop unique AI systems providing competitive advantage and intellectual property value</p>
+                            <p className="text-gray-600">Proprietary Security: Develop private AI systems providing competitive advantage while protecting sensitive data and intellectual property</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Perfect Alignment: Ensure AI responses match organizational standards, terminology, and quality requirements</p>
+                            <p className="text-gray-600">Perfect Alignment: Ensure secure AI responses match organizational standards, with reliable adherence to privacy and quality requirements</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Complete Control: Full ownership and customization of model behavior, capabilities, and performance characteristics</p>
+                            <p className="text-gray-600">Complete Control: Full ownership and secure customization of model behavior, ensuring data privacy and reliable performance characteristics</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Scalable Process: Streamlined pipeline enables rapid development and deployment of multiple specialized models</p>
+                            <p className="text-gray-600">Scalable Security: Streamlined, secure pipeline enables reliable development and private deployment of multiple specialized models</p>
                         </motion.div>
                     </div>
                 </motion.div>
