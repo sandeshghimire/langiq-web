@@ -27,7 +27,7 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
-                AI Studio is LangIQ's visual, low-code development environment that transforms complex AI workflow creation into an intuitive drag-and-drop experience. This collaborative platform accelerates LLM application development by abstracting technical complexities, enabling both technical and non-technical teams to build sophisticated AI solutions rapidly without extensive manual coding expertise.
+                AI Studio is a GUI-based platform for designing, developing, testing, and deploying enterprise-grade LLM applications. Build secure, privacy-compliant AI workflows through an intuitive visual interface with integrated data safety and enterprise security features.
             </motion.p>
 
             {/* Bouncing down arrow */}

@@ -17,7 +17,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
             y: 0,
             transition: {
                 duration: 0.8,
-                
+
             }
         }
     };
@@ -29,7 +29,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
             opacity: 1,
             transition: {
                 duration: 2,
-                
+
             }
         }
     };
@@ -82,23 +82,23 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
 
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Visual development environment for creating LLM applications through drag-and-drop interfaces</p>
+                            <p className="text-gray-600">Frontend GUI-based application for designing, developing, testing and verifying enterprise-grade LLM applications</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Collaborative workspace supporting multiple team members with role-based access control</p>
+                            <p className="text-gray-600">Secure collaborative workspace with role-based access control, data encryption, and comprehensive audit trails</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Unified platform connecting diverse LLM models from OpenAI, Google, Anthropic, and open-source alternatives</p>
+                            <p className="text-gray-600">Privacy-first platform integrating LLM workflows with data residency controls and zero-trust security architecture</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Integrated prompt engineering tools with version control and real-time testing capabilities</p>
+                            <p className="text-gray-600">Enterprise-grade prompt engineering tools with version control, compliance monitoring, and sensitive data protection</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">One-click deployment pipeline supporting cloud and on-premises infrastructure environments</p>
+                            <p className="text-gray-600">Secure deployment pipeline with end-to-end encryption, SOC2 compliance, and private cloud infrastructure options</p>
                         </motion.div>
                     </div>
                 </motion.div>
@@ -112,176 +112,187 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         {/* Visual Development Environment */}
                         <motion.g variants={componentVariants}>
                             {/* Main Studio Canvas */}
-                            <rect x="120" y="80" width="160" height="120" rx="8" fill="rgba(147, 51, 234, 0.1)" stroke="#9333ea" strokeWidth="2" strokeDasharray="5,5" />
-                            <text x="200" y="95" textAnchor="middle" className="text-xs fill-purple-600 font-bold">AI Studio Canvas</text>
+                            <rect x="120" y="80" width="160" height="120" rx="8" fill="rgba(99, 102, 241, 0.1)" stroke="#6366f1" strokeWidth="2" />
+                            <text x="200" y="95" textAnchor="middle" className="text-xs fill-indigo-600 font-medium">AI Studio</text>
 
-                            {/* Drag & Drop Components */}
-                            <motion.rect x="140" y="110" width="40" height="25" rx="4" fill="#22c55e" variants={studioPulseVariants} />
-                            <text x="160" y="125" textAnchor="middle" className="text-xs fill-white font-medium">LLM</text>
+                            {/* Clean Component Blocks */}
+                            <motion.rect x="140" y="110" width="35" height="20" rx="4" fill="#10b981" variants={studioPulseVariants} />
+                            <text x="157" y="122" textAnchor="middle" className="text-xs fill-white font-medium">LLM</text>
 
-                            <motion.rect x="200" y="110" width="40" height="25" rx="4" fill="#3b82f6" variants={studioPulseVariants} />
-                            <text x="220" y="125" textAnchor="middle" className="text-xs fill-white font-medium">Prompt</text>
+                            <motion.rect x="185" y="110" width="35" height="20" rx="4" fill="#3b82f6" variants={studioPulseVariants} />
+                            <text x="202" y="122" textAnchor="middle" className="text-xs fill-white font-medium">Prompt</text>
 
-                            <motion.rect x="140" y="150" width="40" height="25" rx="4" fill="#f59e0b" variants={studioPulseVariants} />
-                            <text x="160" y="165" textAnchor="middle" className="text-xs fill-white font-medium">Data</text>
+                            <motion.rect x="230" y="110" width="35" height="20" rx="4" fill="#f59e0b" variants={studioPulseVariants} />
+                            <text x="247" y="122" textAnchor="middle" className="text-xs fill-white font-medium">Data</text>
 
-                            <motion.rect x="200" y="150" width="40" height="25" rx="4" fill="#ef4444" variants={studioPulseVariants} />
-                            <text x="220" y="165" textAnchor="middle" className="text-xs fill-white font-medium">Output</text>
+                            <motion.rect x="140" y="150" width="35" height="20" rx="4" fill="#ef4444" variants={studioPulseVariants} />
+                            <text x="157" y="162" textAnchor="middle" className="text-xs fill-white font-medium">Test</text>
+
+                            <motion.rect x="185" y="150" width="35" height="20" rx="4" fill="#8b5cf6" variants={studioPulseVariants} />
+                            <text x="202" y="162" textAnchor="middle" className="text-xs fill-white font-medium">Deploy</text>
+
+                            <motion.rect x="230" y="150" width="35" height="20" rx="4" fill="#06b6d4" variants={studioPulseVariants} />
+                            <text x="247" y="162" textAnchor="middle" className="text-xs fill-white font-medium">Monitor</text>
                         </motion.g>
 
                         {/* LLM Provider Ecosystem */}
                         <motion.g variants={componentVariants}>
-                            {/* OpenAI */}
-                            <circle cx="60" cy="140" r="20" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" />
-                            <text x="60" y="135" textAnchor="middle" className="text-xs fill-emerald-600 font-bold">OpenAI</text>
-                            <text x="60" y="147" textAnchor="middle" className="text-xs fill-emerald-600">GPT-4</text>
+                            {/* Provider Nodes */}
+                            <rect x="40" y="120" width="40" height="40" rx="8" fill="#10b981" />
+                            <text x="60" y="138" textAnchor="middle" className="text-xs fill-white font-medium">OpenAI</text>
+                            <text x="60" y="150" textAnchor="middle" className="text-xs fill-white opacity-80">GPT-4</text>
 
-                            {/* Google */}
-                            <circle cx="60" cy="200" r="20" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" strokeWidth="2" />
-                            <text x="60" y="195" textAnchor="middle" className="text-xs fill-green-600 font-bold">Google</text>
-                            <text x="60" y="207" textAnchor="middle" className="text-xs fill-green-600">Gemini</text>
+                            <rect x="40" y="180" width="40" height="40" rx="8" fill="#22c55e" />
+                            <text x="60" y="198" textAnchor="middle" className="text-xs fill-white font-medium">Google</text>
+                            <text x="60" y="210" textAnchor="middle" className="text-xs fill-white opacity-80">Gemini</text>
 
-                            {/* Anthropic */}
-                            <circle cx="60" cy="260" r="20" fill="rgba(168, 85, 247, 0.2)" stroke="#a855f7" strokeWidth="2" />
-                            <text x="60" y="255" textAnchor="middle" className="text-xs fill-purple-600 font-bold">Anthropic</text>
-                            <text x="60" y="267" textAnchor="middle" className="text-xs fill-purple-600">Claude</text>
+                            <rect x="40" y="240" width="40" height="40" rx="8" fill="#a855f7" />
+                            <text x="60" y="258" textAnchor="middle" className="text-xs fill-white font-medium">Claude</text>
+                            <text x="60" y="270" textAnchor="middle" className="text-xs fill-white opacity-80">3.5</text>
                         </motion.g>
 
-                        {/* Collaboration Team */}
+                        {/* Team Collaboration */}
                         <motion.g variants={collaboratorVariants}>
-                            {/* Team Members */}
-                            <circle cx="340" cy="120" r="12" fill="#3b82f6" />
-                            <text x="340" y="125" textAnchor="middle" className="text-xs fill-white font-bold">👨‍💻</text>
-                            <text x="340" y="140" textAnchor="middle" className="text-xs fill-blue-600">Developer</text>
+                            {/* Team Member Nodes */}
+                            <rect x="320" y="100" width="40" height="40" rx="8" fill="#3b82f6" />
+                            <text x="340" y="118" textAnchor="middle" className="text-xs fill-white font-medium">Dev</text>
+                            <text x="340" y="130" textAnchor="middle" className="text-xs fill-white opacity-80">Admin</text>
 
-                            <circle cx="340" cy="170" r="12" fill="#f59e0b" />
-                            <text x="340" y="175" textAnchor="middle" className="text-xs fill-white font-bold">🎨</text>
-                            <text x="340" y="190" textAnchor="middle" className="text-xs fill-amber-600">Designer</text>
+                            <rect x="320" y="150" width="40" height="40" rx="8" fill="#f59e0b" />
+                            <text x="340" y="168" textAnchor="middle" className="text-xs fill-white font-medium">Design</text>
+                            <text x="340" y="180" textAnchor="middle" className="text-xs fill-white opacity-80">Editor</text>
 
-                            <circle cx="340" cy="220" r="12" fill="#ef4444" />
-                            <text x="340" y="225" textAnchor="middle" className="text-xs fill-white font-bold">📊</text>
-                            <text x="340" y="240" textAnchor="middle" className="text-xs fill-red-600">Analyst</text>
+                            <rect x="320" y="200" width="40" height="40" rx="8" fill="#ef4444" />
+                            <text x="340" y="218" textAnchor="middle" className="text-xs fill-white font-medium">Data</text>
+                            <text x="340" y="230" textAnchor="middle" className="text-xs fill-white opacity-80">Viewer</text>
                         </motion.g>
 
-                        {/* Model Connections to Studio */}
+                        {/* Clean Connection Lines */}
                         <motion.path
-                            d="M80 140 Q100 130 120 140"
+                            d="M80 140 L120 140"
                             stroke="#10b981"
                             strokeWidth="2"
                             fill="none"
                             variants={connectionVariants}
                         />
                         <motion.path
-                            d="M80 200 Q100 170 120 160"
+                            d="M80 200 L120 160"
                             stroke="#22c55e"
                             strokeWidth="2"
                             fill="none"
                             variants={connectionVariants}
                         />
                         <motion.path
-                            d="M80 260 Q100 210 120 180"
+                            d="M80 260 L120 180"
                             stroke="#a855f7"
                             strokeWidth="2"
                             fill="none"
                             variants={connectionVariants}
                         />
 
-                        {/* Studio to Collaboration Connections */}
                         <motion.path
-                            d="M280 130 Q310 125 328 120"
+                            d="M280 120 L320 120"
                             stroke="#3b82f6"
                             strokeWidth="2"
                             fill="none"
                             variants={connectionVariants}
                         />
                         <motion.path
-                            d="M280 150 Q310 160 328 170"
+                            d="M280 140 L320 170"
                             stroke="#f59e0b"
                             strokeWidth="2"
                             fill="none"
                             variants={connectionVariants}
                         />
                         <motion.path
-                            d="M280 170 Q310 195 328 220"
+                            d="M280 160 L320 220"
                             stroke="#ef4444"
                             strokeWidth="2"
                             fill="none"
                             variants={connectionVariants}
                         />
 
-                        {/* Data Flow Animation */}
-                        {[...Array(6)].map((_, i) => (
+                        {/* Simple Data Flow */}
+                        {[...Array(3)].map((_, i) => (
                             <motion.circle
                                 key={i}
-                                cx={90}
-                                cy={160 + i * 15}
-                                r="2"
-                                fill={`hsl(${120 + i * 40}, 70%, 50%)`}
+                                cx={100}
+                                cy={160 + i * 20}
+                                r="3"
+                                fill="#6366f1"
                                 variants={{
                                     hidden: { opacity: 0, x: 0 },
                                     visible: {
                                         opacity: [0, 1, 0],
-                                        x: [0, 160, 0],
+                                        x: [0, 120, 0],
                                         transition: {
-                                            duration: 4,
+                                            duration: 3,
                                             repeat: Infinity,
-                                            delay: i * 0.3
+                                            delay: i * 0.5
                                         }
                                     }
                                 }}
                             />
                         ))}
 
-                        {/* Deployment Animation */}
+                        {/* Security & Compliance */}
                         <motion.g variants={componentVariants}>
-                            <rect x="150" y="300" width="100" height="30" rx="6" fill="rgba(16, 185, 129, 0.2)" stroke="#10b981" strokeWidth="2" strokeDasharray="3,3" />
-                            <text x="200" y="320" textAnchor="middle" className="text-xs fill-emerald-600 font-bold">One-Click Deploy</text>
+                            <rect x="50" y="320" width="60" height="30" rx="6" fill="#10b981" />
+                            <text x="80" y="338" textAnchor="middle" className="text-xs fill-white font-medium">Security</text>
 
-                            {/* Deployment targets */}
-                            <circle cx="180" cy="350" r="8" fill="#0ea5e9" />
-                            <text x="180" y="355" textAnchor="middle" className="text-xs fill-white">☁️</text>
-                            <text x="180" y="370" textAnchor="middle" className="text-xs fill-sky-600">Cloud</text>
+                            <rect x="130" y="320" width="60" height="30" rx="6" fill="#6366f1" />
+                            <text x="160" y="338" textAnchor="middle" className="text-xs fill-white font-medium">Privacy</text>
 
-                            <circle cx="220" cy="350" r="8" fill="#7c3aed" />
-                            <text x="220" y="355" textAnchor="middle" className="text-xs fill-white">🏢</text>
-                            <text x="220" y="370" textAnchor="middle" className="text-xs fill-violet-600">On-Prem</text>
+                            <rect x="210" y="320" width="60" height="30" rx="6" fill="#8b5cf6" />
+                            <text x="240" y="338" textAnchor="middle" className="text-xs fill-white font-medium">Compliance</text>
                         </motion.g>
 
-                        {/* Deployment Connection */}
+                        {/* Deployment */}
+                        <motion.g variants={componentVariants}>
+                            <rect x="290" y="320" width="70" height="30" rx="6" fill="#06b6d4" />
+                            <text x="325" y="338" textAnchor="middle" className="text-xs fill-white font-medium">Deploy</text>
+
+                            <circle cx="310" cy="370" r="8" fill="#0ea5e9" />
+                            <text x="310" y="374" textAnchor="middle" className="text-xs fill-white font-medium">Cloud</text>
+
+                            <circle cx="340" cy="370" r="8" fill="#7c3aed" />
+                            <text x="340" y="374" textAnchor="middle" className="text-xs fill-white font-medium">Local</text>
+                        </motion.g>
+
+                        {/* Connection from Studio to Deployment */}
                         <motion.path
-                            d="M200 200 Q200 250 200 300"
-                            stroke="#10b981"
+                            d="M200 200 Q250 260 325 320"
+                            stroke="#06b6d4"
                             strokeWidth="2"
                             fill="none"
-                            strokeDasharray="5,5"
                             variants={connectionVariants}
                         />
                     </svg>
 
-                    {/* Updated Floating Labels */}
+                    {/* Clean Floating Labels */}
                     <motion.div
-                        className="absolute top-4 left-4 text-xs font-medium text-gray-600 bg-white/90 backdrop-blur-sm rounded px-3 py-1.5 shadow-sm"
+                        className="absolute top-4 left-4 text-xs font-medium text-gray-600 bg-white/95 rounded-md px-2 py-1 shadow-sm"
                         variants={itemVariants}
                     >
-                        🎨 Visual Development
+                        Visual Studio
                     </motion.div>
                     <motion.div
-                        className="absolute bottom-4 right-4 text-xs font-medium text-gray-600 bg-white/90 backdrop-blur-sm rounded px-3 py-1.5 shadow-sm"
+                        className="absolute bottom-4 right-4 text-xs font-medium text-gray-600 bg-white/95 rounded-md px-2 py-1 shadow-sm"
                         variants={itemVariants}
                     >
-                        🚀 One-Click Deploy
+                        Secure Deploy
                     </motion.div>
                     <motion.div
-                        className="absolute top-1/2 left-2 text-xs font-medium text-gray-600 bg-white/90 backdrop-blur-sm rounded px-2 py-1"
+                        className="absolute top-1/2 left-2 text-xs font-medium text-gray-600 bg-white/95 rounded-md px-2 py-1 shadow-sm"
                         variants={itemVariants}
                     >
-                        🤖 LLMs
+                        LLM Models
                     </motion.div>
                     <motion.div
-                        className="absolute top-1/2 right-2 text-xs font-medium text-gray-600 bg-white/90 backdrop-blur-sm rounded px-2 py-1"
+                        className="absolute top-1/2 right-2 text-xs font-medium text-gray-600 bg-white/95 rounded-md px-2 py-1 shadow-sm"
                         variants={itemVariants}
                     >
-                        👥 Team
+                        Team Access
                     </motion.div>
                 </motion.div>
             </div>
