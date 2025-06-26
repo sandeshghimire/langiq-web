@@ -75,15 +75,15 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef }
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Team collaboration on AI projects often lacks centralized coordination and version management</p>
+                            <p className="text-gray-600">Enterprise data security and privacy compliance requirements add complexity to LLM application deployment</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Deployment of AI applications typically involves intricate technical configurations and infrastructure setup</p>
+                            <p className="text-gray-600">Team collaboration on AI projects often lacks centralized coordination, version management, and secure workflows</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Organizations need faster time-to-market for AI solutions without compromising quality or functionality</p>
+                            <p className="text-gray-600">Organizations need secure, privacy-compliant AI solutions with faster time-to-market without compromising quality</p>
                         </motion.div>
                     </div>
                 </motion.div>
@@ -96,26 +96,24 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef }
                     <svg className="w-full h-full" viewBox="0 0 400 400">
                         {/* Traditional Development - Complex Code */}
                         <motion.g variants={itemVariants}>
-                            <rect x="20" y="30" width="100" height="80" rx="8" fill="rgba(239, 68, 68, 0.1)" stroke="#ef4444" strokeWidth="2" strokeDasharray="5,5" />
-                            <text x="70" y="50" textAnchor="middle" className="text-xs fill-red-600 font-medium">Complex</text>
-                            <text x="70" y="65" textAnchor="middle" className="text-xs fill-red-600 font-medium">Coding</text>
-                            <text x="70" y="80" textAnchor="middle" className="text-xs fill-red-600 font-medium">Required</text>
+                            <rect x="20" y="30" width="100" height="80" rx="8" fill="#fef2f2" stroke="#ef4444" strokeWidth="2" />
+                            <text x="70" y="50" textAnchor="middle" className="text-xs fill-red-600 font-medium">Manual</text>
+                            <text x="70" y="65" textAnchor="middle" className="text-xs fill-red-600 font-medium">Development</text>
 
-                            {/* Code complexity lines */}
-                            {[...Array(8)].map((_, i) => (
-                                <motion.line
+                            {/* Code lines */}
+                            {[...Array(6)].map((_, i) => (
+                                <motion.rect
                                     key={i}
-                                    x1="30"
-                                    y1={90 + i * 3}
-                                    x2={90 + (i % 3) * 7}
-                                    y2={90 + i * 3}
-                                    stroke="#ef4444"
-                                    strokeWidth="1"
+                                    x="30"
+                                    y={75 + i * 4}
+                                    width={50 + (i % 3) * 10}
+                                    height="2"
+                                    fill="#ef4444"
                                     opacity="0.6"
                                     variants={{
-                                        hidden: { pathLength: 0 },
+                                        hidden: { scaleX: 0 },
                                         visible: {
-                                            pathLength: 1,
+                                            scaleX: 1,
                                             transition: { delay: i * 0.1, duration: 0.5 }
                                         }
                                     }}
@@ -123,69 +121,68 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef }
                             ))}
                         </motion.g>
 
-                        {/* Barriers */}
+                        {/* Security Issues */}
                         <motion.g variants={itemVariants}>
-                            <rect x="20" y="140" width="100" height="60" rx="8" fill="rgba(245, 101, 101, 0.1)" stroke="#f56565" strokeWidth="2" />
-                            <text x="70" y="160" textAnchor="middle" className="text-xs fill-red-500 font-medium">Integration</text>
-                            <text x="70" y="175" textAnchor="middle" className="text-xs fill-red-500 font-medium">Barriers</text>
+                            <rect x="20" y="130" width="100" height="60" rx="8" fill="#fef3c7" stroke="#f59e0b" strokeWidth="2" />
+                            <text x="70" y="150" textAnchor="middle" className="text-xs fill-orange-600 font-medium">Security</text>
+                            <text x="70" y="165" textAnchor="middle" className="text-xs fill-orange-600 font-medium">Concerns</text>
 
-                            {/* Barrier symbols */}
-                            {[...Array(3)].map((_, i) => (
-                                <motion.rect
+                            {/* Security shield icon */}
+                            <motion.path
+                                d="M65 175 L75 175 L75 185 L70 188 L65 185 Z"
+                                fill="none"
+                                stroke="#f59e0b"
+                                strokeWidth="2"
+                                variants={{
+                                    hidden: { pathLength: 0 },
+                                    visible: {
+                                        pathLength: 1,
+                                        transition: { delay: 0.5, duration: 0.8 }
+                                    }
+                                }}
+                            />
+                            <motion.line
+                                x1="67"
+                                y1="180"
+                                x2="73"
+                                y2="180"
+                                stroke="#f59e0b"
+                                strokeWidth="2"
+                                strokeDasharray="2,2"
+                                variants={{
+                                    hidden: { pathLength: 0 },
+                                    visible: {
+                                        pathLength: 1,
+                                        transition: { delay: 1, duration: 0.5 }
+                                    }
+                                }}
+                            />
+                        </motion.g>
+
+                        {/* Complex Deployment */}
+                        <motion.g variants={itemVariants}>
+                            <rect x="20" y="210" width="100" height="60" rx="8" fill="#fdf2f8" stroke="#ec4899" strokeWidth="2" />
+                            <text x="70" y="230" textAnchor="middle" className="text-xs fill-pink-600 font-medium">Complex</text>
+                            <text x="70" y="245" textAnchor="middle" className="text-xs fill-pink-600 font-medium">Deployment</text>
+
+                            {/* Complexity indicators */}
+                            {[...Array(4)].map((_, i) => (
+                                <motion.circle
                                     key={i}
-                                    x={30 + i * 25}
-                                    y="180"
-                                    width="3"
-                                    height="15"
-                                    fill="#f56565"
+                                    cx={45 + i * 10}
+                                    cy="255"
+                                    r="3"
+                                    fill="#ec4899"
+                                    opacity="0.7"
                                     variants={{
-                                        hidden: { scaleY: 0 },
+                                        hidden: { scale: 0 },
                                         visible: {
-                                            scaleY: 1,
-                                            transition: { delay: i * 0.2, duration: 0.3 }
+                                            scale: [0, 1.2, 1],
+                                            transition: { delay: i * 0.2, duration: 0.5 }
                                         }
                                     }}
                                 />
                             ))}
-                        </motion.g>
-
-                        {/* Manual Process */}
-                        <motion.g variants={itemVariants}>
-                            <rect x="20" y="230" width="100" height="60" rx="8" fill="rgba(251, 146, 60, 0.1)" stroke="#fb923c" strokeWidth="2" />
-                            <text x="70" y="250" textAnchor="middle" className="text-xs fill-orange-600 font-medium">Manual</text>
-                            <text x="70" y="265" textAnchor="middle" className="text-xs fill-orange-600 font-medium">Deployment</text>
-
-                            {/* Manual process gears */}
-                            <motion.circle
-                                cx="45"
-                                cy="275"
-                                r="8"
-                                fill="none"
-                                stroke="#fb923c"
-                                strokeWidth="2"
-                                variants={{
-                                    hidden: { rotate: 0 },
-                                    visible: {
-                                        rotate: 360,
-                                        transition: { duration: 4, repeat: Infinity}
-                                    }
-                                }}
-                            />
-                            <motion.circle
-                                cx="70"
-                                cy="275"
-                                r="6"
-                                fill="none"
-                                stroke="#fb923c"
-                                strokeWidth="2"
-                                variants={{
-                                    hidden: { rotate: 0 },
-                                    visible: {
-                                        rotate: -360,
-                                        transition: { duration: 3, repeat: Infinity}
-                                    }
-                                }}
-                            />
                         </motion.g>
 
                         {/* Arrow pointing to solution */}
@@ -200,7 +197,7 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef }
                                 visible: {
                                     pathLength: 1,
                                     opacity: 1,
-                                    transition: { delay: 1, duration: 1 }
+                                    transition: { delay: 1.5, duration: 1 }
                                 }
                             }}
                         />
@@ -212,52 +209,103 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef }
                             </marker>
                         </defs>
 
-                        {/* AI Studio Solution */}
+                        {/* AI Studio GUI Solution */}
                         <motion.g variants={itemVariants}>
-                            <rect x="270" y="80" width="100" height="240" rx="12" fill="rgba(16, 185, 129, 0.1)" stroke="#10b981" strokeWidth="2" />
-                            <text x="320" y="100" textAnchor="middle" className="text-sm fill-green-600 font-bold">AI Studio</text>
-                            <text x="320" y="115" textAnchor="middle" className="text-xs fill-green-600">Solution</text>
+                            <rect x="270" y="60" width="110" height="280" rx="12" fill="#f0fdf4" stroke="#10b981" strokeWidth="2" />
+                            <text x="325" y="80" textAnchor="middle" className="text-sm fill-green-600 font-bold">AI Studio GUI</text>
 
-                            {/* Visual code blocks - simplified */}
-                            <motion.rect x="280" y="130" width="80" height="30" rx="4" fill="rgba(16, 185, 129, 0.2)" variants={pulseVariants} />
-                            <text x="320" y="148" textAnchor="middle" className="text-xs fill-green-700">Drag & Drop</text>
+                            {/* GUI Window Header */}
+                            <rect x="280" y="90" width="90" height="20" rx="4" fill="#dcfce7" stroke="#16a34a" strokeWidth="1" />
+                            <circle cx="290" cy="100" r="2" fill="#16a34a" />
+                            <circle cx="300" cy="100" r="2" fill="#16a34a" />
+                            <circle cx="310" cy="100" r="2" fill="#16a34a" />
 
-                            {/* Integration made easy */}
-                            <motion.rect x="280" y="170" width="80" height="30" rx="4" fill="rgba(16, 185, 129, 0.2)" variants={pulseVariants} />
-                            <text x="320" y="188" textAnchor="middle" className="text-xs fill-green-700">Auto Integration</text>
+                            {/* Design Feature */}
+                            <motion.rect
+                                x="280" y="120" width="90" height="25" rx="4"
+                                fill="rgba(16, 185, 129, 0.1)"
+                                stroke="#10b981"
+                                strokeWidth="1"
+                                variants={pulseVariants}
+                            />
+                            <text x="325" y="135" textAnchor="middle" className="text-xs fill-green-700">Visual Design</text>
 
-                            {/* One-click deployment */}
-                            <motion.rect x="280" y="210" width="80" height="30" rx="4" fill="rgba(16, 185, 129, 0.2)" variants={pulseVariants} />
-                            <text x="320" y="228" textAnchor="middle" className="text-xs fill-green-700">1-Click Deploy</text>
+                            {/* Develop Feature */}
+                            <motion.rect
+                                x="280" y="155" width="90" height="25" rx="4"
+                                fill="rgba(16, 185, 129, 0.1)"
+                                stroke="#10b981"
+                                strokeWidth="1"
+                                variants={pulseVariants}
+                            />
+                            <text x="325" y="170" textAnchor="middle" className="text-xs fill-green-700">Drag & Drop Dev</text>
 
-                            {/* Team collaboration */}
-                            <motion.rect x="280" y="250" width="80" height="30" rx="4" fill="rgba(16, 185, 129, 0.2)" variants={pulseVariants} />
-                            <text x="320" y="268" textAnchor="middle" className="text-xs fill-green-700">Team Collab</text>
+                            {/* Test Feature */}
+                            <motion.rect
+                                x="280" y="190" width="90" height="25" rx="4"
+                                fill="rgba(16, 185, 129, 0.1)"
+                                stroke="#10b981"
+                                strokeWidth="1"
+                                variants={pulseVariants}
+                            />
+                            <text x="325" y="205" textAnchor="middle" className="text-xs fill-green-700">Auto Testing</text>
 
-                            {/* Success indicator */}
+                            {/* Security Feature */}
+                            <motion.rect
+                                x="280" y="225" width="90" height="25" rx="4"
+                                fill="rgba(16, 185, 129, 0.1)"
+                                stroke="#10b981"
+                                strokeWidth="1"
+                                variants={pulseVariants}
+                            />
+                            <text x="325" y="240" textAnchor="middle" className="text-xs fill-green-700">Secure Privacy</text>
+
+                            {/* Verify Feature */}
+                            <motion.rect
+                                x="280" y="260" width="90" height="25" rx="4"
+                                fill="rgba(16, 185, 129, 0.1)"
+                                stroke="#10b981"
+                                strokeWidth="1"
+                                variants={pulseVariants}
+                            />
+                            <text x="325" y="275" textAnchor="middle" className="text-xs fill-green-700">LLM Verification</text>
+
+                            {/* Deploy Feature */}
+                            <motion.rect
+                                x="280" y="295" width="90" height="25" rx="4"
+                                fill="rgba(16, 185, 129, 0.1)"
+                                stroke="#10b981"
+                                strokeWidth="1"
+                                variants={pulseVariants}
+                            />
+                            <text x="325" y="310" textAnchor="middle" className="text-xs fill-green-700">1-Click Deploy</text>
+
+                            {/* Success checkmark */}
                             <motion.circle
-                                cx="320"
-                                cy="300"
-                                r="15"
+                                cx="325"
+                                cy="330"
+                                r="8"
                                 fill="#10b981"
                                 variants={{
                                     hidden: { scale: 0 },
                                     visible: {
-                                        scale: [0, 1.2, 1],
-                                        transition: { delay: 2, duration: 0.6 }
+                                        scale: [0, 1.1, 1],
+                                        transition: { delay: 2.5, duration: 0.6 }
                                     }
                                 }}
                             />
                             <motion.path
-                                d="M312 300 L318 306 L328 294"
+                                d="M321 330 L324 333 L329 327"
                                 stroke="white"
                                 strokeWidth="2"
                                 fill="none"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
                                 variants={{
                                     hidden: { pathLength: 0 },
                                     visible: {
                                         pathLength: 1,
-                                        transition: { delay: 2.5, duration: 0.5 }
+                                        transition: { delay: 3, duration: 0.5 }
                                     }
                                 }}
                             />
@@ -265,10 +313,10 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef }
                     </svg>
 
                     <motion.div
-                        className="absolute bottom-4 right-4 text-xs font-medium text-gray-600 bg-white/80 backdrop-blur-sm rounded px-2 py-1"
+                        className="absolute bottom-4 right-4 text-xs font-medium text-green-700 bg-green-50/90 backdrop-blur-sm rounded px-3 py-2 border border-green-200"
                         variants={itemVariants}
                     >
-                        Simplified Development
+                        GUI-Based AI Development
                     </motion.div>
                 </motion.div>
             </div>
