@@ -27,8 +27,7 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-xl md:text-lg max-w-7xl text-center"
                 variants={itemVariants}
             >
-                AI in a Box represents LangIQ's purpose-built, on-premises server solutions optimized for demanding AI and machine learning workloads. These pre-configured systems deliver enterprise-grade performance while ensuring complete data sovereignty, featuring cutting-edge NVIDIA GPUs, specialized processors, and LangIQ's optimized software stack for immediate AI deployment readiness.
-
+                We provide purpose-built hardware solutions for every level of model inference, training, and development. Our entry-level, mid-tier, and advanced hardware offerings are designed to develop local open-source and open-weight LLMs using dedicated local infrastructure. Our main goal is ensuring complete data privacy, security, and reliability for custom enterprise-grade LLM applications through integrated LLM workflows that maintain data sovereignty and comprehensive data safety protocols.
             </motion.p>
 
             {/* Bouncing down arrow */}
@@ -55,3 +54,4 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
         </motion.div>
     );
 }
+

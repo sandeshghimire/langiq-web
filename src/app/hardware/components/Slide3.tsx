@@ -63,27 +63,27 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                         className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
                         variants={itemVariants}
                     >
-                        Why AI in a Box ?
+                        Why AI in Box ?
                     </motion.h1>
                     <div className="space-y-0  ">
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Cloud-based AI processing raises data privacy and security concerns for sensitive organizational information</p>
+                            <p className="text-gray-600">Entry-level hardware for model inference and development ensures data privacy with local processing capabilities</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">High-volume inference and training operations incur substantial ongoing costs with cloud GPU instances</p>
+                            <p className="text-gray-600">Mid-tier solutions for training and custom LLM workflows provide enhanced security for enterprise applications</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Real-time AI applications demand consistent low-latency responses unavailable through shared cloud resources</p>
+                            <p className="text-gray-600">Advanced hardware enables local open-source LLM development with complete data safety and reliability control</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Organizations require complete control over their AI infrastructure and computational environment customization</p>
+                            <p className="text-gray-600">Enterprise-grade systems integrate LLM workflows while maintaining strict data privacy and security standards</p>
                         </motion.div>
 
                         <motion.div className="bg-white/10 backdrop-blur-sm rounded-lg pt-2 border border-gray-200/20" variants={itemVariants}>
-                            <p className="text-gray-600">Regulatory compliance in industries like healthcare and finance necessitates on-premises data processing</p>
+                            <p className="text-gray-600">Local deployment eliminates cloud dependency ensuring maximum data protection for sensitive business operations</p>
                         </motion.div>
                     </div>
                 </motion.div>
