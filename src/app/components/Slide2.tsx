@@ -29,11 +29,11 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                 variants={itemVariants}
             >
                 <div className="text-left space-y-4 inline-block mx-auto">
-                    <p>We provide of an end-to-end ecosystem for building and deploying AI solutions, centered around LLMs.</p>
-                    <p>We created AI Studio (low-code development), AI Box (on-premises hardware), and specialized libraries (Prompt Engineering, RAG, Tools & MCP, LLM Augmentation, Fine-Tuning, Agents Orchestration).</p>
-                    <p>We focus on democratizing AI development while offering powerful tools for specialization and enterprise-grade deployment.</p>
-                    <p>Our platform is designed to accelerate AI innovation, ensure data sovereignty, and enhance the capabilities of LLMs for specific business needs.</p>
-                    <p>We partner with organizations seeking to integrate advanced AI into their operations with flexibility and control.</p>
+                    <p>We provide an end-to-end ecosystem for building and deploying AI solutions, centered around LLMs, with a strong emphasis on data safety, security, and privacy.</p>
+                    <p>We created AI Studio (low-code development), AI in a Box (on-premises hardware), and specialized libraries (Prompt Engineering, RAG, Tools & MCP, LLM Augmentation, Fine-Tuning, LLM Agents & Agentic Solutions ).</p>
+                    <p>We focus on democratizing AI development while offering powerful tools for specialization and enterprise-grade deployment, ensuring your data remains protected at every stage.</p>
+                    <p>Our platform is designed to accelerate AI innovation, ensure data sovereignty, and enhance the capabilities of LLMs for specific business needs, all while maintaining strict privacy and security standards.</p>
+                    <p>We partner with organizations seeking to integrate advanced AI into their operations with flexibility, control, and confidence in the safety of their information.</p>
                 </div>
             </motion.div>
         </motion.div>

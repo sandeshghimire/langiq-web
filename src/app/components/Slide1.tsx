@@ -26,11 +26,10 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 Lang - IQ
             </motion.h1>
             <motion.p
-                className="text-xl md:text-lg max-w-4xl text-center relative z-10"
+                className="text-xl md:text-lg max-w-4xl text-center relative z-10  font-black"
                 variants={itemVariants}
             >
-                LangIQ is a comprehensive AI solutions provider, offering an integrated suite of software platforms, libraries, and hardware designed to empower organizations to rapidly develop, deploy, and manage sophisticated Large Language Model (LLM) applications. LangIQ's ecosystem addresses the entire AI lifecycle, enabling businesses to build tailored, enterprise-grade AI solutions with enhanced control, efficiency, and performance.
-
+                LangIQ provides end-to-end AI solutions for building custom LLMs and deploying enterprise applications through integrated software platforms, libraries, and hardware.
             </motion.p>
 
             {/* Bouncing down arrow */}

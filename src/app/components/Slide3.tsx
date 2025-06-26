@@ -29,11 +29,11 @@ export default function Slide3({ slideVariants, itemVariants, isActive, setRef }
                 variants={itemVariants}
             >
                 <ul className="text-left space-y-2 inline-block mx-auto">
-                    <li>Organizations struggle with the complexity, cost, and specialized expertise required for traditional AI and LLM application development</li>
-                    <li>Generic AI models often lack the specific knowledge, context, and capabilities needed for nuanced business tasks and proprietary data integration</li>
-                    <li>There's a growing need for faster development cycles, better collaboration, and more control over AI infrastructure and data security</li>
-                    <li>Integrating diverse LLMs, managing prompts, ensuring accuracy, and enabling AI to perform real-world actions are significant challenges</li>
-                    <li>Businesses require scalable, reliable, and customizable AI solutions that can evolve with their needs and provide a competitive edge</li>
+                    <li>Organizations struggle with developing custom enterprise-grade LLM applications that require complex workflow integration and specialized expertise</li>
+                    <li>Generic AI models often lack the specific knowledge, context, and capabilities needed for enterprise business tasks and proprietary data integration</li>
+                    <li>There's a growing need for faster LLM workflow development, better collaboration, and more control over AI infrastructure, data safety, security, and privacy</li>
+                    <li>Integrating diverse LLMs into cohesive workflows, managing prompts, ensuring accuracy, and enabling AI to perform enterprise-grade actions are significant challenges</li>
+                    <li>Businesses require scalable, reliable, and customizable LLM applications that can evolve with their enterprise needs and provide a competitive edge</li>
                 </ul>
             </motion.div>
         </motion.div>

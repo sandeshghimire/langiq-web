@@ -153,7 +153,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                                 />
                             ))}
 
-                            <text x="310" y="200" textAnchor="middle" className="text-xs fill-green-600 font-medium">AI Box</text>
+                            <text x="310" y="200" textAnchor="middle" className="text-xs fill-green-600 font-medium">AI in a Box</text>
                             <text x="310" y="215" textAnchor="middle" className="text-xs fill-green-600 font-medium">Hardware</text>
                         </motion.g>
 

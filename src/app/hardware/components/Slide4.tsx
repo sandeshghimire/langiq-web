@@ -90,20 +90,20 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                     </div>
                 </motion.div>
 
-                {/* Right Column - AI Box Solution Animation */}
+                {/* Right Column - AI in a Box Solution Animation */}
                 <motion.div
                     className="hidden md:block relative h-96"
                     variants={itemVariants}
                 >
                     <svg className="w-full h-full" viewBox="0 0 400 400">
-                        {/* AI Box Container - Secure Boundary */}
+                        {/* AI in a Box Container - Secure Boundary */}
                         <motion.g variants={pulseVariants}>
                             <rect x="80" y="60" width="240" height="200" rx="15"
                                 fill="rgba(34, 197, 94, 0.1)"
                                 stroke="#22c55e"
                                 strokeWidth="3"
                                 strokeDasharray="8,4" />
-                            <text x="200" y="50" textAnchor="middle" className="text-sm fill-green-600 font-bold">AI Box - Secure Environment</text>
+                            <text x="200" y="50" textAnchor="middle" className="text-sm fill-green-600 font-bold">AI in a Box - Secure Environment</text>
                         </motion.g>
 
                         {/* Data Input Sources */}

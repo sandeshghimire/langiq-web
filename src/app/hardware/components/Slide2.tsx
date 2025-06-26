@@ -176,7 +176,7 @@ export default function Slide2({ slideVariants, itemVariants, isActive, setRef }
                             ))}
 
                             {/* Server Label */}
-                            <text x="200" y="270" textAnchor="middle" className="text-xs fill-gray-300 font-bold">AI BOX</text>
+                            <text x="200" y="270" textAnchor="middle" className="text-xs fill-gray-300 font-bold">AI in a Box</text>
                             <text x="200" y="285" textAnchor="middle" className="text-xs fill-gray-400 font-medium">HARDWARE</text>
                         </motion.g>
 

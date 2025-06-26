@@ -139,7 +139,7 @@ export default function Slide5({ slideVariants, itemVariants, isActive, setRef }
                         <motion.g variants={pulseVariants}>
                             <circle cx="200" cy="150" r="60" fill="rgba(147, 51, 234, 0.2)" stroke="#9333ea" strokeWidth="3" />
                             <circle cx="200" cy="150" r="45" fill="rgba(147, 51, 234, 0.1)" stroke="#9333ea" strokeWidth="1" strokeDasharray="5,5" />
-                            <text x="200" y="140" textAnchor="middle" className="text-sm fill-purple-600 font-bold">AI Box</text>
+                            <text x="200" y="140" textAnchor="middle" className="text-sm fill-purple-600 font-bold">AI in a Box</text>
                             <text x="200" y="155" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Hardware</text>
                             <text x="200" y="170" textAnchor="middle" className="text-xs fill-purple-600 font-medium">Full Control</text>
                         </motion.g>
