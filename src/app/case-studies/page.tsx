@@ -3,14 +3,12 @@
 import { useState, useRef, useEffect } from "react";
 import Slide1 from "./components/Slide1";
 import Slide2 from "./components/Slide2";
-import Slide3 from "./components/Slide3";
-import Slide4 from "./components/Slide4";
 import NavigationControls from "./components/NavigationControls";
 import WavyBackground from "../components/WavyBackground";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(1);
-  const slideRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null]);
+  const slideRefs = useRef<(HTMLDivElement | null)[]>([null, null]);
 
   const scrollToSlide = (slideNumber: number) => {
     setCurrentSlide(slideNumber);
@@ -81,27 +79,12 @@ export default function Home() {
         setRef={el => slideRefs.current[1] = el}
       />
 
-      <Slide3
-        slideVariants={slideVariants}
-        itemVariants={itemVariants}
-        isActive={currentSlide === 3}
-        scrollToSlide={scrollToSlide}
-        setRef={el => slideRefs.current[2] = el}
-      />
-
-      <Slide4
-        slideVariants={slideVariants}
-        itemVariants={itemVariants}
-        isActive={currentSlide === 4}
-        scrollToSlide={scrollToSlide}
-        setRef={el => slideRefs.current[3] = el}
-      />
-
       <NavigationControls
         currentSlide={currentSlide}
         scrollToSlide={scrollToSlide}
-        totalSlides={4}
+        totalSlides={2}
       />
     </div>
   );
 }
+
