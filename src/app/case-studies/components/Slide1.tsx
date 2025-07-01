@@ -45,13 +45,12 @@ export default function Slide1({ slideVariants, itemVariants, isActive, scrollTo
                 className="text-4xl md:text-5xl font-bold mb-6 text-center text-gray-900"
                 variants={itemVariants}
             >
-                Case Studies - Manufacturing
+                Case Studies
             </motion.h1>
             <motion.p
                 className="text-xl md:text-lg max-w-7xl text-center mb-12 text-gray-700"
                 variants={itemVariants}
             >
-                Companies that produce physical goods with secure supply chains and privacy-compliant operations, such as automotive manufacturers like Ford or Toyota with encrypted IoT systems, electronics companies like Samsung with secure production data, or food processing companies ensuring reliable traceability from raw materials to finished products.
             </motion.p>
 
             <motion.div
