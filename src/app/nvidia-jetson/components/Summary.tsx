@@ -3,12 +3,14 @@ export default function Summary() {
         <div className="p-8 border-t border-gray-200">
             <h1 className="text-xl font-bold text-black mb-2 uppercase">AMD Xilinx Zynq</h1>
             <p className="text-gray-700 leading-relaxed font-normal mb-6">
-                At Soccentric, we deliver comprehensive consulting services for embedded systems, providing complete turnkey solutions that seamlessly integrate custom hardware and embedded software. Our expertise centers on developing and designing cutting-edge embedded systems based on AMD Xilinx Zynq platforms.
+
+                AMD Zynq is a System-on-Chip platform combining ARM processors with programmable FPGA fabric on one chip. The Processing System (PS) runs standard software on ARM Cortex cores, while Programmable Logic (PL) handles hardware acceleration and custom interfaces. This hybrid architecture enables hardware-software co-design for applications requiring both processing power and real-time custom logic, including industrial automation, automotive, and communications systems.
             </p>
 
-            <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Why Choose AMD Xilinx Zynq</h2>
+            <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Why Choose Soccentric's AMD Xilinx Zynq platform </h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
-                With deep expertise in AMD Xilinx Zynq architectures and a comprehensive understanding of embedded system development, we transform complex technical challenges into reliable, production-ready solutions. Our full-stack approach ensures seamless integration from silicon to application, delivering products that meet the most demanding performance, reliability, and safety requirements across industries.
+
+                Soccentric delivers 15+ years of proven AMD Xilinx Zynq expertise across the complete development stack. From custom SoC/SOM hardware design to Yocto/PetaLinux OS development, device drivers, and middleware integration (ROS1/2, DDS). Our comprehensive capabilities include cross-industry application development, OTA updates, and robust fault/alarm systems. Choose Soccentric for production-ready, enterprise-grade Zynq solutions with full hardware-software co-design expertise.
             </p>
         </div>
     );

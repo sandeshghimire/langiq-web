@@ -15,7 +15,6 @@ export default function Home() {
             <Drivers />
             <Middleware />
             <ApplicationDevelopment />
-            <Projects />
         </div>
     );
 }
