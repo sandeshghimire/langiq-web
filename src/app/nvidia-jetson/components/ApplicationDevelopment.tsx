@@ -3,16 +3,16 @@ export default function ApplicationDevelopment() {
         <div className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Application Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
-                Soccentric specializes in custom application development using AMD Xilinx Zynq platforms, delivering tailored solutions across critical industries including robotics, automotive, medical devices, and aerospace & defense. The company focuses on high-performance, mission-critical applications requiring real-time processing, regulatory compliance, and advanced control systems for autonomous and safety-critical environments.
+                Soccentric specializes in custom AI application development using NVIDIA Jetson platforms, delivering tailored solutions across critical industries including autonomous systems, computer vision, smart manufacturing, and intelligent transportation. The company focuses on high-performance, edge AI applications requiring real-time inference, regulatory compliance, and advanced AI control systems for autonomous and safety-critical environments.
             </p>
             <h3 className="text-lg font-semibold text-black mb-3">Key capabilities:</h3>
             <ul className="text-gray-700 space-y-4 ml-4">
-                <li><strong>Real-time autonomous control systems</strong> - Develops sophisticated robotics applications leveraging Zynq's FPGA capabilities for precise motor control, sensor fusion, and decision-making algorithms in autonomous systems.</li>
-                <li><strong>Advanced Driver Assistance Systems (ADAS)</strong> - Creates automotive safety solutions including collision avoidance, lane detection, and vehicle-to-vehicle communication systems that meet stringent automotive industry standards.</li>
-                <li><strong>FDA-compliant medical device software</strong> - Engineers regulatory-compliant applications for medical equipment, ensuring adherence to FDA guidelines while delivering reliable, life-critical functionality with robust safety mechanisms.</li>
-                <li><strong>Mission-critical aerospace applications</strong> - Develops flight control systems and defense applications requiring ultra-high reliability, real-time performance, and compliance with aerospace certification standards like DO-178C.</li>
-                <li><strong>Custom hardware-software integration</strong> - Leverages Zynq's unique ARM processor and FPGA architecture to create optimized solutions that balance software flexibility with hardware acceleration for maximum performance.</li>
-                <li><strong>End-to-end development expertise</strong> - Provides complete solution development from initial concept through deployment, including system architecture design, embedded software development, hardware integration, and ongoing support.</li>
+                <li><strong>Real-time autonomous AI systems</strong> - Develops sophisticated robotics applications leveraging Jetson's GPU and AI accelerators for precise computer vision, sensor fusion, and autonomous decision-making algorithms.</li>
+                <li><strong>Advanced Driver Assistance Systems (ADAS)</strong> - Creates automotive AI solutions including object detection, lane recognition, and vehicle-to-everything communication systems that meet stringent automotive safety standards.</li>
+                <li><strong>FDA-compliant medical AI devices</strong> - Engineers regulatory-compliant AI applications for medical imaging equipment, ensuring adherence to FDA guidelines while delivering reliable, life-critical AI functionality with robust safety mechanisms.</li>
+                <li><strong>Mission-critical aerospace AI applications</strong> - Develops AI-enhanced flight systems and defense applications requiring ultra-high reliability, real-time performance, and compliance with aerospace certification standards like DO-178C.</li>
+                <li><strong>Custom AI-hardware integration</strong> - Leverages Jetson's unique ARM processor, GPU, and AI accelerator architecture to create optimized solutions that balance AI inference performance with power efficiency for edge deployment.</li>
+                <li><strong>End-to-end AI development expertise</strong> - Provides complete AI solution development from initial concept through deployment, including AI model optimization, edge inference deployment, hardware integration, and ongoing AI system support.</li>
             </ul>
         </div>
     );

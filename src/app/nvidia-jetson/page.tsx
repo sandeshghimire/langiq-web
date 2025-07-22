@@ -4,7 +4,7 @@ import OperatingSystem from './components/OperatingSystem';
 import Drivers from './components/Drivers';
 import Middleware from './components/Middleware';
 import ApplicationDevelopment from './components/ApplicationDevelopment';
-import Projects from './components/Projects';
+
 
 export default function Home() {
     return (

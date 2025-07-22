@@ -3,16 +3,16 @@ export default function OperatingSystem() {
         <div className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Operating System Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
-                Soccentric leverages Yocto Project for AMD Xilinx Zynq platform development, focusing on meta-xilinx layer integration, custom recipe creation, and bitbake optimization. Core activities include BSP layer management, FSBL/U-Boot integration, device tree customization, FPGA bitstream handling, and automated build workflows for ARM Cortex-A + FPGA hybrid architectures.
+                Soccentric leverages Buildroot and Yocto Project for Raspberry Pi CM4/CM5 platform development, focusing on meta-raspberrypi layer integration, custom recipe creation, and optimized build configurations. Core activities include BSP customization, U-Boot configuration, device tree overlays, GPU firmware integration, and automated build workflows for ARM Cortex-A72/A76 architectures with VideoCore GPU support.
             </p>
-            <h3 className="text-lg font-semibold text-black mb-3 mt-6">Key Yocto Activities:</h3>
+            <h3 className="text-lg font-semibold text-black mb-3 mt-6">Key Development Activities:</h3>
             <ul className="text-gray-700 space-y-3 ml-4">
-                <li><strong>meta-xilinx Layer Integration</strong> - Customize and extend official AMD Xilinx layer with board-specific configurations and machine definitions</li>
-                <li><strong>Recipe Development</strong> - Create custom bitbake recipes for Zynq-specific drivers, FPGA manager integration, and hardware-dependent packages</li>
-                <li><strong>Boot Image Generation</strong> - Configure Yocto to produce BOOT.BIN files containing FSBL, bitstreams, and U-Boot for Zynq boot sequence</li>
-                <li><strong>Device Tree Management</strong> - Develop and maintain device tree overlays through Yocto recipes for dynamic FPGA configuration</li>
-                <li><strong>Cross-compilation Toolchain</strong> - Optimize ARM Cortex-A9/A53 toolchain configuration within Yocto for Zynq target architectures</li>
-                <li><strong>Build System Automation</strong> - Implement bitbake-based CI/CD pipelines for reproducible Zynq image builds and BSP validation testing</li>
+                <li><strong>meta-raspberrypi Layer Integration</strong> - Customize and extend official Raspberry Pi layer with CM4/CM5-specific configurations, machine definitions, and board support packages</li>
+                <li><strong>Buildroot Optimization</strong> - Create lightweight, custom Linux distributions optimized for CM4/CM5 with minimal footprint and fast boot times for embedded applications</li>
+                <li><strong>Boot Configuration Management</strong> - Configure bootloader chains including GPU firmware, U-Boot, and Linux kernel with custom config.txt and cmdline.txt optimization</li>
+                <li><strong>Device Tree Overlay Development</strong> - Create and maintain device tree overlays for hardware peripherals, HAT compatibility, and dynamic configuration management</li>
+                <li><strong>Cross-compilation Toolchain</strong> - Optimize ARM Cortex-A72/A76 toolchain configuration within Yocto/Buildroot for CM4/CM5 target architectures with NEON and VFP support</li>
+                <li><strong>Automated Build Systems</strong> - Implement CI/CD pipelines for reproducible CM4/CM5 image builds, OTA update generation, and comprehensive BSP validation testing</li>
             </ul>
         </div>
     );

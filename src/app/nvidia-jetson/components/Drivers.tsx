@@ -3,16 +3,16 @@ export default function Drivers() {
         <div className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Driver Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
-                Soccentric develops custom device drivers for AMD Xilinx Zynq platform peripherals using Yocto Project integration. Driver development covers communication interfaces (SPI, I2C, UART, Ethernet), video systems (MIPI, HDMI, cameras), sensors (IMU, temperature, ADC), GPIO control, USB connectivity, and specialized hardware including transceivers and motor controllers for embedded applications.
+                Soccentric develops custom device drivers for NVIDIA Jetson platform peripherals using JetPack SDK integration. Driver development covers communication interfaces (SPI, I2C, UART, Ethernet), camera systems (MIPI CSI-2, USB3), AI accelerators (GPU, DLA, PVA), sensors (IMU, temperature, ADC), GPIO control, PCIe connectivity, and specialized hardware including AI inference engines and computer vision pipelines for edge AI applications.
             </p>
             <h3 className="text-lg font-semibold text-black mb-3 mt-6">Key Driver Development Areas:</h3>
             <ul className="text-gray-700 space-y-3 ml-4">
-                <li><strong>Communication Protocol Drivers</strong> - Custom SPI, I2C, UART, CAN, and Ethernet MAC drivers with interrupt handling and DMA support for high-performance data transfer</li>
-                <li><strong>Video & Display Drivers</strong> - MIPI CSI-2/DSI, HDMI, DisplayPort, and H.264/H.265 codec drivers integrated with Mali GPU and video processing pipelines</li>
-                <li><strong>Sensor Interface Drivers</strong> - IMU, accelerometer, gyroscope, magnetometer, temperature, and ADC drivers with real-time data acquisition and calibration algorithms</li>
-                <li><strong>GPIO & Pin Management</strong> - MIO/EMIO GPIO drivers supporting dynamic pin multiplexing, interrupt handling, and FPGA fabric interfacing through extended GPIO</li>
-                <li><strong>High-Speed Transceiver Drivers</strong> - GTH/GTP SerDes drivers for 6.25-28 Gb/s transceivers supporting PCIe, SATA, and custom high-speed protocols</li>
-                <li><strong>System Monitor & Power Drivers</strong> - On-chip ADC drivers for voltage/temperature monitoring, power management integration, and system health diagnostics via PMBus/I2C interfaces</li>
+                <li><strong>Communication Protocol Drivers</strong> - Custom SPI, I2C, UART, CAN, and Gigabit Ethernet drivers with interrupt handling and DMA support for high-performance data transfer</li>
+                <li><strong>Camera & Vision Drivers</strong> - MIPI CSI-2, USB3 Vision, and GigE Vision camera drivers integrated with ISP pipeline and CUDA-accelerated image processing</li>
+                <li><strong>AI Accelerator Drivers</strong> - GPU compute drivers, Deep Learning Accelerator (DLA) interfaces, and Programmable Vision Accelerator (PVA) drivers for optimized AI inference</li>
+                <li><strong>GPIO & Pin Management</strong> - Jetson GPIO drivers supporting dynamic pin multiplexing, interrupt handling, and real-time control for robotics applications</li>
+                <li><strong>High-Speed Interface Drivers</strong> - PCIe Gen4 drivers for NVMe storage, high-speed networking cards, and custom AI accelerator cards</li>
+                <li><strong>System Monitor & Power Drivers</strong> - Tegra system monitoring drivers for temperature/power management, fan control, and thermal throttling with integration to Jetson power modes</li>
             </ul>
         </div>
     );
