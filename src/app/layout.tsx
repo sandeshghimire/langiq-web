@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>Sandesh Ghimire - LLM Consultant</title>
+        <title>Soccentric - Embedded System Design and Development</title>
         <meta name="description" content="LLM Consultant & AI Strategy Advisor" />
         <link
           href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&display=swap"
