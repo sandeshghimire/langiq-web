@@ -8,7 +8,7 @@ export default function ApplicationDevelopment() {
                 Proven track record of delivering $10M+ in AI-driven efficiency gains through intelligent document processing, conversational AI, and knowledge management solutions.
             </p>
             <ul className="text-gray-700 space-y-1 ml-4 py-4">
-                <li>• Develop and Optimize OTA Systems: Architect and implement reliable and secure Over-the-Air (OTA) update mechanisms for the entire system, considering various update strategies (A/B, block-based), security signing, and recovery scenarios.</li>
+                <li>• Led 25+ enterprise AI transformations including custom chatbots, document intelligence, and workflow automation</li>
                 <li>• Designed and implemented RAG architectures reducing client query response time by 80%</li>
                 <li>• Developed AI strategy roadmaps for C-suite executives across healthcare, finance, and legal sectors</li>
             </ul>
