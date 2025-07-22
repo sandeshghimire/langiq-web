@@ -1,17 +1,15 @@
 export default function Summary() {
     return (
         <div className="p-8 border-t border-gray-200">
-            <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Summary</h2>
-            <p className="text-gray-700 leading-relaxed font-normal">
-                Strategic LLM Consultant with 5+ years of expertise in AI transformation, custom model development, and enterprise AI implementation.
-                Specialized in RAG systems, fine-tuning strategies, and AI workflow automation for Fortune 500 companies.
-                Proven track record of delivering $10M+ in AI-driven efficiency gains through intelligent document processing, conversational AI, and knowledge management solutions.
+            <h1 className="text-xl font-bold text-black mb-2 uppercase">AMD Xilinx Zynq</h1>
+            <p className="text-gray-700 leading-relaxed font-normal mb-6">
+                At Soccentric, we deliver comprehensive consulting services for embedded systems, providing complete turnkey solutions that seamlessly integrate custom hardware and embedded software. Our expertise centers on developing and designing cutting-edge embedded systems based on AMD Xilinx Zynq platforms.
             </p>
-            <ul className="text-gray-700 space-y-1 ml-4 py-4">
-                <li>• Led 25+ enterprise AI transformations including custom chatbots, document intelligence, and workflow automation</li>
-                <li>• Designed and implemented RAG architectures reducing client query response time by 80%</li>
-                <li>• Developed AI strategy roadmaps for C-suite executives across healthcare, finance, and legal sectors</li>
-            </ul>
+
+            <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Why Choose AMD Xilinx Zynq</h2>
+            <p className="text-gray-700 leading-relaxed font-normal mb-4">
+                With deep expertise in AMD Xilinx Zynq architectures and a comprehensive understanding of embedded system development, we transform complex technical challenges into reliable, production-ready solutions. Our full-stack approach ensures seamless integration from silicon to application, delivering products that meet the most demanding performance, reliability, and safety requirements across industries.
+            </p>
         </div>
     );
 }
