@@ -1,6 +1,6 @@
 export default function Drivers() {
     return (
-        <div className="p-8 border-t border-gray-200">
+        <div id="drivers" className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Driver Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 Soccentric develops custom device drivers for NVIDIA Jetson platform peripherals using JetPack SDK integration. Driver development covers communication interfaces (SPI, I2C, UART, Ethernet), camera systems (MIPI CSI-2, USB3), AI accelerators (GPU, DLA, PVA), sensors (IMU, temperature, ADC), GPIO control, PCIe connectivity, and specialized hardware including AI inference engines and computer vision pipelines for edge AI applications.

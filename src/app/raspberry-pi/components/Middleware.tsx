@@ -1,6 +1,6 @@
 export default function Middleware() {
     return (
-        <div className="p-8 border-t border-gray-200">
+        <div id="middleware" className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Middleware Solutions</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 Soccentric develops tailored middleware solutions optimized for Raspberry Pi CM4/CM5 platforms, leveraging quad-core ARM Cortex-A72/A76 processors and VideoCore GPU acceleration for high-performance embedded applications requiring deterministic real-time communication and edge computing capabilities.

@@ -1,6 +1,6 @@
 export default function Hardware() {
     return (
-        <div className="p-8 border-t border-gray-200">
+        <div id="hardware" className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Engineering</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 Soccentric delivers complete NVIDIA Jetson hardware ecosystems including custom carrier board designs for Jetson Nano, Xavier, Orin, and Thor SOMs. Our expertise spans camera sensor integration (Sony IMX, ON Semiconductor, OmniVision), MIPI interfaces, communication protocols (I2C, SPI, UART, GPIO), sensor fusion systems, and thermal-optimized enclosures for edge AI and autonomous applications.

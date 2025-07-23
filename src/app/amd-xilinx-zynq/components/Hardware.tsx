@@ -1,6 +1,6 @@
 export default function Hardware() {
     return (
-        <div className="p-8 border-t border-gray-200">
+        <div id="hardware" className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Engineering</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 Soccentric delivers complete AMD Xilinx Zynq hardware ecosystems from custom SoC/SOM designs to integrated components and thermal-optimized enclosures for mission-critical applications.

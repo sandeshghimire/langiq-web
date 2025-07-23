@@ -1,6 +1,6 @@
 export default function OperatingSystem() {
     return (
-        <div className="p-8 border-t border-gray-200">
+        <div id="operating-system" className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Operating System Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 Soccentric develops custom embedded Linux distributions for NVIDIA Jetson platforms using Yocto Project with meta-tegra layer. Our expertise covers BSP development, custom meta-layers, recipe creation, kernel customization, OTA update systems, and comprehensive AI/ML framework integration including JetPack SDK, CUDA, TensorRT, DeepStream, OpenCV, TensorFlow, and PyTorch for production-ready edge AI solutions.

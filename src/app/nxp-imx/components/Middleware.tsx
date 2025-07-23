@@ -1,6 +1,6 @@
 export default function Middleware() {
     return (
-        <div className="p-8 border-t border-gray-200">
+        <div id="middleware" className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Middleware Solutions</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 Soccentric develops tailored DDS middleware solutions optimized for NXP i.MX platforms, leveraging multi-core ARM Cortex-A processors and advanced security features for high-performance embedded applications requiring deterministic real-time communication.

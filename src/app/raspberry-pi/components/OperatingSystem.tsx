@@ -1,6 +1,6 @@
 export default function OperatingSystem() {
     return (
-        <div className="p-8 border-t border-gray-200">
+        <div id="operating-system" className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Operating System Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 Soccentric leverages Buildroot and Yocto Project for Raspberry Pi CM4/CM5 platform development, focusing on meta-raspberrypi layer integration, custom recipe creation, and optimized build configurations. Core activities include BSP customization, U-Boot configuration, device tree overlays, GPU firmware integration, and automated build workflows for ARM Cortex-A72/A76 architectures with VideoCore GPU support.

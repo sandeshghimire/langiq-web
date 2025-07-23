@@ -1,6 +1,6 @@
 export default function ApplicationDevelopment() {
     return (
-        <div className="p-8 border-t border-gray-200">
+        <div id="application-development" className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Application Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 Soccentric specializes in custom application development using Raspberry Pi CM4/CM5 platforms, delivering tailored solutions across critical industries including robotics, automotive, medical devices, and industrial IoT. The company focuses on high-performance, cost-effective applications requiring real-time processing, regulatory compliance, and advanced control systems for autonomous and edge computing environments.

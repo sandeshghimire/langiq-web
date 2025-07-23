@@ -1,6 +1,6 @@
 export default function ApplicationDevelopment() {
     return (
-        <div className="p-8 border-t border-gray-200">
+        <div id="application-development" className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Application Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 extensive experience in custom application development using AMD Xilinx Zynq platforms across five critical industries. Our expertise spans automotive ADAS systems with CAN bus and LiDAR integration, robotics applications using ROS and advanced sensor fusion, UAV/drone systems with intelligent flight control, FDA-compliant medical devices with regulatory protocols, and mission-critical aerospace applications meeting DO-178C certification standards.

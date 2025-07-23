@@ -1,6 +1,6 @@
 export default function Middleware() {
     return (
-        <div className="p-8 border-t border-gray-200">
+        <div id="middleware" className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Middleware Solutions</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 Soccentric develops tailored AI and robotics middleware solutions optimized for NVIDIA Jetson platforms, leveraging ARM Cortex-A78AE processors, GPU acceleration, and dedicated AI engines for high-performance edge AI applications requiring real-time processing and computer vision.

@@ -1,6 +1,6 @@
 export default function Drivers() {
     return (
-        <div className="p-8 border-t border-gray-200">
+        <div id="drivers" className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Driver Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 Soccentric develops custom device drivers for AMD Xilinx Zynq platform peripherals using Yocto Project integration. Driver development covers communication interfaces (SPI, I2C, UART, Ethernet), video systems (MIPI, HDMI, cameras), sensors (IMU, temperature, ADC), GPIO control, USB connectivity, and specialized hardware including transceivers and motor controllers for embedded applications.

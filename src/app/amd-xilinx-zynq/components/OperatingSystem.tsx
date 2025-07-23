@@ -1,6 +1,6 @@
 export default function OperatingSystem() {
     return (
-        <div className="p-8 border-t border-gray-200">
+        <div id="operating-system" className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Operating System Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 Soccentric leverages Yocto Project for AMD Xilinx Zynq platform development, focusing on meta-xilinx layer integration, custom recipe creation, and bitbake optimization. Core activities include BSP layer management, FSBL/U-Boot integration, device tree customization, FPGA bitstream handling, and automated build workflows for ARM Cortex-A + FPGA hybrid architectures.

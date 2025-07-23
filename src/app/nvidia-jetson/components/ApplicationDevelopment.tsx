@@ -1,6 +1,6 @@
 export default function ApplicationDevelopment() {
     return (
-        <div className="p-8 border-t border-gray-200">
+        <div id="application-development" className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Application Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 Soccentric specializes in custom AI application development using NVIDIA Jetson platforms, delivering tailored solutions across critical industries including autonomous vehicles, robotics automation, smart cities, healthcare devices, retail analytics, aerospace systems, and edge IoT applications. The company focuses on high-performance, edge AI applications requiring real-time inference, regulatory compliance, and advanced AI control systems for mission-critical environments.

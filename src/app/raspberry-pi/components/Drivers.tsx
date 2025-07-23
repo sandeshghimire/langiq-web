@@ -1,6 +1,6 @@
 export default function Drivers() {
     return (
-        <div className="p-8 border-t border-gray-200">
+        <div id="drivers" className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Driver Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 Soccentric develops custom device drivers for Raspberry Pi CM4/CM5 platform peripherals using Buildroot and Yocto Project integration. Driver development leverages CM4's dual MIPI interfaces and PCIe Gen 2, while CM5 adds dual HDMI 2.1 outputs, PCIe 2.0 dual-lane support, and enhanced AI/ML acceleration. Our expertise covers comprehensive peripheral integration including display systems, camera interfaces, connectivity protocols, GPIO management, and specialized hardware acceleration for industrial embedded applications.
