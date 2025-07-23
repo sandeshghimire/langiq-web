@@ -5,8 +5,8 @@ export default function Home() {
       {/* Professional Summary */}
       <div className="p-8 border-t border-gray-200">
         <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">About Soccentric</h2>
-        <p className="text-gray-700 leading-relaxed font-normal mb-6">
-          <strong>At Soccentric, we provide comprehensive consulting services in embedded systems by delivering complete turnkey solutions encompassing both hardware and embedded software development. With over 25 years of embedded systems experience and 10+ years as independent consultants, our expertise spans across cutting-edge platforms including AMD Xilinx Zynq, NVIDIA Jetson, NXP i.MX, and Raspberry Pi solutions.</strong>
+        <p className="text-gray-700 leading-relaxed  mb-6 ">
+          <strong>At Soccentric, we provide comprehensive consulting services in embedded systems by delivering complete turnkey solutions encompassing both hardware and embedded software development. With over 25 years of embedded systems experience and 10+ years as independent consultants, our expertise spans across cutting-edge platforms including <a href="https://www.amd.com/en/products/adaptive-socs-and-fpgas/soc.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">AMD Xilinx Zynq</a>, <a href="https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">NVIDIA Jetson</a>, <a href="https://www.nxp.com/products/processors-and-microcontrollers/arm-processors/i-mx-applications-processors:IMX_HOME" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">NXP i.MX</a>, and <a href="https://www.raspberrypi.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">Raspberry Pi</a> solutions.</strong>
         </p>
 
         <h3 className="text-lg font-semibold text-black mb-3 uppercase tracking-wide">Our Core Services:</h3>
@@ -18,10 +18,12 @@ export default function Home() {
           <li><strong>Application Development:</strong> We develop custom applications across diverse industries including robotics, automotive, medical devices, defense, and aerospace sectors, ensuring solutions that meet stringent industry standards and requirements.</li>
         </ul>
 
-        <h3 className="text-lg font-semibold text-black mb-3 uppercase tracking-wide">Previous Project Portfolio:</h3>
+        <h3 className="text-lg font-semibold text-black mb-3 uppercase tracking-wide">Industries We Work With:</h3>
         <ul className="text-gray-700 space-y-2 ml-4">
           <li><strong>Automotive:</strong> Advanced Driver Assistance Systems (ADAS), LiDAR processing systems, and automotive information systems designed for reliability and real-time performance.</li>
           <li><strong>Aerospace and Defense:</strong> Flight control systems engineered to meet demanding safety and performance specifications for critical mission applications.</li>
+          <li><strong>Drone and UAV:</strong> Autonomous flight controllers, real-time navigation systems, and payload management solutions for commercial and industrial drone applications.</li>
+          <li><strong>Robotics:</strong> Control systems for industrial automation, autonomous navigation, sensor fusion, and real-time decision-making platforms for robotic applications.</li>
           <li><strong>Medical:</strong> Innovative solutions including advanced eye examination systems and kidney diagnostic equipment, developed in compliance with medical device regulations and standards.</li>
         </ul>
       </div>

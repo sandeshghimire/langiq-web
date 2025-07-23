@@ -13,6 +13,8 @@ export default function OperatingSystem() {
                 <li><strong>Device Tree Management</strong> - Develop and maintain device tree overlays through Yocto recipes for dynamic FPGA configuration</li>
                 <li><strong>Cross-compilation Toolchain</strong> - Optimize ARM Cortex-A9/A53 toolchain configuration within Yocto for Zynq target architectures</li>
                 <li><strong>Build System Automation</strong> - Implement bitbake-based CI/CD pipelines for reproducible Zynq image builds and BSP validation testing</li>
+                <li><strong>BSP Integration & Maintenance</strong> - Develop, integrate, and maintain Board Support Packages (BSPs) for a diverse range of hardware. Troubleshoot and resolve complex build and runtime issues related to hardware integration</li>
+                <li><strong>RPU APU Communication</strong> - Implement RPU APU communication using OpenAMP and remote proc frameworks. Develop full lifecycle of RPU firmware runtime from Linux including remoteproc driver integration, shared memory management, and inter-processor messaging</li>
             </ul>
         </div>
     );

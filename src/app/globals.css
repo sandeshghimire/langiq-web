@@ -2,5 +2,19 @@
 
 
 body {
-    font-family: Lato, Helvetica, sans-serif;
+    font-family: Lato, sans-serif;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: bold;
+}
+
+a:focus,
+a:active {
+    text-decoration: none;
 }
