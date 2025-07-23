@@ -7,7 +7,7 @@ export default function OperatingSystem() {
             </p>
             <h3 className="text-lg font-semibold text-black mb-3 mt-6">Key Development Activities:</h3>
             <ul className="text-gray-700 space-y-3 ml-4">
-                <li><strong>meta-raspberrypi Layer Integration</strong> - Customize and extend official Raspberry Pi layer with CM4/CM5-specific configurations, machine definitions, and board support packages</li>
+                <li><strong>Custom Yocto-based Linux Distribution Development</strong> - Develop tailored Yocto-based Linux distributions with meta-raspberrypi layer integration, custom recipes, and optimized configurations for CM4/CM5 platforms</li>
                 <li><strong>Buildroot Optimization</strong> - Create lightweight, custom Linux distributions optimized for CM4/CM5 with minimal footprint and fast boot times for embedded applications</li>
                 <li><strong>Boot Configuration Management</strong> - Configure bootloader chains including GPU firmware, U-Boot, and Linux kernel with custom config.txt and cmdline.txt optimization</li>
                 <li><strong>Device Tree Overlay Development</strong> - Create and maintain device tree overlays for hardware peripherals, HAT compatibility, and dynamic configuration management</li>
