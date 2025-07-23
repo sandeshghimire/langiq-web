@@ -8,7 +8,7 @@ export default function Hardware() {
             <h3 className="text-lg font-semibold text-black mb-3 mt-6">Key Capabilities:</h3>
             <ul className="text-gray-700 space-y-3 ml-4">
                 <li><strong>Custom Carrier Board Design</strong> - Develop tailored carrier boards for NVIDIA Jetson modules including Jetson Nano, Xavier, Orin, and Thor SOMs, optimized for specific AI application requirements and form factors.</li>
-                <li><strong>AI Component Integration</strong> - Seamlessly integrate cameras including Sony IMX, ON Semiconductor, and OmniVision sensors, along with LiDAR, IMUs, displays, and high-speed interfaces into cohesive AI-ready hardware solutions.</li>
+                <li><strong>Hardware Component Integration</strong> - Seamlessly integrate cameras including Sony IMX, ON Semiconductor, and OmniVision sensors, along with LiDAR, IMUs, displays, and high-speed interfaces into cohesive AI-ready hardware solutions.</li>
                 <li><strong>Interface Protocol Implementation</strong> - Interface with sensors, actuators, and custom hardware via I2C, SPI, UART, GPIO, and other communication protocols for comprehensive system integration.</li>
                 <li><strong>High-Speed Data Systems</strong> - Design and implement advanced camera interfaces including MIPI cameras, PCIe Gen4, and high-bandwidth memory systems for real-time AI processing.</li>
                 <li><strong>Sensor Fusion Solutions</strong> - Integrate multiple sensor types including cameras, radar, LiDAR, and inertial measurement units for comprehensive AI perception systems.</li>
