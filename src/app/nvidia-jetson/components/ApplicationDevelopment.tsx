@@ -5,7 +5,7 @@ export default function ApplicationDevelopment() {
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 Soccentric specializes in custom AI application development using NVIDIA Jetson platforms, delivering tailored solutions across critical industries including autonomous vehicles, robotics automation, smart cities, healthcare devices, retail analytics, aerospace systems, and edge IoT applications. The company focuses on high-performance, edge AI applications requiring real-time inference, regulatory compliance, and advanced AI control systems for mission-critical environments.
             </p>
-            <h3 className="text-lg font-semibold text-black mb-3">Soccentric has experience in:</h3>
+            <h3 className="text-lg font-semibold text-black mb-3">experience in:</h3>
             <ul className="text-gray-700 space-y-4 ml-4">
                 <li><strong>Autonomous Vehicles and Transportation</strong> - Experience in sophisticated self-driving vehicle platforms leveraging Jetson's GPU and AI accelerators for precise computer vision, sensor fusion, and autonomous navigation algorithms with real-time decision-making capabilities.</li>
                 <li><strong>Robotics and Industrial Automation</strong> - Experience in advanced robotic systems including AI-powered robotic arms, quality control systems, and predictive maintenance solutions that integrate computer vision guidance with industrial automation protocols.</li>

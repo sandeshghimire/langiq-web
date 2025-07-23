@@ -7,12 +7,12 @@ export default function ApplicationDevelopment() {
             </p>
             <h3 className="text-lg font-semibold text-black mb-3">Key capabilities:</h3>
             <ul className="text-gray-700 space-y-4 ml-4">
-                <li><strong>Edge AI and Computer Vision Systems</strong> - Develops sophisticated robotics applications leveraging CM4/CM5's GPU acceleration for machine learning inference, computer vision, and real-time object detection in autonomous systems.</li>
-                <li><strong>Industrial IoT and Automation</strong> - Creates industrial monitoring and control solutions including predictive maintenance, sensor data collection, and factory automation systems that integrate with existing industrial protocols and cloud platforms.</li>
-                <li><strong>Medical Device Applications</strong> - Engineers regulatory-compliant applications for portable medical equipment, patient monitoring systems, and diagnostic devices, ensuring adherence to medical device standards while delivering reliable functionality.</li>
-                <li><strong>Smart Infrastructure Solutions</strong> - Develops intelligent building management, traffic monitoring, and environmental sensing applications requiring distributed processing, wireless connectivity, and real-time data analytics capabilities.</li>
-                <li><strong>Custom Embedded Applications</strong> - Leverages CM4/CM5's versatile I/O capabilities and Linux ecosystem to create optimized solutions that balance performance, power consumption, and cost-effectiveness for various market requirements.</li>
-                <li><strong>Rapid Prototyping to Production</strong> - Provides complete solution development from proof-of-concept through production deployment, including system architecture design, embedded software development, cloud integration, and ongoing maintenance support.</li>
+                <li><strong>Industrial IoT Monitoring</strong> - Experience with manufacturing facilities using Pi devices to monitor equipment temperatures, vibrations, and operational status in real-time, sending data to cloud platforms for predictive maintenance and quality control systems.</li>
+                <li><strong>Digital Signage Networks</strong> - Experience with retail chains, restaurants, and corporate offices deploying thousands of Pi units to power digital menu boards, advertising displays, and information kiosks, with centralized content management and remote updates.</li>
+                <li><strong>Point-of-Sale (POS) Systems</strong> - Experience with small businesses and food trucks using Pi-based POS terminals running specialized software for payment processing, inventory management, and sales tracking, often integrated with touch screens and receipt printers.</li>
+                <li><strong>Agricultural Monitoring Systems</strong> - Experience with farms implementing Pi-powered sensor networks to monitor soil moisture, weather conditions, and crop health, enabling precision agriculture and automated irrigation systems across large field operations.</li>
+                <li><strong>Building Management Systems</strong> - Experience with commercial buildings using Pi devices to control HVAC systems, monitor energy consumption, manage lighting schedules, and track occupancy data for optimization and compliance reporting.</li>
+                <li><strong>Edge Computing Gateways</strong> - Experience with telecommunications and utility companies deploying Pi units as edge computing nodes to process data locally before sending to central servers, reducing bandwidth costs and improving response times for critical applications.</li>
             </ul>
         </div>
     );
