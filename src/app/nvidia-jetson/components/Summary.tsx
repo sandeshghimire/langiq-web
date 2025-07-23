@@ -9,9 +9,9 @@ export default function Summary() {
 
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Why Choose Soccentric's NVIDIA Jetson platform </h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
-
-                Soccentric delivers 15+ years of proven NVIDIA Jetson expertise across the complete development stack. From custom carrier board design to JetPack/L4T OS development, device drivers, and middleware integration (ROS1/2, DeepStream). Our comprehensive capabilities include cross-industry AI application development, OTA updates, and robust monitoring systems. Choose Soccentric for production-ready, enterprise-grade Jetson solutions with full AI-hardware optimization expertise.
+                Soccentric delivers comprehensive NVIDIA Jetson hardware and software solutions with 10+ years of experience spanning the complete development ecosystem. Our expertise includes custom carrier board design for Jetson SOMs, Yocto-based operating system development optimized for Jetson platforms, and advanced middleware integration using DDS, ROS1/2, and MQTT protocols. We develop AI-powered applications across robotics, UAV systems, and automotive ADAS solutions, providing end-to-end Jetson platform expertise from silicon to application layer.
             </p>
         </div>
     );
 }
+
