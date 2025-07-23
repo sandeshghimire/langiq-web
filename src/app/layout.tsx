@@ -38,7 +38,6 @@ export default function RootLayout({
                   <div className="flex flex-wrap justify-center gap-4 text-sm font-black">
                     <span>sandesh@soccentric.com</span>
                     <span>+1 (669) 356-1998</span>
-                    <span>https://www.linkedin.com/in/sandesh-ghimire-34a43894/</span>
                     <span>https://github.com/soccentric</span>
                   </div>
                 </div>
