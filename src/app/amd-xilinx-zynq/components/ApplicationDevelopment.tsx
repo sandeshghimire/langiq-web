@@ -3,17 +3,17 @@ export default function ApplicationDevelopment() {
         <div className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Application Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
-                Soccentric specializes in custom application development using AMD Xilinx Zynq platforms, delivering tailored solutions across critical industries including robotics, automotive, medical devices, and aerospace & defense. The company focuses on high-performance, mission-critical applications requiring real-time processing, regulatory compliance, and advanced control systems for autonomous and safety-critical environments.
+                Soccentric has extensive experience in custom application development using AMD Xilinx Zynq platforms across five critical industries. Our expertise spans automotive ADAS systems with CAN bus and LiDAR integration, robotics applications using ROS and advanced sensor fusion, UAV/drone systems with intelligent flight control, FDA-compliant medical devices with regulatory protocols, and mission-critical aerospace applications meeting DO-178C certification standards.
             </p>
             <h3 className="text-lg font-semibold text-black mb-3">Key capabilities:</h3>
             <ul className="text-gray-700 space-y-4 ml-4">
-                <li><strong>Real-time autonomous control systems</strong> - Develops sophisticated robotics applications leveraging Zynq's FPGA capabilities for precise motor control, sensor fusion, and decision-making algorithms in autonomous systems.</li>
-                <li><strong>Advanced Driver Assistance Systems (ADAS)</strong> - Creates automotive safety solutions including collision avoidance, lane detection, and vehicle-to-vehicle communication systems that meet stringent automotive industry standards.</li>
-                <li><strong>FDA-compliant medical device software</strong> - Engineers regulatory-compliant applications for medical equipment, ensuring adherence to FDA guidelines while delivering reliable, life-critical functionality with robust safety mechanisms.</li>
-                <li><strong>Mission-critical aerospace applications</strong> - Develops flight control systems and defense applications requiring ultra-high reliability, real-time performance, and compliance with aerospace certification standards like DO-178C.</li>
-                <li><strong>Custom hardware-software integration</strong> - Leverages Zynq's unique ARM processor and FPGA architecture to create optimized solutions that balance software flexibility with hardware acceleration for maximum performance.</li>
-                <li><strong>End-to-end development expertise</strong> - Provides complete solution development from initial concept through deployment, including system architecture design, embedded software development, hardware integration, and ongoing support.</li>
+                <li><strong>Automotive applications with real-time systems</strong> - Experience with Advanced Driver Assistance Systems (ADAS) featuring CAN bus integration, real-time LiDAR processing, collision avoidance systems, lane detection, and vehicle-to-vehicle communication that meet stringent automotive industry standards and functional safety requirements.</li>
+                <li><strong>Robotics with advanced sensor integration</strong> - Experience with sophisticated robotics applications leveraging ROS (Robot Operating System), real-time camera processing, precise motor control systems, and sensor fusion algorithms using Zynq's FPGA capabilities for autonomous robotic platforms and industrial automation.</li>
+                <li><strong>UAV and drone systems</strong> - Experience with unmanned aerial vehicle solutions incorporating ROS-based flight control, real-time camera and sensor processing, intelligent battery management systems, and autonomous navigation capabilities for commercial and defense applications.</li>
+                <li><strong>Medical devices with regulatory compliance</strong> - Experience with FDA-compliant medical device software adhering to medical communication protocols, ensuring regulatory compliance while delivering reliable, life-critical functionality with robust safety mechanisms for healthcare equipment and diagnostic systems.</li>
+                <li><strong>Aerospace flight control systems</strong> - Experience with mission-critical aerospace applications focused on advanced flight control systems, avionics integration, and defense applications requiring ultra-high reliability, real-time performance, and compliance with aerospace certification standards like DO-178C.</li>
             </ul>
         </div>
     );
 }
+
