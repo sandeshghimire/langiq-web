@@ -1,21 +1,17 @@
 import Summary from './components/Summary';
-import Hardware from './components/Hardware';
-import OperatingSystem from './components/OperatingSystem';
-import Drivers from './components/Drivers';
-import Middleware from './components/Middleware';
-import ApplicationDevelopment from './components/ApplicationDevelopment';
-import Firmware from './components/Firmware';
+import StrategyPlanning from './components/StrategyPlanning';
+import MarketIntelligence from './components/MarketIntelligence';
+import ImplementationIntegration from './components/ImplementationIntegration';
+import PerformanceOptimization from './components/PerformanceOptimization';
 
 export default function Home() {
     return (
         <div>
             <Summary />
-            <Hardware />
-            <OperatingSystem />
-            <Drivers />
-            <Firmware />
-            <Middleware />
-            <ApplicationDevelopment />
+            <StrategyPlanning />
+            <MarketIntelligence />
+            <ImplementationIntegration />
+            <PerformanceOptimization />
         </div>
     );
 }
