@@ -7,8 +7,8 @@ export default function Drivers() {
             </p>
             <h3 className="text-lg font-semibold text-black mb-3 mt-6">Key Driver Development Areas:</h3>
             <ul className="text-gray-700 space-y-3 ml-4">
-                <li><strong>Communication Protocol Drivers</strong> - Custom SPI, I2C, UART, CAN, and Ethernet MAC drivers with interrupt handling and DMA support for high-performance data transfer</li>
-                <li><strong>Video & Display Drivers</strong> - MIPI CSI-2/DSI, HDMI, DisplayPort, and H.264/H.265 codec drivers integrated with Mali GPU and video processing pipelines</li>
+                <li><strong>Communication Protocol Drivers</strong> - Custom SPI, I2C, UART, CAN, Ethernet MAC, 10G-T1, PCIe, and TDM drivers with interrupt handling and DMA support for high-performance data transfer</li>
+                <li><strong>Video & Display Drivers</strong> - MIPI/CSI-2/DSI, GMSL2, HDMI, DisplayPort, and H.264/H.265 codec drivers integrated with Mali GPU and video processing pipelines</li>
                 <li><strong>Sensor Interface Drivers</strong> - IMU, accelerometer, gyroscope, magnetometer, temperature, and ADC drivers with real-time data acquisition and calibration algorithms</li>
                 <li><strong>GPIO & Pin Management</strong> - MIO/EMIO GPIO drivers supporting dynamic pin multiplexing, interrupt handling, and FPGA fabric interfacing through extended GPIO</li>
                 <li><strong>High-Speed Transceiver Drivers</strong> - GTH/GTP SerDes drivers for 6.25-28 Gb/s transceivers supporting PCIe, SATA, and custom high-speed protocols</li>

@@ -5,6 +5,7 @@ import Drivers from './components/Drivers';
 import Middleware from './components/Middleware';
 import ApplicationDevelopment from './components/ApplicationDevelopment';
 import Projects from './components/Projects';
+import Firmware from '../nxp-imx/Firmware';
 
 export default function Home() {
     return (
@@ -13,6 +14,7 @@ export default function Home() {
             <Hardware />
             <OperatingSystem />
             <Drivers />
+            <Firmware />
             <Middleware />
             <ApplicationDevelopment />
         </div>

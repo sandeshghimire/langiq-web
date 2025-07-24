@@ -20,7 +20,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans min-h-screen bg-zinc-600">
         <main className="py-8 px-4">
-          <div className="max-w-7xl mx-auto bg-zinc-50 shadow-xl md:px-16 md:py-20 border-1 border-amber-300">
+          <div className="max-w-7xl mx-auto bg-zinc-50 shadow-xl md:px-16 md:py-20 border-1 border-amber-200">
             <div>
               {/* Header Section */}
               <div className="text-gray-800 p-8">
