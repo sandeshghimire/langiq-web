@@ -13,6 +13,7 @@ export default function Drivers() {
                 <li><strong>GPIO & Pin Management</strong> - MIO/EMIO GPIO drivers supporting dynamic pin multiplexing, interrupt handling, and FPGA fabric interfacing through extended GPIO</li>
                 <li><strong>High-Speed Transceiver Drivers</strong> - GTH/GTP SerDes drivers for 6.25-28 Gb/s transceivers supporting PCIe, SATA, and custom high-speed protocols</li>
                 <li><strong>System Monitor & Power Drivers</strong> - On-chip ADC drivers for voltage/temperature monitoring, power management integration, and system health diagnostics via PMBus/I2C interfaces</li>
+                <li><strong>Navigation & Sensing Drivers</strong> - GPS/GNSS receivers, LIDAR point cloud processing, RADAR signal processing, and ultrasonic sensor drivers with real-time data acquisition and sensor fusion algorithms</li>
             </ul>
         </div>
     );

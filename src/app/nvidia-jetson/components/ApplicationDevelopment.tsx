@@ -13,7 +13,7 @@ export default function ApplicationDevelopment() {
                 <li><strong>Healthcare and Medical Devices</strong> - Experience in FDA-compliant medical AI applications for imaging diagnostics, surgical robotics, and patient monitoring systems, ensuring adherence to regulatory guidelines while delivering reliable, life-critical AI functionality.</li>
                 <li><strong>Retail and Customer Analytics</strong> - Experience in AI-powered customer behavior analysis systems, inventory management solutions, and smart checkout technologies that optimize retail operations through computer vision and real-time analytics.</li>
                 <li><strong>Drones and Aerospace</strong> - Experience in mission-critical aerospace AI applications including autonomous drone systems, aerial surveillance, and agricultural monitoring requiring ultra-high reliability and compliance with aerospace certification standards.</li>
-                <li><strong>Edge AI and IoT</strong> - Experience in leveraging Jetson's unique ARM processor, GPU, and AI accelerator architecture to create optimized IoT solutions that balance AI inference performance with power efficiency for distributed edge deployment scenarios.</li>
+                <li><strong>Edge AI and IoT</strong> - Experience in leveraging Jetson's unique ARM processor, GPU, and AI accelerator architecture to create optimized IoT solutions that balance AI inference performance with power efficiency for distributed edge deployment scenarios. Hands-on with AWS IoT, Azure IoT Hub, or GCP IoT Core integration for comprehensive cloud connectivity.</li>
             </ul>
         </div>
     );

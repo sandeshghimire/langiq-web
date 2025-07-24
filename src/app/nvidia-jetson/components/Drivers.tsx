@@ -13,6 +13,7 @@ export default function Drivers() {
                 <li><strong>Wireless & Connectivity Drivers</strong> - WiFi 802.11ac/ax drivers with mesh networking support, Bluetooth 5.0/LE drivers for IoT connectivity, GPIO pin management with dynamic multiplexing and real-time control for robotics applications</li>
                 <li><strong>High-Speed Interface Drivers</strong> - PCIe Gen4 drivers for NVMe storage, high-speed networking cards, and custom AI accelerator cards</li>
                 <li><strong>System Monitor & Power Drivers</strong> - Tegra system monitoring drivers for temperature/power management, fan control, and thermal throttling with integration to Jetson power modes</li>
+                <li><strong>Navigation & Sensing Drivers</strong> - GPS/GNSS receivers, LIDAR point cloud processing, RADAR signal processing, and ultrasonic sensor drivers with CUDA acceleration and real-time sensor fusion for autonomous systems</li>
             </ul>
         </div>
     );

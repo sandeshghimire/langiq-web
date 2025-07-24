@@ -13,6 +13,7 @@ export default function Drivers() {
                 <li><strong>USB & Storage Drivers</strong> - USB 2.0 host/device controller (CM4), USB 3.0/2.0 controllers (CM5), eMMC storage interface drivers, SD card interface integration via carrier board with optimized data transfer protocols</li>
                 <li><strong>AI/ML & Hardware Acceleration</strong> - CM5 enhanced AI/ML acceleration drivers, hardware video encode/decode optimization, GPU integration for computational workloads, and specialized hardware accelerator drivers via PCIe interfaces</li>
                 <li><strong>Power & Thermal Management</strong> - Enhanced power management drivers (CM5), thermal throttling optimization, battery management integration, and real-time monitoring via I2C interfaces for optimal CM4/CM5 performance and reliability</li>
+                <li><strong>Navigation & Sensing Drivers</strong> - GPS/GNSS receivers, LIDAR point cloud processing, RADAR signal processing, and ultrasonic sensor drivers with GPIO integration and real-time data acquisition for embedded sensing applications</li>
             </ul>
         </div>
     );

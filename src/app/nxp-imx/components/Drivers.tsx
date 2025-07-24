@@ -15,6 +15,7 @@ export default function Drivers() {
                 <li><strong>Security & Crypto Module Drivers</strong> - CAAM, SNVS, CSU, and HAB drivers for hardware encryption, secure key storage, high assurance boot, and TrustZone integration</li>
                 <li><strong>GPIO & Power Management Drivers</strong> - IOMUX GPIO with dynamic pin multiplexing, PMU, GPC, and CCM drivers for power management, thermal monitoring, and low-power mode transitions</li>
                 <li><strong>Specialized Peripheral Drivers</strong> - ENET QOS, ASRC for audio processing, and MLB drivers for automotive applications with advanced feature integration</li>
+                <li><strong>Navigation & Sensing Drivers</strong> - GPS/GNSS receivers, LIDAR point cloud processing, RADAR signal processing, and ultrasonic sensor drivers with hardware-accelerated sensor fusion and automotive integration</li>
             </ul>
         </div>
     );

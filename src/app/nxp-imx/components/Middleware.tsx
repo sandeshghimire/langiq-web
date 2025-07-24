@@ -10,7 +10,7 @@ export default function Middleware() {
                 <li><strong>Real-Time Determinism</strong>: OpenDDS configured for zero-copy transport, DDS-XRCE for ultra-low latency, custom SOME/IP implementation with hardware timestamping</li>
                 <li><strong>Hardware Acceleration</strong>: VPU-accelerated DDS video streaming, GPU-based packet filtering, CAAM-secured DDS communications with hardware encryption</li>
                 <li><strong>ARM Cortex-A Integration</strong>: Yocto-based Linux with RT patches running Fast DDS, FreeRTOS with micro-ROS on Cortex-M cores, multi-core load balancing with OpenAMP</li>
-                <li><strong>Industrial IoT Applications</strong>: OPC UA over DDS for factory networks, EtherCAT master with DDS bridge, Modbus-to-DDS protocol converters with TSN support</li>
+                <li><strong>Industrial IoT Applications</strong>: OPC UA over DDS for factory networks, hands-on with AWS IoT Core, Azure IoT Hub, or GCP IoT Core integration, EtherCAT master with DDS bridge, Modbus-to-DDS protocol converters with TSN support</li>
                 <li><strong>Edge Computing Enhancement</strong>: Apache Kafka Streams on i.MX clusters, Redis pub/sub with DDS interoperability, custom mesh networking with ZeroMQ transport and TrustZone security</li>
             </ul>
         </div>
