@@ -8,10 +8,10 @@ const Navigation = () => {
 
     const navItems = [
         { href: '/', label: 'Home' },
-        { href: '/amd-xilinx-zynq', label: 'AMD Xilinx Zynq' },
-        { href: '/nvidia-jetson', label: 'NVIDIA Jetson' },
-        { href: '/nxp-imx', label: 'NXP IMX ' },
-        { href: '/raspberry-pi', label: 'Raspberry Pi' },
+        { href: '/ai_llm_advisory', label: 'AI LLM Advisory' },
+        { href: '/llm_app_development', label: 'LLM App Development' },
+        { href: '/model_training', label: 'Model Training ' },
+        { href: '/agentic_solution', label: 'Agentic Solution ' },
     ];
 
     return (
