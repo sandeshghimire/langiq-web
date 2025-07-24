@@ -10,7 +10,7 @@ export default function Drivers() {
                 <li><strong>Communication Protocol Drivers</strong> - Custom SPI, I2C, UART, CAN, and Gigabit Ethernet drivers with interrupt handling and DMA support for high-performance data transfer</li>
                 <li><strong>Camera & Vision Drivers</strong> - MIPI CSI-2, USB3 Vision, and GigE Vision camera drivers integrated with ISP pipeline and CUDA-accelerated image processing, supporting Sony IMX, ON Semiconductor, and OmniVision sensors</li>
                 <li><strong>AI Accelerator Drivers</strong> - GPU compute drivers, Deep Learning Accelerator (DLA) interfaces, and Programmable Vision Accelerator (PVA) drivers for optimized AI inference</li>
-                <li><strong>GPIO & Pin Management</strong> - Jetson GPIO drivers supporting dynamic pin multiplexing, interrupt handling, and real-time control for robotics applications</li>
+                <li><strong>Wireless & Connectivity Drivers</strong> - WiFi 802.11ac/ax drivers with mesh networking support, Bluetooth 5.0/LE drivers for IoT connectivity, GPIO pin management with dynamic multiplexing and real-time control for robotics applications</li>
                 <li><strong>High-Speed Interface Drivers</strong> - PCIe Gen4 drivers for NVMe storage, high-speed networking cards, and custom AI accelerator cards</li>
                 <li><strong>System Monitor & Power Drivers</strong> - Tegra system monitoring drivers for temperature/power management, fan control, and thermal throttling with integration to Jetson power modes</li>
             </ul>
