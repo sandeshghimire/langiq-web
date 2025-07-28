@@ -1,20 +1,20 @@
 export default function OperatingSystem() {
     return (
         <div id="operating-system" className="p-8 border-t border-gray-200">
-            <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">AI/ML Platform Engineering</h2>
+            <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Model Context Protocol (MCP) Integration Consulting</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
-                LangIQ specializes in comprehensive AI/ML platform engineering across cloud and on-premises environments, focusing on scalable model deployment, MLOps automation, and enterprise-grade infrastructure. Our expertise spans containerized AI workloads, GPU cluster management, and secure, compliant AI platform architectures for mission-critical applications.
+                LangIQ provides specialized consulting services for Model Context Protocol (MCP) implementation, enabling seamless agent-to-service communication and dynamic tool discovery. Our experts help organizations build scalable MCP architectures that optimize context window utilization and enable sophisticated agent-tool interactions across distributed systems.
             </p>
-            <h3 className="text-lg font-semibold text-black mb-3 mt-6">Core Platform Capabilities:</h3>
+            <h3 className="text-lg font-semibold text-black mb-3 mt-6">MCP Implementation Services:</h3>
             <ul className="text-gray-700 space-y-3 ml-4">
-                <li><strong>Cloud AI Platform Architecture</strong> - Design and implement scalable AI platforms on AWS SageMaker, Azure ML, and GCP Vertex AI with auto-scaling, cost optimization, and multi-region deployment strategies</li>
-                <li><strong>MLOps & CI/CD Pipeline Development</strong> - Automated model training, testing, and deployment pipelines using tools like MLflow, Kubeflow, and custom GitOps workflows for continuous AI model delivery</li>
-                <li><strong>Container Orchestration for AI</strong> - Advanced Kubernetes deployment for AI workloads with GPU scheduling, model serving optimization, and resource management for high-throughput inference systems</li>
-                <li><strong>GPU Cluster Management</strong> - CUDA-optimized computing environments, multi-GPU training orchestration, and distributed computing frameworks for large-scale model training and inference</li>
-                <li><strong>Security & Compliance Frameworks</strong> - Zero-trust AI architectures, DoD RMF compliance, HIPAA-compliant data processing, secure API gateways, and audit-ready AI governance systems</li>
-                <li><strong>Edge AI Deployment</strong> - Lightweight model deployment for edge computing, model quantization and optimization, offline-capable AI systems, and DDIL (Denied, Degraded, Intermittent, Limited) survivability</li>
-                <li><strong>Monitoring & Observability</strong> - Comprehensive AI model monitoring, performance analytics, drift detection, and real-time alerting systems for production AI applications</li>
-                <li><strong>Data Pipeline Architecture</strong> - High-performance data ingestion, real-time processing with Apache Kafka, vector database optimization, and ETL pipelines for large-scale AI training datasets</li>
+                <li><strong>MCP Server Development</strong> - Expert consulting on building custom MCP servers for enterprise data sources, APIs, and specialized tools with robust capability negotiation and resource management</li>
+                <li><strong>MCP Client Integration</strong> - Comprehensive guidance on connecting autonomous agents to MCP services, implementing efficient protocol handling, and optimizing agent-service communication patterns</li>
+                <li><strong>Dynamic Tool Discovery & Registration</strong> - Advanced consulting on real-time tool registration, capability advertisement, and intelligent tool selection algorithms for adaptive agent behavior</li>
+                <li><strong>Resource Management & Optimization</strong> - Specialized expertise in context window optimization, efficient resource sharing across agents, and performance tuning for high-throughput MCP interactions</li>
+                <li><strong>Security & Access Control</strong> - Enterprise-grade security consulting for MCP implementations, including authentication protocols, authorization frameworks, and secure tool access patterns</li>
+                <li><strong>Protocol Specification & Standards</strong> - Deep consulting on MCP standards compliance, protocol versioning strategies, and interoperability across diverse agent and tool ecosystems</li>
+                <li><strong>Scalable MCP Architecture Design</strong> - Expert guidance on designing distributed MCP networks, load balancing strategies, and fault-tolerant service discovery for enterprise-scale deployments</li>
+                <li><strong>Monitoring & Observability</strong> - Comprehensive consulting on MCP interaction monitoring, performance analytics, and real-time debugging tools for complex agent-service networks</li>
             </ul>
         </div>
     );

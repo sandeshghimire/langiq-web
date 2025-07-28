@@ -1,18 +1,18 @@
 export default function Firmware() {
     return (
         <div id="firmware" className="p-8 border-t border-gray-200">
-            <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Security, Compliance & Leadership</h2>
+            <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Agent Memory & State Management Consulting</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
-                LangIQ delivers enterprise-grade AI/ML solutions with comprehensive security clearance capabilities, regulatory compliance expertise, and proven leadership across 15+ years of AI/ML platform development for mission-critical applications in defense, healthcare, and regulated industries.
+                LangIQ provides specialized consulting services for sophisticated agent memory architectures and distributed state management systems, enabling autonomous agents to maintain context, learn from experiences, and coordinate effectively across complex multi-agent workflows with persistent knowledge retention.
             </p>
-            <h3 className="text-lg font-semibold text-black mb-3 mt-6">Security & Compliance Expertise:</h3>
+            <h3 className="text-lg font-semibold text-black mb-3 mt-6">Memory & State Management Services:</h3>
             <ul className="text-gray-700 space-y-3 ml-4">
-                <li><strong>Security Clearance & Compliance</strong> - Active TS/SCI with CI Poly capabilities, DoD 8570.01-M compliance (Security+), DoD RMF experience, and expertise in zero-trust AI architectures for classified environments.</li>
-                <li><strong>Regulatory Frameworks</strong> - HIPAA and HITECH compliance for healthcare AI, FDA validation for medical device software, financial services regulation adherence, and ethical AI practices with governance frameworks.</li>
-                <li><strong>Secure AI Development</strong> - Implementation of AI guardrails, secure API design with OAuth2/JWT, software assurance tools (Fortify), anonymization techniques, and secure DevSecOps practices in CI/CD workflows.</li>
-                <li><strong>AI/ML Leadership & Strategy</strong> - 15+ years of progressive AI/ML platform leadership, experience scaling AI Centers of Excellence, technical capture leadership, strategic briefing delivery, and stakeholder influence across enterprise organizations.</li>
-                <li><strong>Team Leadership & Mentoring</strong> - Proven experience leading and scaling AI solutions, mentoring junior engineers, managing technical teams, and driving collaborative development in complex AI/ML projects with cross-functional stakeholders.</li>
-                <li><strong>Product & Business Development</strong> - Strong product sense for AI applications, hands-on optimization of LLM workflows for latency and cost, user testing validation, translating business needs into AI-capable features, and building internal automation tools.</li>
+                <li><strong>Multi-Layered Memory Systems</strong> - Expert consulting on implementing short-term conversation memory, long-term knowledge persistence, episodic event history, semantic fact storage, and procedural skill retention for autonomous agent learning.</li>
+                <li><strong>Distributed State Architecture</strong> - Advanced guidance on agent state persistence across database backends, multi-node state synchronization, distributed consistency protocols, and fault-tolerant state recovery mechanisms for enterprise-scale deployments.</li>
+                <li><strong>Vector Memory & Semantic Search</strong> - Specialized expertise in vector database integration (Pinecone, Weaviate, Chroma), semantic memory retrieval, context-aware knowledge discovery, and intelligent memory consolidation strategies for agent knowledge management.</li>
+                <li><strong>State Synchronization & Coordination</strong> - Comprehensive consulting on multi-agent state consistency, concurrent state management, distributed locks and consensus algorithms, and real-time state propagation across agent networks.</li>
+                <li><strong>Memory Optimization & Performance</strong> - Expert guidance on memory hierarchy optimization, intelligent caching strategies, memory compression techniques, and performance tuning for high-throughput agent operations with minimal latency.</li>
+                <li><strong>Learning & Adaptation Systems</strong> - Advanced consulting on agent experience learning, pattern recognition in memory systems, adaptive behavior modification, and continuous improvement mechanisms through memory-driven optimization.</li>
             </ul>
         </div>
     );
