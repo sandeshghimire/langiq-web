@@ -28,7 +28,7 @@ export default function RootLayout({
                   <h1 className="text-3xl font-black mb-2 uppercase ">LangIQ</h1>
                   <p className="text-lg font-normal mb-4 uppercase">AI ML and LLM Consulting  </p>
                   <div className="flex flex-wrap justify-center gap-4 text-sm font-black">
-                    <span>sandesh@LangIQ.com</span>
+                    <span>sandesh.ghimire@langiq.ai</span>
                     <span>+1 (669) 356-1998</span>
                     <span>https://github.com/LangIQ</span>
                   </div>
