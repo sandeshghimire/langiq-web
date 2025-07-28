@@ -10,7 +10,7 @@ const Navigation = () => {
         { href: '/', label: 'Home' },
         { href: '/ai_llm_advisory', label: 'AI LLM Advisory' },
         { href: '/llm_app_development', label: 'LLM App Development' },
-        { href: '/model_training', label: 'Model Training ' },
+        { href: '/model_training', label: 'Model Fine Tuning ' },
         { href: '/agentic_solution', label: 'Agentic Solution ' },
     ];
 

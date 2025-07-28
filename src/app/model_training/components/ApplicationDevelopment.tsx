@@ -1,17 +1,17 @@
 export default function ApplicationDevelopment() {
     return (
         <div id="application-development" className="p-8 border-t border-gray-200">
-            <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Application Development</h2>
+            <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">AI/ML Application Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
-                extensive experience in custom application development using AMD Xilinx Zynq platforms across five critical industries. Our expertise spans automotive ADAS systems with CAN bus and LiDAR integration, robotics applications using ROS and advanced sensor fusion, UAV/drone systems with intelligent flight control, FDA-compliant medical devices with regulatory protocols, and mission-critical aerospace applications meeting DO-178C certification standards.
+                Extensive experience in production-ready AI/ML application development across five critical domains. Our expertise spans healthcare payment integrity with AI-powered claims processing, defense and aerospace systems with secure AI deployment, financial services with regulatory-compliant AI solutions, autonomous systems with real-time AI decision making, and enterprise automation with intelligent document processing and conversational AI.
             </p>
-            <h3 className="text-lg font-semibold text-black mb-3">Key capabilities:</h3>
+            <h3 className="text-lg font-semibold text-black mb-3">Industry-Specific AI Solutions:</h3>
             <ul className="text-gray-700 space-y-4 ml-4">
-                <li><strong>Automotive applications with real-time systems</strong> - Experience with Advanced Driver Assistance Systems (ADAS) featuring CAN bus integration, real-time LiDAR processing, collision avoidance systems, lane detection, and vehicle-to-vehicle communication that meet stringent automotive industry standards and functional safety requirements.</li>
-                <li><strong>Robotics with advanced sensor integration</strong> - Experience with sophisticated robotics applications leveraging ROS (Robot Operating System), real-time camera processing, precise motor control systems, and sensor fusion algorithms using Zynq's FPGA capabilities for autonomous robotic platforms and industrial automation.</li>
-                <li><strong>UAV and drone systems</strong> - Experience with unmanned aerial vehicle solutions incorporating ROS-based flight control, real-time camera and sensor processing, intelligent battery management systems, and autonomous navigation capabilities for commercial and defense applications.</li>
-                <li><strong>Medical devices with regulatory compliance</strong> - Experience with FDA-compliant medical device software adhering to medical communication protocols, ensuring regulatory compliance while delivering reliable, life-critical functionality with robust safety mechanisms for healthcare equipment and diagnostic systems.</li>
-                <li><strong>Aerospace flight control systems</strong> - Experience with mission-critical aerospace applications focused on advanced flight control systems, avionics integration, and defense applications requiring ultra-high reliability, real-time performance, and compliance with aerospace certification standards like DO-178C.</li>
+                <li><strong>Healthcare & Life Sciences</strong> - FDA-compliant AI systems for medical device software, HIPAA-compliant data processing, clinical decision support systems, genetic analysis platforms, and lab automation with bioinformatics integration meeting all regulatory requirements.</li>
+                <li><strong>Defense & Aerospace</strong> - Security clearance-ready AI solutions including TS/SCI compliant systems, tactical network AI deployment, multi-domain operational AI, cross-domain solution integration, and mission-critical applications meeting DO-178C certification standards.</li>
+                <li><strong>Financial Services & Fintech</strong> - Regulatory-compliant AI for payment integrity, fraud detection systems, automated claims processing, risk assessment platforms, and financial document intelligence with complete audit trails and governance frameworks.</li>
+                <li><strong>Autonomous Systems & Robotics</strong> - Real-time AI for autonomous vehicles, drone navigation systems, robotic process automation, intelligent sensor fusion, and edge AI deployment for time-critical decision making in resource-constrained environments.</li>
+                <li><strong>Enterprise Automation</strong> - Intelligent document processing with OCR integration, conversational AI chatbots, workflow automation, knowledge management systems, and business process optimization using advanced AI/ML techniques.</li>
             </ul>
         </div>
     );

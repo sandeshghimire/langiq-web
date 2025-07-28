@@ -16,6 +16,7 @@ export default function Home() {
             <Firmware />
             <Middleware />
             <ApplicationDevelopment />
+
         </div>
     );
 }
