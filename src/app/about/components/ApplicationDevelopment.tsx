@@ -3,17 +3,17 @@ export default function ApplicationDevelopment() {
         <div id="application-development" className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Application Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
-                Soccentric specializes in custom AI application development using NVIDIA Jetson platforms, delivering tailored solutions across critical industries including autonomous vehicles, robotics automation, smart cities, healthcare devices, retail analytics, aerospace systems, and edge IoT applications. The company focuses on high-performance, edge AI applications requiring real-time inference, regulatory compliance, and advanced AI control systems for mission-critical environments.
+                LangIQ develops high-level application software for embedded systems, creating user interfaces, control logic, and data processing applications. Our application development ensures seamless user experience, efficient resource utilization, and robust functionality across various embedded platforms and use cases.
             </p>
-            <h3 className="text-lg font-semibold text-black mb-3">Experience in:</h3>
+            <h3 className="text-lg font-semibold text-black mb-3">Application Development Services:</h3>
             <ul className="text-gray-700 space-y-4 ml-4">
-                <li><strong>Autonomous Vehicles and Transportation</strong> - Experience in sophisticated self-driving vehicle platforms leveraging Jetson's GPU and AI accelerators for precise computer vision, sensor fusion, and autonomous navigation algorithms with real-time decision-making capabilities.</li>
-                <li><strong>Robotics and Industrial Automation</strong> - Experience in advanced robotic systems including AI-powered robotic arms, quality control systems, and predictive maintenance solutions that integrate computer vision guidance with industrial automation protocols.</li>
-                <li><strong>Smart Cities and Surveillance</strong> - Experience in intelligent surveillance systems with real-time video analytics, threat detection, and smart infrastructure monitoring that ensures public safety while maintaining privacy compliance standards.</li>
-                <li><strong>Healthcare and Medical Devices</strong> - Experience in FDA-compliant medical AI applications for imaging diagnostics, surgical robotics, and patient monitoring systems, ensuring adherence to regulatory guidelines while delivering reliable, life-critical AI functionality.</li>
-                <li><strong>Retail and Customer Analytics</strong> - Experience in AI-powered customer behavior analysis systems, inventory management solutions, and smart checkout technologies that optimize retail operations through computer vision and real-time analytics.</li>
-                <li><strong>Drones and Aerospace</strong> - Experience in mission-critical aerospace AI applications including autonomous drone systems, aerial surveillance, and agricultural monitoring requiring ultra-high reliability and compliance with aerospace certification standards.</li>
-                <li><strong>Edge AI and IoT</strong> - Experience in leveraging Jetson's unique ARM processor, GPU, and AI accelerator architecture to create optimized IoT solutions that balance AI inference performance with power efficiency for distributed edge deployment scenarios. Hands-on with AWS IoT, Azure IoT Hub, or GCP IoT Core integration for comprehensive cloud connectivity.</li>
+                <li><strong>User Interface Development</strong> - GUI applications using Qt, GTK+, and custom interfaces for embedded displays and touchscreens.</li>
+                <li><strong>Control Systems</strong> - Real-time control applications, automation logic, and feedback control systems for industrial and automotive applications.</li>
+                <li><strong>Data Processing</strong> - Signal processing, data acquisition, and analytics applications for sensor data and system monitoring.</li>
+                <li><strong>Communication Applications</strong> - Network clients, protocol implementations, and connectivity solutions for IoT and industrial networks.</li>
+                <li><strong>Multimedia Applications</strong> - Audio/video processing, streaming, and multimedia interfaces for consumer and professional applications.</li>
+                <li><strong>System Utilities</strong> - Configuration tools, diagnostics, monitoring applications, and system management utilities.</li>
+                <li><strong>Cross-Platform Development</strong> - Applications that work across different embedded platforms with consistent functionality.</li>
             </ul>
         </div>
     );

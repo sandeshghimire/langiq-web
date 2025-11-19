@@ -3,17 +3,17 @@ export default function Drivers() {
         <div id="drivers" className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Driver Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
-                Soccentric develops custom device drivers for NVIDIA Jetson platform peripherals using JetPack SDK integration. Driver development covers communication interfaces (SPI, I2C, UART, Ethernet), camera systems (MIPI CSI-2, USB3), AI accelerators (GPU, DLA, PVA), sensors (IMU, temperature, ADC), GPIO control, PCIe connectivity, and specialized hardware including AI inference engines and computer vision pipelines for edge AI applications.
+                LangIQ provides comprehensive device driver development for embedded systems, ensuring proper hardware-software integration across various platforms. Our driver development covers kernel-mode and user-space drivers, hardware abstraction layers, and performance optimization. We develop drivers for communication interfaces, sensors, displays, storage devices, and specialized hardware components.
             </p>
             <h3 className="text-lg font-semibold text-black mb-3 mt-6">Key Driver Development Areas:</h3>
             <ul className="text-gray-700 space-y-3 ml-4">
-                <li><strong>Communication Protocol Drivers</strong> - Custom SPI, I2C, UART, CAN, and Gigabit Ethernet drivers with interrupt handling and DMA support for high-performance data transfer</li>
-                <li><strong>Camera & Vision Drivers</strong> - MIPI CSI-2, USB3 Vision, and GigE Vision camera drivers integrated with ISP pipeline and CUDA-accelerated image processing, supporting Sony IMX, ON Semiconductor, and OmniVision sensors</li>
-                <li><strong>AI Accelerator Drivers</strong> - GPU compute drivers, Deep Learning Accelerator (DLA) interfaces, and Programmable Vision Accelerator (PVA) drivers for optimized AI inference</li>
-                <li><strong>Wireless & Connectivity Drivers</strong> - WiFi 802.11ac/ax drivers with mesh networking support, Bluetooth 5.0/LE drivers for IoT connectivity, GPIO pin management with dynamic multiplexing and real-time control for robotics applications</li>
-                <li><strong>High-Speed Interface Drivers</strong> - PCIe Gen4 drivers for NVMe storage, high-speed networking cards, and custom AI accelerator cards</li>
-                <li><strong>System Monitor & Power Drivers</strong> - Tegra system monitoring drivers for temperature/power management, fan control, and thermal throttling with integration to Jetson power modes</li>
-                <li><strong>Navigation & Sensing Drivers</strong> - GPS/GNSS receivers, LIDAR point cloud processing, RADAR signal processing, and ultrasonic sensor drivers with CUDA acceleration and real-time sensor fusion for autonomous systems</li>
+                <li><strong>Communication Protocol Drivers</strong> - UART, SPI, I2C, CAN, Ethernet, USB, and wireless protocol implementations with interrupt and DMA support.</li>
+                <li><strong>Sensor Drivers</strong> - Interface drivers for various sensors including IMU, GPS, temperature, pressure, and environmental sensors.</li>
+                <li><strong>Display & Graphics Drivers</strong> - LCD, OLED, and touchscreen drivers with graphics acceleration and multi-display support.</li>
+                <li><strong>Storage Drivers</strong> - NAND flash, eMMC, SD card, and external storage device drivers with wear leveling and error correction.</li>
+                <li><strong>Network Drivers</strong> - Ethernet, WiFi, Bluetooth, and cellular modem drivers with security and performance optimizations.</li>
+                <li><strong>Real-Time Drivers</strong> - Low-latency drivers for time-critical applications with deterministic behavior.</li>
+                <li><strong>Hardware Abstraction</strong> - Platform-independent driver frameworks and board support package development.</li>
             </ul>
         </div>
     );
