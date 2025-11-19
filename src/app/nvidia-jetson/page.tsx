@@ -12,7 +12,7 @@ export default function NVIDIAJetson() {
 
                     <div className="text-gray-700 animate-fadeInUp stagger-1 text-sm md:text-base">
                         <p className="font-semibold mb-2">What's Offered:</p>
-                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm md:text-base">
                             <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Complete hardware designs with schematics and PCB layouts</li>
                             <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Custom Yocto/Linux BSP configurations and recipes</li>
                             <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Device drivers and kernel modules source code</li>

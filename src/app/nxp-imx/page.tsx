@@ -12,7 +12,7 @@ export default function NXPiMX() {
 
                     <div className="text-gray-700 animate-fadeInUp stagger-1">
                         <p className="font-semibold mb-2">What's Offered:</p>
-                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm md:text-base">
                             <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Industrial-grade carrier board designs and schematics</li>
                             <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Yocto meta-layers for custom Linux distributions</li>
                             <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>BSP packages with U-Boot and kernel configurations</li>
@@ -49,7 +49,7 @@ export default function NXPiMX() {
             <div className="space-y-6">
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-2 hover-lift relative">
-                    <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Design & Integration</h2>
+                    <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Design & Integration</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Soccentric provides complete NXP i.MX hardware ecosystems including custom carrier board designs, power management systems, and peripheral integration for industrial and IoT applications.
                     </p>
@@ -75,14 +75,14 @@ export default function NXPiMX() {
                 </section>
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-3 hover-lift relative">
-                    <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Embedded Linux & Yocto</h2>
+                    <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">Embedded Linux & Yocto</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Custom embedded Linux distributions using Yocto Project optimized for NXP i.MX processors, with specialized builds for industrial, medical, and automotive applications.
                     </p>
                     <div className="text-gray-700 grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <p className="mb-2"><strong>Specialized Builds:</strong></p>
-                            <ul className="list-disc ml-6 space-y-1">
+                            <ul className="list-disc ml-6 space-y-2">
                                 <li><strong>Industrial Control:</strong> Real-time kernel patches and deterministic scheduling</li>
                                 <li><strong>Medical Systems:</strong> Safety-critical software with regulatory compliance</li>
                                 <li><strong>Automotive:</strong> AUTOSAR integration and vehicle network protocols</li>
@@ -92,7 +92,7 @@ export default function NXPiMX() {
                         </div>
                         <div>
                             <p className="mb-2"><strong>Customization Capabilities:</strong></p>
-                            <ul className="list-disc ml-6 space-y-1">
+                            <ul className="list-disc ml-6 space-y-2">
                                 <li>Device tree configuration for custom hardware interfaces</li>
                                 <li>Kernel optimization for specific application requirements</li>
                                 <li>Package selection and customization for domain-specific needs</li>
@@ -108,7 +108,7 @@ export default function NXPiMX() {
                 </section>
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-4 hover-lift relative">
-                    <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Device Drivers & BSP</h2>
+                    <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">Device Drivers & BSP</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Complete Board Support Package (BSP) development and custom device drivers for NXP i.MX peripherals, industrial interfaces, and specialized hardware components.
                     </p>
@@ -131,7 +131,7 @@ export default function NXPiMX() {
                 </section>
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-5 hover-lift relative">
-                    <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Middleware & Frameworks</h2>
+                    <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">Middleware & Frameworks</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Integration of middleware frameworks and communication stacks optimized for NXP i.MX processors in industrial and IoT applications.
                     </p>
@@ -155,7 +155,7 @@ export default function NXPiMX() {
                 </section>
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-6 hover-lift relative">
-                    <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Application Development</h2>
+                    <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">Application Development</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         End-to-end application development for NXP i.MX platforms, from embedded controllers to complex industrial and medical systems.
                     </p>

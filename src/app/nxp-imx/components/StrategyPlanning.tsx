@@ -1,7 +1,7 @@
 export default function StrategyPlanning() {
     return (
         <div id="strategy-planning" className="p-8 border-t border-gray-200">
-            <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Engineering</h2>
+            <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Engineering</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 Soccentric delivers complete NXP i.MX hardware ecosystems from custom SoC/SOM designs to integrated components and thermal-optimized enclosures for mission-critical applications. Our open-source hardware reference designs are available on GitHub at <a href="https://github.com/Soccentric/Pinnacles-Hardware" className="text-blue-600 hover:underline">https://github.com/Soccentric/Pinnacles-Hardware</a>.
             </p>

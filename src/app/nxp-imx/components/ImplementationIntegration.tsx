@@ -1,7 +1,7 @@
 export default function ImplementationIntegration() {
     return (
         <div id="implementation-integration" className="p-8 border-t border-gray-200">
-            <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Driver Development</h2>
+            <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">Driver Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 Soccentric develops custom device drivers for NXP i.MX platform peripherals using Yocto Project integration. Driver development covers communication interfaces (SPI, I2C, UART, Ethernet), video systems (MIPI, HDMI, cameras), sensors (IMU, temperature, ADC), GPIO control, USB connectivity, wireless connectivity (WiFi, Bluetooth), and specialized hardware including CAN controllers and security modules for embedded applications.
             </p>

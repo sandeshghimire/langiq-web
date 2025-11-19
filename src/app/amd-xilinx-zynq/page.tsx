@@ -12,7 +12,7 @@ export default function AMDZynq() {
 
                     <div className="text-gray-700 animate-fadeInUp stagger-1">
                         <p className="font-semibold mb-2">What's Offered:</p>
-                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm md:text-base">
                             <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>FPGA designs with Verilog/VHDL source code and IP cores</li>
                             <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Vivado/Vitis project files and build scripts</li>
                             <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>PetaLinux/Yocto configurations for Zynq platforms</li>
@@ -49,8 +49,8 @@ export default function AMDZynq() {
             <div className="space-y-6">
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-2 hover-lift relative">
-                    <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Design Projects</h2>
-                    <p className="text-gray-700 leading-relaxed mb-4">
+                    <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Design Projects</h2>
+                    <p className="text-gray-700 leading-relaxed mb-4 text-sm md:text-base">
                         Based on Zynq architecture, we've developed several hardware projects including custom carrier boards, expansion modules, and specialized interfaces. These designs leverage the ZUBOARD ICZ reference while optimizing for specific application requirements.
                     </p>
                     <div className="text-gray-700">
@@ -82,8 +82,8 @@ export default function AMDZynq() {
                 </section>
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-3 hover-lift relative">
-                    <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">RTL & FPGA Design</h2>
-                    <p className="text-gray-700 leading-relaxed mb-4">
+                    <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">RTL & FPGA Design</h2>
+                    <p className="text-gray-700 leading-relaxed mb-4 text-sm md:text-base">
                         Developed comprehensive RTL FPGA designs for Zynq programmable logic fabric, implementing custom IP cores, high-speed interfaces, and domain-specific accelerators.
                     </p>
                     <div className="text-gray-700">
@@ -119,14 +119,14 @@ export default function AMDZynq() {
                 </section>
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-4 hover-lift relative">
-                    <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Yocto-Based Embedded Linux</h2>
-                    <p className="text-gray-700 leading-relaxed mb-4">
+                    <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">Yocto-Based Embedded Linux</h2>
+                    <p className="text-gray-700 leading-relaxed mb-4 text-sm md:text-base">
                         Created domain-specific Yocto builds optimized for various applications, with full customization capabilities for device tree, U-Boot, and kernel configurations.
                     </p>
                     <div className="text-gray-700 grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <p className="mb-2"><strong>Specialized Builds:</strong></p>
-                            <ul className="list-disc ml-6 space-y-1">
+                            <ul className="list-disc ml-6 space-y-2">
                                 <li><strong>ROS Integration:</strong> Robotics frameworks with real-time kernel patches</li>
                                 <li><strong>Rust Runtime:</strong> Memory-safe embedded applications</li>
                                 <li><strong>IoT Gateway:</strong> Cloud connectivity and edge processing</li>
@@ -137,7 +137,7 @@ export default function AMDZynq() {
                         </div>
                         <div>
                             <p className="mb-2"><strong>Customization Capabilities:</strong></p>
-                            <ul className="list-disc ml-6 space-y-1">
+                            <ul className="list-disc ml-6 space-y-2">
                                 <li>Device tree overlays for custom hardware</li>
                                 <li>U-Boot configuration and secure boot</li>
                                 <li>Kernel optimization and real-time patches</li>
@@ -153,8 +153,8 @@ export default function AMDZynq() {
                 </section>
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-5 hover-lift relative">
-                    <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Device Drivers</h2>
-                    <p className="text-gray-700 leading-relaxed mb-4">
+                    <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">Device Drivers</h2>
+                    <p className="text-gray-700 leading-relaxed mb-4 text-sm md:text-base">
                         Developed comprehensive device drivers for Zynq peripherals, custom hardware interfaces, and specialized devices across various application domains.
                     </p>
                     <div className="text-gray-700">
@@ -190,8 +190,8 @@ export default function AMDZynq() {
                 </section>
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-6 hover-lift relative">
-                    <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">RPU-Based Firmware</h2>
-                    <p className="text-gray-700 leading-relaxed mb-4">
+                    <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">RPU-Based Firmware</h2>
+                    <p className="text-gray-700 leading-relaxed mb-4 text-sm md:text-base">
                         Implemented Real-Time Processing Unit (RPU) firmware for critical real-time tasks, safety systems, and low-latency processing requirements.
                     </p>
                     <div className="text-gray-700">
@@ -227,8 +227,8 @@ export default function AMDZynq() {
                 </section>
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-6 hover-lift relative">
-                    <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Zynq Applications</h2>
-                    <p className="text-gray-700 leading-relaxed mb-4">
+                    <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">Zynq Applications</h2>
+                    <p className="text-gray-700 leading-relaxed mb-4 text-sm md:text-base">
                         Developed complete applications leveraging Zynq's heterogeneous architecture, combining ARM processing with FPGA acceleration for optimal performance.
                     </p>
                     <div className="text-gray-700">

@@ -1,7 +1,7 @@
 export default function Firmware() {
     return (
         <div id="firmware" className="p-8 border-t border-gray-200">
-            <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Firmware Development</h2>
+            <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">Firmware Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 Soccentric delivers comprehensive firmware solutions for Raspberry Pi Pico and Pico 2 microcontrollers, specializing in MicroPython, C/C++ SDK development, and real-time embedded applications for IoT and automation projects.
             </p>

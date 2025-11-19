@@ -12,7 +12,7 @@ export default function RaspberryPi() {
 
                     <div className="text-gray-700 animate-fadeInUp stagger-1">
                         <p className="font-semibold mb-2">What's Offered:</p>
-                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm md:text-base">
                             <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Custom HAT designs with full hardware documentation</li>
                             <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Raspbian/Ubuntu customization scripts and configurations</li>
                             <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>GPIO, I2C, SPI driver examples and libraries</li>
@@ -49,7 +49,7 @@ export default function RaspberryPi() {
             <div className="space-y-4 md:space-y-6">
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-2 hover-lift relative">
-                    <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Integration & HATs</h2>
+                    <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Integration & HATs</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Soccentric delivers custom Hardware Attached on Top (HAT) designs and sensor integrations for Raspberry Pi, enabling rapid prototyping and production-ready embedded solutions.
                     </p>
@@ -102,14 +102,14 @@ export default function RaspberryPi() {
                 </section>
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-3 hover-lift relative">
-                    <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Embedded Linux & Raspbian</h2>
+                    <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">Embedded Linux & Raspbian</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Custom Linux distributions and system configurations optimized for Raspberry Pi platforms, with specialized builds for various applications and performance requirements.
                     </p>
                     <div className="text-gray-700 grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <p className="mb-2"><strong>Specialized Builds:</strong></p>
-                            <ul className="list-disc ml-6 space-y-1">
+                            <ul className="list-disc ml-6 space-y-2">
                                 <li><strong>IoT Gateway:</strong> Lightweight distributions for edge computing and cloud connectivity</li>
                                 <li><strong>Robotics:</strong> Real-time kernel patches and ROS integration</li>
                                 <li><strong>Media Center:</strong> Kodi and multimedia optimization</li>
@@ -119,7 +119,7 @@ export default function RaspberryPi() {
                         </div>
                         <div>
                             <p className="mb-2"><strong>Customization Capabilities:</strong></p>
-                            <ul className="list-disc ml-6 space-y-1">
+                            <ul className="list-disc ml-6 space-y-2">
                                 <li>Device tree overlays for custom hardware and peripherals</li>
                                 <li>Kernel modules and drivers for specialized applications</li>
                                 <li>Package management and system optimization</li>
@@ -135,7 +135,7 @@ export default function RaspberryPi() {
                 </section>
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-4 hover-lift relative">
-                    <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Device Drivers & Interfaces</h2>
+                    <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">Device Drivers & Interfaces</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Custom device drivers and interface implementations for Raspberry Pi GPIO, I2C, SPI, UART, and specialized peripherals optimized for various applications.
                     </p>
@@ -180,7 +180,7 @@ export default function RaspberryPi() {
                 </section>
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-5 hover-lift relative">
-                    <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Middleware & Protocols</h2>
+                    <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">Middleware & Protocols</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Integration of middleware frameworks and communication protocols optimized for Raspberry Pi in IoT and edge computing applications.
                     </p>
@@ -225,7 +225,7 @@ export default function RaspberryPi() {
                 </section>
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-6 hover-lift relative">
-                    <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Application Development</h2>
+                    <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">Application Development</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         End-to-end application development for Raspberry Pi platforms, from simple IoT devices to complex robotics and automation systems.
                     </p>

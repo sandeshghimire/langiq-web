@@ -1,7 +1,7 @@
 export default function PerformanceOptimization() {
     return (
         <div id="performance-optimization" className="p-8 border-t border-gray-200">
-            <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Application Development</h2>
+            <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">Application Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 Soccentric specializes in custom application development using NXP i.MX platforms, delivering tailored solutions across critical industries including robotics, automotive, medical devices, and aerospace & defense. The company focuses on high-performance, mission-critical applications requiring real-time processing, regulatory compliance, advanced multimedia capabilities, and secure communication systems for autonomous and safety-critical environments.
             </p>

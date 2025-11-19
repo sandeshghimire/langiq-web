@@ -1,7 +1,7 @@
 export default function Hardware() {
     return (
         <div id="hardware" className="p-8 border-t border-gray-200">
-            <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Engineering</h2>
+            <h2 className="text-lg md:text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Engineering</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
                 Soccentric delivers complete Raspberry Pi CM4/CM5 hardware ecosystems from custom carrier board designs to integrated components and thermal-optimized enclosures for mission-critical applications. Our open-source hardware reference designs are available on GitHub at <a href="https://github.com/Soccentric/Acadia-Hardware" className="text-blue-600 hover:underline">https://github.com/Soccentric/Acadia-Hardware</a>.
             </p>
