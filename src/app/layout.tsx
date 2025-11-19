@@ -22,8 +22,8 @@ export default function RootLayout({
         <nav className="fixed left-4 top-1/2 transform -translate-y-1/2 w-64 z-10">
           <Navigation />
         </nav>
-        <main className="py-8 px-4">
-          <div className="ml-64 max-w-[1440px] bg-zinc-50 shadow-xl md:px-16 md:py-20 border-1 border-amber-200">
+        <main className="min-h-screen flex items-center justify-center px-4 py-8">
+          <div className="max-w-[1440px] bg-zinc-50 shadow-xl md:px-16 md:py-20 border-1 border-amber-200">
             {/* Header Section */}
             <div className="text-gray-800 p-8">
               <div className="text-center">
