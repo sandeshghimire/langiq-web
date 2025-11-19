@@ -1,18 +1,18 @@
 export default function AMDZynq() {
     return (
-        <div className="px-6 py-6 md:px-8 md:py-8 border-t border-gray-200">
+        <div className="px-4 py-4 md:px-6 md:py-6 border-t border-gray-200">
             {/* Two Column Layout for Title and Image */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mb-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-black mb-3 uppercase animate-fadeInUp">AMD Xilinx Zynq Reference Design</h1>
+                    <h1 className="text-xl md:text-2xl font-bold text-black mb-3 uppercase animate-fadeInUp">AMD Xilinx Zynq Reference Design</h1>
 
-                    <p className="text-gray-700 leading-relaxed mb-3 animate-fadeInUp stagger-1">
+                    <p className="text-gray-700 leading-relaxed mb-3 animate-fadeInUp stagger-1 text-sm md:text-base">
                         Over the past decade, I've developed extensive expertise with AMD Xilinx Zynq platforms, using the ZUBOARD ICZ as a reference design foundation. This page showcases practical implementations across the entire Zynq ecosystem, from hardware design to application development. All projects are available on my <a href="https://github.com/Soccentric" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">GitHub repository</a>.
                     </p>
 
                     <div className="text-gray-700 animate-fadeInUp stagger-1">
                         <p className="font-semibold mb-2">What's Offered:</p>
-                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
                             <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>FPGA designs with Verilog/VHDL source code and IP cores</li>
                             <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Vivado/Vitis project files and build scripts</li>
                             <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>PetaLinux/Yocto configurations for Zynq platforms</li>
@@ -27,7 +27,7 @@ export default function AMDZynq() {
                     <img
                         src="/zuboard.png"
                         alt="ZUBOARD ICZ Reference Design"
-                        className="max-w-md h-auto rounded-lg shadow-lg animate-fadeIn stagger-2 hover-lift"
+                        className="max-w-sm md:max-w-md h-auto rounded-lg shadow-lg animate-fadeIn stagger-2 hover-lift"
                         style={{
                             maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%), linear-gradient(to right, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)',
                             maskComposite: 'intersect',

@@ -1,18 +1,18 @@
 export default function RaspberryPi() {
     return (
-        <div className="px-6 py-6 md:px-8 md:py-8 border-t border-gray-200">
+        <div className="px-4 py-4 md:px-6 md:py-6 border-t border-gray-200">
             {/* Two Column Layout for Title and Image */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mb-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-black mb-3 uppercase animate-fadeInUp">Raspberry Pi Reference Design</h1>
+                    <h1 className="text-xl md:text-2xl font-bold text-black mb-3 uppercase animate-fadeInUp">Raspberry Pi Reference Design</h1>
 
-                    <p className="text-gray-700 leading-relaxed mb-3 animate-fadeInUp stagger-1">
+                    <p className="text-gray-700 leading-relaxed mb-3 animate-fadeInUp stagger-1 text-sm md:text-base">
                         With extensive experience across the entire Raspberry Pi ecosystem from Pi Zero to Raspberry Pi 5, I've developed comprehensive embedded solutions for IoT, robotics, and edge computing applications. This page showcases practical implementations leveraging the Pi's versatility and community ecosystem. All projects are available on my <a href="https://github.com/Soccentric" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">GitHub repository</a>.
                     </p>
 
                     <div className="text-gray-700 animate-fadeInUp stagger-1">
                         <p className="font-semibold mb-2">What's Offered:</p>
-                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm">
                             <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Custom HAT designs with full hardware documentation</li>
                             <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Raspbian/Ubuntu customization scripts and configurations</li>
                             <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>GPIO, I2C, SPI driver examples and libraries</li>
@@ -27,7 +27,7 @@ export default function RaspberryPi() {
                     <img
                         src="/CM5-V2_1.jpg"
                         alt="Raspberry Pi Platform"
-                        className="max-w-md h-auto rounded-lg shadow-lg animate-fadeIn stagger-2 hover-lift"
+                        className="max-w-sm md:max-w-md h-auto rounded-lg shadow-lg animate-fadeIn stagger-2 hover-lift"
                         style={{
                             maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%), linear-gradient(to right, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)',
                             maskComposite: 'intersect',
@@ -39,14 +39,14 @@ export default function RaspberryPi() {
             </div>
 
             {/* Source Code Notice */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6 animate-fadeInUp stagger-1">
-                <p className="text-blue-800 text-sm leading-relaxed">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 md:p-4 mb-6 animate-fadeInUp stagger-1">
+                <p className="text-blue-800 text-xs md:text-sm leading-relaxed">
                     <strong>Note:</strong> All the project descriptions below have source code available on GitHub. The source code designs are copyrighted to sandesh@soccentric.com however you may use them on commercial and non-commercial projects as needed without author's credits.
                 </p>
             </div>
 
             {/* Single Column Layout for Content */}
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-2 hover-lift relative">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Integration & HATs</h2>
