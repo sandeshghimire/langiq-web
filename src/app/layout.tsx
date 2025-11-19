@@ -11,8 +11,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>LangIQ - AI ML and LLM Consulting </title>
-        <meta name="description" content="LLM Consultant & AI Strategy Advisor" />
+        <title>Soccentric - Embedded Systems Consulting</title>
+        <meta name="description" content="Embedded Systems Consultant & Development Services" />
         <link
           href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
@@ -28,12 +28,12 @@ export default function RootLayout({
               {/* Header Section */}
               <div className="text-gray-800 p-8">
                 <div className="text-center">
-                  <h1 className="text-3xl font-black mb-2 uppercase ">LangIQ</h1>
-                  <p className="text-lg font-normal mb-4 uppercase">AI ML and LLM Consulting  </p>
+                  <h1 className="text-3xl font-black mb-2 uppercase ">Soccentric</h1>
+                  <p className="text-lg font-normal mb-4 uppercase">Embedded Systems Consulting</p>
                   <div className="flex flex-wrap justify-center gap-4 text-sm font-black">
-                    <span>sandesh.ghimire@langiq.ai</span>
+                    <span>sandesh@soccentric.com</span>
                     <span>+1 (669) 356-1998</span>
-                    <span>https://github.com/LangIQ</span>
+                    <span>https://github.com/Soccentric</span>
                   </div>
                 </div>
               </div>

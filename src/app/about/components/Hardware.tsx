@@ -3,7 +3,7 @@ export default function Hardware() {
         <div id="hardware" className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Engineering</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
-                LangIQ provides comprehensive hardware engineering services for embedded systems, including schematic design, PCB layout, component selection, and prototyping. Our expertise covers various microcontroller and SoC platforms, sensor integration, power management, and interface design. We ensure hardware designs are optimized for performance, reliability, and manufacturability across different applications and environmental conditions.
+                Soccentric provides comprehensive hardware engineering services for embedded systems, including schematic design, PCB layout, component selection, and prototyping. Our expertise covers various microcontroller and SoC platforms, sensor integration, power management, and interface design. We ensure hardware designs are optimized for performance, reliability, and manufacturability across different applications and environmental conditions.
             </p>
             <h3 className="text-lg font-semibold text-black mb-3 mt-6">Key Capabilities:</h3>
             <ul className="text-gray-700 space-y-3 ml-4">

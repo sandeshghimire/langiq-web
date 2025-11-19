@@ -3,7 +3,7 @@ export default function Firmware() {
         <div id="firmware" className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Firmware Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
-                LangIQ specializes in low-level firmware development for microcontrollers, DSPs, and embedded processors. Our firmware development ensures reliable boot processes, hardware initialization, and real-time operation. We implement secure boot mechanisms, over-the-air updates, and power management features while maintaining code efficiency and reliability.
+                Soccentric specializes in low-level firmware development for microcontrollers, DSPs, and embedded processors. Our firmware development ensures reliable boot processes, hardware initialization, and real-time operation. We implement secure boot mechanisms, over-the-air updates, and power management features while maintaining code efficiency and reliability.
             </p>
             <h3 className="text-lg font-semibold text-black mb-3 mt-6">Firmware Development Expertise:</h3>
             <ul className="text-gray-700 space-y-3 ml-4">

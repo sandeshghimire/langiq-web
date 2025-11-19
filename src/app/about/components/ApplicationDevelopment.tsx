@@ -3,7 +3,7 @@ export default function ApplicationDevelopment() {
         <div id="application-development" className="p-8 border-t border-gray-200">
             <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Application Development</h2>
             <p className="text-gray-700 leading-relaxed font-normal mb-4">
-                LangIQ develops high-level application software for embedded systems, creating user interfaces, control logic, and data processing applications. Our application development ensures seamless user experience, efficient resource utilization, and robust functionality across various embedded platforms and use cases.
+                Soccentric develops high-level application software for embedded systems, creating user interfaces, control logic, and data processing applications. Our application development ensures seamless user experience, efficient resource utilization, and robust functionality across various embedded platforms and use cases.
             </p>
             <h3 className="text-lg font-semibold text-black mb-3">Application Development Services:</h3>
             <ul className="text-gray-700 space-y-4 ml-4">

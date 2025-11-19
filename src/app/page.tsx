@@ -4,9 +4,9 @@ export default function Home() {
 
       {/* Professional Summary */}
       <div className="p-8 border-t border-gray-200">
-        <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">About LangIQ</h2>
+        <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">About Soccentric</h2>
         <p className="text-gray-700 leading-relaxed mb-6">
-          <strong>At LangIQ, we specialize in embedded systems consulting and development, providing comprehensive solutions for hardware-software integration, firmware development, and system optimization across various embedded platforms. Our expertise spans from low-level hardware interfaces to high-level application development, ensuring robust, efficient, and scalable embedded solutions for diverse industries and applications.</strong>
+          <strong>At Soccentric, we specialize in embedded systems consulting and development, providing comprehensive solutions for hardware-software integration, firmware development, and system optimization across various embedded platforms. Our expertise spans from low-level hardware interfaces to high-level application development, ensuring robust, efficient, and scalable embedded solutions for diverse industries and applications.</strong>
         </p>
 
         <h3 className="text-lg font-semibold text-black mb-3 uppercase tracking-wide">Our Core Services:</h3>
