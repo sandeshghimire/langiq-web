@@ -24,7 +24,7 @@ export default function RootLayout({
         </nav>
         <main className="min-h-screen flex items-center justify-center">
           <div className="max-w-[1440px] bg-zinc-50 shadow-xl md:px-16 md:py-20 border-1 border-amber-200">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-[1440px] mx-auto">
               {/* Header Section */}
               <div className="text-gray-800 p-8">
                 <div className="text-center">

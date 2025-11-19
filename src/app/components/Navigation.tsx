@@ -22,7 +22,7 @@ const Navigation = () => {
                     <Link
                         key={item.href}
                         href={item.href}
-                        className={`text-sm font-bold tracking-wide uppercase transition-colors ${pathname === item.href
+                        className={`text-sm font-bold tracking-wide uppercase transition-colors text-right ${pathname === item.href
                             ? 'text-black border-b-2 border-black pb-1'
                             : 'text-gray-600 hover:text-black'
                             }`}
