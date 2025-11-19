@@ -1,22 +1,38 @@
-import Summary from './components/Summary';
-import Hardware from './components/Hardware';
-import OperatingSystem from './components/OperatingSystem';
-import Drivers from './components/Drivers';
-import Middleware from './components/Middleware';
-import ApplicationDevelopment from './components/ApplicationDevelopment';
-import Firmware from './components/Firmware';
-
-export default function Home() {
+export default function About() {
     return (
-        <div>
-            <Summary />
-            <Hardware />
-            <OperatingSystem />
-            <Drivers />
-            <Firmware />
-            <Middleware />
-            <ApplicationDevelopment />
+        <div className="p-8 border-t border-gray-200">
+            <h1 className="text-2xl font-bold text-black mb-6 uppercase">About Me</h1>
 
+            <p className="text-gray-700 leading-relaxed mb-6">
+                With over a decade of consulting experience in embedded systems development, I specialize in comprehensive hardware-software integration across the entire embedded technology stack. My expertise spans from low-level hardware design to high-level application development, ensuring robust, efficient, and scalable solutions for diverse industries and applications.
+            </p>
+
+            <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Core Expertise Areas:</h2>
+            <div className="text-gray-700 mb-6">
+                <p className="mb-3"><strong>Hardware Development:</strong> Custom board design, schematic development, PCB layout, component selection, and prototyping for embedded systems.</p>
+                <p className="mb-3"><strong>Firmware Development:</strong> Low-level firmware programming, bootloader development, secure boot implementation, and real-time systems programming.</p>
+                <p className="mb-3"><strong>FPGA & RTL Development:</strong> Digital design, HDL coding (Verilog/VHDL), synthesis, timing analysis, and FPGA implementation for custom logic and interfaces.</p>
+                <p className="mb-3"><strong>Embedded Linux:</strong> Kernel customization, bootloader development (U-Boot), device driver implementation, and system integration using Yocto/Buildroot.</p>
+                <p className="mb-3"><strong>Middleware:</strong> ROS/ROS2 for robotics, DDS for real-time communication, IoT protocols (MQTT, CoAP), and OTA update systems.</p>
+                <p className="mb-3"><strong>Embedded Application Development:</strong> Cross-platform application development with cloud connectivity, IoT integration, and user interface design.</p>
+            </div>
+
+            <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Platform Experience</h2>
+            <p className="text-gray-700 leading-relaxed mb-6">
+                Through this website, I share my extensive experience working with four major embedded platforms that represent the cutting edge of embedded computing technology. Each platform page showcases practical implementations, development techniques, and real-world applications across various industries.
+            </p>
+
+            <div className="text-gray-700 mb-6">
+                <p className="mb-3"><strong><a href="/amd-xilinx-zynq" className="text-blue-600 hover:text-blue-800 underline">AMD Xilinx Zynq</a></strong> - Programmable SoC platforms combining FPGA fabric with ARM processors for heterogeneous computing solutions.</p>
+                <p className="mb-3"><strong><a href="/nvidia-jetson" className="text-blue-600 hover:text-blue-800 underline">NVIDIA Jetson</a></strong> - AI-enabled embedded computing platforms with GPU acceleration for edge computing and AI applications.</p>
+                <p className="mb-3"><strong><a href="/nxp-imx" className="text-blue-600 hover:text-blue-800 underline">NXP i.MX</a></strong> - High-performance application processors optimized for multimedia, industrial, and automotive applications.</p>
+                <p className="mb-3"><strong><a href="/raspberry-pi" className="text-blue-600 hover:text-blue-800 underline">Raspberry Pi</a></strong> - Versatile single-board computers ideal for prototyping, IoT projects, and production embedded systems.</p>
+            </div>
+
+            <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Consulting Approach</h2>
+            <p className="text-gray-700 leading-relaxed">
+                My consulting services focus on delivering end-to-end embedded solutions that bridge the gap between hardware capabilities and software requirements. Whether you're developing a new product, optimizing an existing system, or integrating complex embedded technologies, I provide the technical expertise and practical experience needed to bring your embedded projects to successful completion.
+            </p>
         </div>
     );
 }
