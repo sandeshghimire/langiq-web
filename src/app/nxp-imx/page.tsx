@@ -9,7 +9,7 @@ export default function NXPiMX() {
                     <p className="text-gray-700 leading-relaxed mb-3 animate-fadeInUp stagger-1">
                         With over a decade of experience developing with NXP i.MX application processors, I've delivered comprehensive embedded solutions across the i.MX family from i.MX6 to i.MX9 series. This page showcases practical implementations in industrial automation, IoT gateways, and edge computing applications. All projects are available on my <a href="https://github.com/Soccentric" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">GitHub repository</a>.
                     </p>
-                    
+
                     <div className="text-gray-700 animate-fadeInUp stagger-1">
                         <p className="font-semibold mb-2">What's Offered:</p>
                         <ul className="list-disc ml-5 space-y-1 text-sm">
@@ -41,7 +41,7 @@ export default function NXPiMX() {
             {/* Single Column Layout for Content */}
             <div className="space-y-6">
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-2 hover-lift">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-2 hover-lift relative">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Design & Integration</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Soccentric provides complete NXP i.MX hardware ecosystems including custom carrier board designs, power management systems, and peripheral integration for industrial and IoT applications.
@@ -59,11 +59,15 @@ export default function NXPiMX() {
                             <li>Communications - Network appliances and protocol converters</li>
                             <li>Custom Designs - Application-specific hardware with optimized BOM</li>
                         </ul>
-                        <p className="mt-3"><strong>GitHub:</strong> <a href="https://github.com/Soccentric/Pinnacle-Hardware" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">Pinnacle-Hardware Repository</a></p>
                     </div>
+                    <a href="https://github.com/Soccentric/Pinnacle-Hardware" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
+                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                    </a>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-3 hover-lift">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-3 hover-lift relative">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Embedded Linux & Yocto</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Custom embedded Linux distributions using Yocto Project optimized for NXP i.MX processors, with specialized builds for industrial, medical, and automotive applications.
@@ -89,10 +93,14 @@ export default function NXPiMX() {
                             </ul>
                         </div>
                     </div>
-                    <p className="mt-3"><strong>GitHub:</strong> <a href="https://github.com/Soccentric/Pinnacle-Yocto" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">Pinnacle-Yocto Repository</a></p>
+                    <a href="https://github.com/Soccentric/Pinnacle-Yocto" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
+                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                    </a>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-4 hover-lift">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-4 hover-lift relative">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Device Drivers & BSP</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Complete Board Support Package (BSP) development and custom device drivers for NXP i.MX peripherals, industrial interfaces, and specialized hardware components.
@@ -107,11 +115,15 @@ export default function NXPiMX() {
                             <li>Storage Systems - NAND Flash, eMMC, SD with wear leveling and security</li>
                             <li>Security Modules - TPM, secure element integration for trusted computing</li>
                         </ul>
-                        <p className="mt-3"><strong>GitHub:</strong> <a href="https://github.com/Soccentric/Pinnacle-Drivers" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">Pinnacle-Drivers Repository</a></p>
                     </div>
+                    <a href="https://github.com/Soccentric/Pinnacle-Drivers" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
+                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                    </a>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-5 hover-lift">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-5 hover-lift relative">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Middleware & Frameworks</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Integration of middleware frameworks and communication stacks optimized for NXP i.MX processors in industrial and IoT applications.
@@ -127,11 +139,15 @@ export default function NXPiMX() {
                             <li>EtherCAT - High-performance industrial Ethernet</li>
                             <li>TSN - Time-Sensitive Networking for deterministic communication</li>
                         </ul>
-                        <p className="mt-3"><strong>GitHub:</strong> <a href="https://github.com/Soccentric/Pinnacle-Middleware" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">Pinnacle-Middleware Repository</a></p>
                     </div>
+                    <a href="https://github.com/Soccentric/Pinnacle-Middleware" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
+                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                    </a>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-6 hover-lift">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-6 hover-lift relative">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Application Development</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         End-to-end application development for NXP i.MX platforms, from embedded controllers to complex industrial and medical systems.
@@ -146,8 +162,12 @@ export default function NXPiMX() {
                             <li><strong>Building Automation:</strong> HVAC control, access systems, and energy management</li>
                             <li><strong>Retail:</strong> POS systems, inventory management, and customer displays</li>
                         </ul>
-                        <p className="mt-3"><strong>GitHub:</strong> <a href="https://github.com/Soccentric/Pinnacle-Applications" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">Pinnacle-Applications Repository</a></p>
                     </div>
+                    <a href="https://github.com/Soccentric/Pinnacle-Applications" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
+                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                    </a>
                 </section>
 
             </div>
