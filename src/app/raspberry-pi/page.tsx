@@ -68,24 +68,28 @@ export default function RaspberryPi() {
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Custom Linux distributions and system configurations optimized for Raspberry Pi platforms, with specialized builds for various applications and performance requirements.
                     </p>
-                    <div className="text-gray-700">
-                        <p className="mb-2"><strong>Specialized Builds:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li><strong>IoT Gateway:</strong> Lightweight distributions for edge computing and cloud connectivity</li>
-                            <li><strong>Robotics:</strong> Real-time kernel patches and ROS integration</li>
-                            <li><strong>Media Center:</strong> Kodi and multimedia optimization</li>
-                            <li><strong>Security:</strong> Hardened systems with encryption and secure boot</li>
-                            <li><strong>Headless:</strong> Minimal systems for remote management and automation</li>
-                        </ul>
-                        <p className="mt-3"><strong>Customization Capabilities:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li>Device tree overlays for custom hardware and peripherals</li>
-                            <li>Kernel modules and drivers for specialized applications</li>
-                            <li>Package management and system optimization</li>
-                            <li>Network configuration and security hardening</li>
-                        </ul>
-                        <p className="mt-3"><strong>GitHub:</strong> <a href="https://github.com/Soccentric/Pi-Yocto" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">Pi-Yocto Repository</a></p>
+                    <div className="text-gray-700 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <p className="mb-2"><strong>Specialized Builds:</strong></p>
+                            <ul className="list-disc ml-6 space-y-1">
+                                <li><strong>IoT Gateway:</strong> Lightweight distributions for edge computing and cloud connectivity</li>
+                                <li><strong>Robotics:</strong> Real-time kernel patches and ROS integration</li>
+                                <li><strong>Media Center:</strong> Kodi and multimedia optimization</li>
+                                <li><strong>Security:</strong> Hardened systems with encryption and secure boot</li>
+                                <li><strong>Headless:</strong> Minimal systems for remote management and automation</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p className="mb-2"><strong>Customization Capabilities:</strong></p>
+                            <ul className="list-disc ml-6 space-y-1">
+                                <li>Device tree overlays for custom hardware and peripherals</li>
+                                <li>Kernel modules and drivers for specialized applications</li>
+                                <li>Package management and system optimization</li>
+                                <li>Network configuration and security hardening</li>
+                            </ul>
+                        </div>
                     </div>
+                    <p className="mt-3"><strong>GitHub:</strong> <a href="https://github.com/Soccentric/Pi-Yocto" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">Pi-Yocto Repository</a></p>
                 </section>
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-4 hover-lift">

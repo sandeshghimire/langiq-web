@@ -81,25 +81,29 @@ export default function AMDZynq() {
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Created domain-specific Yocto builds optimized for various applications, with full customization capabilities for device tree, U-Boot, and kernel configurations.
                     </p>
-                    <div className="text-gray-700">
-                        <p className="mb-2"><strong>Specialized Builds:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li><strong>ROS Integration:</strong> Robotics frameworks with real-time kernel patches</li>
-                            <li><strong>Rust Runtime:</strong> Memory-safe embedded applications</li>
-                            <li><strong>IoT Gateway:</strong> Cloud connectivity and edge processing</li>
-                            <li><strong>DDS Middleware:</strong> Real-time data distribution systems</li>
-                            <li><strong>Medical Devices:</strong> Regulatory-compliant embedded systems</li>
-                            <li><strong>Automotive:</strong> AUTOSAR-compatible software stacks</li>
-                        </ul>
-                        <p className="mt-3"><strong>Customization Capabilities:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li>Device tree overlays for custom hardware</li>
-                            <li>U-Boot configuration and secure boot</li>
-                            <li>Kernel optimization and real-time patches</li>
-                            <li>Package customization and dependency management</li>
-                        </ul>
-                        <p className="mt-3"><strong>GitHub:</strong> <a href="https://github.com/Soccentric/Zion-Yocto" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">Zion-Yocto Repository</a></p>
+                    <div className="text-gray-700 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <p className="mb-2"><strong>Specialized Builds:</strong></p>
+                            <ul className="list-disc ml-6 space-y-1">
+                                <li><strong>ROS Integration:</strong> Robotics frameworks with real-time kernel patches</li>
+                                <li><strong>Rust Runtime:</strong> Memory-safe embedded applications</li>
+                                <li><strong>IoT Gateway:</strong> Cloud connectivity and edge processing</li>
+                                <li><strong>DDS Middleware:</strong> Real-time data distribution systems</li>
+                                <li><strong>Medical Devices:</strong> Regulatory-compliant embedded systems</li>
+                                <li><strong>Automotive:</strong> AUTOSAR-compatible software stacks</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p className="mb-2"><strong>Customization Capabilities:</strong></p>
+                            <ul className="list-disc ml-6 space-y-1">
+                                <li>Device tree overlays for custom hardware</li>
+                                <li>U-Boot configuration and secure boot</li>
+                                <li>Kernel optimization and real-time patches</li>
+                                <li>Package customization and dependency management</li>
+                            </ul>
+                        </div>
                     </div>
+                    <p className="mt-3"><strong>GitHub:</strong> <a href="https://github.com/Soccentric/Zion-Yocto" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">Zion-Yocto Repository</a></p>
                 </section>
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-5 hover-lift">

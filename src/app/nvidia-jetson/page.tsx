@@ -88,24 +88,28 @@ export default function NVIDIAJetson() {
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Custom embedded Linux distributions using Yocto Project optimized for Jetson platforms, with specialized builds for robotics, autonomous systems, and edge AI applications.
                     </p>
-                    <div className="text-gray-700">
-                        <p className="mb-2"><strong>Specialized Builds:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li><strong>ROS Integration:</strong> Robotics frameworks with real-time kernel patches</li>
-                            <li><strong>Autonomous Systems:</strong> Sensor fusion and navigation middleware</li>
-                            <li><strong>Edge AI:</strong> Optimized AI inference with minimal latency</li>
-                            <li><strong>IoT Gateway:</strong> Cloud connectivity and edge processing capabilities</li>
-                            <li><strong>Real-Time Systems:</strong> Deterministic scheduling for critical applications</li>
-                        </ul>
-                        <p className="mt-3"><strong>Customization Capabilities:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li>Device tree overlays for custom hardware integration</li>
-                            <li>Kernel optimization for AI workloads and real-time performance</li>
-                            <li>Package customization for domain-specific applications</li>
-                            <li>Security hardening and OTA update systems</li>
-                        </ul>
-                        <p className="mt-3"><strong>GitHub:</strong> <a href="https://github.com/Soccentric/Arches-Yocto" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">Arches-Yocto Repository</a></p>
+                    <div className="text-gray-700 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <p className="mb-2"><strong>Specialized Builds:</strong></p>
+                            <ul className="list-disc ml-6 space-y-1">
+                                <li><strong>ROS Integration:</strong> Robotics frameworks with real-time kernel patches</li>
+                                <li><strong>Autonomous Systems:</strong> Sensor fusion and navigation middleware</li>
+                                <li><strong>Edge AI:</strong> Optimized AI inference with minimal latency</li>
+                                <li><strong>IoT Gateway:</strong> Cloud connectivity and edge processing capabilities</li>
+                                <li><strong>Real-Time Systems:</strong> Deterministic scheduling for critical applications</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p className="mb-2"><strong>Customization Capabilities:</strong></p>
+                            <ul className="list-disc ml-6 space-y-1">
+                                <li>Device tree overlays for custom hardware integration</li>
+                                <li>Kernel optimization for AI workloads and real-time performance</li>
+                                <li>Package customization for domain-specific applications</li>
+                                <li>Security hardening and OTA update systems</li>
+                            </ul>
+                        </div>
                     </div>
+                    <p className="mt-3"><strong>GitHub:</strong> <a href="https://github.com/Soccentric/Arches-Yocto" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">Arches-Yocto Repository</a></p>
                 </section>
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-5 hover-lift">

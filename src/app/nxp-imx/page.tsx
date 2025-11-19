@@ -68,24 +68,28 @@ export default function NXPiMX() {
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Custom embedded Linux distributions using Yocto Project optimized for NXP i.MX processors, with specialized builds for industrial, medical, and automotive applications.
                     </p>
-                    <div className="text-gray-700">
-                        <p className="mb-2"><strong>Specialized Builds:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li><strong>Industrial Control:</strong> Real-time kernel patches and deterministic scheduling</li>
-                            <li><strong>Medical Systems:</strong> Safety-critical software with regulatory compliance</li>
-                            <li><strong>Automotive:</strong> AUTOSAR integration and vehicle network protocols</li>
-                            <li><strong>IoT Gateway:</strong> Edge processing and cloud connectivity frameworks</li>
-                            <li><strong>Multimedia:</strong> Audio/video processing and display optimization</li>
-                        </ul>
-                        <p className="mt-3"><strong>Customization Capabilities:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li>Device tree configuration for custom hardware interfaces</li>
-                            <li>Kernel optimization for specific application requirements</li>
-                            <li>Package selection and customization for domain-specific needs</li>
-                            <li>Security hardening and secure boot implementation</li>
-                        </ul>
-                        <p className="mt-3"><strong>GitHub:</strong> <a href="https://github.com/Soccentric/Pinnacle-Yocto" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">Pinnacle-Yocto Repository</a></p>
+                    <div className="text-gray-700 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <p className="mb-2"><strong>Specialized Builds:</strong></p>
+                            <ul className="list-disc ml-6 space-y-1">
+                                <li><strong>Industrial Control:</strong> Real-time kernel patches and deterministic scheduling</li>
+                                <li><strong>Medical Systems:</strong> Safety-critical software with regulatory compliance</li>
+                                <li><strong>Automotive:</strong> AUTOSAR integration and vehicle network protocols</li>
+                                <li><strong>IoT Gateway:</strong> Edge processing and cloud connectivity frameworks</li>
+                                <li><strong>Multimedia:</strong> Audio/video processing and display optimization</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p className="mb-2"><strong>Customization Capabilities:</strong></p>
+                            <ul className="list-disc ml-6 space-y-1">
+                                <li>Device tree configuration for custom hardware interfaces</li>
+                                <li>Kernel optimization for specific application requirements</li>
+                                <li>Package selection and customization for domain-specific needs</li>
+                                <li>Security hardening and secure boot implementation</li>
+                            </ul>
+                        </div>
                     </div>
+                    <p className="mt-3"><strong>GitHub:</strong> <a href="https://github.com/Soccentric/Pinnacle-Yocto" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">Pinnacle-Yocto Repository</a></p>
                 </section>
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-4 hover-lift">
