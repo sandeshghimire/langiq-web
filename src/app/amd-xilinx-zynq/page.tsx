@@ -12,13 +12,13 @@ export default function AMDZynq() {
 
                     <div className="text-gray-700 animate-fadeInUp stagger-1">
                         <p className="font-semibold mb-2">What's Offered:</p>
-                        <ul className="list-disc ml-5 space-y-1 text-sm">
-                            <li>FPGA designs with Verilog/VHDL source code and IP cores</li>
-                            <li>Vivado/Vitis project files and build scripts</li>
-                            <li>PetaLinux/Yocto configurations for Zynq platforms</li>
-                            <li>Custom device drivers for FPGA-PS interfaces</li>
-                            <li>RPU firmware examples for real-time processing</li>
-                            <li>Complete system-on-chip application examples</li>
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>FPGA designs with Verilog/VHDL source code and IP cores</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Vivado/Vitis project files and build scripts</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>PetaLinux/Yocto configurations for Zynq platforms</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Custom device drivers for FPGA-PS interfaces</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>RPU firmware examples for real-time processing</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Complete system-on-chip application examples</li>
                         </ul>
                     </div>
                 </div>
@@ -55,12 +55,24 @@ export default function AMDZynq() {
                     </p>
                     <div className="text-gray-700">
                         <p className="mb-2"><strong>Key Projects:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li>Custom Zynq carrier boards for industrial automation</li>
-                            <li>High-speed interface modules (PCIe, Ethernet, USB 3.0)</li>
-                            <li>Camera and sensor integration boards</li>
-                            <li>Power-optimized designs for edge computing</li>
-                        </ul>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Custom Zynq carrier boards for industrial automation</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>High-speed interface modules (PCIe, Ethernet, USB 3.0)</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Camera and sensor integration boards</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Power-optimized designs for edge computing</span>
+                            </div>
+                        </div>
                     </div>
                     <a href="https://github.com/Soccentric/Zion-Hardware" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
                         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -76,13 +88,28 @@ export default function AMDZynq() {
                     </p>
                     <div className="text-gray-700">
                         <p className="mb-2"><strong>FPGA Projects Include:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li>Custom IP cores for industrial protocols (EtherCAT, PROFINET)</li>
-                            <li>High-speed data acquisition and processing pipelines</li>
-                            <li>Real-time image processing and computer vision accelerators</li>
-                            <li>Custom interfaces for specialized sensors and actuators</li>
-                            <li>DSP cores for signal processing applications</li>
-                        </ul>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Custom IP cores for industrial protocols (EtherCAT, PROFINET)</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>High-speed data acquisition and processing pipelines</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Real-time image processing and computer vision accelerators</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Custom interfaces for specialized sensors and actuators</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>DSP cores for signal processing applications</span>
+                            </div>
+                        </div>
                     </div>
                     <a href="https://github.com/Soccentric/Zion-FPGA" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
                         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -132,13 +159,28 @@ export default function AMDZynq() {
                     </p>
                     <div className="text-gray-700">
                         <p className="mb-2"><strong>Driver Categories:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li>High-speed interface drivers (PCIe, USB 3.0, Gigabit Ethernet)</li>
-                            <li>Industrial protocol drivers (CAN, EtherCAT, Modbus)</li>
-                            <li>Sensor and actuator drivers (cameras, motors, encoders)</li>
-                            <li>Custom FPGA IP core drivers</li>
-                            <li>Real-time I/O drivers with DMA support</li>
-                        </ul>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>High-speed interface drivers (PCIe, USB 3.0, Gigabit Ethernet)</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Industrial protocol drivers (CAN, EtherCAT, Modbus)</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Sensor and actuator drivers (cameras, motors, encoders)</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Custom FPGA IP core drivers</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Real-time I/O drivers with DMA support</span>
+                            </div>
+                        </div>
                     </div>
                     <a href="https://github.com/Soccentric/Zion-Drivers" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
                         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -154,13 +196,28 @@ export default function AMDZynq() {
                     </p>
                     <div className="text-gray-700">
                         <p className="mb-2"><strong>RPU Applications:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li>Motor control and servo systems</li>
-                            <li>Real-time data acquisition and processing</li>
-                            <li>Safety-critical system monitoring</li>
-                            <li>Industrial automation controllers</li>
-                            <li>High-speed communication protocols</li>
-                        </ul>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Motor control and servo systems</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Real-time data acquisition and processing</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Safety-critical system monitoring</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Industrial automation controllers</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>High-speed communication protocols</span>
+                            </div>
+                        </div>
                     </div>
                     <a href="https://github.com/Soccentric/Zion-RPU" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
                         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -176,13 +233,28 @@ export default function AMDZynq() {
                     </p>
                     <div className="text-gray-700">
                         <p className="mb-2"><strong>Application Domains:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li><strong>Industrial Automation:</strong> PLC controllers, SCADA systems, and process control</li>
-                            <li><strong>Medical Imaging:</strong> Real-time image processing and diagnostic systems</li>
-                            <li><strong>Automotive:</strong> ADAS processing, infotainment systems, and vehicle control</li>
-                            <li><strong>Communications:</strong> Software-defined radio and network processing</li>
-                            <li><strong>Scientific Research:</strong> Data acquisition and real-time analysis systems</li>
-                        </ul>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span><strong>Industrial Automation:</strong> PLC controllers, SCADA systems, and process control</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span><strong>Medical Imaging:</strong> Real-time image processing and diagnostic systems</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span><strong>Automotive:</strong> ADAS processing, infotainment systems, and vehicle control</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span><strong>Communications:</strong> Software-defined radio and network processing</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span><strong>Scientific Research:</strong> Data acquisition and real-time analysis systems</span>
+                            </div>
+                        </div>
                     </div>
                     <a href="https://github.com/Soccentric/Zion-Applications" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
                         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">

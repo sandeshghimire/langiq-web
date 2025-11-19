@@ -12,13 +12,13 @@ export default function NXPiMX() {
 
                     <div className="text-gray-700 animate-fadeInUp stagger-1">
                         <p className="font-semibold mb-2">What's Offered:</p>
-                        <ul className="list-disc ml-5 space-y-1 text-sm">
-                            <li>Industrial-grade carrier board designs and schematics</li>
-                            <li>Yocto meta-layers for custom Linux distributions</li>
-                            <li>BSP packages with U-Boot and kernel configurations</li>
-                            <li>Industrial protocol drivers (EtherCAT, PROFINET, CAN)</li>
-                            <li>Middleware integration examples (OPC UA, MQTT, Modbus)</li>
-                            <li>HMI and control application reference implementations</li>
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Industrial-grade carrier board designs and schematics</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Yocto meta-layers for custom Linux distributions</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>BSP packages with U-Boot and kernel configurations</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Industrial protocol drivers (EtherCAT, PROFINET, CAN)</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Middleware integration examples (OPC UA, MQTT, Modbus)</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>HMI and control application reference implementations</li>
                         </ul>
                     </div>
                 </div>
@@ -55,16 +55,16 @@ export default function NXPiMX() {
                     </p>
                     <div className="text-gray-700">
                         <p className="mb-2"><strong>Key Capabilities:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li>Industrial Automation - PLC-like controllers with real-time capabilities</li>
-                            <li>IoT Gateways - Edge computing with cloud connectivity and protocol translation</li>
-                            <li>Human-Machine Interface - Touch displays and industrial control panels</li>
-                            <li>Medical Devices - FDA-compliant embedded systems with safety certifications</li>
-                            <li>Automotive - In-vehicle infotainment and telematics systems</li>
-                            <li>Smart Energy - Metering systems and grid management solutions</li>
-                            <li>Security Systems - Access control and surveillance with encryption</li>
-                            <li>Communications - Network appliances and protocol converters</li>
-                            <li>Custom Designs - Application-specific hardware with optimized BOM</li>
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Industrial Automation - PLC-like controllers with real-time capabilities</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>IoT Gateways - Edge computing with cloud connectivity and protocol translation</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Human-Machine Interface - Touch displays and industrial control panels</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Medical Devices - FDA-compliant embedded systems with safety certifications</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Automotive - In-vehicle infotainment and telematics systems</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Smart Energy - Metering systems and grid management solutions</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Security Systems - Access control and surveillance with encryption</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Communications - Network appliances and protocol converters</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Custom Designs - Application-specific hardware with optimized BOM</li>
                         </ul>
                     </div>
                     <a href="https://github.com/Soccentric/Pinnacle-Hardware" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
@@ -114,13 +114,13 @@ export default function NXPiMX() {
                     </p>
                     <div className="text-gray-700">
                         <p className="mb-2"><strong>Driver Categories:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li>Industrial Interfaces - CAN, EtherCAT, PROFINET with real-time performance</li>
-                            <li>Communication Protocols - Ethernet, USB, PCIe with high-speed data transfer</li>
-                            <li>Sensor Integration - Analog/digital I/O, ADC/DAC with industrial accuracy</li>
-                            <li>Display Controllers - LCD, TFT, and touch interfaces for HMI applications</li>
-                            <li>Storage Systems - NAND Flash, eMMC, SD with wear leveling and security</li>
-                            <li>Security Modules - TPM, secure element integration for trusted computing</li>
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Industrial Interfaces - CAN, EtherCAT, PROFINET with real-time performance</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Communication Protocols - Ethernet, USB, PCIe with high-speed data transfer</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Sensor Integration - Analog/digital I/O, ADC/DAC with industrial accuracy</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Display Controllers - LCD, TFT, and touch interfaces for HMI applications</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Storage Systems - NAND Flash, eMMC, SD with wear leveling and security</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Security Modules - TPM, secure element integration for trusted computing</li>
                         </ul>
                     </div>
                     <a href="https://github.com/Soccentric/Pinnacle-Drivers" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
@@ -137,14 +137,14 @@ export default function NXPiMX() {
                     </p>
                     <div className="text-gray-700">
                         <p className="mb-2"><strong>Middleware Stack:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li>OPC UA - Industrial communication protocol for factory automation</li>
-                            <li>MQTT - Lightweight messaging for IoT and cloud connectivity</li>
-                            <li>DDS - Data Distribution Service for real-time systems</li>
-                            <li>Modbus - Industrial protocol for PLC and SCADA systems</li>
-                            <li>PROFIBUS/PROFINET - Fieldbus protocols for industrial networks</li>
-                            <li>EtherCAT - High-performance industrial Ethernet</li>
-                            <li>TSN - Time-Sensitive Networking for deterministic communication</li>
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>OPC UA - Industrial communication protocol for factory automation</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>MQTT - Lightweight messaging for IoT and cloud connectivity</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>DDS - Data Distribution Service for real-time systems</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Modbus - Industrial protocol for PLC and SCADA systems</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>PROFIBUS/PROFINET - Fieldbus protocols for industrial networks</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>EtherCAT - High-performance industrial Ethernet</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>TSN - Time-Sensitive Networking for deterministic communication</li>
                         </ul>
                     </div>
                     <a href="https://github.com/Soccentric/Pinnacle-Middleware" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
@@ -161,13 +161,13 @@ export default function NXPiMX() {
                     </p>
                     <div className="text-gray-700">
                         <p className="mb-2"><strong>Application Domains:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li><strong>Industrial Automation:</strong> PLC controllers, HMI systems, and SCADA interfaces</li>
-                            <li><strong>Medical Devices:</strong> Patient monitoring, diagnostic equipment, and infusion systems</li>
-                            <li><strong>Transportation:</strong> Vehicle telematics, fleet management, and infotainment</li>
-                            <li><strong>Smart Grid:</strong> Energy metering, grid monitoring, and demand response</li>
-                            <li><strong>Building Automation:</strong> HVAC control, access systems, and energy management</li>
-                            <li><strong>Retail:</strong> POS systems, inventory management, and customer displays</li>
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span><strong>Industrial Automation:</strong> PLC controllers, HMI systems, and SCADA interfaces</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span><strong>Medical Devices:</strong> Patient monitoring, diagnostic equipment, and infusion systems</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span><strong>Transportation:</strong> Vehicle telematics, fleet management, and infotainment</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span><strong>Smart Grid:</strong> Energy metering, grid monitoring, and demand response</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span><strong>Building Automation:</strong> HVAC control, access systems, and energy management</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span><strong>Retail:</strong> POS systems, inventory management, and customer displays</li>
                         </ul>
                     </div>
                     <a href="https://github.com/Soccentric/Pinnacle-Applications" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">

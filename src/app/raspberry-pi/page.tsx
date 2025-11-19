@@ -12,13 +12,13 @@ export default function RaspberryPi() {
 
                     <div className="text-gray-700 animate-fadeInUp stagger-1">
                         <p className="font-semibold mb-2">What's Offered:</p>
-                        <ul className="list-disc ml-5 space-y-1 text-sm">
-                            <li>Custom HAT designs with full hardware documentation</li>
-                            <li>Raspbian/Ubuntu customization scripts and configurations</li>
-                            <li>GPIO, I2C, SPI driver examples and libraries</li>
-                            <li>IoT gateway implementations with cloud integration</li>
-                            <li>Sensor integration examples and data acquisition code</li>
-                            <li>Python/C++ application frameworks for rapid development</li>
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Custom HAT designs with full hardware documentation</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Raspbian/Ubuntu customization scripts and configurations</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>GPIO, I2C, SPI driver examples and libraries</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>IoT gateway implementations with cloud integration</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Sensor integration examples and data acquisition code</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Python/C++ application frameworks for rapid development</li>
                         </ul>
                     </div>
                 </div>
@@ -55,17 +55,44 @@ export default function RaspberryPi() {
                     </p>
                     <div className="text-gray-700">
                         <p className="mb-2"><strong>Key Capabilities:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li>IoT Sensors - Environmental monitoring, motion detection, and data acquisition</li>
-                            <li>Communication Modules - WiFi, Bluetooth, LoRa, and cellular connectivity</li>
-                            <li>Display Interfaces - LCD, OLED, and e-ink displays for user interfaces</li>
-                            <li>Power Management - Battery systems and solar power integration</li>
-                            <li>Industrial Interfaces - RS-485, CAN, and Modbus for industrial applications</li>
-                            <li>Audio Systems - Microphone arrays and speaker interfaces</li>
-                            <li>GPS & Navigation - Location tracking and navigation systems</li>
-                            <li>Camera Integration - CSI camera modules with image processing</li>
-                            <li>Custom HATs - Application-specific hardware expansion boards</li>
-                        </ul>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>IoT Sensors - Environmental monitoring, motion detection, and data acquisition</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Communication Modules - WiFi, Bluetooth, LoRa, and cellular connectivity</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Display Interfaces - LCD, OLED, and e-ink displays for user interfaces</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Power Management - Battery systems and solar power integration</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Industrial Interfaces - RS-485, CAN, and Modbus for industrial applications</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Audio Systems - Microphone arrays and speaker interfaces</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>GPS & Navigation - Location tracking and navigation systems</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Camera Integration - CSI camera modules with image processing</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Custom HATs - Application-specific hardware expansion boards</span>
+                            </div>
+                        </div>
                     </div>
                     <a href="https://github.com/Soccentric/Pi-Hardware" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
                         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -114,15 +141,36 @@ export default function RaspberryPi() {
                     </p>
                     <div className="text-gray-700">
                         <p className="mb-2"><strong>Driver Categories:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li>GPIO Control - Digital I/O with interrupt handling and PWM</li>
-                            <li>I2C/SPI Interfaces - Sensor communication and peripheral control</li>
-                            <li>UART Serial - RS-232/485 communication for industrial protocols</li>
-                            <li>USB Interfaces - Host and device mode with custom drivers</li>
-                            <li>Camera Interfaces - CSI-2 camera drivers with image processing</li>
-                            <li>Audio Drivers - I2S and PWM audio with DSP capabilities</li>
-                            <li>Network Interfaces - Ethernet, WiFi, and Bluetooth drivers</li>
-                        </ul>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>GPIO Control - Digital I/O with interrupt handling and PWM</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>I2C/SPI Interfaces - Sensor communication and peripheral control</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>UART Serial - RS-232/485 communication for industrial protocols</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>USB Interfaces - Host and device mode with custom drivers</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Camera Interfaces - CSI-2 camera drivers with image processing</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Audio Drivers - I2S and PWM audio with DSP capabilities</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Network Interfaces - Ethernet, WiFi, and Bluetooth drivers</span>
+                            </div>
+                        </div>
                     </div>
                     <a href="https://github.com/Soccentric/Pi-Drivers" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
                         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -138,15 +186,36 @@ export default function RaspberryPi() {
                     </p>
                     <div className="text-gray-700">
                         <p className="mb-2"><strong>Middleware Stack:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li>MQTT - Lightweight messaging for IoT applications</li>
-                            <li>CoAP - Constrained Application Protocol for resource-constrained devices</li>
-                            <li>WebSocket - Real-time bidirectional communication</li>
-                            <li>REST APIs - HTTP-based services and cloud integration</li>
-                            <li>Modbus - Industrial protocol for automation systems</li>
-                            <li>DDS - Data Distribution Service for real-time systems</li>
-                            <li>Bluetooth Low Energy - Wireless sensor networks</li>
-                        </ul>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>MQTT - Lightweight messaging for IoT applications</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>CoAP - Constrained Application Protocol for resource-constrained devices</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>WebSocket - Real-time bidirectional communication</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>REST APIs - HTTP-based services and cloud integration</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Modbus - Industrial protocol for automation systems</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>DDS - Data Distribution Service for real-time systems</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span>Bluetooth Low Energy - Wireless sensor networks</span>
+                            </div>
+                        </div>
                     </div>
                     <a href="https://github.com/Soccentric/Pi-Middleware" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
                         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -162,15 +231,36 @@ export default function RaspberryPi() {
                     </p>
                     <div className="text-gray-700">
                         <p className="mb-2"><strong>Application Domains:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li><strong>IoT & Home Automation:</strong> Smart home devices, environmental monitoring, and energy management</li>
-                            <li><strong>Robotics:</strong> Autonomous robots, drone control systems, and robotic arms</li>
-                            <li><strong>Industrial:</strong> Process monitoring, quality control, and predictive maintenance</li>
-                            <li><strong>Education:</strong> STEM projects, interactive displays, and learning platforms</li>
-                            <li><strong>Media & Entertainment:</strong> Digital signage, media players, and interactive installations</li>
-                            <li><strong>Agriculture:</strong> Smart farming, irrigation control, and crop monitoring</li>
-                            <li><strong>Healthcare:</strong> Medical devices, patient monitoring, and telemedicine</li>
-                        </ul>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span><strong>IoT & Home Automation:</strong> Smart home devices, environmental monitoring, and energy management</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span><strong>Robotics:</strong> Autonomous robots, drone control systems, and robotic arms</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span><strong>Industrial:</strong> Process monitoring, quality control, and predictive maintenance</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span><strong>Education:</strong> STEM projects, interactive displays, and learning platforms</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span><strong>Media & Entertainment:</strong> Digital signage, media players, and interactive installations</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span><strong>Agriculture:</strong> Smart farming, irrigation control, and crop monitoring</span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                                <span className="text-gray-400 mt-1">•</span>
+                                <span><strong>Healthcare:</strong> Medical devices, patient monitoring, and telemedicine</span>
+                            </div>
+                        </div>
                     </div>
                     <a href="https://github.com/Soccentric/Pi-Applications" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
                         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">

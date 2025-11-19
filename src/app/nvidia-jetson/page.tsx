@@ -12,13 +12,13 @@ export default function NVIDIAJetson() {
 
                     <div className="text-gray-700 animate-fadeInUp stagger-1">
                         <p className="font-semibold mb-2">What's Offered:</p>
-                        <ul className="list-disc ml-5 space-y-1 text-sm">
-                            <li>Complete hardware designs with schematics and PCB layouts</li>
-                            <li>Custom Yocto/Linux BSP configurations and recipes</li>
-                            <li>Device drivers and kernel modules source code</li>
-                            <li>AI/ML inference examples with TensorRT optimization</li>
-                            <li>ROS/ROS2 integration packages for robotics</li>
-                            <li>End-to-end application examples with documentation</li>
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Complete hardware designs with schematics and PCB layouts</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Custom Yocto/Linux BSP configurations and recipes</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Device drivers and kernel modules source code</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>AI/ML inference examples with TensorRT optimization</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>ROS/ROS2 integration packages for robotics</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>End-to-end application examples with documentation</li>
                         </ul>
                     </div>
                 </div>
@@ -55,16 +55,16 @@ export default function NVIDIAJetson() {
                     </p>
                     <div className="text-gray-700">
                         <p className="mb-2"><strong>Key Capabilities:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li>AI/ML Inference - High-performance deep learning inference with TensorRT optimization</li>
-                            <li>Computer Vision - Real-time image processing with multiple MIPI CSI-2 camera interfaces</li>
-                            <li>Generative AI - Support for transformer-based models with Ampere architecture GPU</li>
-                            <li>Robotics - Advanced motion planning and control algorithms for autonomous systems</li>
-                            <li>Video Analytics - Multi-stream video processing with AI-enhanced analytics</li>
-                            <li>Edge Computing - Distributed intelligence with efficient edge processing</li>
-                            <li>Real-Time Processing - Deterministic latency with configurable power profiles</li>
-                            <li>Multi-Modal AI - Combined vision, speech, and sensor data processing</li>
-                            <li>Open-Source Designs - Complete hardware schematics and thermal management</li>
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>AI/ML Inference - High-performance deep learning inference with TensorRT optimization</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Computer Vision - Real-time image processing with multiple MIPI CSI-2 camera interfaces</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Generative AI - Support for transformer-based models with Ampere architecture GPU</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Robotics - Advanced motion planning and control algorithms for autonomous systems</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Video Analytics - Multi-stream video processing with AI-enhanced analytics</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Edge Computing - Distributed intelligence with efficient edge processing</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Real-Time Processing - Deterministic latency with configurable power profiles</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Multi-Modal AI - Combined vision, speech, and sensor data processing</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Open-Source Designs - Complete hardware schematics and thermal management</li>
                         </ul>
                     </div>
                     <a href="https://github.com/Soccentric/Arches-Hardware" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
@@ -81,14 +81,14 @@ export default function NVIDIAJetson() {
                     </p>
                     <div className="text-gray-700">
                         <p className="mb-2"><strong>AI Development Stack:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li>CUDA Programming - GPU-accelerated computing and custom kernels</li>
-                            <li>TensorRT Optimization - High-performance neural network inference</li>
-                            <li>DeepStream SDK - Multi-stream video analytics and AI pipelines</li>
-                            <li>Isaac SDK - Robotics and autonomous systems development</li>
-                            <li>Computer Vision - OpenCV with CUDA acceleration and vision APIs</li>
-                            <li>Machine Learning - PyTorch, TensorFlow with GPU optimization</li>
-                            <li>Edge AI - Model quantization and deployment for resource-constrained devices</li>
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>CUDA Programming - GPU-accelerated computing and custom kernels</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>TensorRT Optimization - High-performance neural network inference</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>DeepStream SDK - Multi-stream video analytics and AI pipelines</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Isaac SDK - Robotics and autonomous systems development</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Computer Vision - OpenCV with CUDA acceleration and vision APIs</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Machine Learning - PyTorch, TensorFlow with GPU optimization</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Edge AI - Model quantization and deployment for resource-constrained devices</li>
                         </ul>
                     </div>
                     <a href="https://github.com/Soccentric/Arches-AI" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
@@ -138,12 +138,12 @@ export default function NVIDIAJetson() {
                     </p>
                     <div className="text-gray-700">
                         <p className="mb-2"><strong>Driver Categories:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li>Camera Interfaces - MIPI CSI-2, USB3 Vision with CUDA acceleration</li>
-                            <li>Sensor Integration - IMU, LIDAR, RADAR with real-time processing</li>
-                            <li>Communication Protocols - CAN, Ethernet, PCIe with high-speed data transfer</li>
-                            <li>AI Accelerators - Custom IP cores and GPU interface drivers</li>
-                            <li>Real-Time I/O - Deterministic drivers for robotics and control systems</li>
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Camera Interfaces - MIPI CSI-2, USB3 Vision with CUDA acceleration</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Sensor Integration - IMU, LIDAR, RADAR with real-time processing</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Communication Protocols - CAN, Ethernet, PCIe with high-speed data transfer</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>AI Accelerators - Custom IP cores and GPU interface drivers</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Real-Time I/O - Deterministic drivers for robotics and control systems</li>
                         </ul>
                     </div>
                     <a href="https://github.com/Soccentric/Arches-Drivers" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
@@ -160,12 +160,12 @@ export default function NVIDIAJetson() {
                     </p>
                     <div className="text-gray-700">
                         <p className="mb-2"><strong>Application Areas:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li>Autonomous Navigation - SLAM, path planning, and obstacle avoidance</li>
-                            <li>Computer Vision - Object detection, tracking, and scene understanding</li>
-                            <li>Manipulation - Robotic arm control and dexterous manipulation</li>
-                            <li>Sensor Fusion - Multi-modal data integration for robust perception</li>
-                            <li>Human-Robot Interaction - Natural interfaces and collaborative robotics</li>
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Autonomous Navigation - SLAM, path planning, and obstacle avoidance</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Computer Vision - Object detection, tracking, and scene understanding</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Manipulation - Robotic arm control and dexterous manipulation</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Sensor Fusion - Multi-modal data integration for robust perception</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span>Human-Robot Interaction - Natural interfaces and collaborative robotics</li>
                         </ul>
                     </div>
                     <a href="https://github.com/Soccentric/Arches-Robotics" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
@@ -182,13 +182,13 @@ export default function NVIDIAJetson() {
                     </p>
                     <div className="text-gray-700">
                         <p className="mb-2"><strong>Application Domains:</strong></p>
-                        <ul className="list-disc ml-6 space-y-1">
-                            <li><strong>Autonomous Vehicles:</strong> ADAS, sensor fusion, and decision-making systems</li>
-                            <li><strong>Industrial Automation:</strong> Quality inspection, predictive maintenance, and process control</li>
-                            <li><strong>Smart Cities:</strong> Video analytics, traffic management, and public safety</li>
-                            <li><strong>Healthcare:</strong> Medical imaging analysis and diagnostic assistance</li>
-                            <li><strong>Aerospace:</strong> UAV control systems and autonomous navigation</li>
-                            <li><strong>Retail:</strong> Customer analytics, inventory management, and loss prevention</li>
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span><strong>Autonomous Vehicles:</strong> ADAS, sensor fusion, and decision-making systems</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span><strong>Industrial Automation:</strong> Quality inspection, predictive maintenance, and process control</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span><strong>Smart Cities:</strong> Video analytics, traffic management, and public safety</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span><strong>Healthcare:</strong> Medical imaging analysis and diagnostic assistance</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span><strong>Aerospace:</strong> UAV control systems and autonomous navigation</li>
+                            <li className="flex items-start"><span className="text-gray-600 mr-2">•</span><strong>Retail:</strong> Customer analytics, inventory management, and loss prevention</li>
                         </ul>
                     </div>
                     <a href="https://github.com/Soccentric/Arches-Applications" className="absolute bottom-4 right-4 text-gray-400 hover:text-gray-600 transition-colors" target="_blank" rel="noopener noreferrer" title="View on GitHub">
