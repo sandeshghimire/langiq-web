@@ -28,6 +28,12 @@ export default function NVIDIAJetson() {
                         src="/som-k26-main.jpg"
                         alt="NVIDIA Jetson Platform"
                         className="max-w-md h-auto rounded-lg shadow-lg animate-fadeIn stagger-2 hover-lift"
+                        style={{
+                            maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%), linear-gradient(to right, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)',
+                            maskComposite: 'intersect',
+                            WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%), linear-gradient(to right, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)',
+                            WebkitMaskComposite: 'source-in'
+                        }}
                     />
                 </div>
             </div>
