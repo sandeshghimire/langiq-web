@@ -5,7 +5,7 @@ export default function HeaderSection() {
                 <h1 className="text-xl md:text-2xl font-bold text-black mb-3 uppercase animate-fadeInUp">AMD Xilinx Zynq Reference Design</h1>
 
                 <p className="text-gray-700 leading-relaxed mb-3 animate-fadeInUp stagger-1 text-sm md:text-base">
-                    Over the past decade, I've developed extensive expertise with AMD Xilinx Zynq platforms, using the ZUBOARD ICZ as a reference design foundation. This page showcases practical implementations across the entire Zynq ecosystem, from hardware design to application development. All projects are available on my <a href="https://github.com/Soccentric" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">GitHub repository</a>.
+                    With over 12 years of experience working with AMD Xilinx Zynq, Zynq Ultrascale Plus, and Versal SoC platforms, including SoC and SoM modules such as Ultrazed and KV260, I've developed extensive expertise. Using the ZUBOARD ICZ as a reference design foundation, this page showcases practical implementations across the entire Zynq ecosystem, from hardware design to application development. All projects are available on my <a href="https://github.com/Soccentric" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">GitHub repository</a>.
                 </p>
 
                 <div className="text-gray-700 animate-fadeInUp stagger-1">
