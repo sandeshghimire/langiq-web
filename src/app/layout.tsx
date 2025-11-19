@@ -19,8 +19,11 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans min-h-screen bg-zinc-600">
-        <main className="min-h-screen flex items-center justify-center px-4 py-8">
-          <div className="max-w-7xl mx-auto bg-zinc-50 shadow-xl md:px-16 md:py-20 border-1 border-amber-200">
+        <nav className="fixed left-4 top-1/2 transform -translate-y-1/2 w-64 z-10">
+          <Navigation />
+        </nav>
+        <main className="py-8 px-4">
+          <div className="ml-64 bg-zinc-50 shadow-xl md:px-16 md:py-20 border-1 border-amber-200">
             {/* Header Section */}
             <div className="text-gray-800 p-8">
               <div className="text-center">
@@ -33,14 +36,7 @@ export default function RootLayout({
                 </div>
               </div>
             </div>
-            <div className="flex">
-              <div className="w-1/4 sticky top-0 h-screen">
-                <Navigation />
-              </div>
-              <div className="w-3/4">
-                {children}
-              </div>
-            </div>
+            {children}
           </div>
         </main>
       </body>
