@@ -24,19 +24,21 @@ export default function RootLayout({
         </nav>
         <main className="min-h-screen flex items-center justify-center">
           <div className="max-w-[1440px] bg-zinc-50 shadow-xl md:px-16 md:py-20 border-1 border-amber-200">
-            {/* Header Section */}
-            <div className="text-gray-800 p-8">
-              <div className="text-center">
-                <h1 className="text-3xl font-black mb-2 uppercase ">LangIQ</h1>
-                <p className="text-lg font-normal mb-4 uppercase">AI ML and LLM Consulting  </p>
-                <div className="flex flex-wrap justify-center gap-4 text-sm font-black">
-                  <span>sandesh.ghimire@langiq.ai</span>
-                  <span>+1 (669) 356-1998</span>
-                  <span>https://github.com/LangIQ</span>
+            <div className="max-w-4xl mx-auto">
+              {/* Header Section */}
+              <div className="text-gray-800 p-8">
+                <div className="text-center">
+                  <h1 className="text-3xl font-black mb-2 uppercase ">LangIQ</h1>
+                  <p className="text-lg font-normal mb-4 uppercase">AI ML and LLM Consulting  </p>
+                  <div className="flex flex-wrap justify-center gap-4 text-sm font-black">
+                    <span>sandesh.ghimire@langiq.ai</span>
+                    <span>+1 (669) 356-1998</span>
+                    <span>https://github.com/LangIQ</span>
+                  </div>
                 </div>
               </div>
+              {children}
             </div>
-            {children}
           </div>
         </main>
       </body>
