@@ -4,9 +4,9 @@ export default function NXPiMX() {
             {/* Two Column Layout for Title and Image */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                 <div>
-                    <h1 className="text-2xl font-bold text-black mb-6 uppercase">NXP i.MX Case Study</h1>
+                    <h1 className="text-2xl font-bold text-black mb-6 uppercase animate-fadeInUp">NXP i.MX Case Study</h1>
 
-                    <p className="text-gray-700 leading-relaxed mb-6">
+                    <p className="text-gray-700 leading-relaxed mb-6 animate-fadeInUp stagger-1">
                         With over a decade of experience developing with NXP i.MX application processors, I've delivered comprehensive embedded solutions across the i.MX family from i.MX6 to i.MX9 series. This page showcases practical implementations in industrial automation, IoT gateways, and edge computing applications. All projects are available on my <a href="https://github.com/Soccentric" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">GitHub repository</a>.
                     </p>
                 </div>
@@ -15,7 +15,7 @@ export default function NXPiMX() {
                     <img
                         src="/FRDM-i.MX93-TOP.png"
                         alt="NXP i.MX Platform"
-                        className="max-w-md h-auto rounded-lg shadow-lg"
+                        className="max-w-md h-auto rounded-lg shadow-lg animate-fadeIn stagger-2 hover-lift"
                     />
                 </div>
             </div>
@@ -23,7 +23,7 @@ export default function NXPiMX() {
             {/* Single Column Layout for Content */}
             <div className="space-y-8">
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-2 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Design & Integration</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Soccentric provides complete NXP i.MX hardware ecosystems including custom carrier board designs, power management systems, and peripheral integration for industrial and IoT applications.
@@ -45,7 +45,7 @@ export default function NXPiMX() {
                     </div>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-3 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Embedded Linux & Yocto</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Custom embedded Linux distributions using Yocto Project optimized for NXP i.MX processors, with specialized builds for industrial, medical, and automotive applications.
@@ -70,7 +70,7 @@ export default function NXPiMX() {
                     </div>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-4 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Device Drivers & BSP</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Complete Board Support Package (BSP) development and custom device drivers for NXP i.MX peripherals, industrial interfaces, and specialized hardware components.
@@ -89,7 +89,7 @@ export default function NXPiMX() {
                     </div>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-5 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Middleware & Frameworks</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Integration of middleware frameworks and communication stacks optimized for NXP i.MX processors in industrial and IoT applications.
@@ -109,7 +109,7 @@ export default function NXPiMX() {
                     </div>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-6 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Application Development</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         End-to-end application development for NXP i.MX platforms, from embedded controllers to complex industrial and medical systems.
@@ -131,7 +131,7 @@ export default function NXPiMX() {
             </div>
 
             {/* Footer Note */}
-            <div className="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200">
+            <div className="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200 animate-fadeInUp stagger-6">
                 <p className="text-gray-700 text-sm">
                     <strong>Note:</strong> All repositories contain complete documentation, build instructions, and practical examples. Our i.MX implementations demonstrate real-world embedded development across industrial, medical, and automotive domains.
                 </p>

@@ -4,18 +4,18 @@ export default function NVIDIAJetson() {
             {/* Two Column Layout for Title and Image */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                 <div>
-                    <h1 className="text-2xl font-bold text-black mb-6 uppercase">NVIDIA Jetson Case Study</h1>
+                    <h1 className="text-2xl font-bold text-black mb-6 uppercase animate-fadeInUp">NVIDIA Jetson Case Study</h1>
 
-                    <p className="text-gray-700 leading-relaxed mb-6">
+                    <p className="text-gray-700 leading-relaxed mb-6 animate-fadeInUp stagger-1">
                         Over the past decade, I've developed extensive expertise with NVIDIA Jetson platforms, leveraging their powerful GPU acceleration and AI processing capabilities. This page showcases practical implementations across the Jetson ecosystem, from edge AI applications to robotics and autonomous systems. All projects are available on my <a href="https://github.com/Soccentric" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">GitHub repository</a>.
                     </p>
                 </div>
 
                 <div className="flex justify-center lg:justify-end">
                     <img
-                        src="/som-k26-main.png"
+                        src="/som-k26-main.jpg"
                         alt="NVIDIA Jetson Platform"
-                        className="max-w-md h-auto rounded-lg shadow-lg"
+                        className="max-w-md h-auto rounded-lg shadow-lg animate-fadeIn stagger-2 hover-lift"
                     />
                 </div>
             </div>
@@ -23,7 +23,7 @@ export default function NVIDIAJetson() {
             {/* Single Column Layout for Content */}
             <div className="space-y-8">
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-2 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Design Projects</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Soccentric delivers complete NVIDIA Jetson hardware ecosystems including custom carrier board designs for Jetson Nano, Xavier, Orin, and Thor SOMs. Our expertise spans camera sensor integration (Sony IMX, ON Semiconductor, OmniVision), MIPI interfaces, communication protocols (I2C, SPI, UART, GPIO), sensor fusion systems, and thermal-optimized enclosures for edge AI and autonomous applications.
@@ -45,7 +45,7 @@ export default function NVIDIAJetson() {
                     </div>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-3 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">JetPack SDK & AI Frameworks</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Comprehensive development using NVIDIA JetPack SDK with CUDA, TensorRT, DeepStream, and Isaac frameworks for high-performance AI applications on Jetson platforms.
@@ -65,7 +65,7 @@ export default function NVIDIAJetson() {
                     </div>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-4 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Embedded Linux & Yocto</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Custom embedded Linux distributions using Yocto Project optimized for Jetson platforms, with specialized builds for robotics, autonomous systems, and edge AI applications.
@@ -90,7 +90,7 @@ export default function NVIDIAJetson() {
                     </div>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-5 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Device Drivers & Interfaces</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Custom device drivers and interface implementations for Jetson peripherals, sensors, cameras, and specialized hardware components optimized for AI and robotics applications.
@@ -108,7 +108,7 @@ export default function NVIDIAJetson() {
                     </div>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-6 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Robotics & Autonomous Systems</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Complete robotics and autonomous systems development using Jetson's AI capabilities, including ROS integration, computer vision, and real-time control systems.
@@ -126,7 +126,7 @@ export default function NVIDIAJetson() {
                     </div>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-6 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Jetson Applications</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         End-to-end application development leveraging Jetson's heterogeneous architecture for AI-powered solutions across various industries and use cases.
@@ -148,7 +148,7 @@ export default function NVIDIAJetson() {
             </div>
 
             {/* Footer Note */}
-            <div className="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200">
+            <div className="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200 animate-fadeInUp stagger-6">
                 <p className="text-gray-700 text-sm">
                     <strong>Note:</strong> All repositories contain complete documentation, build instructions, and practical examples. Our Jetson implementations demonstrate real-world AI and robotics development across multiple domains and applications.
                 </p>

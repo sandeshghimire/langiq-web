@@ -4,9 +4,9 @@ export default function AMDZynq() {
             {/* Two Column Layout for Title and Image */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                 <div>
-                    <h1 className="text-2xl font-bold text-black mb-6 uppercase">AMD Xilinx Zynq Case Study</h1>
+                    <h1 className="text-2xl font-bold text-black mb-6 uppercase animate-fadeInUp">AMD Xilinx Zynq Case Study</h1>
 
-                    <p className="text-gray-700 leading-relaxed mb-6">
+                    <p className="text-gray-700 leading-relaxed mb-6 animate-fadeInUp stagger-1">
                         Over the past decade, I've developed extensive expertise with AMD Xilinx Zynq platforms, using the ZUBOARD ICZ as a reference design foundation. This page showcases practical implementations across the entire Zynq ecosystem, from hardware design to application development. All projects are available on my <a href="https://github.com/Soccentric" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">GitHub repository</a>.
                     </p>
                 </div>
@@ -15,7 +15,7 @@ export default function AMDZynq() {
                     <img
                         src="/zuboard.png"
                         alt="ZUBOARD ICZ Reference Design"
-                        className="max-w-md h-auto rounded-lg shadow-lg"
+                        className="max-w-md h-auto rounded-lg shadow-lg animate-fadeIn stagger-2 hover-lift"
                     />
                 </div>
             </div>
@@ -23,7 +23,7 @@ export default function AMDZynq() {
             {/* Single Column Layout for Content */}
             <div className="space-y-8">
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-2 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Design Projects</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Based on Zynq architecture, we've developed several hardware projects including custom carrier boards, expansion modules, and specialized interfaces. These designs leverage the ZUBOARD ICZ reference while optimizing for specific application requirements.
@@ -40,7 +40,7 @@ export default function AMDZynq() {
                     </div>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-3 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">RTL & FPGA Design</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Developed comprehensive RTL FPGA designs for Zynq programmable logic fabric, implementing custom IP cores, high-speed interfaces, and domain-specific accelerators.
@@ -58,7 +58,7 @@ export default function AMDZynq() {
                     </div>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-4 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Yocto-Based Embedded Linux</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Created domain-specific Yocto builds optimized for various applications, with full customization capabilities for device tree, U-Boot, and kernel configurations.
@@ -84,7 +84,7 @@ export default function AMDZynq() {
                     </div>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-5 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Device Drivers</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Developed comprehensive device drivers for Zynq peripherals, custom hardware interfaces, and specialized devices across various application domains.
@@ -102,7 +102,7 @@ export default function AMDZynq() {
                     </div>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-6 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">RPU-Based Firmware</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Implemented Real-Time Processing Unit (RPU) firmware for critical real-time tasks, safety systems, and low-latency processing requirements.
@@ -120,7 +120,7 @@ export default function AMDZynq() {
                     </div>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-6 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Zynq Applications</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Developed complete applications leveraging Zynq's heterogeneous architecture, combining ARM processing with FPGA acceleration for optimal performance.
@@ -141,7 +141,7 @@ export default function AMDZynq() {
             </div>
 
             {/* Footer Note */}
-            <div className="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200">
+            <div className="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200 animate-fadeInUp stagger-6">
                 <p className="text-gray-700 text-sm">
                     <strong>Note:</strong> All repositories contain complete documentation, build instructions, and practical examples. The ZUBOARD ICZ reference design serves as the foundation for these implementations, demonstrating real-world Zynq development across multiple domains and applications.
                 </p>

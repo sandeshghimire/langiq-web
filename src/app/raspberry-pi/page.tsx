@@ -4,9 +4,9 @@ export default function RaspberryPi() {
             {/* Two Column Layout for Title and Image */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                 <div>
-                    <h1 className="text-2xl font-bold text-black mb-6 uppercase">Raspberry Pi Case Study</h1>
+                    <h1 className="text-2xl font-bold text-black mb-6 uppercase animate-fadeInUp">Raspberry Pi Case Study</h1>
 
-                    <p className="text-gray-700 leading-relaxed mb-6">
+                    <p className="text-gray-700 leading-relaxed mb-6 animate-fadeInUp stagger-1">
                         With extensive experience across the entire Raspberry Pi ecosystem from Pi Zero to Raspberry Pi 5, I've developed comprehensive embedded solutions for IoT, robotics, and edge computing applications. This page showcases practical implementations leveraging the Pi's versatility and community ecosystem. All projects are available on my <a href="https://github.com/Soccentric" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">GitHub repository</a>.
                     </p>
                 </div>
@@ -15,7 +15,7 @@ export default function RaspberryPi() {
                     <img
                         src="/CM5-V2_1.jpg"
                         alt="Raspberry Pi Platform"
-                        className="max-w-md h-auto rounded-lg shadow-lg"
+                        className="max-w-md h-auto rounded-lg shadow-lg animate-fadeIn stagger-2 hover-lift"
                     />
                 </div>
             </div>
@@ -23,7 +23,7 @@ export default function RaspberryPi() {
             {/* Single Column Layout for Content */}
             <div className="space-y-8">
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-2 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Integration & HATs</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Soccentric delivers custom Hardware Attached on Top (HAT) designs and sensor integrations for Raspberry Pi, enabling rapid prototyping and production-ready embedded solutions.
@@ -45,7 +45,7 @@ export default function RaspberryPi() {
                     </div>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-3 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Embedded Linux & Raspbian</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Custom Linux distributions and system configurations optimized for Raspberry Pi platforms, with specialized builds for various applications and performance requirements.
@@ -70,7 +70,7 @@ export default function RaspberryPi() {
                     </div>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-4 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Device Drivers & Interfaces</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Custom device drivers and interface implementations for Raspberry Pi GPIO, I2C, SPI, UART, and specialized peripherals optimized for various applications.
@@ -90,7 +90,7 @@ export default function RaspberryPi() {
                     </div>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-5 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Middleware & Protocols</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         Integration of middleware frameworks and communication protocols optimized for Raspberry Pi in IoT and edge computing applications.
@@ -110,7 +110,7 @@ export default function RaspberryPi() {
                     </div>
                 </section>
 
-                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-6 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Application Development</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         End-to-end application development for Raspberry Pi platforms, from simple IoT devices to complex robotics and automation systems.
@@ -133,7 +133,7 @@ export default function RaspberryPi() {
             </div>
 
             {/* Footer Note */}
-            <div className="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200">
+            <div className="mt-8 p-6 bg-gray-50 rounded-lg border border-gray-200 animate-fadeInUp stagger-6">
                 <p className="text-gray-700 text-sm">
                     <strong>Note:</strong> All repositories contain complete documentation, build instructions, and practical examples. Our Raspberry Pi implementations demonstrate versatile embedded development across IoT, robotics, and consumer applications.
                 </p>
