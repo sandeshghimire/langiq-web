@@ -15,22 +15,20 @@ const Navigation = () => {
     ];
 
     return (
-        <nav className="bg-white   ">
-            <div className="max-w-4xl mx-auto px-4">
-                <div className="flex justify-center space-x-8 py-4 font-bold">
-                    {navItems.map((item) => (
-                        <Link
-                            key={item.href}
-                            href={item.href}
-                            className={`text-sm font-bold tracking-wide uppercase transition-colors ${pathname === item.href
-                                ? 'text-black border-b-2 border-black pb-1'
-                                : 'text-gray-600 hover:text-black'
-                                }`}
-                        >
-                            {item.label}
-                        </Link>
-                    ))}
-                </div>
+        <nav className="bg-white p-4">
+            <div className="flex flex-col space-y-4">
+                {navItems.map((item) => (
+                    <Link
+                        key={item.href}
+                        href={item.href}
+                        className={`text-sm font-bold tracking-wide uppercase transition-colors ${pathname === item.href
+                            ? 'text-black border-b-2 border-black pb-1'
+                            : 'text-gray-600 hover:text-black'
+                            }`}
+                    >
+                        {item.label}
+                    </Link>
+                ))}
             </div>
         </nav>
     );
