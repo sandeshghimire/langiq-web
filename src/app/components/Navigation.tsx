@@ -15,7 +15,7 @@ const Navigation = () => {
     ];
 
     return (
-        <nav className="bg-white p-4">
+        <nav className="bg-zinc-50 p-4">
             <div className="flex flex-col space-y-4">
                 {navItems.map((item) => (
                     <Link
