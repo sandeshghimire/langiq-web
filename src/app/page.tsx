@@ -11,13 +11,28 @@ export default function Home() {
 
         <h3 className="text-lg font-semibold text-black mb-3 uppercase tracking-wide">Our Core Services:</h3>
         <ul className="text-gray-700 space-y-2 ml-4 mb-6">
-          <li><strong><a href="/amd-xilinx-zynq" className="text-blue-600 hover:text-blue-800 underline">AMD Xilinx Zynq:</a></strong> Comprehensive development services for Zynq SoC platforms, including programmable logic design, ARM processing, and heterogeneous computing solutions.</li>
+          <li><strong>Hardware Engineering:</strong> Custom board design, schematic development, PCB layout, component selection, and prototyping for embedded systems.</li>
 
-          <li><strong><a href="/nvidia-jetson" className="text-blue-600 hover:text-blue-800 underline">NVIDIA Jetson:</a></strong> AI-enabled embedded development on Jetson platforms, combining GPU acceleration with embedded system expertise for edge computing applications.</li>
+          <li><strong>Operating System Development:</strong> Embedded Linux customization, RTOS implementation, kernel development, and system integration.</li>
 
-          <li><strong><a href="/nxp-imx" className="text-blue-600 hover:text-blue-800 underline">NXP i.MX:</a></strong> Full-stack development for i.MX application processors, from bare-metal programming to Linux-based systems and multimedia applications.</li>
+          <li><strong>Driver Development:</strong> Device driver implementation for communication interfaces, sensors, displays, and specialized hardware components.</li>
 
-          <li><strong><a href="/raspberry-pi" className="text-blue-600 hover:text-blue-800 underline">Raspberry Pi:</a></strong> Prototyping and product development using Raspberry Pi platforms, leveraging its versatility for IoT, robotics, and embedded applications.</li>
+          <li><strong>Firmware Development:</strong> Low-level firmware programming, bootloader development, secure boot implementation, and real-time systems.</li>
+
+          <li><strong>Middleware Solutions:</strong> Communication protocols, data processing frameworks, system services, and interoperability layers.</li>
+
+          <li><strong>Application Development:</strong> User interface design, control systems, data processing applications, and cross-platform software solutions.</li>
+        </ul>
+
+        <h3 className="text-lg font-semibold text-black mb-3 uppercase tracking-wide">Platforms We Support:</h3>
+        <ul className="text-gray-700 space-y-2 ml-4 mb-6">
+          <li><strong><a href="/amd-xilinx-zynq" className="text-blue-600 hover:text-blue-800 underline">AMD Xilinx Zynq</a></strong> - Programmable SoC platforms with FPGA fabric and ARM processors</li>
+
+          <li><strong><a href="/nvidia-jetson" className="text-blue-600 hover:text-blue-800 underline">NVIDIA Jetson</a></strong> - AI-enabled embedded computing with GPU acceleration</li>
+
+          <li><strong><a href="/nxp-imx" className="text-blue-600 hover:text-blue-800 underline">NXP i.MX</a></strong> - High-performance application processors for multimedia and industrial applications</li>
+
+          <li><strong><a href="/raspberry-pi" className="text-blue-600 hover:text-blue-800 underline">Raspberry Pi</a></strong> - Versatile single-board computers for prototyping and production</li>
         </ul>
 
         <h3 className="text-lg font-semibold text-black mb-3 uppercase tracking-wide">Technologies & Frameworks We Use:</h3>
