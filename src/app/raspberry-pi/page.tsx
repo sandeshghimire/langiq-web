@@ -1,14 +1,26 @@
 export default function RaspberryPi() {
     return (
-        <div className="p-8 border-t border-gray-200">
+        <div className="px-6 py-6 md:px-8 md:py-8 border-t border-gray-200">
             {/* Two Column Layout for Title and Image */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-black mb-6 uppercase animate-fadeInUp">Raspberry Pi Case Study</h1>
+                    <h1 className="text-2xl font-bold text-black mb-3 uppercase animate-fadeInUp">Raspberry Pi Reference Design</h1>
 
-                    <p className="text-gray-700 leading-relaxed mb-6 animate-fadeInUp stagger-1">
+                    <p className="text-gray-700 leading-relaxed mb-3 animate-fadeInUp stagger-1">
                         With extensive experience across the entire Raspberry Pi ecosystem from Pi Zero to Raspberry Pi 5, I've developed comprehensive embedded solutions for IoT, robotics, and edge computing applications. This page showcases practical implementations leveraging the Pi's versatility and community ecosystem. All projects are available on my <a href="https://github.com/Soccentric" className="text-blue-600 hover:text-blue-800 underline" target="_blank" rel="noopener noreferrer">GitHub repository</a>.
                     </p>
+                    
+                    <div className="text-gray-700 animate-fadeInUp stagger-1">
+                        <p className="font-semibold mb-2">What's Offered:</p>
+                        <ul className="list-disc ml-5 space-y-1 text-sm">
+                            <li>Custom HAT designs with full hardware documentation</li>
+                            <li>Raspbian/Ubuntu customization scripts and configurations</li>
+                            <li>GPIO, I2C, SPI driver examples and libraries</li>
+                            <li>IoT gateway implementations with cloud integration</li>
+                            <li>Sensor integration examples and data acquisition code</li>
+                            <li>Python/C++ application frameworks for rapid development</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div className="flex justify-center lg:justify-end">
@@ -21,7 +33,7 @@ export default function RaspberryPi() {
             </div>
 
             {/* Single Column Layout for Content */}
-            <div className="space-y-8">
+            <div className="space-y-6">
 
                 <section className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm animate-fadeInUp stagger-2 hover-lift">
                     <h2 className="text-xl font-semibold text-black mb-4 uppercase tracking-wide">Hardware Integration & HATs</h2>
