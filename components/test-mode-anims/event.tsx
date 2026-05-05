@@ -1,42 +1,64 @@
 "use client";
 import { useEffect, useRef } from "react";
 
+const SPIKE_POSITIONS = [18, 40, 62];
+const SPIKE_INTERVALS = [2200, 1700, 2900];
+
 export function EventAnim() {
-    const spikesRef = useRef<SVGGElement>(null);
+    const svgRef = useRef<SVGSVGElement>(null);
     const animRef = useRef<number>(0);
     const startRef = useRef<number | null>(null);
-    const nextSpikeRef = useRef<number>(800 + Math.random() * 1200);
-    const spikeAgeRef = useRef<number>(-1);
+    const nextSpikeRef = useRef<number[]>(SPIKE_POSITIONS.map((_, i) => i * 400 + Math.random() * 600));
+    const spikeAgeRef = useRef<number[]>(SPIKE_POSITIONS.map(() => -1));
 
     useEffect(() => {
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        const g = spikesRef.current;
-        if (!g) return;
+        const svg = svgRef.current;
+        if (!svg) return;
 
         const animate = (ts: number) => {
             if (startRef.current === null) startRef.current = ts;
             const elapsed = ts - startRef.current;
 
-            const spike = g.querySelector<SVGLineElement>("#evt-spike");
+            SPIKE_POSITIONS.forEach((x, i) => {
+                if (elapsed > nextSpikeRef.current[i]) {
+                    spikeAgeRef.current[i] = elapsed;
+                    nextSpikeRef.current[i] = elapsed + SPIKE_INTERVALS[i] + Math.random() * 400;
+                }
 
-            if (elapsed > nextSpikeRef.current) {
-                spikeAgeRef.current = elapsed;
-                nextSpikeRef.current = elapsed + 800 + Math.random() * 1200;
-            }
+                const spikeLine = svg.getElementById(`evt-spike-${i}`) as SVGLineElement | null;
+                const ring = svg.getElementById(`evt-ring-${i}`) as SVGCircleElement | null;
+                const fill = svg.getElementById(`evt-fill-${i}`) as SVGRectElement | null;
 
-            if (spike) {
-                if (spikeAgeRef.current > 0) {
-                    const age = elapsed - spikeAgeRef.current;
-                    if (age < 300) {
-                        const opacity = age < 150 ? age / 150 : 1 - (age - 150) / 150;
-                        spike.setAttribute("opacity", String(opacity));
-                    } else {
-                        spike.setAttribute("opacity", "0");
+                const age = spikeAgeRef.current[i] >= 0 ? elapsed - spikeAgeRef.current[i] : -1;
+                if (age >= 0 && age < 650) {
+                    const spikeP = Math.min(age / 180, 1);
+                    const fadeP = age > 350 ? (age - 350) / 300 : 0;
+                    const opacity = spikeP * (1 - fadeP);
+                    const spikeH = spikeP * 30;
+
+                    if (spikeLine) {
+                        spikeLine.setAttribute("y1", String(48 - spikeH));
+                        spikeLine.setAttribute("opacity", String(opacity));
+                    }
+                    if (fill) {
+                        fill.setAttribute("height", String(spikeH));
+                        fill.setAttribute("y", String(48 - spikeH));
+                        fill.setAttribute("opacity", String(opacity * 0.2));
+                    }
+                    if (ring) {
+                        const rr = spikeP * 14;
+                        ring.setAttribute("r", String(rr));
+                        ring.setAttribute("cy", String(48 - spikeH * 0.7));
+                        ring.setAttribute("cx", String(x));
+                        ring.setAttribute("opacity", String(0.7 * (1 - spikeP)));
                     }
                 } else {
-                    spike.setAttribute("opacity", "0");
+                    if (spikeLine) spikeLine.setAttribute("opacity", "0");
+                    if (ring) ring.setAttribute("opacity", "0");
+                    if (fill) fill.setAttribute("opacity", "0");
                 }
-            }
+            });
 
             animRef.current = requestAnimationFrame(animate);
         };
@@ -46,37 +68,33 @@ export function EventAnim() {
     }, []);
 
     return (
-        <svg viewBox="0 0 80 80" width="80" height="80" aria-hidden="true">
+        <svg ref={svgRef} viewBox="0 0 80 80" width="80" height="80" aria-hidden="true">
             <defs>
-                <filter id="glow-event">
-                    <feGaussianBlur stdDeviation="1.5" result="blur" />
+                <filter id="glow-evt">
+                    <feGaussianBlur stdDeviation="2" result="blur" />
                     <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
                 </filter>
             </defs>
-            {/* Flat baseline */}
-            <line x1="4" y1="48" x2="76" y2="48" stroke="rgba(0,217,192,0.3)" strokeWidth="1" />
-            {/* Spike */}
-            <g ref={spikesRef}>
-                <line
-                    id="evt-spike"
-                    x1="40" y1="48" x2="40" y2="16"
-                    stroke="#00D9C0"
-                    strokeWidth="2"
-                    filter="url(#glow-event)"
-                    opacity="0"
-                />
-                <line
-                    x1="36" y1="20" x2="40" y2="16"
-                    stroke="#00D9C0"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    id="evt-spike"
-                    opacity="0"
-                />
-            </g>
-            {/* Baseline dots to show it's active */}
-            <circle cx="20" cy="48" r="1.5" fill="#00D9C0" opacity="0.4" />
-            <circle cx="60" cy="48" r="1.5" fill="#00D9C0" opacity="0.4" />
+            {/* Threshold line */}
+            <line x1="4" y1="22" x2="76" y2="22" stroke="rgba(255,181,71,0.3)" strokeWidth="0.75" strokeDasharray="3,3" />
+            <text x="75" y="20" fill="rgba(255,181,71,0.5)" fontSize="5"
+                fontFamily="var(--font-jetbrains,monospace)" textAnchor="end">THR</text>
+            {/* Baseline */}
+            <line x1="4" y1="48" x2="76" y2="48" stroke="rgba(0,217,192,0.25)" strokeWidth="1" />
+            {[10, 30, 50, 70].map(cx => (
+                <circle key={cx} cx={cx} cy="48" r="1" fill="#00D9C0" opacity="0.2" />
+            ))}
+            {SPIKE_POSITIONS.map((sx, i) => (
+                <g key={i}>
+                    <rect id={`evt-fill-${i}`} x={sx - 2} y="48" width="4" height="0" fill="#00D9C0" opacity="0" />
+                    <line id={`evt-spike-${i}`} x1={sx} y1="48" x2={sx} y2="48"
+                        stroke="#00D9C0" strokeWidth="2" filter="url(#glow-evt)" opacity="0" />
+                    <circle id={`evt-ring-${i}`} cx={sx} cy="48" r="0"
+                        fill="none" stroke="#00D9C0" strokeWidth="1" opacity="0" />
+                </g>
+            ))}
+            <text x="40" y="72" textAnchor="middle" fill="#00D9C0" fontSize="6"
+                fontFamily="var(--font-jetbrains, monospace)" letterSpacing="0.14em" opacity="0.4">EVENT</text>
         </svg>
     );
 }

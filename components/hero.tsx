@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Calendar, ArrowRight, Download } from "lucide-react";
 import { HeroDiagram } from "./hero-diagram";
@@ -10,22 +10,54 @@ const containerVariants = {
   show: { transition: { staggerChildren: 0.1 } },
 };
 const itemVariants = {
-  hidden: { opacity: 0, y: 12 },
+  hidden: { opacity: 0, y: 16, filter: "blur(4px)" },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: "easeOut" as const },
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
   },
 };
 
+function useCountUp(target: number, duration = 1200, active = false) {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    if (!active) return;
+    const start = performance.now();
+    const raf = (ts: number) => {
+      const p = Math.min((ts - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      setValue(Math.round(ease * target));
+      if (p < 1) requestAnimationFrame(raf);
+    };
+    requestAnimationFrame(raf);
+  }, [active, target, duration]);
+  return value;
+}
+
 export function Hero() {
   const [samples, setSamples] = useState(120847);
+  const [statsActive, setStatsActive] = useState(false);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const stat6 = useCountUp(6, 900, statsActive);
+  const stat4 = useCountUp(4, 700, statsActive);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setSamples((prev) => prev + Math.floor(Math.random() * 10 + 3));
     }, 60);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const el = statsRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setStatsActive(true); observer.disconnect(); } },
+      { threshold: 0.5 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -73,13 +105,18 @@ export function Hero() {
                 <Download size={16} aria-hidden="true" />{HERO.ctas.secondary}
               </a>
             </motion.div>
-            <motion.div variants={itemVariants} style={{ display: "flex", gap: "40px", flexWrap: "wrap", paddingBottom: "40px" }}>
-              {HERO.stats.map((stat) => (
-                <div key={stat.label} style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-                  <span style={{ fontFamily: "var(--font-instrument-serif, serif)", fontStyle: "italic", fontSize: "38px", lineHeight: 1, color: "var(--text-primary)", letterSpacing: "-0.01em" }}>{stat.number}</span>
-                  <span style={{ fontFamily: "var(--font-jetbrains, monospace)", fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--text-secondary)" }}>{stat.label}</span>
-                </div>
-              ))}
+            <motion.div variants={itemVariants} ref={statsRef} style={{ display: "flex", gap: "40px", flexWrap: "wrap", paddingBottom: "40px" }}>
+              {HERO.stats.map((stat, i) => {
+                const displayNum = i === 0 ? stat6 : i === 1 ? stat4 : null;
+                return (
+                  <div key={stat.label} style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                    <span className="counter-glow" style={{ fontFamily: "var(--font-instrument-serif, serif)", fontStyle: "italic", fontSize: "38px", lineHeight: 1, color: "var(--text-primary)", letterSpacing: "-0.01em" }}>
+                      {displayNum !== null ? displayNum : stat.number}
+                    </span>
+                    <span style={{ fontFamily: "var(--font-jetbrains, monospace)", fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--text-secondary)" }}>{stat.label}</span>
+                  </div>
+                );
+              })}
             </motion.div>
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }} style={{ paddingTop: "12px" }}>

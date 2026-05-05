@@ -9,6 +9,10 @@ import {
     Eye,
     CircuitBoard,
     Shield,
+    Monitor,
+    Timer,
+    Route,
+    Plug,
 } from "lucide-react";
 import { SectionLabel } from "./ui/section-label";
 import { Reveal } from "./ui/reveal";
@@ -24,6 +28,10 @@ const ICONS: Record<string, React.ReactNode> = {
     Eye: <Eye size={20} aria-hidden="true" />,
     CircuitBoard: <CircuitBoard size={20} aria-hidden="true" />,
     Shield: <Shield size={20} aria-hidden="true" />,
+    Monitor: <Monitor size={20} aria-hidden="true" />,
+    Timer: <Timer size={20} aria-hidden="true" />,
+    Route: <Route size={20} aria-hidden="true" />,
+    Plug: <Plug size={20} aria-hidden="true" />,
 };
 
 export function Capabilities() {

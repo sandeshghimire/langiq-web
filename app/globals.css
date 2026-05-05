@@ -116,6 +116,117 @@ body {
   animation: pulse-dot 1.6s ease-in-out infinite;
 }
 
+/* ─── Accent ping / ripple ─── */
+@keyframes ping-accent {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.ping-accent {
+  animation: ping-accent 1.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* ─── Horizontal scanner beam ─── */
+@keyframes scan-beam {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  95% {
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.scan-beam {
+  animation: scan-beam 4s linear infinite;
+}
+
+/* ─── Floating drift ─── */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ─── Data-stream pulse along a line ─── */
+@keyframes data-stream {
+  0% {
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dashoffset: -48;
+  }
+}
+
+.data-stream {
+  animation: data-stream 1.2s linear infinite;
+}
+
+/* ─── Counter glow (for stat numbers) ─── */
+@keyframes counter-glow {
+
+  0%,
+  100% {
+    text-shadow: 0 0 0 transparent;
+  }
+
+  50% {
+    text-shadow: 0 0 24px rgba(0, 217, 192, 0.35);
+  }
+}
+
+.counter-glow {
+  animation: counter-glow 2.5s ease-in-out infinite;
+}
+
+/* ─── Scanline sweep overlay ─── */
+@keyframes scanline {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+.scanlines {
+  background-image: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.04) 2px,
+      rgba(0, 0, 0, 0.04) 4px);
+  pointer-events: none;
+}
+
 /* ─── Mono label utility ─── */
 .mono-label {
   font-family: var(--font-jetbrains, 'JetBrains Mono', monospace);

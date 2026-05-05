@@ -50,6 +50,7 @@ export function HeroDiagram() {
     const animRef = useRef<number>(0);
     const progressRef = useRef(0);
     const sampleRef = useRef(1847);
+    const coverageStartRef = useRef(Date.now());
 
     useEffect(() => {
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -74,6 +75,29 @@ export function HeroDiagram() {
             if (ctr) {
                 ctr.textContent = `thermal/soak — sample ${sampleRef.current.toLocaleString()} / est. 28800`;
             }
+
+            // Animate coverage bars filling up over 3 seconds then holding
+            const coverageElapsed = (Date.now() - coverageStartRef.current) / 1000;
+            const coverageProgress = Math.min(coverageElapsed / 2.5, 1);
+            const ease = 1 - Math.pow(1 - coverageProgress, 3);
+            COVERAGE.forEach((item, i) => {
+                const bar = svg.getElementById(`cov-fill-${i}`) as SVGRectElement | null;
+                if (bar) {
+                    const BAR_W = 220;
+                    const targetW = (BAR_W * item.pct) / 100;
+                    bar.setAttribute("width", String(targetW * ease));
+                }
+            });
+
+            // Scanline sweep
+            const scanLine = svg.getElementById("scanline") as SVGRectElement | null;
+            if (scanLine) {
+                const scanT = (Date.now() / 3000) % 1;
+                const scanY = 38 + scanT * 360;
+                scanLine.setAttribute("y", String(scanY));
+                scanLine.setAttribute("opacity", String(0.06 * Math.sin(scanT * Math.PI)));
+            }
+
             animRef.current = requestAnimationFrame(animate);
         };
 
@@ -197,19 +221,20 @@ export function HeroDiagram() {
                 <path d={THERMAL_AREA} fill="url(#thermal-grad)" clipPath="url(#chart-clip)" />
                 <path d={THERMAL_LINE} fill="none" stroke="var(--accent)" strokeWidth="1.5" opacity="0.9" clipPath="url(#chart-clip)" filter="url(#glow-dash)" />
                 <circle id="scan-dot" cx={THERMAL_PTS[0].x} cy={THERMAL_PTS[0].y} r="4" fill="var(--accent)" opacity="0" filter="url(#glow-dash)" />
+                {/* Scanline sweep overlay */}
+                <rect id="scanline" x="6" y="38" width="488" height="3" fill="white" opacity="0" pointerEvents="none" />
 
                 {/* ════ RIGHT BOTTOM: PERIPHERAL COVERAGE ════ */}
                 <text x="202" y="155" fill="var(--text-tertiary)" fontSize="8" fontFamily="var(--font-jetbrains, monospace)" letterSpacing="0.18em">PERIPHERAL COVERAGE</text>
 
                 {COVERAGE.map((item, i) => {
                     const BAR_W = 220;
-                    const fillW = parseFloat(((BAR_W * item.pct) / 100).toFixed(1));
                     const barY = 166 + i * 36;
                     return (
                         <g key={item.label}>
                             <text x="202" y={barY + 10} fill="var(--text-tertiary)" fontSize="8" fontFamily="var(--font-jetbrains, monospace)" letterSpacing="0.08em">{item.label}</text>
                             <rect x="202" y={barY + 15} width={BAR_W} height="5" rx="1" fill="var(--bg-deep)" />
-                            <rect x="202" y={barY + 15} width={fillW} height="5" rx="1" fill={item.pct === 100 ? "var(--accent)" : "rgba(0,217,192,0.55)"} />
+                            <rect id={`cov-fill-${i}`} x="202" y={barY + 15} width="0" height="5" rx="1" fill={item.pct === 100 ? "var(--accent)" : "rgba(0,217,192,0.55)"} />
                             <text x={202 + BAR_W + 7} y={barY + 21} fill={item.pct === 100 ? "var(--accent)" : "var(--text-secondary)"} fontSize="8" fontFamily="var(--font-jetbrains, monospace)">{item.pct}%</text>
                         </g>
                     );
