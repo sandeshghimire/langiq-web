@@ -31,7 +31,7 @@ export const HERO = {
     },
     subhead:
         'We independently validate every aspect of your embedded platform — electrical behavior, PCB anomalies, software bugs, extreme temperature and humidity performance, full CPU/GPU/peripheral coverage, corner cases, and regulatory evidence. Your engineers stay focused on the application. We find what would have failed in the field.',
-    note: 'Works on any hardware platform. Production-proven on six families. Trusted by Fortune 500 medical, robotics, automotive, and defense programs.',
+    note: 'Works on any hardware platform — Linux SBCs, microcontrollers, FPGAs, and x86 SoCs alike. Same workflows, same evidence, same console regardless of silicon. Engineered by the team that builds the carrier boards and BSPs. Production-proven on six families. Trusted by Fortune 500 medical, robotics, automotive, and defense programs.',
     ctas: {
         primary: 'Book a technical demo',
         secondary: 'Download technical brief',
@@ -83,7 +83,7 @@ export const ARCHITECTURE = {
         accent: 'Adapts to any hardware',
         after: 'you build on.',
     },
-    lead: 'The framework has one platform-specific layer: the HAL adapter. Everything above it — test orchestration, evidence store, server, and operator console — is unchanged whether we\'re validating a robot, a drone, an ADAS platform, or a defense system. We customize the adapter layer; you get full IV&V coverage.',
+    lead: 'The framework has one platform-specific layer: the HAL adapter. Migrating from one silicon family to another is a HAL re-implementation — years of test definitions, evidence, and tooling carry forward unchanged. All wire schemas live in a single versioned contracts repository with semantic versioning, never-reused field IDs, and CI-enforced alignment checks. gRPC + protobuf for application-class clients; FlatBuffers for microcontroller clients — translated in exactly one auditable place. We customize the adapter; you keep full IV&V coverage.',
     components: [
         { number: '01', label: 'ivv-contracts', description: 'Shared schemas — one source of truth across every platform we touch' },
         { number: '02', label: 'HAL adapter', description: 'The only platform-specific layer — customized by us to your hardware' },
@@ -95,7 +95,7 @@ export const ARCHITECTURE = {
 export const TEST_MODES = {
     sectionLabel: '03 — Test modes',
     headline: 'Four test modes. Every peripheral. Every condition.',
-    lead: 'From a single boot-time health check to a 72-hour endurance run under temperature and humidity stress — the same framework, the same evidence shape, the same audit trail.',
+    lead: 'Four standardized modes — the same vocabulary whether you\'re exercising an IMU, a PCIe SSD, an Ethernet interface, or a GPU. Test plans are portable across peripherals and platforms without modification. From a single boot-time health check to a 72-hour endurance run — the same framework, the same evidence shape, the same audit trail.',
     modes: [
         {
             title: 'One-shot',
@@ -131,7 +131,7 @@ export const TEST_MODES = {
 export const PLATFORMS = {
     sectionLabel: '04 — Platforms',
     headline: 'Already in production on six leading platforms.',
-    lead: 'The IV&V framework is customized and running in production on six platform families. If your product is built on one of these, we can begin validation in days. If your platform is different, we can customize the framework for it.',
+    lead: 'The IV&V framework is customized and running in production on six platform families — with 100% peripheral coverage on each. Every CPU, every memory subsystem, every storage device, every bus, every sensor, every camera, every display exposed through a single uniform test interface. If your product is built on one of these, we can begin validation in days. If your platform is different, we customize the HAL adapter for it.',
     cards: [
         {
             number: '01',
@@ -216,8 +216,8 @@ export const PLATFORMS = {
 
 export const CAPABILITIES = {
     sectionLabel: '05 — What we validate',
-    headline: 'Seven things we find that your team cannot.',
-    lead: 'These are not abstract test categories. Each one maps to a class of real-world failures that reach production when the team building the product is also responsible for validating it.',
+    headline: 'From silicon to audit trail — every layer covered.',
+    lead: 'Independent validation spanning electrical failures, environmental extremes, software corner cases, and real-hardware fidelity — built on an architecture engineered for decade-long programs, regulatory evidence, and drop-count transparency.',
     features: [
         {
             icon: 'Zap',
@@ -253,7 +253,7 @@ export const CAPABILITIES = {
             icon: 'CircuitBoard',
             title: 'Every CPU, GPU, and peripheral validated',
             description:
-                'Every compute element and peripheral on the platform exercised — not just the ones your application uses. Every interface, every bus, every sensor. No peripheral is left unvalidated because no application owns it.',
+                'Every compute element and peripheral on the platform exercised — not just the ones your application uses. Peripherals advertise what they support through a runtime capability bitmask; the console renders only what each peripheral can actually do. New peripherals surface automatically — no UI changes required.',
         },
         {
             icon: 'Shield',
@@ -269,9 +269,33 @@ export const CAPABILITIES = {
         },
         {
             icon: 'Database',
-            title: 'Immutable audit trail',
+            title: 'Append-only evidence database',
             description:
-                'Append-only evidence store. Every run captures firmware versions, schema versions, operator identity, and test configuration. Runs are never deleted. Reproducing a result from three years ago is a query, not a reconstruction.',
+                'Every sample, every event, every operator action, every status change persisted with full audit fidelity. Runs are never deleted — only invalidated with a recorded reason. Reproducing a run from three years ago is a first-class operation. The same database serves lab bring-up, factory acceptance, customer-site validation, and field RMA debugging.',
+        },
+        {
+            icon: 'Monitor',
+            title: 'Real-time operator console',
+            description:
+                'Streaming charts, live event tail, and run-progress dashboards delivered through Server-Sent Events. Watch a 72-hour endurance run in motion or replay a fault from three months ago — same interface, same data source.',
+        },
+        {
+            icon: 'Timer',
+            title: 'Three-stamp timing on every message',
+            description:
+                'Origin, relay, and server-ingress timestamps preserved on every cross-boundary record. Forensic timing analysis becomes a query — not a debugging excavation through logs scattered across three systems.',
+        },
+        {
+            icon: 'Route',
+            title: 'Path-aware test parameters',
+            description:
+                'For peripherals reachable over multiple transports, the path is part of the test definition. No silent failover, no path-flapping during tests, no masked transport faults. Drop counts are reported explicitly at every layer — "did the test miss data?" is answered with a number, not a guess.',
+        },
+        {
+            icon: 'Plug',
+            title: 'REST + SSE API for pipeline integration',
+            description:
+                'A documented HTTP API with Server-Sent Event streams lets the IV&V suite plug into existing CI pipelines, dashboards, and monitoring stacks without vendor lock-in to the operator console. The same API that powers the UI is available for programmatic integration.',
         },
     ],
 } as const;
@@ -346,10 +370,12 @@ export const EVIDENCE = {
             number: '02',
             title: 'Evidence properties',
             items: [
-                'Append-only — runs are never deleted',
+                'Append-only — runs invalidated with recorded reason, never silently deleted',
                 'Firmware and schema versions snapshotted per run',
-                'Operator identity and timestamp on every action',
-                'Replay any run from any point in history',
+                'Operator identity and timestamp on every state-changing action',
+                'Three-stamp timing — origin, relay, and server-ingress on every cross-boundary record',
+                'Drop counts reported explicitly — "did the test miss data?" answered with a number',
+                'Reproducibility first-class — "reproduce this run" works years after original execution',
             ],
         },
         {
@@ -408,8 +434,21 @@ export const FAQ = {
             question: 'Where does IV&V NOT belong?',
             answer:
                 "Pure application-layer software validation (use a normal CI pipeline). Developer bench smoke tests. Anywhere the independence requirement, regulatory evidence, and environmental stress properties are not worth the engagement cost.",
+        }, {
+            question: 'Do you test on real hardware or simulated environments?',
+            answer:
+                'Real hardware, real transports, real peripherals — always. Tests run against the actual devices over the actual buses your product will use in deployment. This is what catches the failures that unit tests, simulators, and bench-top instruments miss. Synthetic environments cannot reproduce the class of faults IV&V is designed to surface.',
         },
-    ],
+        {
+            question: 'Can the IV&V suite integrate with our existing CI pipeline or dashboards?',
+            answer:
+                'Yes. A documented HTTP API with Server-Sent Event streams lets the IV&V suite plug into existing CI pipelines, dashboards, and monitoring stacks without vendor lock-in to the operator console. The same API that powers the operator console is available for programmatic integration.',
+        },
+        {
+            question: 'Can the same suite work in our lab, at the factory, and at customer sites?',
+            answer:
+                'That is the design intent. Lab bring-up, factory acceptance testing, customer-site validation, and field RMA debugging all run the same suite, produce the same evidence shape, and write to the same database schema. Lessons from one phase carry into the next without reformatting or re-instrumentation.',
+        },],
 } as const;
 
 export const CTA = {
