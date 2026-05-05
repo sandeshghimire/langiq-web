@@ -30,8 +30,8 @@ export const HERO = {
         line4: 'product ships.',
     },
     subhead:
-        'We independently validate every aspect of your embedded platform — electrical behavior, PCB anomalies, software bugs, extreme temperature and humidity performance, full CPU/GPU/peripheral coverage, corner cases, and regulatory evidence. Your engineers stay focused on the application. We find what would have failed in the field.',
-    note: 'Works on any hardware platform — Linux SBCs, microcontrollers, FPGAs, and x86 SoCs alike. Same workflows, same evidence, same console regardless of silicon. Engineered by the team that builds the carrier boards and BSPs. Production-proven on six families. Trusted by Fortune 500 medical, robotics, automotive, and defense programs.',
+        'Your engineers built the application. But who is independently stress-testing the hardware beneath it? We test electrical behavior, thermal extremes, software edge cases, and every peripheral — then deliver the regulatory evidence your program requires. We find what would have failed in the field, before it ships.',
+    note: 'Works on any embedded platform — Linux SBCs, FPGAs, microcontrollers, and x86 SoCs. Production-proven on six platform families. Trusted by Fortune 500 programs in medical, robotics, automotive, and defense.',
     ctas: {
         primary: 'Book a technical demo',
         secondary: 'Download technical brief',
@@ -54,8 +54,8 @@ export const PROBLEM = {
         after: 'the platform under it.',
     },
     body: [
-        "Electrical issues, PCB layout problems, thermal runaway, humidity-induced failures, software bugs in the BSP, peripheral edge cases, corner cases — none of these get caught by the team that built the product. They need independent eyes, systematic coverage, and tests that run long enough and hard enough to expose what a lab bench never will.",
-        'That is precisely what IV&V is. Not a QA checklist. A systematic, independent discipline that validates everything from silicon to software — and produces evidence that survives regulatory review.',
+        "Electrical issues, thermal runaway, humidity failures, BSP bugs, peripheral edge cases — these are rarely caught by the team that built the product. Not because your engineers aren't good. Because they're too close to it, and never have enough time.",
+        'IV&V is the fix. Not a QA checklist — a systematic, independent discipline that covers everything from silicon to software, and produces evidence your regulatory reviewers will accept.',
     ],
     failureModes: [
         {
@@ -83,7 +83,7 @@ export const ARCHITECTURE = {
         accent: 'Adapts to any hardware',
         after: 'you build on.',
     },
-    lead: 'The framework has one platform-specific layer: the HAL adapter. Migrating from one silicon family to another is a HAL re-implementation — years of test definitions, evidence, and tooling carry forward unchanged. All wire schemas live in a single versioned contracts repository with semantic versioning, never-reused field IDs, and CI-enforced alignment checks. gRPC + protobuf for application-class clients; FlatBuffers for microcontroller clients — translated in exactly one auditable place. We customize the adapter; you keep full IV&V coverage.',
+    lead: 'The framework has one platform-specific layer: the HAL adapter. Switch silicon families and we re-implement the adapter — every test definition, evidence artifact, and tool you have built carries forward unchanged. All wire schemas live in a single versioned contracts repo with semantic versioning, never-reused field IDs, and CI-enforced alignment checks. gRPC + protobuf for application-class clients; FlatBuffers for microcontrollers — translated in exactly one auditable place. We customize the adapter. You keep full IV&V coverage.',
     components: [
         { number: '01', label: 'ivv-contracts', description: 'Shared schemas — one source of truth across every platform we touch' },
         { number: '02', label: 'HAL adapter', description: 'The only platform-specific layer — customized by us to your hardware' },
@@ -95,7 +95,7 @@ export const ARCHITECTURE = {
 export const TEST_MODES = {
     sectionLabel: '03 — Test modes',
     headline: 'Four test modes. Every peripheral. Every condition.',
-    lead: 'Four standardized modes — the same vocabulary whether you\'re exercising an IMU, a PCIe SSD, an Ethernet interface, or a GPU. Test plans are portable across peripherals and platforms without modification. From a single boot-time health check to a 72-hour endurance run — the same framework, the same evidence shape, the same audit trail.',
+    lead: 'Four standardized modes — the same vocabulary whether you are testing an IMU, a PCIe SSD, an Ethernet interface, or a GPU. Test plans are portable across peripherals and platforms without modification. From a single boot-time health check to a 72-hour endurance run, it is the same framework, the same evidence shape, the same audit trail.',
     modes: [
         {
             title: 'One-shot',
@@ -131,14 +131,14 @@ export const TEST_MODES = {
 export const PLATFORMS = {
     sectionLabel: '04 — Platforms',
     headline: 'Already in production on six leading platforms.',
-    lead: 'The IV&V framework is customized and running in production on six platform families — with 100% peripheral coverage on each. Every CPU, every memory subsystem, every storage device, every bus, every sensor, every camera, every display exposed through a single uniform test interface. If your product is built on one of these, we can begin validation in days. If your platform is different, we customize the HAL adapter for it.',
+    lead: 'The IV&V framework runs in production on six platform families — with full peripheral coverage on each. Every CPU, memory subsystem, storage device, bus, sensor, camera, and display is exposed through a single uniform test interface. If your product is built on one of these platforms, we can begin validation in days. If your platform is different, we customize the HAL adapter for it.',
     cards: [
         {
             number: '01',
             name: 'Arches',
             subtitle: 'NVIDIA JETSON',
             positioning:
-                'Building on NVIDIA Jetson for robotics, drones, smart cameras, or on-device ML? We validate the full platform — GPU peripherals, STM32 co-processor, all buses — independently, so your team stays focused on the application.',
+                'Building on NVIDIA Jetson for robotics, drones, smart cameras, or on-device ML? We independently validate the full platform — GPU peripherals, STM32 co-processor, every bus — so your team can stay focused on the application.',
             specs: [
                 { key: 'APP CORES', value: 'ARM (Jetson)' },
                 { key: 'ACCEL', value: 'CUDA + DLA + PVA' },
@@ -151,7 +151,7 @@ export const PLATFORMS = {
             name: 'Acadia',
             subtitle: 'RASPBERRY PI CM',
             positioning:
-                'Deploying Raspberry Pi CM4 or CM5 in a production product? We validate the full carrier platform including the RP2040 co-processor, industrial I/O, and every peripheral — to the standard your program demands.',
+                'Deploying Raspberry Pi CM4 or CM5 in a production product? We validate the full carrier platform — RP2040 co-processor, industrial I/O, and every peripheral — to the standard your program requires.',
             specs: [
                 { key: 'APP CORES', value: 'ARM Cortex-A72/A76' },
                 { key: 'RT CO-PROC', value: 'RP2040 (Pico W)' },
@@ -164,7 +164,7 @@ export const PLATFORMS = {
             name: 'Zion',
             subtitle: 'XILINX ZYNQ',
             positioning:
-                'Using Xilinx Zynq for SDR, high-channel DAQ, or custom real-time protocols? We validate both the ARM application side and the programmable logic fabric — independently and with full evidence.',
+                'Using Xilinx Zynq for SDR, high-channel DAQ, or custom real-time protocols? We validate both the ARM application side and the programmable logic fabric, independently and with full documented evidence.',
             specs: [
                 { key: 'APP CORES', value: 'Cortex-A9 / A53+R5' },
                 { key: 'FABRIC', value: 'Zynq PL' },
@@ -217,19 +217,19 @@ export const PLATFORMS = {
 export const CAPABILITIES = {
     sectionLabel: '05 — What we validate',
     headline: 'From silicon to audit trail — every layer covered.',
-    lead: 'Independent validation spanning electrical failures, environmental extremes, software corner cases, and real-hardware fidelity — built on an architecture engineered for decade-long programs, regulatory evidence, and drop-count transparency.',
+    lead: 'Independent validation across every layer — electrical behavior, environmental stress, software edge cases, and regulatory evidence. Built for programs that run for a decade, not a sprint.',
     features: [
         {
             icon: 'Zap',
             title: 'Electrical issues, caught early',
             description:
-                'Power rail noise, signal integrity under load, decoupling gaps, trace impedance, and EMI susceptibility. We exercise the platform electrically — not just functionally — and flag issues before they become field escapes.',
+                'Power rail noise, signal integrity under load, decoupling gaps, trace impedance, EMI susceptibility. We test the platform electrically — not just functionally — and flag problems before they become field failures.',
         },
         {
             icon: 'FileSearch',
             title: 'Software bugs in the platform layer',
             description:
-                'BSP code, driver logic, firmware edge cases, and boot-path assumptions. Independent code review and systematic runtime exercising catches the bugs invisible to engineers who wrote the code.',
+                'BSP code, driver logic, firmware edge cases, boot-path assumptions. Independent review and systematic runtime exercising surfaces the bugs invisible to the engineers who wrote the code.',
         },
         {
             icon: 'Thermometer',
@@ -253,7 +253,7 @@ export const CAPABILITIES = {
             icon: 'CircuitBoard',
             title: 'Every CPU, GPU, and peripheral validated',
             description:
-                'Every compute element and peripheral on the platform exercised — not just the ones your application uses. Peripherals advertise what they support through a runtime capability bitmask; the console renders only what each peripheral can actually do. New peripherals surface automatically — no UI changes required.',
+                'Every compute element and peripheral exercised — not just the ones your application uses. New peripherals surface automatically without any changes to the test infrastructure or operator console.',
         },
         {
             icon: 'Shield',
@@ -295,7 +295,7 @@ export const CAPABILITIES = {
             icon: 'Plug',
             title: 'REST + SSE API for pipeline integration',
             description:
-                'A documented HTTP API with Server-Sent Event streams lets the IV&V suite plug into existing CI pipelines, dashboards, and monitoring stacks without vendor lock-in to the operator console. The same API that powers the UI is available for programmatic integration.',
+                'Plug IV&V into your existing CI pipelines, dashboards, or monitoring stacks via a documented HTTP + Server-Sent Events API. No vendor lock-in. The same API that powers the operator console is open for programmatic use.',
         },
     ],
 } as const;
@@ -308,42 +308,42 @@ export const USE_CASES = {
             industry: 'MEDICAL DEVICES',
             title: 'IEC 62304 / FDA evidence — produced independently.',
             vignette:
-                'FDA and IEC 62304 require validation that the development team cannot self-certify. We run thermal soak, humidity stress, electrical testing, and full peripheral coverage — and deliver evidence structured for your regulatory submission.',
+                'FDA and IEC 62304 require independent validation — your dev team cannot self-certify their own work. We run thermal soak, humidity stress, electrical testing, and full peripheral coverage, then deliver structured evidence ready for your regulatory submission.',
             platform: 'NXP i.MX / NVIDIA Jetson',
         },
         {
             industry: 'INDUSTRIAL ROBOTICS & UAV',
             title: 'Find the electrical and software failures before the robot ships.',
             vignette:
-                'Robots and UAVs carry power electronics, custom buses, and real-time co-processors that nobody fully stress-tests before deployment. We validate the platform under thermal load, vibration, and long-duration endurance — not just on the bench.',
+                'Robots and UAVs are packed with custom power electronics, proprietary buses, and real-time co-processors that rarely get properly stress-tested before they ship. We validate the full platform — thermally, mechanically, and over time — not just on a bench.',
             platform: 'NVIDIA Jetson / Raspberry Pi',
         },
         {
             industry: 'AEROSPACE & DEFENSE',
             title: 'DO-178C / MIL-STD-810 evidence the program office accepts.',
             vignette:
-                'Defense programs require independent validation that is demonstrably separate from development. We exercise corner cases, run prolonged endurance under MIL-STD-810 conditions, and produce evidence in the format your contracting officer requires.',
+                'Defense programs need validation that is clearly separate from development — not a team checking their own work. We run corner cases and prolonged endurance under MIL-STD-810 conditions, and deliver evidence in the exact format your contracting officer expects.',
             platform: 'Xilinx Zynq / Intel x86',
         },
         {
             industry: 'AUTOMOTIVE ADAS',
             title: 'ISO 26262 platform IV&V — independent from your dev team.',
             vignette:
-                'ISO 26262 demands independence. Your ADAS engineers are building the perception and control stack. We validate the compute platform beneath it — electrical integrity, thermal cycling, peripheral coverage, and ASIL-mapped evidence.',
+                'ISO 26262 requires independence, and your ADAS engineers are busy building the perception stack. We validate the compute platform beneath it — electrical integrity, thermal cycling, peripheral coverage — and map our evidence directly to your ASIL requirements.',
             platform: 'NXP i.MX / TI Sitara',
         },
         {
             industry: 'INDUSTRIAL AUTOMATION',
             title: 'Cycle-exact timing validated under real operating conditions.',
             vignette:
-                'Industrial systems face temperature swings, humidity, and prolonged continuous operation. We validate deterministic timing, fieldbus behavior, and platform endurance under the actual environmental conditions your product will face.',
+                'Industrial systems run hot, damp, and non-stop. We validate deterministic timing, fieldbus behavior, and platform endurance under real-world conditions — not controlled lab ideals.',
             platform: 'TI Sitara',
         },
         {
             industry: 'EDGE COMPUTE & AI',
             title: 'GPU, PCIe, and high-bandwidth peripherals — fully exercised.',
             vignette:
-                'AI compute platforms run hot, hard, and continuously. We validate thermal management, PCIe integrity, GPU peripheral behavior, and corner-case stability under sustained load — with real-time telemetry throughout every run.',
+                'AI platforms push hardware to its limits. We validate thermal management, PCIe integrity, GPU peripheral behavior, and stability under sustained load — with live telemetry throughout every run.',
             platform: 'Intel x86 / NVIDIA Jetson',
         },
     ],
@@ -352,7 +352,7 @@ export const USE_CASES = {
 export const EVIDENCE = {
     sectionLabel: '07 — Regulatory evidence',
     headline: 'Evidence structured for your regulatory requirement.',
-    lead: 'IV&V is only as useful as the evidence it produces. Every run generates artifacts structured for the specific standard your program is subject to — not generic test logs.',
+    lead: 'A test that does not produce usable evidence is just an exercise. Every run we conduct generates structured artifacts for your specific regulatory standard — not generic logs you would have to reformat yourself.',
     columns: [
         {
             number: '01',
@@ -398,7 +398,7 @@ export const FAQ = {
         {
             question: 'What exactly do you find that our own engineers would miss?',
             answer:
-                "Electrical issues (power rail noise, signal integrity, decoupling gaps) that only appear under load. PCB behaviors at temperature extremes that differ from bench conditions. Software bugs that require a specific combination of peripheral state and thermal condition to trigger. Corner cases nobody had time to write a test for. These are systematic gaps — not failures of skill.",
+                "Electrical issues — power rail noise, signal integrity problems, decoupling gaps — that only appear under real load. PCB behavior at temperature extremes that looks nothing like bench conditions. Software bugs that need a specific sequence of peripheral state and thermal condition to trigger. Corner cases nobody had time to write a test for. These are systematic gaps, not failures of skill.",
         },
         {
             question: 'What does extreme temperature testing cover?',
@@ -423,17 +423,17 @@ export const FAQ = {
         {
             question: 'Our platform isn\'t on your list of six. Can you still help?',
             answer:
-                "Yes. The HAL adapter is the only platform-specific layer. For a new platform, customization typically takes weeks — everything above (test orchestration, server, evidence store, UI) is unchanged. Bring us your hardware and we scope the engagement.",
+                "Yes. The HAL adapter is the only platform-specific layer, and customizing it for a new platform typically takes a few weeks. Everything above it — test orchestration, server, evidence store, UI — carries over unchanged. Bring us your hardware and we will scope the engagement.",
         },
         {
             question: 'How is this different from our internal QA process?',
             answer:
-                "Internal QA validates that the product does what it is supposed to do. IV&V validates the platform beneath it — including electrical behavior, environmental stress, peripheral coverage, and regulatory evidence — independently of the team that built it. Both are necessary. Neither replaces the other.",
+                "Your internal QA checks that the product does what it is supposed to do. IV&V validates the platform beneath it — electrical behavior, environmental stress, peripheral coverage, regulatory evidence — independently of the team that built it. Both matter. Neither replaces the other.",
         },
         {
             question: 'Where does IV&V NOT belong?',
             answer:
-                "Pure application-layer software validation (use a normal CI pipeline). Developer bench smoke tests. Anywhere the independence requirement, regulatory evidence, and environmental stress properties are not worth the engagement cost.",
+                "Application-layer software validation — that is what CI pipelines are for. Developer bench smoke tests. Any program where the cost of proper independent validation outweighs the risk of skipping it. We will tell you honestly if that is your situation.",
         }, {
             question: 'Do you test on real hardware or simulated environments?',
             answer:
@@ -447,7 +447,7 @@ export const FAQ = {
         {
             question: 'Can the same suite work in our lab, at the factory, and at customer sites?',
             answer:
-                'That is the design intent. Lab bring-up, factory acceptance testing, customer-site validation, and field RMA debugging all run the same suite, produce the same evidence shape, and write to the same database schema. Lessons from one phase carry into the next without reformatting or re-instrumentation.',
+                'Yes — that is the whole point. Lab bring-up, factory acceptance, customer-site validation, and field RMA debugging all run the same suite and write to the same database schema. What you learn in the lab carries directly into production, with no reformatting or re-instrumentation.',
         },],
 } as const;
 
@@ -458,7 +458,7 @@ export const CTA = {
         after: 'your product reaches the field.',
     },
     subhead:
-        'Book a 30-minute technical call. Tell us your platform, your regulatory requirement, and what you are trying to validate. We will tell you exactly what we would find and how long it takes.',
+        'Book a 30-minute call with our engineers. Tell us your platform and what you are trying to validate. We will tell you exactly what we would look for — and what it takes to get there.',
 
     ctas: {
         primary: 'Book a technical demo',
