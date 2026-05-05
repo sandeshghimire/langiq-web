@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Calendar, ArrowRight, Download } from "lucide-react";
+import { Calendar, ArrowRight } from "lucide-react";
 import { HeroDiagram } from "./hero-diagram";
 import { HERO } from "@/lib/content";
 
@@ -71,14 +71,14 @@ export function Hero() {
         style={{
           position: "absolute", top: "30%", left: "50%",
           transform: "translate(-50%, -50%)",
-          width: "800px", height: "800px", borderRadius: "50%",
+          width: "1200px", height: "900px", borderRadius: "50%",
           background: "radial-gradient(circle, rgba(0,217,192,0.07) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
         aria-hidden="true"
       />
-      <div style={{ maxWidth: "1440px", margin: "0 auto", padding: "140px 48px 0" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "7fr 5fr", gap: "64px", alignItems: "start" }} className="hero-grid">
+      <div style={{ padding: "140px 64px 0" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "start" }} className="hero-grid">
           <motion.div variants={containerVariants} initial="hidden" animate="show">
             <motion.div variants={itemVariants} style={{ marginBottom: "24px" }}>
               <span style={{ fontFamily: "var(--font-jetbrains, monospace)", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--text-secondary)", display: "flex", alignItems: "center", gap: "8px" }}>
@@ -101,8 +101,8 @@ export function Hero() {
               <a href="#cta" style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "14px 24px", background: "var(--accent)", borderRadius: "4px", color: "#07090C", fontFamily: "var(--font-geist, sans-serif)", fontWeight: 500, fontSize: "15px", textDecoration: "none", transition: "box-shadow 0.2s", flexShrink: 0 }} onMouseEnter={(e) => { e.currentTarget.style.boxShadow = "0 0 0 6px var(--accent-glow)"; }} onMouseLeave={(e) => { e.currentTarget.style.boxShadow = "none"; }}>
                 <Calendar size={16} aria-hidden="true" />{HERO.ctas.primary}<ArrowRight size={16} aria-hidden="true" />
               </a>
-              <a href="#cta" style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "14px 24px", border: "1px solid var(--border-strong)", borderRadius: "4px", color: "var(--text-primary)", fontFamily: "var(--font-geist, sans-serif)", fontSize: "15px", textDecoration: "none", transition: "border-color 0.2s", flexShrink: 0 }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--text-primary)"; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--border-strong)"; }}>
-                <Download size={16} aria-hidden="true" />{HERO.ctas.secondary}
+              <a href="#architecture" style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "14px 24px", border: "1px solid var(--border-strong)", borderRadius: "4px", color: "var(--text-primary)", fontFamily: "var(--font-geist, sans-serif)", fontSize: "15px", textDecoration: "none", transition: "border-color 0.2s", flexShrink: 0 }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--text-primary)"; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--border-strong)"; }}>
+                How it works<ArrowRight size={16} aria-hidden="true" />
               </a>
             </motion.div>
             <motion.div variants={itemVariants} ref={statsRef} style={{ display: "flex", gap: "40px", flexWrap: "wrap", paddingBottom: "40px" }}>

@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Download, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { NAV } from "@/lib/content";
 
 export function Nav() {
@@ -152,32 +152,6 @@ export function Nav() {
 
                 {/* Right: CTAs */}
                 <div style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
-                    <a
-                        href="#cta"
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "6px",
-                            padding: "8px 16px",
-                            border: "1px solid var(--border-strong)",
-                            borderRadius: "4px",
-                            color: "var(--text-primary)",
-                            fontFamily: "var(--font-geist, sans-serif)",
-                            fontSize: "14px",
-                            textDecoration: "none",
-                            transition: "border-color 0.2s, color 0.2s",
-                        }}
-                        onMouseEnter={(e) => {
-                            e.currentTarget.style.borderColor = "var(--text-primary)";
-                        }}
-                        onMouseLeave={(e) => {
-                            e.currentTarget.style.borderColor = "var(--border-strong)";
-                        }}
-                        aria-label="Download technical brief"
-                    >
-                        <Download size={14} aria-hidden="true" />
-                        <span className="hidden sm:inline">{NAV.ctas.secondary}</span>
-                    </a>
                     <a
                         href="#cta"
                         style={{
