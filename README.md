@@ -1,4 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# IV&V Marketing Site
+
+Production-grade marketing site for the SoCcentric Independent Validation & Verification (IV&V) suite.
+
+## Getting started
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+## Build
+
+```bash
+pnpm build
+pnpm start
+```
+
+## Project map
+
+| What | Where |
+|---|---|
+| All section copy | `lib/content.ts` — edit copy here; no need to touch JSX |
+| Color variables | `app/globals.css` — all CSS custom properties at the top |
+| Brand fonts | `app/layout.tsx` — loaded via `next/font/google` |
+| Nav | `components/nav.tsx` |
+| Hero + topology diagram | `components/hero.tsx`, `components/hero-diagram.tsx` |
+| Architecture + diagram | `components/architecture.tsx`, `components/architecture-diagram.tsx` |
+| Test mode animations | `components/test-mode-anims/` |
+| Platform cards (light section) | `components/platforms.tsx`, `components/platform-card.tsx` |
+| Capabilities grid | `components/capabilities.tsx` |
+| Use cases | `components/use-cases.tsx` |
+| Evidence columns | `components/evidence.tsx` |
+| FAQ accordion | `components/faq.tsx` |
+| CTA section | `components/cta.tsx` |
+| Footer | `components/footer.tsx` |
+| Lead API route | `app/api/lead/route.ts` — logs body, returns `{ ok: true }` |
+| Shared UI (Reveal, SectionLabel) | `components/ui/` |
+
+## OG image
+
+TODO: add a real OG image at `public/og.png` and update the `metadata` in `app/layout.tsx`.
+
+## Fonts
+
+Three fonts loaded via `next/font/google` with `display: 'swap'`:
+
+- **Instrument Serif** — display/headlines (`var(--font-instrument-serif)`)
+- **Geist** — body/UI (`var(--font-geist)`)
+- **JetBrains Mono** — monospace labels, telemetry (`var(--font-jetbrains)`)
+
+## Colors
+
+All colors are CSS custom properties defined in `app/globals.css`. Key brand colors:
+
+- `--accent` (#00D9C0) — cyan-teal, primary brand color
+- `--warm` (#FFB547) — amber, used only for live/active indicators
+- `--bg-deep` / `--bg-mid` — dark section backgrounds
+- `--bg-light` — the one light section (Platforms)
+
+## Deployment
+
+Deploy to Vercel with zero configuration. Push to main, connect the repo in Vercel dashboard.
+
 
 ## Getting Started
 
