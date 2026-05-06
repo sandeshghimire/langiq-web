@@ -41,6 +41,10 @@ export function Capabilities() {
             style={{
                 background: "var(--bg-deep)",
                 padding: "120px 48px",
+                minHeight: "100vh",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
             }}
             aria-labelledby="capabilities-headline"
         >

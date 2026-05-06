@@ -1,25 +1,8 @@
 "use client";
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, CheckCircle2, ArrowRight } from "lucide-react";
+import { CheckCircle2, ArrowRight } from "lucide-react";
 import { Reveal } from "./ui/reveal";
 import { CTA } from "@/lib/content";
-
-const TIME_SLOTS = ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"];
-const WEEKDAY_LABELS = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
-const MONTH_NAMES = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December",
-];
-
-function getDaysInMonth(year: number, month: number) {
-    return new Date(year, month + 1, 0).getDate();
-}
-
-function getFirstWeekday(year: number, month: number) {
-    // Returns 0 = Mon .. 6 = Sun
-    const day = new Date(year, month, 1).getDay();
-    return (day + 6) % 7;
-}
 
 const INPUT_STYLE: React.CSSProperties = {
     display: "block",
@@ -57,7 +40,7 @@ const PANEL_LABEL_STYLE: React.CSSProperties = {
     display: "block",
 };
 
-function SuccessCard({ date, time, name }: { date: string | null; time: string | null; name: string }) {
+function SuccessCard({ name }: { name: string }) {
     return (
         <div
             style={{
@@ -83,19 +66,8 @@ function SuccessCard({ date, time, name }: { date: string | null; time: string |
                     margin: "0 0 12px",
                 }}
             >
-                Demo scheduled, {name.split(" ")[0]}.
+                Message received, {name.split(" ")[0]}.
             </h3>
-            <p
-                style={{
-                    fontFamily: "var(--font-jetbrains, monospace)",
-                    fontSize: "12px",
-                    letterSpacing: "0.12em",
-                    color: "var(--accent)",
-                    margin: "0 0 20px",
-                }}
-            >
-                {date} · {time} GMT
-            </p>
             <p
                 style={{
                     fontSize: "16px",
@@ -105,64 +77,28 @@ function SuccessCard({ date, time, name }: { date: string | null; time: string |
                     margin: "0 auto",
                 }}
             >
-                An IV&amp;V engineer will send a calendar invite and meeting link to your
-                work email shortly. No prep required — just bring your platform details.
+                An IV&amp;V engineer will be in touch shortly. No prep required — just bring
+                your platform details when we connect.
             </p>
         </div>
     );
 }
 
 export function CtaSection() {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const [viewYear, setViewYear] = useState(() => today.getFullYear());
-    const [viewMonth, setViewMonth] = useState(() => today.getMonth());
-    const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-    const [selectedTime, setSelectedTime] = useState<string | null>(null);
-    const [form, setForm] = useState({ name: "", email: "", company: "", notes: "" });
+    const [form, setForm] = useState({
+        name: "",
+        company: "",
+        email: "",
+        phone: "",
+        message: "",
+    });
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
     const [errorMsg, setErrorMsg] = useState("");
-
-    const goToPrevMonth = () => {
-        if (viewMonth === 0) { setViewMonth(11); setViewYear((y) => y - 1); }
-        else { setViewMonth((m) => m - 1); }
-    };
-
-    const goToNextMonth = () => {
-        if (viewMonth === 11) { setViewMonth(0); setViewYear((y) => y + 1); }
-        else { setViewMonth((m) => m + 1); }
-    };
-
-    const totalDays = getDaysInMonth(viewYear, viewMonth);
-    const blanks = getFirstWeekday(viewYear, viewMonth);
-
-    const isDateDisabled = (day: number) => {
-        const d = new Date(viewYear, viewMonth, day);
-        const wd = d.getDay(); // 0 = Sun, 6 = Sat
-        return d <= today || wd === 0 || wd === 6;
-    };
-
-    const isDateSelected = (day: number) =>
-        !!selectedDate &&
-        selectedDate.getFullYear() === viewYear &&
-        selectedDate.getMonth() === viewMonth &&
-        selectedDate.getDate() === day;
-
-    const handleDayClick = (day: number) => {
-        if (isDateDisabled(day)) return;
-        setSelectedDate(new Date(viewYear, viewMonth, day));
-        setSelectedTime(null);
-    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!form.name || !form.email || !form.company) {
-            setErrorMsg("NAME, WORK EMAIL, AND COMPANY ARE REQUIRED.");
-            return;
-        }
-        if (!selectedDate || !selectedTime) {
-            setErrorMsg("PLEASE SELECT A DATE AND TIME SLOT.");
+            setErrorMsg("NAME, COMPANY, AND EMAIL ARE REQUIRED.");
             return;
         }
         setStatus("loading");
@@ -172,13 +108,12 @@ export function CtaSection() {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    type: "demo",
+                    type: "connect",
                     name: form.name,
-                    email: form.email,
                     company: form.company,
-                    notes: form.notes || undefined,
-                    scheduledDate: selectedDate.toISOString().split("T")[0],
-                    scheduledTime: selectedTime,
+                    email: form.email,
+                    phone: form.phone || undefined,
+                    message: form.message || undefined,
                 }),
             });
             if (!res.ok) throw new Error();
@@ -189,11 +124,31 @@ export function CtaSection() {
         }
     };
 
-    const formattedDate = selectedDate
-        ? selectedDate.toLocaleDateString("en-GB", {
-            weekday: "long", day: "numeric", month: "long", year: "numeric",
-        })
-        : null;
+    const field = (
+        id: string,
+        label: string,
+        type: string,
+        placeholder: string,
+        key: keyof typeof form,
+        required = false
+    ) => (
+        <div>
+            <label htmlFor={id} style={LABEL_STYLE}>
+                {label}{required ? " *" : ""}
+            </label>
+            <input
+                id={id}
+                type={type}
+                required={required}
+                placeholder={placeholder}
+                value={form[key]}
+                onChange={(e) => setForm((f) => ({ ...f, [key]: e.target.value }))}
+                style={INPUT_STYLE}
+                onFocus={(e) => { e.currentTarget.style.borderColor = "var(--accent)"; }}
+                onBlur={(e) => { e.currentTarget.style.borderColor = "var(--border-strong)"; }}
+            />
+        </div>
+    );
 
     return (
         <section
@@ -203,6 +158,10 @@ export function CtaSection() {
                 padding: "120px 48px",
                 position: "relative",
                 overflow: "hidden",
+                minHeight: "100vh",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
             }}
             aria-labelledby="cta-headline"
         >
@@ -222,7 +181,7 @@ export function CtaSection() {
                 aria-hidden="true"
             />
 
-            <div style={{ maxWidth: "1080px", margin: "0 auto", position: "relative" }}>
+            <div style={{ maxWidth: "640px", margin: "0 auto", position: "relative" }}>
                 {/* Section header */}
                 <Reveal>
                     <p
@@ -235,7 +194,7 @@ export function CtaSection() {
                             margin: "0 0 16px",
                         }}
                     >
-                        Schedule a Demo
+                        Connect
                     </p>
                     <h2
                         id="cta-headline"
@@ -260,8 +219,7 @@ export function CtaSection() {
                             fontSize: "17px",
                             lineHeight: 1.6,
                             color: "var(--text-secondary)",
-                            maxWidth: "600px",
-                            margin: "0 0 48px",
+                            margin: "0 0 40px",
                         }}
                     >
                         {CTA.subhead}
@@ -271,7 +229,7 @@ export function CtaSection() {
                 {/* Form card */}
                 <Reveal delay={0.1}>
                     {status === "success" ? (
-                        <SuccessCard date={formattedDate} time={selectedTime} name={form.name} />
+                        <SuccessCard name={form.name} />
                     ) : (
                         <form
                             onSubmit={handleSubmit}
@@ -283,343 +241,58 @@ export function CtaSection() {
                                 overflow: "hidden",
                             }}
                         >
-                            {/* Two-panel body */}
                             <div
                                 style={{
-                                    display: "grid",
-                                    gridTemplateColumns: "1fr 1fr",
+                                    padding: "32px",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    gap: "16px",
                                 }}
-                                className="cta-form-grid"
                             >
-                                {/* ── Left: Contact details ── */}
+                                {/* Name + Company */}
                                 <div
-                                    style={{
-                                        padding: "32px",
-                                        borderRight: "1px solid var(--border)",
-                                    }}
+                                    style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}
+                                    className="cta-row-grid"
                                 >
-                                    <span style={PANEL_LABEL_STYLE}>Contact Details</span>
-                                    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-                                        <div>
-                                            <label htmlFor="demo-name" style={LABEL_STYLE}>
-                                                Name *
-                                            </label>
-                                            <input
-                                                id="demo-name"
-                                                type="text"
-                                                required
-                                                placeholder="Jane Smith"
-                                                value={form.name}
-                                                onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                                                style={INPUT_STYLE}
-                                                onFocus={(e) => { e.currentTarget.style.borderColor = "var(--accent)"; }}
-                                                onBlur={(e) => { e.currentTarget.style.borderColor = "var(--border-strong)"; }}
-                                            />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="demo-email" style={LABEL_STYLE}>
-                                                Work Email *
-                                            </label>
-                                            <input
-                                                id="demo-email"
-                                                type="email"
-                                                required
-                                                placeholder="jane@company.com"
-                                                value={form.email}
-                                                onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                                                style={INPUT_STYLE}
-                                                onFocus={(e) => { e.currentTarget.style.borderColor = "var(--accent)"; }}
-                                                onBlur={(e) => { e.currentTarget.style.borderColor = "var(--border-strong)"; }}
-                                            />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="demo-company" style={LABEL_STYLE}>
-                                                Company *
-                                            </label>
-                                            <input
-                                                id="demo-company"
-                                                type="text"
-                                                required
-                                                placeholder="Acme Inc."
-                                                value={form.company}
-                                                onChange={(e) => setForm((f) => ({ ...f, company: e.target.value }))}
-                                                style={INPUT_STYLE}
-                                                onFocus={(e) => { e.currentTarget.style.borderColor = "var(--accent)"; }}
-                                                onBlur={(e) => { e.currentTarget.style.borderColor = "var(--border-strong)"; }}
-                                            />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="demo-notes" style={LABEL_STYLE}>
-                                                What are you validating? (optional)
-                                            </label>
-                                            <textarea
-                                                id="demo-notes"
-                                                rows={5}
-                                                placeholder="Platform, regulatory requirements, key concerns..."
-                                                value={form.notes}
-                                                onChange={(e) => setForm((f) => ({ ...f, notes: e.target.value }))}
-                                                style={{
-                                                    ...INPUT_STYLE,
-                                                    resize: "vertical",
-                                                    minHeight: "96px",
-                                                }}
-                                                onFocus={(e) => { e.currentTarget.style.borderColor = "var(--accent)"; }}
-                                                onBlur={(e) => { e.currentTarget.style.borderColor = "var(--border-strong)"; }}
-                                            />
-                                        </div>
-                                    </div>
+                                    {field("connect-name", "Name", "text", "Jane Smith", "name", true)}
+                                    {field("connect-company", "Company name", "text", "Acme Inc.", "company", true)}
                                 </div>
 
-                                {/* ── Right: Calendar ── */}
-                                <div style={{ padding: "32px" }}>
-                                    <span style={PANEL_LABEL_STYLE}>Select Date &amp; Time</span>
+                                {/* Email + Phone */}
+                                <div
+                                    style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}
+                                    className="cta-row-grid"
+                                >
+                                    {field("connect-email", "Email", "email", "jane@company.com", "email", true)}
+                                    {field("connect-phone", "Phone number", "tel", "+1 555 000 0000", "phone")}
+                                </div>
 
-                                    {/* Month navigation */}
-                                    <div
+                                {/* Message */}
+                                <div>
+                                    <label htmlFor="connect-message" style={LABEL_STYLE}>
+                                        Message
+                                    </label>
+                                    <textarea
+                                        id="connect-message"
+                                        rows={5}
+                                        placeholder="Tell us about your platform, target class, or validation requirements..."
+                                        value={form.message}
+                                        onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
                                         style={{
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "space-between",
-                                            marginBottom: "16px",
+                                            ...INPUT_STYLE,
+                                            resize: "vertical",
+                                            minHeight: "108px",
                                         }}
-                                    >
-                                        <button
-                                            type="button"
-                                            onClick={goToPrevMonth}
-                                            style={{
-                                                background: "none",
-                                                border: "1px solid var(--border)",
-                                                borderRadius: "3px",
-                                                padding: "5px 9px",
-                                                color: "var(--text-secondary)",
-                                                cursor: "pointer",
-                                                display: "flex",
-                                                alignItems: "center",
-                                                transition: "border-color 0.15s",
-                                            }}
-                                            onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--border-strong)"; }}
-                                            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--border)"; }}
-                                            aria-label="Previous month"
-                                        >
-                                            <ChevronLeft size={13} />
-                                        </button>
-                                        <span
-                                            style={{
-                                                fontFamily: "var(--font-jetbrains, monospace)",
-                                                fontSize: "11px",
-                                                letterSpacing: "0.14em",
-                                                color: "var(--text-primary)",
-                                            }}
-                                        >
-                                            {MONTH_NAMES[viewMonth].toUpperCase()} {viewYear}
-                                        </span>
-                                        <button
-                                            type="button"
-                                            onClick={goToNextMonth}
-                                            style={{
-                                                background: "none",
-                                                border: "1px solid var(--border)",
-                                                borderRadius: "3px",
-                                                padding: "5px 9px",
-                                                color: "var(--text-secondary)",
-                                                cursor: "pointer",
-                                                display: "flex",
-                                                alignItems: "center",
-                                                transition: "border-color 0.15s",
-                                            }}
-                                            onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--border-strong)"; }}
-                                            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--border)"; }}
-                                            aria-label="Next month"
-                                        >
-                                            <ChevronRight size={13} />
-                                        </button>
-                                    </div>
-
-                                    {/* Weekday header row */}
-                                    <div
-                                        style={{
-                                            display: "grid",
-                                            gridTemplateColumns: "repeat(7, 1fr)",
-                                            gap: "2px",
-                                            marginBottom: "4px",
-                                        }}
-                                    >
-                                        {WEEKDAY_LABELS.map((d) => (
-                                            <div
-                                                key={d}
-                                                style={{
-                                                    textAlign: "center",
-                                                    fontFamily: "var(--font-jetbrains, monospace)",
-                                                    fontSize: "8px",
-                                                    letterSpacing: "0.08em",
-                                                    color: (d === "SAT" || d === "SUN")
-                                                        ? "rgba(71,85,105,0.5)"
-                                                        : "var(--text-tertiary)",
-                                                    padding: "4px 0",
-                                                }}
-                                            >
-                                                {d}
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    {/* Day grid */}
-                                    <div
-                                        style={{
-                                            display: "grid",
-                                            gridTemplateColumns: "repeat(7, 1fr)",
-                                            gap: "2px",
-                                            marginBottom: "20px",
-                                        }}
-                                    >
-                                        {/* Leading blank cells */}
-                                        {Array.from({ length: blanks }, (_, i) => (
-                                            <div key={`b${i}`} />
-                                        ))}
-
-                                        {/* Day buttons */}
-                                        {Array.from({ length: totalDays }, (_, i) => {
-                                            const day = i + 1;
-                                            const disabled = isDateDisabled(day);
-                                            const selected = isDateSelected(day);
-                                            return (
-                                                <button
-                                                    key={day}
-                                                    type="button"
-                                                    onClick={() => handleDayClick(day)}
-                                                    disabled={disabled}
-                                                    style={{
-                                                        padding: "7px 0",
-                                                        borderRadius: "3px",
-                                                        border: selected
-                                                            ? "1px solid var(--accent)"
-                                                            : "1px solid transparent",
-                                                        background: selected
-                                                            ? "var(--accent)"
-                                                            : "transparent",
-                                                        color: selected
-                                                            ? "#07090C"
-                                                            : disabled
-                                                                ? "var(--text-tertiary)"
-                                                                : "var(--text-primary)",
-                                                        fontFamily: "var(--font-jetbrains, monospace)",
-                                                        fontSize: "11px",
-                                                        cursor: disabled ? "not-allowed" : "pointer",
-                                                        opacity: disabled ? 0.3 : 1,
-                                                        textAlign: "center",
-                                                        transition: "background 0.12s, border-color 0.12s, color 0.12s",
-                                                    }}
-                                                    onMouseEnter={(e) => {
-                                                        if (!disabled && !selected) {
-                                                            e.currentTarget.style.background = "var(--bg-surface)";
-                                                            e.currentTarget.style.borderColor = "var(--border-strong)";
-                                                        }
-                                                    }}
-                                                    onMouseLeave={(e) => {
-                                                        if (!disabled && !selected) {
-                                                            e.currentTarget.style.background = "transparent";
-                                                            e.currentTarget.style.borderColor = "transparent";
-                                                        }
-                                                    }}
-                                                    aria-label={`${day} ${MONTH_NAMES[viewMonth]} ${viewYear}${disabled ? " (unavailable)" : ""}`}
-                                                    aria-pressed={selected}
-                                                >
-                                                    {day}
-                                                </button>
-                                            );
-                                        })}
-                                    </div>
-
-                                    {/* Time slots */}
-                                    {selectedDate ? (
-                                        <div>
-                                            <p
-                                                style={{
-                                                    fontFamily: "var(--font-jetbrains, monospace)",
-                                                    fontSize: "8px",
-                                                    letterSpacing: "0.14em",
-                                                    textTransform: "uppercase",
-                                                    color: "var(--text-tertiary)",
-                                                    margin: "0 0 10px",
-                                                }}
-                                            >
-                                                Available Slots — GMT+0
-                                            </p>
-                                            <div
-                                                style={{
-                                                    display: "grid",
-                                                    gridTemplateColumns: "repeat(3, 1fr)",
-                                                    gap: "6px",
-                                                }}
-                                            >
-                                                {TIME_SLOTS.map((slot) => {
-                                                    const active = selectedTime === slot;
-                                                    return (
-                                                        <button
-                                                            key={slot}
-                                                            type="button"
-                                                            onClick={() => setSelectedTime(slot)}
-                                                            style={{
-                                                                padding: "9px 4px",
-                                                                border: active
-                                                                    ? "1px solid var(--accent)"
-                                                                    : "1px solid var(--border-strong)",
-                                                                borderRadius: "3px",
-                                                                background: active
-                                                                    ? "rgba(0,217,192,0.10)"
-                                                                    : "var(--bg-deep)",
-                                                                color: active
-                                                                    ? "var(--accent)"
-                                                                    : "var(--text-secondary)",
-                                                                fontFamily: "var(--font-jetbrains, monospace)",
-                                                                fontSize: "11px",
-                                                                letterSpacing: "0.06em",
-                                                                cursor: "pointer",
-                                                                textAlign: "center",
-                                                                transition: "border-color 0.12s, background 0.12s, color 0.12s",
-                                                            }}
-                                                            onMouseEnter={(e) => {
-                                                                if (!active) {
-                                                                    e.currentTarget.style.borderColor = "var(--accent)";
-                                                                    e.currentTarget.style.color = "var(--text-primary)";
-                                                                }
-                                                            }}
-                                                            onMouseLeave={(e) => {
-                                                                if (!active) {
-                                                                    e.currentTarget.style.borderColor = "var(--border-strong)";
-                                                                    e.currentTarget.style.color = "var(--text-secondary)";
-                                                                }
-                                                            }}
-                                                            aria-pressed={active}
-                                                            aria-label={`${slot} GMT`}
-                                                        >
-                                                            {slot}
-                                                        </button>
-                                                    );
-                                                })}
-                                            </div>
-                                        </div>
-                                    ) : (
-                                        <p
-                                            style={{
-                                                fontFamily: "var(--font-jetbrains, monospace)",
-                                                fontSize: "9px",
-                                                letterSpacing: "0.12em",
-                                                color: "var(--text-tertiary)",
-                                                fontStyle: "italic",
-                                                margin: 0,
-                                            }}
-                                        >
-                                            Select a date to see available slots
-                                        </p>
-                                    )}
+                                        onFocus={(e) => { e.currentTarget.style.borderColor = "var(--accent)"; }}
+                                        onBlur={(e) => { e.currentTarget.style.borderColor = "var(--border-strong)"; }}
+                                    />
                                 </div>
                             </div>
 
-                            {/* Footer: status + submit */}
+                            {/* Footer: error + submit */}
                             <div
                                 style={{
-                                    padding: "18px 32px",
+                                    padding: "16px 32px",
                                     borderTop: "1px solid var(--border)",
                                     display: "flex",
                                     alignItems: "center",
@@ -629,20 +302,7 @@ export function CtaSection() {
                                     background: "var(--bg-surface)",
                                 }}
                             >
-                                <div style={{ minHeight: "20px" }}>
-                                    {selectedDate && selectedTime && !errorMsg && (
-                                        <p
-                                            style={{
-                                                fontFamily: "var(--font-jetbrains, monospace)",
-                                                fontSize: "9px",
-                                                letterSpacing: "0.12em",
-                                                color: "var(--accent)",
-                                                margin: 0,
-                                            }}
-                                        >
-                                            ✓ {formattedDate} · {selectedTime} GMT
-                                        </p>
-                                    )}
+                                <div style={{ minHeight: "18px" }}>
                                     {errorMsg && (
                                         <p
                                             style={{
@@ -688,7 +348,7 @@ export function CtaSection() {
                                         e.currentTarget.style.boxShadow = "none";
                                     }}
                                 >
-                                    {status === "loading" ? "Scheduling…" : "Schedule Demo"}
+                                    {status === "loading" ? "Sending…" : "Send message"}
                                     {status !== "loading" && <ArrowRight size={16} aria-hidden="true" />}
                                 </button>
                             </div>
@@ -712,6 +372,12 @@ export function CtaSection() {
                     </p>
                 </Reveal>
             </div>
+
+            <style>{`
+        @media (max-width: 500px) {
+          .cta-row-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
         </section>
     );
 }

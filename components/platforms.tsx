@@ -10,6 +10,10 @@ export function Platforms() {
             style={{
                 background: "var(--bg-light)",
                 padding: "120px 48px",
+                minHeight: "100vh",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
             }}
             aria-labelledby="platforms-headline"
         >

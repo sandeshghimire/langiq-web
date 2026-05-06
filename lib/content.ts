@@ -17,7 +17,7 @@ export const NAV = {
     ],
     ctas: {
         secondary: 'Read the architecture',
-        primary: 'See it run',
+        primary: 'Connect',
     },
 } as const;
 
@@ -35,7 +35,7 @@ export const HERO = {
         'Validates every embedded platform — Yocto Linux or FreeRTOS bare-metal — across compute, peripherals, sensors, and environmental conditions, with a complete evidence trail.',
     note: 'Our stack, our HAL, our evidence — no source-code access required.',
     ctas: {
-        primary: 'See it run',
+        primary: 'Connect',
         secondary: 'Read the architecture',
     },
     stats: [
@@ -402,9 +402,9 @@ export const CTA = {
         after: 'in action?',
     },
     subhead:
-        'Book a 30-minute call with our engineers. Tell us your platform, your target class, and what you need to validate. We will walk you through a live run and scope the engagement honestly.',
+        'Get in touch with our engineers. Tell us your platform, your target class, and what you need to validate.',
     ctas: {
-        primary: 'See it run',
+        primary: 'Connect',
         secondary: 'Read the architecture',
     },
     disclaimer: 'NO SALES PRESSURE. NO PRICING WALL. ENGINEERS TALKING TO ENGINEERS.',
@@ -429,7 +429,7 @@ export const FOOTER = {
     resources: {
         header: 'Resources',
         links: [
-            { label: 'See it run (demo)', href: '#cta' },
+            { label: 'Connect', href: '#cta' },
             { label: 'Architecture', href: '#architecture' },
             { label: 'Regulatory evidence', href: '#evidence' },
             { label: 'Contact engineering', href: '#cta' },

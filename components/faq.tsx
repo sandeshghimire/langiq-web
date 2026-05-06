@@ -15,6 +15,10 @@ export function FaqSection() {
             style={{
                 background: "var(--bg-mid)",
                 padding: "120px 48px",
+                minHeight: "100vh",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
             }}
             aria-labelledby="faq-headline"
         >
