@@ -25,15 +25,15 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Independent Validation & Verification — SoCcentric",
+  title: "Independent Validation and Verification for Embedded Systems — SoCcentric",
   description:
-    "Production-grade IV&V suite for the entire SoCcentric platform family. One uniform interface across Arches, Acadia, Zion, Pinnacle, Joshua, and Sequoia.",
+    "The Independent V&V Suite validates every embedded platform — Yocto Linux or FreeRTOS bare-metal — across compute, peripherals, sensors, and environmental conditions. No source-code access required. Six in-house reference platforms. Evidence structured for ISO 26262, DO-178C, IEC 62304, and IEC 61508.",
   openGraph: {
-    title: "Independent Validation & Verification — SoCcentric",
+    title: "Independent Validation and Verification for Embedded Systems — SoCcentric",
     description:
-      "Production-grade IV&V suite for the entire SoCcentric platform family.",
+      "Platform-independent V&V suite for embedded systems. Yocto Linux and FreeRTOS targets. FlatBuffers and gRPC transports. Full coverage: compute, peripherals, sensors, perception, environmental. Evidence for ISO 26262, DO-178C, IEC 62304, IEC 61508.",
     // TODO: swap in real OG image at /public/og.png
-    images: [{ url: "/og.png" }],
+    images: [{ url: "/og.png", alt: "Architecture diagram of the Independent V&V Suite showing the HAL adapter, target client, server, and Web UI layers with data flow between them" }],
   },
 };
 

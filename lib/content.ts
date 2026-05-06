@@ -16,201 +16,209 @@ export const NAV = {
         { label: 'FAQ', href: '#faq' },
     ],
     ctas: {
-        secondary: 'Download brief',
-        primary: 'Book demo',
+        secondary: 'Read the architecture',
+        primary: 'See it run',
     },
 } as const;
 
 export const HERO = {
-    eyebrow: 'Independent Validation & Verification — Works on Any Platform',
+    eyebrow: 'SOCCENTRIC / IV&V — Platform-Independent Validation',
     headline: {
-        line1: 'Find the bugs,',
-        accent1: 'failures,',
+        line1: 'Independent',
+        accent1: 'Validation',
         line2: 'and',
-        accent2: 'electrical issues',
-        line3: 'before your',
-        line4: 'product ships.',
+        accent2: 'Verification.',
+        line3: '',
+        line4: '',
     },
     subhead:
-        'Your engineers built the application. But who is independently stress-testing the hardware beneath it? We test electrical behavior, thermal extremes, software edge cases, and every peripheral — then deliver the regulatory evidence your program requires. We find what would have failed in the field, before it ships.',
-    note: 'Works on any embedded platform — Linux SBCs, FPGAs, microcontrollers, and x86 SoCs. Production-proven on six platform families. Trusted by Fortune 500 programs in medical, robotics, automotive, and defense.',
+        'Validates every embedded platform — Yocto Linux or FreeRTOS bare-metal — across compute, peripherals, sensors, and environmental conditions, with a complete evidence trail.',
+    note: 'Our stack, our HAL, our evidence — no source-code access required.',
     ctas: {
-        primary: 'Book a technical demo',
-        secondary: 'Download technical brief',
+        primary: 'See it run',
+        secondary: 'Read the architecture',
     },
     stats: [
-        { number: '6', label: 'Platforms in production' },
-        { number: '4', label: 'Test modes' },
-        { number: 'F500', label: 'Medical, robotics & defense' },
+        { number: '6', label: 'Reference platforms' },
+        { number: '3', label: 'Test modes' },
+        { number: '5', label: 'Coverage tiers' },
     ],
     telemetry:
         'IV&V / TELEMETRY :: ACTIVE      NODE_COUNT 02 :: SAMPLES',
     telemetrySuffix: '      UPTIME 99.94%      SCHEMA v1.0.0',
 } as const;
 
+export const PROOF_STRIP = {
+    items: [
+        'Yocto Linux', 'FreeRTOS', 'FlatBuffers', 'gRPC',
+        'I²C', 'SPI', 'UART', 'USB', 'PCIe', 'MIPI',
+        'IMU', 'ADC', 'DAC', 'Camera', 'LiDAR',
+    ],
+} as const;
+
 export const PROBLEM = {
-    sectionLabel: '01 — The validation gap',
+    sectionLabel: '01 — Independent validation',
     headline: {
-        before: 'Your engineers are building the application.',
-        accent: 'Nobody is stress-testing',
-        after: 'the platform under it.',
+        before: 'We validate the hardware',
+        accent: 'independently.',
+        after: 'Your team keeps building.',
     },
     body: [
-        "Electrical issues, thermal runaway, humidity failures, BSP bugs, peripheral edge cases — these are rarely caught by the team that built the product. Not because your engineers aren't good. Because they're too close to it, and never have enough time.",
-        'IV&V is the fix. Not a QA checklist — a systematic, independent discipline that covers everything from silicon to software, and produces evidence your regulatory reviewers will accept.',
+        "The Independent V&V Suite runs its own stack — our HAL, our target client, our server — against the device under test, without requiring access to your source code or touching your development workflow.",
+        "The result: independent coverage across compute, peripherals, sensors, and environmental conditions, with an evidence trail your design reviews and certification submissions can use directly.",
     ],
     failureModes: [
         {
-            label: 'Electrical & PCB issues',
+            label: 'Compute coverage',
             description:
-                'Trace impedance, power rail noise, signal integrity under load, decoupling gaps, ground bounce — issues invisible during bench bringup that surface as intermittent field failures. We find them first.',
+                'Every CPU, GPU, and on-die accelerator exercised under load — independently, from outside the application stack. Results captured with timestamps and traceable to specific hardware states.',
         },
         {
-            label: 'Thermal & humidity failure',
+            label: 'Peripherals & sensors',
             description:
-                'Your PCB behaves differently at −40 °C than at 25 °C. Components drift. Solder joints crack. Seals fail. We run prolonged soak cycles under extreme temperature and humidity and capture exactly what changes.',
+                'I²C, SPI, UART, USB, PCIe, MIPI, IMU, ADC, DAC, cameras, LiDAR, radar — validated over the actual buses. Every run logs drop counts, timing, and error conditions explicitly.',
         },
         {
-            label: 'Software bugs & corner cases',
+            label: 'Environmental conditions',
             description:
-                "The bugs that escape development are the ones that require a specific sequence of events, a specific peripheral state, or a specific thermal condition to trigger. We exercise those corners — systematically.",
+                'Test cases authored in the Web UI run the device under temperature, humidity, and pressure conditions. Monitoring and event-based modes capture exactly how hardware behaves as conditions shift.',
         },
     ],
 } as const;
 
 export const ARCHITECTURE = {
-    sectionLabel: '02 — How it works',
+    sectionLabel: '02 — Architecture',
     headline: {
-        before: 'Platform-independent.',
-        accent: 'Adapts to any hardware',
-        after: 'you build on.',
+        before: 'One HAL.',
+        accent: 'Any silicon.',
+        after: 'Complete evidence.',
     },
-    lead: 'The framework has one platform-specific layer: the HAL adapter. Switch silicon families and we re-implement the adapter — every test definition, evidence artifact, and tool you have built carries forward unchanged. All wire schemas live in a single versioned contracts repo with semantic versioning, never-reused field IDs, and CI-enforced alignment checks. gRPC + protobuf for application-class clients; FlatBuffers for microcontrollers — translated in exactly one auditable place. We customize the adapter. You keep full IV&V coverage.',
+    lead: 'Three layers: the target client (on the device under test, speaking FlatBuffers over FreeRTOS bare-metal or gRPC over Yocto Linux), the server (x86 Ubuntu, hosting run orchestration and the persistent evidence database), and the Web UI (Next.js + shadcn/ui, where tests are authored, scheduled, and reviewed). The only platform-specific component is the HAL adapter — everything above it carries forward unchanged when you move to new silicon.',
     components: [
-        { number: '01', label: 'ivv-contracts', description: 'Shared schemas — one source of truth across every platform we touch' },
-        { number: '02', label: 'HAL adapter', description: 'The only platform-specific layer — customized by us to your hardware' },
-        { number: '03', label: 'Client apps', description: 'On-device bridge between your hardware and the framework' },
-        { number: '04', label: 'Server + UI', description: 'Evidence capture, audit trail, and real-time operator visibility' },
+        { number: '01', label: 'HAL adapter', description: 'The only platform-specific layer — maps test logic to hardware registers and drivers for each target' },
+        { number: '02', label: 'Target client', description: 'On-device app on the DUT — FlatBuffers transport for FreeRTOS bare-metal; gRPC for Yocto Linux' },
+        { number: '03', label: 'Server (x86 Ubuntu)', description: 'Hosts run orchestration, the persistent evidence database, and the REST/SSE operator feed' },
+        { number: '04', label: 'Web UI', description: 'Next.js + shadcn/ui — author test suites, schedule runs, monitor live, review results and artifacts' },
     ],
 } as const;
 
 export const TEST_MODES = {
     sectionLabel: '03 — Test modes',
-    headline: 'Four test modes. Every peripheral. Every condition.',
-    lead: 'Four standardized modes — the same vocabulary whether you are testing an IMU, a PCIe SSD, an Ethernet interface, or a GPU. Test plans are portable across peripherals and platforms without modification. From a single boot-time health check to a 72-hour endurance run, it is the same framework, the same evidence shape, the same audit trail.',
+    headline: 'Standardized test modes. Every peripheral. Every condition.',
+    lead: 'The same vocabulary whether you are testing an IMU, a PCIe SSD, a camera, or a motor controller. Test suites are portable across peripherals and platforms without modification. From a single boot-time health check to a 72-hour thermal soak, the framework produces the same evidence shape and the same audit trail.',
     modes: [
         {
             title: 'One-shot',
             monoLabel: 'MODE 01 / ONESHOT',
             description:
-                'A single discrete test. Configure, fire, capture the result, return. Used for boot-time self-tests, peripheral health checks, and acceptance gates. Deterministic, fast, audit-friendly.',
-            example: 'e.g., self-test on boot',
+                'A single discrete test: configure, execute, capture result, return. Used for boot-time health checks, peripheral acceptance gates, and deterministic functional checks. Fast, repeatable, audit-friendly.',
+            example: 'e.g., IMU self-test on boot',
         },
         {
             title: 'Monitoring',
             monoLabel: 'MODE 02 / MONITOR',
             description:
-                'Continuous sampling at a configured rate, streamed live with bounded buffering and explicit drop-count reporting. Used for thermal soak, vibration sweeps, link-quality watching.',
-            example: 'e.g., 1 kHz IMU stream',
+                'Continuous sampling at a configured rate, streamed live with bounded buffering and explicit drop-count reporting. Used for thermal soak, vibration sweeps, and link-quality observation under sustained load.',
+            example: 'e.g., 1 kHz IMU stream under thermal cycling',
         },
         {
             title: 'Event-based',
             monoLabel: 'MODE 03 / EVENT',
             description:
-                'The peripheral fires when a configured condition is met — threshold crossing, fault, state change. Captures the precise moment with timestamps from origin, relay, and server.',
-            example: 'e.g., over-temperature trigger',
+                'The device fires when a configured condition is met — threshold crossing, fault, state change, or environmental trigger. Captures the exact moment with timestamps from origin, relay, and server.',
+            example: 'e.g., temperature threshold crossed',
         },
         {
             title: 'Long-running',
             monoLabel: 'MODE 04 / LONGRUN',
             description:
-                'Hours or days of execution with periodic progress reports and intermediate evidence. The mode that catches the failures unit tests cannot.',
-            example: 'e.g., 72 h endurance run',
+                'Hours or days of continuous execution with periodic progress snapshots and intermediate evidence capture. Used for endurance qualification and catching faults that only surface over time.',
+            example: 'e.g., 72 h thermal endurance run',
         },
     ],
 } as const;
 
 export const PLATFORMS = {
-    sectionLabel: '04 — Platforms',
-    headline: 'Already in production on six leading platforms.',
-    lead: 'The IV&V framework runs in production on six platform families — with full peripheral coverage on each. Every CPU, memory subsystem, storage device, bus, sensor, camera, and display is exposed through a single uniform test interface. If your product is built on one of these platforms, we can begin validation in days. If your platform is different, we customize the HAL adapter for it.',
+    sectionLabel: '04 — Reference platforms',
+    headline: 'Dogfooded on six in-house reference test beds.',
+    lead: 'We run the Independent V&V Suite against our own reference platforms before any release. Each board covers a distinct target class — automotive SoC, avionics bare-metal, robotics compute, medical SBC, industrial real-time, edge compute. If your product sits in one of these classes, validation starts in days. If your silicon differs, we port the HAL adapter.',
     cards: [
         {
             number: '01',
             name: 'Arches',
-            subtitle: 'NVIDIA JETSON',
+            subtitle: 'AUTOMOTIVE SOC TESTBED',
             positioning:
-                'Building on NVIDIA Jetson for robotics, drones, smart cameras, or on-device ML? We independently validate the full platform — GPU peripherals, STM32 co-processor, every bus — so your team can stay focused on the application.',
+                'Automotive-class SoC with heterogeneous compute, camera, and radar interfaces. We validate the full peripheral stack — GPU, image processor, sensor buses, and thermal behavior — before any automotive suite release.',
             specs: [
-                { key: 'APP CORES', value: 'ARM (Jetson)' },
-                { key: 'ACCEL', value: 'CUDA + DLA + PVA' },
-                { key: 'RT CO-PROC', value: 'STM32' },
-                { key: 'OS', value: 'Linux for Tegra' },
+                { key: 'CLASS', value: 'Automotive SoC' },
+                { key: 'ACCEL', value: 'GPU · NPU · ISP' },
+                { key: 'TRANSPORT', value: 'gRPC' },
+                { key: 'OS', value: 'Yocto Linux' },
             ],
         },
         {
             number: '02',
             name: 'Acadia',
-            subtitle: 'RASPBERRY PI CM',
+            subtitle: 'ROBOTICS COMPUTE SBC',
             positioning:
-                'Deploying Raspberry Pi CM4 or CM5 in a production product? We validate the full carrier platform — RP2040 co-processor, industrial I/O, and every peripheral — to the standard your program requires.',
+                'Robotics-class SBC with high-bandwidth peripherals, co-processor I/O, and diverse sensor interfaces. We run full peripheral coverage and environmental soak cycles against this board to qualify the suite for robotics programs.',
             specs: [
-                { key: 'APP CORES', value: 'ARM Cortex-A72/A76' },
-                { key: 'RT CO-PROC', value: 'RP2040 (Pico W)' },
-                { key: 'I/O', value: 'industrial connectors' },
-                { key: 'OS', value: 'Raspberry Pi OS / Yocto' },
+                { key: 'CLASS', value: 'Robotics SBC' },
+                { key: 'I/O', value: 'I²C · SPI · UART · USB' },
+                { key: 'TRANSPORT', value: 'gRPC' },
+                { key: 'OS', value: 'Yocto Linux' },
             ],
         },
         {
             number: '03',
             name: 'Zion',
-            subtitle: 'XILINX ZYNQ',
+            subtitle: 'AVIONICS BARE-METAL TESTBED',
             positioning:
-                'Using Xilinx Zynq for SDR, high-channel DAQ, or custom real-time protocols? We validate both the ARM application side and the programmable logic fabric, independently and with full documented evidence.',
+                'Avionics-class bare-metal board with a hard real-time execution environment. We validate the FlatBuffers client path, HAL adapter timing, and deterministic event capture against this board before every RTOS-target release.',
             specs: [
-                { key: 'APP CORES', value: 'Cortex-A9 / A53+R5' },
-                { key: 'FABRIC', value: 'Zynq PL' },
-                { key: 'FORM', value: 'SoM-on-carrier or custom SoC' },
-                { key: 'OS', value: 'PetaLinux' },
+                { key: 'CLASS', value: 'Avionics SBC' },
+                { key: 'RTOS', value: 'FreeRTOS' },
+                { key: 'TRANSPORT', value: 'FlatBuffers' },
+                { key: 'OS', value: 'FreeRTOS' },
             ],
         },
         {
             number: '04',
             name: 'Pinnacle',
-            subtitle: 'NXP i.MX',
+            subtitle: 'MEDICAL DEVICE SBC',
             positioning:
-                'Building a long-lifecycle product on NXP i.MX? We provide the independent validation that IEC 61508 / 62304 programs require — boot, peripherals, thermal, and long-duration endurance testing.',
+                'Long-lifecycle medical SBC targeting IEC 62304 and FDA qualification programs. We run prolonged endurance, I²C sensor bus coverage, and environmental stress cycles against this board to validate the evidence trail for medical submissions.',
             specs: [
-                { key: 'APP CORES', value: 'Cortex-A53/A55/A72' },
-                { key: 'OS', value: 'Yocto / mainline Linux' },
-                { key: 'SAFETY', value: 'IEC 61508 / 62304 mappings' },
-                { key: 'FORM', value: 'SoM or custom SoC' },
+                { key: 'CLASS', value: 'Medical device SBC' },
+                { key: 'BUS', value: 'I²C · SPI · UART' },
+                { key: 'TRANSPORT', value: 'gRPC' },
+                { key: 'OS', value: 'Yocto Linux' },
             ],
         },
         {
             number: '05',
             name: 'Joshua',
-            subtitle: 'TI SITARA',
+            subtitle: 'INDUSTRIAL REAL-TIME TESTBED',
             positioning:
-                'Running deterministic real-time control on TI Sitara with PRU? We validate cycle-exact timing, EtherCAT/PROFINET fieldbus behavior, and motor control peripherals — independently, not in-house.',
+                'Industrial real-time control board with deterministic fieldbus interfaces and FreeRTOS execution. We validate cycle-exact timing, event-based trigger accuracy, and FlatBuffers transport fidelity against this board for industrial suite releases.',
             specs: [
-                { key: 'APP CORES', value: 'Cortex-A53/A72' },
-                { key: 'RT', value: 'PRU @ 200 MHz' },
-                { key: 'FIELDBUS', value: 'EtherCAT / PROFINET' },
-                { key: 'FORM', value: 'SoM or custom SoC' },
+                { key: 'CLASS', value: 'Industrial control' },
+                { key: 'RTOS', value: 'FreeRTOS' },
+                { key: 'TRANSPORT', value: 'FlatBuffers' },
+                { key: 'OS', value: 'FreeRTOS' },
             ],
         },
         {
             number: '06',
             name: 'Sequoia',
-            subtitle: 'INTEL / AMD x86',
+            subtitle: 'EDGE / DEFENSE COMPUTE',
             positioning:
-                'Using Intel or AMD x86 SBCs for high-compute or high-PCIe-lane applications? We validate PREEMPT_RT determinism, PCIe peripheral behavior, and platform reliability — independently, with full evidence capture.',
+                'High-compute edge board with multi-lane PCIe, high-bandwidth peripheral I/O, and Linux-based execution. We validate PCIe peripheral behavior, sustained thermal load, and gRPC transport stability against this board for defense-class programs.',
             specs: [
-                { key: 'CPU', value: 'Intel / AMD x86' },
-                { key: 'DETERMINISM', value: 'PREEMPT_RT / hypervisor' },
-                { key: 'I/O', value: 'high-lane PCIe' },
-                { key: 'FORM', value: 'SoM or custom SoC' },
+                { key: 'CLASS', value: 'Edge compute / defense' },
+                { key: 'I/O', value: 'PCIe · USB · MIPI' },
+                { key: 'TRANSPORT', value: 'gRPC' },
+                { key: 'OS', value: 'Yocto Linux' },
             ],
         },
     ],
@@ -218,176 +226,129 @@ export const PLATFORMS = {
 
 export const CAPABILITIES = {
     sectionLabel: '05 — What we validate',
-    headline: 'From silicon to audit trail — every layer covered.',
-    lead: 'Independent validation across every layer — electrical behavior, environmental stress, software edge cases, and regulatory evidence. Built for programs that run for a decade, not a sprint.',
+    headline: 'Five coverage tiers. Hardware-up.',
+    lead: 'Independent validation from the compute layer down to the environmental chamber. Each tier has its own test logic in the HAL, its own evidence shape in the database, and its own artifact in the audit trail.',
     features: [
         {
-            icon: 'Zap',
-            title: 'Electrical issues, caught early',
-            description:
-                'Power rail noise, signal integrity under load, decoupling gaps, trace impedance, EMI susceptibility. We test the platform electrically — not just functionally — and flag problems before they become field failures.',
-        },
-        {
-            icon: 'FileSearch',
-            title: 'Software bugs in the platform layer',
-            description:
-                'BSP code, driver logic, firmware edge cases, boot-path assumptions. Independent review and systematic runtime exercising surfaces the bugs invisible to the engineers who wrote the code.',
-        },
-        {
-            icon: 'Thermometer',
-            title: 'PCB behavior at extreme temperature',
-            description:
-                'Prolonged soak at your platform\'s rated temperature limits — cold start at −40 °C, soak at +85 °C, thermal cycling between extremes. We measure and document exactly how your PCB behaves as it heats and cools.',
-        },
-        {
-            icon: 'Droplets',
-            title: 'PCB behavior at extreme humidity',
-            description:
-                'Accelerated humidity and condensation exposure to identify corrosion paths, seal failures, leakage currents, and component sensitivity that room-condition bench testing will never expose.',
-        },
-        {
-            icon: 'Clock',
-            title: 'Prolonged endurance under real conditions',
-            description:
-                'Hours or days of continuous operation — thermal stress, vibration, combined environments — with periodic evidence capture. The mode that catches thermal drift, memory creep, bus degradation, and intermittent faults that short tests miss entirely.',
-        },
-        {
             icon: 'CircuitBoard',
-            title: 'Every CPU, GPU, and peripheral validated',
+            title: 'Compute',
             description:
-                'Every compute element and peripheral exercised — not just the ones your application uses. New peripherals surface automatically without any changes to the test infrastructure or operator console.',
-        },
-        {
-            icon: 'Shield',
-            title: 'Regulatory evidence — FDA, ISO 26262, DO-178, MIL-STD',
-            description:
-                'Evidence structured for your regulatory requirement. IEC 62304 / FDA for medical. ISO 26262 for automotive ADAS. DO-178C for aerospace. MIL-STD-810 for defense. We produce the artifacts your program office needs — not just test logs.',
-        },
-        {
-            icon: 'Eye',
-            title: 'Corner cases exercised',
-            description:
-                'Boundary conditions, out-of-sequence events, simultaneous peripheral contention, power transitions mid-operation, watchdog race conditions. We deliberately exercise the cases the dev team never had time to reach.',
-        },
-        {
-            icon: 'Database',
-            title: 'Append-only evidence database',
-            description:
-                'Every sample, every event, every operator action, every status change persisted with full audit fidelity. Runs are never deleted — only invalidated with a recorded reason. Reproducing a run from three years ago is a first-class operation. The same database serves lab bring-up, factory acceptance, customer-site validation, and field RMA debugging.',
-        },
-        {
-            icon: 'Monitor',
-            title: 'Real-time operator console',
-            description:
-                'Streaming charts, live event tail, and run-progress dashboards delivered through Server-Sent Events. Watch a 72-hour endurance run in motion or replay a fault from three months ago — same interface, same data source.',
-        },
-        {
-            icon: 'Timer',
-            title: 'Three-stamp timing on every message',
-            description:
-                'Origin, relay, and server-ingress timestamps preserved on every cross-boundary record. Forensic timing analysis becomes a query — not a debugging excavation through logs scattered across three systems.',
+                'CPU, GPU, graphics processor, media processor, NPU and ISP where present — each exercised under load via the HAL, independently of the application stack. Example check: sustained GPU utilization at rated clock with thermal telemetry captured at 10 Hz throughout.',
         },
         {
             icon: 'Route',
-            title: 'Path-aware test parameters',
+            title: 'Peripherals & busses',
             description:
-                'For peripherals reachable over multiple transports, the path is part of the test definition. No silent failover, no path-flapping during tests, no masked transport faults. Drop counts are reported explicitly at every layer — "did the test miss data?" is answered with a number, not a guess.',
+                'I²C, SPI, UART, USB, PCIe, MIPI, and similar — validated over the actual bus at operating frequency, not emulated. Drop counts reported explicitly per run. Example check: PCIe link stress at rated bandwidth with error-rate and retrain-count logged over a 30-minute window.',
         },
         {
-            icon: 'Plug',
-            title: 'REST + SSE API for pipeline integration',
+            icon: 'Zap',
+            title: 'Sensors & actuators',
             description:
-                'Plug IV&V into your existing CI pipelines, dashboards, or monitoring stacks via a documented HTTP + Server-Sent Events API. No vendor lock-in. The same API that powers the operator console is open for programmatic use.',
+                'IMU, ADC, DAC, and the long tail of on-board sensors and actuators exercised through the HAL adapter. Example check: IMU axis-alignment verification and noise-floor measurement at room temperature, followed by the same check at thermal extremes.',
+        },
+        {
+            icon: 'Eye',
+            title: 'Perception devices',
+            description:
+                'Cameras, LiDAR, radar, ToF — high-bandwidth devices validated for frame integrity, sync timing, and transport reliability under load. Example check: camera pipeline frame-drop count and latency distribution measured under concurrent LiDAR polling across a 60-second one-shot run.',
+        },
+        {
+            icon: 'Thermometer',
+            title: 'Environmental conditions',
+            description:
+                'Temperature, humidity, pressure, and thermal load — authored as test cases in the Web UI and triggered remotely. Monitoring mode streams telemetry continuously; event-based mode fires on threshold crossings. Example check: I²C bus error rate sampled at 1 kHz while the chamber ramps from 25 °C to 85 °C, with an event fired on any NACK.',
         },
     ],
 } as const;
 
 export const USE_CASES = {
     sectionLabel: '06 — Industries',
-    headline: 'Trusted by Fortune 500 medical, robotics, automotive, defense and aerospace.',
+    headline: 'Four industries. Specific validation programs.',
     cards: [
         {
-            industry: 'MEDICAL DEVICES',
-            title: 'IEC 62304 / FDA evidence — produced independently.',
+            industry: 'AUTOMOTIVE / ADAS',
+            title: 'Forward-camera + radar fusion ECU under thermal cycling.',
             vignette:
-                'FDA and IEC 62304 require independent validation — your dev team cannot self-certify their own work. We run thermal soak, humidity stress, electrical testing, and full peripheral coverage, then deliver structured evidence ready for your regulatory submission.',
-            platform: 'NXP i.MX / NVIDIA Jetson',
-        },
-        {
-            industry: 'INDUSTRIAL ROBOTICS & UAV',
-            title: 'Find the electrical and software failures before the robot ships.',
-            vignette:
-                'Robots and UAVs are packed with custom power electronics, proprietary buses, and real-time co-processors that rarely get properly stress-tested before they ship. We validate the full platform — thermally, mechanically, and over time — not just on a bench.',
-            platform: 'NVIDIA Jetson / Raspberry Pi',
+                'An ADAS ECU integrating a MIPI camera pipeline and radar interface required ISO 26262 ASIL-B platform evidence before safety sign-off. The suite ran the camera and radar subsystems concurrently under a thermal sweep from 25 °C to 95 °C, capturing frame-drop counts, bus error rates, and thermal telemetry throughout. Evidence mapped directly to ASIL-B test-to-requirement linkage.',
+            subsystems: ['MIPI camera pipeline', 'Radar interface', 'GPU / ISP', 'I²C sensor bus', 'Thermal telemetry'],
+            testModes: ['Monitoring', 'Event-based'],
         },
         {
             industry: 'AEROSPACE & DEFENSE',
-            title: 'DO-178C / MIL-STD-810 evidence the program office accepts.',
+            title: 'UAV mission computer MIPI camera + IMU stack across pressure altitudes.',
             vignette:
-                'Defense programs need validation that is clearly separate from development — not a team checking their own work. We run corner cases and prolonged endurance under MIL-STD-810 conditions, and deliver evidence in the exact format your contracting officer expects.',
-            platform: 'Xilinx Zynq / Intel x86',
+                'A UAV mission computer carrying a MIPI camera array and a six-axis IMU needed DO-254 hardware artifact evidence and repeatable build-and-run records across simulated pressure altitude profiles. The suite logged IMU axis alignment, camera sync timing, and UART telemetry link quality at each altitude step. All run records were retained for DO-254 structural-coverage review.',
+            subsystems: ['MIPI camera array', 'Six-axis IMU', 'UART telemetry link', 'Environmental chamber (pressure)'],
+            testModes: ['One-shot', 'Monitoring'],
         },
         {
-            industry: 'AUTOMOTIVE ADAS',
-            title: 'ISO 26262 platform IV&V — independent from your dev team.',
+            industry: 'MEDICAL DEVICES',
+            title: 'Patient-monitor SBC I²C sensor bus under continuous duty.',
             vignette:
-                'ISO 26262 requires independence, and your ADAS engineers are busy building the perception stack. We validate the compute platform beneath it — electrical integrity, thermal cycling, peripheral coverage — and map our evidence directly to your ASIL requirements.',
-            platform: 'NXP i.MX / TI Sitara',
+                'A patient-monitor SBC polling multiple I²C sensors continuously required IEC 62304 lifecycle evidence and FDA software-of-unknown-provenance mitigation records. The suite ran a 72-hour long-running test sampling the I²C bus at 500 Hz, logging NACK counts, timing drift, and any anomalous sensor state transitions. The resulting artifacts satisfied the IEC 62304 lifecycle-aligned log requirement.',
+            subsystems: ['I²C sensor bus', 'ADC channels', 'UART debug interface', 'Thermal sensor'],
+            testModes: ['Long-running', 'Event-based'],
         },
         {
-            industry: 'INDUSTRIAL AUTOMATION',
-            title: 'Cycle-exact timing validated under real operating conditions.',
+            industry: 'INDUSTRIAL / ROBOTICS',
+            title: 'AGV LiDAR + motor-controller chain under vibration.',
             vignette:
-                'Industrial systems run hot, damp, and non-stop. We validate deterministic timing, fieldbus behavior, and platform endurance under real-world conditions — not controlled lab ideals.',
-            platform: 'TI Sitara',
-        },
-        {
-            industry: 'EDGE COMPUTE & AI',
-            title: 'GPU, PCIe, and high-bandwidth peripherals — fully exercised.',
-            vignette:
-                'AI platforms push hardware to its limits. We validate thermal management, PCIe integrity, GPU peripheral behavior, and stability under sustained load — with live telemetry throughout every run.',
-            platform: 'Intel x86 / NVIDIA Jetson',
+                'An AGV platform combining a LiDAR unit and a motor-controller chain over SPI required IEC 61508 functional-safety evidence under operating vibration profiles. The suite ran event-based validation triggering on LiDAR scan-gap events and motor-fault signals, with monitoring mode capturing SPI bus integrity and latency distribution throughout. Environmental-stress records documented behavior at peak vibration load.',
+            subsystems: ['LiDAR (scan interface)', 'Motor controller (SPI)', 'IMU', 'Environmental chamber (vibration)'],
+            testModes: ['Event-based', 'Monitoring'],
         },
     ],
 } as const;
 
 export const EVIDENCE = {
     sectionLabel: '07 — Regulatory evidence',
-    headline: 'Evidence structured for your regulatory requirement.',
-    lead: 'A test that does not produce usable evidence is just an exercise. Every run we conduct generates structured artifacts for your specific regulatory standard — not generic logs you would have to reformat yourself.',
+    headline: 'Every run produces the artifacts certification programs need.',
+    lead: 'Every test run, every parameter, every result — captured, time-stamped, and traceable. The evidence database is append-only: runs are never silently deleted, operator actions are logged with identity and timestamp, and schema versions are snapshotted per run.',
+    principle: 'Every run, every parameter, every result — captured, time-stamped, and traceable.',
     columns: [
         {
             number: '01',
-            title: 'Standards supported',
+            title: 'ISO 26262',
+            subtitle: 'Automotive functional safety',
             items: [
-                'FDA / IEC 62304 — medical devices',
-                'ISO 26262 — automotive ADAS',
-                'DO-178C / DO-254 — aerospace',
-                'MIL-STD-810 / MIL-STD-461 — defense',
-                'IEC 61508 — industrial safety',
-                'DoD / DoE program requirements',
+                'Fault-injection test results with pass/fail and device state at trigger',
+                'Coverage evidence mapped to ASIL requirement identifiers',
+                'Traceable test-to-requirement linkage per run',
+                'Thermal cycling records across the rated operating range',
             ],
         },
         {
             number: '02',
-            title: 'Evidence properties',
+            title: 'DO-178C / DO-254',
+            subtitle: 'Airborne SW / HW',
             items: [
-                'Append-only — runs invalidated with recorded reason, never silently deleted',
-                'Firmware and schema versions snapshotted per run',
-                'Operator identity and timestamp on every state-changing action',
-                'Three-stamp timing — origin, relay, and server-ingress on every cross-boundary record',
-                'Drop counts reported explicitly — "did the test miss data?" answered with a number',
-                'Reproducibility first-class — "reproduce this run" works years after original execution',
+                'Structural and hardware-level test artifacts with tool qualification data',
+                'Repeatable build-and-run records — same inputs produce identical artifacts',
+                'Firmware and schema versions snapshotted at run start',
+                'Timestamped operator log for every state-changing action',
             ],
         },
         {
             number: '03',
-            title: 'Delivered formats',
+            title: 'IEC 62304 / FDA',
+            subtitle: 'Medical device SW lifecycle',
             items: [
-                'Structured PDF run reports',
-                'JSON / CSV for tool ingestion',
-                'SQLite archive — source of truth',
-                'Custom formats for regulatory submissions on request',
+                'Software-of-unknown-provenance mitigation evidence per 62304 §8',
+                'Lifecycle-aligned logs with operator identity and immutable timestamps',
+                'Long-running endurance records for continuous-duty device qualification',
+                'Append-only store — invalidations recorded with reason, never silent deletes',
+            ],
+        },
+        {
+            number: '04',
+            title: 'IEC 61508',
+            subtitle: 'Industrial functional safety',
+            items: [
+                'Functional-safety integrity evidence across SIL target tiers',
+                'Environmental-stress test records: temperature, humidity, vibration',
+                'Event-based trigger logs with three-stamp timing on every record',
+                'Explicit drop-count reporting — "did the test miss data?" answered numerically',
             ],
         },
     ],
@@ -398,73 +359,53 @@ export const FAQ = {
     headline: 'Engineering questions, answered straight.',
     items: [
         {
-            question: 'What exactly do you find that our own engineers would miss?',
+            question: 'Do you need access to our source code?',
             answer:
-                "Electrical issues — power rail noise, signal integrity problems, decoupling gaps — that only appear under real load. PCB behavior at temperature extremes that looks nothing like bench conditions. Software bugs that need a specific sequence of peripheral state and thermal condition to trigger. Corner cases nobody had time to write a test for. These are systematic gaps, not failures of skill.",
+                'No. The suite validates the hardware and its components from the outside via the target client and HAL adapter. We exercise peripherals, buses, compute elements, and environmental responses without reading your application code or BSP. Your IP stays with your team.',
         },
         {
-            question: 'What does extreme temperature testing cover?',
+            question: 'Will this interfere with our development workflow?',
             answer:
-                "Cold start at the rated minimum, thermal soak at maximum operating temperature, thermal cycling between extremes, and monitoring of peripheral behavior, timing, and software stability throughout. We measure what actually changes as your PCB heats and cools — not just whether it boots at room temperature.",
+                'No. The IV&V stack runs on its own server, against its own target client on the DUT, on its own cadence. It does not share a build system, CI pipeline, or version control history with your development process. Both can run concurrently against the same hardware.',
         },
         {
-            question: 'What does humidity testing cover?',
+            question: 'Which operating systems does the target client support?',
             answer:
-                "Accelerated moisture exposure to identify corrosion on exposed traces, seal and conformal-coating effectiveness, leakage currents, and component sensitivity to condensation. Field failures caused by humidity are almost never caught by bench testing.",
+                'FreeRTOS for bare-metal and RTOS targets; Yocto-based Linux for embedded Linux targets. The transport layer matches: FlatBuffers for FreeRTOS bare-metal (compact binary, no dynamic allocation); gRPC for Yocto Linux targets. Porting the target client to a new platform requires implementing the HAL adapter — typically a few weeks for a well-documented SoC.',
         },
         {
-            question: 'How long do your endurance runs last?',
+            question: 'How does environmental testing work — temperature, humidity, pressure?',
             answer:
-                "Depends on the program requirement. Typical runs are 24–72 hours continuous operation under combined thermal, humidity, and functional load. Long-running modes capture thermal drift, memory creep, bus degradation, and intermittent fault accumulation with periodic evidence snapshots throughout.",
+                'Environmental conditions are authored as test parameters in the Web UI and dispatched to the server, which coordinates the run against the device inside the chamber. Monitoring mode streams telemetry continuously as conditions ramp. Event-based mode fires when a configured threshold is crossed — for example, a bus error rate that spikes above a limit during a humidity sweep. All conditions, readings, and trigger events are persisted in the evidence database.',
         },
         {
-            question: 'Which regulatory standards can you produce evidence for?',
+            question: 'What does the evidence trail look like for a certification review?',
             answer:
-                "FDA / IEC 62304 for medical. ISO 26262 for automotive ADAS. DO-178C / DO-254 for aerospace. MIL-STD-810 / MIL-STD-461 for defense. IEC 61508 for industrial safety. DoD and DoE program-specific requirements are a services engagement.",
+                'Every run record includes: operator identity and timestamps on every state change, firmware and schema versions snapshotted at run start, three-stamp timing on every cross-boundary measurement (origin, relay, server-ingress), and explicit drop counts so any data gap is reported numerically. The database is append-only — runs are invalidated with a recorded reason, never silently deleted. Evidence is reviewable in the Web UI and exportable as machine-readable JSON or auditor-friendly PDF.',
         },
         {
-            question: 'Our platform isn\'t on your list of six. Can you still help?',
+            question: 'How does evidence map to ISO 26262, DO-178C, IEC 62304, and IEC 61508?',
             answer:
-                "Yes. The HAL adapter is the only platform-specific layer, and customizing it for a new platform typically takes a few weeks. Everything above it — test orchestration, server, evidence store, UI — carries over unchanged. Bring us your hardware and we will scope the engagement.",
+                'Each framework maps to a specific artifact type the suite produces. ISO 26262: fault-injection results, coverage evidence, and test-to-requirement linkage. DO-178C / DO-254: structural test artifacts and repeatable build-and-run records. IEC 62304 / FDA: lifecycle-aligned logs and software-of-unknown-provenance mitigation evidence. IEC 61508: functional-safety integrity evidence and environmental-stress test records. We scope the evidence mapping to your program\'s specific standard before a run begins.',
         },
         {
-            question: 'How is this different from our internal QA process?',
+            question: 'Our platform is not one of your six reference boards. Can you still help?',
             answer:
-                "Your internal QA checks that the product does what it is supposed to do. IV&V validates the platform beneath it — electrical behavior, environmental stress, peripheral coverage, regulatory evidence — independently of the team that built it. Both matter. Neither replaces the other.",
+                'Yes. The HAL adapter is the only platform-specific component. Porting it to a new SoC typically takes a few weeks for a well-documented part. Everything above — test orchestration, server, evidence store, Web UI — carries forward unchanged. Bring us your hardware and we will scope the adapter work.',
         },
-        {
-            question: 'Where does IV&V NOT belong?',
-            answer:
-                "Application-layer software validation — that is what CI pipelines are for. Developer bench smoke tests. Any program where the cost of proper independent validation outweighs the risk of skipping it. We will tell you honestly if that is your situation.",
-        }, {
-            question: 'Do you test on real hardware or simulated environments?',
-            answer:
-                'Real hardware, real transports, real peripherals — always. Tests run against the actual devices over the actual buses your product will use in deployment. This is what catches the failures that unit tests, simulators, and bench-top instruments miss. Synthetic environments cannot reproduce the class of faults IV&V is designed to surface.',
-        },
-        {
-            question: 'Can the IV&V suite integrate with our existing CI pipeline or dashboards?',
-            answer:
-                'Yes. A documented HTTP API with Server-Sent Event streams lets the IV&V suite plug into existing CI pipelines, dashboards, and monitoring stacks without vendor lock-in to the operator console. The same API that powers the operator console is available for programmatic integration.',
-        },
-        {
-            question: 'Can the same suite work in our lab, at the factory, and at customer sites?',
-            answer:
-                'Yes — that is the whole point. Lab bring-up, factory acceptance, customer-site validation, and field RMA debugging all run the same suite and write to the same database schema. What you learn in the lab carries directly into production, with no reformatting or re-instrumentation.',
-        },],
+    ],
 } as const;
-
 export const CTA = {
     headline: {
-        before: 'Find the failures',
-        accent: 'before',
-        after: 'your product reaches the field.',
+        before: 'Ready to see',
+        accent: 'independent validation',
+        after: 'in action?',
     },
     subhead:
-        'Book a 30-minute call with our engineers. Tell us your platform and what you are trying to validate. We will tell you exactly what we would look for — and what it takes to get there.',
-
+        'Book a 30-minute call with our engineers. Tell us your platform, your target class, and what you need to validate. We will walk you through a live run and scope the engagement honestly.',
     ctas: {
-        primary: 'Book a technical demo',
-        secondary: 'Download technical brief',
+        primary: 'See it run',
+        secondary: 'Read the architecture',
     },
     disclaimer: 'NO SALES PRESSURE. NO PRICING WALL. ENGINEERS TALKING TO ENGINEERS.',
 } as const;
@@ -472,27 +413,27 @@ export const CTA = {
 export const FOOTER = {
     brand: {
         description:
-            'SoCcentric provides Independent Validation & Verification for embedded platforms. Production-proven on NVIDIA Jetson, Raspberry Pi, Xilinx Zynq, NXP i.MX, TI Sitara, and Intel/AMD x86. Platform-independent — customizable for any hardware.',
+            'SoCcentric provides the Independent V&V Suite — platform-independent validation and verification for embedded systems. Six in-house reference platforms. Three test modes. Five coverage tiers. Yocto Linux and FreeRTOS. No source-code access required.',
     },
     platforms: {
-        header: 'Platforms',
+        header: 'Reference platforms',
         links: [
-            { label: 'NVIDIA Jetson', href: '#platforms' },
-            { label: 'Raspberry Pi CM', href: '#platforms' },
-            { label: 'Xilinx Zynq', href: '#platforms' },
-            { label: 'NXP i.MX', href: '#platforms' },
-            { label: 'TI Sitara', href: '#platforms' },
-            { label: 'Intel / AMD x86', href: '#platforms' },
+            { label: 'Arches', href: '#platforms' },
+            { label: 'Acadia', href: '#platforms' },
+            { label: 'Zion', href: '#platforms' },
+            { label: 'Pinnacle', href: '#platforms' },
+            { label: 'Joshua', href: '#platforms' },
+            { label: 'Sequoia', href: '#platforms' },
         ],
     },
     resources: {
         header: 'Resources',
         links: [
-            { label: 'Technical brief', href: '#cta' },
-            { label: 'Architecture diagram (PDF)', href: '#architecture' },
-            { label: 'Schema repo (ivv-contracts)', href: '#architecture' },
+            { label: 'See it run (demo)', href: '#cta' },
+            { label: 'Architecture', href: '#architecture' },
+            { label: 'Regulatory evidence', href: '#evidence' },
             { label: 'Contact engineering', href: '#cta' },
         ],
     },
-    copyright: `© SOCCENTRIC ${new Date().getFullYear()} :: ALL HARDWARE TRADEMARKS BELONG TO RESPECTIVE OWNERS :: BUILT FOR ENGINEERS`,
+    copyright: `© SOCCENTRIC ${new Date().getFullYear()} :: BUILT FOR ENGINEERS`,
 } as const;

@@ -51,7 +51,7 @@ export function Evidence() {
                 <div
                     style={{
                         display: "grid",
-                        gridTemplateColumns: "repeat(3, 1fr)",
+                        gridTemplateColumns: "repeat(2, 1fr)",
                         gap: "24px",
                     }}
                     className="evidence-grid"
@@ -71,32 +71,36 @@ export function Evidence() {
                                         background: "var(--bg-surface)",
                                         borderBottom: "1px solid var(--border)",
                                         padding: "16px 20px",
-                                        display: "flex",
-                                        alignItems: "baseline",
-                                        gap: "12px",
                                     }}
                                 >
-                                    <span
-                                        style={{
-                                            fontFamily: "var(--font-jetbrains, monospace)",
-                                            fontSize: "10px",
-                                            letterSpacing: "0.14em",
-                                            color: "var(--accent)",
-                                        }}
-                                    >
-                                        {col.number}
-                                    </span>
-                                    <h3
-                                        style={{
-                                            fontFamily: "var(--font-instrument-serif, serif)",
-                                            fontSize: "22px",
-                                            fontWeight: 400,
-                                            color: "var(--text-primary)",
-                                            margin: 0,
-                                        }}
-                                    >
-                                        {col.title}
-                                    </h3>
+                                    <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "4px" }}>
+                                        <span
+                                            style={{
+                                                fontFamily: "var(--font-jetbrains, monospace)",
+                                                fontSize: "10px",
+                                                letterSpacing: "0.14em",
+                                                color: "var(--accent)",
+                                            }}
+                                        >
+                                            {col.number}
+                                        </span>
+                                        <h3
+                                            style={{
+                                                fontFamily: "var(--font-instrument-serif, serif)",
+                                                fontSize: "22px",
+                                                fontWeight: 400,
+                                                color: "var(--text-primary)",
+                                                margin: 0,
+                                            }}
+                                        >
+                                            {col.title}
+                                        </h3>
+                                    </div>
+                                    {"subtitle" in col && (
+                                        <p style={{ fontFamily: "var(--font-jetbrains, monospace)", fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--text-tertiary)", margin: 0 }}>
+                                            {(col as unknown as { subtitle: string }).subtitle}
+                                        </p>
+                                    )}
                                 </div>
 
                                 {/* Items — hairline divided rows */}
@@ -141,6 +145,9 @@ export function Evidence() {
             <style>{`
         @media (max-width: 1023px) {
           .evidence-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 1279px) {
+          .evidence-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
       `}</style>
         </section>

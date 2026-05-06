@@ -101,8 +101,7 @@ export function Hero() {
           </motion.div>
           <motion.h1 variants={itemVariants} style={{ fontFamily: "var(--font-instrument-serif, serif)", fontSize: "clamp(48px, 7vw, 100px)", lineHeight: 1.02, letterSpacing: "-0.02em", fontWeight: 400, color: "var(--text-primary)", margin: "0 0 28px" }}>
             {HERO.headline.line1}{" "}<em style={{ color: "var(--accent)", fontStyle: "italic" }}>{HERO.headline.accent1}</em><br />
-            {HERO.headline.line2}{" "}<em style={{ color: "var(--accent)", fontStyle: "italic" }}>{HERO.headline.accent2}</em>{" "}<span style={{ color: "var(--text-tertiary)" }}>—</span> {HERO.headline.line3}<br />
-            {HERO.headline.line4}
+            {HERO.headline.line2}{" "}<em style={{ color: "var(--accent)", fontStyle: "italic" }}>{HERO.headline.accent2}</em>{HERO.headline.line3 ? <>{" "}<span style={{ color: "var(--text-tertiary)" }}>—</span> {HERO.headline.line3}</> : null}{HERO.headline.line4 ? <><br />{HERO.headline.line4}</> : null}
           </motion.h1>
           <motion.p variants={itemVariants} style={{ fontSize: "19px", lineHeight: 1.6, color: "var(--text-secondary)", maxWidth: "600px", margin: "0 auto 20px" }}>
             {HERO.subhead}
@@ -115,7 +114,7 @@ export function Hero() {
               <Calendar size={16} aria-hidden="true" />{HERO.ctas.primary}<ArrowRight size={16} aria-hidden="true" />
             </a>
             <a href="#architecture" style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "14px 24px", border: "1px solid var(--border-strong)", borderRadius: "4px", color: "var(--text-primary)", fontFamily: "var(--font-geist, sans-serif)", fontSize: "15px", textDecoration: "none", transition: "border-color 0.2s", flexShrink: 0 }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--text-primary)"; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--border-strong)"; }}>
-              How it works<ArrowRight size={16} aria-hidden="true" />
+              {HERO.ctas.secondary}<ArrowRight size={16} aria-hidden="true" />
             </a>
           </motion.div>
           <motion.div variants={itemVariants} ref={statsRef} style={{ display: "flex", gap: "40px", flexWrap: "wrap", justifyContent: "center", paddingBottom: "40px" }}>

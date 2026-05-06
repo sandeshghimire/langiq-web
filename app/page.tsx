@@ -1,5 +1,6 @@
 import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
+import { ProofStrip } from "@/components/proof-strip";
 import { Problem } from "@/components/problem";
 import { Architecture } from "@/components/architecture";
 import { TestModes } from "@/components/test-modes";
@@ -17,6 +18,7 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
+        <ProofStrip />
         <Problem />
         <Architecture />
         <TestModes />

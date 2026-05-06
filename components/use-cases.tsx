@@ -38,7 +38,7 @@ export function UseCases() {
                 <div
                     style={{
                         display: "grid",
-                        gridTemplateColumns: "repeat(3, 1fr)",
+                        gridTemplateColumns: "repeat(2, 1fr)",
                         gap: "20px",
                     }}
                     className="usecases-grid"
@@ -106,20 +106,53 @@ export function UseCases() {
                                 >
                                     {card.vignette}
                                 </p>
-                                <div
-                                    style={{
-                                        fontFamily: "var(--font-jetbrains, monospace)",
-                                        fontSize: "10px",
-                                        letterSpacing: "0.12em",
-                                        textTransform: "uppercase",
-                                        color: "var(--accent)",
-                                        borderTop: "1px solid var(--border)",
-                                        paddingTop: "12px",
-                                        marginTop: "4px",
-                                    }}
-                                >
-                                    PLATFORM: {card.platform}
-                                </div>
+                                {"subsystems" in card && Array.isArray((card as unknown as { subsystems?: readonly string[] }).subsystems) && (
+                                    <ul
+                                        style={{
+                                            margin: "4px 0 0",
+                                            padding: 0,
+                                            listStyle: "none",
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            gap: "4px",
+                                        }}
+                                        aria-label="Validated subsystems"
+                                    >
+                                        {(card as unknown as { subsystems: readonly string[] }).subsystems.map((s) => (
+                                            <li
+                                                key={s}
+                                                style={{
+                                                    fontFamily: "var(--font-jetbrains, monospace)",
+                                                    fontSize: "10px",
+                                                    letterSpacing: "0.08em",
+                                                    color: "var(--text-secondary)",
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                    gap: "6px",
+                                                }}
+                                            >
+                                                <span style={{ color: "var(--accent)" }} aria-hidden="true">›</span>
+                                                {s}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                                {"testModes" in card && Array.isArray((card as unknown as { testModes?: readonly string[] }).testModes) && (
+                                    <div
+                                        style={{
+                                            fontFamily: "var(--font-jetbrains, monospace)",
+                                            fontSize: "10px",
+                                            letterSpacing: "0.12em",
+                                            textTransform: "uppercase",
+                                            color: "var(--accent)",
+                                            borderTop: "1px solid var(--border)",
+                                            paddingTop: "12px",
+                                            marginTop: "4px",
+                                        }}
+                                    >
+                                        MODES: {(card as unknown as { testModes: readonly string[] }).testModes.join(" · ")}
+                                    </div>
+                                )}
                             </div>
                         </Reveal>
                     ))}
@@ -127,10 +160,7 @@ export function UseCases() {
             </div>
 
             <style>{`
-        @media (max-width: 1023px) {
-          .usecases-grid { grid-template-columns: repeat(2, 1fr) !important; }
-        }
-        @media (max-width: 639px) {
+        @media (max-width: 767px) {
           .usecases-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
