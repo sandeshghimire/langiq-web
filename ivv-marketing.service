@@ -1,0 +1,22 @@
+[Unit]
+Description=IVV Marketing Next.js Application
+Documentation=https://nextjs.org
+After=network.target
+
+[Service]
+Type=simple
+User=sandesh
+Group=sandesh
+WorkingDirectory=/var/www/html/ivv-marketing
+Environment=NODE_ENV=production
+Environment=PORT=3060
+Environment=PATH=/home/sandesh/.nvm/versions/node/v25.8.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/home/sandesh/.nvm/versions/node/v25.8.1/bin/pnpm run start
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ivv-marketing
+
+[Install]
+WantedBy=multi-user.target
