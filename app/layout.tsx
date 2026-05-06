@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Geist, JetBrains_Mono } from "next/font/google";
+import { Instrument_Serif, Sora, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -10,9 +10,10 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
 });
 
-const geist = Geist({
+const sora = Sora({
   variable: "--font-geist",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
   display: "swap",
 });
 
@@ -44,7 +45,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSerif.variable} ${geist.variable} ${jetbrainsMono.variable} h-full`}
+      className={`${instrumentSerif.variable} ${sora.variable} ${jetbrainsMono.variable} h-full`}
     >
       <body className="min-h-full">{children}</body>
     </html>
