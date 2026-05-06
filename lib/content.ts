@@ -7,10 +7,12 @@ export const NAV = {
     },
     links: [
         { label: 'What We Do', href: '#problem' },
+        { label: 'Architecture', href: '#architecture' },
         { label: 'Test Modes', href: '#test-modes' },
         { label: 'Platforms', href: '#platforms' },
         { label: 'Capabilities', href: '#capabilities' },
         { label: 'Industries', href: '#use-cases' },
+        { label: 'Evidence', href: '#evidence' },
         { label: 'FAQ', href: '#faq' },
     ],
     ctas: {

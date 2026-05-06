@@ -1,11 +1,12 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { ArrowRight, Menu, X } from "lucide-react";
 import { NAV } from "@/lib/content";
 
 export function Nav() {
     const [scrolled, setScrolled] = useState(false);
+    const [mobileOpen, setMobileOpen] = useState(false);
     const { scrollYProgress } = useScroll();
     const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
@@ -126,10 +127,10 @@ export function Nav() {
                     </div>
                 </a>
 
-                {/* Center: Anchor links */}
+                {/* Center: Anchor links — desktop */}
                 <div
                     className="hidden lg:flex"
-                    style={{ gap: "32px", alignItems: "center" }}
+                    style={{ gap: "24px", alignItems: "center", flexWrap: "nowrap" }}
                 >
                     {NAV.links.map((link) => (
                         <a
@@ -137,10 +138,11 @@ export function Nav() {
                             href={link.href}
                             style={{
                                 fontFamily: "var(--font-geist, sans-serif)",
-                                fontSize: "14px",
+                                fontSize: "13px",
                                 color: "var(--text-secondary)",
                                 textDecoration: "none",
                                 transition: "color 0.2s",
+                                whiteSpace: "nowrap",
                             }}
                             onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
                             onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
@@ -150,8 +152,27 @@ export function Nav() {
                     ))}
                 </div>
 
-                {/* Right: CTAs */}
+                {/* Right: CTAs + mobile menu button */}
                 <div style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
+                    {/* Mobile hamburger */}
+                    <button
+                        className="flex lg:hidden"
+                        onClick={() => setMobileOpen((v) => !v)}
+                        aria-label={mobileOpen ? "Close menu" : "Open menu"}
+                        aria-expanded={mobileOpen}
+                        style={{
+                            background: "none",
+                            border: "1px solid var(--border-strong)",
+                            borderRadius: "4px",
+                            color: "var(--text-primary)",
+                            cursor: "pointer",
+                            padding: "6px",
+                            alignItems: "center",
+                            justifyContent: "center",
+                        }}
+                    >
+                        {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+                    </button>
                     <a
                         href="#cta"
                         style={{
@@ -181,6 +202,75 @@ export function Nav() {
                     </a>
                 </div>
             </div>
+
+            {/* Mobile dropdown */}
+            <AnimatePresence>
+                {mobileOpen && (
+                    <motion.div
+                        key="mobile-menu"
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.2 }}
+                        style={{
+                            position: "absolute",
+                            top: "68px",
+                            left: 0,
+                            right: 0,
+                            background: "rgba(7,9,12,0.96)",
+                            backdropFilter: "blur(16px)",
+                            WebkitBackdropFilter: "blur(16px)",
+                            borderBottom: "1px solid var(--border)",
+                            padding: "16px 24px 24px",
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "4px",
+                            zIndex: 99,
+                        }}
+                    >
+                        {NAV.links.map((link) => (
+                            <a
+                                key={link.href}
+                                href={link.href}
+                                onClick={() => setMobileOpen(false)}
+                                style={{
+                                    fontFamily: "var(--font-geist, sans-serif)",
+                                    fontSize: "15px",
+                                    color: "var(--text-secondary)",
+                                    textDecoration: "none",
+                                    padding: "10px 8px",
+                                    borderBottom: "1px solid var(--border)",
+                                    transition: "color 0.2s",
+                                }}
+                                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
+                                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
+                            >
+                                {link.label}
+                            </a>
+                        ))}
+                        <a
+                            href="#cta"
+                            onClick={() => setMobileOpen(false)}
+                            style={{
+                                marginTop: "12px",
+                                display: "inline-flex",
+                                alignItems: "center",
+                                gap: "6px",
+                                padding: "12px 20px",
+                                background: "var(--accent)",
+                                borderRadius: "4px",
+                                color: "#07090C",
+                                fontFamily: "var(--font-geist, sans-serif)",
+                                fontSize: "14px",
+                                fontWeight: 500,
+                                textDecoration: "none",
+                            }}
+                        >
+                            {NAV.ctas.primary} <ArrowRight size={14} />
+                        </a>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </nav>
     );
 }
