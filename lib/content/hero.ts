@@ -13,7 +13,7 @@ export const HERO = {
     note: 'Our stack, our HAL, our evidence — no source-code access required.',
     ctas: {
         primary: 'Connect',
-        secondary: 'Read the architecture',
+        secondary: 'Architecture',
     },
     stats: [
         { number: '6', label: 'Reference platforms' },
