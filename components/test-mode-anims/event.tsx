@@ -8,13 +8,14 @@ export function EventAnim() {
     const svgRef = useRef<SVGSVGElement>(null);
     const animRef = useRef<number>(0);
     const startRef = useRef<number | null>(null);
-    const nextSpikeRef = useRef<number[]>(SPIKE_POSITIONS.map((_, i) => i * 400 + Math.random() * 600));
+    const nextSpikeRef = useRef<number[]>([]);
     const spikeAgeRef = useRef<number[]>(SPIKE_POSITIONS.map(() => -1));
 
     useEffect(() => {
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
         const svg = svgRef.current;
         if (!svg) return;
+        nextSpikeRef.current = SPIKE_POSITIONS.map((_, i) => i * 400 + Math.random() * 600);
 
         const animate = (ts: number) => {
             if (startRef.current === null) startRef.current = ts;

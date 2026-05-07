@@ -1,6 +1,6 @@
 # IV&V Marketing Site
 
-Production-grade marketing site for the SoCcentric Independent Validation & Verification (IV&V) suite.
+Production-grade marketing site for the silicon-centricIndependent Validation & Verification (IV&V) suite.
 
 ## Getting started
 

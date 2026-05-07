@@ -50,12 +50,13 @@ export function HeroDiagram() {
     const animRef = useRef<number>(0);
     const progressRef = useRef(0);
     const sampleRef = useRef(1847);
-    const coverageStartRef = useRef(Date.now());
+    const coverageStartRef = useRef(0);
 
     useEffect(() => {
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
         const svg = svgRef.current;
         if (!svg) return;
+        coverageStartRef.current = Date.now();
 
         const animate = () => {
             progressRef.current = (progressRef.current + 0.0015) % 1;

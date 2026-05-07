@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
     return {
-        name: "SoCcentric — Independent V&V Suite",
-        short_name: "SoCcentric IV&V",
+        name: "silicon-centric— Independent V&V Suite",
+        short_name: "silicon-centricIV&V",
         description:
             "Platform-independent validation and verification for embedded systems. Yocto Linux and FreeRTOS. Six reference platforms. Evidence for ISO 26262, DO-178C, IEC 62304, and IEC 61508.",
         start_url: "/",

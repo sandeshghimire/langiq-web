@@ -18,7 +18,7 @@ const organization = {
         height: 512,
     },
     description:
-        "SoCcentric provides the Independent V&V Suite — platform-independent validation and verification for embedded systems.",
+        "silicon-centricprovides the Independent V&V Suite — platform-independent validation and verification for embedded systems.",
     sameAs: [] as string[],
 };
 
@@ -26,7 +26,7 @@ const website = {
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     url: SITE_URL,
-    name: "SoCcentric IV&V",
+    name: "silicon-centricIV&V",
     description:
         "Platform-independent validation and verification for embedded systems.",
     publisher: { "@id": `${SITE_URL}/#organization` },
@@ -66,7 +66,7 @@ const webpage = {
 const softwareApplication = {
     "@type": "SoftwareApplication",
     "@id": `${SITE_URL}/#software`,
-    name: "SoCcentric Independent V&V Suite",
+    name: "silicon-centricIndependent V&V Suite",
     applicationCategory: "DeveloperApplication",
     operatingSystem: ["Linux", "FreeRTOS", "Yocto"],
     offers: {

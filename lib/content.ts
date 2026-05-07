@@ -2,8 +2,8 @@
 
 export const NAV = {
     brand: {
-        eyebrow: 'SOCCENTRIC',
-        name: 'IV&V',
+        eyebrow: 'SILICON-CENTRIC',
+        name: 'independent verification and validation',
     },
     links: [
         { label: 'What We Do', href: '#problem' },
@@ -12,7 +12,7 @@ export const NAV = {
         { label: 'Platforms', href: '#platforms' },
         { label: 'Capabilities', href: '#capabilities' },
         { label: 'Industries', href: '#use-cases' },
-        { label: 'Evidence', href: '#evidence' },
+        { label: 'Regulatory and Compliances', href: '#evidence' },
         { label: 'FAQ', href: '#faq' },
     ],
     ctas: {
@@ -22,7 +22,7 @@ export const NAV = {
 } as const;
 
 export const HERO = {
-    eyebrow: 'SOCCENTRIC / IV&V — Platform-Independent Validation',
+    eyebrow: 'silicon-centric/ IV&V — Platform-Independent Validation',
     headline: {
         line1: 'Independent',
         accent1: 'Validation',
@@ -413,7 +413,7 @@ export const CTA = {
 export const FOOTER = {
     brand: {
         description:
-            'SoCcentric provides the Independent V&V Suite — platform-independent validation and verification for embedded systems. Six in-house reference platforms. Three test modes. Five coverage tiers. Yocto Linux and FreeRTOS. No source-code access required.',
+            'silicon-centricprovides the Independent V&V Suite — platform-independent validation and verification for embedded systems. Six in-house reference platforms. Three test modes. Five coverage tiers. Yocto Linux and FreeRTOS. No source-code access required.',
     },
     platforms: {
         header: 'Reference platforms',
@@ -435,5 +435,5 @@ export const FOOTER = {
             { label: 'Contact engineering', href: '#cta' },
         ],
     },
-    copyright: `© SOCCENTRIC ${new Date().getFullYear()} :: BUILT FOR ENGINEERS`,
+    copyright: `© silicon-centric${new Date().getFullYear()} :: BUILT FOR ENGINEERS`,
 } as const;

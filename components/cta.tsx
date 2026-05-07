@@ -30,16 +30,6 @@ const LABEL_STYLE: React.CSSProperties = {
     marginBottom: "6px",
 };
 
-const PANEL_LABEL_STYLE: React.CSSProperties = {
-    fontFamily: "var(--font-jetbrains, monospace)",
-    fontSize: "9px",
-    letterSpacing: "0.18em",
-    textTransform: "uppercase",
-    color: "var(--text-tertiary)",
-    marginBottom: "20px",
-    display: "block",
-};
-
 function SuccessCard({ name }: { name: string }) {
     return (
         <div

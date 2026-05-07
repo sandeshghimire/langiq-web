@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { NAV } from "@/lib/content";
@@ -63,7 +63,7 @@ export function Nav() {
                 <a
                     href="#top"
                     style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}
-                    aria-label="SoCcentric IV&V — go to top"
+                    aria-label="silicon-centricIV&V — go to top"
                 >
                     {/* Rotated square mark */}
                     <div
