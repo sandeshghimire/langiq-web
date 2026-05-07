@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Instrument_Serif, Sora, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { JsonLd } from "@/components/json-ld";
+import { TelemetryBar } from "@/components/telemetry-bar";
 
 const SITE_URL = "https://ivv.soccentric.com";
 
@@ -145,7 +146,10 @@ export default function RootLayout({
       <head>
         <JsonLd />
       </head>
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        {children}
+        <TelemetryBar />
+      </body>
     </html>
   );
 }

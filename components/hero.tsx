@@ -132,11 +132,6 @@ export function Hero() {
           </motion.div>
         </motion.div>
       </div>
-      <div style={{ borderTop: "1px solid var(--border)", marginTop: "40px", padding: "18px 48px", overflowX: "auto" }}>
-        <span style={{ fontFamily: "var(--font-jetbrains, monospace)", fontSize: "11px", letterSpacing: "0.1em", color: "var(--text-tertiary)", whiteSpace: "nowrap" }} aria-live="polite" aria-label={"Telemetry: samples " + samples.toLocaleString()}>
-          {HERO.telemetry} {samples.toLocaleString()}{HERO.telemetrySuffix}
-        </span>
-      </div>
     </section>
   );
 }
