@@ -22,7 +22,7 @@ export const NAV = {
 } as const;
 
 export const HERO = {
-    eyebrow: 'silicon-centric/ IV&V — Platform-Independent Validation',
+    eyebrow: 'silicon-centric/ IV&V — independent verification and validation',
     headline: {
         line1: 'Independent',
         accent1: 'Validation',
