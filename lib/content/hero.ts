@@ -9,8 +9,8 @@ export const HERO = {
         line4: '',
     },
     subhead:
-        'Validates every embedded platform — Yocto Linux or FreeRTOS bare-metal — across compute, peripherals, sensors, and environmental conditions, with a complete evidence trail.',
-    note: 'Our stack, our HAL, our evidence — no source-code access required.',
+        'Independently validate and verify your embedded hardware from silicon to sensor — CPU cores, cache, peripherals, and connected devices, with a complete evidence trail.',
+    note: 'Xilinx Zynq MPSoC · NVIDIA Jetson · NXP i.MX 93/95 · TI Sitara · Raspberry Pi',
     ctas: {
         primary: 'Connect',
         secondary: 'Architecture',

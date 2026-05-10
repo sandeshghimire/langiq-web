@@ -6,24 +6,24 @@ export const PROBLEM = {
         after: 'Your team keeps building.',
     },
     body: [
-        "The Independent V&V Suite runs its own stack — our HAL, our target client, our server — against the device under test, without requiring access to your source code or touching your development workflow.",
+        "No access to your source code. No changes to your development workflow. SoCcentric deploys its own stack directly against the device under test — and produces a timestamped, traceable evidence trail ready for design reviews and certification submissions..",
         "The result: independent coverage across compute, peripherals, sensors, and environmental conditions, with an evidence trail your design reviews and certification submissions can use directly.",
     ],
     failureModes: [
         {
             label: 'Compute coverage',
             description:
-                'Every CPU, GPU, and on-die accelerator exercised under load — independently, from outside the application stack. Results captured with timestamps and traceable to specific hardware states.',
+                ' CPU, GPU, NPU, ISP — exercised independently from your application stack, with thermal telemetry captured in lockstep.',
         },
         {
             label: 'Peripherals & sensors',
             description:
-                'I²C, SPI, UART, USB, PCIe, MIPI, IMU, ADC, DAC, cameras, LiDAR, radar — validated over the actual buses. Every run logs drop counts, timing, and error conditions explicitly.',
+                'I²C, SPI, UART, USB, PCIe, MIPI — validated over the actual hardware, with drop counts and error rates logged explicitly per run.',
         },
         {
             label: 'Environmental conditions',
             description:
-                'Test cases authored in the Web UI run the device under temperature, humidity, and pressure conditions. Monitoring and event-based modes capture exactly how hardware behaves as conditions shift.',
+                'Temperature, humidity, pressure, vibration — authored as test cases, triggered remotely, captured with three-stamp timing.',
         },
     ],
 } as const;
