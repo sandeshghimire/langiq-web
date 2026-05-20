@@ -13,10 +13,13 @@ import {
     Timer,
     Route,
     Plug,
+    Cpu,
+    Activity,
 } from "lucide-react";
 import { SectionLabel } from "./ui/section-label";
 import { Reveal } from "./ui/reveal";
-import { CAPABILITIES } from "@/lib/content";
+import { CAPABILITIES as DEFAULT_CAPABILITIES } from "@/lib/content";
+import type { Widen } from "@/lib/content/types";
 
 const ICONS: Record<string, React.ReactNode> = {
     Thermometer: <Thermometer size={20} aria-hidden="true" />,
@@ -32,9 +35,13 @@ const ICONS: Record<string, React.ReactNode> = {
     Timer: <Timer size={20} aria-hidden="true" />,
     Route: <Route size={20} aria-hidden="true" />,
     Plug: <Plug size={20} aria-hidden="true" />,
+    Cpu: <Cpu size={20} aria-hidden="true" />,
+    Activity: <Activity size={20} aria-hidden="true" />,
 };
 
-export function Capabilities() {
+type CapabilitiesContent = Widen<typeof DEFAULT_CAPABILITIES>;
+
+export function Capabilities({ content = DEFAULT_CAPABILITIES }: { content?: CapabilitiesContent }) {
     return (
         <section
             id="capabilities"
@@ -50,7 +57,7 @@ export function Capabilities() {
         >
             <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
                 <Reveal>
-                    <SectionLabel label={CAPABILITIES.sectionLabel} />
+                    <SectionLabel label={content.sectionLabel} />
                 </Reveal>
 
                 <Reveal delay={0.05}>
@@ -66,7 +73,7 @@ export function Capabilities() {
                             margin: "0 0 20px",
                         }}
                     >
-                        {CAPABILITIES.headline}
+                        {content.headline}
                     </h2>
                 </Reveal>
 
@@ -80,7 +87,7 @@ export function Capabilities() {
                             maxWidth: "720px",
                         }}
                     >
-                        {CAPABILITIES.lead}
+                        {content.lead}
                     </p>
                 </Reveal>
 
@@ -92,7 +99,7 @@ export function Capabilities() {
                     }}
                     className="capabilities-grid"
                 >
-                    {CAPABILITIES.features.map((feature, i) => (
+                    {content.features.map((feature, i) => (
                         <Reveal key={feature.title} delay={0.05 + (i % 3) * 0.06}>
                             <div
                                 style={{

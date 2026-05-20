@@ -3,9 +3,18 @@ import { motion } from "framer-motion";
 import { SectionLabel } from "./ui/section-label";
 import { Reveal } from "./ui/reveal";
 import { ArchitectureDiagram } from "./architecture-diagram";
-import { ARCHITECTURE } from "@/lib/content";
+import { ARCHITECTURE as DEFAULT_ARCHITECTURE } from "@/lib/content";
+import type { Widen } from "@/lib/content/types";
 
-export function Architecture() {
+type ArchitectureContent = Widen<typeof DEFAULT_ARCHITECTURE>;
+
+export function Architecture({
+    content = DEFAULT_ARCHITECTURE,
+    diagram,
+}: {
+    content?: ArchitectureContent;
+    diagram?: React.ReactNode;
+}) {
     return (
         <section
             id="architecture"
@@ -35,7 +44,7 @@ export function Architecture() {
                 aria-hidden="true"
             >
                 <div style={{ width: "100%", maxWidth: "none", transform: "scale(1.0)" }}>
-                    <ArchitectureDiagram />
+                    {diagram ?? <ArchitectureDiagram />}
                 </div>
             </motion.div>
 
@@ -69,7 +78,7 @@ export function Architecture() {
             >
                 <div style={{ maxWidth: "760px", width: "100%", textAlign: "center" }}>
                     <Reveal>
-                        <SectionLabel label={ARCHITECTURE.sectionLabel} />
+                        <SectionLabel label={content.sectionLabel} />
                     </Reveal>
 
                     <Reveal delay={0.05}>
@@ -85,11 +94,11 @@ export function Architecture() {
                                 margin: "24px 0 28px",
                             }}
                         >
-                            {ARCHITECTURE.headline.before}{" "}
+                            {content.headline.before}{" "}
                             <em style={{ color: "var(--accent)", fontStyle: "italic" }}>
-                                {ARCHITECTURE.headline.accent}
+                                {content.headline.accent}
                             </em>{" "}
-                            {ARCHITECTURE.headline.after}
+                            {content.headline.after}
                         </h2>
                     </Reveal>
 
@@ -103,7 +112,7 @@ export function Architecture() {
                                 maxWidth: "600px",
                             }}
                         >
-                            {ARCHITECTURE.lead}
+                            {content.lead}
                         </p>
                     </Reveal>
 
@@ -118,7 +127,7 @@ export function Architecture() {
                             }}
                             className="arch-legend-grid"
                         >
-                            {ARCHITECTURE.components.map((comp) => (
+                            {content.components.map((comp) => (
                                 <div
                                     key={comp.number}
                                     style={{

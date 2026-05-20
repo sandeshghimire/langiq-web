@@ -1,6 +1,9 @@
-import { PROOF_STRIP } from "@/lib/content";
+import { PROOF_STRIP as DEFAULT_PROOF_STRIP } from "@/lib/content";
+import type { Widen } from "@/lib/content/types";
 
-export function ProofStrip() {
+type ProofStripContent = Widen<typeof DEFAULT_PROOF_STRIP>;
+
+export function ProofStrip({ content = DEFAULT_PROOF_STRIP }: { content?: ProofStripContent }) {
     return (
         <div
             style={{
@@ -10,7 +13,7 @@ export function ProofStrip() {
                 padding: "14px 48px",
                 overflowX: "auto",
             }}
-            aria-label="Technologies and interfaces validated by the Independent V&V Suite"
+            aria-label="Technologies and interfaces validated"
         >
             <div
                 style={{
@@ -22,7 +25,7 @@ export function ProofStrip() {
                     margin: "0 auto",
                 }}
             >
-                {PROOF_STRIP.items.map((item, i) => (
+                {content.items.map((item, i) => (
                     <span
                         key={item}
                         style={{
@@ -37,7 +40,7 @@ export function ProofStrip() {
                         }}
                     >
                         {item}
-                        {i < PROOF_STRIP.items.length - 1 && (
+                        {i < content.items.length - 1 && (
                             <span
                                 style={{
                                     display: "inline-block",

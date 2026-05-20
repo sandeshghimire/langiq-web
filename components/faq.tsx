@@ -4,9 +4,12 @@ import { Plus, Minus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SectionLabel } from "./ui/section-label";
 import { Reveal } from "./ui/reveal";
-import { FAQ } from "@/lib/content";
+import { FAQ as DEFAULT_FAQ } from "@/lib/content";
+import type { Widen } from "@/lib/content/types";
 
-export function FaqSection() {
+type FaqContent = Widen<typeof DEFAULT_FAQ>;
+
+export function FaqSection({ content = DEFAULT_FAQ }: { content?: FaqContent }) {
     const [open, setOpen] = useState<number | null>(null);
 
     return (
@@ -24,7 +27,7 @@ export function FaqSection() {
         >
             <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
                 <Reveal>
-                    <SectionLabel label={FAQ.sectionLabel} />
+                    <SectionLabel label={content.sectionLabel} />
                 </Reveal>
 
                 <Reveal delay={0.05}>
@@ -40,7 +43,7 @@ export function FaqSection() {
                             margin: "0 0 64px",
                         }}
                     >
-                        {FAQ.headline}
+                        {content.headline}
                     </h2>
                 </Reveal>
 
@@ -49,7 +52,7 @@ export function FaqSection() {
                         style={{ maxWidth: "900px" }}
                         role="list"
                     >
-                        {FAQ.items.map((item, i) => (
+                        {content.items.map((item, i) => (
                             <div
                                 key={i}
                                 style={{

@@ -1,7 +1,16 @@
 "use client";
-import { FOOTER } from "@/lib/content";
+import { FOOTER as DEFAULT_FOOTER } from "@/lib/content";
+import type { Widen } from "@/lib/content/types";
 
-export function Footer() {
+type FooterContent = Widen<typeof DEFAULT_FOOTER>;
+
+export function Footer({
+    content = DEFAULT_FOOTER,
+    productName = "IV&V",
+}: {
+    content?: FooterContent;
+    productName?: string;
+}) {
     return (
         <footer
             style={{
@@ -78,7 +87,7 @@ export function Footer() {
                                         lineHeight: 1,
                                     }}
                                 >
-                                    IV&amp;V
+                                    {productName}
                                 </span>
                             </div>
                         </div>
@@ -91,7 +100,7 @@ export function Footer() {
                                 maxWidth: "380px",
                             }}
                         >
-                            {FOOTER.brand.description}
+                            {content.brand.description}
                         </p>
                     </div>
 
@@ -107,10 +116,10 @@ export function Footer() {
                                 margin: "0 0 16px",
                             }}
                         >
-                            {FOOTER.platforms.header}
+                            {content.platforms.header}
                         </h3>
                         <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "8px" }}>
-                            {FOOTER.platforms.links.map((link) => (
+                            {content.platforms.links.map((link) => (
                                 <li key={link.label}>
                                     <a
                                         href={link.href}
@@ -142,10 +151,10 @@ export function Footer() {
                                 margin: "0 0 16px",
                             }}
                         >
-                            {FOOTER.resources.header}
+                            {content.resources.header}
                         </h3>
                         <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "8px" }}>
-                            {FOOTER.resources.links.map((link) => (
+                            {content.resources.links.map((link) => (
                                 <li key={link.label}>
                                     <a
                                         href={link.href}
@@ -182,7 +191,7 @@ export function Footer() {
                             margin: 0,
                         }}
                     >
-                        {FOOTER.copyright}
+                        {content.copyright}
                     </p>
                 </div>
             </div>

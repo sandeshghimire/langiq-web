@@ -3,7 +3,8 @@ import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Calendar, ArrowRight } from "lucide-react";
 import { HeroDiagram } from "./hero-diagram";
-import { HERO } from "@/lib/content";
+import { HERO as DEFAULT_HERO } from "@/lib/content";
+import type { Widen } from "@/lib/content/types";
 
 const containerVariants = {
   hidden: {},
@@ -35,12 +36,21 @@ function useCountUp(target: number, duration = 1200, active = false) {
   return value;
 }
 
-export function Hero() {
+type HeroContent = Widen<typeof DEFAULT_HERO>;
+
+export function Hero({
+  content = DEFAULT_HERO,
+  heroDiagram,
+}: {
+  content?: HeroContent;
+  heroDiagram?: React.ReactNode;
+}) {
   const [samples, setSamples] = useState(120847);
   const [statsActive, setStatsActive] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
-  const stat6 = useCountUp(6, 900, statsActive);
-  const stat4 = useCountUp(4, 700, statsActive);
+  const stat0 = useCountUp(parseInt(content.stats[0]?.number ?? "0"), 900, statsActive);
+  const stat1 = useCountUp(parseInt(content.stats[1]?.number ?? "0"), 700, statsActive);
+  const stat2 = useCountUp(parseInt(content.stats[2]?.number ?? "0"), 1100, statsActive);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -86,7 +96,7 @@ export function Hero() {
         aria-hidden="true"
       >
         <div style={{ width: "90%", maxWidth: "1400px", transform: "scale(1.05)" }}>
-          <HeroDiagram />
+          {heroDiagram ?? <HeroDiagram />}
         </div>
       </motion.div>
 
@@ -96,34 +106,34 @@ export function Hero() {
           <motion.div variants={itemVariants} style={{ marginBottom: "24px" }}>
             <span style={{ fontFamily: "var(--font-jetbrains, monospace)", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--text-secondary)", display: "inline-flex", alignItems: "center", gap: "8px" }}>
               <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "var(--warm)", flexShrink: 0, display: "inline-block" }} className="pulse-amber" aria-hidden="true" />
-              {HERO.eyebrow}
+              {content.eyebrow}
             </span>
           </motion.div>
           <motion.h1 variants={itemVariants} style={{ fontFamily: "var(--font-instrument-serif, serif)", fontSize: "clamp(48px, 7vw, 100px)", lineHeight: 1.02, letterSpacing: "-0.02em", fontWeight: 400, color: "var(--text-primary)", margin: "0 0 28px" }}>
-            {HERO.headline.line1}{" "}<em style={{ color: "var(--accent)", fontStyle: "italic" }}>{HERO.headline.accent1}</em><br />
-            {HERO.headline.line2}{" "}<em style={{ color: "var(--accent)", fontStyle: "italic" }}>{HERO.headline.accent2}</em>{HERO.headline.line3 ? <>{" "}<span style={{ color: "var(--text-tertiary)" }}>—</span> {HERO.headline.line3}</> : null}{HERO.headline.line4 ? <><br />{HERO.headline.line4}</> : null}
+            {content.headline.line1}{" "}<em style={{ color: "var(--accent)", fontStyle: "italic" }}>{content.headline.accent1}</em><br />
+            {content.headline.line2}{" "}<em style={{ color: "var(--accent)", fontStyle: "italic" }}>{content.headline.accent2}</em>{content.headline.line3 ? <>{" "}<span style={{ color: "var(--text-tertiary)" }}>—</span> {content.headline.line3}</> : null}{content.headline.line4 ? <><br />{content.headline.line4}</> : null}
           </motion.h1>
           <motion.p variants={itemVariants} style={{ fontSize: "19px", lineHeight: 1.6, color: "var(--text-secondary)", maxWidth: "600px", margin: "0 auto 20px" }}>
-            {HERO.subhead}
+            {content.subhead}
           </motion.p>
           <motion.p variants={itemVariants} style={{ fontFamily: "var(--font-jetbrains, monospace)", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--text-tertiary)", maxWidth: "600px", margin: "0 auto 36px", lineHeight: 1.7 }}>
-            {HERO.note}
+            {content.note}
           </motion.p>
           <motion.div variants={itemVariants} style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "48px", justifyContent: "center" }}>
             <a href="#cta" style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "14px 24px", background: "var(--accent)", borderRadius: "4px", color: "#07090C", fontFamily: "var(--font-geist, sans-serif)", fontWeight: 500, fontSize: "15px", textDecoration: "none", transition: "box-shadow 0.2s", flexShrink: 0 }} onMouseEnter={(e) => { e.currentTarget.style.boxShadow = "0 0 0 6px var(--accent-glow)"; }} onMouseLeave={(e) => { e.currentTarget.style.boxShadow = "none"; }}>
-              <Calendar size={16} aria-hidden="true" />{HERO.ctas.primary}<ArrowRight size={16} aria-hidden="true" />
+              <Calendar size={16} aria-hidden="true" />{content.ctas.primary}<ArrowRight size={16} aria-hidden="true" />
             </a>
             <a href="#architecture" style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "14px 24px", border: "1px solid var(--border-strong)", borderRadius: "4px", color: "var(--text-primary)", fontFamily: "var(--font-geist, sans-serif)", fontSize: "15px", textDecoration: "none", transition: "border-color 0.2s", flexShrink: 0 }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--text-primary)"; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--border-strong)"; }}>
-              {HERO.ctas.secondary}<ArrowRight size={16} aria-hidden="true" />
+              {content.ctas.secondary}<ArrowRight size={16} aria-hidden="true" />
             </a>
           </motion.div>
           <motion.div variants={itemVariants} ref={statsRef} style={{ display: "flex", gap: "40px", flexWrap: "wrap", justifyContent: "center", paddingBottom: "40px" }}>
-            {HERO.stats.map((stat, i) => {
-              const displayNum = i === 0 ? stat6 : i === 1 ? stat4 : null;
+            {content.stats.map((stat, i) => {
+              const displayNum = i === 0 ? stat0 : i === 1 ? stat1 : stat2;
               return (
                 <div key={stat.label} style={{ display: "flex", flexDirection: "column", gap: "4px", alignItems: "center" }}>
                   <span className="counter-glow" style={{ fontFamily: "var(--font-instrument-serif, serif)", fontStyle: "italic", fontSize: "38px", lineHeight: 1, color: "var(--text-primary)", letterSpacing: "-0.01em" }}>
-                    {displayNum !== null ? displayNum : stat.number}
+                    {statsActive ? displayNum : stat.number}
                   </span>
                   <span style={{ fontFamily: "var(--font-jetbrains, monospace)", fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--text-secondary)" }}>{stat.label}</span>
                 </div>

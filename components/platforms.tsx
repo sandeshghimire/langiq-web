@@ -1,9 +1,12 @@
 import { SectionLabel } from "./ui/section-label";
 import { Reveal } from "./ui/reveal";
 import { PlatformCard } from "./platform-card";
-import { PLATFORMS } from "@/lib/content";
+import { PLATFORMS as DEFAULT_PLATFORMS } from "@/lib/content";
+import type { Widen } from "@/lib/content/types";
 
-export function Platforms() {
+type PlatformsContent = Widen<typeof DEFAULT_PLATFORMS>;
+
+export function Platforms({ content = DEFAULT_PLATFORMS }: { content?: PlatformsContent }) {
     return (
         <section
             id="platforms"
@@ -19,7 +22,7 @@ export function Platforms() {
         >
             <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
                 <Reveal>
-                    <SectionLabel label={PLATFORMS.sectionLabel} light />
+                    <SectionLabel label={content.sectionLabel} light />
                 </Reveal>
 
                 <Reveal delay={0.05}>
@@ -35,7 +38,7 @@ export function Platforms() {
                             margin: "0 0 20px",
                         }}
                     >
-                        {PLATFORMS.headline}
+                        {content.headline}
                     </h2>
                 </Reveal>
 
@@ -49,7 +52,7 @@ export function Platforms() {
                             maxWidth: "720px",
                         }}
                     >
-                        {PLATFORMS.lead}
+                        {content.lead}
                     </p>
                 </Reveal>
 
@@ -61,7 +64,7 @@ export function Platforms() {
                     }}
                     className="platforms-grid"
                 >
-                    {PLATFORMS.cards.map((card, i) => (
+                    {content.cards.map((card, i) => (
                         <Reveal key={card.number} delay={0.08 + i * 0.06}>
                             <PlatformCard card={card} />
                         </Reveal>

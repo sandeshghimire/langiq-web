@@ -1,8 +1,11 @@
 import { SectionLabel } from "./ui/section-label";
 import { Reveal } from "./ui/reveal";
-import { PROBLEM } from "@/lib/content";
+import { PROBLEM as DEFAULT_PROBLEM } from "@/lib/content";
+import type { Widen } from "@/lib/content/types";
 
-export function Problem() {
+type ProblemContent = Widen<typeof DEFAULT_PROBLEM>;
+
+export function Problem({ content = DEFAULT_PROBLEM }: { content?: ProblemContent }) {
     return (
         <section
             id="problem"
@@ -18,7 +21,7 @@ export function Problem() {
         >
             <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
                 <Reveal>
-                    <SectionLabel label={PROBLEM.sectionLabel} />
+                    <SectionLabel label={content.sectionLabel} />
                 </Reveal>
 
                 {/* Full-width centred headline */}
@@ -36,11 +39,11 @@ export function Problem() {
                             margin: "0 0 64px",
                         }}
                     >
-                        {PROBLEM.headline.before}{" "}
+                        {content.headline.before}{" "}
                         <em style={{ color: "var(--accent)", fontStyle: "italic" }}>
-                            {PROBLEM.headline.accent}
+                            {content.headline.accent}
                         </em>{" "}
-                        {PROBLEM.headline.after}
+                        {content.headline.after}
                     </h2>
                 </Reveal>
 
@@ -56,7 +59,7 @@ export function Problem() {
                     {/* Left: body */}
                     <Reveal delay={0.1}>
                         <div style={{ marginBottom: "40px" }}>
-                            {PROBLEM.body.map((para, i) => (
+                            {content.body.map((para, i) => (
                                 <p
                                     key={i}
                                     style={{
@@ -75,7 +78,7 @@ export function Problem() {
                     {/* Right: failure modes */}
                     <Reveal delay={0.15}>
                         <div>
-                            {PROBLEM.failureModes.map((mode) => (
+                            {content.failureModes.map((mode) => (
                                 <div
                                     key={mode.label}
                                     style={{

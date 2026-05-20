@@ -2,7 +2,10 @@
 import { useState } from "react";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import { Reveal } from "./ui/reveal";
-import { CTA } from "@/lib/content";
+import { CTA as DEFAULT_CTA } from "@/lib/content";
+import type { Widen } from "@/lib/content/types";
+
+type CtaContent = Widen<typeof DEFAULT_CTA>;
 
 const INPUT_STYLE: React.CSSProperties = {
     display: "block",
@@ -74,7 +77,7 @@ function SuccessCard({ name }: { name: string }) {
     );
 }
 
-export function CtaSection() {
+export function CtaSection({ content = DEFAULT_CTA }: { content?: CtaContent }) {
     const [form, setForm] = useState({
         name: "",
         company: "",
@@ -198,11 +201,11 @@ export function CtaSection() {
                             margin: "0 0 16px",
                         }}
                     >
-                        {CTA.headline.before}{" "}
+                        {content.headline.before}{" "}
                         <em style={{ color: "var(--accent)", fontStyle: "italic" }}>
-                            {CTA.headline.accent}
+                            {content.headline.accent}
                         </em>{" "}
-                        {CTA.headline.after}
+                        {content.headline.after}
                     </h2>
                     <p
                         style={{
@@ -212,7 +215,7 @@ export function CtaSection() {
                             margin: "0 0 40px",
                         }}
                     >
-                        {CTA.subhead}
+                        {content.subhead}
                     </p>
                 </Reveal>
 
@@ -358,7 +361,7 @@ export function CtaSection() {
                             marginTop: "24px",
                         }}
                     >
-                        {CTA.disclaimer}
+                        {content.disclaimer}
                     </p>
                 </Reveal>
             </div>

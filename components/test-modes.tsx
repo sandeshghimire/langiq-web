@@ -5,11 +5,14 @@ import { OneShotAnim } from "./test-mode-anims/one-shot";
 import { MonitorAnim } from "./test-mode-anims/monitor";
 import { EventAnim } from "./test-mode-anims/event";
 import { LongRunAnim } from "./test-mode-anims/long-run";
-import { TEST_MODES } from "@/lib/content";
+import { TEST_MODES as DEFAULT_TEST_MODES } from "@/lib/content";
+import type { Widen } from "@/lib/content/types";
 
 const ANIMATIONS = [OneShotAnim, MonitorAnim, EventAnim, LongRunAnim];
 
-export function TestModes() {
+type TestModesContent = Widen<typeof DEFAULT_TEST_MODES>;
+
+export function TestModes({ content = DEFAULT_TEST_MODES }: { content?: TestModesContent }) {
     return (
         <section
             id="test-modes"
@@ -25,7 +28,7 @@ export function TestModes() {
         >
             <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
                 <Reveal>
-                    <SectionLabel label={TEST_MODES.sectionLabel} />
+                    <SectionLabel label={content.sectionLabel} />
                 </Reveal>
 
                 <Reveal delay={0.05}>
@@ -41,7 +44,7 @@ export function TestModes() {
                             margin: "0 0 20px",
                         }}
                     >
-                        {TEST_MODES.headline}
+                        {content.headline}
                     </h2>
                 </Reveal>
 
@@ -55,7 +58,7 @@ export function TestModes() {
                             maxWidth: "720px",
                         }}
                     >
-                        {TEST_MODES.lead}
+                        {content.lead}
                     </p>
                 </Reveal>
 
@@ -67,7 +70,7 @@ export function TestModes() {
                     }}
                     className="modes-grid"
                 >
-                    {TEST_MODES.modes.map((mode, i) => {
+                    {content.modes.map((mode, i) => {
                         const AnimComp = ANIMATIONS[i];
                         return (
                             <Reveal key={mode.monoLabel} delay={0.1 + i * 0.07}>

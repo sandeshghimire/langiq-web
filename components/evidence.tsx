@@ -1,8 +1,11 @@
 import { SectionLabel } from "./ui/section-label";
 import { Reveal } from "./ui/reveal";
-import { EVIDENCE } from "@/lib/content";
+import { EVIDENCE as DEFAULT_EVIDENCE } from "@/lib/content";
+import type { Widen } from "@/lib/content/types";
 
-export function Evidence() {
+type EvidenceContent = Widen<typeof DEFAULT_EVIDENCE>;
+
+export function Evidence({ content = DEFAULT_EVIDENCE }: { content?: EvidenceContent }) {
     return (
         <section
             id="evidence"
@@ -18,7 +21,7 @@ export function Evidence() {
         >
             <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
                 <Reveal>
-                    <SectionLabel label={EVIDENCE.sectionLabel} />
+                    <SectionLabel label={content.sectionLabel} />
                 </Reveal>
 
                 <Reveal delay={0.05}>
@@ -34,7 +37,7 @@ export function Evidence() {
                             margin: "0 0 20px",
                         }}
                     >
-                        {EVIDENCE.headline}
+                        {content.headline}
                     </h2>
                 </Reveal>
 
@@ -48,7 +51,7 @@ export function Evidence() {
                             maxWidth: "720px",
                         }}
                     >
-                        {EVIDENCE.lead}
+                        {content.lead}
                     </p>
                 </Reveal>
 
@@ -60,7 +63,7 @@ export function Evidence() {
                     }}
                     className="evidence-grid"
                 >
-                    {EVIDENCE.columns.map((col, i) => (
+                    {content.columns.map((col, i) => (
                         <Reveal key={col.number} delay={0.1 + i * 0.08}>
                             <div
                                 style={{

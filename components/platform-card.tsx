@@ -1,7 +1,8 @@
 "use client";
 import { PLATFORMS } from "@/lib/content";
+import type { Widen } from "@/lib/content/types";
 
-type PlatformCardData = (typeof PLATFORMS.cards)[number];
+type PlatformCardData = Widen<(typeof PLATFORMS.cards)[number]>;
 
 interface PlatformCardProps {
     card: PlatformCardData;

@@ -1,9 +1,12 @@
 "use client";
 import { SectionLabel } from "./ui/section-label";
 import { Reveal } from "./ui/reveal";
-import { USE_CASES } from "@/lib/content";
+import { USE_CASES as DEFAULT_USE_CASES } from "@/lib/content";
+import type { Widen } from "@/lib/content/types";
 
-export function UseCases() {
+type UseCasesContent = Widen<typeof DEFAULT_USE_CASES>;
+
+export function UseCases({ content = DEFAULT_USE_CASES }: { content?: UseCasesContent }) {
     return (
         <section
             id="use-cases"
@@ -19,7 +22,7 @@ export function UseCases() {
         >
             <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
                 <Reveal>
-                    <SectionLabel label={USE_CASES.sectionLabel} />
+                    <SectionLabel label={content.sectionLabel} />
                 </Reveal>
 
                 <Reveal delay={0.05}>
@@ -35,7 +38,7 @@ export function UseCases() {
                             margin: "0 0 64px",
                         }}
                     >
-                        {USE_CASES.headline}
+                        {content.headline}
                     </h2>
                 </Reveal>
 
@@ -47,7 +50,7 @@ export function UseCases() {
                     }}
                     className="usecases-grid"
                 >
-                    {USE_CASES.cards.map((card, i) => (
+                    {content.cards.map((card, i) => (
                         <Reveal key={card.industry} delay={0.05 + (i % 3) * 0.07}>
                             <div
                                 style={{

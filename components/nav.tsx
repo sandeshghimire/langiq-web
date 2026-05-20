@@ -2,9 +2,18 @@
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
-import { NAV } from "@/lib/content";
+import { NAV as DEFAULT_NAV } from "@/lib/content";
+import type { Widen } from "@/lib/content/types";
 
-export function Nav() {
+type NavContent = Widen<typeof DEFAULT_NAV>;
+
+export function Nav({
+    content = DEFAULT_NAV,
+    product,
+}: {
+    content?: NavContent;
+    product?: "ivv" | "hil";
+}) {
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
     const { scrollYProgress } = useScroll();
@@ -15,6 +24,9 @@ export function Nav() {
         window.addEventListener("scroll", onScroll, { passive: true });
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
+
+    const switchHref = product === "ivv" ? "/hil" : product === "hil" ? "/ivv" : "/";
+    const switchLabel = product === "ivv" ? "HIL" : product === "hil" ? "IV&V" : null;
 
     return (
         <nav
@@ -63,7 +75,7 @@ export function Nav() {
                 <a
                     href="#top"
                     style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}
-                    aria-label="silicon-centricIV&V — go to top"
+                    aria-label={`silicon-centric ${content.brand.name} — go to top`}
                 >
                     {/* Rotated square mark */}
                     <div
@@ -110,7 +122,7 @@ export function Nav() {
                                 lineHeight: 1,
                             }}
                         >
-                            {NAV.brand.eyebrow}
+                            {content.brand.eyebrow}
                         </span>
                         <span
                             style={{
@@ -122,7 +134,7 @@ export function Nav() {
                                 letterSpacing: "-0.01em",
                             }}
                         >
-                            {NAV.brand.name}
+                            {content.brand.name}
                         </span>
                     </div>
                 </a>
@@ -132,7 +144,7 @@ export function Nav() {
                     className="hidden lg:flex"
                     style={{ gap: "24px", alignItems: "center", flexWrap: "nowrap" }}
                 >
-                    {NAV.links.map((link) => (
+                    {content.links.map((link) => (
                         <a
                             key={link.href}
                             href={link.href}
@@ -152,8 +164,42 @@ export function Nav() {
                     ))}
                 </div>
 
-                {/* Right: CTAs + mobile menu button */}
+                {/* Right: Product switcher + CTA + mobile menu button */}
                 <div style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
+                    {/* Product switcher badge */}
+                    {switchLabel && (
+                        <a
+                            href={switchHref}
+                            className="hidden lg:flex"
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "5px",
+                                padding: "5px 10px",
+                                border: "1px solid var(--border-strong)",
+                                borderRadius: "4px",
+                                color: "var(--text-secondary)",
+                                fontFamily: "var(--font-jetbrains, monospace)",
+                                fontSize: "10px",
+                                letterSpacing: "0.14em",
+                                textTransform: "uppercase",
+                                textDecoration: "none",
+                                transition: "border-color 0.2s, color 0.2s",
+                                whiteSpace: "nowrap",
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.borderColor = "var(--accent)";
+                                e.currentTarget.style.color = "var(--accent)";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.borderColor = "var(--border-strong)";
+                                e.currentTarget.style.color = "var(--text-secondary)";
+                            }}
+                            aria-label={`Switch to ${switchLabel}`}
+                        >
+                            ⇌ {switchLabel}
+                        </a>
+                    )}
                     {/* Mobile hamburger */}
                     <button
                         className="flex lg:hidden"
@@ -195,9 +241,9 @@ export function Nav() {
                         onMouseLeave={(e) => {
                             e.currentTarget.style.boxShadow = "none";
                         }}
-                        aria-label="Book demo"
+                        aria-label="Connect"
                     >
-                        {NAV.ctas.primary}
+                        {content.ctas.primary}
                         <ArrowRight size={14} aria-hidden="true" />
                     </a>
                 </div>
@@ -228,7 +274,25 @@ export function Nav() {
                             zIndex: 99,
                         }}
                     >
-                        {NAV.links.map((link) => (
+                        {switchLabel && (
+                            <a
+                                href={switchHref}
+                                onClick={() => setMobileOpen(false)}
+                                style={{
+                                    fontFamily: "var(--font-jetbrains, monospace)",
+                                    fontSize: "12px",
+                                    letterSpacing: "0.12em",
+                                    textTransform: "uppercase",
+                                    color: "var(--accent)",
+                                    textDecoration: "none",
+                                    padding: "10px 8px",
+                                    borderBottom: "1px solid var(--border)",
+                                }}
+                            >
+                                ⇌ Switch to {switchLabel}
+                            </a>
+                        )}
+                        {content.links.map((link) => (
                             <a
                                 key={link.href}
                                 href={link.href}
@@ -266,7 +330,7 @@ export function Nav() {
                                 textDecoration: "none",
                             }}
                         >
-                            {NAV.ctas.primary} <ArrowRight size={14} />
+                            {content.ctas.primary} <ArrowRight size={14} />
                         </a>
                     </motion.div>
                 )}
