@@ -14,17 +14,18 @@ export function PlatformCard({ card }: PlatformCardProps) {
             style={{
                 background: "var(--bg-light)",
                 border: "1px solid var(--border-light)",
-                borderRadius: "4px",
+                borderRadius: "6px",
                 padding: "28px 24px 20px",
                 position: "relative",
                 overflow: "hidden",
                 cursor: "default",
-                transition: "transform 0.2s, border-color 0.2s",
+                transition: "transform 0.22s cubic-bezier(0.16,1,0.3,1), border-color 0.2s, box-shadow 0.2s",
             }}
             onMouseEnter={(e) => {
                 const el = e.currentTarget;
-                el.style.transform = "translateY(-2px)";
+                el.style.transform = "translateY(-3px)";
                 el.style.borderColor = "var(--border-light-strong)";
+                el.style.boxShadow = "0 8px 24px rgba(15,20,25,0.12)";
                 const accent = el.querySelector<HTMLDivElement>(".card-accent-line");
                 if (accent) accent.style.opacity = "1";
             }}
@@ -32,11 +33,12 @@ export function PlatformCard({ card }: PlatformCardProps) {
                 const el = e.currentTarget;
                 el.style.transform = "translateY(0)";
                 el.style.borderColor = "var(--border-light)";
+                el.style.boxShadow = "none";
                 const accent = el.querySelector<HTMLDivElement>(".card-accent-line");
-                if (accent) accent.style.opacity = "0";
+                if (accent) accent.style.opacity = "0.2";
             }}
         >
-            {/* Accent line at top */}
+            {/* Accent line at top — faint always, full on hover */}
             <div
                 className="card-accent-line"
                 style={{
@@ -46,7 +48,7 @@ export function PlatformCard({ card }: PlatformCardProps) {
                     right: 0,
                     height: "2px",
                     background: "var(--accent)",
-                    opacity: 0,
+                    opacity: 0.2,
                     transition: "opacity 0.2s",
                 }}
                 aria-hidden="true"

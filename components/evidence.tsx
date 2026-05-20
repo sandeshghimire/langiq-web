@@ -68,25 +68,51 @@ export function Evidence({ content = DEFAULT_EVIDENCE }: { content?: EvidenceCon
                             <div
                                 style={{
                                     border: "1px solid var(--border)",
-                                    borderRadius: "4px",
+                                    borderTop: "2px solid var(--accent)",
+                                    borderRadius: "6px",
                                     overflow: "hidden",
+                                    height: "100%",
+                                    display: "flex",
+                                    flexDirection: "column",
                                 }}
                             >
                                 {/* Header */}
                                 <div
                                     style={{
-                                        background: "var(--bg-surface)",
+                                        background: "linear-gradient(140deg, var(--bg-elev) 0%, var(--bg-surface) 100%)",
                                         borderBottom: "1px solid var(--border)",
-                                        padding: "16px 20px",
+                                        padding: "20px 24px",
+                                        position: "relative",
+                                        overflow: "hidden",
                                     }}
                                 >
-                                    <div style={{ display: "flex", alignItems: "baseline", gap: "12px", marginBottom: "4px" }}>
+                                    {/* Watermark number */}
+                                    <span
+                                        style={{
+                                            position: "absolute",
+                                            right: "16px",
+                                            bottom: "-8px",
+                                            fontFamily: "var(--font-instrument-serif, serif)",
+                                            fontStyle: "italic",
+                                            fontSize: "72px",
+                                            lineHeight: 1,
+                                            color: "var(--accent)",
+                                            opacity: 0.07,
+                                            pointerEvents: "none",
+                                            userSelect: "none",
+                                        }}
+                                        aria-hidden="true"
+                                    >
+                                        {col.number}
+                                    </span>
+                                    <div style={{ display: "flex", alignItems: "baseline", gap: "10px", marginBottom: "4px", position: "relative" }}>
                                         <span
                                             style={{
                                                 fontFamily: "var(--font-jetbrains, monospace)",
                                                 fontSize: "10px",
                                                 letterSpacing: "0.14em",
                                                 color: "var(--accent)",
+                                                opacity: 0.7,
                                             }}
                                         >
                                             {col.number}
@@ -94,29 +120,30 @@ export function Evidence({ content = DEFAULT_EVIDENCE }: { content?: EvidenceCon
                                         <h3
                                             style={{
                                                 fontFamily: "var(--font-instrument-serif, serif)",
-                                                fontSize: "22px",
+                                                fontSize: "24px",
                                                 fontWeight: 400,
                                                 color: "var(--text-primary)",
                                                 margin: 0,
+                                                letterSpacing: "-0.01em",
                                             }}
                                         >
                                             {col.title}
                                         </h3>
                                     </div>
                                     {"subtitle" in col && (
-                                        <p style={{ fontFamily: "var(--font-jetbrains, monospace)", fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--text-tertiary)", margin: 0 }}>
+                                        <p style={{ fontFamily: "var(--font-jetbrains, monospace)", fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--text-tertiary)", margin: 0, position: "relative" }}>
                                             {(col as unknown as { subtitle: string }).subtitle}
                                         </p>
                                     )}
                                 </div>
 
                                 {/* Items — hairline divided rows */}
-                                <div>
+                                <div style={{ flex: 1 }}>
                                     {col.items.map((item, j) => (
                                         <div
                                             key={j}
                                             style={{
-                                                padding: "14px 20px",
+                                                padding: "13px 24px",
                                                 borderTop: j === 0 ? "none" : "1px solid var(--border)",
                                                 fontSize: "14px",
                                                 lineHeight: 1.5,
@@ -126,7 +153,6 @@ export function Evidence({ content = DEFAULT_EVIDENCE }: { content?: EvidenceCon
                                                 gap: "10px",
                                             }}
                                         >
-                                            {/* Tick mark */}
                                             <span
                                                 style={{
                                                     color: "var(--accent)",

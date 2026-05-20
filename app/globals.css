@@ -249,3 +249,47 @@ body {
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
+
+/* ─── Proof-strip infinite marquee ─── */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 44s linear infinite;
+  will-change: transform;
+  display: flex;
+  flex-shrink: 0;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Shimmer highlight on accent elements ─── */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* ─── Subtle upward float for cards on hover ─── */
+.card-lift {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-3px);
+}

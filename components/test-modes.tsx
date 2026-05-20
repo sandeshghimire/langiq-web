@@ -78,18 +78,18 @@ export function TestModes({ content = DEFAULT_TEST_MODES }: { content?: TestMode
                                     style={{
                                         background: "var(--bg-surface)",
                                         border: "1px solid var(--border)",
-                                        borderRadius: "4px",
+                                        borderRadius: "6px",
                                         padding: "32px",
-                                        transition: "transform 0.2s, border-color 0.2s, box-shadow 0.2s",
+                                        transition: "transform 0.22s cubic-bezier(0.16,1,0.3,1), border-color 0.2s, box-shadow 0.2s",
                                         display: "flex",
                                         flexDirection: "column",
                                         gap: "16px",
                                     }}
                                     onMouseEnter={(e) => {
                                         const el = e.currentTarget;
-                                        el.style.transform = "translateY(-2px)";
-                                        el.style.borderColor = "rgba(0,217,192,0.3)";
-                                        el.style.boxShadow = "0 0 16px var(--accent-glow)";
+                                        el.style.transform = "translateY(-3px)";
+                                        el.style.borderColor = "var(--accent-dim)";
+                                        el.style.boxShadow = "0 8px 32px var(--accent-glow)";
                                     }}
                                     onMouseLeave={(e) => {
                                         const el = e.currentTarget;

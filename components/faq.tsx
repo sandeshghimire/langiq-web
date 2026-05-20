@@ -57,6 +57,12 @@ export function FaqSection({ content = DEFAULT_FAQ }: { content?: FaqContent }) 
                                 key={i}
                                 style={{
                                     borderTop: "1px solid var(--border)",
+                                    position: "relative",
+                                    background: open === i ? "rgba(0,217,192,0.025)" : "transparent",
+                                    transition: "background 0.3s",
+                                    paddingLeft: open === i ? "16px" : "0",
+                                    marginLeft: open === i ? "-2px" : "0",
+                                    borderLeft: open === i ? "2px solid var(--accent)" : "2px solid transparent",
                                 }}
                                 role="listitem"
                             >
@@ -84,7 +90,8 @@ export function FaqSection({ content = DEFAULT_FAQ }: { content?: FaqContent }) 
                                             fontSize: "17px",
                                             lineHeight: 1.4,
                                             fontWeight: 500,
-                                            color: "var(--text-primary)",
+                                            color: open === i ? "var(--accent)" : "var(--text-primary)",
+                                            transition: "color 0.2s",
                                         }}
                                     >
                                         {item.question}

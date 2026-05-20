@@ -82,7 +82,7 @@ export function Hero({
           position: "absolute", top: "30%", left: "50%",
           transform: "translate(-50%, -50%)",
           width: "1200px", height: "900px", borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(0,217,192,0.07) 0%, transparent 70%)",
+          background: "radial-gradient(circle, var(--accent-glow) 0%, transparent 65%)",
           pointerEvents: "none",
         }}
         aria-hidden="true"
@@ -99,6 +99,18 @@ export function Hero({
           {heroDiagram ?? <HeroDiagram />}
         </div>
       </motion.div>
+
+      {/* Bottom fade into proof strip */}
+      <div
+        style={{
+          position: "absolute", bottom: 0, left: 0, right: 0,
+          height: "120px",
+          background: "linear-gradient(to bottom, transparent, var(--bg-deep))",
+          pointerEvents: "none",
+          zIndex: 2,
+        }}
+        aria-hidden="true"
+      />
 
       {/* Centered foreground content */}
       <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "120px 48px 0", position: "relative", zIndex: 1 }}>
@@ -127,10 +139,10 @@ export function Hero({
               {content.ctas.secondary}<ArrowRight size={16} aria-hidden="true" />
             </a>
           </motion.div>
-          <motion.div variants={itemVariants} ref={statsRef} style={{ display: "flex", gap: "40px", flexWrap: "wrap", justifyContent: "center", paddingBottom: "40px" }}>
-            {content.stats.map((stat, i) => {
+          <motion.div variants={itemVariants} ref={statsRef} style={{ display: "flex", gap: "0", flexWrap: "wrap", justifyContent: "center", paddingBottom: "40px", alignItems: "center" }}>
+            {content.stats.flatMap((stat, i) => {
               const displayNum = i === 0 ? stat0 : i === 1 ? stat1 : stat2;
-              return (
+              const card = (
                 <div key={stat.label} style={{ display: "flex", flexDirection: "column", gap: "4px", alignItems: "center" }}>
                   <span className="counter-glow" style={{ fontFamily: "var(--font-instrument-serif, serif)", fontStyle: "italic", fontSize: "38px", lineHeight: 1, color: "var(--text-primary)", letterSpacing: "-0.01em" }}>
                     {statsActive ? displayNum : stat.number}
@@ -138,6 +150,11 @@ export function Hero({
                   <span style={{ fontFamily: "var(--font-jetbrains, monospace)", fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--text-secondary)" }}>{stat.label}</span>
                 </div>
               );
+              if (i === 0) return [card];
+              return [
+                <div key={`sep-${i}`} style={{ width: "1px", height: "36px", background: "var(--border-strong)", margin: "0 36px", flexShrink: 0, alignSelf: "center" }} aria-hidden="true" />,
+                card,
+              ];
             })}
           </motion.div>
         </motion.div>
