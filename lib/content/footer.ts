@@ -1,7 +1,7 @@
 export const FOOTER = {
     brand: {
         description:
-            'silicon-centricprovides the Independent V&V Suite — platform-independent validation and verification for embedded systems. Six in-house reference platforms. Three test modes. Five coverage tiers. Yocto Linux and FreeRTOS. No source-code access required.',
+            'silicon-centric provides the Independent V&V Suite — platform-independent validation and verification for embedded systems. Six in-house reference platforms. Four test modes. Five coverage tiers. Yocto Linux and FreeRTOS. No source-code access required.',
     },
     platforms: {
         header: 'Reference platforms',
@@ -19,9 +19,10 @@ export const FOOTER = {
         links: [
             { label: 'Connect', href: '#cta' },
             { label: 'Architecture', href: '#architecture' },
-            { label: 'Regulatory evidence', href: '#evidence' },
+            { label: 'Compliance evidence', href: '#evidence' },
             { label: 'Contact engineering', href: '#cta' },
+            { label: '⇌ HIL platform', href: '/hil' },
         ],
     },
-    copyright: `© silicon-centric${new Date().getFullYear()} :: BUILT FOR ENGINEERS`,
+    copyright: `© silicon-centric · ${new Date().getFullYear()} :: BUILT FOR ENGINEERS`,
 } as const;

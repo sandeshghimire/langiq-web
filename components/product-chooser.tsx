@@ -11,7 +11,7 @@ const PRODUCTS = [
         description:
             "Deploy a persistent test agent onto Yocto Linux or FreeRTOS targets. Run one-shot, monitor, event, and long-run modes. Every artefact is signed and traceable to ISO 26262, DO-178C, and IEC 62304.",
         stats: [
-            { number: "6", label: "test modes" },
+            { number: "4", label: "test modes" },
             { number: "4", label: "compliance frameworks" },
             { number: "∞", label: "evidence artefacts" },
         ],

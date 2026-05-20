@@ -5,7 +5,7 @@ export const CTA = {
         after: 'in action?',
     },
     subhead:
-        'Get in touch with our engineers. Tell us your platform, your target class, and what you need to validate.',
+        'Get in touch with our engineers. Tell us your platform, your target class, and what you need to validate. Need a physical test rig too? Ask about the HIL platform.',
     ctas: {
         primary: 'Connect',
         secondary: 'Read the architecture',

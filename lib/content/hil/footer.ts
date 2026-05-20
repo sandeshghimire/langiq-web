@@ -6,12 +6,12 @@ export const HIL_FOOTER = {
     platforms: {
         header: 'Platform adapters',
         links: [
-            { label: 'Arches (NVIDIA Jetson)', href: '#platforms' },
-            { label: 'Acadia (RPi CM)', href: '#platforms' },
-            { label: 'Zion (Zynq)', href: '#platforms' },
-            { label: 'Pinnacle (NXP i.MX)', href: '#platforms' },
-            { label: 'Joshua (TI Sitara)', href: '#platforms' },
-            { label: 'Sequoia (x86)', href: '#platforms' },
+            { label: 'Arches', href: '#platforms' },
+            { label: 'Acadia', href: '#platforms' },
+            { label: 'Zion', href: '#platforms' },
+            { label: 'Pinnacle', href: '#platforms' },
+            { label: 'Joshua', href: '#platforms' },
+            { label: 'Sequoia', href: '#platforms' },
         ],
     },
     resources: {
@@ -21,7 +21,8 @@ export const HIL_FOOTER = {
             { label: 'Architecture', href: '#architecture' },
             { label: 'Certification evidence', href: '#evidence' },
             { label: 'Contact engineering', href: '#cta' },
+            { label: '⇌ IV&V platform', href: '/ivv' },
         ],
     },
-    copyright: `© silicon-centric${new Date().getFullYear()} :: BUILT FOR ENGINEERS`,
+    copyright: `© silicon-centric · ${new Date().getFullYear()} :: BUILT FOR ENGINEERS`,
 } as const;

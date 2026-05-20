@@ -5,7 +5,7 @@ export const HIL_CTA = {
         after: 'on your DUT?',
     },
     subhead:
-        'Get in touch with our engineers. Tell us your platform, your DUT, and what you need to test. We will scope the right chassis tier and adapter.',
+        'Get in touch with our engineers. Tell us your platform, your DUT, and what you need to test. We will scope the right chassis tier and adapter. Already running IV&V? The HIL connects to the same server — no new tooling required.',
     ctas: {
         primary: 'Connect',
         secondary: 'Read the architecture',

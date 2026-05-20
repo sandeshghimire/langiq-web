@@ -6,8 +6,8 @@ export const PROBLEM = {
         after: 'Your team keeps building.',
     },
     body: [
-        "No access to your source code. No changes to your development workflow. SoCcentric deploys its own stack directly against the device under test — and produces a timestamped, traceable evidence trail ready for design reviews and certification submissions..",
-        "The result: independent coverage across compute, peripherals, sensors, and environmental conditions, with an evidence trail your design reviews and certification submissions can use directly.",
+        "No source code access. No changes to your development workflow. The IV&V stack runs on its own server, deploys its own target client to the DUT, and operates independently of your build system, CI pipeline, and version control.",
+        "Coverage spans five tiers — compute, peripherals, sensors, perception, and environmental conditions. Each tier produces its own evidence shape in the append-only database: timestamped, operator-attributed, and ready for design reviews and certification submissions as-is.",
     ],
     failureModes: [
         {

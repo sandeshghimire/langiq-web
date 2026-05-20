@@ -17,7 +17,7 @@ export const HERO = {
     },
     stats: [
         { number: '6', label: 'Reference platforms' },
-        { number: '3', label: 'Test modes' },
+        { number: '4', label: 'Test modes' },
         { number: '5', label: 'Coverage tiers' },
     ],
     telemetry:

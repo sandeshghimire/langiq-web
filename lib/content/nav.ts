@@ -10,7 +10,7 @@ export const NAV = {
         { label: 'Platforms', href: '#platforms' },
         { label: 'Capabilities', href: '#capabilities' },
         { label: 'Industries', href: '#use-cases' },
-        { label: 'Regulatory and Compliances', href: '#evidence' },
+        { label: 'Compliance', href: '#evidence' },
         { label: 'FAQ', href: '#faq' },
     ],
     ctas: {

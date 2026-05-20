@@ -1,7 +1,7 @@
 export const HIL_TEST_MODES = {
     sectionLabel: '03 — Hardware tiers',
     headline: 'Three chassis tiers. One architecture.',
-    lead: 'HIL-Bench for desk-side bring-up, HIL-Rack for overnight CI regression, HIL-Cert for certification-grade evidence. Each tier shares the same K26 brain card, the same Yocto BSP, and the same IV&V integration — just scaled for the application.',
+    lead: 'HIL-Bench for desk-side bring-up, HIL-Rack for overnight CI regression, HIL-Cert for certification-grade evidence. Each tier shares the same K26 brain card, the same Yocto BSP, and the same IV&V integration. Fault injection — GPIO stuck faults, CAN bit errors, brown-out sweeps — runs as a campaign across all three tiers.',
     modes: [
         {
             title: 'HIL-Bench',
