@@ -20,7 +20,7 @@ export const metadata = {
 
 export default function IvvPage() {
     return (
-        <>
+        <div data-product="ivv">
             <Nav product="ivv" />
             <main>
                 <Hero />
@@ -36,6 +36,6 @@ export default function IvvPage() {
                 <CtaSection />
             </main>
             <Footer />
-        </>
+        </div>
     );
 }

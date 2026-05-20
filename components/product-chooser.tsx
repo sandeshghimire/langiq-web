@@ -81,7 +81,7 @@ export function ProductChooser() {
                     zIndex: 1,
                 }}
             >
-                {/* Rotated square mark */}
+                {/* Rotated square mark — split IV&V teal / HIL amber */}
                 <div
                     style={{
                         width: "40px",
@@ -95,18 +95,34 @@ export function ProductChooser() {
                         style={{
                             width: "24px",
                             height: "24px",
-                            border: "2px solid var(--accent)",
                             transform: "rotate(45deg)",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
+                            position: "relative",
+                            overflow: "hidden",
+                            border: "2px solid transparent",
+                            borderRadius: "1px",
+                            background:
+                                "linear-gradient(#0E1218, #0E1218) padding-box, " +
+                                "linear-gradient(135deg, #00D9C0 50%, #FFB547 50%) border-box",
                         }}
                     >
+                        {/* Left triangle — IV&V teal */}
                         <div
                             style={{
-                                width: "10px",
-                                height: "10px",
-                                background: "var(--accent)",
+                                position: "absolute",
+                                inset: 0,
+                                background: "#00D9C0",
+                                clipPath: "polygon(0 0, 0% 100%, 100% 100%)",
+                                opacity: 0.9,
+                            }}
+                        />
+                        {/* Right triangle — HIL amber */}
+                        <div
+                            style={{
+                                position: "absolute",
+                                inset: 0,
+                                background: "#FFB547",
+                                clipPath: "polygon(0 0, 100% 0, 100% 100%)",
+                                opacity: 0.9,
                             }}
                         />
                     </div>
