@@ -36,7 +36,7 @@ export const metadata = {
 
 export default function HilPage() {
     return (
-        <>
+        <div data-product="hil">
             <Nav product="hil" content={HIL_NAV} />
             <main>
                 <Hero content={HIL_HERO} />
@@ -52,6 +52,6 @@ export default function HilPage() {
                 <CtaSection content={HIL_CTA} />
             </main>
             <Footer content={HIL_FOOTER} productName="HIL" />
-        </>
+        </div>
     );
 }

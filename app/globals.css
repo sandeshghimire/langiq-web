@@ -97,6 +97,21 @@ body {
   -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
 }
 
+/* ─── Product theme overrides ─── */
+/* IV&V: teal/cyan — default accent values already apply */
+[data-product="ivv"] {
+  --accent: #00D9C0;
+  --accent-dim: #0AA08D;
+  --accent-glow: rgba(0, 217, 192, 0.18);
+}
+
+/* HIL: warm amber — override accent to match HIL brand color */
+[data-product="hil"] {
+  --accent: #FFB547;
+  --accent-dim: #CC8A1A;
+  --accent-glow: rgba(255, 181, 71, 0.18);
+}
+
 /* ─── Amber pulse animation ─── */
 @keyframes pulse-dot {
 
