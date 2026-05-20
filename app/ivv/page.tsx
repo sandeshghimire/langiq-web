@@ -13,29 +13,29 @@ import { CtaSection } from "@/components/cta";
 import { Footer } from "@/components/footer";
 
 export const metadata = {
-  title: "IV&V — Independent Verification & Validation | SoCcentric",
-  description:
-    "SoCcentric's IV&V platform: autonomous, evidence-generating test for embedded systems on real silicon.",
+    title: "IV&V — Independent Verification & Validation | SoCcentric",
+    description:
+        "SoCcentric's IV&V platform: autonomous, evidence-generating test for embedded systems on real silicon.",
 };
 
 export default function IvvPage() {
-  return (
-    <>
-      <Nav product="ivv" />
-      <main>
-        <Hero />
-        <ProofStrip />
-        <Problem />
-        <Architecture />
-        <TestModes />
-        <Platforms />
-        <Capabilities />
-        <UseCases />
-        <Evidence />
-        <FaqSection />
-        <CtaSection />
-      </main>
-      <Footer />
-    </>
-  );
+    return (
+        <>
+            <Nav product="ivv" />
+            <main>
+                <Hero />
+                <ProofStrip />
+                <Problem />
+                <Architecture />
+                <TestModes />
+                <Platforms />
+                <Capabilities />
+                <UseCases />
+                <Evidence />
+                <FaqSection />
+                <CtaSection />
+            </main>
+            <Footer />
+        </>
+    );
 }

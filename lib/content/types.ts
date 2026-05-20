@@ -5,7 +5,7 @@
  * (e.g. IV&V vs HIL) with the same structure are accepted.
  */
 export type Widen<T> =
-  T extends string
+    T extends string
     ? string
     : T extends number
     ? number
