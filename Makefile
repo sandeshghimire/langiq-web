@@ -1,9 +1,13 @@
-APP_NAME   := ivv-marketing
-DEPLOY_DIR := /var/www/html/$(APP_NAME)
-SERVICE    := $(APP_NAME).service
-PORT       := 3060
+APP_NAME    := ivv-marketing
+DEPLOY_DIR  := /var/www/html/$(APP_NAME)
+STATIC_DIR  := /var/www/html/$(APP_NAME)-static
+SERVICE     := $(APP_NAME).service
+PORT        := 3060
 
-.PHONY: all build deploy install uninstall start stop restart status clean
+-include .env
+export
+
+.PHONY: all build deploy install uninstall start stop restart status clean build-static deploy-static deploy-ftp
 
 all: build
 
@@ -53,6 +57,37 @@ restart:
 status:
 	systemctl status $(SERVICE)
 
+## Build static export (no Node server required; API routes excluded)
+build-static:
+	pnpm install --frozen-lockfile
+	NEXT_STATIC_EXPORT=1 pnpm run build
+
+## Deploy static export to STATIC_DIR (serve with nginx/apache)
+deploy-static: build-static
+	sudo install -d $(STATIC_DIR)
+	sudo rsync -a --delete out/ $(STATIC_DIR)/
+	sudo chown -R sandesh:sandesh $(STATIC_DIR)
+	@echo ""
+	@echo "  Static export deployed to $(STATIC_DIR)"
+	@echo "  Serve with nginx: root $(STATIC_DIR); try_files \$$uri \$$uri.html \$$uri/ =404;"
+	@echo ""
+
+## Deploy static export to FTP server (reads FTP_HOST, FTP_USER, FTP_PASS, FTP_REMOTE_DIR from .env)
+deploy-ftp: build-static
+	@test -n "$(FTP_HOST)"       || (echo "ERROR: FTP_HOST not set in .env";       exit 1)
+	@test -n "$(FTP_USER)"       || (echo "ERROR: FTP_USER not set in .env";       exit 1)
+	@test -n "$(FTP_PASS)"       || (echo "ERROR: FTP_PASS not set in .env";       exit 1)
+	@test -n "$(FTP_REMOTE_DIR)" || (echo "ERROR: FTP_REMOTE_DIR not set in .env"; exit 1)
+	lftp -c "\
+	  set ftp:ssl-allow yes; \
+	  set ssl:verify-certificate yes; \
+	  open -u '$(FTP_USER)','$(FTP_PASS)' '$(FTP_HOST)'; \
+	  mirror --reverse --delete --verbose out/ $(FTP_REMOTE_DIR); \
+	  bye"
+	@echo ""
+	@echo "  FTP deploy complete → $(FTP_HOST)$(FTP_REMOTE_DIR)"
+	@echo ""
+
 ## Remove local build artefacts
 clean:
-	rm -rf .next node_modules
+	rm -rf .next out node_modules
