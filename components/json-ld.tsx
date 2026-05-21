@@ -66,7 +66,7 @@ const webpage = {
 const softwareApplication = {
     "@type": "SoftwareApplication",
     "@id": `${SITE_URL}/#software`,
-    name: "silicon-centric Independent V&V Suite",
+    name: "SoCcentric Platform Suite",
     applicationCategory: "DeveloperApplication",
     operatingSystem: ["Linux", "FreeRTOS", "Yocto"],
     offers: {

@@ -70,7 +70,7 @@ function SuccessCard({ name }: { name: string }) {
                     margin: "0 auto",
                 }}
             >
-                An IV&amp;V engineer will be in touch shortly. No prep required — just bring
+                A member of our team will be in touch shortly. No prep required — just bring
                 your platform details when we connect.
             </p>
         </div>

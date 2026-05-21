@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 const PRODUCTS = [
@@ -210,7 +211,7 @@ export function ProductChooser() {
                 }}
             >
                 {PRODUCTS.map((p) => (
-                    <a
+                    <Link
                         key={p.href}
                         href={p.href}
                         onMouseEnter={() => setHovered(p.tag)}
@@ -335,7 +336,7 @@ export function ProductChooser() {
                             Explore {p.tag}
                             <ArrowRight size={14} aria-hidden="true" />
                         </div>
-                    </a>
+                    </Link>
                 ))}
             </div>
 

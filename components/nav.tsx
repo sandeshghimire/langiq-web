@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { NAV as DEFAULT_NAV } from "@/lib/content";
@@ -78,7 +79,7 @@ export function Nav({
                 {/* Left: Brand lockup — logo+company → home, product name → top */}
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                     {/* Diamond logo + company name → landing page */}
-                    <a
+                    <Link
                         href="/"
                         style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}
                         aria-label="SoCcentric — home"
@@ -130,7 +131,7 @@ export function Nav({
                         >
                             {content.brand.eyebrow}
                         </span>
-                    </a>
+                    </Link>
 
                     {/* Divider */}
                     <span
@@ -197,7 +198,7 @@ export function Nav({
                 <div style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
                     {/* Product switcher badges */}
                     {otherProducts.map((p) => (
-                        <a
+                        <Link
                             key={p.id}
                             href={p.href}
                             className="hidden lg:flex"
@@ -227,7 +228,7 @@ export function Nav({
                             aria-label={`Switch to ${p.label}`}
                         >
                             ⇌ {p.label}
-                        </a>
+                        </Link>
                     ))}
                     {/* Mobile hamburger */}
                     <button
@@ -304,7 +305,7 @@ export function Nav({
                         }}
                     >
                         {otherProducts.map((p) => (
-                            <a
+                            <Link
                                 key={p.id}
                                 href={p.href}
                                 onClick={() => setMobileOpen(false)}
@@ -320,7 +321,7 @@ export function Nav({
                                 }}
                             >
                                 ⇌ Switch to {p.label}
-                            </a>
+                            </Link>
                         ))}
                         {content.links.map((link) => (
                             <a

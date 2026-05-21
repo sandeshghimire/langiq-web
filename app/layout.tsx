@@ -36,7 +36,7 @@ const OG_IMAGE = {
   url: "/og.png",
   width: 1200,
   height: 630,
-  alt: "Architecture diagram of the silicon-centric Independent V&V Suite — HAL adapter, target client, server, and Web UI layers",
+  alt: "Architecture diagram of the SoCcentric platform suite — IV&V, HIL, and Datalogger product layers",
 };
 
 export const viewport: Viewport = {
@@ -115,7 +115,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    siteName: "silicon-centric IV&V",
+    siteName: "SoCcentric",
     title: TITLE,
     description:
       "Platform-independent V&V suite for embedded systems. Yocto Linux and FreeRTOS targets. FlatBuffers and gRPC transports. Full coverage: compute, peripherals, sensors, perception, environmental. Evidence for ISO 26262, DO-178C, IEC 62304, IEC 61508.",
