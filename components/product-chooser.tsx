@@ -265,7 +265,7 @@ export function ProductChooser() {
                     gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
                     gap: "24px",
                     width: "100%",
-                    maxWidth: "1280px",
+                    maxWidth: "1440px",
                     position: "relative",
                     zIndex: 1,
                 }}
