@@ -179,10 +179,10 @@ export function HeroDiagram() {
                     const y = 82 + i * 40;
                     const isPass = run.status === "PASS";
                     const isRun = run.status === "RUN";
-                    const clr = isPass ? "var(--accent)" : isRun ? "#FFE600" : "var(--text-tertiary)";
+                    const clr = isPass ? "var(--accent)" : isRun ? "#C9A800" : "var(--text-tertiary)";
                     return (
                         <g key={run.label}>
-                            {isRun && <rect x="12" y={y - 10} width="174" height="28" rx="2" fill="rgba(255,230,0,0.06)" />}
+                            {isRun && <rect x="12" y={y - 10} width="174" height="28" rx="2" fill="rgba(201,168,0,0.06)" />}
                             {isPass && (
                                 <>
                                     <circle cx="28" cy={y + 3} r="7.5" fill="none" stroke="#00D9C0" strokeWidth="1" opacity="0.6" />
@@ -191,14 +191,14 @@ export function HeroDiagram() {
                             )}
                             {isRun && (
                                 <>
-                                    <circle cx="28" cy={y + 3} r="7.5" fill="none" stroke="#FFE600" strokeWidth="1" />
-                                    <circle cx="28" cy={y + 3} r="3.5" fill="#FFE600" opacity="0.85" />
+                                    <circle cx="28" cy={y + 3} r="7.5" fill="none" stroke="#C9A800" strokeWidth="1" />
+                                    <circle cx="28" cy={y + 3} r="3.5" fill="#C9A800" opacity="0.85" />
                                 </>
                             )}
                             {run.status === "QUEUE" && <circle cx="28" cy={y + 3} r="7.5" fill="none" stroke="var(--border-strong)" strokeWidth="1" opacity="0.35" />}
                             <text x="44" y={y + 8} fill={clr} fontSize="9" fontFamily="var(--font-jetbrains, monospace)" letterSpacing="0.07em">{run.label}</text>
                             {isPass && <text x="182" y={y + 8} fill="#00D9C0" fontSize="8" fontFamily="var(--font-jetbrains, monospace)" letterSpacing="0.07em" textAnchor="end" opacity="0.7">PASS</text>}
-                            {isRun && <text x="182" y={y + 8} fill="#FFE600" fontSize="8" fontFamily="var(--font-jetbrains, monospace)" letterSpacing="0.07em" textAnchor="end">RUN</text>}
+                            {isRun && <text x="182" y={y + 8} fill="#C9A800" fontSize="8" fontFamily="var(--font-jetbrains, monospace)" letterSpacing="0.07em" textAnchor="end">RUN</text>}
                         </g>
                     );
                 })}
@@ -247,7 +247,7 @@ export function HeroDiagram() {
 
                 {LOG_LINES.map((line, i) => {
                     const ly = 346 + i * 17;
-                    const clr = line.level.trim() === "PASS" ? "#00D9C0" : "#FFE600";
+                    const clr = line.level.trim() === "PASS" ? "#00D9C0" : "#C9A800";
                     return (
                         <g key={i}>
                             <text x="18" y={ly} fill="var(--text-tertiary)" fontSize="7.5" fontFamily="var(--font-jetbrains, monospace)" letterSpacing="0.04em">[{line.time}]</text>

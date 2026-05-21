@@ -110,9 +110,9 @@ body {
 
 /* HIL: bright yellow */
 [data-product="hil"] {
-  --accent: #FFE600;
+  --accent: #C9A800;
   --accent-dim: #CCB800;
-  --accent-glow: rgba(255, 230, 0, 0.18);
+  --accent-glow: rgba(201, 168, 0, 0.18);
   --accent-rgb: 255, 230, 0;
 }
 

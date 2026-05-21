@@ -43,10 +43,10 @@ const PRODUCTS = [
             { number: "6", label: "platform adapters" },
             { number: "5", label: "extension card types" },
         ],
-        accent: "#FFE600",
-        accentGlow: "rgba(255,230,0,0.15)",
-        border: "rgba(255,230,0,0.25)",
-        hoverBorder: "rgba(255,230,0,0.55)",
+        accent: "#C9A800",
+        accentGlow: "rgba(201,168,0,0.15)",
+        border: "rgba(201,168,0,0.25)",
+        hoverBorder: "rgba(201,168,0,0.55)",
     },
     {
         href: "/datalogger",
@@ -134,7 +134,7 @@ export function ProductChooser() {
                             borderRadius: "1px",
                             background:
                                 "linear-gradient(#0E1218, #0E1218) padding-box, " +
-                                "linear-gradient(135deg, #00D9C0 33%, #FFE600 66%, #FF6B00 100%) border-box",
+                                "linear-gradient(135deg, #00D9C0 33%, #C9A800 66%, #FF6B00 100%) border-box",
                         }}
                     >
                         {/* Top-left — IV&V teal */}
@@ -152,7 +152,7 @@ export function ProductChooser() {
                             style={{
                                 position: "absolute",
                                 inset: 0,
-                                background: "#FFE600",
+                                background: "#C9A800",
                                 clipPath: "polygon(0 0, 100% 0, 50% 50%)",
                                 opacity: 0.9,
                             }}
