@@ -4,8 +4,7 @@ STATIC_DIR  := /var/www/html/$(APP_NAME)-static
 SERVICE     := $(APP_NAME).service
 PORT        := 3060
 
--include .env
-export
+-include ../.env
 
 .PHONY: all build deploy install uninstall start stop restart status clean build-static deploy-static deploy-ftp
 
@@ -72,20 +71,15 @@ deploy-static: build-static
 	@echo "  Serve with nginx: root $(STATIC_DIR); try_files \$$uri \$$uri.html \$$uri/ =404;"
 	@echo ""
 
-## Deploy static export to FTP server (reads FTP_HOST, FTP_USER, FTP_PASS, FTP_REMOTE_DIR from .env)
+## Deploy static export to FTP server (reads FTP, USERNAME, PASSWORD, ROOT_DIR from ../.env)
 deploy-ftp: build-static
-	@test -n "$(FTP_HOST)"       || (echo "ERROR: FTP_HOST not set in .env";       exit 1)
-	@test -n "$(FTP_USER)"       || (echo "ERROR: FTP_USER not set in .env";       exit 1)
-	@test -n "$(FTP_PASS)"       || (echo "ERROR: FTP_PASS not set in .env";       exit 1)
-	@test -n "$(FTP_REMOTE_DIR)" || (echo "ERROR: FTP_REMOTE_DIR not set in .env"; exit 1)
-	lftp -c "\
-	  set ftp:ssl-allow yes; \
-	  set ssl:verify-certificate yes; \
-	  open -u '$(FTP_USER)','$(FTP_PASS)' '$(FTP_HOST)'; \
-	  mirror --reverse --delete --verbose out/ $(FTP_REMOTE_DIR); \
-	  bye"
+	@test -n "$(FTP)"      || (echo "ERROR: FTP not set in .env";      exit 1)
+	@test -n "$(USERNAME)" || (echo "ERROR: USERNAME not set in .env"; exit 1)
+	@test -n "$(PASSWORD)" || (echo "ERROR: PASSWORD not set in .env"; exit 1)
+	@test -n "$(ROOT_DIR)" || (echo "ERROR: ROOT_DIR not set in .env"; exit 1)
+	lftp -c "set ftp:ssl-allow yes; set ssl:verify-certificate no; open -u '$(USERNAME)','$(PASSWORD)' '$(FTP)'; mirror --reverse --delete --verbose out/ $(ROOT_DIR); bye"
 	@echo ""
-	@echo "  FTP deploy complete → $(FTP_HOST)$(FTP_REMOTE_DIR)"
+	@echo "  FTP deploy complete → $(FTP)$(ROOT_DIR)"
 	@echo ""
 
 ## Remove local build artefacts
