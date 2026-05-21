@@ -24,20 +24,20 @@ const DOTS: Dot[] = [
     { progress: 0, speed: 0.004, color: "#00D9C0", fromX: 460, fromY: 230, toX: 210, toY: 360, id: "hd2" },
     { progress: 0.5, speed: 0.004, color: "#00D9C0", fromX: 460, fromY: 230, toX: 210, toY: 360, id: "hd3" },
     // Brain Card → AIO Slot
-    { progress: 0, speed: 0.005, color: "#FFB547", fromX: 490, fromY: 235, toX: 370, toY: 360, id: "hd4" },
-    { progress: 0.4, speed: 0.005, color: "#FFB547", fromX: 490, fromY: 235, toX: 370, toY: 360, id: "hd5" },
+    { progress: 0, speed: 0.005, color: "#FFE600", fromX: 490, fromY: 235, toX: 370, toY: 360, id: "hd4" },
+    { progress: 0.4, speed: 0.005, color: "#FFE600", fromX: 490, fromY: 235, toX: 370, toY: 360, id: "hd5" },
     // Brain Card → CAN Slot
     { progress: 0, speed: 0.004, color: "#00D9C0", fromX: 540, fromY: 240, toX: 530, toY: 360, id: "hd6" },
     { progress: 0.6, speed: 0.004, color: "#00D9C0", fromX: 540, fromY: 240, toX: 530, toY: 360, id: "hd7" },
     // Brain Card → Adapter Slot
-    { progress: 0, speed: 0.003, color: "#FFB547", fromX: 580, fromY: 235, toX: 690, toY: 360, id: "hd8" },
-    { progress: 0.3, speed: 0.003, color: "#FFB547", fromX: 580, fromY: 235, toX: 690, toY: 360, id: "hd9" },
+    { progress: 0, speed: 0.003, color: "#FFE600", fromX: 580, fromY: 235, toX: 690, toY: 360, id: "hd8" },
+    { progress: 0.3, speed: 0.003, color: "#FFE600", fromX: 580, fromY: 235, toX: 690, toY: 360, id: "hd9" },
     // Brain Card → Power Slot
     { progress: 0, speed: 0.006, color: "#00D9C0", fromX: 610, fromY: 230, toX: 850, toY: 360, id: "hd10" },
     { progress: 0.7, speed: 0.006, color: "#00D9C0", fromX: 610, fromY: 230, toX: 850, toY: 360, id: "hd11" },
     // Adapter → DUT
-    { progress: 0, speed: 0.004, color: "#FFB547", fromX: 690, fromY: 420, toX: 690, toY: 490, id: "hd12" },
-    { progress: 0.5, speed: 0.004, color: "#FFB547", fromX: 690, fromY: 420, toX: 690, toY: 490, id: "hd13" },
+    { progress: 0, speed: 0.004, color: "#FFE600", fromX: 690, fromY: 420, toX: 690, toY: 490, id: "hd12" },
+    { progress: 0.5, speed: 0.004, color: "#FFE600", fromX: 690, fromY: 420, toX: 690, toY: 490, id: "hd13" },
 ];
 
 export function HilArchitectureDiagram() {
@@ -133,8 +133,8 @@ export function HilArchitectureDiagram() {
             <text x="415" y="225" textAnchor="middle" fill="#94A3B8" style={{ fontFamily: "var(--font-geist, sans-serif)", fontSize: "8" }}>gRPC server</text>
 
             {/* RPU sub-box */}
-            <rect x="490" y="184" width="110" height="44" rx="2" fill="rgba(255,181,71,0.05)" stroke="rgba(255,181,71,0.2)" />
-            <text x="545" y="200" textAnchor="middle" fill="#FFB547" style={{ ...LABEL_MONO, fontSize: "8" }}>RPU</text>
+            <rect x="490" y="184" width="110" height="44" rx="2" fill="rgba(255,230,0,0.05)" stroke="rgba(255,230,0,0.2)" />
+            <text x="545" y="200" textAnchor="middle" fill="#FFE600" style={{ ...LABEL_MONO, fontSize: "8" }}>RPU</text>
             <text x="545" y="214" textAnchor="middle" fill="#F1F5F9" style={{ fontFamily: "var(--font-geist, sans-serif)", fontSize: "9" }}>FreeRTOS</text>
             <text x="545" y="225" textAnchor="middle" fill="#94A3B8" style={{ fontFamily: "var(--font-geist, sans-serif)", fontSize: "8" }}>Watchdog</text>
 
@@ -150,18 +150,18 @@ export function HilArchitectureDiagram() {
 
             {/* Connector Brain → Bus */}
             <line x1="460" y1="228" x2="460" y2="290" stroke="#00D9C0" strokeWidth="0.8" strokeDasharray="3 3" opacity="0.35" />
-            <line x1="550" y1="228" x2="550" y2="290" stroke="#FFB547" strokeWidth="0.8" strokeDasharray="3 3" opacity="0.35" />
+            <line x1="550" y1="228" x2="550" y2="290" stroke="#FFE600" strokeWidth="0.8" strokeDasharray="3 3" opacity="0.35" />
             <line x1="640" y1="228" x2="640" y2="290" stroke="#00D9C0" strokeWidth="0.8" strokeDasharray="3 3" opacity="0.35" />
 
             {/* Moving dots Brain → Slots */}
             <circle cx="460" cy="250" r="2.5" fill="#00D9C0" id="hd2" />
             <circle cx="460" cy="250" r="2.5" fill="#00D9C0" id="hd3" />
-            <circle cx="490" cy="250" r="2.5" fill="#FFB547" id="hd4" />
-            <circle cx="490" cy="250" r="2.5" fill="#FFB547" id="hd5" />
+            <circle cx="490" cy="250" r="2.5" fill="#FFE600" id="hd4" />
+            <circle cx="490" cy="250" r="2.5" fill="#FFE600" id="hd5" />
             <circle cx="540" cy="250" r="2.5" fill="#00D9C0" id="hd6" />
             <circle cx="540" cy="250" r="2.5" fill="#00D9C0" id="hd7" />
-            <circle cx="580" cy="250" r="2.5" fill="#FFB547" id="hd8" />
-            <circle cx="580" cy="250" r="2.5" fill="#FFB547" id="hd9" />
+            <circle cx="580" cy="250" r="2.5" fill="#FFE600" id="hd8" />
+            <circle cx="580" cy="250" r="2.5" fill="#FFE600" id="hd9" />
             <circle cx="610" cy="250" r="2.5" fill="#00D9C0" id="hd10" />
             <circle cx="610" cy="250" r="2.5" fill="#00D9C0" id="hd11" />
 
@@ -176,11 +176,11 @@ export function HilArchitectureDiagram() {
 
             {/* AIO Card */}
             <rect x="260" y="300" width="150" height="90" {...BOX} />
-            <text x="335" y="318" textAnchor="middle" fill="#FFB547" style={{ ...LABEL_MONO, fontSize: "8" }}>SLOT 02</text>
+            <text x="335" y="318" textAnchor="middle" fill="#FFE600" style={{ ...LABEL_MONO, fontSize: "8" }}>SLOT 02</text>
             <text x="335" y="333" textAnchor="middle" fill="#F1F5F9" style={LABEL_SERIF}>AIO</text>
             <text x="335" y="348" textAnchor="middle" fill="#94A3B8" style={{ fontFamily: "var(--font-geist, sans-serif)", fontSize: "9" }}>16-ch ADC · 8-ch DAC</text>
             <text x="335" y="362" textAnchor="middle" fill="#475569" style={{ ...LABEL_MONO, fontSize: "7" }}>calibrated · ±10V</text>
-            <line x1="335" y1="290" x2="335" y2="300" stroke="#FFB547" strokeWidth="0.8" opacity="0.5" />
+            <line x1="335" y1="290" x2="335" y2="300" stroke="#FFE600" strokeWidth="0.8" opacity="0.5" />
 
             {/* CAN Card */}
             <rect x="430" y="300" width="150" height="90" {...BOX} />
@@ -191,12 +191,12 @@ export function HilArchitectureDiagram() {
             <line x1="505" y1="290" x2="505" y2="300" stroke="#00D9C0" strokeWidth="0.8" opacity="0.5" />
 
             {/* Adapter Card */}
-            <rect x="600" y="300" width="180" height="90" fill="rgba(255,181,71,0.06)" stroke="rgba(255,181,71,0.25)" rx="3" />
-            <text x="690" y="318" textAnchor="middle" fill="#FFB547" style={{ ...LABEL_MONO, fontSize: "8" }}>SLOT 04 — ADAPTER</text>
+            <rect x="600" y="300" width="180" height="90" fill="rgba(255,230,0,0.06)" stroke="rgba(255,230,0,0.25)" rx="3" />
+            <text x="690" y="318" textAnchor="middle" fill="#FFE600" style={{ ...LABEL_MONO, fontSize: "8" }}>SLOT 04 — ADAPTER</text>
             <text x="690" y="333" textAnchor="middle" fill="#F1F5F9" style={LABEL_SERIF}>Platform Adapter</text>
             <text x="690" y="348" textAnchor="middle" fill="#94A3B8" style={{ fontFamily: "var(--font-geist, sans-serif)", fontSize: "9" }}>DUT-specific PCB</text>
             <text x="690" y="362" textAnchor="middle" fill="#475569" style={{ ...LABEL_MONO, fontSize: "7" }}>power · connector · signal</text>
-            <line x1="690" y1="290" x2="690" y2="300" stroke="#FFB547" strokeWidth="0.8" opacity="0.5" />
+            <line x1="690" y1="290" x2="690" y2="300" stroke="#FFE600" strokeWidth="0.8" opacity="0.5" />
 
             {/* Power Card */}
             <rect x="800" y="300" width="140" height="90" {...BOX} />
@@ -207,24 +207,24 @@ export function HilArchitectureDiagram() {
             <line x1="870" y1="290" x2="870" y2="300" stroke="#00D9C0" strokeWidth="0.8" opacity="0.5" />
 
             {/* ─── Layer 4: DUT ─── */}
-            <rect x="570" y="430" width="240" height="60" rx="3" fill="rgba(255,181,71,0.08)" stroke="rgba(255,181,71,0.3)" />
-            <text x="690" y="452" textAnchor="middle" fill="#FFB547" style={LABEL_MONO}>DEVICE UNDER TEST</text>
+            <rect x="570" y="430" width="240" height="60" rx="3" fill="rgba(255,230,0,0.08)" stroke="rgba(255,230,0,0.3)" />
+            <text x="690" y="452" textAnchor="middle" fill="#FFE600" style={LABEL_MONO}>DEVICE UNDER TEST</text>
             <text x="690" y="472" textAnchor="middle" fill="#F1F5F9" style={{ fontFamily: "var(--font-geist, sans-serif)", fontSize: "11" }}>Arches · Acadia · Zion · Pinnacle · Joshua · Sequoia</text>
 
             {/* Adapter → DUT connector */}
-            <line x1="690" y1="390" x2="690" y2="430" stroke="#FFB547" strokeWidth="1" strokeDasharray="4 3" opacity="0.5" />
-            <circle cx="690" cy="410" r="3" fill="#FFB547" id="hd12" />
-            <circle cx="690" cy="410" r="3" fill="#FFB547" id="hd13" />
+            <line x1="690" y1="390" x2="690" y2="430" stroke="#FFE600" strokeWidth="1" strokeDasharray="4 3" opacity="0.5" />
+            <circle cx="690" cy="410" r="3" fill="#FFE600" id="hd12" />
+            <circle cx="690" cy="410" r="3" fill="#FFE600" id="hd13" />
 
             {/* DUT signal arrows from other slots */}
             <line x1="165" y1="390" x2="570" y2="450" stroke="#00D9C0" strokeWidth="0.5" strokeDasharray="3 5" opacity="0.2" />
-            <line x1="335" y1="390" x2="575" y2="448" stroke="#FFB547" strokeWidth="0.5" strokeDasharray="3 5" opacity="0.2" />
+            <line x1="335" y1="390" x2="575" y2="448" stroke="#FFE600" strokeWidth="0.5" strokeDasharray="3 5" opacity="0.2" />
             <line x1="505" y1="390" x2="590" y2="440" stroke="#00D9C0" strokeWidth="0.5" strokeDasharray="3 5" opacity="0.2" />
 
             {/* Legend */}
             <circle cx="90" cy="530" r="4" fill="#00D9C0" />
             <text x="100" y="534" fill="#475569" style={{ ...LABEL_MONO, fontSize: "8" }}>gRPC / FPGA data</text>
-            <circle cx="260" cy="530" r="4" fill="#FFB547" />
+            <circle cx="260" cy="530" r="4" fill="#FFE600" />
             <text x="270" y="534" fill="#475569" style={{ ...LABEL_MONO, fontSize: "8" }}>power / analog / DUT signals</text>
         </svg>
     );

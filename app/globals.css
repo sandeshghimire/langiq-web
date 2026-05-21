@@ -108,20 +108,20 @@ body {
   --accent-rgb: 0, 217, 192;
 }
 
-/* HIL: warm amber — override accent to match HIL brand color */
+/* HIL: bright yellow */
 [data-product="hil"] {
-  --accent: #FFB547;
-  --accent-dim: #CC8A1A;
-  --accent-glow: rgba(255, 181, 71, 0.18);
-  --accent-rgb: 255, 181, 71;
+  --accent: #FFE600;
+  --accent-dim: #CCB800;
+  --accent-glow: rgba(255, 230, 0, 0.18);
+  --accent-rgb: 255, 230, 0;
 }
 
-/* Datalogger: indigo — override accent to match Datalogger brand color */
+/* Datalogger: orange */
 [data-product="datalogger"] {
-  --accent: #6366F1;
-  --accent-dim: #4F52CC;
-  --accent-glow: rgba(99, 102, 241, 0.18);
-  --accent-rgb: 99, 102, 241;
+  --accent: #FF6B00;
+  --accent-dim: #CC5500;
+  --accent-glow: rgba(255, 107, 0, 0.18);
+  --accent-rgb: 255, 107, 0;
 }
 
 /* ─── Amber pulse animation ─── */

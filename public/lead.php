@@ -12,66 +12,92 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-// ── SMTP configuration (static deployment — no .env) ─────────────────────────
+// ── Mail configuration ───────────────────────────────────────────────────────
+define('MAIL_FROM', 'info@soccentric.com');
+define('MAIL_TO',   'info@soccentric.com');
+
+// SMTP fallback (used only if PHP mail() fails)
 define('SMTP_HOST', 'mail.soccentric.com');
 define('SMTP_PORT', 465);
 define('SMTP_USER', 'info@soccentric.com');
 define('SMTP_PASS', '9K2Q6oFSkmwco8rh!');
-define('MAIL_FROM', 'info@soccentric.com');
-define('MAIL_TO',   'info@soccentric.com');
-// ─────────────────────────────────────────────────────────────────────────────
 
-/** Read a (possibly multi-line) SMTP response. */
-function smtp_read($fp): string
+define('LOG_FILE', __DIR__ . '/lead.log');
+
+function lead_log(string $msg): void
+{
+    @file_put_contents(LOG_FILE, '[' . date('c') . "] " . $msg . "\n", FILE_APPEND);
+}
+
+// ── Mail transports ──────────────────────────────────────────────────────────
+
+/** PHP's built-in mail() via local sendmail. Preferred on shared hosting. */
+function send_via_mail(string $subject, string $body): bool
+{
+    $headers  = 'From: SoCcentric <' . MAIL_FROM . ">\r\n";
+    $headers .= 'Reply-To: ' . MAIL_FROM . "\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $headers .= "Content-Transfer-Encoding: 8bit\r\n";
+    $headers .= 'X-Mailer: PHP/' . phpversion();
+
+    $encSubject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+    $ok = @mail(MAIL_TO, $encSubject, $body, $headers, '-f' . MAIL_FROM);
+    lead_log('mail() result: ' . ($ok ? 'ok' : 'fail'));
+    return $ok;
+}
+
+function smtp_read($fp): array
 {
     $resp = '';
-    while (($line = fgets($fp, 512)) !== false) {
+    $code = 0;
+    while (($line = fgets($fp, 1024)) !== false) {
         $resp .= $line;
         if (!isset($line[3]) || $line[3] === ' ') {
+            $code = (int) substr($line, 0, 3);
             break;
         }
     }
-    return $resp;
+    return [$code, $resp];
 }
 
-/** Write a command and return the server response. */
-function smtp_cmd($fp, string $cmd): string
+function smtp_cmd($fp, string $cmd): array
 {
     fwrite($fp, $cmd . "\r\n");
     return smtp_read($fp);
 }
 
-/** Send an email via SMTP over implicit SSL (port 465). */
-function send_mail(string $subject, string $body): bool
+/** SMTP fallback over implicit SSL (port 465). */
+function send_via_smtp(string $subject, string $body): bool
 {
     $ctx = stream_context_create([
         'ssl' => [
-            'verify_peer'      => true,
-            'verify_peer_name' => true,
+            'verify_peer'       => false,
+            'verify_peer_name'  => false,
+            'allow_self_signed' => true,
         ],
     ]);
 
     $fp = @stream_socket_client(
         'ssl://' . SMTP_HOST . ':' . SMTP_PORT,
-        $errno,
-        $errstr,
-        15,
-        STREAM_CLIENT_CONNECT,
-        $ctx
+        $errno, $errstr, 15, STREAM_CLIENT_CONNECT, $ctx
     );
 
     if (!$fp) {
+        lead_log("smtp connect failed: [$errno] $errstr");
         return false;
     }
 
-    smtp_read($fp);
-    smtp_cmd($fp, 'EHLO ' . (gethostname() ?: 'localhost'));
-    smtp_cmd($fp, 'AUTH LOGIN');
-    smtp_cmd($fp, base64_encode(SMTP_USER));
-    smtp_cmd($fp, base64_encode(SMTP_PASS));
-    smtp_cmd($fp, 'MAIL FROM:<' . MAIL_FROM . '>');
-    smtp_cmd($fp, 'RCPT TO:<' . MAIL_TO . '>');
-    smtp_cmd($fp, 'DATA');
+    stream_set_timeout($fp, 15);
+
+    [$code] = smtp_read($fp);                                            if ($code !== 220) { lead_log("smtp greeting: $code"); fclose($fp); return false; }
+    [$code] = smtp_cmd($fp, 'EHLO ' . (gethostname() ?: 'localhost'));   if ($code !== 250) { lead_log("smtp ehlo: $code");     fclose($fp); return false; }
+    [$code] = smtp_cmd($fp, 'AUTH LOGIN');                               if ($code !== 334) { lead_log("smtp auth: $code");     fclose($fp); return false; }
+    [$code] = smtp_cmd($fp, base64_encode(SMTP_USER));                   if ($code !== 334) { lead_log("smtp user: $code");     fclose($fp); return false; }
+    [$code] = smtp_cmd($fp, base64_encode(SMTP_PASS));                   if ($code !== 235) { lead_log("smtp pass: $code");     fclose($fp); return false; }
+    [$code] = smtp_cmd($fp, 'MAIL FROM:<' . MAIL_FROM . '>');            if ($code !== 250) { lead_log("smtp mailfrom: $code"); fclose($fp); return false; }
+    [$code] = smtp_cmd($fp, 'RCPT TO:<' . MAIL_TO . '>');                if ($code !== 250) { lead_log("smtp rcptto: $code");   fclose($fp); return false; }
+    [$code] = smtp_cmd($fp, 'DATA');                                     if ($code !== 354) { lead_log("smtp data: $code");     fclose($fp); return false; }
 
     $msg  = 'From: SoCcentric <' . MAIL_FROM . ">\r\n";
     $msg .= 'To: ' . MAIL_TO . "\r\n";
@@ -82,11 +108,20 @@ function send_mail(string $subject, string $body): bool
     $msg .= "\r\n" . $body . "\r\n.\r\n";
 
     fwrite($fp, $msg);
-    smtp_read($fp);
+    [$code] = smtp_read($fp);                                            if ($code !== 250) { lead_log("smtp body: $code");     fclose($fp); return false; }
     smtp_cmd($fp, 'QUIT');
     fclose($fp);
 
+    lead_log('smtp: ok');
     return true;
+}
+
+function send_mail(string $subject, string $body): bool
+{
+    if (send_via_mail($subject, $body)) {
+        return true;
+    }
+    return send_via_smtp($subject, $body);
 }
 
 // ── Request handling ─────────────────────────────────────────────────────────

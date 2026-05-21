@@ -25,8 +25,8 @@ const DOTS: Dot[] = [
     { progress: 0.4, speed: 0.004, color: "#00D9C0", fromX: 360, fromY: 230, toX: 255, toY: 300, id: "d3" },
     { progress: 0.8, speed: 0.004, color: "#00D9C0", fromX: 360, fromY: 230, toX: 255, toY: 300, id: "d4" },
     // Server → FreeRTOS target client (FlatBuffers)
-    { progress: 0, speed: 0.005, color: "#FFB547", fromX: 620, fromY: 245, toX: 575, toY: 300, id: "d5" },
-    { progress: 0.5, speed: 0.005, color: "#FFB547", fromX: 620, fromY: 245, toX: 575, toY: 300, id: "d6" },
+    { progress: 0, speed: 0.005, color: "#FFE600", fromX: 620, fromY: 245, toX: 575, toY: 300, id: "d5" },
+    { progress: 0.5, speed: 0.005, color: "#FFE600", fromX: 620, fromY: 245, toX: 575, toY: 300, id: "d6" },
     // Server → SQLite
     { progress: 0, speed: 0.003, color: "#00D9C0", fromX: 430, fromY: 215, toX: 430, toY: 230, id: "d7" },
 ];
@@ -246,7 +246,7 @@ export function ArchitectureDiagram() {
                         height="56"
                         rx="2"
                         fill="var(--bg-deep)"
-                        stroke={i < 8 ? "rgba(0,217,192,0.2)" : "rgba(255,181,71,0.2)"}
+                        stroke={i < 8 ? "rgba(0,217,192,0.2)" : "rgba(255,230,0,0.2)"}
                         strokeWidth="1"
                     />
                     <text
@@ -275,7 +275,7 @@ export function ArchitectureDiagram() {
                 fontFamily="var(--font-jetbrains, monospace)" letterSpacing="0.08em">gRPC</text>
 
             {/* Server → RTOS target client (FlatBuffers, dashed) */}
-            <line x1="620" y1="245" x2="575" y2="300" stroke="#FFB547" strokeWidth="1"
+            <line x1="620" y1="245" x2="575" y2="300" stroke="#FFE600" strokeWidth="1"
                 strokeDasharray="4,3" opacity="0.5" />
             <text x="636" y="278" fill="var(--warm)" fontSize="8"
                 fontFamily="var(--font-jetbrains, monospace)" letterSpacing="0.08em">FlatBuffers</text>
@@ -294,7 +294,7 @@ export function ArchitectureDiagram() {
             {/* RTOS client → peripherals */}
             {[820, 920].map((x, i) => (
                 <line key={i} x1="575" y1="380" x2={x} y2="445"
-                    stroke="#FFB547" strokeWidth="0.5" opacity="0.2" />
+                    stroke="#FFE600" strokeWidth="0.5" opacity="0.2" />
             ))}
 
             {/* Animated dots */}
@@ -307,7 +307,7 @@ export function ArchitectureDiagram() {
                     r="3.5"
                     fill={dot.color}
                     opacity="0"
-                    filter={dot.color === "#FFB547" ? "url(#glow-arch-amber)" : "url(#glow-arch)"}
+                    filter={dot.color === "#FFE600" ? "url(#glow-arch-amber)" : "url(#glow-arch)"}
                 />
             ))}
         </svg>

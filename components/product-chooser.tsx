@@ -43,10 +43,10 @@ const PRODUCTS = [
             { number: "6", label: "platform adapters" },
             { number: "5", label: "extension card types" },
         ],
-        accent: "#FFB547",
-        accentGlow: "rgba(255,181,71,0.15)",
-        border: "rgba(255,181,71,0.25)",
-        hoverBorder: "rgba(255,181,71,0.55)",
+        accent: "#FFE600",
+        accentGlow: "rgba(255,230,0,0.15)",
+        border: "rgba(255,230,0,0.25)",
+        hoverBorder: "rgba(255,230,0,0.55)",
     },
     {
         href: "/datalogger",
@@ -60,10 +60,10 @@ const PRODUCTS = [
             { number: "1 MSPS", label: "burst sample rate" },
             { number: "∞", label: "append-only retention" },
         ],
-        accent: "#6366F1",
-        accentGlow: "rgba(99,102,241,0.15)",
-        border: "rgba(99,102,241,0.25)",
-        hoverBorder: "rgba(99,102,241,0.55)",
+        accent: "#FF6B00",
+        accentGlow: "rgba(255,107,0,0.15)",
+        border: "rgba(255,107,0,0.25)",
+        hoverBorder: "rgba(255,107,0,0.55)",
     },
 ] as const;
 
@@ -134,7 +134,7 @@ export function ProductChooser() {
                             borderRadius: "1px",
                             background:
                                 "linear-gradient(#0E1218, #0E1218) padding-box, " +
-                                "linear-gradient(135deg, #00D9C0 33%, #FFB547 66%, #6366F1 100%) border-box",
+                                "linear-gradient(135deg, #00D9C0 33%, #FFE600 66%, #FF6B00 100%) border-box",
                         }}
                     >
                         {/* Top-left — IV&V teal */}
@@ -152,7 +152,7 @@ export function ProductChooser() {
                             style={{
                                 position: "absolute",
                                 inset: 0,
-                                background: "#FFB547",
+                                background: "#FFE600",
                                 clipPath: "polygon(0 0, 100% 0, 50% 50%)",
                                 opacity: 0.9,
                             }}
@@ -162,7 +162,7 @@ export function ProductChooser() {
                             style={{
                                 position: "absolute",
                                 inset: 0,
-                                background: "#6366F1",
+                                background: "#FF6B00",
                                 clipPath: "polygon(100% 0, 100% 100%, 0% 100%, 50% 50%)",
                                 opacity: 0.9,
                             }}
