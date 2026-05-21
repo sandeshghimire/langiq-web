@@ -3,6 +3,7 @@ import { Instrument_Serif, Sora, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { JsonLd } from "@/components/json-ld";
 import { TelemetryBar } from "@/components/telemetry-bar";
+import { SmoothScroll } from "@/components/smooth-scroll";
 
 const SITE_URL = "https://ivv.soccentric.com";
 
@@ -156,10 +157,24 @@ export default function RootLayout({
     >
       <head>
         <JsonLd />
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-61ZPWZPWJN" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-61ZPWZPWJN');
+            `,
+          }}
+        />
       </head>
       <body className="min-h-full">
-        {children}
-        <TelemetryBar />
+        <SmoothScroll>
+          {children}
+          <TelemetryBar />
+        </SmoothScroll>
       </body>
     </html>
   );

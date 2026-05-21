@@ -80,12 +80,25 @@ export function Hero({
       aria-label="Hero"
     >
       <div className="grid-pattern" style={{ position: "absolute", inset: 0, pointerEvents: "none" }} aria-hidden="true" />
+      {/* Floating ambient orbs */}
       <div
+        className="orb-float"
         style={{
           position: "absolute", top: "30%", left: "50%",
           transform: "translate(-50%, -50%)",
           width: "1200px", height: "900px", borderRadius: "50%",
           background: "radial-gradient(circle, var(--accent-glow) 0%, transparent 65%)",
+          pointerEvents: "none",
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="orb-float-2"
+        style={{
+          position: "absolute", top: "60%", left: "30%",
+          transform: "translate(-50%, -50%)",
+          width: "600px", height: "500px", borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(var(--warm-rgb), 0.08) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
         aria-hidden="true"

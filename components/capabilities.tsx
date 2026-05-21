@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import {
     Thermometer,
     Droplets,
@@ -103,26 +104,15 @@ export function Capabilities({ content = DEFAULT_CAPABILITIES }: { content?: Cap
                 >
                     {content.features.map((feature, i) => (
                         <Reveal key={feature.title} delay={0.05 + (i % 3) * 0.06}>
-                            <div
+                            <motion.div
+                                whileHover={{ y: -4, boxShadow: "0 12px 40px var(--accent-glow)", borderColor: "var(--accent-dim)" }}
+                                transition={{ type: "spring", stiffness: 340, damping: 28 }}
                                 style={{
                                     background: "var(--bg-surface)",
                                     border: "1px solid var(--border)",
                                     borderRadius: "6px",
                                     padding: "28px 24px",
                                     height: "100%",
-                                    transition: "transform 0.22s cubic-bezier(0.16,1,0.3,1), border-color 0.2s, box-shadow 0.2s",
-                                }}
-                                onMouseEnter={(e) => {
-                                    const el = e.currentTarget;
-                                    el.style.transform = "translateY(-3px)";
-                                    el.style.borderColor = "var(--accent-dim)";
-                                    el.style.boxShadow = "0 8px 32px var(--accent-glow)";
-                                }}
-                                onMouseLeave={(e) => {
-                                    const el = e.currentTarget;
-                                    el.style.transform = "translateY(0)";
-                                    el.style.borderColor = "var(--border)";
-                                    el.style.boxShadow = "none";
                                 }}
                             >
                                 <div
@@ -163,7 +153,7 @@ export function Capabilities({ content = DEFAULT_CAPABILITIES }: { content?: Cap
                                 >
                                     {feature.description}
                                 </p>
-                            </div>
+                            </motion.div>
                         </Reveal>
                     ))}
                 </div>

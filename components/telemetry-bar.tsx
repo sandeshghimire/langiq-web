@@ -1,6 +1,12 @@
+"use client";
+import { motion } from "framer-motion";
+
 export function TelemetryBar() {
     return (
-        <div
+        <motion.div
+            initial={{ y: 48, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
             style={{
                 position: "fixed",
                 bottom: 0,
@@ -39,7 +45,7 @@ export function TelemetryBar() {
             <Stat label="UPTIME" value="99.94%" />
             <Sep />
             <Stat label="SCHEMA" value="v1.0.0" />
-        </div>
+        </motion.div>
     );
 }
 

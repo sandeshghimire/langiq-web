@@ -2,6 +2,16 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+
+const containerVariants = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } },
+};
+const itemVariants = {
+    hidden: { opacity: 0, y: 20, filter: "blur(6px)" },
+    show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.72, ease: [0.16, 1, 0.3, 1] as const } },
+};
 
 const PRODUCTS = [
     {
@@ -61,7 +71,10 @@ export function ProductChooser() {
     const [hovered, setHovered] = useState<string | null>(null);
 
     return (
-        <div
+        <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
             style={{
                 minHeight: "100vh",
                 background: "var(--bg-deep)",
@@ -88,7 +101,8 @@ export function ProductChooser() {
             />
 
             {/* Brand lockup */}
-            <div
+            <motion.div
+                variants={itemVariants}
                 style={{
                     display: "flex",
                     flexDirection: "column",
@@ -196,10 +210,11 @@ export function ProductChooser() {
                 >
                     Three silicon-native test platforms — validation evidence, hardware-in-the-loop, and data acquisition. Built to work together.
                 </p>
-            </div>
+            </motion.div>
 
             {/* Product cards */}
-            <div
+            <motion.div
+                variants={containerVariants}
                 style={{
                     display: "grid",
                     gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
@@ -211,137 +226,143 @@ export function ProductChooser() {
                 }}
             >
                 {PRODUCTS.map((p) => (
-                    <Link
+                    <motion.div
                         key={p.href}
-                        href={p.href}
-                        onMouseEnter={() => setHovered(p.tag)}
-                        onMouseLeave={() => setHovered(null)}
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "20px",
-                            padding: "36px 32px",
-                            background: hovered === p.tag ? p.accentGlow : "rgba(14,18,24,0.7)",
-                            border: `1px solid ${hovered === p.tag ? p.hoverBorder : p.border}`,
-                            borderRadius: "6px",
-                            textDecoration: "none",
-                            transition: "background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease",
-                            boxShadow: hovered === p.tag ? `0 0 40px ${p.accentGlow}` : "none",
-                            cursor: "pointer",
-                        }}
-                        aria-label={`Go to ${p.tag} — ${p.name}`}
+                        variants={itemVariants}
+                        whileHover={{ y: -5, boxShadow: `0 16px 48px ${p.accentGlow}` }}
+                        transition={{ type: "spring", stiffness: 320, damping: 26 }}
                     >
-                        {/* Tag + name */}
-                        <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                            <span
-                                style={{
-                                    fontFamily: "var(--font-jetbrains, monospace)",
-                                    fontSize: "10px",
-                                    letterSpacing: "0.2em",
-                                    textTransform: "uppercase",
-                                    color: p.accent,
-                                }}
-                            >
-                                {p.tag}
-                            </span>
-                            <h2
-                                style={{
-                                    fontFamily: "var(--font-instrument-serif, serif)",
-                                    fontStyle: "italic",
-                                    fontSize: "clamp(20px, 3vw, 28px)",
-                                    color: "var(--text-primary)",
-                                    lineHeight: 1.2,
-                                    letterSpacing: "-0.01em",
-                                    margin: 0,
-                                }}
-                            >
-                                {p.name}
-                            </h2>
+                        <Link
+                            href={p.href}
+                            onMouseEnter={() => setHovered(p.tag)}
+                            onMouseLeave={() => setHovered(null)}
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "20px",
+                                padding: "36px 32px",
+                                background: hovered === p.tag ? p.accentGlow : "rgba(14,18,24,0.7)",
+                                border: `1px solid ${hovered === p.tag ? p.hoverBorder : p.border}`,
+                                borderRadius: "6px",
+                                textDecoration: "none",
+                                transition: "background 0.25s ease, border-color 0.25s ease",
+                                cursor: "pointer",
+                            }}
+                            aria-label={`Go to ${p.tag} — ${p.name}`}
+                        >
+                            {/* Tag + name */}
+                            <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                                <span
+                                    style={{
+                                        fontFamily: "var(--font-jetbrains, monospace)",
+                                        fontSize: "10px",
+                                        letterSpacing: "0.2em",
+                                        textTransform: "uppercase",
+                                        color: p.accent,
+                                    }}
+                                >
+                                    {p.tag}
+                                </span>
+                                <h2
+                                    style={{
+                                        fontFamily: "var(--font-instrument-serif, serif)",
+                                        fontStyle: "italic",
+                                        fontSize: "clamp(20px, 3vw, 28px)",
+                                        color: "var(--text-primary)",
+                                        lineHeight: 1.2,
+                                        letterSpacing: "-0.01em",
+                                        margin: 0,
+                                    }}
+                                >
+                                    {p.name}
+                                </h2>
+                                <p
+                                    style={{
+                                        fontFamily: "var(--font-geist, sans-serif)",
+                                        fontSize: "13px",
+                                        color: p.accent,
+                                        margin: 0,
+                                        opacity: 0.9,
+                                    }}
+                                >
+                                    {p.tagline}
+                                </p>
+                            </div>
+
+                            {/* Description */}
                             <p
                                 style={{
                                     fontFamily: "var(--font-geist, sans-serif)",
-                                    fontSize: "13px",
-                                    color: p.accent,
+                                    fontSize: "14px",
+                                    color: "var(--text-secondary)",
+                                    lineHeight: 1.65,
                                     margin: 0,
-                                    opacity: 0.9,
+                                    flexGrow: 1,
                                 }}
                             >
-                                {p.tagline}
+                                {p.description}
                             </p>
-                        </div>
 
-                        {/* Description */}
-                        <p
-                            style={{
-                                fontFamily: "var(--font-geist, sans-serif)",
-                                fontSize: "14px",
-                                color: "var(--text-secondary)",
-                                lineHeight: 1.65,
-                                margin: 0,
-                                flexGrow: 1,
-                            }}
-                        >
-                            {p.description}
-                        </p>
+                            {/* Stats row */}
+                            <div
+                                style={{
+                                    display: "flex",
+                                    gap: "20px",
+                                    paddingTop: "16px",
+                                    borderTop: `1px solid rgba(255,255,255,0.06)`,
+                                }}
+                            >
+                                {p.stats.map((s) => (
+                                    <div key={s.label} style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+                                        <span
+                                            style={{
+                                                fontFamily: "var(--font-instrument-serif, serif)",
+                                                fontStyle: "italic",
+                                                fontSize: "22px",
+                                                color: p.accent,
+                                                lineHeight: 1,
+                                            }}
+                                        >
+                                            {s.number}
+                                        </span>
+                                        <span
+                                            style={{
+                                                fontFamily: "var(--font-jetbrains, monospace)",
+                                                fontSize: "9px",
+                                                letterSpacing: "0.1em",
+                                                textTransform: "uppercase",
+                                                color: "var(--text-secondary)",
+                                            }}
+                                        >
+                                            {s.label}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
 
-                        {/* Stats row */}
-                        <div
-                            style={{
-                                display: "flex",
-                                gap: "20px",
-                                paddingTop: "16px",
-                                borderTop: `1px solid rgba(255,255,255,0.06)`,
-                            }}
-                        >
-                            {p.stats.map((s) => (
-                                <div key={s.label} style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-                                    <span
-                                        style={{
-                                            fontFamily: "var(--font-instrument-serif, serif)",
-                                            fontStyle: "italic",
-                                            fontSize: "22px",
-                                            color: p.accent,
-                                            lineHeight: 1,
-                                        }}
-                                    >
-                                        {s.number}
-                                    </span>
-                                    <span
-                                        style={{
-                                            fontFamily: "var(--font-jetbrains, monospace)",
-                                            fontSize: "9px",
-                                            letterSpacing: "0.1em",
-                                            textTransform: "uppercase",
-                                            color: "var(--text-secondary)",
-                                        }}
-                                    >
-                                        {s.label}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* CTA row */}
-                        <div
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "6px",
-                                color: p.accent,
-                                fontFamily: "var(--font-geist, sans-serif)",
-                                fontSize: "13px",
-                                fontWeight: 500,
-                            }}
-                        >
-                            Explore {p.tag}
-                            <ArrowRight size={14} aria-hidden="true" />
-                        </div>
-                    </Link>
+                            {/* CTA row */}
+                            <div
+                                style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "6px",
+                                    color: p.accent,
+                                    fontFamily: "var(--font-geist, sans-serif)",
+                                    fontSize: "13px",
+                                    fontWeight: 500,
+                                }}
+                            >
+                                Explore {p.tag}
+                                <ArrowRight size={14} aria-hidden="true" />
+                            </div>
+                        </Link>
+                    </motion.div>
                 ))}
-            </div>
+            </motion.div>
 
             {/* Footer note */}
-            <p
+            <motion.p
+                variants={itemVariants}
                 style={{
                     marginTop: "48px",
                     fontFamily: "var(--font-jetbrains, monospace)",
@@ -355,7 +376,7 @@ export function ProductChooser() {
                 }}
             >
                 SoCcentric · Silicon-Native Test · IV&V · HIL · Datalogger
-            </p>
-        </div>
+            </motion.p>
+        </motion.div>
     );
 }
