@@ -47,7 +47,7 @@ export function Nav({
                 backdropFilter: scrolled ? "blur(14px)" : "none",
                 WebkitBackdropFilter: scrolled ? "blur(14px)" : "none",
                 transition: "background 0.3s ease, backdrop-filter 0.3s ease",
-                borderBottom: scrolled ? "1px solid var(--border)" : "none",
+                borderBottom: scrolled ? `1px solid ${product ? "var(--accent-dim)" : "var(--border)"}` : "none",
             }}
         >
             {/* Scroll progress bar */}
@@ -158,7 +158,7 @@ export function Nav({
                                 fontFamily: "var(--font-instrument-serif, serif)",
                                 fontStyle: "italic",
                                 fontSize: "18px",
-                                color: "var(--text-primary)",
+                                color: product ? "var(--accent)" : "var(--text-primary)",
                                 lineHeight: 1,
                                 letterSpacing: "-0.01em",
                                 whiteSpace: "nowrap",

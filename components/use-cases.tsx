@@ -13,7 +13,7 @@ export function UseCases({ content = DEFAULT_USE_CASES }: { content?: UseCasesCo
             id="use-cases"
             style={{
                 background: "var(--bg-mid)",
-                padding: "120px 48px",
+                padding: "80px 48px",
                 minHeight: "100vh",
                 display: "flex",
                 flexDirection: "column",
@@ -21,7 +21,7 @@ export function UseCases({ content = DEFAULT_USE_CASES }: { content?: UseCasesCo
             }}
             aria-labelledby="usecases-headline"
         >
-            <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
+            <div style={{ maxWidth: "1440px", margin: "0 auto", width: "100%" }}>
                 <Reveal>
                     <SectionLabel label={content.sectionLabel} />
                 </Reveal>
@@ -36,7 +36,7 @@ export function UseCases({ content = DEFAULT_USE_CASES }: { content?: UseCasesCo
                             letterSpacing: "-0.015em",
                             fontWeight: 400,
                             color: "var(--text-primary)",
-                            margin: "0 0 64px",
+                            margin: "0 0 24px",
                         }}
                     >
                         {content.headline}
@@ -47,33 +47,32 @@ export function UseCases({ content = DEFAULT_USE_CASES }: { content?: UseCasesCo
                     style={{
                         display: "grid",
                         gridTemplateColumns: "repeat(3, 1fr)",
-                        gap: "20px",
+                        gap: "10px",
                     }}
                     className="usecases-grid"
                 >
                     {content.cards.map((card, i) => (
-                        <Reveal key={card.industry} delay={0.05 + (i % 3) * 0.07}>
+                        <Reveal key={card.industry} delay={0.05 + (i % 3) * 0.05}>
                             <motion.div
-                                whileHover={{ y: -4, boxShadow: "0 12px 40px var(--accent-glow)", borderColor: "var(--accent-dim)" }}
+                                whileHover={{ y: -3, boxShadow: "0 8px 28px var(--accent-glow)", borderColor: "var(--accent-dim)" }}
                                 transition={{ type: "spring", stiffness: 340, damping: 28 }}
                                 style={{
                                     background: "var(--bg-surface)",
                                     border: "1px solid var(--border)",
                                     borderRadius: "6px",
-                                    padding: "28px 24px",
-                                    height: "100%",
+                                    padding: "14px",
                                     display: "flex",
                                     flexDirection: "column",
-                                    gap: "12px",
+                                    gap: "5px",
                                 }}
                             >
                                 <span
                                     style={{
                                         fontFamily: "var(--font-jetbrains, monospace)",
-                                        fontSize: "10px",
+                                        fontSize: "9px",
                                         letterSpacing: "0.14em",
                                         textTransform: "uppercase",
-                                        color: "var(--text-secondary)",
+                                        color: "var(--accent)",
                                     }}
                                 >
                                     {card.industry}
@@ -82,12 +81,12 @@ export function UseCases({ content = DEFAULT_USE_CASES }: { content?: UseCasesCo
                                     style={{
                                         fontFamily: "var(--font-instrument-serif, serif)",
                                         fontStyle: "italic",
-                                        fontSize: "26px",
+                                        fontSize: "22px",
                                         fontWeight: 400,
                                         color: "var(--text-primary)",
                                         margin: 0,
                                         letterSpacing: "-0.01em",
-                                        lineHeight: 1.2,
+                                        lineHeight: 1.25,
                                     }}
                                 >
                                     {card.title}
@@ -95,61 +94,13 @@ export function UseCases({ content = DEFAULT_USE_CASES }: { content?: UseCasesCo
                                 <p
                                     style={{
                                         fontSize: "14px",
-                                        lineHeight: 1.6,
+                                        lineHeight: 1.5,
                                         color: "var(--text-secondary)",
                                         margin: 0,
-                                        flex: 1,
                                     }}
                                 >
                                     {card.vignette}
                                 </p>
-                                {"subsystems" in card && Array.isArray((card as unknown as { subsystems?: readonly string[] }).subsystems) && (
-                                    <ul
-                                        style={{
-                                            margin: "4px 0 0",
-                                            padding: 0,
-                                            listStyle: "none",
-                                            display: "flex",
-                                            flexDirection: "column",
-                                            gap: "4px",
-                                        }}
-                                        aria-label="Validated subsystems"
-                                    >
-                                        {(card as unknown as { subsystems: readonly string[] }).subsystems.map((s) => (
-                                            <li
-                                                key={s}
-                                                style={{
-                                                    fontFamily: "var(--font-jetbrains, monospace)",
-                                                    fontSize: "10px",
-                                                    letterSpacing: "0.08em",
-                                                    color: "var(--text-secondary)",
-                                                    display: "flex",
-                                                    alignItems: "center",
-                                                    gap: "6px",
-                                                }}
-                                            >
-                                                <span style={{ color: "var(--accent)" }} aria-hidden="true">›</span>
-                                                {s}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
-                                {"testModes" in card && Array.isArray((card as unknown as { testModes?: readonly string[] }).testModes) && (
-                                    <div
-                                        style={{
-                                            fontFamily: "var(--font-jetbrains, monospace)",
-                                            fontSize: "10px",
-                                            letterSpacing: "0.12em",
-                                            textTransform: "uppercase",
-                                            color: "var(--accent)",
-                                            borderTop: "1px solid var(--border)",
-                                            paddingTop: "12px",
-                                            marginTop: "4px",
-                                        }}
-                                    >
-                                        MODES: {(card as unknown as { testModes: readonly string[] }).testModes.join(" · ")}
-                                    </div>
-                                )}
                             </motion.div>
                         </Reveal>
                     ))}
