@@ -262,6 +262,37 @@ body {
   text-transform: uppercase;
 }
 
+/* ─── Vertical side-tape marquee ─── */
+@keyframes vtape-down {
+  from {
+    transform: translateY(-50%);
+  }
+
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes vtape-up {
+  from {
+    transform: translateY(0%);
+  }
+
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+.vtape-down {
+  animation: vtape-down 28s linear infinite;
+  will-change: transform;
+}
+
+.vtape-up {
+  animation: vtape-up 28s linear infinite;
+  will-change: transform;
+}
+
 /* ─── Proof-strip infinite marquee ─── */
 @keyframes marquee {
   from {

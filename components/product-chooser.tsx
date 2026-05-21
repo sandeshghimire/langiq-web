@@ -4,6 +4,13 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
+const TAPE_ITEMS = [
+    'Yocto Linux', 'FreeRTOS', 'FlatBuffers', 'gRPC',
+    'I²C', 'SPI', 'UART', 'USB', 'PCIe', 'MIPI',
+    'IMU', 'ADC', 'DAC', 'Camera', 'LiDAR',
+    'CAN-FD', 'ISO 26262', 'DO-178C', 'IEC 62304', 'ASIL-B',
+];
+
 const containerVariants = {
     hidden: {},
     show: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } },
@@ -87,6 +94,44 @@ export function ProductChooser() {
                 overflow: "hidden",
             }}
         >
+            {/* Left vertical tape — scrolls downward */}
+            <div
+                aria-hidden="true"
+                style={{
+                    position: "absolute", left: 0, top: 0, bottom: 0,
+                    width: "32px", overflow: "hidden", zIndex: 1,
+                }}
+            >
+                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "120px", background: "linear-gradient(to bottom, var(--bg-deep), transparent)", zIndex: 2, pointerEvents: "none" }} />
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "120px", background: "linear-gradient(to top, var(--bg-deep), transparent)", zIndex: 2, pointerEvents: "none" }} />
+                <div className="vtape-down" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                    {[...TAPE_ITEMS, ...TAPE_ITEMS].map((item, i) => (
+                        <span key={i} style={{ writingMode: "vertical-lr", fontFamily: "var(--font-jetbrains, monospace)", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--border-strong)", padding: "14px 0", whiteSpace: "nowrap" }}>
+                            {item}
+                        </span>
+                    ))}
+                </div>
+            </div>
+
+            {/* Right vertical tape — scrolls upward */}
+            <div
+                aria-hidden="true"
+                style={{
+                    position: "absolute", right: 0, top: 0, bottom: 0,
+                    width: "32px", overflow: "hidden", zIndex: 1,
+                }}
+            >
+                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "120px", background: "linear-gradient(to bottom, var(--bg-deep), transparent)", zIndex: 2, pointerEvents: "none" }} />
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "120px", background: "linear-gradient(to top, var(--bg-deep), transparent)", zIndex: 2, pointerEvents: "none" }} />
+                <div className="vtape-up" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                    {[...TAPE_ITEMS, ...TAPE_ITEMS].map((item, i) => (
+                        <span key={i} style={{ writingMode: "vertical-lr", fontFamily: "var(--font-jetbrains, monospace)", fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--border-strong)", padding: "14px 0", whiteSpace: "nowrap" }}>
+                            {item}
+                        </span>
+                    ))}
+                </div>
+            </div>
+
             {/* Subtle grid pattern */}
             <div
                 aria-hidden="true"
@@ -116,8 +161,8 @@ export function ProductChooser() {
                 {/* Rotated square mark — split IV&V teal / HIL amber */}
                 <div
                     style={{
-                        width: "40px",
-                        height: "40px",
+                        width: "80px",
+                        height: "80px",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -125,8 +170,8 @@ export function ProductChooser() {
                 >
                     <div
                         style={{
-                            width: "24px",
-                            height: "24px",
+                            width: "52px",
+                            height: "52px",
                             transform: "rotate(45deg)",
                             position: "relative",
                             overflow: "hidden",

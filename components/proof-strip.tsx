@@ -3,74 +3,64 @@ import type { Widen } from "@/lib/content/types";
 
 type ProofStripContent = Widen<typeof DEFAULT_PROOF_STRIP>;
 
-export function ProofStrip({ content = DEFAULT_PROOF_STRIP }: { content?: ProofStripContent }) {
-    // Duplicate for seamless loop
-    const doubled = [...content.items, ...content.items];
-
+function VerticalTape({ items, direction }: { items: readonly string[]; direction: "up" | "down" }) {
+    const doubled = [...items, ...items];
     return (
         <div
-            style={{
-                background: "var(--bg-surface)",
-                borderTop: "1px solid var(--border)",
-                borderBottom: "1px solid var(--border)",
-                padding: "13px 0",
-                overflow: "hidden",
-                position: "relative",
-            }}
-            aria-label="Technologies and interfaces validated"
+            className={direction === "down" ? "vtape-down" : "vtape-up"}
+            style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
         >
-            {/* Left fade */}
-            <div
-                style={{
-                    position: "absolute", left: 0, top: 0, bottom: 0,
-                    width: "100px",
-                    background: "linear-gradient(to right, var(--bg-surface), transparent)",
-                    zIndex: 1, pointerEvents: "none",
-                }}
-                aria-hidden="true"
-            />
-            {/* Right fade */}
-            <div
-                style={{
-                    position: "absolute", right: 0, top: 0, bottom: 0,
-                    width: "100px",
-                    background: "linear-gradient(to left, var(--bg-surface), transparent)",
-                    zIndex: 1, pointerEvents: "none",
-                }}
-                aria-hidden="true"
-            />
-
-            <div className="marquee-track" style={{ width: "max-content" }}>
-                {doubled.map((item, i) => (
-                    <span
-                        key={i}
-                        style={{
-                            fontFamily: "var(--font-jetbrains, monospace)",
-                            fontSize: "11px",
-                            letterSpacing: "0.13em",
-                            color: "var(--text-tertiary)",
-                            whiteSpace: "nowrap",
-                            display: "inline-flex",
-                            alignItems: "center",
-                            padding: "0 20px",
-                        }}
-                    >
-                        {item}
-                        <span
-                            style={{
-                                display: "inline-block",
-                                width: "3px",
-                                height: "3px",
-                                borderRadius: "50%",
-                                background: "var(--border-strong)",
-                                marginLeft: "20px",
-                                flexShrink: 0,
-                            }}
-                            aria-hidden="true"
-                        />
-                    </span>
-                ))}
-            </div>
+            {doubled.map((item, i) => (
+                <span
+                    key={i}
+                    style={{
+                        writingMode: "vertical-lr",
+                        fontFamily: "var(--font-jetbrains, monospace)",
+                        fontSize: "9px",
+                        letterSpacing: "0.14em",
+                        textTransform: "uppercase",
+                        color: "var(--border-strong)",
+                        padding: "14px 0",
+                        whiteSpace: "nowrap",
+                    }}
+                >
+                    {item}
+                </span>
+            ))}
         </div>
+    );
+}
+
+export function ProofStrip({ content = DEFAULT_PROOF_STRIP }: { content?: ProofStripContent }) {
+    return (
+        <>
+            {/* Left fixed vertical tape — scrolls down */}
+            <div
+                aria-hidden="true"
+                style={{
+                    position: "fixed", left: 0, top: 0, bottom: 0,
+                    width: "32px", overflow: "hidden", zIndex: 50,
+                    pointerEvents: "none",
+                }}
+            >
+                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "120px", background: "linear-gradient(to bottom, var(--bg-deep), transparent)", zIndex: 2 }} />
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "120px", background: "linear-gradient(to top, var(--bg-deep), transparent)", zIndex: 2 }} />
+                <VerticalTape items={content.items} direction="down" />
+            </div>
+
+            {/* Right fixed vertical tape — scrolls up */}
+            <div
+                aria-hidden="true"
+                style={{
+                    position: "fixed", right: 0, top: 0, bottom: 0,
+                    width: "32px", overflow: "hidden", zIndex: 50,
+                    pointerEvents: "none",
+                }}
+            >
+                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "120px", background: "linear-gradient(to bottom, var(--bg-deep), transparent)", zIndex: 2 }} />
+                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "120px", background: "linear-gradient(to top, var(--bg-deep), transparent)", zIndex: 2 }} />
+                <VerticalTape items={content.items} direction="up" />
+            </div>
+        </>
     );
 }
