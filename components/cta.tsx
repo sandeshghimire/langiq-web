@@ -97,7 +97,7 @@ export function CtaSection({ content = DEFAULT_CTA }: { content?: CtaContent }) 
         setStatus("loading");
         setErrorMsg("");
         try {
-            const res = await fetch("/api/lead", {
+            const res = await fetch("/lead.php", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

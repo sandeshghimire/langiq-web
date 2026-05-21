@@ -1,0 +1,17 @@
+Options -Indexes
+DirectoryIndex index.html index.php
+
+# Next.js static export — serve .html files for clean URLs
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Let existing files and directories pass through unchanged
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Map /page → /page.html if the file exists
+    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.html -f
+    RewriteRule ^(.+)$ $1.html [L]
+</IfModule>

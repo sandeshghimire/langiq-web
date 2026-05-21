@@ -1,0 +1,2 @@
+Options -Indexes
+Redirect 308 /api/lead.php /lead.php

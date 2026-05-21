@@ -241,6 +241,7 @@ export function ProductChooser() {
                                 flexDirection: "column",
                                 gap: "20px",
                                 padding: "36px 32px",
+                                height: "100%",
                                 background: hovered === p.tag ? p.accentGlow : "rgba(14,18,24,0.7)",
                                 border: `1px solid ${hovered === p.tag ? p.hoverBorder : p.border}`,
                                 borderRadius: "6px",
