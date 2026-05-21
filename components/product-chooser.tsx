@@ -37,6 +37,23 @@ const PRODUCTS = [
         border: "rgba(255,181,71,0.25)",
         hoverBorder: "rgba(255,181,71,0.55)",
     },
+    {
+        href: "/datalogger",
+        tag: "Datalogger",
+        name: "Data Acquisition & Logging",
+        tagline: "FPGA-accurate, multi-channel capture on real silicon.",
+        description:
+            "128 log channels. 1 MSPS burst analog capture. Passive CAN-FD, UART, SPI, I²C, and Ethernet bus monitoring. Append-only, signed evidence store. GPS/PTP synchronised. Native IV&V integration.",
+        stats: [
+            { number: "128", label: "log channels" },
+            { number: "1 MSPS", label: "burst sample rate" },
+            { number: "∞", label: "append-only retention" },
+        ],
+        accent: "#6366F1",
+        accentGlow: "rgba(99,102,241,0.15)",
+        border: "rgba(99,102,241,0.25)",
+        hoverBorder: "rgba(99,102,241,0.55)",
+    },
 ] as const;
 
 export function ProductChooser() {
@@ -102,26 +119,36 @@ export function ProductChooser() {
                             borderRadius: "1px",
                             background:
                                 "linear-gradient(#0E1218, #0E1218) padding-box, " +
-                                "linear-gradient(135deg, #00D9C0 50%, #FFB547 50%) border-box",
+                                "linear-gradient(135deg, #00D9C0 33%, #FFB547 66%, #6366F1 100%) border-box",
                         }}
                     >
-                        {/* Left triangle — IV&V teal */}
+                        {/* Top-left — IV&V teal */}
                         <div
                             style={{
                                 position: "absolute",
                                 inset: 0,
                                 background: "#00D9C0",
-                                clipPath: "polygon(0 0, 0% 100%, 100% 100%)",
+                                clipPath: "polygon(0 0, 0% 100%, 50% 50%)",
                                 opacity: 0.9,
                             }}
                         />
-                        {/* Right triangle — HIL amber */}
+                        {/* Top-right — HIL amber */}
                         <div
                             style={{
                                 position: "absolute",
                                 inset: 0,
                                 background: "#FFB547",
-                                clipPath: "polygon(0 0, 100% 0, 100% 100%)",
+                                clipPath: "polygon(0 0, 100% 0, 50% 50%)",
+                                opacity: 0.9,
+                            }}
+                        />
+                        {/* Bottom — Datalogger indigo */}
+                        <div
+                            style={{
+                                position: "absolute",
+                                inset: 0,
+                                background: "#6366F1",
+                                clipPath: "polygon(100% 0, 100% 100%, 0% 100%, 50% 50%)",
                                 opacity: 0.9,
                             }}
                         />
@@ -166,7 +193,7 @@ export function ProductChooser() {
                         margin: 0,
                     }}
                 >
-                    Two silicon-native test platforms. One for validation evidence, one for hardware-in-the-loop. Built to work together.
+                    Three silicon-native test platforms — validation evidence, hardware-in-the-loop, and data acquisition. Built to work together.
                 </p>
             </div>
 
@@ -174,10 +201,10 @@ export function ProductChooser() {
             <div
                 style={{
                     display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
                     gap: "24px",
                     width: "100%",
-                    maxWidth: "880px",
+                    maxWidth: "1280px",
                     position: "relative",
                     zIndex: 1,
                 }}
@@ -326,7 +353,7 @@ export function ProductChooser() {
                     zIndex: 1,
                 }}
             >
-                SoCcentric · Silicon-Native Test
+                SoCcentric · Silicon-Native Test · IV&V · HIL · Datalogger
             </p>
         </div>
     );

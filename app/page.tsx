@@ -1,9 +1,9 @@
 import { ProductChooser } from "@/components/product-chooser";
 
 export const metadata = {
-  title: "SoCcentric — IV&V & HIL Platforms",
+  title: "SoCcentric — IV&V, HIL & Datalogger Platforms",
   description:
-    "SoCcentric builds silicon-native test platforms: IV&V for autonomous evidence-generating validation, and HIL for modular hardware-in-the-loop testing.",
+    "SoCcentric builds silicon-native test platforms: IV&V for autonomous evidence-generating validation, HIL for modular hardware-in-the-loop testing, and Datalogger for multi-channel FPGA-accurate data acquisition.",
 };
 
 export default function Home() {

@@ -22,6 +22,7 @@ export const FOOTER = {
             { label: 'Compliance evidence', href: '#evidence' },
             { label: 'Contact engineering', href: '#cta' },
             { label: '⇌ HIL platform', href: '/hil' },
+            { label: '⇌ Datalogger', href: '/datalogger' },
         ],
     },
     copyright: `© silicon-centric · ${new Date().getFullYear()} :: BUILT FOR ENGINEERS`,

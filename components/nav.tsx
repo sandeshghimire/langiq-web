@@ -12,7 +12,7 @@ export function Nav({
     product,
 }: {
     content?: NavContent;
-    product?: "ivv" | "hil";
+    product?: "ivv" | "hil" | "datalogger";
 }) {
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -25,8 +25,12 @@ export function Nav({
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
-    const switchHref = product === "ivv" ? "/hil" : product === "hil" ? "/ivv" : "/";
-    const switchLabel = product === "ivv" ? "HIL" : product === "hil" ? "IV&V" : null;
+    const ALL_PRODUCTS = [
+        { id: "ivv", label: "IV&V", href: "/ivv" },
+        { id: "hil", label: "HIL", href: "/hil" },
+        { id: "datalogger", label: "Datalogger", href: "/datalogger" },
+    ] as const;
+    const otherProducts = product ? ALL_PRODUCTS.filter((p) => p.id !== product) : [];
 
     return (
         <nav
@@ -71,47 +75,48 @@ export function Nav({
                     gap: "24px",
                 }}
             >
-                {/* Left: Brand lockup */}
-                <a
-                    href="#top"
-                    style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}
-                    aria-label={`silicon-centric ${content.brand.name} — go to top`}
-                >
-                    {/* Rotated square mark */}
-                    <div
-                        style={{
-                            width: "28px",
-                            height: "28px",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            flexShrink: 0,
-                        }}
+                {/* Left: Brand lockup — logo+company → home, product name → top */}
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                    {/* Diamond logo + company name → landing page */}
+                    <a
+                        href="/"
+                        style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}
+                        aria-label="SoCcentric — home"
                     >
+                        {/* Rotated square mark */}
                         <div
                             style={{
-                                width: "18px",
-                                height: "18px",
-                                border: "1.5px solid var(--accent)",
-                                transform: "rotate(45deg)",
-                                position: "relative",
+                                width: "28px",
+                                height: "28px",
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center",
+                                flexShrink: 0,
                             }}
                         >
                             <div
                                 style={{
-                                    width: "8px",
-                                    height: "8px",
-                                    background: "var(--accent)",
-                                    transform: "rotate(0deg)",
+                                    width: "18px",
+                                    height: "18px",
+                                    border: "1.5px solid var(--accent)",
+                                    transform: "rotate(45deg)",
+                                    position: "relative",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
                                 }}
-                            />
+                            >
+                                <div
+                                    style={{
+                                        width: "8px",
+                                        height: "8px",
+                                        background: "var(--accent)",
+                                        transform: "rotate(0deg)",
+                                    }}
+                                />
+                            </div>
                         </div>
-                    </div>
-                    {/* Text lockup */}
-                    <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
+                        {/* Company eyebrow */}
                         <span
                             style={{
                                 fontFamily: "var(--font-jetbrains, monospace)",
@@ -120,10 +125,33 @@ export function Nav({
                                 textTransform: "uppercase",
                                 color: "var(--text-secondary)",
                                 lineHeight: 1,
+                                whiteSpace: "nowrap",
                             }}
                         >
                             {content.brand.eyebrow}
                         </span>
+                    </a>
+
+                    {/* Divider */}
+                    <span
+                        style={{
+                            color: "var(--border-strong)",
+                            fontSize: "16px",
+                            lineHeight: 1,
+                            userSelect: "none",
+                            flexShrink: 0,
+                        }}
+                        aria-hidden="true"
+                    >
+                        /
+                    </span>
+
+                    {/* Product name → scroll to top */}
+                    <a
+                        href="#top"
+                        style={{ textDecoration: "none" }}
+                        aria-label={`${content.brand.name} — scroll to top`}
+                    >
                         <span
                             style={{
                                 fontFamily: "var(--font-instrument-serif, serif)",
@@ -132,12 +160,13 @@ export function Nav({
                                 color: "var(--text-primary)",
                                 lineHeight: 1,
                                 letterSpacing: "-0.01em",
+                                whiteSpace: "nowrap",
                             }}
                         >
                             {content.brand.name}
                         </span>
-                    </div>
-                </a>
+                    </a>
+                </div>
 
                 {/* Center: Anchor links — desktop */}
                 <div
@@ -166,13 +195,13 @@ export function Nav({
 
                 {/* Right: Product switcher + CTA + mobile menu button */}
                 <div style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
-                    {/* Product switcher badge */}
-                    {switchLabel && (
+                    {/* Product switcher badges */}
+                    {otherProducts.map((p) => (
                         <a
-                            href={switchHref}
+                            key={p.id}
+                            href={p.href}
                             className="hidden lg:flex"
                             style={{
-                                display: "flex",
                                 alignItems: "center",
                                 gap: "5px",
                                 padding: "5px 10px",
@@ -195,11 +224,11 @@ export function Nav({
                                 e.currentTarget.style.borderColor = "var(--border-strong)";
                                 e.currentTarget.style.color = "var(--text-secondary)";
                             }}
-                            aria-label={`Switch to ${switchLabel}`}
+                            aria-label={`Switch to ${p.label}`}
                         >
-                            ⇌ {switchLabel}
+                            ⇌ {p.label}
                         </a>
-                    )}
+                    ))}
                     {/* Mobile hamburger */}
                     <button
                         className="flex lg:hidden"
@@ -274,9 +303,10 @@ export function Nav({
                             zIndex: 99,
                         }}
                     >
-                        {switchLabel && (
+                        {otherProducts.map((p) => (
                             <a
-                                href={switchHref}
+                                key={p.id}
+                                href={p.href}
                                 onClick={() => setMobileOpen(false)}
                                 style={{
                                     fontFamily: "var(--font-jetbrains, monospace)",
@@ -289,9 +319,9 @@ export function Nav({
                                     borderBottom: "1px solid var(--border)",
                                 }}
                             >
-                                ⇌ Switch to {switchLabel}
+                                ⇌ Switch to {p.label}
                             </a>
-                        )}
+                        ))}
                         {content.links.map((link) => (
                             <a
                                 key={link.href}

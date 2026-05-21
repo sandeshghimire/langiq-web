@@ -66,25 +66,25 @@ export function MonitorAnim() {
                 </filter>
                 <clipPath id="mon-clip"><rect x="0" y="0" width="80" height="80" /></clipPath>
                 <linearGradient id="mon-grad" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stopColor="#00D9C0" stopOpacity="0.1" />
-                    <stop offset="70%" stopColor="#00D9C0" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#00D9C0" stopOpacity="1" />
+                    <stop offset="0%" style={{ stopColor: "var(--accent)", stopOpacity: 0.1 }} />
+                    <stop offset="70%" style={{ stopColor: "var(--accent)", stopOpacity: 0.8 }} />
+                    <stop offset="100%" style={{ stopColor: "var(--accent)", stopOpacity: 1 }} />
                 </linearGradient>
             </defs>
             {/* Grid */}
             {[20, 40, 60].map(y => (
-                <line key={y} x1="0" y1={y} x2="80" y2={y} stroke="rgba(0,217,192,0.07)" strokeWidth="0.5" />
+                <line key={y} x1="0" y1={y} x2="80" y2={y} style={{ stroke: "rgba(var(--accent-rgb), 0.07)" }} strokeWidth="0.5" />
             ))}
             {[20, 40, 60].map(x => (
-                <line key={x} x1={x} y1="0" x2={x} y2="80" stroke="rgba(0,217,192,0.07)" strokeWidth="0.5" />
+                <line key={x} x1={x} y1="0" x2={x} y2="80" style={{ stroke: "rgba(var(--accent-rgb), 0.07)" }} strokeWidth="0.5" />
             ))}
             {/* Trace */}
             <path id="mon-trace" d="" fill="none" stroke="url(#mon-grad)" strokeWidth="1.5"
                 clipPath="url(#mon-clip)" filter="url(#glow-mon)" />
             {/* Live head dot */}
-            <circle id="mon-head" cx="80" cy="40" r="3" fill="#00D9C0" filter="url(#glow-mon)" />
+            <circle id="mon-head" cx="80" cy="40" r="3" style={{ fill: "var(--accent)" }} filter="url(#glow-mon)" />
             {/* Sample counter */}
-            <text id="mon-sample" x="4" y="74" fill="#00D9C0" fontSize="6"
+            <text id="mon-sample" x="4" y="74" style={{ fill: "var(--accent)" }} fontSize="6"
                 fontFamily="var(--font-jetbrains, monospace)" letterSpacing="0.1em" opacity="0.45" />
         </svg>
     );

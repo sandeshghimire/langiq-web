@@ -77,24 +77,24 @@ export function EventAnim() {
                 </filter>
             </defs>
             {/* Threshold line */}
-            <line x1="4" y1="22" x2="76" y2="22" stroke="rgba(255,181,71,0.3)" strokeWidth="0.75" strokeDasharray="3,3" />
-            <text x="75" y="20" fill="rgba(255,181,71,0.5)" fontSize="5"
+            <line x1="4" y1="22" x2="76" y2="22" style={{ stroke: "rgba(var(--warm-rgb), 0.3)" }} strokeWidth="0.75" strokeDasharray="3,3" />
+            <text x="75" y="20" style={{ fill: "rgba(var(--warm-rgb), 0.5)" }} fontSize="5"
                 fontFamily="var(--font-jetbrains,monospace)" textAnchor="end">THR</text>
             {/* Baseline */}
-            <line x1="4" y1="48" x2="76" y2="48" stroke="rgba(0,217,192,0.25)" strokeWidth="1" />
+            <line x1="4" y1="48" x2="76" y2="48" style={{ stroke: "rgba(var(--accent-rgb), 0.25)" }} strokeWidth="1" />
             {[10, 30, 50, 70].map(cx => (
-                <circle key={cx} cx={cx} cy="48" r="1" fill="#00D9C0" opacity="0.2" />
+                <circle key={cx} cx={cx} cy="48" r="1" style={{ fill: "var(--accent)" }} opacity="0.2" />
             ))}
             {SPIKE_POSITIONS.map((sx, i) => (
                 <g key={i}>
-                    <rect id={`evt-fill-${i}`} x={sx - 2} y="48" width="4" height="0" fill="#00D9C0" opacity="0" />
+                    <rect id={`evt-fill-${i}`} x={sx - 2} y="48" width="4" height="0" style={{ fill: "var(--accent)" }} opacity="0" />
                     <line id={`evt-spike-${i}`} x1={sx} y1="48" x2={sx} y2="48"
-                        stroke="#00D9C0" strokeWidth="2" filter="url(#glow-evt)" opacity="0" />
+                        style={{ stroke: "var(--accent)" }} strokeWidth="2" filter="url(#glow-evt)" opacity="0" />
                     <circle id={`evt-ring-${i}`} cx={sx} cy="48" r="0"
-                        fill="none" stroke="#00D9C0" strokeWidth="1" opacity="0" />
+                        fill="none" style={{ stroke: "var(--accent)" }} strokeWidth="1" opacity="0" />
                 </g>
             ))}
-            <text x="40" y="72" textAnchor="middle" fill="#00D9C0" fontSize="6"
+            <text x="40" y="72" textAnchor="middle" style={{ fill: "var(--accent)" }} fontSize="6"
                 fontFamily="var(--font-jetbrains, monospace)" letterSpacing="0.14em" opacity="0.4">EVENT</text>
         </svg>
     );

@@ -168,7 +168,7 @@ export function CtaSection({ content = DEFAULT_CTA }: { content?: CtaContent }) 
                     width: "900px",
                     height: "600px",
                     borderRadius: "50%",
-                    background: "radial-gradient(ellipse, rgba(0,217,192,0.10) 0%, transparent 65%)",
+                    background: "radial-gradient(ellipse, var(--accent-glow) 0%, transparent 65%)",
                     pointerEvents: "none",
                 }}
                 aria-hidden="true"

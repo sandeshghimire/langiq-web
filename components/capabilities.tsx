@@ -15,6 +15,7 @@ import {
     Plug,
     Cpu,
     Activity,
+    BarChart2,
 } from "lucide-react";
 import { SectionLabel } from "./ui/section-label";
 import { Reveal } from "./ui/reveal";
@@ -37,6 +38,7 @@ const ICONS: Record<string, React.ReactNode> = {
     Plug: <Plug size={20} aria-hidden="true" />,
     Cpu: <Cpu size={20} aria-hidden="true" />,
     Activity: <Activity size={20} aria-hidden="true" />,
+    BarChart2: <BarChart2 size={20} aria-hidden="true" />,
 };
 
 type CapabilitiesContent = Widen<typeof DEFAULT_CAPABILITIES>;

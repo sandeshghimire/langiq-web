@@ -18,7 +18,7 @@ const organization = {
         height: 512,
     },
     description:
-        "silicon-centricprovides the Independent V&V Suite — platform-independent validation and verification for embedded systems.",
+        "SoCcentric builds silicon-native test platforms for embedded systems: IV&V for autonomous evidence-generating validation, HIL for modular hardware-in-the-loop testing, and Datalogger for multi-channel FPGA-accurate data acquisition.",
     sameAs: [] as string[],
 };
 
@@ -26,7 +26,7 @@ const website = {
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     url: SITE_URL,
-    name: "silicon-centricIV&V",
+    name: "SoCcentric",
     description:
         "Platform-independent validation and verification for embedded systems.",
     publisher: { "@id": `${SITE_URL}/#organization` },
@@ -66,7 +66,7 @@ const webpage = {
 const softwareApplication = {
     "@type": "SoftwareApplication",
     "@id": `${SITE_URL}/#software`,
-    name: "silicon-centricIndependent V&V Suite",
+    name: "silicon-centric Independent V&V Suite",
     applicationCategory: "DeveloperApplication",
     operatingSystem: ["Linux", "FreeRTOS", "Yocto"],
     offers: {

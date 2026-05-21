@@ -36,6 +36,17 @@ function useCountUp(target: number, duration = 1200, active = false) {
   return value;
 }
 
+function parseStatNumber(raw: string): number {
+  const n = parseInt(raw, 10);
+  return isNaN(n) ? 0 : n;
+}
+
+/** Returns true only when the stat string is a plain integer (e.g. "4", "128").
+ *  Non-numeric values like "∞" or "1 MSPS" are displayed verbatim. */
+function isCountable(raw: string): boolean {
+  return /^\d+$/.test(raw.trim());
+}
+
 type HeroContent = Widen<typeof DEFAULT_HERO>;
 
 export function Hero({
@@ -45,19 +56,11 @@ export function Hero({
   content?: HeroContent;
   heroDiagram?: React.ReactNode;
 }) {
-  const [samples, setSamples] = useState(120847);
   const [statsActive, setStatsActive] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
-  const stat0 = useCountUp(parseInt(content.stats[0]?.number ?? "0"), 900, statsActive);
-  const stat1 = useCountUp(parseInt(content.stats[1]?.number ?? "0"), 700, statsActive);
-  const stat2 = useCountUp(parseInt(content.stats[2]?.number ?? "0"), 1100, statsActive);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSamples((prev) => prev + Math.floor(Math.random() * 10 + 3));
-    }, 60);
-    return () => clearInterval(interval);
-  }, []);
+  const stat0 = useCountUp(parseStatNumber(content.stats[0]?.number ?? "0"), 900, statsActive);
+  const stat1 = useCountUp(parseStatNumber(content.stats[1]?.number ?? "0"), 700, statsActive);
+  const stat2 = useCountUp(parseStatNumber(content.stats[2]?.number ?? "0"), 1100, statsActive);
 
   useEffect(() => {
     const el = statsRef.current;
@@ -142,10 +145,11 @@ export function Hero({
           <motion.div variants={itemVariants} ref={statsRef} style={{ display: "flex", gap: "0", flexWrap: "wrap", justifyContent: "center", paddingBottom: "40px", alignItems: "center" }}>
             {content.stats.flatMap((stat, i) => {
               const displayNum = i === 0 ? stat0 : i === 1 ? stat1 : stat2;
+              const countable = isCountable(stat.number);
               const card = (
                 <div key={stat.label} style={{ display: "flex", flexDirection: "column", gap: "4px", alignItems: "center" }}>
                   <span className="counter-glow" style={{ fontFamily: "var(--font-instrument-serif, serif)", fontStyle: "italic", fontSize: "38px", lineHeight: 1, color: "var(--text-primary)", letterSpacing: "-0.01em" }}>
-                    {statsActive ? displayNum : stat.number}
+                    {countable && statsActive ? displayNum : stat.number}
                   </span>
                   <span style={{ fontFamily: "var(--font-jetbrains, monospace)", fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--text-secondary)" }}>{stat.label}</span>
                 </div>

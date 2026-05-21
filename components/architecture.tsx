@@ -58,7 +58,7 @@ export function Architecture({
                     width: "1200px",
                     height: "900px",
                     borderRadius: "50%",
-                    background: "radial-gradient(circle, rgba(0,217,192,0.07) 0%, transparent 70%)",
+                    background: "radial-gradient(circle, rgba(var(--accent-rgb), 0.07) 0%, transparent 70%)",
                     pointerEvents: "none",
                 }}
                 aria-hidden="true"

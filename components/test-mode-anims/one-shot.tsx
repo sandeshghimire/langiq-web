@@ -81,24 +81,24 @@ export function OneShotAnim() {
                 </filter>
             </defs>
             {/* Rail with tick marks */}
-            <line x1="4" y1="40" x2="76" y2="40" stroke="rgba(0,217,192,0.15)" strokeWidth="1" />
+            <line x1="4" y1="40" x2="76" y2="40" style={{ stroke: "rgba(var(--accent-rgb), 0.15)" }} strokeWidth="1" />
             {[8, 24, 40, 56, 72].map(x => (
-                <line key={x} x1={x} y1="37" x2={x} y2="43" stroke="rgba(0,217,192,0.22)" strokeWidth="0.75" />
+                <line key={x} x1={x} y1="37" x2={x} y2="43" style={{ stroke: "rgba(var(--accent-rgb), 0.22)" }} strokeWidth="0.75" />
             ))}
             {/* Trail */}
-            <path id="os-trail" d="M8,40 L8,40" fill="none" stroke="#00D9C0" strokeWidth="2.5"
+            <path id="os-trail" d="M8,40 L8,40" fill="none" style={{ stroke: "var(--accent)" }} strokeWidth="2.5"
                 strokeLinecap="round" opacity="0" filter="url(#glow-os)" />
             {/* Impact rings */}
-            <circle id="os-ring1" cx="40" cy="40" r="0" fill="none" stroke="#00D9C0" strokeWidth="1" opacity="0" />
-            <circle id="os-ring2" cx="40" cy="40" r="0" fill="none" stroke="#00D9C0" strokeWidth="0.5" opacity="0" />
+            <circle id="os-ring1" cx="40" cy="40" r="0" fill="none" style={{ stroke: "var(--accent)" }} strokeWidth="1" opacity="0" />
+            <circle id="os-ring2" cx="40" cy="40" r="0" fill="none" style={{ stroke: "var(--accent)" }} strokeWidth="0.5" opacity="0" />
             {/* Moving dot */}
-            <circle id="os-dot" cx="8" cy="40" r="4" fill="#00D9C0" filter="url(#glow-os)" opacity="0" />
+            <circle id="os-dot" cx="8" cy="40" r="4" style={{ fill: "var(--accent)" }} filter="url(#glow-os)" opacity="0" />
             {/* Checkmark */}
-            <path id="os-check" d="M26,40 L36,50 L54,30" fill="none" stroke="#00D9C0"
+            <path id="os-check" d="M26,40 L36,50 L54,30" fill="none" style={{ stroke: "var(--accent)" }}
                 strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
                 strokeDasharray="30" strokeDashoffset="30" filter="url(#glow-os)" opacity="0" />
             {/* PASS label */}
-            <text id="os-status" x="40" y="68" textAnchor="middle" fill="#00D9C0"
+            <text id="os-status" x="40" y="68" textAnchor="middle" style={{ fill: "var(--accent)" }}
                 fontSize="7" fontFamily="var(--font-jetbrains, monospace)" letterSpacing="0.18em" opacity="0">
                 PASS
             </text>

@@ -2,9 +2,9 @@
 import { useEffect, useRef } from "react";
 
 const METRICS = [
-    { label: "CPU TEMP", color: "#FFB547", cycleSec: 7 },
-    { label: "MEM HEALTH", color: "#00D9C0", cycleSec: 9.5 },
-    { label: "BUS ERR", color: "#00D9C0", cycleSec: 12 },
+    { label: "CPU TEMP", color: "var(--warm)", rgb: "--warm-rgb", cycleSec: 7 },
+    { label: "MEM HEALTH", color: "var(--accent)", rgb: "--accent-rgb", cycleSec: 9.5 },
+    { label: "BUS ERR", color: "var(--accent)", rgb: "--accent-rgb", cycleSec: 12 },
 ];
 
 export function LongRunAnim() {
@@ -59,21 +59,22 @@ export function LongRunAnim() {
                         <text x="10" y={y - 2} fill="rgba(148,163,184,0.5)" fontSize="5"
                             fontFamily="var(--font-jetbrains,monospace)" letterSpacing="0.09em">{m.label}</text>
                         <rect x="10" y={y} width="60" height="5" rx="1.5"
-                            fill={`${m.color}18`} stroke={`${m.color}40`} strokeWidth="0.5" />
+                            style={{ fill: `rgba(var(${m.rgb}), 0.094)`, stroke: `rgba(var(${m.rgb}), 0.25)` }}
+                            strokeWidth="0.5" />
                         {[0.25, 0.5, 0.75].map(frac => (
                             <line key={frac} x1={10 + frac * 60} y1={y} x2={10 + frac * 60} y2={y + 5}
-                                stroke={`${m.color}50`} strokeWidth="0.5" />
+                                style={{ stroke: `rgba(var(${m.rgb}), 0.31)` }} strokeWidth="0.5" />
                         ))}
                         <rect id={`lr-bar-${i}`} x="10" y={y} width="0" height="5" rx="1.5"
-                            fill={m.color} filter="url(#glow-lr)" />
+                            style={{ fill: m.color }} filter="url(#glow-lr)" />
                         <circle id={`lr-head-${i}`} cx="10" cy={y + 2.5} r="3"
-                            fill={m.color} filter="url(#glow-lr)" opacity="0" />
-                        <text id={`lr-pct-${i}`} x="74" y={y + 5} fill={m.color} fontSize="5"
+                            style={{ fill: m.color }} filter="url(#glow-lr)" opacity="0" />
+                        <text id={`lr-pct-${i}`} x="74" y={y + 5} style={{ fill: m.color }} fontSize="5"
                             fontFamily="var(--font-jetbrains,monospace)" letterSpacing="0.07em" opacity="0.7">0%</text>
                     </g>
                 );
             })}
-            <text x="40" y="76" textAnchor="middle" fill="#00D9C0" fontSize="6"
+            <text x="40" y="76" textAnchor="middle" style={{ fill: "var(--accent)" }} fontSize="6"
                 fontFamily="var(--font-jetbrains, monospace)" letterSpacing="0.14em" opacity="0.35">LONGRUN</text>
         </svg>
     );

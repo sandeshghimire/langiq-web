@@ -36,7 +36,7 @@ const OG_IMAGE = {
   url: "/og.png",
   width: 1200,
   height: 630,
-  alt: "Architecture diagram of the silicon-centricIndependent V&V Suite — HAL adapter, target client, server, and Web UI layers",
+  alt: "Architecture diagram of the silicon-centric Independent V&V Suite — HAL adapter, target client, server, and Web UI layers",
 };
 
 export const viewport: Viewport = {
@@ -48,17 +48,22 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  applicationName: "silicon-centricIV&V",
+  applicationName: "SoCcentric",
 
   title: {
     default: TITLE,
-    template: "%s | silicon-centricIV&V",
+    template: "%s | SoCcentric",
   },
   description: DESCRIPTION,
 
   keywords: [
     "independent validation and verification",
     "IV&V",
+    "HIL",
+    "hardware-in-the-loop",
+    "datalogger",
+    "data acquisition",
+    "data logging",
     "embedded systems testing",
     "Yocto Linux validation",
     "FreeRTOS testing",
@@ -77,6 +82,12 @@ export const metadata: Metadata = {
     "automotive embedded",
     "aerospace embedded",
     "medical device software",
+    "Kria K26",
+    "AMD FPGA",
+    "FPGA data acquisition",
+    "CAN-FD",
+    "fault injection",
+    "append-only evidence",
   ],
 
   authors: [{ name: "SoCcentric", url: SITE_URL }],
@@ -104,7 +115,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    siteName: "silicon-centricIV&V",
+    siteName: "silicon-centric IV&V",
     title: TITLE,
     description:
       "Platform-independent V&V suite for embedded systems. Yocto Linux and FreeRTOS targets. FlatBuffers and gRPC transports. Full coverage: compute, peripherals, sensors, perception, environmental. Evidence for ISO 26262, DO-178C, IEC 62304, IEC 61508.",

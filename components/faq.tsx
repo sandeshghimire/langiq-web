@@ -58,7 +58,7 @@ export function FaqSection({ content = DEFAULT_FAQ }: { content?: FaqContent }) 
                                 style={{
                                     borderTop: "1px solid var(--border)",
                                     position: "relative",
-                                    background: open === i ? "rgba(0,217,192,0.025)" : "transparent",
+                                    background: open === i ? "rgba(var(--accent-rgb), 0.025)" : "transparent",
                                     transition: "background 0.3s",
                                     paddingLeft: open === i ? "16px" : "0",
                                     marginLeft: open === i ? "-2px" : "0",

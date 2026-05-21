@@ -28,6 +28,17 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ ok: false, error: "Missing required fields" }, { status: 422 });
     }
 
+    // Field length limits
+    if (payload.name.length > 100 || payload.company.length > 100) {
+        return NextResponse.json({ ok: false, error: "Field too long" }, { status: 422 });
+    }
+    if (payload.email.length > 254) {
+        return NextResponse.json({ ok: false, error: "Field too long" }, { status: 422 });
+    }
+    if (payload.message && payload.message.length > 2000) {
+        return NextResponse.json({ ok: false, error: "Message too long" }, { status: 422 });
+    }
+
     // Basic email format check
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
         return NextResponse.json({ ok: false, error: "Invalid email" }, { status: 422 });
