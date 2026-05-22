@@ -52,7 +52,7 @@ export function Problem({ content = DEFAULT_PROBLEM }: { content?: ProblemConten
                         display: "grid",
                         gridTemplateColumns: "6fr 6fr",
                         gap: "80px",
-                        alignItems: "start",
+                        alignItems: "center",
                     }}
                     className="problem-grid"
                 >
