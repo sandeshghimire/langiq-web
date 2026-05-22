@@ -5,15 +5,15 @@ frontend:
       commands:
         - corepack enable
         - corepack prepare pnpm@latest --activate
-        - cd ivv-marketing && pnpm install --frozen-lockfile
+        - pnpm install --frozen-lockfile
     build:
       commands:
-        - cd ivv-marketing && NEXT_STATIC_EXPORT=1 pnpm run build
+        - NEXT_STATIC_EXPORT=1 pnpm run build
   artifacts:
-    baseDirectory: ivv-marketing/out
+    baseDirectory: out
     files:
       - '**/*'
   cache:
     paths:
-      - ivv-marketing/node_modules/**/*
-      - ivv-marketing/.next/cache/**/*
+      - node_modules/**/*
+      - .next/cache/**/*
