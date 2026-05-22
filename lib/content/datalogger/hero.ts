@@ -2,9 +2,9 @@ export const DATALOGGER_HERO = {
     eyebrow: 'SoCcentric / Datalogger — custom long-term data collection across many industries',
     headline: {
         line1: 'Custom dataloggers for',
-        accent1: 'long-term data collection',
+        accent1: 'data collection',
         line2: '',
-        accent2: 'across many industries.',
+        accent2: 'across industries.',
         line3: '',
         line4: '',
     },

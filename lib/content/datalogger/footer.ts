@@ -1,7 +1,7 @@
 export const DATALOGGER_FOOTER = {
     brand: {
         description:
-            'SoCcentric develops custom dataloggers for long-term data collection across many industries. 11 sensors standard. 15 verticals. One data format. Native IV&V node — bench to field and back.',
+            'SoCcentric develops custom dataloggers for data collection across industries. 11 sensors standard. 15 verticals. One data format. Native IV&V node — bench to field and back.',
     },
     platforms: {
         header: 'Interfaces',
