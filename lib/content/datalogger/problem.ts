@@ -1,29 +1,39 @@
 export const DATALOGGER_PROBLEM = {
-    sectionLabel: '01 — Real signals. Real timestamps.',
+    sectionLabel: '01 — What we do.',
     headline: {
-        before: 'Capture every signal.',
-        accent: 'Miss nothing.',
-        after: 'Prove it.',
+        before: 'Custom dataloggers.',
+        accent: 'Built for your industry.',
+        after: 'Ready for the field.',
     },
     body: [
-        'Data loggers that miss signals under load, lose timestamps across reboots, or require proprietary readers for exported files are not acceptable in safety-critical programs. The SoCcentric Datalogger runs on the same Kria K26 SoM, the same Yocto BSP, and the same IV&V evidence framework as the rest of the platform family.',
-        'FPGA-accurate edge timestamps. Calibrated analog channels. Append-only evidence database. Every capture session signed, every artefact traceable to a requirement. And when you need to validate the data, the Datalogger connects directly to the IV&V framework — no intermediate toolchain.',
+        'SoCcentric develops custom dataloggers for long-term data collection across many industries. We do not sell off-the-shelf SKUs. We scope to the customer’s industry and requirements, then build — starting from proven templates, not blank pages. We have been building custom dataloggers for 10+ years.',
+        'The Datalogger is the third SoCcentric product, built as a complement to HIL and IV&V. Where HIL simulates the world in the lab and IV&V records what a system does on the bench, the Datalogger captures the real world in the field. Together they close the loop: one BSP, one protocol library, one data format, one evidence store — bench to field and back.',
     ],
     failureModes: [
         {
-            label: 'FPGA-accurate timestamping',
+            label: '11 sensors standard — SoCcentric-Logger-Base',
             description:
-                'Every captured edge, sample, and bus message is stamped by the PL fabric — not the APU OS. No timestamp jitter from Linux scheduling. Sub-microsecond accuracy, aligned to a PTP grandmaster or GPS UTC reference.',
+                'Every board ships with the SoCcentric-Logger-Base: shock, vibration, temperature, humidity, light, sound, pressure, GPS, gyroscope, IMU, and magnetometer — 11 sensors as the standard foundation. [Founder decision: GPS may be optional, making the base 10 sensors. Confirm before publishing.]',
         },
         {
-            label: 'Calibrated analog channels',
+            label: 'Industry-specific — 15 verticals',
             description:
-                'Each analog input channel is factory-calibrated with a traceable reference standard. Calibration provenance — reference, date, operator, and measurement chain — is stored in the evidence database and included in every certification report.',
+                'Fifteen verticals each have their own protocol set, storage format, and industry template. The reusable template layer sits between the Logger-Base and the per-customer delta — so we build on proven patterns, not blank pages.',
         },
         {
-            label: 'Append-only evidence store',
+            label: 'Extreme temperature + long-range, long-term logging',
             description:
-                'Capture records are written to a Write-Once-Read-Many NVMe store. No record can be modified or silently deleted. Invalidations are written as new records referencing the original, with reason and operator identity.',
+                'Operates in extreme temperatures. Enclosure can be designed for harsh-weather and demanding field deployment per customer requirement. Supports long-range connectivity and hours-to-days logging campaigns.',
+        },
+        {
+            label: 'High-speed logging — PCIe NVMe up to 8 TB',
+            description:
+                'PCIe NVMe storage up to 8 TB for high-throughput, high-duration logging. Supports SD card, NVMe SSD, and eMMC depending on tier. No data gaps; no proprietary readers required for exported files.',
+        },
+        {
+            label: 'Developer tooling + AI-first analysis',
+            description:
+                'loggerLib Python SDK ships with every unit to automate configuration, runs, streaming, and display. Cross-platform GUI for industry- and protocol-specific control. Collected data can be sent to an LLM for analysis and to generate reports — AI assists the engineer; the engineer owns the conclusions.',
         },
     ],
 } as const;

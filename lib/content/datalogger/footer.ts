@@ -1,16 +1,16 @@
 export const DATALOGGER_FOOTER = {
     brand: {
         description:
-            'SoCcentric Datalogger is a silicon-native data acquisition and logging platform purpose-built for embedded systems evidence. Multi-channel analog, digital, and bus capture. FPGA-accurate timestamps. Append-only evidence. Same IV&V framework.',
+            'SoCcentric develops custom dataloggers for long-term data collection across many industries. 11 sensors standard. 15 verticals. One data format. Native IV&V node — bench to field and back.',
     },
     platforms: {
-        header: 'Channel interfaces',
+        header: 'Interfaces',
         links: [
-            { label: 'Analog In', href: '#platforms' },
-            { label: 'Digital In', href: '#platforms' },
-            { label: 'Bus Capture', href: '#platforms' },
-            { label: 'Power Monitor', href: '#platforms' },
-            { label: 'GPS / PTP', href: '#platforms' },
+            { label: 'Web UI', href: '#platforms' },
+            { label: 'NFC quick-connect', href: '#platforms' },
+            { label: 'loggerLib SDK', href: '#platforms' },
+            { label: 'Cross-platform GUI', href: '#platforms' },
+            { label: 'Cloud connectivity', href: '#platforms' },
         ],
     },
     resources: {
@@ -18,11 +18,11 @@ export const DATALOGGER_FOOTER = {
         links: [
             { label: 'Connect', href: '#cta' },
             { label: 'Architecture', href: '#architecture' },
-            { label: 'Certification evidence', href: '#evidence' },
+            { label: 'Compliance', href: '#evidence' },
             { label: 'Contact engineering', href: '#cta' },
             { label: '⇌ IV&V platform', href: '/ivv' },
             { label: '⇌ HIL platform', href: '/hil' },
         ],
     },
-    copyright: `© silicon-centric · ${new Date().getFullYear()} :: BUILT FOR ENGINEERS`,
+    copyright: `© SoCcentric · ${new Date().getFullYear()} :: BUILT FOR ENGINEERS`,
 } as const;

@@ -11,7 +11,6 @@ import { Evidence } from "@/components/evidence";
 import { FaqSection } from "@/components/faq";
 import { CtaSection } from "@/components/cta";
 import { Footer } from "@/components/footer";
-import { HilArchitectureDiagram } from "@/components/hil-architecture-diagram";
 import {
     HIL_NAV,
     HIL_HERO,
@@ -42,7 +41,7 @@ export default function HilPage() {
                 <Hero content={HIL_HERO} />
                 <ProofStrip content={HIL_PROOF_STRIP} />
                 <Problem content={HIL_PROBLEM} />
-                <Architecture content={HIL_ARCHITECTURE} diagram={<HilArchitectureDiagram />} />
+                <Architecture content={HIL_ARCHITECTURE} />
                 <TestModes content={HIL_TEST_MODES} />
                 <Platforms content={HIL_PLATFORMS} />
                 <Capabilities content={HIL_CAPABILITIES} />

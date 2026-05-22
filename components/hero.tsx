@@ -130,7 +130,7 @@ export function Hero({
 
       {/* Centered foreground content */}
       <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "120px 48px 0", position: "relative", zIndex: 1 }}>
-        <motion.div variants={containerVariants} initial="hidden" animate="show" style={{ maxWidth: "760px", width: "100%", textAlign: "center" }}>
+        <motion.div variants={containerVariants} initial="hidden" animate="show" style={{ maxWidth: "1440px", width: "100%", textAlign: "center", margin: "0 auto" }}>
           <motion.div variants={itemVariants} style={{ marginBottom: "24px" }}>
             <span style={{ fontFamily: "var(--font-jetbrains, monospace)", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--text-secondary)", display: "inline-flex", alignItems: "center", gap: "8px" }}>
               <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "var(--warm)", flexShrink: 0, display: "inline-block" }} className="pulse-amber" aria-hidden="true" />

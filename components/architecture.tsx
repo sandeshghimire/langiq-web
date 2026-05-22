@@ -1,8 +1,6 @@
 "use client";
-import { motion } from "framer-motion";
 import { SectionLabel } from "./ui/section-label";
 import { Reveal } from "./ui/reveal";
-import { ArchitectureDiagram } from "./architecture-diagram";
 import { ARCHITECTURE as DEFAULT_ARCHITECTURE } from "@/lib/content";
 import type { Widen } from "@/lib/content/types";
 
@@ -10,73 +8,32 @@ type ArchitectureContent = Widen<typeof DEFAULT_ARCHITECTURE>;
 
 export function Architecture({
     content = DEFAULT_ARCHITECTURE,
-    diagram,
 }: {
     content?: ArchitectureContent;
-    diagram?: React.ReactNode;
 }) {
     return (
         <section
             id="architecture"
             style={{
                 background: "var(--bg-deep)",
-                position: "relative",
-                overflow: "hidden",
                 minHeight: "100vh",
                 display: "flex",
                 flexDirection: "column",
             }}
             aria-labelledby="arch-headline"
         >
-            {/* Diagram in background — faded, exactly like hero */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.15 }}
-                transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-                style={{
-                    position: "absolute",
-                    inset: 0,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    pointerEvents: "none",
-                }}
-                aria-hidden="true"
-            >
-                <div style={{ width: "100%", maxWidth: "none", transform: "scale(1.0)" }}>
-                    {diagram ?? <ArchitectureDiagram />}
-                </div>
-            </motion.div>
-
-            {/* Radial centre glow */}
-            <div
-                style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    width: "1200px",
-                    height: "900px",
-                    borderRadius: "50%",
-                    background: "radial-gradient(circle, rgba(var(--accent-rgb), 0.07) 0%, transparent 70%)",
-                    pointerEvents: "none",
-                }}
-                aria-hidden="true"
-            />
-
             {/* Foreground content — centred, matching hero layout */}
             <div
                 style={{
                     flex: 1,
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
                     padding: "120px 48px",
                     position: "relative",
                     zIndex: 1,
                 }}
             >
-                <div style={{ maxWidth: "760px", width: "100%", textAlign: "center" }}>
+                <div style={{ maxWidth: "1440px", width: "100%", margin: "0 auto" }}>
                     <Reveal>
                         <SectionLabel label={content.sectionLabel} />
                     </Reveal>
@@ -86,12 +43,12 @@ export function Architecture({
                             id="arch-headline"
                             style={{
                                 fontFamily: "var(--font-instrument-serif, serif)",
-                                fontSize: "clamp(48px, 7vw, 100px)",
-                                lineHeight: 1.02,
-                                letterSpacing: "-0.02em",
+                                fontSize: "clamp(36px, 5vw, 64px)",
+                                lineHeight: 1.08,
+                                letterSpacing: "-0.015em",
                                 fontWeight: 400,
                                 color: "var(--text-primary)",
-                                margin: "24px 0 28px",
+                                margin: "24px 0 20px",
                             }}
                         >
                             {content.headline.before}{" "}
@@ -108,8 +65,8 @@ export function Architecture({
                                 fontSize: "19px",
                                 lineHeight: 1.6,
                                 color: "var(--text-secondary)",
-                                margin: "0 auto 48px",
-                                maxWidth: "600px",
+                                margin: "0 0 48px",
+                                maxWidth: "720px",
                             }}
                         >
                             {content.lead}
@@ -121,9 +78,8 @@ export function Architecture({
                         <div
                             style={{
                                 display: "grid",
-                                gridTemplateColumns: "repeat(2, 1fr)",
+                                gridTemplateColumns: "repeat(4, 1fr)",
                                 gap: "12px",
-                                textAlign: "left",
                             }}
                             className="arch-legend-grid"
                         >
@@ -192,6 +148,9 @@ export function Architecture({
             </div>
 
             <style>{`
+        @media (max-width: 1023px) {
+          .arch-legend-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
         @media (max-width: 639px) {
           .arch-legend-grid { grid-template-columns: 1fr !important; }
         }

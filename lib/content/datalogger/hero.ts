@@ -1,26 +1,26 @@
 export const DATALOGGER_HERO = {
-    eyebrow: 'silicon-centric / Datalogger — multi-channel data acquisition & logging platform',
+    eyebrow: 'SoCcentric / Datalogger — custom long-term data collection across many industries',
     headline: {
-        line1: 'Silicon-native',
-        accent1: 'Data Acquisition',
+        line1: 'Custom dataloggers for',
+        accent1: 'long-term data collection',
         line2: '',
-        accent2: '& Logging.',
+        accent2: 'across many industries.',
         line3: '',
         line4: '',
     },
     subhead:
-        'Capture, timestamp, and archive every signal from your embedded system. Multi-channel analog, digital, and bus capture on real silicon — FPGA-accurate, calibrated, append-only. Same Yocto BSP, same IV&V evidence framework.',
-    note: 'Kria K26 · Yocto Linux · FreeRTOS · AMD FPGA · CAN-FD · Analog I/O · UART · SPI · I²C',
+        '11 sensors standard. Cross-industry and cross-protocol support. Extreme-temperature and rugged-capable. Long-term, long-range logging — field to bench, one data format, one evidence store.',
+    note: 'LoggerOS · loggerLib · 11 standard sensors · 15 verticals · OTA · Web UI · NFC · PCIe NVMe up to 8 TB',
     ctas: {
         primary: 'Connect',
         secondary: 'Architecture',
     },
     stats: [
-        { number: '128', label: 'Log channels' },
-        { number: '1 MSPS', label: 'Burst sample rate' },
-        { number: '∞', label: 'Append-only retention' },
+        { number: '11', label: 'Standard sensors' },
+        { number: '15', label: 'Industry verticals' },
+        { number: '10+', label: 'Years building dataloggers' },
     ],
     telemetry:
-        'DATALOGGER / TELEMETRY :: ACTIVE      CHANNELS 128 :: SAMPLES',
+        'DATALOGGER / TELEMETRY :: ACTIVE      SENSORS 11 :: LOGGING',
     telemetrySuffix: '      UPTIME 99.98%      SCHEMA v1.0.0',
 } as const;

@@ -3,39 +3,49 @@ export const DATALOGGER_FAQ = {
     headline: 'Engineering questions, answered straight.',
     items: [
         {
-            question: 'What silicon does the Datalogger run on?',
+            question: 'Is this off-the-shelf?',
             answer:
-                'The K26 SoM from AMD/Xilinx (Kria family). The APU runs a Yocto Linux image with the IV&V ingest daemon; the RPU runs a FreeRTOS watchdog; the PL hosts FPGA soft-IP for channel timestamping, DIO edge-capture, and bus protocol monitoring. This is the same silicon and BSP as the rest of the SoCcentric platform family.',
+                'No. SoCcentric builds custom dataloggers scoped to each customer\'s industry and requirements. We start from proven templates — not blank pages — so you get the speed of a template with the fit of a custom build. No fixed SKUs, no catalog items. Configure-to-order.',
         },
         {
-            question: 'Can the Datalogger operate without the IV&V platform?',
+            question: 'What sensors are standard on every board?',
             answer:
-                'Yes. The Datalogger has a standalone Web UI accessible over Ethernet. Session management, channel configuration, live preview, and data export (CSV, pcap) are all available without the IV&V server. For evidence database import, requirement mapping, and certification report generation, the IV&V platform is required.',
+                'The SoCcentric-Logger-Base ships 11 sensors standard: shock, vibration, temperature, humidity, light, sound, pressure, GPS, gyroscope, IMU, and magnetometer. [Founder decision: GPS may be optional, making the standard package 10 sensors. Confirm before publishing.] Additional sensors are available per customer requirement.',
         },
         {
-            question: 'How accurate are the timestamps?',
+            question: 'What protocols and industries are supported?',
             answer:
-                'All channel events are timestamped by the PL fabric (FPGA), not the APU operating system. This eliminates Linux scheduler jitter. In PTP follower mode, timestamps are disciplined to the IEEE 1588-2019 grandmaster with sub-100 ns accuracy. In GPS mode, timestamps are disciplined to UTC with sub-microsecond accuracy after lock.',
+                '15 verticals: industrial automation/process, environmental/hydrology/meteorology, utilities (power and water), building automation/HVAC, energy metering, automotive/vehicle, medical devices, aerospace/flight test, rail, oil & gas/SCADA, lab/scientific DAQ, agriculture, marine, and consumer/generic IoT. Each vertical has its own protocol set, storage format, and industry template.',
         },
         {
-            question: 'What is the maximum analog sample rate?',
+            question: 'How do I configure the Datalogger?',
             answer:
-                'Continuous analog capture runs at configurable rates from 1 SPS to 100 kSPS per channel, depending on the number of active channels. Burst mode captures all analog channels simultaneously at up to 1 MSPS for a configurable window. Digital channels (DIO) capture every edge with FPGA-accurate timestamps at any rate up to the FPGA fabric clock.',
+                'Four ways: onboard web UI over Ethernet or WiFi (no software install required); NFC quick-connect for tap-to-pair in the field; the loggerLib Python SDK for programmatic automation; or the cross-platform GUI for industry- and protocol-specific control and visualization.',
         },
         {
-            question: 'How does the append-only store work?',
+            question: 'How does the Datalogger relate to HIL and IV&V?',
             answer:
-                'Capture records are written to local NVMe using a Write-Once-Read-Many policy enforced at the storage-driver level. Each record is signed with the IV&V platform key at write time. If a record is later invalidated (e.g., calibration expired), the invalidation is written as a new record referencing the original — the original is never modified or deleted.',
+                'The Datalogger is a native IV&V node. Field captures feed directly into the IV&V evidence database — same dashboard, same queries. Any field-captured stimulus can replay as a HIL test case at original timing. One BSP, one protocol library, one data format, one evidence store across all three products.',
         },
         {
-            question: 'Can I synchronise multiple Dataloggers for a multi-unit campaign?',
+            question: 'Can it run in harsh environments?',
             answer:
-                'Yes. Each Datalogger operates as a PTP follower to a shared grandmaster (or to GPS UTC). Capture start/stop commands are broadcast over the IV&V gRPC bus, and the IV&V orchestrator aligns timestamps across units before importing to the evidence database. Typical multi-unit jitter after PTP alignment is under 200 ns.',
+                'Yes. The Datalogger operates in extreme temperatures. The enclosure can be designed for harsh-weather and demanding field deployment per customer requirement. Power options scale from USB/battery (portable) to mains/redundant power for rack or sealed industrial tiers.',
         },
         {
-            question: 'Which certification standards does the Datalogger evidence trail support?',
+            question: 'How is collected data analyzed?',
             answer:
-                'ISO 26262 (automotive functional safety), DO-178C / DO-254 (airborne software and hardware), IEC 62304 / FDA (medical device software lifecycle), and IEC 61508 (industrial functional safety). Artifact shapes are customised to each standard. Standard scope is agreed with the customer engineering team before a certification session begins.',
+                'The Datalogger is AI-first. Collected data can be sent to an LLM for analysis and to generate reports and structured data. The AI assists the engineer — the engineer reviews and owns the conclusions. This keeps evidence admissible for certification work where human accountability matters.',
+        },
+        {
+            question: 'How is the Datalogger updated?',
+            answer:
+                'Built-in OTA updates are delivered via LoggerOS, the Datalogger\'s Yocto BSP build. No manual reflashing. Updates can be pushed to units deployed in the field. Long-running sessions support mid-run configuration updates without stopping the log.',
+        },
+        {
+            question: 'How long has SoCcentric been building dataloggers?',
+            answer:
+                '10+ years. SoCcentric has been building custom dataloggers across many industries for over a decade. The templates, protocol library, and tooling reflect that accumulated experience — so customers benefit from what has already been proven in the field.',
         },
     ],
 } as const;

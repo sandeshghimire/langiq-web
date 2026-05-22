@@ -158,24 +158,9 @@ export function CtaSection({ content = DEFAULT_CTA }: { content?: CtaContent }) 
             }}
             aria-labelledby="cta-headline"
         >
-            {/* Radial glow */}
-            <div
-                style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    width: "900px",
-                    height: "600px",
-                    borderRadius: "50%",
-                    background: "radial-gradient(ellipse, var(--accent-glow) 0%, transparent 65%)",
-                    pointerEvents: "none",
-                }}
-                aria-hidden="true"
-            />
-
-            <div style={{ maxWidth: "640px", margin: "0 auto", position: "relative" }}>
-                {/* Section header */}
+            <div style={{ maxWidth: "1440px", margin: "0 auto", width: "100%" }}>
+                <div className="cta-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "start" }}>
+                {/* Left: section header */}
                 <Reveal>
                     <p
                         style={{
@@ -212,14 +197,14 @@ export function CtaSection({ content = DEFAULT_CTA }: { content?: CtaContent }) 
                             fontSize: "17px",
                             lineHeight: 1.6,
                             color: "var(--text-secondary)",
-                            margin: "0 0 40px",
+                            margin: "0 0 0",
                         }}
                     >
                         {content.subhead}
                     </p>
                 </Reveal>
 
-                {/* Form card */}
+                {/* Right: Form card */}
                 <Reveal delay={0.1}>
                     {status === "success" ? (
                         <SuccessCard name={form.name} />
@@ -349,6 +334,8 @@ export function CtaSection({ content = DEFAULT_CTA }: { content?: CtaContent }) 
                     )}
                 </Reveal>
 
+                </div>{/* end two-col grid */}
+
                 <Reveal delay={0.2}>
                     <p
                         style={{
@@ -369,6 +356,9 @@ export function CtaSection({ content = DEFAULT_CTA }: { content?: CtaContent }) 
             <style>{`
         @media (max-width: 500px) {
           .cta-row-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 899px) {
+          .cta-two-col { grid-template-columns: 1fr !important; }
         }
       `}</style>
         </section>

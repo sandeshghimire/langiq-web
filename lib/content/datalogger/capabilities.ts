@@ -1,37 +1,55 @@
 export const DATALOGGER_CAPABILITIES = {
-    sectionLabel: '05 — What the Datalogger does',
-    headline: 'Five capture disciplines. Evidence up.',
-    lead: 'From high-resolution analog capture to passive protocol bus monitoring, power-rail analysis to GPS-synchronised multi-unit campaigns. Every discipline writes to the same append-only evidence database — ready for the IV&V dashboard and certification submission.',
+    sectionLabel: '05 — Capabilities',
+    headline: 'Standard sensors. Flexible storage. Evidence-ready.',
+    lead: 'The SoCcentric-Logger-Base ships 11 sensors on every board. Storage scales to 8 TB NVMe. Clock accuracy to sub-microsecond. Every parameter is scoped to the customer — power, connectivity, enclosure, trigger engine, and export format.',
     features: [
         {
             icon: 'Activity',
-            title: 'Analog signal capture',
+            title: 'SoCcentric-Logger-Base — 11 standard sensors',
             description:
-                'Up to 16 calibrated differential analog channels at configurable rates up to 1 MSPS burst. Individual channel calibration with traceable provenance. Used for ADC/DAC validation, sensor characterisation, and power-supply analysis. Calibration certificate included in every certification report.',
+                'Shock, vibration, temperature, humidity, light, sound, pressure, GPS, gyroscope, IMU, and magnetometer on every board as standard. [Founder decision: GPS may be optional, making the base 10 sensors. Confirm before publishing.] The Logger-Base is the consistent foundation every customer starts from.',
         },
         {
             icon: 'Cpu',
-            title: 'Protocol bus monitoring',
+            title: 'Storage — PCIe NVMe up to 8 TB',
             description:
-                'Passive, non-intrusive capture on CAN-FD, UART, SPI, I²C, and Ethernet simultaneously. Full frames with FPGA-accurate inter-frame timestamps. Export to Wireshark-compatible pcap and CSV. The DUT never sees the Datalogger on the bus — no protocol disruption.',
+                'SD card, NVMe SSD, or eMMC depending on tier. PCIe NVMe up to 8 TB for high-throughput, long-duration logging campaigns. Hardware-signed segments, tamper-evident log, AES-256 at-rest encryption. No proprietary readers required for exported files.',
         },
         {
             icon: 'Zap',
-            title: 'Triggered event capture',
+            title: 'Trigger engine — < 100 ns PL-resident response',
             description:
-                'Configurable trigger conditions across any channel — digital edge, analog threshold, CAN message ID, or a Boolean combination. Pre- and post-trigger window configurable per capture. Captures the exact moment of fault onset with context.',
+                'Capture on event, threshold, pattern match, schedule, or external sync. Configurable pre-trigger buffer. Deterministic PL-resident response under 100 ns for time-critical capture. Three-stamp timing on every event: condition-detect, capture-start, capture-end.',
         },
         {
             icon: 'BarChart2',
-            title: 'Power rail analysis',
+            title: 'Clock accuracy — PTP IEEE 1588 + GNSS + IRIG-B',
             description:
-                'Simultaneous voltage and current on 8 rails at 1 kHz, correlated with digital events and bus traffic in the same evidence record. Detects brown-out onset, inrush events, and supply coupling. Rail maps to evidence requirement automatically.',
+                'PTP IEEE 1588 (< 1 µs), GNSS, and IRIG-B time references. Sub-microsecond accuracy after lock. Supports multi-unit campaigns with aligned timestamps across all deployed loggers.',
+        },
+        {
+            icon: 'Globe',
+            title: 'Connectivity — Ethernet, WiFi, LTE, GPS',
+            description:
+                'Ethernet standard. WiFi and LTE optional. GPS optional per customer requirement. [Founder decision: GPS optionality affects the standard sensor count — confirm 10 vs 11.] Satellite uplink available for remote deployments.',
         },
         {
             icon: 'Shield',
-            title: 'Certification evidence',
+            title: 'Export formats — uniform + industry-specific',
             description:
-                'Calibration provenance on every analog channel. Signed, timestamped, requirement-mapped capture records. Append-only evidence database — every session, every channel, every sample. ISO 26262, DO-178C, IEC 62304, and IEC 61508 artifact shapes supported.',
+                'One uniform data format across all protocols and industries. Plus industry-specific export: IV&V native, MF4/MDF4, PCAP, BLF, CSV, FMU dataset, COMTRADE, IRIG-106 Ch10, TDMS, HDF5, EDF/EDF+, TOA5. Same SDK and GUI queries apply to every Datalogger regardless of vertical.',
+        },
+        {
+            icon: 'Thermometer',
+            title: 'Extreme temperature + rugged enclosure',
+            description:
+                'Operates in extreme temperatures. Enclosure can be designed for harsh-weather and demanding field deployment per customer requirement. Power options: USB or battery (portable); mains/redundant for rack or sealed tiers. Battery optional, configured to need.',
+        },
+        {
+            icon: 'Lock',
+            title: 'Evidence integrity',
+            description:
+                'Hardware-signed segments, tamper-evident log, secure boot, and AES-256 at-rest encryption. Append-only evidence — invalidations written as new records, never silent deletes. Cert targets accelerated: IEC 62304, IEC 61508, ISO 26262, DO-178C.',
         },
     ],
 } as const;
