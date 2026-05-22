@@ -56,7 +56,6 @@ export function TestModes({ content = DEFAULT_TEST_MODES }: { content?: TestMode
                             lineHeight: 1.6,
                             color: "var(--text-secondary)",
                             margin: "0 0 64px",
-                            maxWidth: "720px",
                         }}
                     >
                         {content.lead}

@@ -66,7 +66,6 @@ export function Architecture({
                                 lineHeight: 1.6,
                                 color: "var(--text-secondary)",
                                 margin: "0 0 48px",
-                                maxWidth: "720px",
                             }}
                         >
                             {content.lead}

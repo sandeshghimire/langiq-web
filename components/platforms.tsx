@@ -49,7 +49,6 @@ export function Platforms({ content = DEFAULT_PLATFORMS }: { content?: Platforms
                             lineHeight: 1.6,
                             color: "var(--text-on-light-2)",
                             margin: "0 0 64px",
-                            maxWidth: "720px",
                         }}
                     >
                         {content.lead}

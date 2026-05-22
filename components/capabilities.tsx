@@ -87,7 +87,6 @@ export function Capabilities({ content = DEFAULT_CAPABILITIES }: { content?: Cap
                             lineHeight: 1.6,
                             color: "var(--text-secondary)",
                             margin: "0 0 64px",
-                            maxWidth: "720px",
                         }}
                     >
                         {content.lead}
