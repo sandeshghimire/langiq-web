@@ -47,5 +47,10 @@ export const DATALOGGER_ARCHITECTURE = {
             label: 'IV&V + HIL integration',
             description: 'Native IV&V node. Field captures feed directly into the IV&V evidence database. Any logged stimulus replays as a HIL test case at original timing. One toolchain from bench to field and back.',
         },
+        {
+            number: '09',
+            label: 'AI analysis layer (optional)',
+            description: 'The uniform data format and IV&V evidence store feed an optional AI analysis layer. Runs on the x86 host with optional GPU — no cloud required for customers who cannot send data off-prem. Summarises large datasets, detects anomalies, correlates captures across runs, and generates draft reports. The evidence store is append-only; AI consumes it but never alters it. The engineer reviews and owns every conclusion.',
+        },
     ],
 } as const;

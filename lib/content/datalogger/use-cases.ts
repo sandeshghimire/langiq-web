@@ -35,7 +35,7 @@ export const DATALOGGER_USE_CASES = {
         {
             industry: 'Automotive / Vehicle / Off-highway',
             title: 'Road-load data collection on CAN FD, J1939, and LIN — MDF4 output.',
-            vignette: 'Inputs via CAN 2.0B, CAN FD, LIN, J1939, OBD-II, FlexRay. Outputs offline via USB/SD or telematics MQTT/HTTP. Local storage: MDF4 (ASAM), CSV, BLF.',
+            vignette: 'Inputs via CAN 2.0B, CAN FD, LIN, J1939, OBD-II, FlexRay. Outputs offline via USB/SD or telematics MQTT/HTTP. Local storage: MDF4 (ASAM), CSV, BLF. Fleet-wide log summarisation and cross-run anomaly detection via AI-assisted analysis on the uniform MDF4 dataset — engineer-reviewed conclusions, not AI-certified results.',
         },
         {
             industry: 'Medical Devices',
@@ -45,7 +45,7 @@ export const DATALOGGER_USE_CASES = {
         {
             industry: 'Aerospace / Flight Test',
             title: 'Flight test data acquisition to IRIG-106 Chapter 10 with MIL-STD-1553.',
-            vignette: 'Inputs via MIL-STD-1553, ARINC 429, ARINC 717, iNET-X, IRIG-106 PCM. Outputs via IRIG-106 Ch10 and Ethernet (iNET). Local storage: IRIG-106 Ch10.',
+            vignette: 'Inputs via MIL-STD-1553, ARINC 429, ARINC 717, iNET-X, IRIG-106 PCM. Outputs via IRIG-106 Ch10 and Ethernet (iNET). Local storage: IRIG-106 Ch10. Long-duration flight-test captures can be sent to an LLM for anomaly correlation across runs — AI accelerates the analysis pass; the engineer owns every conclusion and signs the record.',
         },
         {
             industry: 'Rail',

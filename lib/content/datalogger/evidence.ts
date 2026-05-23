@@ -3,6 +3,7 @@ export const DATALOGGER_EVIDENCE = {
     headline: 'Independence. Append-only evidence. Reproducible runs.',
     lead: 'The Datalogger accelerates certification by providing independence (own OS + HAL), append-only evidence, a uniform data format across all protocols and industries, and reproducible runs. AI-assisted analysis helps engineers generate reports — but the engineer owns the conclusions, keeping evidence admissible.',
     principle: 'Independence. Append-only evidence. Uniform data format. Engineer-owned conclusions.',
+    aiNote: 'AI assists analysis — it does not own the conclusion. Every AI-generated draft is reviewed and approved by the engineer before it enters the evidence record. The evidence store is append-only; AI consumes it but never alters it. This is what keeps evidence admissible under DO-178C, IEC 62304, IEC 61508, and ISO 26262.',
     columns: [
         {
             number: '01',
@@ -24,6 +25,7 @@ export const DATALOGGER_EVIDENCE = {
                 'Event-based trigger logs with three-stamp timing and configurable pre-trigger buffer',
                 'Reproducible runs — same configuration produces identical artifact shape every time',
                 'Explicit drop-count reporting on every sensor and protocol channel',
+                'AI-assisted analysis generates draft reports; the engineer reviews and approves all conclusions — AI does not certify results',
             ],
         },
         {
@@ -35,6 +37,7 @@ export const DATALOGGER_EVIDENCE = {
                 'Tamper-evident log with hardware-signed segments and AES-256 at-rest encryption',
                 'Native IV&V node — field capture replays as HIL stimulus at original timing for regression',
                 'One data format across all protocols; same evidence queries apply from bench to field',
+                'AI-assisted analysis correlates field anomalies against bench IV&V results in a single query; the engineer owns every conclusion and the evidence record is never altered',
             ],
         },
         {

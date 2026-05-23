@@ -9,7 +9,7 @@ export const DATALOGGER_HERO = {
         line4: '',
     },
     subhead:
-        '11 sensors standard. Cross-industry and cross-protocol support. Extreme-temperature and rugged-capable. Long-term, long-range logging — field to bench, one data format, one evidence store.',
+        '11 sensors standard. Cross-industry and cross-protocol support. Extreme-temperature and rugged-capable. Long-term, long-range logging — field to bench, one data format, one evidence store. AI-assisted analysis and reporting across every capture.',
     note: 'LoggerOS · loggerLib · 11 standard sensors · 15 verticals · OTA · Web UI · NFC · PCIe NVMe up to 8 TB',
     ctas: {
         primary: 'Connect',

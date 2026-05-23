@@ -38,6 +38,16 @@ export const DATALOGGER_FAQ = {
                 'The Datalogger is AI-first. Collected data can be sent to an LLM for analysis and to generate reports and structured data. The AI assists the engineer — the engineer reviews and owns the conclusions. This keeps evidence admissible for certification work where human accountability matters.',
         },
         {
+            question: 'Can AI analysis run on-prem?',
+            answer:
+                'Yes. The AI analysis layer runs on the x86 host with an optional GPU — no data leaves the network unless the customer chooses cloud. For customers operating under data-sovereignty or air-gap requirements, the on-prem path gives full AI-assisted analysis and report generation without any external connectivity.',
+        },
+        {
+            question: 'Is AI-generated output cert-admissible?',
+            answer:
+                'AI-generated drafts are not the certified output — the engineer is. The AI analysis layer produces summaries, anomaly flags, correlation reports, and draft documents. The engineer reviews, approves, and signs the conclusion. That reviewed conclusion is what enters the evidence record. The evidence store is append-only; AI consumes it but never alters it. This separation is what keeps evidence admissible under DO-178C, IEC 62304, IEC 61508, and ISO 26262.',
+        },
+        {
             question: 'How is the Datalogger updated?',
             answer:
                 'Built-in OTA updates are delivered via LoggerOS, the Datalogger\'s Yocto BSP build. No manual reflashing. Updates can be pushed to units deployed in the field. Long-running sessions support mid-run configuration updates without stopping the log.',

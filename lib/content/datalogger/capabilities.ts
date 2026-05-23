@@ -51,5 +51,11 @@ export const DATALOGGER_CAPABILITIES = {
             description:
                 'Hardware-signed segments, tamper-evident log, secure boot, and AES-256 at-rest encryption. Append-only evidence — invalidations written as new records, never silent deletes. Cert targets accelerated: IEC 62304, IEC 61508, ISO 26262, DO-178C.',
         },
+        {
+            icon: 'Brain',
+            title: 'AI-assisted analysis and reporting',
+            description:
+                'Captured data can be sent to an LLM for dataset summarisation, anomaly detection, cross-run correlation, and structured report generation. The uniform data format means the same AI analysis applies to any capture, from any vertical, on any unit. Runs on-prem on the x86 host with optional GPU — or cloud, customer-controlled. AI assists; the engineer reviews and owns every conclusion.',
+        },
     ],
 } as const;
