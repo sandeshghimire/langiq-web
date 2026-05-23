@@ -1,6 +1,6 @@
 export const NAV = {
     brand: {
-        eyebrow: 'SILICON-CENTRIC',
+        eyebrow: 'SoCcentric',
         name: 'independent verification and validation',
     },
     links: [

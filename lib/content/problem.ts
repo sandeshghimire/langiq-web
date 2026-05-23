@@ -1,29 +1,38 @@
 export const PROBLEM = {
-    sectionLabel: '01 — Independent validation',
+    sectionLabel: '01 — What we build',
     headline: {
-        before: 'We validate the hardware',
-        accent: 'independently.',
-        after: 'Your team keeps building.',
+        before: 'We build the whole stack —',
+        accent: 'custom,',
+        after: 'per platform.',
     },
     body: [
-        "No source code access. No changes to your development workflow. The IV&V stack runs on its own server, deploys its own target client to the DUT, and operates independently of your build system, CI pipeline, and version control.",
-        "Coverage spans five tiers — compute, peripherals, sensors, perception, and environmental conditions. Each tier produces its own evidence shape in the append-only database: timestamped, operator-attributed, and ready for design reviews and certification submissions as-is.",
+        "We design and develop IV&V to fit your hardware. Built on 25+ years of embedded experience and six in-house platforms as building blocks — covering roughly 90% of real-world embedded devices. Where your silicon differs, we port the HAL.",
     ],
     failureModes: [
         {
-            label: 'Compute coverage',
+            label: 'Custom OS',
             description:
-                ' CPU, GPU, NPU, ISP — exercised independently from your application stack, with thermal telemetry captured in lockstep.',
+                'A Yocto-based OS built for each platform, with OTA updates (A/B partitions and rollback). The same base your hardware can ship on.',
         },
         {
-            label: 'Peripherals & sensors',
+            label: 'Custom HAL',
             description:
-                'I²C, SPI, UART, USB, PCIe, MIPI — validated over the actual hardware, with drop counts and error rates logged explicitly per run.',
+                'One HAL per platform — the only platform-specific layer. It exercises and validates everything from CPU and memory to peripherals, sensors, and any module. Everything above the HAL carries forward to new silicon.',
         },
         {
-            label: 'Environmental conditions',
+            label: 'Custom Web UI',
             description:
-                'Temperature, humidity, pressure, vibration — authored as test cases, triggered remotely, captured with three-stamp timing.',
+                'Connect a device, configure and run tests, watch live, and review time-series results — the full operator console, tailored to your program.',
+        },
+        {
+            label: 'SDK & API',
+            description:
+                'A Python SDK to integrate testing into your own workflow and design custom tests, plus a direct API path through the client and HAL for quick single-device checks.',
+        },
+        {
+            label: 'AI-assisted analysis',
+            description:
+                'A local LLM processes test data to flag anomalies and draft reports — on-prem, no cloud required. AI accelerates; your engineers own the conclusion.',
         },
     ],
 } as const;

@@ -1,7 +1,7 @@
 export const TEST_MODES = {
     sectionLabel: '03 — Test modes',
     headline: 'Standardized test modes. Every peripheral. Every condition.',
-    lead: 'The same vocabulary whether you are testing an IMU, a PCIe SSD, a camera, or a motor controller. Test suites are portable across peripherals and platforms without modification. From a single boot-time health check to a 72-hour thermal soak, the framework produces the same evidence shape and the same audit trail.',
+    lead: 'The same vocabulary whether you are testing an IMU, a PCIe SSD, a camera, or a motor controller. Test suites are portable across peripherals and platforms without modification. From a single boot-time health check to a 72-hour thermal soak, the framework produces the same record shape and the same audit trail.',
     modes: [
         {
             title: 'One-shot',
@@ -28,7 +28,7 @@ export const TEST_MODES = {
             title: 'Long-running',
             monoLabel: 'MODE 04 / LONGRUN',
             description:
-                'Hours or days of continuous execution with periodic progress snapshots and intermediate evidence capture. Used for endurance qualification and catching faults that only surface over time.',
+                'Hours or days of continuous execution with periodic progress snapshots and intermediate result capture. Used for endurance qualification and catching faults that only surface over time.',
             example: 'e.g., 72 h thermal endurance run',
         },
     ],

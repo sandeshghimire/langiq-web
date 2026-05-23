@@ -1,5 +1,5 @@
 export const HERO = {
-    eyebrow: 'silicon-centric / IV&V — independent verification and validation',
+    eyebrow: 'SoCcentric / IV&V — independent verification and validation',
     headline: {
         line1: 'Independent',
         accent1: 'Validation',
@@ -9,7 +9,7 @@ export const HERO = {
         line4: '',
     },
     subhead:
-        'Independently validate and verify your embedded hardware from silicon to sensor — CPU cores, cache, peripherals, and connected devices, with a complete evidence trail.',
+        'Independently validate and verify your embedded hardware — from CPU cores and cache to peripherals, sensors, and connected devices — with a complete, traceable record of every test.',
     note: 'Xilinx Zynq MPSoC · NVIDIA Jetson · NXP i.MX 93/95 · TI Sitara · Raspberry Pi',
     ctas: {
         primary: 'Connect',

@@ -1,37 +1,43 @@
 export const CAPABILITIES = {
-    sectionLabel: '05 — What we validate',
-    headline: 'Five coverage tiers. Hardware-up.',
-    lead: 'Independent validation from the compute layer down to the environmental chamber. Each tier has its own test logic in the HAL, its own evidence shape in the database, and its own artifact in the audit trail.',
+    sectionLabel: '05 — Capabilities',
+    headline: 'Built for real test programs, not just bench checks.',
+    lead: 'Beyond what it validates, IV&V is built to run real programs — many boards at once, three ways to drive it, records that never go missing, and AI to make sense of it all.',
     features: [
         {
-            icon: 'CircuitBoard',
-            title: 'Compute',
+            icon: 'Cpu',
+            title: 'Multi-board orchestration',
             description:
-                'CPU, GPU, graphics processor, media processor, NPU and ISP where present — each exercised under load via the HAL, independently of the application stack. Example check: sustained GPU utilization at rated clock with thermal telemetry captured at 10 Hz throughout.',
+                'One server manages and runs validation on many target devices at once — qualify a whole production batch or a set of board variants in parallel, from a single console.',
         },
         {
-            icon: 'Route',
-            title: 'Peripherals & busses',
+            icon: 'Monitor',
+            title: 'Three ways to drive it',
             description:
-                'I²C, SPI, UART, USB, PCIe, MIPI, and similar — validated over the actual bus at operating frequency, not emulated. Drop counts reported explicitly per run. Example check: PCIe link stress at rated bandwidth with error-rate and retrain-count logged over a 30-minute window.',
+                'The web UI for full operator control, the Python SDK to build testing into your own workflow, and a direct API path through the client and HAL for quick single-device checks.',
+        },
+        {
+            icon: 'Database',
+            title: 'Complete record capture',
+            description:
+                'Every test, log, and event is captured to the server — timestamped, operator-attributed, append-only. Runs are never silently deleted; invalidations are recorded with a reason. Every cross-boundary record carries three timestamps — origin, relay, server — so timing analysis is a query, not an investigation.',
         },
         {
             icon: 'Zap',
-            title: 'Sensors & actuators',
+            title: 'OTA with rollback',
             description:
-                'IMU, ADC, DAC, and the long tail of on-board sensors and actuators exercised through the HAL adapter. Example check: IMU axis-alignment verification and noise-floor measurement at room temperature, followed by the same check at thermal extremes.',
+                'The Yocto-based OS updates over the air with A/B partitions and rollback — keep fielded and long-lifecycle units current without risking a bad flash.',
         },
         {
-            icon: 'Eye',
-            title: 'Perception devices',
+            icon: 'Shield',
+            title: 'Cloud-connected, or fully on-prem',
             description:
-                'Cameras, LiDAR, radar, ToF — high-bandwidth devices validated for frame integrity, sync timing, and transport reliability under load. Example check: camera pipeline frame-drop count and latency distribution measured under concurrent LiDAR polling across a 60-second one-shot run.',
+                'Optional cloud sync centralizes records and device history across sites and fleets — or stay entirely on-prem for cert and defense programs.',
         },
         {
-            icon: 'Thermometer',
-            title: 'Environmental conditions',
+            icon: 'Activity',
+            title: 'Local AI analysis',
             description:
-                'Temperature, humidity, pressure, and thermal load — authored as test cases in the Web UI and triggered remotely. Monitoring mode streams telemetry continuously; event-based mode fires on threshold crossings. Example check: I²C bus error rate sampled at 1 kHz while the chamber ramps from 25 °C to 85 °C, with an event fired on any NACK.',
+                'A local LLM processes results to flag anomalies and draft reports — on-prem, no cloud. AI accelerates; your engineers own the conclusion.',
         },
     ],
 } as const;
