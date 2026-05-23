@@ -76,7 +76,7 @@ export function Footer({
                                         lineHeight: 1,
                                     }}
                                 >
-                                    SOCCENTRIC
+                                    siliconcentric
                                 </span>
                                 <span
                                     style={{

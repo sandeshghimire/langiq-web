@@ -82,7 +82,7 @@ export function Nav({
                     <Link
                         href="/"
                         style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}
-                        aria-label="SoCcentric — home"
+                        aria-label="siliconcentric — home"
                     >
                         {/* Rotated square mark */}
                         <div

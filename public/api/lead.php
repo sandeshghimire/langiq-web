@@ -4,10 +4,10 @@ header('Location: /lead.php', true, 308);
 exit;
 
 define('SMTP_PORT', 465);
-define('SMTP_USER', 'info@soccentric.com');
+define('SMTP_USER', 'info@siliconcentric.com');
 define('SMTP_PASS', '9K2Q6oFSkmwco8rh!');
-define('MAIL_FROM', 'info@soccentric.com');
-define('MAIL_TO',   'info@soccentric.com');
+define('MAIL_FROM', 'info@siliconcentric.com');
+define('MAIL_TO',   'info@siliconcentric.com');
 // ─────────────────────────────────────────────────────────────────────────────
 
 /** Read a (possibly multi-line) SMTP response. */
@@ -64,7 +64,7 @@ function send_mail(string $subject, string $body): bool
     smtp_cmd($fp, 'DATA');
 
     $encoded_subject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
-    $msg  = 'From: SoCcentric <' . MAIL_FROM . ">\r\n";
+    $msg  = 'From: siliconcentric <' . MAIL_FROM . ">\r\n";
     $msg .= 'To: ' . MAIL_TO . "\r\n";
     $msg .= 'Subject: ' . $encoded_subject . "\r\n";
     $msg .= "MIME-Version: 1.0\r\n";
@@ -128,7 +128,7 @@ if (strlen($message) > 2000) {
     exit;
 }
 
-$body  = "New contact request — ivv.soccentric.com\n";
+$body  = "New contact request — ivv.siliconcentric.com\n";
 $body .= str_repeat('-', 44) . "\n";
 $body .= "Name    : {$name}\n";
 $body .= "Company : {$company}\n";
@@ -140,7 +140,7 @@ $ok = send_mail("IV&V Lead: {$name} — {$company}", $body);
 
 if (!$ok) {
     http_response_code(500);
-    echo json_encode(['ok' => false, 'error' => 'Mail delivery failed — please email info@soccentric.com directly']);
+    echo json_encode(['ok' => false, 'error' => 'Mail delivery failed — please email info@siliconcentric.com directly']);
     exit;
 }
 

@@ -1,7 +1,7 @@
 export const HIL_FOOTER = {
     brand: {
         description:
-            'SoCcentric HIL is a modular Hardware-in-the-Loop test platform purpose-built to validate embedded systems on SoCcentric compute platforms. Three chassis tiers. Six platform adapters. Five extension card types. Same Yocto BSP. Same IV&V framework.',
+            'siliconcentric HIL is a modular Hardware-in-the-Loop test platform purpose-built to validate embedded systems on siliconcentric compute platforms. Three chassis tiers. Six platform adapters. Five extension card types. Same Yocto BSP. Same IV&V framework.',
     },
     platforms: {
         header: 'Platform adapters',

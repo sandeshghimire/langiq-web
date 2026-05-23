@@ -5,12 +5,12 @@ export const DATALOGGER_FAQ = {
         {
             question: 'Is this off-the-shelf?',
             answer:
-                'No. SoCcentric builds custom dataloggers scoped to each customer\'s industry and requirements. We start from proven templates — not blank pages — so you get the speed of a template with the fit of a custom build. No fixed SKUs, no catalog items. Configure-to-order.',
+                'No. siliconcentric builds custom dataloggers scoped to each customer\'s industry and requirements. We start from proven templates — not blank pages — so you get the speed of a template with the fit of a custom build. No fixed SKUs, no catalog items. Configure-to-order.',
         },
         {
             question: 'What sensors are standard on every board?',
             answer:
-                'The SoCcentric-Logger-Base ships 11 sensors standard: shock, vibration, temperature, humidity, light, sound, pressure, GPS, gyroscope, IMU, and magnetometer. [Founder decision: GPS may be optional, making the standard package 10 sensors. Confirm before publishing.] Additional sensors are available per customer requirement.',
+                'The siliconcentric-Logger-Base ships 11 sensors standard: shock, vibration, temperature, humidity, light, sound, pressure, GPS, gyroscope, IMU, and magnetometer. [Founder decision: GPS may be optional, making the standard package 10 sensors. Confirm before publishing.] Additional sensors are available per customer requirement.',
         },
         {
             question: 'What protocols and industries are supported?',
@@ -53,9 +53,9 @@ export const DATALOGGER_FAQ = {
                 'Built-in OTA updates are delivered via LoggerOS, the Datalogger\'s Yocto BSP build. No manual reflashing. Updates can be pushed to units deployed in the field. Long-running sessions support mid-run configuration updates without stopping the log.',
         },
         {
-            question: 'How long has SoCcentric been building dataloggers?',
+            question: 'How long has siliconcentric been building dataloggers?',
             answer:
-                '10+ years. SoCcentric has been building custom dataloggers across many industries for over a decade. The templates, protocol library, and tooling reflect that accumulated experience — so customers benefit from what has already been proven in the field.',
+                '10+ years. siliconcentric has been building custom dataloggers across many industries for over a decade. The templates, protocol library, and tooling reflect that accumulated experience — so customers benefit from what has already been proven in the field.',
         },
     ],
 } as const;

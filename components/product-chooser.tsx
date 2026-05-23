@@ -422,7 +422,7 @@ export function ProductChooser() {
                     zIndex: 1,
                 }}
             >
-                SoCcentric · Silicon-Native Test · IV&V · HIL · Datalogger
+                siliconcentric · Silicon-Native Test · IV&V · HIL · Datalogger
             </motion.p>
         </motion.div>
     );

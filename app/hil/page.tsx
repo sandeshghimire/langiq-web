@@ -28,9 +28,9 @@ import {
 } from "@/lib/content/hil";
 
 export const metadata = {
-    title: "HIL — Hardware-in-the-Loop Test Platform | SoCcentric",
+    title: "HIL — Hardware-in-the-Loop Test Platform | siliconcentric",
     description:
-        "SoCcentric's HIL platform: modular, slot-based hardware-in-the-loop testing on real silicon with native IV&V integration.",
+        "siliconcentric's HIL platform: modular, slot-based hardware-in-the-loop testing on real silicon with native IV&V integration.",
 };
 
 export default function HilPage() {

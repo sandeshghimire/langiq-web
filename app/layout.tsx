@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/json-ld";
 import { TelemetryBar } from "@/components/telemetry-bar";
 import { SmoothScroll } from "@/components/smooth-scroll";
 
-const SITE_URL = "https://ivv.soccentric.com";
+const SITE_URL = "https://ivv.siliconcentric.com";
 
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
@@ -30,14 +30,14 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const TITLE =
-  "Independent Validation & Verification for Embedded Systems — SoCcentric";
+  "Independent Validation & Verification for Embedded Systems — siliconcentric";
 const DESCRIPTION =
   "The Independent V&V Suite validates every embedded platform — Yocto Linux or FreeRTOS bare-metal — across compute, peripherals, sensors, and environmental conditions. No source-code access required. Six in-house reference platforms. Evidence structured for ISO 26262, DO-178C, IEC 62304, and IEC 61508.";
 const OG_IMAGE = {
   url: "/og.png",
   width: 1200,
   height: 630,
-  alt: "Architecture diagram of the SoCcentric platform suite — IV&V, HIL, and Datalogger product layers",
+  alt: "Architecture diagram of the siliconcentric platform suite — IV&V, HIL, and Datalogger product layers",
 };
 
 export const viewport: Viewport = {
@@ -49,11 +49,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  applicationName: "SoCcentric",
+  applicationName: "siliconcentric",
 
   title: {
     default: TITLE,
-    template: "%s | SoCcentric",
+    template: "%s | siliconcentric",
   },
   description: DESCRIPTION,
 
@@ -91,9 +91,9 @@ export const metadata: Metadata = {
     "append-only evidence",
   ],
 
-  authors: [{ name: "SoCcentric", url: SITE_URL }],
-  creator: "SoCcentric",
-  publisher: "SoCcentric",
+  authors: [{ name: "siliconcentric", url: SITE_URL }],
+  creator: "siliconcentric",
+  publisher: "siliconcentric",
   category: "technology",
 
   robots: {
@@ -116,7 +116,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    siteName: "SoCcentric",
+    siteName: "siliconcentric",
     title: TITLE,
     description:
       "Platform-independent V&V suite for embedded systems. Yocto Linux and FreeRTOS targets. FlatBuffers and gRPC transports. Full coverage: compute, peripherals, sensors, perception, environmental. Evidence for ISO 26262, DO-178C, IEC 62304, IEC 61508.",
@@ -128,8 +128,8 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
     images: [OG_IMAGE.url],
-    creator: "@soccentric",
-    site: "@soccentric",
+    creator: "@siliconcentric",
+    site: "@siliconcentric",
   },
 
   icons: {

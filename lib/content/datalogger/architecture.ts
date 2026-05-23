@@ -9,7 +9,7 @@ export const DATALOGGER_ARCHITECTURE = {
     components: [
         {
             number: '01',
-            label: 'SoCcentric-Logger-Base PCB',
+            label: 'siliconcentric-Logger-Base PCB',
             description: '11 default sensors on every board: shock, vibration, temperature, humidity, light, sound, pressure, GPS, gyroscope, IMU, and magnetometer. The standard foundation every customer starts from.',
         },
         {
@@ -20,7 +20,7 @@ export const DATALOGGER_ARCHITECTURE = {
         {
             number: '03',
             label: 'LoggerOS',
-            description: 'The Datalogger’s operating system — a branded SoCcentric Yocto BSP build. Deterministic, PL-resident response where timing matters. Manages capture, storage, OTA updates, and connectivity.',
+            description: 'The Datalogger’s operating system — a branded siliconcentric Yocto BSP build. Deterministic, PL-resident response where timing matters. Manages capture, storage, OTA updates, and connectivity.',
         },
         {
             number: '04',

@@ -1,6 +1,6 @@
 export const DATALOGGER_NAV = {
     brand: {
-        eyebrow: 'SOCCENTRIC',
+        eyebrow: 'siliconcentric',
         name: 'datalogger',
     },
     links: [

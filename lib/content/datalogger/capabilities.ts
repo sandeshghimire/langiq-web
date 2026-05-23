@@ -1,11 +1,11 @@
 export const DATALOGGER_CAPABILITIES = {
     sectionLabel: '05 — Capabilities',
     headline: 'Standard sensors. Flexible storage. Evidence-ready.',
-    lead: 'The SoCcentric-Logger-Base ships 11 sensors on every board. Storage scales to 8 TB NVMe. Clock accuracy to sub-microsecond. Every parameter is scoped to the customer — power, connectivity, enclosure, trigger engine, and export format.',
+    lead: 'The siliconcentric-Logger-Base ships 11 sensors on every board. Storage scales to 8 TB NVMe. Clock accuracy to sub-microsecond. Every parameter is scoped to the customer — power, connectivity, enclosure, trigger engine, and export format.',
     features: [
         {
             icon: 'Activity',
-            title: 'SoCcentric-Logger-Base — 11 standard sensors',
+            title: 'siliconcentric-Logger-Base — 11 standard sensors',
             description:
                 'Shock, vibration, temperature, humidity, light, sound, pressure, GPS, gyroscope, IMU, and magnetometer on every board as standard. [Founder decision: GPS may be optional, making the base 10 sensors. Confirm before publishing.] The Logger-Base is the consistent foundation every customer starts from.',
         },

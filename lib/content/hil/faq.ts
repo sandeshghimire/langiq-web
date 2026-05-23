@@ -8,9 +8,9 @@ export const HIL_FAQ = {
                 'The K26 SoM from AMD/Xilinx (Kria family). The APU runs a Yocto Linux image with the IV&V framework installed; the RPU runs a FreeRTOS watchdog; the PL hosts FPGA soft-IP for high-accuracy I/O and timing. This is the same silicon family as the Zion reference platform, so the BSP, toolchain, and engineering discipline are shared.',
         },
         {
-            question: 'Do we need to use SoCcentric compute platforms to use the HIL?',
+            question: 'Do we need to use siliconcentric compute platforms to use the HIL?',
             answer:
-                'No. Platform adapters are available for all six SoCcentric platforms (Arches, Acadia, Zion, Pinnacle, Joshua, Sequoia), but a custom adapter can be made for any DUT. Custom adapters require a brief NRE engagement to characterize the DUT connector, power envelope, and signal translation requirements.',
+                'No. Platform adapters are available for all six siliconcentric platforms (Arches, Acadia, Zion, Pinnacle, Joshua, Sequoia), but a custom adapter can be made for any DUT. Custom adapters require a brief NRE engagement to characterize the DUT connector, power envelope, and signal translation requirements.',
         },
         {
             question: 'How does the HIL connect to the IV&V platform?',

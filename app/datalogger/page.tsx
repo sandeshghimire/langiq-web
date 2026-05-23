@@ -28,9 +28,9 @@ import {
 } from "@/lib/content/datalogger";
 
 export const metadata = {
-    title: "Datalogger — Silicon-Native Data Acquisition | SoCcentric",
+    title: "Datalogger — Silicon-Native Data Acquisition | siliconcentric",
     description:
-        "SoCcentric's Datalogger: multi-channel, FPGA-accurate data acquisition and logging for embedded systems. Calibrated, append-only, certification-ready evidence.",
+        "siliconcentric's Datalogger: multi-channel, FPGA-accurate data acquisition and logging for embedded systems. Calibrated, append-only, certification-ready evidence.",
 };
 
 export default function DataloggerPage() {

@@ -4,12 +4,12 @@
  *          SoftwareApplication, and FAQPage.
  */
 
-const SITE_URL = "https://ivv.soccentric.com";
+const SITE_URL = "https://ivv.siliconcentric.com";
 
 const organization = {
     "@type": "Organization",
     "@id": `${SITE_URL}/#organization`,
-    name: "SoCcentric",
+    name: "siliconcentric",
     url: SITE_URL,
     logo: {
         "@type": "ImageObject",
@@ -18,7 +18,7 @@ const organization = {
         height: 512,
     },
     description:
-        "SoCcentric builds silicon-native test platforms for embedded systems: IV&V for autonomous evidence-generating validation, HIL for modular hardware-in-the-loop testing, and Datalogger for multi-channel FPGA-accurate data acquisition.",
+        "siliconcentric builds silicon-native test platforms for embedded systems: IV&V for autonomous evidence-generating validation, HIL for modular hardware-in-the-loop testing, and Datalogger for multi-channel FPGA-accurate data acquisition.",
     sameAs: [] as string[],
 };
 
@@ -26,7 +26,7 @@ const website = {
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     url: SITE_URL,
-    name: "SoCcentric",
+    name: "siliconcentric",
     description:
         "Platform-independent validation and verification for embedded systems.",
     publisher: { "@id": `${SITE_URL}/#organization` },
@@ -44,7 +44,7 @@ const webpage = {
     "@type": "WebPage",
     "@id": `${SITE_URL}/#webpage`,
     url: SITE_URL,
-    name: "Independent Validation & Verification for Embedded Systems — SoCcentric",
+    name: "Independent Validation & Verification for Embedded Systems — siliconcentric",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     about: { "@id": `${SITE_URL}/#organization` },
     description:
@@ -66,7 +66,7 @@ const webpage = {
 const softwareApplication = {
     "@type": "SoftwareApplication",
     "@id": `${SITE_URL}/#software`,
-    name: "SoCcentric Platform Suite",
+    name: "siliconcentric Platform Suite",
     applicationCategory: "DeveloperApplication",
     operatingSystem: ["Linux", "FreeRTOS", "Yocto"],
     offers: {

@@ -13,13 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // ── Mail configuration ───────────────────────────────────────────────────────
-define('MAIL_FROM', 'info@soccentric.com');
-define('MAIL_TO',   'info@soccentric.com');
+define('MAIL_FROM', 'info@siliconcentric.com');
+define('MAIL_TO',   'info@siliconcentric.com');
 
 // SMTP fallback (used only if PHP mail() fails)
-define('SMTP_HOST', 'mail.soccentric.com');
+define('SMTP_HOST', 'mail.siliconcentric.com');
 define('SMTP_PORT', 465);
-define('SMTP_USER', 'info@soccentric.com');
+define('SMTP_USER', 'info@siliconcentric.com');
 define('SMTP_PASS', '9K2Q6oFSkmwco8rh!');
 
 define('LOG_FILE', __DIR__ . '/lead.log');
@@ -34,7 +34,7 @@ function lead_log(string $msg): void
 /** PHP's built-in mail() via local sendmail. Preferred on shared hosting. */
 function send_via_mail(string $subject, string $body): bool
 {
-    $headers  = 'From: SoCcentric <' . MAIL_FROM . ">\r\n";
+    $headers  = 'From: siliconcentric <' . MAIL_FROM . ">\r\n";
     $headers .= 'Reply-To: ' . MAIL_FROM . "\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
@@ -99,7 +99,7 @@ function send_via_smtp(string $subject, string $body): bool
     [$code] = smtp_cmd($fp, 'RCPT TO:<' . MAIL_TO . '>');                if ($code !== 250) { lead_log("smtp rcptto: $code");   fclose($fp); return false; }
     [$code] = smtp_cmd($fp, 'DATA');                                     if ($code !== 354) { lead_log("smtp data: $code");     fclose($fp); return false; }
 
-    $msg  = 'From: SoCcentric <' . MAIL_FROM . ">\r\n";
+    $msg  = 'From: siliconcentric <' . MAIL_FROM . ">\r\n";
     $msg .= 'To: ' . MAIL_TO . "\r\n";
     $msg .= 'Subject: =?UTF-8?B?' . base64_encode($subject) . "?=\r\n";
     $msg .= "MIME-Version: 1.0\r\n";
@@ -172,7 +172,7 @@ if (strlen($message) > 2000) {
     exit;
 }
 
-$body  = "New contact request — ivv.soccentric.com\n";
+$body  = "New contact request — ivv.siliconcentric.com\n";
 $body .= str_repeat('-', 44) . "\n";
 $body .= "Name    : {$name}\n";
 $body .= "Company : {$company}\n";
@@ -184,7 +184,7 @@ $ok = send_mail("IV&V Lead: {$name} — {$company}", $body);
 
 if (!$ok) {
     http_response_code(500);
-    echo json_encode(['ok' => false, 'error' => 'Mail delivery failed — please email info@soccentric.com directly']);
+    echo json_encode(['ok' => false, 'error' => 'Mail delivery failed — please email info@siliconcentric.com directly']);
     exit;
 }
 

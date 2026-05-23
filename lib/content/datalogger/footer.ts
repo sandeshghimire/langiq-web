@@ -1,7 +1,7 @@
 export const DATALOGGER_FOOTER = {
     brand: {
         description:
-            'SoCcentric develops custom dataloggers for data collection across industries. 11 sensors standard. 15 verticals. One data format. Native IV&V node — bench to field and back.',
+            'siliconcentric develops custom dataloggers for data collection across industries. 11 sensors standard. 15 verticals. One data format. Native IV&V node — bench to field and back.',
     },
     platforms: {
         header: 'Interfaces',
@@ -24,5 +24,5 @@ export const DATALOGGER_FOOTER = {
             { label: '⇌ HIL platform', href: '/hil' },
         ],
     },
-    copyright: `© SoCcentric · ${new Date().getFullYear()} :: BUILT FOR ENGINEERS`,
+    copyright: `© siliconcentric · ${new Date().getFullYear()} :: BUILT FOR ENGINEERS`,
 } as const;

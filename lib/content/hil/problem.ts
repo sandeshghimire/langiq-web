@@ -6,8 +6,8 @@ export const HIL_PROBLEM = {
         after: 'On real silicon.',
     },
     body: [
-        'No vendor lock-in. No proprietary RTOS. No unfamiliar toolchain. The SoCcentric HIL is built on the same Kria K26 SoM, the same Yocto BSP, and the same IV&V framework already running in your program. Your engineers already know the stack.',
-        'The HIL is the seventh SoCcentric platform — a slot-based chassis with a fixed brain card, swappable platform adapter boards, and an extension-card catalog. Every interface beyond the common-denominator base is a card you choose.',
+        'No vendor lock-in. No proprietary RTOS. No unfamiliar toolchain. The siliconcentric HIL is built on the same Kria K26 SoM, the same Yocto BSP, and the same IV&V framework already running in your program. Your engineers already know the stack.',
+        'The HIL is the seventh siliconcentric platform — a slot-based chassis with a fixed brain card, swappable platform adapter boards, and an extension-card catalog. Every interface beyond the common-denominator base is a card you choose.',
     ],
     failureModes: [
         {
