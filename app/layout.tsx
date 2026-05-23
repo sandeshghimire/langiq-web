@@ -37,7 +37,7 @@ const OG_IMAGE = {
   url: "/og.png",
   width: 1200,
   height: 630,
-  alt: "Architecture diagram of the siliconcentric platform suite — IV&V, HIL, and Datalogger product layers",
+  alt: "Architecture diagram of the Siliconcentric platform suite — IV&V, HIL, and Datalogger product layers",
 };
 
 export const viewport: Viewport = {

@@ -18,7 +18,7 @@ const organization = {
         height: 512,
     },
     description:
-        "siliconcentric builds silicon-native test platforms for embedded systems: IV&V for autonomous evidence-generating validation, HIL for modular hardware-in-the-loop testing, and Datalogger for multi-channel FPGA-accurate data acquisition.",
+        "Siliconcentric builds silicon-native test platforms for embedded systems: IV&V for autonomous evidence-generating validation, HIL for modular hardware-in-the-loop testing, and Datalogger for multi-channel FPGA-accurate data acquisition.",
     sameAs: [] as string[],
 };
 
@@ -66,7 +66,7 @@ const webpage = {
 const softwareApplication = {
     "@type": "SoftwareApplication",
     "@id": `${SITE_URL}/#software`,
-    name: "siliconcentric Platform Suite",
+    name: "Siliconcentric Platform Suite",
     applicationCategory: "DeveloperApplication",
     operatingSystem: ["Linux", "FreeRTOS", "Yocto"],
     offers: {

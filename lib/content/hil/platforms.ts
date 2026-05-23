@@ -47,12 +47,12 @@ export const HIL_PLATFORMS = {
             name: 'Adapter Card',
             subtitle: 'PLATFORM ADAPTER',
             positioning:
-                'DUT-specific platform adapter PCB — connector, power conditioning, and signal translation for each of the six siliconcentric compute platforms. Swap the adapter to change the DUT. Custom adapters available for non-siliconcentric silicon.',
+                'DUT-specific platform adapter PCB — connector, power conditioning, and signal translation for each of the six Siliconcentric compute platforms. Swap the adapter to change the DUT. Custom adapters available for non-Siliconcentric silicon.',
             specs: [
                 { key: 'PLATFORMS', value: 'Arches · Acadia · Zion' },
                 { key: 'PLATFORMS2', value: 'Pinnacle · Joshua · Sequoia' },
                 { key: 'POWER', value: 'Programmable DUT supply' },
-                { key: 'CUSTOM', value: 'Non-siliconcentric silicon' },
+                { key: 'CUSTOM', value: 'Non-Siliconcentric silicon' },
             ],
         },
         {

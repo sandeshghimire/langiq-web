@@ -102,7 +102,7 @@ export function HilArchitectureDiagram() {
             role="img"
             aria-labelledby="hil-arch-title hil-arch-desc"
         >
-            <title id="hil-arch-title">siliconcentric HIL — System Architecture</title>
+            <title id="hil-arch-title">Siliconcentric HIL — System Architecture</title>
             <desc id="hil-arch-desc">
                 HIL chassis with K26 brain card (APU + RPU + FPGA PL), slot backplane with six card slots (DIO, AIO,
                 CAN, Adapter, Power, Extension), and platform adapter connecting to the device under test.

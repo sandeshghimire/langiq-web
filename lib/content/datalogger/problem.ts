@@ -6,8 +6,8 @@ export const DATALOGGER_PROBLEM = {
         after: 'Ready for the field.',
     },
     body: [
-        'siliconcentric develops custom dataloggers for long-term data collection across many industries. We do not sell off-the-shelf SKUs. We scope to the customer’s industry and requirements, then build — starting from proven templates, not blank pages. We have been building custom dataloggers for 10+ years.',
-        'The Datalogger is the third siliconcentric product, built as a complement to HIL and IV&V. Where HIL simulates the world in the lab and IV&V records what a system does on the bench, the Datalogger captures the real world in the field. Together they close the loop: one BSP, one protocol library, one data format, one evidence store — bench to field and back.',
+        'Siliconcentric develops custom dataloggers for long-term data collection across many industries. We do not sell off-the-shelf SKUs. We scope to the customer’s industry and requirements, then build — starting from proven templates, not blank pages. We have been building custom dataloggers for 10+ years.',
+        'The Datalogger is the third Siliconcentric product, built as a complement to HIL and IV&V. Where HIL simulates the world in the lab and IV&V records what a system does on the bench, the Datalogger captures the real world in the field. Together they close the loop: one BSP, one protocol library, one data format, one evidence store — bench to field and back.',
     ],
     failureModes: [
         {

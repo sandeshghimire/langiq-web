@@ -20,7 +20,7 @@ export const DATALOGGER_ARCHITECTURE = {
         {
             number: '03',
             label: 'LoggerOS',
-            description: 'The Datalogger’s operating system — a branded siliconcentric Yocto BSP build. Deterministic, PL-resident response where timing matters. Manages capture, storage, OTA updates, and connectivity.',
+            description: 'The Datalogger’s operating system — a branded Siliconcentric Yocto BSP build. Deterministic, PL-resident response where timing matters. Manages capture, storage, OTA updates, and connectivity.',
         },
         {
             number: '04',

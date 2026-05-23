@@ -64,7 +64,7 @@ function send_mail(string $subject, string $body): bool
     smtp_cmd($fp, 'DATA');
 
     $encoded_subject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
-    $msg  = 'From: siliconcentric <' . MAIL_FROM . ">\r\n";
+    $msg  = 'From: Siliconcentric <' . MAIL_FROM . ">\r\n";
     $msg .= 'To: ' . MAIL_TO . "\r\n";
     $msg .= 'Subject: ' . $encoded_subject . "\r\n";
     $msg .= "MIME-Version: 1.0\r\n";

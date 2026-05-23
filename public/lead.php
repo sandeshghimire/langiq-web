@@ -34,7 +34,7 @@ function lead_log(string $msg): void
 /** PHP's built-in mail() via local sendmail. Preferred on shared hosting. */
 function send_via_mail(string $subject, string $body): bool
 {
-    $headers  = 'From: siliconcentric <' . MAIL_FROM . ">\r\n";
+    $headers  = 'From: Siliconcentric <' . MAIL_FROM . ">\r\n";
     $headers .= 'Reply-To: ' . MAIL_FROM . "\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
@@ -99,7 +99,7 @@ function send_via_smtp(string $subject, string $body): bool
     [$code] = smtp_cmd($fp, 'RCPT TO:<' . MAIL_TO . '>');                if ($code !== 250) { lead_log("smtp rcptto: $code");   fclose($fp); return false; }
     [$code] = smtp_cmd($fp, 'DATA');                                     if ($code !== 354) { lead_log("smtp data: $code");     fclose($fp); return false; }
 
-    $msg  = 'From: siliconcentric <' . MAIL_FROM . ">\r\n";
+    $msg  = 'From: Siliconcentric <' . MAIL_FROM . ">\r\n";
     $msg .= 'To: ' . MAIL_TO . "\r\n";
     $msg .= 'Subject: =?UTF-8?B?' . base64_encode($subject) . "?=\r\n";
     $msg .= "MIME-Version: 1.0\r\n";
