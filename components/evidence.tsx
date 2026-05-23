@@ -3,7 +3,9 @@ import { Reveal } from "./ui/reveal";
 import { EVIDENCE as DEFAULT_EVIDENCE } from "@/lib/content";
 import type { Widen } from "@/lib/content/types";
 
-type EvidenceContent = Widen<typeof DEFAULT_EVIDENCE>;
+type EvidenceContent = Omit<Widen<typeof DEFAULT_EVIDENCE>, 'closingLine'> & {
+    closingLine?: string;
+};
 
 export function Evidence({ content = DEFAULT_EVIDENCE }: { content?: EvidenceContent }) {
     return (
@@ -173,6 +175,22 @@ export function Evidence({ content = DEFAULT_EVIDENCE }: { content?: EvidenceCon
                     ))}
                 </div>
             </div>
+
+            {content.closingLine && (
+                <Reveal delay={0.3}>
+                    <p
+                        style={{
+                            fontSize: "17px",
+                            lineHeight: 1.6,
+                            color: "var(--text-secondary)",
+                            margin: "48px 0 0",
+                            maxWidth: "860px",
+                        }}
+                    >
+                        {content.closingLine}
+                    </p>
+                </Reveal>
+            )}
 
             <style>{`
         @media (max-width: 1023px) {

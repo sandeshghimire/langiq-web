@@ -2,7 +2,9 @@
 import { FOOTER as DEFAULT_FOOTER } from "@/lib/content";
 import type { Widen } from "@/lib/content/types";
 
-type FooterContent = Widen<typeof DEFAULT_FOOTER>;
+type FooterContent = Omit<Widen<typeof DEFAULT_FOOTER>, 'brand'> & {
+    brand: { description: string; tagline?: string };
+};
 
 export function Footer({
     content = DEFAULT_FOOTER,
@@ -102,6 +104,21 @@ export function Footer({
                         >
                             {content.brand.description}
                         </p>
+                        {content.brand.tagline && (
+                            <p
+                                style={{
+                                    fontFamily: "var(--font-instrument-serif, serif)",
+                                    fontStyle: "italic",
+                                    fontSize: "14px",
+                                    lineHeight: 1.6,
+                                    color: "var(--text-secondary)",
+                                    margin: "10px 0 0",
+                                    maxWidth: "380px",
+                                }}
+                            >
+                                {content.brand.tagline}
+                            </p>
+                        )}
                     </div>
 
                     {/* Middle: Platforms */}

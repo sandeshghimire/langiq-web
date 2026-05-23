@@ -32,7 +32,7 @@ const jetbrainsMono = JetBrains_Mono({
 const TITLE =
   "Independent Validation & Verification for Embedded Systems — siliconcentric";
 const DESCRIPTION =
-  "The Independent V&V Suite validates every embedded platform — Yocto Linux or FreeRTOS bare-metal — across compute, peripherals, sensors, and environmental conditions. No source-code access required. Six in-house reference platforms. Evidence structured for ISO 26262, DO-178C, IEC 62304, and IEC 61508.";
+  "The Independent V&V Suite validates every embedded platform — Yocto Linux or FreeRTOS bare-metal — across compute, peripherals, sensors, and environmental conditions. No source-code access required. Six in-house reference platforms. Test records structured for ISO 26262, DO-178C, IEC 62304, and IEC 61508.";
 const OG_IMAGE = {
   url: "/og.png",
   width: 1200,
@@ -79,16 +79,14 @@ export const metadata: Metadata = {
     "HAL testing",
     "SoC validation",
     "functional safety testing",
-    "certification evidence",
+    "certification records",
     "automotive embedded",
     "aerospace embedded",
     "medical device software",
-    "Kria K26",
-    "AMD FPGA",
     "FPGA data acquisition",
     "CAN-FD",
     "fault injection",
-    "append-only evidence",
+    "audit trail",
   ],
 
   authors: [{ name: "siliconcentric", url: SITE_URL }],
@@ -119,7 +117,7 @@ export const metadata: Metadata = {
     siteName: "siliconcentric",
     title: TITLE,
     description:
-      "Platform-independent V&V suite for embedded systems. Yocto Linux and FreeRTOS targets. FlatBuffers and gRPC transports. Full coverage: compute, peripherals, sensors, perception, environmental. Evidence for ISO 26262, DO-178C, IEC 62304, IEC 61508.",
+      "Platform-independent V&V suite for embedded systems. Yocto Linux and FreeRTOS targets. FlatBuffers and gRPC transports. Full coverage: compute, peripherals, sensors, perception, environmental. Test records for ISO 26262, DO-178C, IEC 62304, IEC 61508.",
     images: [OG_IMAGE],
   },
 

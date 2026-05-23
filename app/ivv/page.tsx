@@ -13,9 +13,9 @@ import { CtaSection } from "@/components/cta";
 import { Footer } from "@/components/footer";
 
 export const metadata = {
-    title: "IV&V — Independent Verification & Validation | siliconcentric",
+    title: "IV&V — Independent Verification & Validation | SoCcentric",
     description:
-        "siliconcentric's IV&V platform: autonomous, evidence-generating test for embedded systems on real silicon.",
+        "SoCcentric's IV&V platform: custom-built, records-based test and validation for embedded systems on real silicon.",
 };
 
 export default function IvvPage() {
