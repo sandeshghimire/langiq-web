@@ -237,9 +237,10 @@ export function ProductChooser() {
                         letterSpacing: "-0.02em",
                         lineHeight: 1.15,
                         margin: 0,
+                        textTransform: "uppercase",
                     }}
                 >
-                    Choose your platform
+                    silicon-centric
                 </h1>
 
                 <p
@@ -248,12 +249,12 @@ export function ProductChooser() {
                         fontSize: "15px",
                         color: "var(--text-secondary)",
                         textAlign: "center",
-                        maxWidth: "440px",
+                        maxWidth: "740px",
                         lineHeight: 1.6,
                         margin: 0,
                     }}
                 >
-                    Three silicon-native test platforms — validation evidence, hardware-in-the-loop, and data acquisition. Built to work together.
+                    We build the software and hardware tools that test and validate your product on real silicon — so your engineers stay focused on building it.
                 </p>
             </motion.div>
 
