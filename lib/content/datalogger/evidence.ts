@@ -52,4 +52,5 @@ export const DATALOGGER_EVIDENCE = {
             ],
         },
     ],
+    closingLine: 'Where it used to take weeks to assemble a submission from raw logs, AI-assisted analysis turns captured runs into draft reports in hours — anomalies flagged, results summarized, ready for your engineers to review and sign.',
 } as const;
