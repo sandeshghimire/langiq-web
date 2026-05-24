@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/json-ld";
 import { TelemetryBar } from "@/components/telemetry-bar";
 import { SmoothScroll } from "@/components/smooth-scroll";
 
-const SITE_URL = "https://ivv.siliconcentric.com";
+const SITE_URL = "https://soccentric.com";
 
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
@@ -30,14 +30,14 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const TITLE =
-  "Independent Validation & Verification for Embedded Systems — siliconcentric";
+  "SoCcentric — IV&V, HIL & Datalogger for embedded validation.";
 const DESCRIPTION =
-  "The Independent V&V Suite validates every embedded platform — Yocto Linux or FreeRTOS bare-metal — across compute, peripherals, sensors, and environmental conditions. No source-code access required. Six in-house reference platforms. Test records structured for ISO 26262, DO-178C, IEC 62304, and IEC 61508.";
+  "Independent validation, hardware-in-the-loop, and field capture on one shared platform. We run on the six silicon families behind ~90% of embedded designs. Audit-survivable test records mapped to ISO 26262, DO-178C, IEC 62304, and IEC 61508. No source-code access required.";
 const OG_IMAGE = {
   url: "/og.png",
   width: 1200,
   height: 630,
-  alt: "Architecture diagram of the Siliconcentric platform suite — IV&V, HIL, and Datalogger product layers",
+  alt: "SoCcentric — one platform for IV&V, HIL, and Datalogger across six embedded silicon families.",
 };
 
 export const viewport: Viewport = {
@@ -49,11 +49,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  applicationName: "siliconcentric",
+  applicationName: "SoCcentric",
 
   title: {
     default: TITLE,
-    template: "%s | siliconcentric",
+    template: "%s | SoCcentric",
   },
   description: DESCRIPTION,
 
@@ -63,8 +63,7 @@ export const metadata: Metadata = {
     "HIL",
     "hardware-in-the-loop",
     "datalogger",
-    "data acquisition",
-    "data logging",
+    "field data capture",
     "embedded systems testing",
     "Yocto Linux validation",
     "FreeRTOS testing",
@@ -74,24 +73,23 @@ export const metadata: Metadata = {
     "IEC 61508",
     "embedded V&V",
     "hardware validation",
-    "FlatBuffers",
-    "gRPC embedded",
     "HAL testing",
     "SoC validation",
     "functional safety testing",
     "certification records",
+    "audit trail",
     "automotive embedded",
     "aerospace embedded",
     "medical device software",
-    "FPGA data acquisition",
     "CAN-FD",
     "fault injection",
-    "audit trail",
+    "fault injection testing",
+    "on-prem AI",
   ],
 
-  authors: [{ name: "siliconcentric", url: SITE_URL }],
-  creator: "siliconcentric",
-  publisher: "siliconcentric",
+  authors: [{ name: "SoCcentric", url: SITE_URL }],
+  creator: "SoCcentric",
+  publisher: "SoCcentric",
   category: "technology",
 
   robots: {
@@ -114,10 +112,10 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    siteName: "siliconcentric",
+    siteName: "SoCcentric",
     title: TITLE,
     description:
-      "Platform-independent V&V suite for embedded systems. Yocto Linux and FreeRTOS targets. FlatBuffers and gRPC transports. Full coverage: compute, peripherals, sensors, perception, environmental. Test records for ISO 26262, DO-178C, IEC 62304, IEC 61508.",
+      "Independent validation, hardware-in-the-loop, and field capture on one shared platform. Audit-survivable test records for ISO 26262, DO-178C, IEC 62304, IEC 61508. No source-code access required.",
     images: [OG_IMAGE],
   },
 
@@ -126,8 +124,8 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
     images: [OG_IMAGE.url],
-    creator: "@siliconcentric",
-    site: "@siliconcentric",
+    creator: "@soccentric",
+    site: "@soccentric",
   },
 
   icons: {

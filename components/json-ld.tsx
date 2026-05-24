@@ -4,12 +4,12 @@
  *          SoftwareApplication, and FAQPage.
  */
 
-const SITE_URL = "https://ivv.siliconcentric.com";
+const SITE_URL = "https://soccentric.com";
 
 const organization = {
     "@type": "Organization",
     "@id": `${SITE_URL}/#organization`,
-    name: "siliconcentric",
+    name: "SoCcentric",
     url: SITE_URL,
     logo: {
         "@type": "ImageObject",
@@ -18,7 +18,7 @@ const organization = {
         height: 512,
     },
     description:
-        "Siliconcentric builds silicon-native test platforms for embedded systems: IV&V for autonomous evidence-generating validation, HIL for modular hardware-in-the-loop testing, and Datalogger for multi-channel FPGA-accurate data acquisition.",
+        "SoCcentric builds embedded validation platforms: IV&V for independent test on real silicon, HIL for hardware-in-the-loop with real-world fault injection, and Datalogger for field capture. One BSP, one data format, one audit-survivable records store across all three.",
     sameAs: [] as string[],
 };
 
@@ -26,9 +26,9 @@ const website = {
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     url: SITE_URL,
-    name: "siliconcentric",
+    name: "SoCcentric",
     description:
-        "Platform-independent validation and verification for embedded systems.",
+        "Independent validation, hardware-in-the-loop, and field capture for embedded systems — on one shared platform.",
     publisher: { "@id": `${SITE_URL}/#organization` },
     potentialAction: {
         "@type": "SearchAction",
@@ -44,11 +44,11 @@ const webpage = {
     "@type": "WebPage",
     "@id": `${SITE_URL}/#webpage`,
     url: SITE_URL,
-    name: "Independent Validation & Verification for Embedded Systems — siliconcentric",
+    name: "SoCcentric — IV&V, HIL & Datalogger for embedded validation",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     about: { "@id": `${SITE_URL}/#organization` },
     description:
-        "The Independent V&V Suite validates every embedded platform — Yocto Linux or FreeRTOS bare-metal — across compute, peripherals, sensors, and environmental conditions. No source-code access required. Evidence for ISO 26262, DO-178C, IEC 62304, and IEC 61508.",
+        "Validate every part of your board — and walk into the audit with the records to prove it. Independent V&V, HIL with bit-level fault injection, and field capture that replays as a HIL stimulus. Records mapped to ISO 26262, DO-178C, IEC 62304, IEC 61508.",
     inLanguage: "en-US",
     breadcrumb: {
         "@type": "BreadcrumbList",
@@ -66,7 +66,7 @@ const webpage = {
 const softwareApplication = {
     "@type": "SoftwareApplication",
     "@id": `${SITE_URL}/#software`,
-    name: "Siliconcentric Platform Suite",
+    name: "SoCcentric Platform Suite",
     applicationCategory: "DeveloperApplication",
     operatingSystem: ["Linux", "FreeRTOS", "Yocto"],
     offers: {
@@ -78,18 +78,18 @@ const softwareApplication = {
     },
     provider: { "@id": `${SITE_URL}/#organization` },
     description:
-        "Platform-independent V&V suite for embedded systems. Validates compute, peripherals, sensors, perception, and environmental conditions. FlatBuffers and gRPC transports. Evidence for ISO 26262, DO-178C, IEC 62304, IEC 61508.",
+        "Independent V&V, hardware-in-the-loop, and field data capture for embedded systems. Validates compute, memory, peripherals, busses, sensors, perception, power, and environmental conditions. Audit-survivable records for ISO 26262, DO-178C, IEC 62304, IEC 61508.",
     featureList: [
-        "Yocto Linux and FreeRTOS bare-metal support",
-        "FlatBuffers transport for bare-metal targets",
-        "gRPC transport for Linux targets",
-        "Six in-house reference platforms",
-        "Three test modes: one-shot, monitoring, event-based",
-        "Five coverage tiers: compute, peripherals, sensors, perception, environmental",
-        "No source-code access required",
-        "Evidence for ISO 26262, DO-178C, IEC 62304, IEC 61508",
-        "Append-only evidence database",
-        "Machine-readable JSON and PDF export",
+        "Independent by construction — our own OS and HAL, no source-code access",
+        "Six home-grown reference platforms covering ~90% of embedded silicon families",
+        "Four test modes including long-running endurance soaks",
+        "Hardware-in-the-loop with bit-level fault injection and microsecond timing",
+        "Field capture that replays as a HIL stimulus at original timing",
+        "One BSP, one protocol library, one data format, one records store, one console",
+        "Append-only test records with three-stamp timing and operator attribution",
+        "Records mapped to ISO 26262, DO-178C, IEC 62304, IEC 61508",
+        "On-prem AI assist — anomaly flagging and report drafts; engineers own conclusions",
+        "Configure-to-order — pay for the channels and protocols you use",
     ],
 };
 
@@ -102,7 +102,7 @@ const faqPage = {
             name: "Do you need access to our source code?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "No. The suite validates the hardware and its components from the outside via the target client and HAL adapter. We exercise peripherals, buses, compute elements, and environmental responses without reading your application code or BSP. Your IP stays with your team.",
+                text: "No. Our OS and HAL form a neutral stack that exercises your hardware from the outside. We test peripherals, busses, compute, sensors, and environmental response without reading your application code or BSP. The independence cert regimes require is built in by construction.",
             },
         },
         {
@@ -110,47 +110,39 @@ const faqPage = {
             name: "Will this interfere with our development workflow?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "No. The IV&V stack runs on its own server, against its own target client on the DUT, on its own cadence. It does not share a build system, CI pipeline, or version control history with your development process. Both can run concurrently against the same hardware.",
+                text: "No. The validation stack runs on its own server, against its own neutral client on the board, on its own cadence. It does not share a build system, CI pipeline, or version control history with your development process. Both can run concurrently against the same hardware.",
             },
         },
         {
             "@type": "Question",
-            name: "Which operating systems does the target client support?",
+            name: "What does the audit trail look like?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "FreeRTOS for bare-metal and RTOS targets; Yocto-based Linux for embedded Linux targets. The transport layer matches: FlatBuffers for FreeRTOS bare-metal; gRPC for Yocto Linux targets. Porting the target client to a new platform requires implementing the HAL adapter — typically a few weeks for a well-documented SoC.",
+                text: "Every run record includes operator identity and timestamps on every state change, firmware and schema versions snapshotted at run start, three-stamp timing on every cross-boundary measurement, and explicit drop counts. The store is append-only — invalidations are recorded with reason, never silent deletes. Records are reviewable in the console and exportable as machine-readable JSON or auditor-friendly PDF.",
             },
         },
         {
             "@type": "Question",
-            name: "How does environmental testing work — temperature, humidity, pressure?",
+            name: "How do records map to ISO 26262, DO-178C, IEC 62304, and IEC 61508?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "Environmental conditions are authored as test parameters in the Web UI and dispatched to the server, which coordinates the run against the device inside the chamber. Monitoring mode streams telemetry continuously as conditions ramp. Event-based mode fires when a configured threshold is crossed. All conditions, readings, and trigger events are persisted in the evidence database.",
+                text: "ISO 26262: fault-injection results, coverage records, and test-to-requirement linkage. DO-178C / DO-254: structural test artifacts and repeatable build-and-run records. IEC 62304 / FDA: lifecycle-aligned logs and software-of-unknown-provenance mitigation artifacts. IEC 61508: functional-safety integrity records and environmental-stress test artifacts.",
             },
         },
         {
             "@type": "Question",
-            name: "What does the evidence trail look like for a certification review?",
+            name: "Our board is not one of your six platforms. Can you still help?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "Every run record includes: operator identity and timestamps on every state change, firmware and schema versions snapshotted at run start, three-stamp timing on every cross-boundary measurement, and explicit drop counts. The database is append-only. Evidence is reviewable in the Web UI and exportable as machine-readable JSON or auditor-friendly PDF.",
+                text: "Almost certainly yes. Our six platforms span the silicon families behind roughly 90% of embedded designs, so your board is very likely a derivative of one. The HAL is the only platform-specific component; porting it to your exact part is a short step, not a rebuild. Everything above — test orchestration, server, records store, console — carries forward unchanged.",
             },
         },
         {
             "@type": "Question",
-            name: "How does evidence map to ISO 26262, DO-178C, IEC 62304, and IEC 61508?",
+            name: "Can the AI assist run fully on-prem?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "ISO 26262: fault-injection results, coverage evidence, and test-to-requirement linkage. DO-178C / DO-254: structural test artifacts and repeatable build-and-run records. IEC 62304 / FDA: lifecycle-aligned logs and software-of-unknown-provenance mitigation evidence. IEC 61508: functional-safety integrity evidence and environmental-stress test records.",
-            },
-        },
-        {
-            "@type": "Question",
-            name: "Our platform is not one of your six reference boards. Can you still help?",
-            acceptedAnswer: {
-                "@type": "Answer",
-                text: "Yes. The HAL adapter is the only platform-specific component. Porting it to a new SoC typically takes a few weeks for a well-documented part. Everything above — test orchestration, server, evidence store, Web UI — carries forward unchanged. Bring us your hardware and we will scope the adapter work.",
+                text: "Yes. The LLM that flags anomalies and drafts reports runs locally — no cloud required — so the platform is suitable for classified, regulated, and air-gapped programs. The AI assists the engineer; the engineer owns every conclusion that goes into a certification submission.",
             },
         },
     ],

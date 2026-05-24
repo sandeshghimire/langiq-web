@@ -4,10 +4,10 @@ export const dynamic = "force-static";
 
 export default function manifest(): MetadataRoute.Manifest {
     return {
-        name: "siliconcentric",
-        short_name: "siliconcentric",
+        name: "SoCcentric",
+        short_name: "SoCcentric",
         description:
-            "Silicon-native test platforms for embedded systems: IV&V for autonomous validation evidence, HIL for hardware-in-the-loop testing, and Datalogger for multi-channel data acquisition.",
+            "Independent validation, hardware-in-the-loop, and field capture for embedded systems on one shared platform. Audit-survivable test records mapped to ISO 26262, DO-178C, IEC 62304, IEC 61508.",
         start_url: "/",
         display: "standalone",
         orientation: "portrait",

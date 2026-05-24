@@ -1,9 +1,9 @@
 import { ProductChooser } from "@/components/product-chooser";
 
 export const metadata = {
-  title: "Siliconcentric — IV&V, HIL & Datalogger Platforms",
+  title: "SoCcentric — IV&V, HIL & Datalogger for embedded validation",
   description:
-    "Siliconcentric builds silicon-native test platforms: IV&V for autonomous evidence-generating validation, HIL for modular hardware-in-the-loop testing, and Datalogger for multi-channel FPGA-accurate data acquisition.",
+    "Validate every part of your board — and walk into the audit with the records to prove it. Independent V&V, hardware-in-the-loop with bit-level fault injection, and field capture that replays as a HIL stimulus. One platform across six embedded silicon families. No source-code access required.",
 };
 
 export default function Home() {
