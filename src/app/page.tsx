@@ -116,15 +116,10 @@ const homeSlides: HomeSlide[] = [
     stage: 9,
     eyebrow: "boot complete ✓ 0 errors",
     heading: "Pick a platform. We deliver everything between the silicon and your application.",
-    bullets: [
-      "Arches (NVIDIA Jetson) · Acadia (Raspberry Pi CM5) · Zion (Xilinx Zynq)",
-      "Pinnacle (NXP i.MX) · Joshua (TI Sitara) · Sequoia (x86 Edge)",
-      "We design carrier boards, write drivers, set up OTA, and write the tests.",
-      "No hourly body shops. No vendor lock-in. Just working platforms."
-    ],
+    bullets: [],
     ctaText: "Talk to engineering",
     ctaHref: "/contact",
-    secondaryCtaText: "Send us your schematic",
+    secondaryCtaText: "Send us your schematic — we'll tell you what bring-up looks like.",
   },
 ];
 
@@ -246,7 +241,7 @@ export default function HomePage() {
                       href={slide.secondaryCtaHref || "/contact"}
                       className="font-mono text-xs uppercase tracking-wider text-[#6b7075] hover:text-[#16181a] transition-colors"
                     >
-                      {slide.secondaryCtaText} →
+                      {slide.secondaryCtaText}
                     </Link>
                   )}
                 </motion.div>
