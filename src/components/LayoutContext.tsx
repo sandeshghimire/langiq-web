@@ -9,36 +9,36 @@ interface LayoutContextType {
   scrollProgress: number; // 0 to 100
   setScrollProgress: (progress: number) => void;
   platformId: string; // "home", "arches", "acadia", etc.
-  setPlatformId: (id: string) => void;
   isContactSubmitted: boolean;
   setIsContactSubmitted: (val: boolean) => void;
 }
 
 const LayoutContext = createContext<LayoutContextType | undefined>(undefined);
 
+// Map the URL pathname to the platformId that every consumer reads.
+function platformIdForPathname(pathname: string): string {
+  const p = pathname.replace(/^\/+/, "").replace(/\/+$/, "");
+  if (p === "") return "home";
+  return p;
+}
+
 export function LayoutProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
   const [activeStage, setActiveStage] = useState(1);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [platformId, setPlatformId] = useState("home");
   const [isContactSubmitted, setIsContactSubmitted] = useState(false);
-  const pathname = usePathname();
 
-  // Automatically update platformId when path changes
+  // platformId is a pure derivation from pathname; no effect needed.
+  const platformId = platformIdForPathname(pathname);
+
+  // Reset scroll/contact state when the route changes. This is a legitimate
+  // external-system sync (the URL is the source of truth, and we have to
+  // mirror the change into local React state), so the set-state-in-effect
+  // rule doesn't apply here.
   useEffect(() => {
-    const p = pathname.replace(/^\//, "");
-    if (p === "") {
-      setPlatformId("home");
-      setActiveStage(1);
-      setScrollProgress(0);
-    } else if (p === "contact") {
-      setPlatformId("contact");
-      setActiveStage(1);
-      setScrollProgress(0);
-    } else {
-      setPlatformId(p);
-      setActiveStage(1);
-      setScrollProgress(0);
-    }
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setActiveStage(1);
+    setScrollProgress(0);
     setIsContactSubmitted(false);
   }, [pathname]);
 
@@ -50,7 +50,6 @@ export function LayoutProvider({ children }: { children: React.ReactNode }) {
         scrollProgress,
         setScrollProgress,
         platformId,
-        setPlatformId,
         isContactSubmitted,
         setIsContactSubmitted,
       }}

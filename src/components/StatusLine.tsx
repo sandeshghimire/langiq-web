@@ -8,10 +8,13 @@ export default function StatusLine() {
   const { scrollProgress, platformId, activeStage, isContactSubmitted } = useLayoutState();
   const [displayPercent, setDisplayPercent] = useState(0);
   const animationFrameId = useRef<number | null>(null);
+  // Hold the latest displayPercent in a ref so the rAF tween can read the
+  // current value without capturing a stale closure.
+  const latestPercent = useRef<number>(0);
 
   // Smooth tweening using requestAnimationFrame
   useEffect(() => {
-    const startValue = displayPercent;
+    const startValue = latestPercent.current;
     const endValue = scrollProgress;
     const duration = 250; // ms
     const startTime = performance.now();
@@ -19,12 +22,13 @@ export default function StatusLine() {
     const updateValue = (now: number) => {
       const elapsed = now - startTime;
       const fraction = Math.min(elapsed / duration, 1);
-      
+
       // Easing function
       const easeOutQuad = (t: number) => t * (2 - t);
       const easedFraction = easeOutQuad(fraction);
-      
+
       const currentVal = Math.round(startValue + (endValue - startValue) * easedFraction);
+      latestPercent.current = currentVal;
       setDisplayPercent(currentVal);
 
       if (fraction < 1) {

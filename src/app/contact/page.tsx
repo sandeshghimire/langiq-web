@@ -37,7 +37,7 @@ export default function ContactPage() {
           </div>
 
           <h1 className="font-display font-bold text-4xl md:text-5xl text-[#16181a] tracking-tight">
-            Tell us what you're building.
+            Tell us what you&apos;re building.
           </h1>
           
           <p className="font-sans text-base text-[#6b7075] -mt-2">
@@ -160,12 +160,12 @@ export default function ContactPage() {
           <div className="p-6 bg-white border border-[#e4e2dd] rounded-[3px] flex flex-col gap-6 font-mono text-xs text-[#6b7075] leading-relaxed">
             <div className="flex items-start gap-3">
               <span className="text-[#16181a] font-bold">&gt;</span>
-              <span>Have a schematic? Send it — we'll tell you what bring-up looks like.</span>
+              <span>Have a schematic? Send it — we&apos;ll tell you what bring-up looks like.</span>
             </div>
             
             <div className="flex items-start gap-3">
               <span className="text-[#16181a] font-bold">&gt;</span>
-              <span>Hiring for the platform layer? Send the job description — we'll send back how we'd deliver it.</span>
+              <span>Hiring for the platform layer? Send the job description — we&apos;ll send back how we&apos;d deliver it.</span>
             </div>
           </div>
         </div>

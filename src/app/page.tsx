@@ -267,29 +267,31 @@ export default function HomePage() {
 
 // Reuse Typewriter and Heading reveals for visual consistency
 function TypedEyebrow({ text, active }: { text: string; active: boolean }) {
-  const [typed, setTyped] = useState("");
+  return (
+    <span className="font-mono text-[10px] tracking-widest font-semibold uppercase text-[#16181a]">
+      <TypedText key={`${active ? "on" : "off"}::${text}`} text={text} active={active} />
+    </span>
+  );
+}
+
+function TypedText({ text, active }: { text: string; active: boolean }) {
+  // Track only the typed length; the visible string is derived. Re-mount via
+  // `key` resets the length so we never have to set state in an effect.
+  const [length, setLength] = useState(0);
 
   useEffect(() => {
-    if (!active) {
-      setTyped("");
-      return;
-    }
-
+    if (!active) return;
     let i = 0;
     const interval = setInterval(() => {
-      setTyped(text.slice(0, i + 1));
-      i++;
+      i += 1;
+      setLength(i);
       if (i >= text.length) clearInterval(interval);
     }, 12);
-
     return () => clearInterval(interval);
   }, [text, active]);
 
-  return (
-    <span className="font-mono text-[10px] tracking-widest font-semibold uppercase text-[#16181a]">
-      {typed || "\u00A0"}
-    </span>
-  );
+  const visible = active ? text.slice(0, length) : "";
+  return <>{visible || "\u00A0"}</>;
 }
 
 function SweepHeading({ text, active }: { text: string; active: boolean }) {

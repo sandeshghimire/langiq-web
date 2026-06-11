@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { LayoutProvider } from "./LayoutContext";
 import Nav from "./Nav";
 import ProgressBar from "./ProgressBar";
@@ -9,15 +9,10 @@ import StatusLine from "./StatusLine";
 import BootTerminal from "./BootTerminal";
 
 export default function ClientShell({ children }: { children: React.ReactNode }) {
-  const [bootFinished, setBootFinished] = useState(false);
-
-  useEffect(() => {
-    // Check if the boot screen was already shown in this session
-    const hasBooted = sessionStorage.getItem("soccentric_booted");
-    if (hasBooted) {
-      setBootFinished(true);
-    }
-  }, []);
+  // Skip the boot screen on re-visits within the same session.
+  const [bootFinished, setBootFinished] = useState<boolean>(
+    () => typeof window !== "undefined" && sessionStorage.getItem("soccentric_booted") !== null
+  );
 
   const handleBootComplete = () => {
     sessionStorage.setItem("soccentric_booted", "true");

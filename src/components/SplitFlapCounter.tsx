@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface SplitFlapCounterProps {
@@ -9,12 +9,6 @@ interface SplitFlapCounterProps {
 }
 
 export default function SplitFlapCounter({ current, total }: SplitFlapCounterProps) {
-  const [prev, setPrev] = useState(current);
-
-  useEffect(() => {
-    setPrev(current);
-  }, [current]);
-
   const pad = (num: number) => String(num).padStart(2, "0");
 
   return (

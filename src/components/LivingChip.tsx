@@ -1,32 +1,33 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { platforms, PlatformData } from "@/data/platforms";
+import { motion } from "framer-motion";
+import type { CSSProperties } from "react";
+import { platforms } from "@/data/platforms";
 
 interface LivingChipProps {
   platformId: string;
   stage: number; // 1 to 9
 }
 
+function resolveActivePlatformId(platformId: string, stage: number): string {
+  if (platformId !== "home") return platformId;
+  if (stage === 2) return "arches";
+  if (stage === 3) return "acadia";
+  if (stage === 4) return "zion";
+  if (stage === 5) return "pinnacle";
+  if (stage === 6) return "joshua";
+  if (stage === 7) return "sequoia";
+  return "";
+}
+
 export default function LivingChip({ platformId, stage }: LivingChipProps) {
-  const [activePlatform, setActivePlatform] = useState<PlatformData | null>(null);
+  const resolvedId = resolveActivePlatformId(platformId, stage);
+  const activePlatform =
+    resolvedId === "" ? null : platforms.find((item) => item.id === resolvedId) ?? null;
+
   const [otaPulse, setOtaPulse] = useState(0);
   const [bspEnumIndex, setBspEnumIndex] = useState(-1);
-
-  useEffect(() => {
-    let currentId = platformId;
-    if (platformId === "home") {
-      if (stage === 2) currentId = "arches";
-      else if (stage === 3) currentId = "acadia";
-      else if (stage === 4) currentId = "zion";
-      else if (stage === 5) currentId = "pinnacle";
-      else if (stage === 6) currentId = "joshua";
-      else if (stage === 7) currentId = "sequoia";
-    }
-    const p = platforms.find((item) => item.id === currentId) || null;
-    setActivePlatform(p);
-  }, [platformId, stage]);
 
   // OTA stage simulation loops
   useEffect(() => {
@@ -38,9 +39,12 @@ export default function LivingChip({ platformId, stage }: LivingChipProps) {
     }
   }, [stage]);
 
-  // BSP enumeration simulation loops
+  // BSP enumeration simulation loops. The setBspEnumIndex call is a
+  // ref-based reset triggered by an external-system change (stage), so the
+  // set-state-in-effect rule doesn't apply here.
   useEffect(() => {
     if (stage === 2) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setBspEnumIndex(0);
       const interval = setInterval(() => {
         setBspEnumIndex((prev) => (prev + 1) % 6);
@@ -55,7 +59,7 @@ export default function LivingChip({ platformId, stage }: LivingChipProps) {
     // If it's the home page or contact page, we can show a general chip that represents SoCcentric
     return (
       <div className="w-full max-w-[500px] h-[500px] flex items-center justify-center relative select-none">
-        <HomeChip stage={stage} />
+        <HomeChip />
       </div>
     );
   }
@@ -75,7 +79,7 @@ export default function LivingChip({ platformId, stage }: LivingChipProps) {
       <svg
         viewBox="0 0 600 600"
         className="w-full h-full drop-shadow-sm"
-        style={{ ["--accent-color" as any]: accent }}
+        style={{ "--accent-color": accent } as CSSProperties}
       >
         {/* BACKGROUND PIN GRID GRID */}
         <g opacity="0.15">
@@ -707,8 +711,9 @@ export default function LivingChip({ platformId, stage }: LivingChipProps) {
 }
 
 // Separate component for the general Home page / fallback chip representation
-function HomeChip({ stage }: { stage: number }) {
-  // Animates morphing representations depending on the stage/index
+function HomeChip() {
+  // Static fallback used when the active platform hasn't resolved yet
+  // (e.g. Home stages 1/8/9 that don't map to a platform identity).
   return (
     <svg viewBox="0 0 600 600" className="w-full h-full max-w-[450px]">
       <g opacity="0.1">

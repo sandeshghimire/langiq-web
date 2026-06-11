@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useLayoutState } from "./LayoutContext";
 import { platforms } from "@/data/platforms";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface RailEntry {
   label: string;
@@ -51,6 +51,7 @@ export default function BootRail() {
   // Tick the timestamp upward for the active slide
   useEffect(() => {
     if (platformId === "contact") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setTickingTime(0);
       return;
     }

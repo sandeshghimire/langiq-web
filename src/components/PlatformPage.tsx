@@ -2,8 +2,8 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { useLayoutState } from "./LayoutContext";
-import { PlatformData, SlideData } from "@/data/platforms";
-import { motion, AnimatePresence } from "framer-motion";
+import { PlatformData } from "@/data/platforms";
+import { motion } from "framer-motion";
 import LivingChip from "./LivingChip";
 import SplitFlapCounter from "./SplitFlapCounter";
 import Link from "next/link";
@@ -15,7 +15,6 @@ interface PlatformPageProps {
 export default function PlatformPage({ platform }: PlatformPageProps) {
   const { activeStage, setActiveStage, setScrollProgress } = useLayoutState();
   const containerRef = useRef<HTMLDivElement>(null);
-  const slidesRef = useRef<(HTMLDivElement | null)[]>([]);
 
   // Monitor scroll progress and active slide
   useEffect(() => {
@@ -31,7 +30,7 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
       const slideHeight = clientHeight;
       const currentSlide = Math.round(scrollTop / slideHeight) + 1;
       const boundedSlide = Math.min(Math.max(currentSlide, 1), 9);
-      
+
       if (boundedSlide !== activeStage) {
         setActiveStage(boundedSlide);
       }
@@ -41,8 +40,7 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
     return () => container.removeEventListener("scroll", handleScroll);
   }, [activeStage, setActiveStage, setScrollProgress]);
 
-  // Handle snapping triggers
-  const currentSlideData = platform.slides[activeStage - 1] || platform.slides[0];
+  // The chip alternates left/right per slide.
   const isChipLeft = activeStage % 2 === 0;
 
   return (
@@ -52,11 +50,10 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
         ref={containerRef}
         className="scroll-container w-full h-full relative z-10"
       >
-        {platform.slides.map((slide, idx) => (
+        {platform.slides.map((slide) => (
           <div
             key={slide.stage}
             id={`slide-${slide.stage}`}
-            ref={(el) => { slidesRef.current[idx] = el; }}
             className="scroll-slide w-full h-screen flex items-center px-6 md:px-16 lg:px-24"
           >
             {/* Split layout inside each page */}
@@ -132,29 +129,32 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
 
 // Sub-component: Character-by-character typewriter for eyebrow
 function TypedEyebrow({ text, active, accent }: { text: string; active: boolean; accent: string }) {
-  const [typed, setTyped] = useState("");
+  return (
+    <span className="font-mono text-[10px] tracking-widest font-semibold uppercase" style={{ color: accent }}>
+      <TypedText key={`${active ? "on" : "off"}::${text}`} text={text} active={active} />
+    </span>
+  );
+}
+
+function TypedText({ text, active }: { text: string; active: boolean }) {
+  // We track only the "current typed length" in state. The visible string is
+  // derived from it on every render, so we never have to set state in an
+  // effect to reset the display. Re-mount via `key` resets length to 0.
+  const [length, setLength] = useState(0);
 
   useEffect(() => {
-    if (!active) {
-      setTyped("");
-      return;
-    }
-
+    if (!active) return;
     let i = 0;
     const interval = setInterval(() => {
-      setTyped(text.slice(0, i + 1));
-      i++;
+      i += 1;
+      setLength(i);
       if (i >= text.length) clearInterval(interval);
     }, 15);
-
     return () => clearInterval(interval);
   }, [text, active]);
 
-  return (
-    <span className="font-mono text-[10px] tracking-widest font-semibold uppercase" style={{ color: accent }}>
-      {typed || "\u00A0"}
-    </span>
-  );
+  const visible = active ? text.slice(0, length) : "";
+  return <>{visible || "\u00A0"}</>;
 }
 
 // Sub-component: Heading reveal with sweep scanline
