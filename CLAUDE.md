@@ -113,3 +113,24 @@ All final copy lives in `req.md` and is authoritative — do not invent new copy
 - **Don't use banned vocabulary** (see Copy & content rules).
 - **Don't add `width`/`height`/`top`/`left` animations** to the chip or other components — animate `transform`/`opacity` only.
 - **Don't commit secrets, `out/`, `.next/`, or `*.tsbuildinfo`** — already covered by `.gitignore`.
+
+## Workflow (added 2026-06-11, §9/§9a autonomous fix loop)
+
+### Do
+
+- **Validation command in this repo is `npm run build && npm run lint`** — there is no top-level Makefile (§12 wants one) and no test script (static export). Issue to add a Makefile wrapping these is queued.
+- **Always rebase `develop` on `origin/develop` at the start of every fix branch** — `git checkout develop && git fetch origin && git rebase origin/develop`.
+- **One issue = one branch named `fix/<#>-<slug>`**, one PR targeting `develop`, merged with `--rebase --delete-branch` per §9.
+- **Before implementing, `gh issue view <#>` to read the body** — then `gh pr list --state open --search "<#>"` + `git branch -a | grep <#>` to dedup.
+- **Per-file conflict hot spots** (touched by many issues — rebase carefully):
+  - `src/components/LayoutContext.tsx` (#14, #10, #46, #42, #48)
+  - `src/components/LivingChip.tsx` (#17, #18, #19, #20, #21, #22, #25, #26, #27, #28, #31, #32, #23, #24, #36, #52)
+  - `src/components/StatusLine.tsx` (#15, #16, #47)
+  - `src/app/globals.css` (#13, #30, #29, #37, #39, #49)
+  - `src/components/Nav.tsx` and `BootRail.tsx` (#38, #43, #44, #45)
+
+### Don't
+
+- **Don't trust open issues blindly** — re-validate against current `develop`. PRs #1/#2/#3 already merged but several of their referenced issues (#5, #6, #7, #12, #15, #19, #23) are still open and may already be resolved.
+- **Don't pause between issues** — §9 explicitly forbids it. Bundle sweeping a11y/perf issues into focused multi-issue PRs instead of asking permission for each.
+- **Don't `git checkout develop` while dirty on another branch** — stash first (`git stash push -m "WIP: ..."`); we lost in-flight work on `fix/5-s8-platform-team-ctas` once already, do not repeat.
