@@ -17,6 +17,7 @@ interface HomeSlide {
   ctaText?: string;
   ctaHref?: string;
   secondaryCtaText?: string;
+  secondaryCtaHref?: string;
 }
 
 const homeSlides: HomeSlide[] = [
@@ -25,14 +26,11 @@ const homeSlides: HomeSlide[] = [
     eyebrow: "SOCCENTRIC // EMBEDDED PLATFORMS",
     heading: "From silicon to shipped.",
     sub: "Six embedded platforms. One complete production software stack on every one.",
-    bullets: [
-      "Board support packages (BSP), board bring-up, and device driver development.",
-      "Multi-stage bootloaders, golden boot images, and secure firmware recovery.",
-      "Custom Linux kernels, device tree engineering, and real-time execution.",
-      "Yocto-based build environments, secure OTA systems, and factory provisioning."
-    ],
+    bullets: [],
     ctaText: "Explore the platforms ↓",
     ctaHref: "#slide-2",
+    secondaryCtaText: "Talk to engineering",
+    secondaryCtaHref: "/contact",
   },
   {
     stage: 2,
@@ -263,7 +261,7 @@ export default function HomePage() {
 
                   {slide.secondaryCtaText && (
                     <Link
-                      href="/contact"
+                      href={slide.secondaryCtaHref || "/contact"}
                       className="font-mono text-xs uppercase tracking-wider text-[#6b7075] hover:text-[#16181a] transition-colors"
                     >
                       {slide.secondaryCtaText} →
