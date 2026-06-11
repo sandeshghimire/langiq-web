@@ -134,3 +134,19 @@ All final copy lives in `req.md` and is authoritative — do not invent new copy
 - **Don't trust open issues blindly** — re-validate against current `develop`. PRs #1/#2/#3 already merged but several of their referenced issues (#5, #6, #7, #12, #15, #19, #23) are still open and may already be resolved.
 - **Don't pause between issues** — §9 explicitly forbids it. Bundle sweeping a11y/perf issues into focused multi-issue PRs instead of asking permission for each.
 - **Don't `git checkout develop` while dirty on another branch** — stash first (`git stash push -m "WIP: ..."`); we lost in-flight work on `fix/5-s8-platform-team-ctas` once already, do not repeat.
+- **Don't put `eslint-disable react-hooks/set-state-in-effect` on the line *after* the setState** — the rule expects it on the line *before*. When you have multiple setState calls in the same effect, only the first one fires the rule; only the first needs a disable. Extra disables become "unused directive" warnings.
+- **Don't make `TypedEyebrow` track a `typed: string` in state and reset it on inactive** — the lint rule is right; the right pattern is to track a `length: number` counter and *derive* the visible string with `text.slice(0, length)`, with a `key` on the parent forcing re-mount when the text or active flag changes. See `src/components/PlatformPage.tsx:142-156` and `src/app/page.tsx:277-292`.
+
+### Lessons from #34 (lint unblock, merged as PR #56)
+
+- **The `react-hooks/set-state-in-effect` rule's recommended fix isn't always the right one.** For three of the seven errors (#14 LayoutContext path reset, BootRail ticker reset, LivingChip BSP-enum reset), the call *is* a legitimate external-system sync. Use a per-line `// eslint-disable-next-line react-hooks/set-state-in-effect` with a one-line comment explaining why.
+- **The other four errors were a real design smell:** SplitFlapCounter's `prev` state was dead (AnimatePresence is keyed on `current`); ClientShell's effect could be a lazy initializer; PlatformPage/page.tsx's `TypedEyebrow` was tracking a derived string as state. The lint rule was right to complain there.
+- **StatusLine's tween closure defect (#47) is a real bug, not just a lint warning.** Switching from a `displayPercent` capture in the effect to a `useRef(latestPercent)` made the tween always read the current value — also resolves the "flicker near 98% gate" reported in #16 indirectly.
+- **Side-effect fixes are real fixes.** #14 (pathname trailing slash) and #47 (tween closure) both closed as side effects of #34. After every fix branch lands, grep the remaining queue for the file/area touched and close-as-side-effect anything that was really the same defect.
+- **The right way to start the fix loop:** always begin with a low-risk, high-leverage issue (here, #34 lint unblock) so that every subsequent PR can pass validation. Doing a sweeping LivingChip SVG refactor first would have meant every PR afterwards has to deal with pre-existing lint failures.
+- **Per-file conflict hot spots updated:**
+  - `src/components/LayoutContext.tsx` — closed #14 as side effect; remaining open touches: #10, #46, #42, #48
+  - `src/components/StatusLine.tsx` — closed #47; remaining: #15, #16 (the flicker one)
+  - `src/components/SplitFlapCounter.tsx` — clean
+  - `src/components/LivingChip.tsx` — untouched by #34, but heavily touched by #17–#32, #36, #52
+  - `src/app/page.tsx` / `PlatformPage.tsx` — clean; next: #9, #12, #19 (Home), #5/#6/#7 (CTA), #15 (statusline already), #29/#30 (perf)
