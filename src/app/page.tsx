@@ -37,10 +37,7 @@ const homeSlides: HomeSlide[] = [
     eyebrow: "NVIDIA JETSON",
     heading: "Arches",
     bullets: [
-      "Inference on the GPU. Control loops on the MCU. One board does the whole robot.",
-      "Custom carrier board hardware integration.",
-      "Real-time STM32 companion co-processor.",
-      "High-bandwidth camera and sensor ingestion."
+      "Inference on the GPU. Control loops on the MCU. One board does the whole robot."
     ],
     tags: ["Robotics", "Drones", "Industrial inspection"],
     ctaText: "Explore Arches →",
@@ -51,10 +48,7 @@ const homeSlides: HomeSlide[] = [
     eyebrow: "RASPBERRY PI CM4/CM5",
     heading: "Acadia",
     bullets: [
-      "Your prototype already runs on it. Now it survives the factory floor.",
-      "Ruggedized industrial carrier board mapping.",
-      "Pico W (RP2040) helper for decoupling wireless.",
-      "EMC-compliant layouts and power conditioning."
+      "Your prototype already runs on it. Now it survives the factory floor."
     ],
     tags: ["IoT", "Smart buildings", "Kiosks"],
     ctaText: "Explore Acadia →",
@@ -65,10 +59,7 @@ const homeSlides: HomeSlide[] = [
     eyebrow: "XILINX ZYNQ",
     heading: "Zion",
     bullets: [
-      "When the deadline is in microseconds, software isn't enough.",
-      "Dual-core Cortex-R5 locks running safe paths.",
-      "Nanosecond FPGA fabric logic blocks.",
-      "Field-updatable OTA bitstream deployment."
+      "When the deadline is in microseconds, software isn't enough."
     ],
     tags: ["Defense", "Aerospace", "ADAS"],
     ctaText: "Explore Zion →",
@@ -79,10 +70,7 @@ const homeSlides: HomeSlide[] = [
     eyebrow: "NXP i.MX",
     heading: "Pinnacle",
     bullets: [
-      "Silicon that outlives your product plan. Linux that passes your audit.",
-      "Mainline Yocto Linux build security.",
-      "10-15 year silicon availability guarantees.",
-      "Functional safety validation audits."
+      "Silicon that outlives your product plan. Linux that passes your audit."
     ],
     tags: ["Medical", "Industrial gateways", "Aerospace"],
     ctaText: "Explore Pinnacle →",
@@ -93,10 +81,7 @@ const homeSlides: HomeSlide[] = [
     eyebrow: "TI SITARA",
     heading: "Joshua",
     bullets: [
-      "FPGA-grade timing. Microcontroller-grade cost. Linux-grade ecosystem.",
-      "PRU-ICSS real-time sub-processor cores.",
-      "Direct deterministic hardware pin access.",
-      "Standard industrial EtherCAT communication."
+      "FPGA-grade timing. Microcontroller-grade cost. Linux-grade ecosystem."
     ],
     tags: ["Industrial control", "Motor drives", "Energy"],
     ctaText: "Explore Joshua →",
@@ -107,10 +92,7 @@ const homeSlides: HomeSlide[] = [
     eyebrow: "INTEL & AMD x86",
     heading: "Sequoia",
     bullets: [
-      "If it only runs on x86, it runs here — with all the I/O it needs.",
-      "Highest compute density and PCIe lane counts.",
-      "Xen/ACRN hypervisor real-time partitioning.",
-      "No companion microcontrollers needed."
+      "If it only runs on x86, it runs here — with all the I/O it needs."
     ],
     tags: ["Edge servers", "Networking", "Defense compute"],
     ctaText: "Explore Sequoia →",
