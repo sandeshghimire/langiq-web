@@ -82,7 +82,7 @@ export default function BootTerminal({ onComplete }: { onComplete: () => void })
             {currentLineIndex < lines.length && (
               <div className="flex items-center gap-1 leading-relaxed">
                 <span>{visibleLines[currentLineIndex] || ""}</span>
-                <span className="w-2 h-4 bg-[#fafaf8] cursor-blink inline-block" />
+                <span className="w-2 h-4 cursor-blink inline-block" style={{ backgroundColor: "currentColor" }} />
               </div>
             )}
           </div>
