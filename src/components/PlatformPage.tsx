@@ -4,9 +4,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { useLayoutState } from "./LayoutContext";
 import { PlatformData } from "@/data/platforms";
 import { motion, useReducedMotion } from "framer-motion";
-import LivingChip from "./LivingChip";
-import SplitFlapCounter from "./SplitFlapCounter";
 import Link from "next/link";
+import { SlideDiagram } from "./diagrams/SlideDiagram";
 
 interface PlatformPageProps {
   platform: PlatformData;
@@ -16,9 +15,9 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
   const { activeStage, setActiveStage, setScrollProgress } = useLayoutState();
   const containerRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
-  // #46: Mirror activeStage in a ref so the scroll listener can compare
+
+  // Mirror activeStage in a ref so the scroll listener can compare
   // against the latest value without re-binding on every stage change.
-  // The listener attaches once at mount with `[]` deps.
   const activeStageRef = useRef(activeStage);
   useEffect(() => {
     activeStageRef.current = activeStage;
@@ -34,7 +33,6 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
       const progress = (scrollTop / (scrollHeight - clientHeight)) * 100;
       setScrollProgress(Math.min(Math.max(progress, 0), 100));
 
-      // Calculate current slide based on scroll position
       const slideHeight = clientHeight;
       const currentSlide = Math.round(scrollTop / slideHeight) + 1;
       const boundedSlide = Math.min(Math.max(currentSlide, 1), 9);
@@ -48,12 +46,7 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
     return () => container.removeEventListener("scroll", handleScroll);
   }, [setActiveStage, setScrollProgress]);
 
-  // The chip alternates left/right per slide.
-  const isChipLeft = activeStage % 2 === 0;
-
-  // Relax strict scroll-snap on short viewports — req.md §10 "scroll-snap
-  // relaxed on short viewports". We detect the height at mount and on
-  // resize; if viewport < ~700px the snap stops being mandatory.
+  // Relax strict scroll-snap on short viewports.
   const [relaxSnap, setRelaxSnap] = useState(false);
   useEffect(() => {
     const check = () => setRelaxSnap(window.innerHeight < 700);
@@ -64,227 +57,114 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
 
   return (
     <main id="main" className="relative w-full h-screen overflow-hidden bg-[#fafaf8]">
-      {/* Scroll Container */}
       <div
         ref={containerRef}
         className="scroll-container w-full h-full relative z-10"
         style={relaxSnap ? { scrollSnapType: "y proximity" } : undefined}
       >
-        {platform.slides.map((slide) => (
-          <div
-            key={slide.stage}
-            id={`slide-${slide.stage}`}
-            className="scroll-slide w-full h-screen flex items-center px-6 md:px-16 lg:px-24"
-          >
-            {/* Split layout inside each page */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 w-full max-w-7xl mx-auto h-[75%] items-center gap-12">
-              {/* Text column - moves left or right depending on slide stage */}
-              <div
-                className={`flex flex-col gap-6 w-full ${
-                  isChipLeft ? "lg:col-start-2" : "lg:col-start-1"
-                } relative z-20`}
-              >
-                {/* Stage Info Header */}
-                <div className="flex items-center justify-between border-b border-[#e4e2dd] pb-3 max-w-lg">
-                  <TypedEyebrow text={slide.eyebrow} active={activeStage === slide.stage} accent={platform.accent} />
-                  <SplitFlapCounter current={slide.stage} total={9} />
+        {platform.slides.map((slide) => {
+          // Alternate columns: odd stages = text left / diagram right,
+          // even stages = diagram left / text right. The diagram glides
+          // across the column gap on each transition, which gives the
+          // page a "running" feel without re-mounting either column.
+          const diagramFirst = slide.stage % 2 === 0;
+
+          return (
+            <div
+              key={slide.stage}
+              id={`slide-${slide.stage}`}
+              className="scroll-slide w-full min-h-screen flex items-center px-6 md:px-16 lg:px-24 py-16"
+            >
+              {/* Two-column grid. Both columns are siblings in the same
+                grid — order is set with `order-` classes per slide. */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 w-full max-w-7xl mx-auto items-center gap-10 lg:gap-16">
+                {/* Text column: title, summary, bullets. Nothing else. */}
+                <div
+                  className={`flex flex-col gap-6 w-full relative z-20 ${diagramFirst ? "lg:order-2" : "lg:order-1"
+                    }`}
+                >
+                  {/* Title */}
+                  <motion.h2
+                    initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: reducedMotion ? 0 : 0.5, ease: "easeOut" }}
+                    className="font-display font-bold text-5xl md:text-6xl lg:text-7xl text-[#16181a] tracking-tight leading-[0.95]"
+                  >
+                    {slide.heading}
+                  </motion.h2>
+
+                  {/* Brief summary — only on stage 1 */}
+                  {slide.stage === 1 && platform.edgeOneLiner && (
+                    <motion.p
+                      initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: reducedMotion ? 0 : 0.5,
+                        delay: reducedMotion ? 0 : 0.15,
+                        ease: "easeOut",
+                      }}
+                      className="font-sans text-lg text-[#6b7075] max-w-md leading-relaxed"
+                    >
+                      {platform.edgeOneLiner}
+                    </motion.p>
+                  )}
+
+                  {/* 4-5 bullets */}
+                  <ul className="flex flex-col gap-3 max-w-md mt-2">
+                    {slide.bullets.slice(0, 5).map((bullet, idx) => (
+                      <motion.li
+                        key={`${slide.stage}-${idx}`}
+                        initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: reducedMotion ? 0 : 0.4,
+                          delay: reducedMotion ? 0 : 0.2 + idx * 0.08,
+                          ease: "easeOut",
+                        }}
+                        className="flex items-start gap-3 text-base text-[#16181a] font-sans leading-relaxed"
+                      >
+                        <span
+                          className="font-mono text-sm mt-1 select-none"
+                          style={{ color: platform.accent }}
+                        >
+                          &gt;
+                        </span>
+                        <span>{bullet}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+
+                  {/* Stage 9: small CTA link, no extra panel */}
+                  {slide.stage === 9 && (
+                    <motion.div
+                      initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: reducedMotion ? 0 : 0.6 }}
+                      className="mt-6"
+                    >
+                      <Link
+                        href="/contact"
+                        className="inline-block font-mono text-xs uppercase tracking-wider px-5 py-2.5 bg-[#16181a] text-[#fafaf8] border border-[#16181a] hover:bg-transparent hover:text-[#16181a] transition-all duration-300 font-bold"
+                      >
+                        Talk to engineering
+                      </Link>
+                    </motion.div>
+                  )}
                 </div>
 
-                {/* Animated Heading */}
-                <SweepHeading text={slide.heading} active={activeStage === slide.stage} accent={platform.accent} />
-
-                {/* Sub line on S1 — the platform's edge one-liner per
-                    req.md §9.2-§9.7 ("Headline: <Platform> — Sub: <edge>"). */}
-                {slide.stage === 1 && platform.edgeOneLiner && (
-                  <motion.p
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={activeStage === 1 ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
-                    transition={{ duration: reducedMotion ? 0 : 0.5, delay: reducedMotion ? 0 : 0.5 }}
-                    className="font-sans text-base text-[#6b7075] -mt-2 max-w-md"
-                  >
-                    {platform.edgeOneLiner}
-                  </motion.p>
-                )}
-
-                {/* Bullets List */}
-                <StaggeredBullets bullets={slide.bullets} active={activeStage === slide.stage} accent={platform.accent} />
-
-                {/* Bottom CTA Actions */}
-                {slide.stage === 9 && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={activeStage === 9 ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-                    transition={{ delay: 0.8 }}
-                    className="flex flex-wrap items-center gap-4 mt-6"
-                  >
-                    <Link
-                      href="/contact"
-                      className="font-mono text-xs uppercase tracking-wider px-5 py-2.5 bg-[#16181a] text-[#fafaf8] border border-[#16181a] hover:bg-transparent hover:text-[#16181a] transition-all duration-300 font-bold"
-                    >
-                      Talk to engineering
-                    </Link>
-                    {platform.id !== "sequoia" ? (
-                      <Link
-                        href={`/${getNextPlatform(platform.id)}`}
-                        className="font-mono text-xs uppercase tracking-wider text-[#6b7075] hover:text-[#16181a] transition-colors"
-                      >
-                        Next platform: {getNextPlatformName(platform.id)}
-                      </Link>
-                    ) : (
-                      <Link
-                        href="/"
-                        className="font-mono text-xs uppercase tracking-wider text-[#6b7075] hover:text-[#16181a] transition-colors"
-                      >
-                        Back to platforms
-                      </Link>
-                    )}
-                  </motion.div>
-                )}
+                {/* Diagram column. Sits inside the grid (real 50/50),
+                  not a fixed overlay. Order alternates per slide. */}
+                <div
+                  className={`w-full aspect-[4/3] relative z-10 flex items-center justify-center ${diagramFirst ? "lg:order-1" : "lg:order-2"
+                    }`}
+                >
+                  <SlideDiagram platform={platform} stage={slide.stage} />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
-
-      {/* Floating Living Chip column: glides between left and right via
-          `transform: translateX` (compositor-friendly, req.md §7 perf
-          rules), with a spring easing instead of a CSS cubic-bezier. */}
-      <motion.div
-        className="fixed top-0 bottom-0 z-0 hidden lg:flex items-center justify-center pointer-events-none"
-        style={{ left: "30vw", width: "40vw" }}
-        animate={{ x: isChipLeft ? "-20vw" : "20vw" }}
-        transition={{ type: "spring", stiffness: 120, damping: 20 }}
-      >
-        <LivingChip platformId={platform.id} stage={activeStage} />
-      </motion.div>
     </main>
   );
-}
-
-// Sub-component: Character-by-character typewriter for eyebrow
-function TypedEyebrow({ text, active, accent }: { text: string; active: boolean; accent: string }) {
-  return (
-    <span className="font-mono text-[10px] tracking-widest font-semibold uppercase" style={{ color: accent }}>
-      <TypedText key={`${active ? "on" : "off"}::${text}`} text={text} active={active} />
-    </span>
-  );
-}
-
-function TypedText({ text, active }: { text: string; active: boolean }) {
-  // We track only the "current typed length" in state. The visible string is
-  // derived from it on every render, so we never have to set state in an
-  // effect to reset the display. Re-mount via `key` resets length to 0.
-  const [length, setLength] = useState(0);
-  const reducedMotion = useReducedMotion();
-
-  useEffect(() => {
-    if (!active) return;
-    if (reducedMotion) {
-      // Reduced-motion is a system-level signal: snap to the full string
-      // immediately when the user has it set. The setState here is a
-      // legitimate external-system sync (browser media query), not a
-      // cascading render.
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setLength(text.length);
-      return;
-    }
-    let i = 0;
-    const interval = setInterval(() => {
-      i += 1;
-      setLength(i);
-      if (i >= text.length) clearInterval(interval);
-    }, 15);
-    return () => clearInterval(interval);
-  }, [text, active, reducedMotion]);
-
-  const visible = active ? text.slice(0, length) : "";
-  return <>{visible || "\u00A0"}</>;
-}
-
-// Sub-component: Heading reveal with sweep scanline
-function SweepHeading({ text, active, accent }: { text: string; active: boolean; accent: string }) {
-  const reducedMotion = useReducedMotion();
-  // 1px scanline per req.md spec (separate issue #9). The reveal uses a
-  // mask-image linear-gradient whose stop position is animated via CSS
-  // transition — paint-light vs the prior clipPath polygon animation.
-  // Width here stays consistent with the Home page version.
-  return (
-    <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-[#16181a] tracking-tight relative overflow-hidden select-none py-1">
-      {/* Visual slide Heading — mask-image wipe */}
-      <span
-        className="block"
-        style={{
-          WebkitMaskImage:
-            "linear-gradient(to right, black 0%, black 100%, transparent 100%)",
-          WebkitMaskSize: "200% 100%",
-          WebkitMaskPosition: active ? "0% 0%" : "100% 0%",
-          maskImage:
-            "linear-gradient(to right, black 0%, black 100%, transparent 100%)",
-          maskSize: "200% 100%",
-          maskPosition: active ? "0% 0%" : "100% 0%",
-          transition: reducedMotion
-            ? "none"
-            : "mask-position 0.8s ease-in-out, -webkit-mask-position 0.8s ease-in-out",
-        }}
-      >
-        {text}
-      </span>
-
-      {/* 1px Scanline traveling ahead of reveal */}
-      {active && (
-        <motion.div
-          initial={{ x: "0%" }}
-          animate={{ x: "100%" }}
-          transition={{ duration: reducedMotion ? 0 : 0.8, ease: "easeInOut" }}
-          className="absolute top-0 bottom-0 w-[1px] z-10"
-          style={{ backgroundColor: accent }}
-        />
-      )}
-    </h2>
-  );
-}
-
-// Sub-component: Staggered bullets animation
-function StaggeredBullets({ bullets, active, accent }: { bullets: string[]; active: boolean; accent: string }) {
-  const reducedMotion = useReducedMotion();
-  return (
-    <ul className="flex flex-col gap-4 max-w-lg mt-2">
-      {bullets.map((bullet, idx) => (
-        <li key={idx} className="overflow-hidden">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-            transition={{
-              duration: reducedMotion ? 0 : 0.4,
-              delay: reducedMotion ? 0 : 0.2 + idx * 0.08,
-              ease: "easeOut",
-            }}
-            className="flex items-start gap-3 text-sm md:text-base text-[#6b7075] font-sans leading-relaxed"
-          >
-            {/* > Prefix types first */}
-            <span className="font-mono text-xs mt-1 selection:bg-transparent" style={{ color: accent }}>
-              &gt;
-            </span>
-            <span>{bullet}</span>
-          </motion.div>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-// Helper methods to resolve next route
-const platformIds = ["arches", "acadia", "zion", "pinnacle", "joshua", "sequoia"];
-const platformNames = ["Acadia", "Zion", "Pinnacle", "Joshua", "Sequoia", "Home"];
-
-function getNextPlatform(currentId: string): string {
-  const idx = platformIds.indexOf(currentId);
-  if (idx === -1 || idx === platformIds.length - 1) return "";
-  return platformIds[idx + 1];
-}
-
-function getNextPlatformName(currentId: string): string {
-  const idx = platformIds.indexOf(currentId);
-  if (idx === -1 || idx === platformIds.length - 1) return "";
-  return platformNames[idx];
 }

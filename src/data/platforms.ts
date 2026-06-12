@@ -25,109 +25,111 @@ export const platforms: PlatformData[] = [
     name: "Arches",
     chipFamily: "NVIDIA Jetson",
     accent: "#0f7a4d",
-    edgeOneLiner: "Inference on the GPU. Control loops on the MCU. One board does the whole robot.",
+    edgeOneLiner:
+      "A custom Yocto-based embedded Linux platform, validated on Jetson TX2, Xavier NX, Orin, and Thor — from board bring-up to OTA-managed fleets.",
     industries: {
-      primary: ["Robotics"],
-      secondary: ["Automotive / ADAS"]
+      primary: ["Robotics", "Automotive / ADAS"],
+      secondary: ["Drones", "Smart cameras", "Industrial inspection"]
     },
     bootChain: ["BootROM", "BCT/MB1", "MB2", "UEFI", "kernel"],
     slides: [
       {
         stage: 1,
-        eyebrow: "SOCCENTRIC // ARCHES // OVERVIEW",
+        eyebrow: "STAGE 01 / OVERVIEW",
         heading: "Arches",
         bullets: [
-          "Jetson SoM: ARM cores, CUDA GPU, deep-learning and vision accelerators.",
-          "Custom carrier adds storage, sensor interfaces, and actuator connectivity the devkit lacks.",
-          "STM32 co-processor runs motor loops, watchdogs, and strict-deadline I/O — jitter-free.",
-          "Built for robots, drones, smart cameras, and autonomous platforms."
+          "Hardened, Yocto-built Linux for the NVIDIA Jetson family — TX2, Xavier NX, Orin, Thor.",
+          "Replaces ad-hoc JetPack / L4T images with a reproducible, auditable, customer-owned build.",
+          "Every layer — bootloader, kernel, BSP, middleware, update system — configured for your hardware.",
+          "Skip 6–12 months of platform engineering. Start application work on day one."
         ]
       },
       {
         stage: 2,
-        eyebrow: "STAGE 02 / BSP",
-        heading: "Carrier BSP",
+        eyebrow: "STAGE 02 / BSP & BOARD BRING-UP",
+        heading: "Schematic to first boot",
         bullets: [
-          "Full board support package for your carrier, not the reference devkit.",
-          "Bring-up and validation alongside your hardware team, from first power-on.",
-          "Every interface enumerated, tested, documented: CSI cameras, CAN, NVMe, Ethernet.",
-          "Jetson-to-STM32 link over RPMsg — defined, driven, and verified."
+          "Schematic and pin-mux review before PCB fab — power sequencing and DDR layout caught early.",
+          "Custom BSP: device tree for your carrier — CSI cameras, PCIe, USB, GPIO, I²C / SPI peripherals.",
+          "Board bring-up and smoke test covering power rails, clocks, memory training, peripheral enumeration.",
+          "Custom bootloader work: UEFI customization, CBoot (legacy TX2), boot configuration, splash screens."
         ]
       },
       {
         stage: 3,
-        eyebrow: "STAGE 03 / BOOTLOADER",
-        heading: "Boot chain",
+        eyebrow: "STAGE 03 / BOOTLOADER & GOLDEN BOOT",
+        heading: "Failsafe boot",
         bullets: [
-          "Jetson boot chain customized end to end: BCT, MB1/MB2, UEFI, kernel handoff.",
-          "Golden boot image — a known-good state the device always recovers to.",
-          "Failsafe recovery from corrupted flash or interrupted updates.",
-          "Initial provisioning flow ready for first power-on at the factory."
+          "Golden boot image in a protected partition — a known-good state the device always recovers to.",
+          "Failsafe and rollback boot: watchdog-supervised, automatic rollback on boot failure, brick-proof updates.",
+          "Memory partitioning: eMMC / NVMe layout design, redundant partitions, persistent data separation.",
+          "Flashing and manufacturing support: massflash tooling, fuse provisioning, production-line scripts."
         ]
       },
       {
         stage: 4,
         eyebrow: "STAGE 04 / KERNEL & DRIVERS",
-        heading: "Real-time kernel",
+        heading: "Kernel tuned to your hardware",
         bullets: [
-          "Custom kernels tuned for real-time performance and fast boot.",
-          "Drivers written from scratch for your sensors and actuators.",
-          "Device trees and HAL matched exactly to your carrier.",
-          "CUDA, TensorRT, and DeepStream stacks integrated and validated."
+          "Kernel customization on NVIDIA's downstream kernel (5.10 / 5.15 / 6.x per JetPack release).",
+          "PREEMPT_RT patch porting and validation for deterministic latency on Orin / Thor.",
+          "Boot streamlining: initramfs minimization, deferred module loading, parallelized init.",
+          "V4L2 camera drivers (CSI / GMSL / FPD-Link), IIO sensor drivers, custom PCIe / USB / SPI / I²C drivers."
         ]
       },
       {
         stage: 5,
-        eyebrow: "STAGE 05 / MIDDLEWARE",
-        heading: "Edge stack",
+        eyebrow: "STAGE 05 / MIDDLEWARE & INDUSTRY IMAGES",
+        heading: "Industry-specific images",
         bullets: [
-          "ROS 2 configured for your robot's compute and sensor graph.",
-          "DDS tuned for multi-node, multi-camera data flow.",
-          "MQTT bridging for fleet telemetry and cloud reporting.",
-          "Customized to your requirements — not shipped as defaults."
+          "arches-robotics — ROS 2 (Humble / Jazzy), DDS tuning, Isaac ROS GEMs, real-time executor.",
+          "arches-iot — MQTT (Mosquitto / paho), Azure IoT / AWS IoT Greengrass, edge telemetry agents.",
+          "arches-automotive — SocketCAN, PREEMPT_RT, AUTOSAR-adjacent gateway patterns, ISO 26262-aware workflow.",
+          "arches-medical — IEC 62304-aligned build traceability, SBOM generation, audit-ready change logs.",
+          "arches-vision — DeepStream, GStreamer, TensorRT pipelines, multi-camera synchronization."
         ]
       },
       {
         stage: 6,
-        eyebrow: "STAGE 06 / OTA & RECOVERY",
-        heading: "Secure OTA",
+        eyebrow: "STAGE 06 / OTA & FLEET UPDATES",
+        heading: "Field updates, no field failures",
         bullets: [
-          "A/B update mechanism — devices never brick in the field.",
-          "Automatic rollback on failed or interrupted updates.",
-          "Kernel, GPU stack, and applications updated independently.",
-          "Fleet-wide deployment from your cloud or ours."
+          "A/B redundant partitions (Mender, RAUC, or SWUpdate — selected per project).",
+          "Golden boot image + automatic rollback on failed update or failed health check.",
+          "Cloud or on-premise update server, fleet grouping, staged rollouts, delta updates.",
+          "Signed updates cryptographically verified and chained to secure boot."
         ]
       },
       {
         stage: 7,
-        eyebrow: "STAGE 07 / SDK & TOOLS",
-        heading: "Developer SDK",
+        eyebrow: "STAGE 07 / DEVKIT, SDK, DEBUG",
+        heading: "Everything your app team needs",
         bullets: [
-          "Custom SDK and eSDK — your team builds apps, not infrastructure.",
-          "Boot logging and boot analysis built into every image.",
-          "On-device diagnostics for field troubleshooting.",
-          "Cross-compilation environments ready on day one."
+          "Pre-flashed evaluation image for Jetson devkits and your custom hardware.",
+          "Application SDK + eSDK: cross-toolchain, sysroot, CMake / Yocto SDK integration.",
+          "Boot and runtime profiling: systemd-analyze, bootchart, perf, Nsight Systems for GPU / CPU.",
+          "CI/CD: automated image builds, hardware-in-the-loop smoke tests, artifact signing."
         ]
       },
       {
         stage: 8,
-        eyebrow: "STAGE 08 / PERFORMANCE",
-        heading: "Performance profiling",
+        eyebrow: "STAGE 08 / RTOS & HETEROGENEOUS COMPUTE",
+        heading: "Real-time where you need it",
         bullets: [
-          "GPU and accelerator profiling for inference pipelines.",
-          "Boot-time analysis and optimization — measured, not guessed.",
-          "System tuning across CPU, GPU, memory, and I/O.",
-          "Analysis tooling your team keeps after handoff."
+          "FreeRTOS firmware on the SPE (Cortex-R52 on Orin / Thor, R5 on TX2 / Xavier).",
+          "Linux ↔ RTOS communication: shared-memory mailboxes, IVC channels.",
+          "Offload architecture: deterministic control on the R-core, perception on the GPU.",
+          "Watchdog and health supervision from the real-time domain."
         ]
       },
       {
         stage: 9,
         eyebrow: "STAGE 09 / MANUFACTURING",
-        heading: "Factory tooling",
+        heading: "Production-ready, day one",
         bullets: [
-          "Factory provisioning tools and first-boot workflows.",
-          "Per-device identity, keys, and cloud enrollment.",
+          "Per-device identity, keys, and cloud enrollment at first boot.",
           "Manufacturing test suites for the production line.",
+          "Reproducible builds with SBOMs — ready for ISO 26262, IEC 62304, IEC 61508, DO-178C.",
           "First boot on your hardware in weeks, not quarters."
         ]
       }
@@ -136,107 +138,109 @@ export const platforms: PlatformData[] = [
   {
     id: "acadia",
     name: "Acadia",
-    chipFamily: "Raspberry Pi CM5",
+    chipFamily: "Raspberry Pi",
     accent: "#c43a3a",
-    edgeOneLiner: "Your prototype already runs on it. Now it survives the factory floor.",
+    edgeOneLiner:
+      "A custom Yocto-based platform for Compute Module 4 / 5, Pi 4 / 5, and Pico — turning the world's most popular SBC into a real industrial product platform.",
     industries: {
-      primary: ["IoT / Smart building"],
-      secondary: ["Medical"]
+      primary: ["IoT / Smart building", "Medical"],
+      secondary: ["Kiosks", "Industrial gateways"]
     },
-    bootChain: ["EEPROM bootloader", "firmware (start.elf)", "kernel"],
+    bootChain: ["BootROM", "EEPROM bootloader", "firmware (start.elf)", "kernel"],
     slides: [
       {
         stage: 1,
-        eyebrow: "SOCCENTRIC // ACADIA // OVERVIEW",
+        eyebrow: "STAGE 01 / OVERVIEW",
         heading: "Acadia",
         bullets: [
-          "Raspberry Pi CM4/CM5 on a ruggedized, industrial-grade carrier.",
-          "Industrial connectors, power conditioning, EMC-aware layout — built for deployment.",
-          "Pico W (RP2040) companion: deterministic I/O plus decoupled wireless.",
-          "The Pi ecosystem your team already knows — production-hardened."
+          "Minimal, reproducible Yocto build replacing stock Raspberry Pi OS for production.",
+          "Validated on Compute Module 4, Compute Module 5, Pi 4, Pi 5; companion firmware on Pico / Pico W.",
+          "Locked-down, updatable, secure, manufacturable — not a hobbyist image.",
+          "Custom BSP and carrier-board bring-up for CM4 / CM5 designs."
         ]
       },
       {
         stage: 2,
-        eyebrow: "STAGE 02 / BSP",
-        heading: "Industrial BSP",
+        eyebrow: "STAGE 02 / BSP & BOARD BRING-UP",
+        heading: "Carrier-board bring-up",
         bullets: [
-          "Industrial carrier BSP, not hobbyist GPIO headers.",
-          "Bring-up and validation on your carrier, interface by interface.",
-          "Device tree overlays for every peripheral you add.",
-          "Linux-to-RP2040 interface defined, driven, and verified."
+          "CM4 / CM5 carrier board design review with your hardware team.",
+          "Custom BSP: device tree overlays for your carrier — cameras, displays, CAN, RS-485, industrial I/O.",
+          "Board bring-up and smoke test: storage, network, peripheral checkout, I/O validation.",
+          "Bootloader: EEPROM configuration, signed boot enablement, boot-order policy."
         ]
       },
       {
         stage: 3,
-        eyebrow: "STAGE 03 / BOOTLOADER",
+        eyebrow: "STAGE 03 / BOOTLOADER & GOLDEN BOOT",
         heading: "Failsafe boot",
         bullets: [
-          "Pi EEPROM boot flow configured and locked for production.",
-          "Golden boot image with verified fallback — recoverable from anything.",
-          "Failsafe recovery from corrupted storage or interrupted updates.",
+          "Boot-chain customization: EEPROM bootloader config, tryboot A/B mechanism, U-Boot option.",
+          "Golden boot and tryboot-based fallback — recoverable from corrupted storage or failed updates.",
+          "Storage partitioning: eMMC on CM, NVMe on CM5 / Pi 5; failsafe and rollback boot.",
           "Factory provisioning baked into the first-boot sequence."
         ]
       },
       {
         stage: 4,
         eyebrow: "STAGE 04 / KERNEL & DRIVERS",
-        heading: "Hardened Linux",
+        heading: "Production kernel",
         bullets: [
-          "Custom kernels tuned for boot time and your workload.",
-          "Drivers written for your industrial peripherals from scratch.",
-          "Device trees and HAL matched to your carrier exactly.",
-          "Mainline-tracking builds — security patches without surprises."
+          "Kernel customization on Raspberry Pi kernel trees; config minimization for boot time.",
+          "PREEMPT_RT builds for control applications.",
+          "Driver development: camera (libcamera / Unicam / CSI), DSI / DPI displays, CAN (MCP2515 / MCP251xFD).",
+          "GPIO / PWM / I²C / SPI integration with deterministic userspace APIs."
         ]
       },
       {
         stage: 5,
-        eyebrow: "STAGE 05 / MIDDLEWARE",
-        heading: "Industrial middleware",
+        eyebrow: "STAGE 05 / MIDDLEWARE & INDUSTRY IMAGES",
+        heading: "Industry-specific images",
         bullets: [
-          "MQTT pipelines for sensors, telemetry, and building systems.",
-          "DDS or ROS 2 where coordination demands it.",
-          "Protocol bridges to your existing infrastructure.",
-          "Configured for your deployment — not generic defaults."
+          "rpi-iot — MQTT, cloud agents, fleet telemetry.",
+          "rpi-industrial — Modbus, OPC UA, RS-485 stacks.",
+          "rpi-robotics — ROS 2 builds tuned for Pi 5.",
+          "rpi-kiosk / hmi — Wayland kiosk images, Qt / LVGL / Chromium kiosk modes.",
+          "Hardened system services, read-only rootfs with overlayfs, watchdog."
         ]
       },
       {
         stage: 6,
-        eyebrow: "STAGE 06 / OTA & RECOVERY",
-        heading: "Kiosk updates",
+        eyebrow: "STAGE 06 / OTA & FLEET UPDATES",
+        heading: "A/B updates, signed boot",
         bullets: [
-          "A/B updates across the fleet — kiosks and nodes never brick.",
-          "Automatic rollback on failed or interrupted updates.",
-          "Staged rollouts: pilot devices first, fleet second.",
-          "Managed from your cloud or ours."
+          "A/B updates using the native tryboot mechanism or RAUC / Mender.",
+          "Golden recovery image, automatic rollback on failed boot.",
+          "Cloud connectivity, staged rollouts, delta updates, dashboard UI for fleet OTA management.",
+          "Signed updates; signed boot chain on CM4 / CM5."
         ]
       },
       {
         stage: 7,
-        eyebrow: "STAGE 07 / SDK & TOOLS",
-        heading: "Build tools",
+        eyebrow: "STAGE 07 / DEVKIT, SDK, DEBUG",
+        heading: "Build, debug, ship",
         bullets: [
-          "Custom SDK on the ecosystem your developers already use.",
-          "Boot logging, boot analysis, and diagnostics in every image.",
-          "Reproducible Yocto builds — or Raspberry Pi OS, hardened.",
-          "Cross-compilation ready on day one."
+          "Evaluation images for Pi 4 / 5 and CM4 / CM5 IO boards.",
+          "Application SDK and Yocto eSDK for your application teams.",
+          "Debugging and profiling: perf, ftrace, remote gdb, boot analysis.",
+          "CI/CD integration and hardware-in-the-loop smoke tests."
         ]
       },
       {
         stage: 8,
-        eyebrow: "STAGE 08 / PERFORMANCE",
-        heading: "Thermal profiling",
+        eyebrow: "STAGE 08 / RTOS & MICROCONTROLLER COMPANIONS",
+        heading: "Pico companions",
         bullets: [
-          "Thermal and power profiling for sealed enclosures.",
-          "Boot-time optimization for instant-on products.",
-          "I/O and wireless throughput tuned and verified.",
-          "Tooling your team keeps after handoff."
+          "FreeRTOS and Zephyr firmware on RP2040 / RP2350 (Pico / Pico W).",
+          "Linux for connectivity and UI, Pico for hard real-time I/O — clean separation of concerns.",
+          "PIO (Programmable I/O) development for custom protocols and precise timing.",
+          "UART / SPI / USB communication links with structured protocols."
         ]
       },
       {
         stage: 9,
         eyebrow: "STAGE 09 / MANUFACTURING",
-        heading: "Production setup",
+        heading: "Prototype to production",
         bullets: [
           "Factory provisioning and per-device identity workflows.",
           "Manufacturing test suites for the production line.",
@@ -249,112 +253,114 @@ export const platforms: PlatformData[] = [
   {
     id: "zion",
     name: "Zion",
-    chipFamily: "Xilinx Zynq",
+    chipFamily: "AMD Xilinx Zynq",
     accent: "#6b4fd3",
-    edgeOneLiner: "When the deadline is in microseconds, software isn't enough.",
+    edgeOneLiner:
+      "A custom Yocto / PetaLinux-based platform for Zynq-7000, Zynq UltraScale+ MPSoC, Versal, and Kria SOMs — processing system and programmable logic, engineered as one platform.",
     industries: {
-      primary: ["Defense", "Aerospace"],
-      secondary: ["Automotive / ADAS"]
+      primary: ["Defense", "Aerospace", "Automotive / ADAS"],
+      secondary: ["Industrial vision", "5G / wireless"]
     },
     bootChain: ["BootROM", "FSBL", "bitstream", "U-Boot", "kernel"],
     slides: [
       {
         stage: 1,
-        eyebrow: "SOCCENTRIC // ZION // OVERVIEW",
+        eyebrow: "STAGE 01 / OVERVIEW",
         heading: "Zion",
         bullets: [
-          "Zynq-7000 and UltraScale+ MPSoC: ARM cores and FPGA fabric on one die.",
-          "Latency measured in clock cycles, not scheduler ticks.",
-          "Lockstep Cortex-R5 cores for safety-critical paths.",
-          "SoM-on-carrier or fully custom board — your volume decides."
+          "Reproducible, Yocto-built Linux for the AMD adaptive SoC portfolio.",
+          "Validated on Zynq-7000, Zynq UltraScale+ MPSoC, Versal AI Edge, Kria KV260 / KR260.",
+          "Unifies the full boot chain: FSBL / PMU firmware, ATF, U-Boot, kernel, rootfs, bitstream.",
+          "Real-time RPU domain folded into one versioned build."
         ]
       },
       {
         stage: 2,
-        eyebrow: "STAGE 02 / BSP",
-        heading: "PS-PL BSP",
+        eyebrow: "STAGE 02 / BSP & BOARD BRING-UP",
+        heading: "PS + PL, one system",
         bullets: [
-          "PetaLinux/Yocto BSP that loads your bitstream and stitches fabric into the device tree.",
-          "Bring-up across PS and PL together, validated as one system.",
-          "OpenAMP and RPMsg between A53, R5, and fabric — defined and verified.",
-          "AXI DMA paths characterized, not assumed."
+          "Schematic / pin review: MIO / EMIO planning, DDR configuration, power sequencing.",
+          "Custom FSBL and PMU firmware configuration.",
+          "Device tree authoring for PS peripherals and PL IP (overlays per bitstream).",
+          "Board bring-up and smoke test: memory calibration, peripheral checkout, PL configuration check."
         ]
       },
       {
         stage: 3,
-        eyebrow: "STAGE 03 / BOOTLOADER",
-        heading: "Hardware boot",
+        eyebrow: "STAGE 03 / BOOTLOADER & GOLDEN BOOT",
+        heading: "Hardware boot, owned",
         bullets: [
-          "Full chain owned: BootROM, FSBL, bitstream load, U-Boot, kernel.",
-          "Golden boot with verified fallback bitstream and image.",
-          "Failsafe recovery from corrupted flash or failed configuration.",
-          "Secure boot and encrypted bitstreams where the program demands it."
+          "Multi-stage boot: BootROM → FSBL → ATF → U-Boot → Linux, fully customized.",
+          "Custom bootloader: U-Boot board port, boot.scr logic, QSPI / eMMC / SD boot media strategy.",
+          "Golden boot: fallback boot image in QSPI with multiboot register support.",
+          "Failsafe and rollback: Zynq multiboot + watchdog-driven recovery."
         ]
       },
       {
         stage: 4,
         eyebrow: "STAGE 04 / KERNEL & DRIVERS",
-        heading: "DMA drivers",
+        heading: "PL-aware kernel",
         bullets: [
-          "Custom drivers for your fabric IP — your hardware, addressable from Linux.",
-          "Device trees spanning processors and programmable logic.",
-          "PREEMPT_RT and core isolation where software real-time is still required.",
-          "Cache coherency and DMA verified under load, not on paper."
+          "Kernel customization on xlnx kernel trees, config hardening, mainline alignment.",
+          "PREEMPT_RT porting and latency validation.",
+          "Drivers for PL-attached IP: AXI DMA, AXI GPIO, custom AXI peripherals via UIO or custom kernel modules.",
+          "V4L2 capture pipelines for MIPI CSI and PL-based ISP blocks."
         ]
       },
       {
         stage: 5,
-        eyebrow: "STAGE 05 / MIDDLEWARE",
-        heading: "Bus middleware",
+        eyebrow: "STAGE 05 / MIDDLEWARE & INDUSTRY IMAGES",
+        heading: "Industry-specific images",
         bullets: [
-          "DDS tuned for deterministic, high-channel data distribution.",
-          "Custom protocol stacks for bespoke aerospace and defense buses.",
-          "ROS 2 where robotics meets programmable logic.",
-          "Sensor fusion pre-processing in fabric — before the CPU sees a byte."
+          "zion-robotics — ROS 2 on KR260, PL-accelerated perception, time-synchronized I/O.",
+          "zion-industrial — Modbus, OPC UA, EtherCAT (PL-assisted), TSN networking.",
+          "zion-automotive — SocketCAN, RT patch, gateway architectures.",
+          "zion-medical — traceable builds, SBOM, IEC 62304-aligned workflow.",
+          "Vision / DSP middleware: GStreamer with PL acceleration, Vitis AI runtime integration."
         ]
       },
       {
         stage: 6,
-        eyebrow: "STAGE 06 / OTA & RECOVERY",
-        heading: "Bitstream OTA",
+        eyebrow: "STAGE 06 / OTA & FLEET UPDATES",
+        heading: "Bitstream-aware OTA",
         bullets: [
-          "Field-updatable hardware: bitstreams ship over the air with A/B fallback.",
-          "Partial reconfiguration — swap one accelerator while the rest keeps running.",
-          "Automatic rollback on failed bitstream or image writes.",
-          "Deterministic frame-to-actuation latency, preserved across updates."
+          "A/B update system aware of both Linux images and FPGA bitstreams — atomic update.",
+          "Golden image + golden bitstream recovery path.",
+          "Cloud or on-prem update server, staged rollouts, delta updates.",
+          "Signed, encrypted updates chained to a hardware root of trust."
         ]
       },
       {
         stage: 7,
-        eyebrow: "STAGE 07 / SDK & TOOLS",
-        heading: "Logic SDK",
+        eyebrow: "STAGE 07 / DEVKIT, SDK, DEBUG",
+        heading: "PS/PL tooling",
         bullets: [
-          "eSDK covering both software and fabric interfaces.",
-          "Boot logging and analysis across FSBL, U-Boot, and kernel.",
-          "Hardware-in-the-loop test rigs for PS/PL integration.",
-          "JTAG-deep debug workflows, documented for your team."
+          "Evaluation images for Kria KV260 / KR260 and ZCU boards.",
+          "Application SDK and Yocto eSDK for your teams.",
+          "Cross-debug: JTAG via Vivado HW manager, kgdb, gdbserver.",
+          "Profiling: perf, LTTng, PL / PS interface utilization analysis."
         ]
       },
       {
         stage: 8,
-        eyebrow: "STAGE 08 / PERFORMANCE",
-        heading: "AXI optimization",
+        eyebrow: "STAGE 08 / RTOS & FPGA MANAGEMENT",
+        heading: "RPU + bitstream",
         bullets: [
-          "Fabric and interconnect profiling: AXI throughput, latency, contention.",
-          "Sub-microsecond control-loop timing, measured and proven.",
-          "ADAS pipelines: provable camera-radar-lidar latency budgets.",
-          "Optimization across PS, PL, and the boundary between them."
+          "FreeRTOS and Zephyr on the RPU (lockstep or split mode).",
+          "OpenAMP / RPMsg communication between Linux (APU) and RTOS (RPU).",
+          "Bitstream lifecycle: versioning, signing, packaging into the platform build.",
+          "Runtime bitstream loading via FPGA Manager; partial reconfiguration for live PL updates."
         ]
       },
       {
         stage: 9,
         eyebrow: "STAGE 09 / MANUFACTURING",
-        heading: "Security fuses",
+        heading: "Fuses, keys, goldens",
         bullets: [
+          "PL driver development (UIO / custom kernel modules) and userspace APIs.",
+          "Co-validation: PS / PL interface stress testing and timing verification.",
           "Factory programming of fuses, keys, and golden images.",
-          "Per-device provisioning and secure identity.",
-          "Production test covering processors and fabric together.",
-          "ISO 26262-aligned partitioning where automotive demands it."
+          "Production test covering processors and fabric together."
         ]
       }
     ]
@@ -364,109 +370,111 @@ export const platforms: PlatformData[] = [
     name: "Pinnacle",
     chipFamily: "NXP i.MX",
     accent: "#1f6fd6",
-    edgeOneLiner: "Silicon that outlives your product plan. Linux that passes your audit.",
+    edgeOneLiner:
+      "A custom Yocto-based platform for NXP i.MX 8M (Mini / Nano / Plus), i.MX 93, and i.MX 95 — secure, power-efficient, industrial-grade.",
     industries: {
       primary: ["Medical", "Industrial automation"],
-      secondary: ["Aerospace"]
+      secondary: ["Aerospace", "Automotive gateways"]
     },
     bootChain: ["BootROM", "SPL", "U-Boot", "kernel"],
     slides: [
       {
         stage: 1,
-        eyebrow: "SOCCENTRIC // PINNACLE // OVERVIEW",
+        eyebrow: "STAGE 01 / OVERVIEW",
         heading: "Pinnacle",
         bullets: [
-          "NXP i.MX: industrial ARM with 10–15 years guaranteed availability.",
-          "Mainline Linux — clean Yocto builds, predictable updates.",
-          "Displays, codecs, multiple Ethernet, CAN-FD, PCIe, TSN: the industrial peripheral set.",
-          "SoM-on-carrier or fully custom board — your volume decides."
+          "Validated on i.MX 8M family, i.MX 93 (FRDM), scalable to i.MX 95.",
+          "Multi-stage boot: BootROM → SPL → U-Boot → ATF → OP-TEE → Linux.",
+          "Secure boot (HAB / AHAB), EdgeLock security integration.",
+          "RTOS on Cortex-M core (FreeRTOS / Zephyr) with RPMsg."
         ]
       },
       {
         stage: 2,
-        eyebrow: "STAGE 02 / BSP",
-        heading: "Mainline BSP",
+        eyebrow: "STAGE 02 / BSP & BOARD BRING-UP",
+        heading: "DDR, power, straps",
         bullets: [
-          "Yocto BSP built on mainline, not a vendor fork you can't maintain.",
-          "Bring-up and validation with your hardware team from first power-on.",
-          "Custom layers, recipes, and machine configs — organized for the long haul.",
-          "Reproducible builds your auditors can trace."
+          "Schematic review: DDR configuration and calibration (critical on i.MX), power tree, boot-mode straps.",
+          "Custom BSP: device tree for your board, pinmux via config tools, peripheral integration.",
+          "Board bring-up and smoke test with a structured checklist.",
+          "Custom bootloader: U-Boot SPL port, DDR init, boot-media strategy (eMMC / SD / QSPI)."
         ]
       },
       {
         stage: 3,
-        eyebrow: "STAGE 03 / BOOTLOADER",
-        heading: "HAB secure boot",
+        eyebrow: "STAGE 03 / BOOTLOADER & GOLDEN BOOT",
+        heading: "HAB / AHAB secure boot",
         bullets: [
-          "SPL and U-Boot customized for your board and boot media.",
-          "HAB secure boot: signed images from BootROM to kernel.",
-          "Golden boot and failsafe recovery — the device always comes back.",
-          "Provisioning flow designed for regulated manufacturing."
+          "Golden boot development and redundant boot via bootloader fallback logic.",
+          "Memory partitioning, failsafe and rollback boot.",
+          "HAB / AHAB secure boot provisioning and key-management support.",
+          "Factory provisioning designed for regulated manufacturing."
         ]
       },
       {
         stage: 4,
         eyebrow: "STAGE 04 / KERNEL & DRIVERS",
-        heading: "Auditable drivers",
+        heading: "Industrial kernel",
         bullets: [
-          "Custom kernels with a documented patch set — auditable, upgradable.",
-          "Drivers from scratch for your instruments and interfaces.",
-          "Device trees and HAL matched to your hardware exactly.",
-          "PREEMPT_RT tuning where determinism is required."
+          "Kernel customization on NXP downstream trees, mainline migration paths.",
+          "PREEMPT_RT porting and validation.",
+          "Boot streamlining: SPL-to-app optimization, sub-2-second HMI boot targets.",
+          "Driver work: V4L2 (MIPI CSI, ISP on 8M Plus), audio (SAI / codecs), display, CAN-FD, TSN."
         ]
       },
       {
         stage: 5,
-        eyebrow: "STAGE 05 / MIDDLEWARE",
-        heading: "Medical HMI",
+        eyebrow: "STAGE 05 / MIDDLEWARE & INDUSTRY IMAGES",
+        heading: "Industry-specific images",
         bullets: [
-          "MQTT and DDS pipelines for connected instruments and gateways.",
-          "OPC UA and Modbus where the factory floor speaks first.",
-          "Audio, video, and display stacks for medical HMIs.",
-          "Configured to your requirements — and your compliance scope."
+          "pinnacle-iot — MQTT, cloud agents, EdgeLock-backed device identity.",
+          "pinnacle-industrial — Modbus, OPC UA, TSN networking, real-time I/O.",
+          "pinnacle-automotive — CAN-FD stacks, RT patch, instrument-cluster fast-boot profile.",
+          "pinnacle-medical — IEC 62304-aligned traceable builds, SBOM.",
+          "HMI stack options: Qt, LVGL, Flutter embedded, Wayland / Weston tuning."
         ]
       },
       {
         stage: 6,
-        eyebrow: "STAGE 06 / OTA & RECOVERY",
-        heading: "Long-term OTA",
+        eyebrow: "STAGE 06 / OTA & FLEET UPDATES",
+        heading: "A/B, signed, audited",
         bullets: [
-          "A/B updates with signed images and automatic rollback.",
-          "Security patches across a 15-year deployment window.",
-          "Staged fleet rollouts with full audit trails.",
-          "Devices in the field never brick — by design."
+          "A/B OTA (Mender / RAUC / SWUpdate) with golden recovery image.",
+          "Automatic rollback on failed boot or health check.",
+          "Cloud connectivity, staged fleet rollouts, delta updates.",
+          "Updates signed and chained to HAB / AHAB root of trust."
         ]
       },
       {
         stage: 7,
-        eyebrow: "STAGE 07 / SDK & TOOLS",
+        eyebrow: "STAGE 07 / DEVKIT, SDK, DEBUG",
         heading: "Traceable tooling",
         bullets: [
-          "Custom SDK and eSDK for your application teams.",
-          "Boot logging, analysis, and diagnostics in every image.",
-          "CI/CD pipelines for image builds and regression testing.",
-          "Documentation that survives certification review."
+          "Evaluation images for NXP EVKs (including FRDM i.MX 93) and your custom hardware.",
+          "Application SDK and Yocto eSDK for your application teams.",
+          "Debugging: JTAG (Lauterbach / Segger), kgdb, gdbserver, core-dump pipelines.",
+          "Profiling: perf, LTTng, boot profiling, power profiling."
         ]
       },
       {
         stage: 8,
-        eyebrow: "STAGE 08 / PERFORMANCE",
-        heading: "Startup tuning",
+        eyebrow: "STAGE 08 / RTOS (CORTEX-M DOMAIN)",
+        heading: "M7 / M33 cores",
         bullets: [
-          "Boot-time optimization for instant-on instruments.",
-          "Power profiling for battery and thermal budgets.",
-          "Multimedia pipeline tuning: capture, codec, display.",
-          "Long-term performance baselines, tracked release to release."
+          "FreeRTOS / Zephyr on the Cortex-M core (M7 on 8M Plus, M33 on i.MX 93).",
+          "RPMsg / Messaging Unit communication with Linux.",
+          "Real-time control, sensor acquisition, low-power supervision on the M-core.",
+          "Heterogeneous architecture design: which workload runs where, and why."
         ]
       },
       {
         stage: 9,
         eyebrow: "STAGE 09 / MANUFACTURING",
-        heading: "Audit enrollment",
+        heading: "Audit-ready builds",
         bullets: [
+          "NPU integration: eIQ runtime on 8M Plus / i.MX 93 Ethos-U65.",
+          "Power management: low-power modes, suspend / resume tuning for battery devices.",
           "Factory provisioning with per-device keys and identity.",
-          "Manufacturing test aligned to IEC 61508 / IEC 62304 mappings.",
-          "First-boot enrollment into your device cloud.",
           "A platform your product can stand on for a decade."
         ]
       }
@@ -477,42 +485,43 @@ export const platforms: PlatformData[] = [
     name: "Joshua",
     chipFamily: "TI Sitara",
     accent: "#d4622a",
-    edgeOneLiner: "FPGA-grade timing. Microcontroller-grade cost. Linux-grade ecosystem.",
+    edgeOneLiner:
+      "A custom Yocto-based platform for AM335x, AM62x, and AM64x — the industrial workhorse line. Deterministic I/O with PRU-ICSS, industrial networking, long-lifecycle support.",
     industries: {
-      primary: ["Industrial automation"],
-      secondary: ["Robotics", "Energy"]
+      primary: ["Industrial automation", "Energy"],
+      secondary: ["Robotics", "Motor drives"]
     },
     bootChain: ["BootROM", "SPL/MLO", "U-Boot", "kernel"],
     slides: [
       {
         stage: 1,
-        eyebrow: "SOCCENTRIC // JOSHUA // OVERVIEW",
+        eyebrow: "STAGE 01 / OVERVIEW",
         heading: "Joshua",
         bullets: [
-          "TI Sitara: industrial ARM Linux with the PRU-ICSS real-time subsystem.",
-          "PRUs: 200 MHz deterministic cores with direct pin access, cycle-exact.",
-          "The niche between general ARM Linux and full FPGA — at a fraction of the cost.",
-          "SoM-based or fully custom board — your volume decides."
+          "Validated on AM335x, AM62x, AM64x (BeagleBone and TI EVK ecosystems).",
+          "Multi-stage boot: ROM → SPL / tiboot3 → U-Boot → Linux (incl. SYSFW / TIFS on AM6x).",
+          "PRU-ICSS firmware and RTOS on Cortex-M4F / R5F cores.",
+          "Industrial workhorse with long-lifecycle support."
         ]
       },
       {
         stage: 2,
-        eyebrow: "STAGE 02 / BSP",
-        heading: "PRU-Linux BSP",
+        eyebrow: "STAGE 02 / BSP & BOARD BRING-UP",
+        heading: "Industrial bring-up",
         bullets: [
-          "Yocto BSP covering ARM and PRU subsystems as one platform.",
-          "Bring-up and validation from first power-on, alongside your EEs.",
-          "remoteproc and RPMsg between Linux and PRUs — defined and verified.",
-          "Every industrial interface enumerated, tested, documented."
+          "Schematic review: DDR routing / config, power sequencing (PMIC integration), boot-strap pins.",
+          "Custom BSP and device tree development.",
+          "Board bring-up and smoke test.",
+          "Custom bootloader: SPL / U-Boot port, boot-media strategy, SYSFW integration on AM6x."
         ]
       },
       {
         stage: 3,
-        eyebrow: "STAGE 03 / BOOTLOADER",
+        eyebrow: "STAGE 03 / BOOTLOADER & GOLDEN BOOT",
         heading: "Unattended boot",
         bullets: [
-          "BootROM, SPL, U-Boot — customized for your board and media.",
-          "Golden boot and failsafe recovery for unattended industrial sites.",
+          "Golden boot development, memory partitioning.",
+          "Failsafe and rollback boot with watchdog supervision — built for unattended industrial sites.",
           "Secure boot and signed images where the deployment demands it.",
           "Provisioning designed for the production line, not the lab."
         ]
@@ -520,56 +529,57 @@ export const platforms: PlatformData[] = [
       {
         stage: 4,
         eyebrow: "STAGE 04 / KERNEL & DRIVERS",
-        heading: "PRU firmware",
+        heading: "PRU + ARM",
         bullets: [
-          "PRU firmware in cycle-exact assembly or C — no Linux jitter, ever.",
-          "Custom drivers bridging deterministic I/O into Linux cleanly.",
-          "Device trees and HAL matched to your hardware exactly.",
-          "PREEMPT_RT tuning on the ARM side where it helps."
+          "Kernel customization on TI trees with strong mainline support on Sitara.",
+          "PREEMPT_RT porting — Sitara is a first-class RT target.",
+          "Boot streamlining for industrial fast-start requirements.",
+          "PRU-ICSS interface drivers and remoteproc integration."
         ]
       },
       {
         stage: 5,
-        eyebrow: "STAGE 05 / MIDDLEWARE",
-        heading: "PRU EtherCAT",
+        eyebrow: "STAGE 05 / MIDDLEWARE & INDUSTRY IMAGES",
+        heading: "Industry-specific images",
         bullets: [
-          "EtherCAT and PROFINET masters and slaves on PRU — wire-speed, deterministic.",
-          "OPC UA and Modbus for the rest of the plant.",
-          "MQTT northbound for telemetry and fleet visibility.",
-          "Protocol stacks configured to your network, not generic defaults."
+          "joshua-industrial — EtherCAT (via PRU-ICSS), PROFINET, EtherNet/IP, Modbus, OPC UA, TSN on AM64x.",
+          "joshua-iot — MQTT, edge gateways, protocol translation.",
+          "joshua-automation — real-time control stacks, motor control integration.",
+          "joshua-medical — traceable builds, SBOM, audit-ready workflow.",
+          "System services hardening, read-only rootfs, watchdog supervision."
         ]
       },
       {
         stage: 6,
-        eyebrow: "STAGE 06 / OTA & RECOVERY",
+        eyebrow: "STAGE 06 / OTA & FLEET UPDATES",
         heading: "Failsafe OTA",
         bullets: [
           "A/B updates covering kernel, rootfs, and PRU firmware together.",
           "Automatic rollback — a failed update never stops a line.",
-          "Staged rollouts across plants and sites.",
-          "Managed from your infrastructure or ours."
+          "Cloud or on-prem server, staged rollouts, delta updates.",
+          "Dashboard UI for fleet / release management with signed update chain."
         ]
       },
       {
         stage: 7,
-        eyebrow: "STAGE 07 / SDK & TOOLS",
-        heading: "Timing analyzer",
+        eyebrow: "STAGE 07 / DEVKIT, SDK, DEBUG",
+        heading: "Timing tooling",
         bullets: [
-          "SDK spanning Linux applications and PRU firmware development.",
-          "Boot logging, analysis, and diagnostics in every image.",
-          "Logic-analyzer-verified timing — we prove the deadlines.",
-          "CI/CD for reproducible, release-engineered images."
+          "Evaluation images for TI EVKs / BeagleBone and custom boards.",
+          "Application SDK and Yocto eSDK.",
+          "Debugging: JTAG (CCS / XDS), kgdb, gdbserver.",
+          "Profiling: perf, LTTng, boot and latency profiling."
         ]
       },
       {
         stage: 8,
-        eyebrow: "STAGE 08 / PERFORMANCE",
-        heading: "Sub-microsecond loops",
+        eyebrow: "STAGE 08 / RTOS & PRU-ICSS",
+        heading: "Sub-microsecond I/O",
         bullets: [
-          "Cycle-exact PWM, stepper, and encoder timing — measured, not promised.",
-          "Strict-deadline sensor sampling with zero scheduler jitter.",
-          "Control-loop latency budgets characterized end to end.",
-          "System tuning across ARM, PRU, and the boundary."
+          "FreeRTOS / Zephyr on Cortex-M4F (AM62x) and R5F (AM64x) cores.",
+          "PRU-ICSS firmware: deterministic sub-microsecond I/O, custom industrial protocols.",
+          "RPMsg / remoteproc communication between Linux and real-time domains.",
+          "Encoder / PWM interfaces and mixed-criticality industrial architectures."
         ]
       },
       {
@@ -577,9 +587,9 @@ export const platforms: PlatformData[] = [
         eyebrow: "STAGE 09 / MANUFACTURING",
         heading: "Deterministic factory",
         bullets: [
+          "Industrial Ethernet (CPSW / ICSSG), CAN, ADC / touch, display (LCDC / DSS) support.",
+          "Custom SPI / I²C device drivers.",
           "Factory provisioning and per-device identity workflows.",
-          "Manufacturing test for ARM, PRU, and industrial I/O together.",
-          "First-boot cloud enrollment for fleet management.",
           "Deterministic real-time — at a cost FPGA can't match."
         ]
       }
@@ -590,110 +600,112 @@ export const platforms: PlatformData[] = [
     name: "Sequoia",
     chipFamily: "Intel / AMD x86",
     accent: "#4a6478",
-    edgeOneLiner: "If it only runs on x86, it runs here — with all the I/O it needs.",
+    edgeOneLiner:
+      "A custom Yocto-based platform for industrial SBCs, COM Express / SMARC modules, and edge servers — Intel Atom / Core and AMD Ryzen Embedded. The same rigor as our ARM platforms, on x86.",
     industries: {
-      primary: ["Networking / Edge compute"],
-      secondary: ["Defense"]
+      primary: ["Networking / Edge compute", "Defense"],
+      secondary: ["Medical", "Industrial vision"]
     },
     bootChain: ["UEFI/coreboot", "bootloader", "kernel"],
     slides: [
       {
         stage: 1,
-        eyebrow: "SOCCENTRIC // SEQUOIA // OVERVIEW",
+        eyebrow: "STAGE 01 / OVERVIEW",
         heading: "Sequoia",
         bullets: [
-          "Intel and AMD: the highest single-thread and multi-core compute available.",
-          "PCIe lane counts and high-speed I/O that ARM SoCs don't expose.",
-          "Runs Windows stacks, legacy industrial software, and x86-tuned workloads natively.",
-          "SoM-based or fully custom board — your volume decides."
+          "Validated on industrial SBCs and embedded modules (Atom x6000E, Core, Ryzen Embedded).",
+          "Boot chain: UEFI / coreboot → systemd-boot / GRUB → Linux, secure boot with custom keys.",
+          "Virtualization and workload consolidation (KVM, ACRN).",
+          "The same rigor as our ARM platforms, on x86."
         ]
       },
       {
         stage: 2,
-        eyebrow: "STAGE 02 / BSP",
+        eyebrow: "STAGE 02 / BSP & BOARD BRING-UP",
         heading: "High-speed BSP",
         bullets: [
-          "Yocto or hardened distro builds for your exact board.",
-          "Bring-up and validation: PCIe trees, NVMe, NICs, accelerators.",
-          "Firmware coordination across UEFI, BMC, and platform controllers.",
-          "Reproducible images, release-engineered from day one."
+          "Yocto-based embedded Linux for x86_64 (meta-intel, AMD embedded targets).",
+          "Custom BSP: kernel config for your exact peripheral set, out-of-tree driver integration.",
+          "Carrier board bring-up: BIOS / UEFI configuration, ACPI table review.",
+          "Smoke test: PCIe enumeration, storage, network, display, I/O checkout."
         ]
       },
       {
         stage: 3,
-        eyebrow: "STAGE 03 / BOOTLOADER",
-        heading: "TPM boot",
+        eyebrow: "STAGE 03 / BOOTLOADER & GOLDEN BOOT",
+        heading: "TPM / secure boot",
         bullets: [
-          "UEFI or coreboot — customized, hardened, and locked for production.",
-          "UEFI Secure Boot with your keys, measured boot with TPM.",
-          "Golden boot and failsafe recovery for unattended edge sites.",
-          "Provisioning integrated into your imaging and deployment flow."
+          "UEFI / coreboot — customized, hardened, locked for production.",
+          "UEFI Secure Boot with your keys, measured boot with TPM 2.0.",
+          "Golden boot and redundant boot partitions (UEFI boot entries + health-checked fallback).",
+          "Memory / storage partitioning, failsafe and rollback boot."
         ]
       },
       {
         stage: 4,
         eyebrow: "STAGE 04 / KERNEL & DRIVERS",
-        heading: "ACRN partition",
+        heading: "Determinism without an MCU",
         bullets: [
-          "Custom kernels: PREEMPT_RT, isolated cores, deterministic without an MCU.",
-          "Drivers for your capture cards, accelerators, and custom I/O.",
-          "Hypervisor partitioning — Xen or ACRN — Linux and RTOS on one die.",
-          "SR-IOV and virtualization paths validated under load."
+          "Kernel customization and hardening (LTS kernels), config minimization.",
+          "PREEMPT_RT for industrial determinism; Xenomai where hard real-time is required.",
+          "Driver work: custom PCIe cards, industrial I/O, CAN adapters, GPU / iGPU enablement.",
+          "TPM 2.0 integration, measured boot, disk encryption (LUKS + TPM sealing)."
         ]
       },
       {
         stage: 5,
-        eyebrow: "STAGE 05 / MIDDLEWARE",
-        heading: "Container edge",
+        eyebrow: "STAGE 05 / MIDDLEWARE & INDUSTRY IMAGES",
+        heading: "Industry-specific images",
         bullets: [
-          "DDS and MQTT pipelines sized for edge-server throughput.",
-          "Container runtimes hardened for embedded deployment.",
-          "Virtualization stacks validated on your exact silicon.",
-          "Bridges to legacy industrial software that must keep running."
+          "sequoia-industrial — Modbus, OPC UA, TSN, soft-PLC integration.",
+          "sequoia-iot / edge — MQTT, container runtime (Docker / Podman), edge orchestration.",
+          "sequoia-vision — OpenVINO / ROCm pipelines, GStreamer, multi-camera ingest.",
+          "sequoia-medical / defense — hardened, audit-ready, SBOM-complete builds.",
+          "Virtualization images: KVM / ACRN for consolidating RT + GUI + connectivity workloads."
         ]
       },
       {
         stage: 6,
-        eyebrow: "STAGE 06 / OTA & RECOVERY",
+        eyebrow: "STAGE 06 / OTA & FLEET UPDATES",
         heading: "Rackscale OTA",
         bullets: [
-          "A/B image updates with automatic rollback at fleet scale.",
-          "Signed updates verified against your secure boot chain.",
-          "Staged rollouts: rack, site, fleet.",
-          "Edge nodes recover without a site visit."
+          "A/B image updates with golden recovery (RAUC / Mender on x86, or image-based ostree).",
+          "Automatic rollback via boot counting and health checks.",
+          "Cloud / on-prem update server, staged rollouts, delta updates.",
+          "Secure-boot-chained signed updates."
         ]
       },
       {
         stage: 7,
-        eyebrow: "STAGE 07 / SDK & TOOLS",
+        eyebrow: "STAGE 07 / DEVKIT, SDK, DEBUG",
         heading: "Remote diagnostics",
         bullets: [
-          "SDKs for your application and virtualization teams.",
-          "Boot logging and analysis across firmware and kernel.",
-          "CI/CD for image builds, regression, and release management.",
-          "Diagnostics designed for remote, lights-out operation."
+          "Evaluation images for common industrial SBCs and your hardware.",
+          "Application SDK and Yocto eSDK.",
+          "Debugging: kgdb, kexec / kdump crash analysis, remote gdb.",
+          "Profiling: perf, eBPF-based tracing, boot analysis."
         ]
       },
       {
         stage: 8,
-        eyebrow: "STAGE 08 / PERFORMANCE",
-        heading: "PCIe characterization",
+        eyebrow: "STAGE 08 / REAL-TIME & WORKLOAD CONSOLIDATION",
+        heading: "Isolated cores, hypervisor",
         bullets: [
-          "Real-time latency on isolated cores — measured under load.",
-          "PCIe and storage throughput characterized end to end.",
-          "GPU and accelerator integration for vision rigs.",
-          "Power and thermal tuning for fanless and rugged builds."
+          "Boot streamlining: UEFI-to-app optimization, kiosk / HMI fast boot.",
+          "CPU isolation, IRQ affinity, cache partitioning for deterministic cores.",
+          "Hypervisor-based consolidation: RTOS or RT-Linux guest alongside HMI guest (ACRN / KVM).",
+          "Jailhouse partitioning for safety-adjacent designs."
         ]
       },
       {
         stage: 9,
         eyebrow: "STAGE 09 / MANUFACTURING",
-        heading: "Burn-in testing",
+        heading: "Burn-in, identity, fleet",
         bullets: [
+          "SR-IOV and virtualization paths validated under load.",
+          "CI/CD with automated image builds and HIL validation.",
           "Factory imaging, provisioning, and per-device identity.",
-          "Burn-in and production test for compute-dense systems.",
-          "First-boot enrollment into your management plane.",
-          "The software runs. The I/O keeps up. The fleet stays up."
+          "Burn-in and production test for compute-dense systems."
         ]
       }
     ]

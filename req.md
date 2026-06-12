@@ -1,590 +1,512 @@
-# SoCcentric Website — Final One-Shot Build Prompt
+# SoC Centric Website Content Update — Instruction Document
 
-You are a senior frontend engineer, brand designer, and B2B copy strategist in one. Build a complete, production-quality marketing website for **SoCcentric**, an embedded systems company. This document is the full specification: strategy, structure, design, animation, and the final copy for every page. Follow it exactly. Do not simplify, do not skip animations, do not invent placeholder content — everything you need is here.
+## Instruction to Website Builder/LLM
 
----
+The website layout, design system, navigation, and styling are ALREADY SET. **Do not change layout, theme, colors, fonts, or structure.** Your job is to **replace/update the page content only** using the content below.
 
-## 1. Marketing strategy (governs every design and copy decision)
-
-**The buyer.** Nobody wakes up wanting a BSP. Buyers arrive trigger-driven and anxious: the platform hire fell through, the contractor shipped garbage, the silicon went EOL, the demo is in 12 weeks and the board won't boot, RPU communication is down, DMA is failing. This is a high-stakes, high-skepticism purchase made by technical people who are allergic to marketing language.
-
-**Three buyers see every page, in this order:**
-1. **The engineering lead** (gatekeeper; writes the job descriptions) — convinced only by named artifacts: FSBL, BitBake, device tree, RPMsg, PREEMPT_RT. Generic words ("solutions", "expertise") are anti-proof.
-2. **The founder / product manager** — convinced by speed and risk removal: "first boot in weeks", "devices never brick."
-3. **The executive / procurement** — convinced by longevity and stability: 15-year silicon, certifications, single accountable partner.
-
-Every platform page must contain at least one line aimed at each of the three.
-
-**The positioning wedge.** The market is chip vendors (sell silicon, not outcomes), body shops (sell hours, not ownership), and design houses (treat software as an afterthought). SoCcentric's category-of-one claim: **"We own the platform layer as a product."** Customer picks a platform; SoCcentric delivers everything between the silicon and their application — booting, updating, manufacturable, documented, handed off.
-
-**Trust through accuracy, not adjectives.** The site itself must feel like it was built by people who write device drivers. Technically correct boot chains, real protocol names, accurate silicon detail — that accuracy IS the marketing. The signature animation (section 6) converts because an engineer can see it is *correct*.
-
-**Keyword strategy — confident, never desperate.** Crisis buyers search exact technical phrases ("Zynq OpenAMP RPU", "i.MX SPL U-Boot", "RAUC A/B rollback", "PRU EtherCAT"). Weave this vocabulary naturally into capability copy so those searches land here — but the tone is always a company in command ("We've shipped this boot chain before. Yours will work."), never an ambulance service. No "stuck?" messaging, no rescue page, no fear-mongering headlines.
-
-**The hiring-replacement message.** Companies spend 6–9 months trying to hire embedded Linux platform engineers (Yocto, BSP, U-Boot, OTA, CI/CD). A dedicated message speaks to that buyer: *"Everything in your embedded Linux job description — delivered as a senior team."* It appears on the Home page (slide 9) and Contact page.
-
-**CTAs.** Primary everywhere: **"Talk to engineering"** — it promises an engineer answers, not sales. Secondary micro-asks: "Send us your schematic — we'll tell you what bring-up looks like." and "Send us your job description — we'll send back how we'd deliver it." Banned CTAs: "Learn more", "Submit", "Request a quote", "Contact us".
-
-**Banned vocabulary (entire site):** revolutionary, seamless, unleash, cutting-edge, world-class, best-in-class, leverage, synergy, solutions (as a noun for services), robust (as filler), empower, innovative.
+- Each platform gets its own section with sub-pages (Intro, BSP & Board Bring-Up, Kernel & Drivers, Middleware, OTA, DevKit & Debug, RTOS, FPGA where applicable).
+- Use real platform names (NVIDIA Jetson, AMD Xilinx Zynq, NXP i.MX, TI Sitara, Intel/AMD x86, Raspberry Pi) in all customer-facing copy. Internal codenames (Arches, Zion, Pinnacle, Joshua, Sequoia) may appear once as product line names if the existing site uses them, otherwise omit.
+- Keep tone: solution provider, outcome-focused, engineering credibility. Short paragraphs, scannable bullets.
+- Each page should end with a CTA: "Talk to an engineer" / "Request an evaluation image".
 
 ---
 
-## 2. Company context
+# PLATFORM 1: NVIDIA Jetson (Arches)
 
-SoCcentric designs and delivers **six embedded hardware platforms**, and on every platform delivers the **complete production software stack**: BSP development and board bring-up; multi-stage bootloader customization; golden boot and failsafe recovery; initial provisioning; custom Linux kernels and device drivers (written from scratch where needed); device trees and HALs; real-time tuning and boot-time optimization; Yocto-based embedded Linux distributions; middleware (ROS, DDS, MQTT, industrial protocol stacks); custom OTA with A/B updates and rollback; SDKs and eSDKs; boot logging, boot analysis, and diagnostics; performance analysis, profiling, and optimization tools; manufacturing tools and workflows; first-boot support; cloud connectivity and device management.
+## Page 1 — Intro
 
-### The six platforms and the unique edge of each (exploit these)
+**Headline:** Production-Ready Embedded Linux for NVIDIA Jetson
 
-1. **Arches — NVIDIA Jetson.** Jetson SoM (ARM + CUDA GPU + DLA/vision accelerators) on a custom carrier with extended storage, sensor, and actuator I/O, plus an **STM32 real-time co-processor** for deterministic tasks. *The edge:* everyone sells Jetson AI; nobody pairs it with hard real-time control. One-liner: **"Inference on the GPU. Control loops on the MCU. One board does the whole robot."** Industries: robotics (primary), automotive (secondary).
-2. **Acadia — Raspberry Pi CM4/CM5.** Compute Modules on a ruggedized industrial carrier (industrial connectors, power conditioning, EMC-aware layout), with a **Pico W (RP2040)** companion for deterministic I/O and decoupled wireless. *The edge:* the world's largest embedded ecosystem, industrialized — prototype to production with no replatforming. One-liner: **"Your prototype already runs on it. Now it survives the factory floor."** Industries: IoT / smart building (primary), medical (secondary).
-3. **Zion — Xilinx Zynq.** Zynq-7000 (Cortex-A9 + fabric) and Zynq UltraScale+ MPSoC (A53 + lockstep R5 + larger fabric). ARM and FPGA on one die, nanosecond-class interconnect, field-updatable bitstreams. *The edge:* latency in clock cycles, not scheduler ticks; hardware you can update OTA. One-liner: **"When the deadline is in microseconds, software isn't enough."** Industries: defense (primary), aerospace (primary), automotive/ADAS (secondary).
-4. **Pinnacle — NXP i.MX.** Industrial ARM application processors with **10–15-year guaranteed availability**, mainline Linux, rich multimedia/connectivity, functional-safety variants. *The edge:* silicon longevity plus certification path (IEC 61508 / IEC 62304). One-liner: **"Silicon that outlives your product plan. Linux that passes your audit."** Industries: medical (primary), industrial (secondary), aerospace (secondary).
-5. **Joshua — TI Sitara.** Industrial ARM Linux plus the **PRU-ICSS**: 200 MHz deterministic RISC cores with direct pin access, cycle-exact execution. *The edge:* FPGA-grade timing without FPGA cost or FPGA engineers. One-liner: **"FPGA-grade timing. Microcontroller-grade cost. Linux-grade ecosystem."** Industries: industrial (primary), robotics (secondary), energy.
-6. **Sequoia — Intel & AMD x86.** Highest compute, x86-only software compatibility, PCIe fan-out ARM can't match. **No companion MCU** — determinism via PREEMPT_RT, isolated cores, or hypervisor partitioning (Xen, ACRN). One-liner: **"If it only runs on x86, it runs here — with all the I/O it needs."** Industries: networking / edge (primary), defense (secondary).
+**Subhead:** A custom Yocto-based embedded Linux platform, validated on Jetson TX2, Xavier NX, Orin, and Thor. From board bring-up to OTA-managed fleets — one platform, fully owned by you.
 
-### Industry → platform matching (targeted; no platform claims all industries)
+**What it is:**
+Arches is a hardened, Yocto/OpenEmbedded-built Linux distribution for the NVIDIA Jetson family. It replaces ad-hoc JetPack/L4T images with a reproducible, auditable, customer-owned build system. Every layer — bootloader, kernel, BSP, middleware, update system — is configured for your hardware and your industry.
 
-| Industry | Primary | Secondary |
-|---|---|---|
-| Robotics | Arches | Joshua |
-| Automotive / ADAS | Arches | Zion, Pinnacle |
-| Defense | Zion | Sequoia |
-| Aerospace | Zion | Pinnacle |
-| Medical | Pinnacle | Acadia |
-| Industrial automation | Joshua | Pinnacle |
-| IoT / Smart building | Acadia | Pinnacle |
-| Networking / Edge compute | Sequoia | Pinnacle |
+**Why it matters:**
+- Skip 6–12 months of platform engineering; start application work on day one
+- Reproducible builds: every image traceable to source, ideal for regulated industries
+- Built on NVIDIA L4T/JetPack foundations with CUDA, TensorRT, DeepStream, and the full accelerated compute stack integrated
+- Long-term maintainability: CVE patching, kernel updates, Yocto LTS alignment
 
----
+**Feature highlights:**
+- Custom Yocto-based embedded Linux (meta-tegra integration, Yocto LTS releases)
+- Validated on Jetson TX2, Xavier NX, Orin (Nano/NX/AGX), and Thor
+- Custom BSP and board bring-up for carrier boards and custom designs
+- Bootloader and multi-stage boot (UEFI, CBoot legacy, U-Boot where applicable)
+- Linux kernel and device driver development (camera, sensor, I/O)
+- Boot-time and kernel optimization (sub-3-second boot targets achievable)
+- Middleware and system services (ROS 2, DeepStream, GStreamer pipelines)
+- Debugging and profiling (Nsight Systems, perf, ftrace, JTAG)
+- OTA with A/B redundant boot and golden image fallback
+- Secure boot, fused devices, disk encryption, signed update chains
 
-## 3. Tech stack & site structure
+## Page 2 — BSP & Board Bring-Up
 
-- **Stack:** **Next.js 15 (App Router)**, **Node 22 compatible** (`"engines": { "node": ">=22" }`, only Node-22-compatible dependencies), TypeScript strict, Tailwind CSS, **Framer Motion** for all animation. Statically exportable (`output: 'export'`); no server actions; contact form is a client-side stub.
-- **Routes (8):** `/` (Home), `/arches`, `/acadia`, `/zion`, `/pinnacle`, `/joshua`, `/sequoia`, `/contact`.
-- **Architecture:** all six platform pages render one shared `<PlatformPage>` component driven by a typed `data/platforms.ts` file (name, chip family, accent, edge one-liner, industries, slides with eyebrow/heading/bullets, boot-chain steps, chip-state config). Shared `app/layout.tsx` mounts `<Nav>`, `<ProgressBar>`, `<BootRail>`, `<StatusLine>`. Components: `<Slide>`, `<SlideHeading>`, `<BulletList>`, `<LivingChip>`, `<SplitFlapCounter>`, `<TypedEyebrow>`, `<RouteWipe>`. Adding a 7th platform must be a one-data-file change.
-- **Nav (fixed top, all pages):** `Home | Arches | Acadia | Zion | Pinnacle | Joshua | Sequoia | Contact`. Active item underlined in its platform accent; hovering a platform item reveals a small mono chip label beneath it ("NVIDIA Jetson", "Raspberry Pi CM5", "Xilinx Zynq", "NXP i.MX", "TI Sitara", "Intel / AMD x86").
-- **SEO:** per-route metadata (title, description) using the platform one-liners and technical vocabulary; semantic headings; OpenGraph tags.
+**Headline:** From Schematic to First Boot
 
-### Page anatomy
+We work directly with your hardware engineers from schematic review through first power-on:
 
-- **Home:** 9 full-viewport scroll-snap slides — hero, six platform slides, hiring-replacement slide, closing CTA.
-- **Each platform page:** 9 full-viewport scroll-snap slides — Overview, BSP, Bootloader, Kernel & Drivers, Middleware, OTA & Recovery, SDK & Tools, Performance, Manufacturing & Provisioning.
-- **Contact:** single screen.
+- Schematic and pin-mux review before PCB fab — catch boot-strap, power-sequencing, and DDR layout issues early
+- Custom BSP: device tree authoring for your carrier board (CSI cameras, PCIe, USB, GPIO, I2C/SPI peripherals)
+- Board bring-up and smoke test: structured checklist covering power rails, clocks, memory training, peripheral enumeration
+- Custom bootloader work: UEFI customization, CBoot (legacy TX2), boot configuration, splash screens
+- Golden boot development: known-good recovery image in protected partition
+- Memory partitioning: eMMC/NVMe layout design, redundant partitions, persistent data separation
+- Failsafe and rollback boot: watchdog-supervised boot, automatic rollback on boot failure, brick-proof field updates
+- Flashing and manufacturing support: massflash tooling, fuse provisioning, production line scripts
 
-### Slide layout (the core pattern)
+## Page 3 — Linux Kernel & Device Drivers
 
-- **Two columns.** Text column: mono eyebrow (`STAGE 03 / BOOTLOADER`), huge display heading (1–3 words), rolling `03 / 09` counter, then **4–5 bullets**, each ≤ 14 words, each prefixed by a mono `>`. Chip column: the **living chip** (section 6) in its current state.
-- **Alternate** which side the chip occupies on every slide; during the transition the chip glides across the screen — the swap is part of the show.
-- Generous whitespace, hairline dividers, sentence case everywhere. Bullets stay light; the chip carries the drama.
-- Responsive: columns stack under 900px (chip above text, scaled down); boot rail collapses to a dot strip; scroll-snap relaxed on short viewports.
+**Headline:** A Kernel Tuned to Your Hardware, Not a Generic Image
 
----
+- Kernel customization on NVIDIA's downstream kernel (5.10/5.15/6.x per JetPack release) — config pruning, feature selection, security hardening
+- PREEMPT_RT patch porting and validation for deterministic latency on Orin/Thor
+- Boot streamlining: initramfs minimization, deferred module loading, parallelized init — measured boot-time budgets
+- Device driver development: V4L2 camera drivers (CSI/GMSL/FPD-Link), IIO sensor drivers, custom PCIe/USB/SPI/I2C device drivers
+- Driver porting for custom hardware: bring vendor reference drivers up to your kernel version and device tree
+- Power management: deep sleep states, dynamic frequency scaling, thermal management profiles
+- Kernel debugging: kgdb, crash dump analysis, lockup and latency diagnosis
 
-## 4. Visual design
+## Page 4 — Middleware & Industry Images
 
-- **Theme: LIGHT ONLY.** No dark theme, no dark sections, ever. Background `#fafaf8`, white cards, ink `#16181a`, muted `#6b7075`, hairlines `#e4e2dd`.
-- **Per-platform accents:** Arches `#0f7a4d` green · Acadia `#c43a3a` red · Zion `#6b4fd3` purple · Pinnacle `#1f6fd6` blue · Joshua `#d4622a` orange · Sequoia `#4a6478` steel. The accent tints the progress bar, eyebrows, chip strokes, rail highlights, links, CTA fills, and heading underlines on that platform's page (and that platform's slide on Home).
-- **Typography:** Display **Space Grotesk** (700/500); body **Inter** (400/500); utility **JetBrains Mono** (eyebrows, counters, boot logs, part numbers, chip labels). Google Fonts via `next/font`. Headings `clamp(3rem, 8vw, 6.5rem)`, tight tracking.
-- **Texture:** sharp or barely-rounded corners (≤ 6px); no decorative gradients; no stock photography anywhere. Reference feel: NVIDIA Jetson product pages and Stripe docs, in light mode — datasheet meets premium hardware brand.
-- Contrast ≥ 4.5:1 for all text; accent-on-light combinations must pass.
+**Headline:** Industry-Specific Images, Ready to Deploy
 
----
+Pre-integrated middleware stacks delivered as named image variants:
 
-## 5. Signature chrome: boot-sequence navigation
+- **arches-robotics:** ROS 2 (Humble/Jazzy), DDS tuning, Isaac ROS GEMs, real-time executor configuration
+- **arches-iot:** MQTT (Mosquitto/paho), Azure IoT / AWS IoT Greengrass connectivity, edge telemetry agents
+- **arches-automotive:** SocketCAN with MCP251x/native CAN, PREEMPT_RT, AUTOSAR-adjacent gateway patterns, ISO 26262-aware development workflow
+- **arches-medical:** IEC 62304-aligned build traceability, SBOM generation, audit-ready change logs
+- **arches-vision:** DeepStream, GStreamer, TensorRT pipelines, multi-camera synchronization
+- System services: systemd hardening, watchdog services, logging/journald policies, read-only rootfs with overlay
 
-The page behaves like a device booting:
+## Page 5 — OTA & Fleet Updates
 
-- **Right-side boot rail** (JetBrains Mono): nine entries, e.g. `[ 0.000 ] overview`, `[ 0.412 ] bsp`, `[ 1.108 ] bootloader`… Completed slides stamp a `✓` with a tiny pop; the current entry gets a breathing accent underline; timestamps tick upward while a slide is active. Click any entry to snap to that slide.
-- **Top progress bar** (2px, accent) fills with scroll like a flash write.
-- **Bottom status line** (fixed, mono, small): `writing arches.img … 34%`, percentage tweened with rAF (never jumps), ending `100% — boot complete ✓ 0 errors` on the final slide.
-- **Section counter** `03 / 09`: digits roll like a split-flap display with slight overshoot.
+**Headline:** Field Updates Without Field Failures
 
----
+- Custom OTA system built on A/B redundant partitions (Mender, RAUC, or SWUpdate — selected per project)
+- Golden boot image: factory-recovery partition that can never be overwritten by an update
+- Automatic rollback: failed update or failed health check reverts to last known-good slot
+- Cloud connectivity: hosted or on-premise update server, fleet grouping, staged rollouts, delta updates to minimize bandwidth
+- Dashboard: simple web UI for release management — upload image, select fleet, monitor rollout, one-click rollback
+- Signed updates: cryptographically verified update chain tied to secure boot
+- Compliance artifacts: update audit logs, version traceability per device
 
-## 6. The centerpiece: one giant living chip (build this first)
+## Page 6 — DevKit, SDK, Debugging & Profiling
 
-A single huge SVG **silicon die** (~45vw, capped 640px) is the hero object of every platform page and the Home hero. Premium line-art: die outline, pin/ball grid, internal blocks (CPU cluster, accelerator, memory controller, I/O ring, boot ROM, flash), hairline interconnects. Light fills, accent strokes. It occupies the slide's chip column and **never leaves the screen — it transforms per slide** (Framer Motion orchestration, 600–900ms springs, shared layout):
+**Headline:** Everything Your Application Team Needs
 
-1. **Overview** — the die assembles: blocks fly in and seat, pins extend, interconnects draw; then a slow idle heartbeat pulse on the power rail.
-2. **BSP** — blocks light up one by one as if enumerated; mono labels stamp beside pin groups (UART, I2C, SPI, ETH, PCIe, CSI).
-3. **Bootloader** — boot ROM ignites; a visible execution path traces stage-to-stage across the die, each hop flashing its stage name, using the **real chain for that platform** (listed per page below).
-4. **Kernel & Drivers** — the interconnect mesh comes alive with continuous signal pulses; driver "modules" dock onto the I/O ring like fitted pieces.
-5. **Middleware** — pulses organize into pub/sub: one block broadcasts, others subscribe in visible fan-out; labels ROS 2 / DDS / MQTT (industrial pages: OPC UA / EtherCAT / PROFINET).
-6. **OTA & Recovery** — the die splits into A/B halves; B rebuilds line-by-line; a clean swap flips the active half; a simulated failed write flickers and visibly rolls back to A.
-7. **SDK & Tools** — a probe/magnifier overlay sweeps the die; code-bracket glyphs extrude from blocks; a mini boot-log readout streams alongside.
-8. **Performance** — oscilloscope traces and bar meters overlay the blocks; one hotspot glows, then cools as an optimization wave passes.
-9. **Manufacturing** — camera zooms out: the die multiplies into a panel grid, each stamping `✓ PROVISIONED` in sequence; the final CTA appears over the panel.
+- Development kit: pre-flashed evaluation image for Jetson devkits and your custom hardware
+- Application SDK: cross-toolchain, sysroot, CMake/Yocto SDK integration for your app developers
+- eSDK (extensible SDK): full Yocto workflow for kernel and image customization by your own team
+- Boot and runtime profiling: systemd-analyze, bootchart, perf, Nsight Systems for GPU/CPU pipelines
+- Remote debugging: gdbserver workflows, VS Code integration, core dump collection from the field
+- CI/CD integration: automated image builds, hardware-in-the-loop smoke tests, artifact signing
+- Documentation: bring-up guide, developer onboarding guide, image release notes
 
-**Per-platform internals (the product story — must be visibly different):**
-- **Arches:** GPU + DLA blocks dominate; a small **STM32 satellite chip** sits beside the die, wired by an RPMsg link that pulses.
-- **Acadia:** CM5-style die; a **Pico W satellite** with a tiny antenna glyph.
-- **Zion:** half the die is **FPGA fabric checkerboard** that visibly reconfigures during the OTA slide (bitstream sweep); lockstep R5 pair highlighted.
-- **Pinnacle:** wide peripheral ring (displays, ETH, CAN); a "15 yr" longevity seal stamps on Overview.
-- **Joshua:** **twin PRU cores** with direct taps to the pin ring, firing cycle-exact pulse trains.
-- **Sequoia:** large cache blocks + a **PCIe lane fan-out** spraying from one edge; **no satellite MCU**.
+## Page 7 — RTOS & Heterogeneous Compute
 
-**Home page:** the chip assembles in the hero, then **morphs between the six platform identities** as the user scrolls through the platform slides — fabric grows in for Zion, the STM32 satellite appears for Arches, the PCIe fan-out unfolds for Sequoia. One object, six identities.
+**Headline:** Real-Time Where You Need It
 
-Implementation: a single `<LivingChip platform stage>` client component; states as data (block layouts + paths per platform per stage); morphs via shared layout IDs and path interpolation; **transform / opacity / stroke-dashoffset only**; idle loops pause when off-screen or tab hidden; under `prefers-reduced-motion` states swap instantly with no morphs.
+Jetson Orin/Thor include Cortex-R52 sensor processing engines (SPE); TX2/Xavier include Cortex-R5:
 
----
+- FreeRTOS firmware development on the SPE for hard real-time sensor fusion, IMU sampling, safety supervision
+- Linux ↔ RTOS communication: shared memory mailboxes, IVC channels
+- Offload architecture: deterministic control loops on the R-core, perception on the GPU, coordination on Linux
+- RTOS device drivers for SPE-attached peripherals (SPI/I2C/UART/GPIO/CAN)
+- Watchdog and health supervision from the real-time domain
 
-## 7. Animation spec (implement all of it)
-
-1. **Hero boot sequence (every page load):** typed terminal log, ~6 lines (`U-Boot 2026.01 …`, `Loading kernel …`, `Starting init …`), blinking block cursor, 1.8s total; then the page title reveals with a clip-path wipe and slight letter-spacing contraction. The chip assembles in parallel.
-2. **Scroll-snap slides** with spring easing; wheel, touch, keyboard (↑/↓, PgUp/PgDn), and boot-rail click all navigate.
-3. **Heading reveals:** oscilloscope-sweep clip-path wipe with a 1px accent scanline traveling ahead of the reveal.
-4. **Bullets stagger** 80ms apart (translateY + fade); the `>` types first, then the text wipes in.
-5. **Typed eyebrows:** `STAGE 03 / BOOTLOADER` types character-by-character on slide entry.
-6. **Split-flap counter** with overshoot and a faint flip shadow.
-7. **Chip column swap:** as slides alternate, the chip glides across the viewport with a spring; text column crossfades past it (FLIP-style) — never a hard jump.
-8. **Hover micro-interactions:** bullet underline sweep; nav chip-label slide-down; CTA diagonal accent fill; rail entries nudge and show a timestamp tooltip.
-9. **Route transitions:** clicking a platform triggers a 300ms "flash-erase" wipe in the destination accent (a mono `ERASING… OK` flashes inside the wipe); new page wipes in from the opposite side.
-10. **Final slide stamp:** `boot complete ✓ 0 errors` scale-settles in; every chip pulse converges once toward the CTA. No confetti.
-11. **`prefers-reduced-motion`:** disable typing, tickers, pulses, morphs, snap animation; everything appears instantly and remains fully readable.
-
-**Performance rules:** transform / opacity / stroke-dashoffset only; IntersectionObserver for reveals; rAF for status line and counters; `will-change` only while animating; pause all loops when the tab is hidden; 60fps on a mid-range laptop; Lighthouse Performance ≥ 90.
+*(No FPGA page — Jetson has no programmable logic.)*
 
 ---
 
-## 8. Copy rules
+# PLATFORM 2: AMD Xilinx Zynq (Zion)
 
-- Voice: confident, plain, engineering-grade. Specific beats clever. Sentence case. Bullets ≤ 14 words. Headings 1–3 words.
-- Every bullet states a customer outcome backed by a concrete capability — never a bare feature.
-- Use the exact technical vocabulary naturally (it is also the SEO): Yocto, OpenEmbedded, BitBake, recipes, layers, machine configs, U-Boot, SPL, FSBL, device tree, HAL, remoteproc, RPMsg, OpenAMP, DMA, PREEMPT_RT, A/B updates, RAUC-style rollback, secure boot, HAB, signed updates, CI/CD image builds, reproducible builds, JTAG, EtherCAT, PROFINET, OPC UA, Modbus, TSN, CAN-FD, TensorRT, DeepStream, PetaLinux, partial reconfiguration, ACRN, SR-IOV.
-- Tone check: every sentence must read as a company in command. Nothing desperate, nothing rescue-flavored.
-- All copy below is final — use it verbatim (you may only fix typos).
+## Page 1 — Intro
 
----
+**Headline:** Production-Ready Embedded Linux for AMD Xilinx Zynq
 
-## 9. FINAL COPY — all 8 pages
+**Subhead:** Custom Yocto/PetaLinux-based platform for Zynq-7000, Zynq UltraScale+ MPSoC, Versal, and Kria SOMs (KV260/KR260). Processing system and programmable logic, engineered as one platform.
 
-### 9.1 Home (`/`) — 9 slides
+**What it is:**
+Zion is a reproducible, Yocto-built Linux platform for the AMD adaptive SoC portfolio. It unifies the full boot chain (FSBL/PMU firmware, ARM Trusted Firmware, U-Boot), kernel, rootfs, FPGA bitstream management, and the real-time RPU domain into a single versioned build.
 
-**Slide 1 — Hero**
-- Eyebrow: `SOCCENTRIC // EMBEDDED PLATFORMS`
-- Headline: **From silicon to shipped.**
-- Sub: Six embedded platforms. One complete production software stack on every one.
-- CTA: Explore the platforms ↓ · Talk to engineering
+**Feature highlights:**
+- Custom Yocto-based embedded Linux (meta-xilinx, PetaLinux-compatible, Yocto rel-v2025.x)
+- Validated on Zynq-7000, UltraScale+ MPSoC, Versal AI Edge, Kria KV260/KR260
+- Custom BSP and board bring-up for custom carrier and SOM designs
+- Multi-stage boot: BootROM → FSBL → ATF → U-Boot → Linux, fully customized
+- Kernel and driver development for PS peripherals and PL-attached IP
+- Boot and kernel optimization
+- Middleware: ROS 2, industrial protocols, vision pipelines on PL
+- OTA with A/B boot, golden image, and bitstream-aware updates
+- FPGA bitstream lifecycle management and PL driver development
+- RTOS on Cortex-R5F RPU (FreeRTOS, Zephyr) with OpenAMP
 
-**Slide 2 — Arches** · `NVIDIA JETSON`
-- Inference on the GPU. Control loops on the MCU. One board does the whole robot.
-- Tags: Robotics · Drones · Industrial inspection — CTA: Explore Arches →
+## Page 2 — BSP & Board Bring-Up
 
-**Slide 3 — Acadia** · `RASPBERRY PI CM4/CM5`
-- Your prototype already runs on it. Now it survives the factory floor.
-- Tags: IoT · Smart buildings · Kiosks — CTA: Explore Acadia →
+- Schematic/pin review with your hardware team: MIO/EMIO planning, DDR configuration, power sequencing
+- Custom FSBL and PMU firmware configuration
+- Device tree authoring for PS peripherals and PL IP (device tree overlays per bitstream)
+- Board bring-up and smoke test: memory calibration, peripheral checkout, PL configuration check
+- Custom bootloader: U-Boot board port, boot.scr logic, QSPI/eMMC/SD boot media strategy
+- Golden boot development: fallback boot image in QSPI with multiboot register support
+- Memory partitioning and image layout for redundant boot
+- Failsafe and rollback: Zynq multiboot + watchdog-driven recovery
 
-**Slide 4 — Zion** · `XILINX ZYNQ`
-- When the deadline is in microseconds, software isn't enough.
-- Tags: Defense · Aerospace · ADAS — CTA: Explore Zion →
+## Page 3 — Linux Kernel & Device Drivers
 
-**Slide 5 — Pinnacle** · `NXP i.MX`
-- Silicon that outlives your product plan. Linux that passes your audit.
-- Tags: Medical · Industrial gateways · Aerospace — CTA: Explore Pinnacle →
+- Kernel customization on xlnx kernel trees, config hardening, mainline alignment where possible
+- PREEMPT_RT porting and latency validation
+- Boot streamlining and optimization (FSBL to userspace budgets)
+- Drivers for PL-attached IP: AXI DMA, AXI GPIO, custom AXI peripherals via UIO or custom kernel drivers
+- V4L2 capture pipelines for MIPI CSI and PL-based ISP blocks
+- Driver development for custom hardware on PS interfaces (CAN, SPI, I2C, GEM Ethernet, USB)
 
-**Slide 6 — Joshua** · `TI SITARA`
-- FPGA-grade timing. Microcontroller-grade cost. Linux-grade ecosystem.
-- Tags: Industrial control · Motor drives · Energy — CTA: Explore Joshua →
+## Page 4 — Middleware & Industry Images
 
-**Slide 7 — Sequoia** · `INTEL & AMD x86`
-- If it only runs on x86, it runs here — with all the I/O it needs.
-- Tags: Edge servers · Networking · Defense compute — CTA: Explore Sequoia →
+- **zion-robotics:** ROS 2 on KR260, PL-accelerated perception, time-synchronized I/O
+- **zion-industrial:** Modbus, OPC UA, EtherCAT (PL-assisted), TSN networking
+- **zion-automotive:** SocketCAN, RT patch, gateway architectures
+- **zion-medical:** traceable builds, SBOM, IEC 62304-aligned workflow
+- Vision/DSP middleware: GStreamer with PL acceleration, Vitis AI runtime integration
 
-**Slide 8 — The platform team** · `STAGE 08 / TEAM`
-- Headline: **Stop trying to hire this role.**
-- > Everything in your embedded Linux job description — delivered as a senior team.
-- > Yocto distributions, BSPs, U-Boot, kernel, drivers, device trees: owned end to end.
-- > OTA, A/B updates, secure boot, CI/CD image builds, reproducible releases.
-- > Productive on your hardware in weeks — with documented handoff, not lock-in.
-- CTA: Send us your job description — we'll send back how we'd deliver it.
+## Page 5 — OTA
 
-**Slide 9 — Closing**
-- `boot complete ✓ 0 errors`
-- Headline: **Pick a platform. We deliver everything between the silicon and your application.**
-- CTAs: **Talk to engineering** · Send us your schematic — we'll tell you what bring-up looks like.
+- A/B update system aware of both Linux images and FPGA bitstreams — atomic update of the full hardware/software set
+- Golden image + golden bitstream recovery path
+- Cloud or on-prem update server, staged rollouts, delta updates
+- Dashboard UI for release and fleet management with rollback
+- Signed, encrypted updates chained to hardware root of trust
 
----
+## Page 6 — DevKit, SDK, Debugging & Profiling
 
-### 9.2 Arches (`/arches`) — `NVIDIA JETSON` — accent #0f7a4d
-Boot-chain for chip animation: BootROM → BCT/MB1 → MB2 → UEFI → kernel.
+- Evaluation images for Kria KV260/KR260 and ZCU boards
+- Application SDK and Yocto eSDK for customer teams
+- Cross-debug: JTAG via Vivado HW manager, kgdb, gdbserver
+- Profiling: perf, LTTng, PL/PS interface utilization analysis
+- CI/CD: automated image+bitstream builds, HIL smoke tests
 
-**S1 Overview** — Headline: **Arches** — Sub: Inference on the GPU. Control loops on the MCU. One board does the whole robot.
-- > Jetson SoM: ARM cores, CUDA GPU, deep-learning and vision accelerators.
-- > Custom carrier adds storage, sensor interfaces, and actuator connectivity the devkit lacks.
-- > STM32 co-processor runs motor loops, watchdogs, and strict-deadline I/O — jitter-free.
-- > Built for robots, drones, smart cameras, and autonomous platforms.
+## Page 7 — RTOS (Cortex-R5F RPU)
 
-**S2 BSP**
-- > Full board support package for your carrier, not the reference devkit.
-- > Bring-up and validation alongside your hardware team, from first power-on.
-- > Every interface enumerated, tested, documented: CSI cameras, CAN, NVMe, Ethernet.
-- > Jetson-to-STM32 link over RPMsg — defined, driven, and verified.
+- FreeRTOS and Zephyr on the RPU (lockstep or split mode)
+- OpenAMP/RPMsg communication between Linux (APU) and RTOS (RPU)
+- Real-time motor control, safety supervision, deterministic I/O on the RPU
+- RTOS device drivers and middleware for RPU-owned peripherals
+- Mixed-criticality architecture design and partitioning
 
-**S3 Bootloader**
-- > Jetson boot chain customized end to end: BCT, MB1/MB2, UEFI, kernel handoff.
-- > Golden boot image — a known-good state the device always recovers to.
-- > Failsafe recovery from corrupted flash or interrupted updates.
-- > Initial provisioning flow ready for first power-on at the factory.
+## Page 8 — FPGA & Bitstream Management
 
-**S4 Kernel & Drivers**
-- > Custom kernels tuned for real-time performance and fast boot.
-- > Drivers written from scratch for your sensors and actuators.
-- > Device trees and HAL matched exactly to your carrier.
-- > CUDA, TensorRT, and DeepStream stacks integrated and validated.
-
-**S5 Middleware**
-- > ROS 2 configured for your robot's compute and sensor graph.
-- > DDS tuned for multi-node, multi-camera data flow.
-- > MQTT bridging for fleet telemetry and cloud reporting.
-- > Customized to your requirements — not shipped as defaults.
-
-**S6 OTA & Recovery**
-- > A/B update mechanism — devices never brick in the field.
-- > Automatic rollback on failed or interrupted updates.
-- > Kernel, GPU stack, and applications updated independently.
-- > Fleet-wide deployment from your cloud or ours.
-
-**S7 SDK & Tools**
-- > Custom SDK and eSDK — your team builds apps, not infrastructure.
-- > Boot logging and boot analysis built into every image.
-- > On-device diagnostics for field troubleshooting.
-- > Cross-compilation environments ready on day one.
-
-**S8 Performance**
-- > GPU and accelerator profiling for inference pipelines.
-- > Boot-time analysis and optimization — measured, not guessed.
-- > System tuning across CPU, GPU, memory, and I/O.
-- > Analysis tooling your team keeps after handoff.
-
-**S9 Manufacturing** — `boot complete ✓ 0 errors`
-- > Factory provisioning tools and first-boot workflows.
-- > Per-device identity, keys, and cloud enrollment.
-- > Manufacturing test suites for the production line.
-- > First boot on your hardware in weeks, not quarters.
-- CTAs: **Talk to engineering** · Next platform: Acadia →
+- Bitstream lifecycle: versioning, signing, packaging into the platform build
+- Runtime bitstream loading via FPGA Manager; device tree overlays per design
+- Partial reconfiguration support for live PL updates
+- Custom firmware and PL IP integration: AXI register maps, interrupt wiring, DMA design collaboration with your FPGA team
+- PL driver development (UIO/custom kernel modules) and userspace APIs
+- Co-validation: PS/PL interface stress testing and timing verification
 
 ---
 
-### 9.3 Acadia (`/acadia`) — `RASPBERRY PI CM4/CM5` — accent #c43a3a
-Boot-chain: EEPROM bootloader → firmware (start.elf) → kernel.
+# PLATFORM 3: NXP i.MX (Pinnacle)
 
-**S1 Overview** — Headline: **Acadia** — Sub: Your prototype already runs on it. Now it survives the factory floor.
-- > Raspberry Pi CM4/CM5 on a ruggedized, industrial-grade carrier.
-- > Industrial connectors, power conditioning, EMC-aware layout — built for deployment.
-- > Pico W (RP2040) companion: deterministic I/O plus decoupled wireless.
-- > The Pi ecosystem your team already knows — production-hardened.
+## Page 1 — Intro
 
-**S2 BSP**
-- > Industrial carrier BSP, not hobbyist GPIO headers.
-- > Bring-up and validation on your carrier, interface by interface.
-- > Device tree overlays for every peripheral you add.
-- > Linux-to-RP2040 interface defined, driven, and verified.
+**Headline:** Production-Ready Embedded Linux for NXP i.MX
 
-**S3 Bootloader**
-- > Pi EEPROM boot flow configured and locked for production.
-- > Golden boot image with verified fallback — recoverable from anything.
-- > Failsafe recovery from corrupted storage or interrupted updates.
-- > Factory provisioning baked into the first-boot sequence.
+**Subhead:** Custom Yocto-based platform for i.MX 8M (Mini/Nano/Plus), i.MX 93, and i.MX 95 — validated on NXP EVKs including FRDM i.MX 93. Secure, power-efficient, industrial-grade.
 
-**S4 Kernel & Drivers**
-- > Custom kernels tuned for boot time and your workload.
-- > Drivers written for your industrial peripherals from scratch.
-- > Device trees and HAL matched to your carrier exactly.
-- > Mainline-tracking builds — security patches without surprises.
+**Feature highlights:**
+- Custom Yocto-based embedded Linux (meta-freescale/meta-imx, Yocto LTS)
+- Validated on i.MX 8M family, i.MX 93 (FRDM), scalable to i.MX 95
+- Custom BSP and board bring-up
+- Multi-stage boot: BootROM → SPL → U-Boot → ATF → OP-TEE → Linux
+- Kernel and device driver development
+- Boot-time and kernel optimization (fast-boot HMI and automotive profiles)
+- Middleware and system services
+- Debugging and profiling
+- OTA with A/B and golden boot
+- Secure boot (HAB/AHAB), EdgeLock security integration
+- RTOS on Cortex-M core (FreeRTOS/Zephyr) with RPMsg
 
-**S5 Middleware**
-- > MQTT pipelines for sensors, telemetry, and building systems.
-- > DDS or ROS 2 where coordination demands it.
-- > Protocol bridges to your existing infrastructure.
-- > Configured for your deployment — not generic defaults.
+## Page 2 — BSP & Board Bring-Up
 
-**S6 OTA & Recovery**
-- > A/B updates across the fleet — kiosks and nodes never brick.
-- > Automatic rollback on failed or interrupted updates.
-- > Staged rollouts: pilot devices first, fleet second.
-- > Managed from your cloud or ours.
+- Schematic review: DDR configuration and calibration (critical on i.MX), power tree, boot mode straps
+- Custom BSP: device tree for your board, pinmux via config tools, peripheral integration
+- Board bring-up and smoke test with structured checklist
+- Custom bootloader: U-Boot SPL port, DDR init, boot media strategy (eMMC/SD/QSPI)
+- Golden boot development and redundant boot via bootloader fallback logic
+- Memory partitioning, failsafe and rollback boot
+- HAB/AHAB secure boot provisioning and key management support
 
-**S7 SDK & Tools**
-- > Custom SDK on the ecosystem your developers already use.
-- > Boot logging, boot analysis, and diagnostics in every image.
-- > Reproducible Yocto builds — or Raspberry Pi OS, hardened.
-- > Cross-compilation ready on day one.
+## Page 3 — Linux Kernel & Device Drivers
 
-**S8 Performance**
-- > Thermal and power profiling for sealed enclosures.
-- > Boot-time optimization for instant-on products.
-- > I/O and wireless throughput tuned and verified.
-- > Tooling your team keeps after handoff.
+- Kernel customization on NXP downstream trees, mainline migration paths
+- PREEMPT_RT porting and validation
+- Boot streamlining: SPL-to-app optimization, sub-2-second HMI boot targets
+- Driver development: V4L2 (MIPI CSI cameras, ISP on 8M Plus), audio (SAI/audio codecs), display (LVDS/MIPI DSI/HDMI), CAN-FD, Ethernet with TSN (i.MX 93)
+- NPU integration: eIQ runtime on 8M Plus / i.MX 93 Ethos-U65
+- Power management: low-power modes, suspend/resume tuning for battery devices
 
-**S9 Manufacturing** — `boot complete ✓ 0 errors`
-- > Factory provisioning and per-device identity workflows.
-- > Manufacturing test suites for the production line.
-- > Cloud enrollment at first boot, automatically.
-- > Prototype to production — no replatforming, no rewrite.
-- CTAs: **Talk to engineering** · Next platform: Zion →
+## Page 4 — Middleware & Industry Images
 
----
+- **pinnacle-iot:** MQTT, cloud agents, EdgeLock-backed device identity
+- **pinnacle-industrial:** Modbus, OPC UA, TSN networking, real-time I/O
+- **pinnacle-automotive:** CAN-FD stacks, RT patch, instrument cluster fast-boot profile
+- **pinnacle-medical:** IEC 62304-aligned traceable builds, SBOM
+- HMI stack options: Qt, LVGL, Flutter embedded, Wayland/Weston tuning
 
-### 9.4 Zion (`/zion`) — `XILINX ZYNQ` — accent #6b4fd3
-Boot-chain: BootROM → FSBL → bitstream → U-Boot → kernel (fabric sweep on bitstream step).
+## Page 5 — OTA
 
-**S1 Overview** — Headline: **Zion** — Sub: When the deadline is in microseconds, software isn't enough.
-- > Zynq-7000 and UltraScale+ MPSoC: ARM cores and FPGA fabric on one die.
-- > Latency measured in clock cycles, not scheduler ticks.
-- > Lockstep Cortex-R5 cores for safety-critical paths.
-- > SoM-on-carrier or fully custom board — your volume decides.
+- A/B OTA (Mender/RAUC/SWUpdate) with golden recovery image
+- Automatic rollback on failed boot or health check
+- Cloud connectivity, staged fleet rollouts, delta updates
+- Simple dashboard UI for OTA management and rollback
+- Updates signed and chained to HAB/AHAB root of trust
 
-**S2 BSP**
-- > PetaLinux/Yocto BSP that loads your bitstream and stitches fabric into the device tree.
-- > Bring-up across PS and PL together, validated as one system.
-- > OpenAMP and RPMsg between A53, R5, and fabric — defined and verified.
-- > AXI DMA paths characterized, not assumed.
+## Page 6 — DevKit, SDK, Debugging & Profiling
 
-**S3 Bootloader**
-- > Full chain owned: BootROM, FSBL, bitstream load, U-Boot, kernel.
-- > Golden boot with verified fallback bitstream and image.
-- > Failsafe recovery from corrupted flash or failed configuration.
-- > Secure boot and encrypted bitstreams where the program demands it.
+- Evaluation images for NXP EVKs (incl. FRDM i.MX 93) and your custom hardware
+- Application SDK and Yocto eSDK
+- Debugging: JTAG (Lauterbach/Segger), kgdb, gdbserver, core dump pipelines
+- Profiling: perf, LTTng, boot profiling, power profiling
+- CI/CD integration with automated builds and HIL tests
 
-**S4 Kernel & Drivers**
-- > Custom drivers for your fabric IP — your hardware, addressable from Linux.
-- > Device trees spanning processors and programmable logic.
-- > PREEMPT_RT and core isolation where software real-time is still required.
-- > Cache coherency and DMA verified under load, not on paper.
+## Page 7 — RTOS (Cortex-M Domain)
 
-**S5 Middleware**
-- > DDS tuned for deterministic, high-channel data distribution.
-- > Custom protocol stacks for bespoke aerospace and defense buses.
-- > ROS 2 where robotics meets programmable logic.
-- > Sensor fusion pre-processing in fabric — before the CPU sees a byte.
+- FreeRTOS/Zephyr on the Cortex-M core (M7 on 8M Plus, M33 on i.MX 93)
+- RPMsg/Messaging Unit communication with Linux
+- Real-time control, sensor acquisition, low-power supervision on the M-core
+- RTOS device drivers and middleware for M-core peripherals
+- Heterogeneous architecture design: which workload runs where, and why
 
-**S6 OTA & Recovery**
-- > Field-updatable hardware: bitstreams ship over the air with A/B fallback.
-- > Partial reconfiguration — swap one accelerator while the rest keeps running.
-- > Automatic rollback on failed bitstream or image writes.
-- > Deterministic frame-to-actuation latency, preserved across updates.
-
-**S7 SDK & Tools**
-- > eSDK covering both software and fabric interfaces.
-- > Boot logging and analysis across FSBL, U-Boot, and kernel.
-- > Hardware-in-the-loop test rigs for PS/PL integration.
-- > JTAG-deep debug workflows, documented for your team.
-
-**S8 Performance**
-- > Fabric and interconnect profiling: AXI throughput, latency, contention.
-- > Sub-microsecond control-loop timing, measured and proven.
-- > ADAS pipelines: provable camera-radar-lidar latency budgets.
-- > Optimization across PS, PL, and the boundary between them.
-
-**S9 Manufacturing** — `boot complete ✓ 0 errors`
-- > Factory programming of fuses, keys, and golden images.
-- > Per-device provisioning and secure identity.
-- > Production test covering processors and fabric together.
-- > ISO 26262-aligned partitioning where automotive demands it.
-- CTAs: **Talk to engineering** · Next platform: Pinnacle →
+*(No FPGA page — i.MX has no programmable logic.)*
 
 ---
 
-### 9.5 Pinnacle (`/pinnacle`) — `NXP i.MX` — accent #1f6fd6
-Boot-chain: BootROM → SPL → U-Boot → kernel (HAB verification flash on each hop).
+# PLATFORM 4: TI Sitara (Joshua)
 
-**S1 Overview** — Headline: **Pinnacle** — Sub: Silicon that outlives your product plan. Linux that passes your audit.
-- > NXP i.MX: industrial ARM with 10–15 years guaranteed availability.
-- > Mainline Linux — clean Yocto builds, predictable updates.
-- > Displays, codecs, multiple Ethernet, CAN-FD, PCIe, TSN: the industrial peripheral set.
-- > SoM-on-carrier or fully custom board — your volume decides.
+## Page 1 — Intro
 
-**S2 BSP**
-- > Yocto BSP built on mainline, not a vendor fork you can't maintain.
-- > Bring-up and validation with your hardware team from first power-on.
-- > Custom layers, recipes, and machine configs — organized for the long haul.
-- > Reproducible builds your auditors can trace.
+**Headline:** Production-Ready Embedded Linux for TI Sitara
 
-**S3 Bootloader**
-- > SPL and U-Boot customized for your board and boot media.
-- > HAB secure boot: signed images from BootROM to kernel.
-- > Golden boot and failsafe recovery — the device always comes back.
-- > Provisioning flow designed for regulated manufacturing.
+**Subhead:** Custom Yocto-based platform for AM335x, AM62x, and AM64x — the industrial workhorse line. Deterministic I/O with PRU-ICSS, industrial networking, long-lifecycle support.
 
-**S4 Kernel & Drivers**
-- > Custom kernels with a documented patch set — auditable, upgradable.
-- > Drivers from scratch for your instruments and interfaces.
-- > Device trees and HAL matched to your hardware exactly.
-- > PREEMPT_RT tuning where determinism is required.
+**Feature highlights:**
+- Custom Yocto-based embedded Linux (meta-ti, TI Processor SDK alignment, Yocto LTS)
+- Validated on AM335x, AM62x, AM64x (BeagleBone and TI EVK ecosystems)
+- Custom BSP and board bring-up
+- Multi-stage boot: ROM → SPL/tiboot3 → U-Boot → Linux (incl. SYSFW/TIFS on AM6x)
+- Kernel and device driver development
+- Boot and kernel optimization
+- Industrial middleware and system services
+- Debugging and profiling
+- OTA with A/B and golden boot
+- PRU-ICSS firmware and RTOS on Cortex-M4F/R5F cores
 
-**S5 Middleware**
-- > MQTT and DDS pipelines for connected instruments and gateways.
-- > OPC UA and Modbus where the factory floor speaks first.
-- > Audio, video, and display stacks for medical HMIs.
-- > Configured to your requirements — and your compliance scope.
+## Page 2 — BSP & Board Bring-Up
 
-**S6 OTA & Recovery**
-- > A/B updates with signed images and automatic rollback.
-- > Security patches across a 15-year deployment window.
-- > Staged fleet rollouts with full audit trails.
-- > Devices in the field never brick — by design.
+- Schematic review: DDR routing/config, power sequencing (PMIC integration), boot strap pins
+- Custom BSP and device tree development
+- Board bring-up and smoke test
+- Custom bootloader: SPL/U-Boot port, boot media strategy, SYSFW integration on AM6x
+- Golden boot development, memory partitioning
+- Failsafe and rollback boot with watchdog supervision
 
-**S7 SDK & Tools**
-- > Custom SDK and eSDK for your application teams.
-- > Boot logging, analysis, and diagnostics in every image.
-- > CI/CD pipelines for image builds and regression testing.
-- > Documentation that survives certification review.
+## Page 3 — Linux Kernel & Device Drivers
 
-**S8 Performance**
-- > Boot-time optimization for instant-on instruments.
-- > Power profiling for battery and thermal budgets.
-- > Multimedia pipeline tuning: capture, codec, display.
-- > Long-term performance baselines, tracked release to release.
+- Kernel customization on TI trees with strong mainline support on Sitara
+- PREEMPT_RT porting — Sitara is a first-class RT target
+- Boot streamlining for industrial fast-start requirements
+- Driver development: industrial Ethernet (CPSW/ICSSG), CAN, ADC/touch, display (LCDC/DSS), custom SPI/I2C devices
+- PRU-ICSS interface drivers and remoteproc integration
 
-**S9 Manufacturing** — `boot complete ✓ 0 errors`
-- > Factory provisioning with per-device keys and identity.
-- > Manufacturing test aligned to IEC 61508 / IEC 62304 mappings.
-- > First-boot enrollment into your device cloud.
-- > A platform your product can stand on for a decade.
-- CTAs: **Talk to engineering** · Next platform: Joshua →
+## Page 4 — Middleware & Industry Images
 
----
+- **joshua-industrial:** EtherCAT (via PRU-ICSS), PROFINET, EtherNet/IP, Modbus, OPC UA, TSN on AM64x
+- **joshua-iot:** MQTT, edge gateways, protocol translation
+- **joshua-automation:** real-time control stacks, motor control integration
+- **joshua-medical:** traceable builds, SBOM, audit-ready workflow
+- System services hardening, read-only rootfs, watchdog supervision
 
-### 9.6 Joshua (`/joshua`) — `TI SITARA` — accent #d4622a
-Boot-chain: BootROM → SPL/MLO → U-Boot → kernel (PRU cores light up at kernel stage).
+## Page 5 — OTA
 
-**S1 Overview** — Headline: **Joshua** — Sub: FPGA-grade timing. Microcontroller-grade cost. Linux-grade ecosystem.
-- > TI Sitara: industrial ARM Linux with the PRU-ICSS real-time subsystem.
-- > PRUs: 200 MHz deterministic cores with direct pin access, cycle-exact.
-- > The niche between general ARM Linux and full FPGA — at a fraction of the cost.
-- > SoM-on-carrier or fully custom board — your volume decides.
+- A/B OTA with golden recovery image and automatic rollback
+- Cloud or on-prem server, staged rollouts, delta updates
+- Dashboard UI for fleet/release management
+- Signed update chain
 
-**S2 BSP**
-- > Yocto BSP covering ARM and PRU subsystems as one platform.
-- > Bring-up and validation from first power-on, alongside your EEs.
-- > remoteproc and RPMsg between Linux and PRUs — defined and verified.
-- > Every industrial interface enumerated, tested, documented.
+## Page 6 — DevKit, SDK, Debugging & Profiling
 
-**S3 Bootloader**
-- > BootROM, SPL, U-Boot — customized for your board and media.
-- > Golden boot and failsafe recovery for unattended industrial sites.
-- > Secure boot and signed images where the deployment demands it.
-- > Provisioning designed for the production line, not the lab.
+- Evaluation images for TI EVKs/BeagleBone and custom boards
+- Application SDK and Yocto eSDK
+- Debugging: JTAG (CCS/XDS), kgdb, gdbserver
+- Profiling: perf, LTTng, boot and latency profiling
+- CI/CD with HIL smoke testing
 
-**S4 Kernel & Drivers**
-- > PRU firmware in cycle-exact assembly or C — no Linux jitter, ever.
-- > Custom drivers bridging deterministic I/O into Linux cleanly.
-- > Device trees and HAL matched to your hardware exactly.
-- > PREEMPT_RT tuning on the ARM side where it helps.
+## Page 7 — RTOS & PRU-ICSS
 
-**S5 Middleware**
-- > EtherCAT and PROFINET masters and slaves on PRU — wire-speed, deterministic.
-- > OPC UA and Modbus for the rest of the plant.
-- > MQTT northbound for telemetry and fleet visibility.
-- > Protocol stacks configured to your network, not generic defaults.
+- FreeRTOS/Zephyr on Cortex-M4F (AM62x) and R5F (AM64x) cores
+- PRU-ICSS firmware development: deterministic sub-microsecond I/O, custom industrial protocols, encoder/PWM interfaces
+- RPMsg/remoteproc communication between Linux and real-time domains
+- RTOS device drivers and middleware
+- Mixed-criticality industrial architectures
 
-**S6 OTA & Recovery**
-- > A/B updates covering kernel, rootfs, and PRU firmware together.
-- > Automatic rollback — a failed update never stops a line.
-- > Staged rollouts across plants and sites.
-- > Managed from your infrastructure or ours.
-
-**S7 SDK & Tools**
-- > SDK spanning Linux applications and PRU firmware development.
-- > Boot logging, analysis, and diagnostics in every image.
-- > Logic-analyzer-verified timing — we prove the deadlines.
-- > CI/CD for reproducible, release-engineered images.
-
-**S8 Performance**
-- > Cycle-exact PWM, stepper, and encoder timing — measured, not promised.
-- > Strict-deadline sensor sampling with zero scheduler jitter.
-- > Control-loop latency budgets characterized end to end.
-- > System tuning across ARM, PRU, and the boundary.
-
-**S9 Manufacturing** — `boot complete ✓ 0 errors`
-- > Factory provisioning and per-device identity workflows.
-- > Manufacturing test for ARM, PRU, and industrial I/O together.
-- > First-boot cloud enrollment for fleet management.
-- > Deterministic real-time — at a cost FPGA can't match.
-- CTAs: **Talk to engineering** · Next platform: Sequoia →
+*(No FPGA page.)*
 
 ---
 
-### 9.7 Sequoia (`/sequoia`) — `INTEL & AMD x86` — accent #4a6478
-Boot-chain: UEFI/coreboot → bootloader → kernel (no satellite MCU anywhere on this page).
+# PLATFORM 5: Intel/AMD x86 (Sequoia)
 
-**S1 Overview** — Headline: **Sequoia** — Sub: If it only runs on x86, it runs here — with all the I/O it needs.
-- > Intel and AMD: the highest single-thread and multi-core compute available.
-- > PCIe lane counts and high-speed I/O that ARM SoCs don't expose.
-- > Runs Windows stacks, legacy industrial software, and x86-tuned workloads natively.
-- > SoM-based or fully custom board — your volume decides.
+## Page 1 — Intro
 
-**S2 BSP**
-- > Yocto or hardened distro builds for your exact board.
-- > Bring-up and validation: PCIe trees, NVMe, NICs, accelerators.
-- > Firmware coordination across UEFI, BMC, and platform controllers.
-- > Reproducible images, release-engineered from day one.
+**Headline:** Production-Ready Embedded Linux for Intel & AMD x86
 
-**S3 Bootloader**
-- > UEFI or coreboot — customized, hardened, and locked for production.
-- > UEFI Secure Boot with your keys, measured boot with TPM.
-- > Golden boot and failsafe recovery for unattended edge sites.
-- > Provisioning integrated into your imaging and deployment flow.
+**Subhead:** Custom Yocto-based platform for industrial SBCs, COM Express/SMARC modules, and edge servers — Intel Atom/Core and AMD Ryzen Embedded. The same rigor as our ARM platforms, on x86.
 
-**S4 Kernel & Drivers**
-- > Custom kernels: PREEMPT_RT, isolated cores, deterministic without an MCU.
-- > Drivers for your capture cards, accelerators, and custom I/O.
-- > Hypervisor partitioning — Xen or ACRN — Linux and RTOS on one die.
-- > SR-IOV and virtualization paths validated under load.
+**Feature highlights:**
+- Custom Yocto-based embedded Linux for x86_64 (meta-intel, AMD embedded targets)
+- Validated on industrial SBCs and embedded modules (Atom x6000E, Core, Ryzen Embedded)
+- Custom BSP and board bring-up for carrier designs
+- Boot chain: UEFI/coreboot → systemd-boot/GRUB → Linux, secure boot with custom keys
+- Kernel and device driver development
+- Boot and kernel optimization
+- Middleware and system services
+- Virtualization and workload consolidation (KVM, ACRN)
+- Debugging and profiling
+- OTA with A/B and golden boot
 
-**S5 Middleware**
-- > DDS and MQTT pipelines sized for edge-server throughput.
-- > Container runtimes hardened for embedded deployment.
-- > Virtualization stacks validated on your exact silicon.
-- > Bridges to legacy industrial software that must keep running.
+## Page 2 — BSP & Board Bring-Up
 
-**S6 OTA & Recovery**
-- > A/B image updates with automatic rollback at fleet scale.
-- > Signed updates verified against your secure boot chain.
-- > Staged rollouts: rack, site, fleet.
-- > Edge nodes recover without a site visit.
+- Carrier board bring-up with your hardware team: BIOS/UEFI configuration, ACPI table review
+- Custom BSP: kernel config for your exact peripheral set, out-of-tree driver integration
+- Smoke test: PCIe enumeration, storage, network, display, I/O checkout
+- Custom boot: UEFI secure boot key enrollment, coreboot where applicable, boot policy
+- Golden boot and redundant boot partitions (UEFI boot entries + health-checked fallback)
+- Memory/storage partitioning, failsafe and rollback boot
 
-**S7 SDK & Tools**
-- > SDKs for your application and virtualization teams.
-- > Boot logging and analysis across firmware and kernel.
-- > CI/CD for image builds, regression, and release management.
-- > Diagnostics designed for remote, lights-out operation.
+## Page 3 — Linux Kernel & Device Drivers
 
-**S8 Performance**
-- > Real-time latency on isolated cores — measured under load.
-- > PCIe and storage throughput characterized end to end.
-- > GPU and accelerator integration for vision rigs.
-- > Power and thermal tuning for fanless and rugged builds.
+- Kernel customization and hardening (LTS kernels), config minimization
+- PREEMPT_RT for industrial determinism; Xenomai where hard real-time is required
+- Boot streamlining: UEFI-to-app optimization, kiosk/HMI fast boot
+- Driver work: custom PCIe cards, industrial I/O, CAN adapters, GPU/iGPU enablement (Intel/AMD media stacks)
+- TPM 2.0 integration, measured boot, disk encryption (LUKS + TPM sealing)
 
-**S9 Manufacturing** — `boot complete ✓ 0 errors`
-- > Factory imaging, provisioning, and per-device identity.
-- > Burn-in and production test for compute-dense systems.
-- > First-boot enrollment into your management plane.
-- > The software runs. The I/O keeps up. The fleet stays up.
-- CTAs: **Talk to engineering** · Back to platforms →
+## Page 4 — Middleware & Industry Images
+
+- **sequoia-industrial:** Modbus, OPC UA, TSN, soft-PLC integration
+- **sequoia-iot/edge:** MQTT, container runtime (Docker/Podman), edge orchestration
+- **sequoia-vision:** OpenVINO/ROCm pipelines, GStreamer, multi-camera ingest
+- **sequoia-medical/defense:** hardened, audit-ready, SBOM-complete builds
+- Virtualization images: KVM/ACRN for consolidating RT + GUI + connectivity workloads on one box
+
+## Page 5 — OTA
+
+- A/B image updates with golden recovery (RAUC/Mender on x86, or image-based ostree)
+- Automatic rollback via boot counting and health checks
+- Cloud/on-prem update server, staged rollouts, delta updates
+- Dashboard UI for fleet management
+- Secure-boot-chained signed updates
+
+## Page 6 — DevKit, SDK, Debugging & Profiling
+
+- Evaluation images for common industrial SBCs and your hardware
+- Application SDK and Yocto eSDK
+- Debugging: kgdb, kexec/kdump crash analysis, remote gdb
+- Profiling: perf, eBPF-based tracing, boot analysis
+- CI/CD with automated image builds and HIL validation
+
+## Page 7 — Real-Time & Workload Consolidation
+
+- PREEMPT_RT and Xenomai configuration and latency validation on x86
+- CPU isolation, IRQ affinity, cache partitioning for deterministic cores
+- Hypervisor-based consolidation: RTOS or RT-Linux guest alongside HMI guest (ACRN/KVM)
+- Jailhouse partitioning for safety-adjacent designs
+
+*(No FPGA page; PCIe FPGA card integration available as custom work — ties into Orion.)*
 
 ---
 
-### 9.8 Contact (`/contact`) — single screen
+# PLATFORM 6: Raspberry Pi
 
-- Eyebrow: `SOCCENTRIC // CONTACT`
-- Headline: **Tell us what you're building.**
-- Sub: An engineer reads every message — and an engineer answers it.
-- Form: Name · Company · Platform (dropdown: Arches / Acadia / Zion / Pinnacle / Joshua / Sequoia / Not sure yet) · Message. Mono labels, accent submit: **Talk to engineering**.
-- Side column (mono, small):
-  - > Have a schematic? Send it — we'll tell you what bring-up looks like.
-  - > Hiring for the platform layer? Send the job description — we'll send back how we'd deliver it.
-- Boot rail shows a single entry: `[ 0.000 ] contact` → stamps `✓ message queued` on submit (client-side stub; no backend).
+## Page 1 — Intro
+
+**Headline:** Production-Ready Embedded Linux for Raspberry Pi
+
+**Subhead:** Custom Yocto-based platform for Compute Module 4/5, Raspberry Pi 4/5, and Pico — turning the world's most popular SBC into a real industrial product platform.
+
+**What it is:**
+Raspberry Pi is fantastic for prototypes — and risky for products when you ship stock Raspberry Pi OS. Our platform replaces it with a minimal, reproducible Yocto build: locked-down, updatable, secure, and manufacturable.
+
+**Feature highlights:**
+- Custom Yocto-based embedded Linux (meta-raspberrypi, Yocto LTS)
+- Validated on CM4, CM5, Pi 4, Pi 5; companion firmware on Pico/Pico W (RP2040/RP2350)
+- Custom BSP and carrier board bring-up for CM4/CM5 designs
+- Boot chain customization: EEPROM bootloader config, tryboot A/B mechanism, U-Boot option
+- Kernel and device driver development
+- Boot and kernel optimization
+- Middleware and system services
+- Debugging and profiling
+- OTA with A/B (tryboot) and golden boot
+- Secure boot (CM4/CM5 signed boot), encrypted storage
+
+## Page 2 — BSP & Board Bring-Up
+
+- CM4/CM5 carrier board design review with your hardware team
+- Custom BSP: device tree overlays for your carrier (cameras, displays, CAN, RS-485, industrial I/O)
+- Board bring-up and smoke test
+- Bootloader: EEPROM configuration, signed boot enablement, boot order policy
+- Golden boot and tryboot-based fallback
+- Storage partitioning (eMMC on CM, NVMe on CM5/Pi 5), failsafe and rollback boot
+
+## Page 3 — Linux Kernel & Device Drivers
+
+- Kernel customization on Raspberry Pi kernel trees, config minimization
+- PREEMPT_RT builds for control applications
+- Boot streamlining: fast-boot kiosk/HMI profiles
+- Driver development: camera (libcamera/Unicam/CSI), DSI/DPI displays, CAN (MCP2515/MCP251xFD), industrial sensors, custom HATs
+- GPIO/PWM/I2C/SPI integration with deterministic userspace APIs
+
+## Page 4 — Middleware & Industry Images
+
+- **rpi-iot:** MQTT, cloud agents, fleet telemetry
+- **rpi-industrial:** Modbus, OPC UA, RS-485 stacks
+- **rpi-robotics:** ROS 2 builds tuned for Pi 5
+- **rpi-kiosk/hmi:** Wayland kiosk images, Qt/LVGL/Chromium kiosk modes
+- Hardened system services, read-only rootfs with overlayfs, watchdog
+
+## Page 5 — OTA
+
+- A/B updates using the native tryboot mechanism or RAUC/Mender
+- Golden recovery image, automatic rollback
+- Cloud connectivity, staged rollouts, delta updates
+- Dashboard UI for fleet OTA management
+- Signed updates; signed boot chain on CM4/CM5
+
+## Page 6 — DevKit, SDK, Debugging & Profiling
+
+- Evaluation images for Pi 4/5 and CM4/CM5 IO boards
+- Application SDK and Yocto eSDK
+- Debugging and profiling: perf, ftrace, remote gdb, boot analysis
+- CI/CD integration and HIL smoke tests
+
+## Page 7 — RTOS & Microcontroller Companions (Pico)
+
+- FreeRTOS and Zephyr firmware on RP2040/RP2350 (Pico/Pico W)
+- Pi ↔ Pico architectures: Linux for connectivity/UI, Pico for hard real-time I/O
+- PIO (Programmable I/O) development for custom protocols and precise timing
+- RTOS device drivers and middleware
+- UART/SPI/USB communication links with structured protocols
+
+*(No FPGA page.)*
 
 ---
 
-## 10. Quality bar & deliverables
+# Cross-Platform Closing Section (site-wide, one page or footer band)
 
-- Fully responsive: stacked columns < 900px; chip scaled and placed above text; rail → dot strip; touch-friendly targets.
-- Accessible: semantic landmarks, visible keyboard focus, aria-labels on rail/nav, contrast ≥ 4.5:1, `prefers-reduced-motion` fully honored, all content readable with animations disabled.
-- Zero console errors, zero TypeScript errors; `npm run build` and `npm run start` pass on **Node 22**; static export works.
-- Lighthouse: Performance ≥ 90, Accessibility ≥ 95, SEO ≥ 95.
-- Deliver every file complete — no placeholders, no `/* ... */`, no TODOs. All 8 routes cross-linked and consistent.
+**Why SoC Centric:**
+- One engineering methodology across six platforms covering ~90% of the embedded Linux market
+- Customer owns everything: full source, build system, documentation — no lock-in
+- Reproducible Yocto builds with SBOMs — ready for ISO 26262, IEC 62304, IEC 61508, DO-178C environments
+- Natural growth path: platform → independent V&V (Polaris) → hardware-in-the-loop validation (Orion) → field data logging (Vela) via SiliconCentric
 
-Build the entire site now.
+**CTA:** Request an evaluation image for your target platform, or schedule a 30-minute platform architecture call.

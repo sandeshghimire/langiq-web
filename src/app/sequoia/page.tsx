@@ -6,16 +6,17 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Sequoia — Intel & AMD x86",
-  description: "Sequoia: Intel & AMD x86 edge servers and real-time PREEMPT_RT. If it only runs on x86, it runs here — with all the I/O it needs.",
+  description:
+    "Sequoia: Production-Ready Embedded Linux for Intel & AMD x86 — Atom, Core, Ryzen Embedded. UEFI / coreboot, secure boot, TPM 2.0, KVM / ACRN, PREEMPT_RT.",
   openGraph: {
     title: "Sequoia — Intel & AMD x86",
-    description: "If it only runs on x86, it runs here — with all the I/O it needs.",
+    description: "Production-Ready Embedded Linux for Intel & AMD x86 — Atom, Core, Ryzen Embedded.",
     url: "https://soccentric.com/sequoia",
   },
   twitter: {
     card: "summary_large_image",
     title: "Sequoia — Intel & AMD x86",
-    description: "If it only runs on x86, it runs here — with all the I/O it needs.",
+    description: "Production-Ready Embedded Linux for Intel & AMD x86 — Atom, Core, Ryzen Embedded.",
   },
 };
 

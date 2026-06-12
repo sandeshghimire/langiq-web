@@ -16,8 +16,8 @@ interface NavItem {
 const navItems: NavItem[] = [
   { name: "Home", href: "/", id: "home", accent: "#16181a" },
   { name: "Arches", href: "/arches", id: "arches", chipLabel: "NVIDIA Jetson", accent: "#0f7a4d" },
-  { name: "Acadia", href: "/acadia", id: "acadia", chipLabel: "Raspberry Pi CM5", accent: "#c43a3a" },
-  { name: "Zion", href: "/zion", id: "zion", chipLabel: "Xilinx Zynq", accent: "#6b4fd3" },
+  { name: "Acadia", href: "/acadia", id: "acadia", chipLabel: "Raspberry Pi", accent: "#c43a3a" },
+  { name: "Zion", href: "/zion", id: "zion", chipLabel: "AMD Xilinx Zynq", accent: "#6b4fd3" },
   { name: "Pinnacle", href: "/pinnacle", id: "pinnacle", chipLabel: "NXP i.MX", accent: "#1f6fd6" },
   { name: "Joshua", href: "/joshua", id: "joshua", chipLabel: "TI Sitara", accent: "#d4622a" },
   { name: "Sequoia", href: "/sequoia", id: "sequoia", chipLabel: "Intel / AMD x86", accent: "#4a6478" },

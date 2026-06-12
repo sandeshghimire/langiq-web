@@ -6,16 +6,17 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Pinnacle — NXP i.MX",
-  description: "Pinnacle: NXP i.MX mainline Linux and longevity support. Silicon that outlives your product plan. Linux that passes your audit.",
+  description:
+    "Pinnacle: Production-Ready Embedded Linux for NXP i.MX — 8M (Mini / Nano / Plus), 93, 95. HAB / AHAB secure boot, EdgeLock integration, RTOS on Cortex-M7 / M33 with RPMsg.",
   openGraph: {
     title: "Pinnacle — NXP i.MX",
-    description: "Silicon that outlives your product plan. Linux that passes your audit.",
+    description: "Production-Ready Embedded Linux for NXP i.MX — 8M, 93, 95.",
     url: "https://soccentric.com/pinnacle",
   },
   twitter: {
     card: "summary_large_image",
     title: "Pinnacle — NXP i.MX",
-    description: "Silicon that outlives your product plan. Linux that passes your audit.",
+    description: "Production-Ready Embedded Linux for NXP i.MX — 8M, 93, 95.",
   },
 };
 

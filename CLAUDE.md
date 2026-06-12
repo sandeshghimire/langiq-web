@@ -2,6 +2,72 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Two-column slide layout (added 2026-06-12, diagram morph system)
+
+Every slide is a strict 50/50 grid that **alternates** per slide:
+- **Odd stages** (1, 3, 5, 7, 9): title + summary + bullets on the **left**,
+  diagram on the **right**.
+- **Even stages** (2, 4, 6, 8): diagram on the **left**, text on the
+  **right**. This carries a visual rhythm through the scroll.
+- The alternation is implemented with Tailwind `lg:order-1` /
+  `lg:order-2` classes on the two grid children — both columns are
+  always real grid siblings, never fixed overlays.
+
+The left column is **strict**: title (display heading), brief summary
+(stage 1 only), then 4-5 bullets prefixed with `>`. No images, no
+data panels, no extra widgets.
+
+The right column is `<SlideDiagram>` — a per-stage SVG diagram that
+crossfades to a different shape on each slide.
+
+The right-side scroll checklist (old `BootRail` with timestamps and
+dot strip) is **removed** entirely.
+
+### How the crossfade actually works (don't break this)
+
+The diagram crossfade is the **only** animation in the system. The
+diagram body is **fully static SVG** — no `motion.*` wrappers, no
+`initial`/`animate`/`transition` props inside the per-stage
+components. Earlier we had `BlockReveal` with `motion.g` and a pathLength
+`motion.line` inside each stage, but those re-fired on every crossfade
+and produced a jittery "blocks fly in again" feel instead of a smooth
+morph. The current pattern:
+
+- `SlideDiagram.tsx` keeps a persistent `<motion.div layout
+  layoutId="slide-diagram-frame">` outer frame. The frame never
+  re-mounts across stage changes — its `layout` prop lets
+  framer-motion FLIP-interpolate if the parent reflows, but the
+  wrapper has a fixed aspect ratio so it never does.
+- Inside the frame, `AnimatePresence mode="popLayout" initial={false}`
+  holds exactly one `<motion.div key={`diagram-${stage}`}>` at a time,
+  with a plain opacity crossfade (`opacity: 0 → 1`, 0.45s, easeInOut).
+  No scale, no y-shift, no rotation, no per-block stagger. The
+  previous diagram fades out and the new one fades in over the same
+  frame — the morph *is* the crossfade.
+- The per-stage `StageN` components render plain `<g>`, `<line>`,
+  `<rect>`, `<path>`, `<text>` — all static SVG. They appear in
+  their final state immediately, then sit there while the crossfade
+  runs.
+- Under `prefers-reduced-motion`, the crossfade is disabled and the
+  new diagram appears instantly.
+
+Implementation lives in `src/components/diagrams/`:
+- `shared3d.tsx` — `Iso3DBox`, `DiagramFrame`, `Iso3DFilter`.
+- `stages.tsx` — 9 per-stage components (Stage1Overview, Stage2Bsp,
+  Stage3Boot, Stage4Kernel, Stage5Middleware, Stage6Ota, Stage7Sdk,
+  Stage8Perf, Stage9Mfg). All inner SVG is static.
+- `SlideDiagram.tsx` — FLIP container + crossfade `AnimatePresence`.
+- `registry.ts` — kind/title maps.
+
+Per-platform variants: each stage reads `ctx.platform` and switches
+content (e.g. `arches` boot chain = BCT/MB1/MB2/UEFI/kernel;
+`zion` = BootROM/FSBL/bitstream/U-Boot/kernel). See
+`PLATFORM_BLOCKS`, `PROTOCOL_SETS`, `bootChain` in `data/platforms.ts`.
+
+The legacy `LivingChip` and `BootRail` components are no longer
+imported by any page. Both files are kept for reference / re-use;
+do not delete without §11 review.
+
 ## Next.js Version Warning
 
 This is **not** the Next.js you know. `next@16.2.9` is installed and has breaking changes from prior versions — APIs, conventions, and file structure may differ from training data. Before writing or reviewing any Next.js code, **read the relevant guide in `node_modules/next/dist/docs/`** (e.g. `01-app/01-getting-started/`). Heed deprecation notices in those docs.
@@ -102,9 +168,12 @@ All final copy lives in `req.md` and is authoritative — do not invent new copy
 
 - **Read `node_modules/next/dist/docs/` before writing Next.js code** (16.x has breaking changes from older majors).
 - **Preserve the data-driven pattern**: new content goes in `data/platforms.ts`, not in JSX strings.
-- **Keep the LivingChip on compositor-friendly properties only** (`transform`, `opacity`, `stroke-dashoffset`, `pathLength`).
+- **Keep the diagram animations on compositor-friendly properties only** (`transform`, `opacity`, `stroke-dashoffset`, `pathLength`).
 - **Keep the light-only theme** — do not add dark mode or theme toggles.
 - **Reuse the shared `PlatformPage` component** for any new platform route; do not fork it.
+- **Reuse `SlideDiagram` for new slide content** — pick a stage number, add a per-stage component, dispatch from `StageDiagram`. Do not embed raw SVG in page templates.
+- **Use `useId()` to namespace SVG filter IDs** in `SlideDiagram` — `Iso3DFilter` would otherwise collide when multiple diagrams mount on the same page (e.g. during the FLIP morph).
+- **Wire the diagram column as a single fixed-position layer, not inside the per-slide grid** — putting it inside the grid means it re-mounts on every slide change and breaks the FLIP morph. The current pattern is one fixed `<div className="fixed right-0 w-1/2">` outside the scroll container.
 
 ## Don't
 
@@ -113,6 +182,12 @@ All final copy lives in `req.md` and is authoritative — do not invent new copy
 - **Don't use banned vocabulary** (see Copy & content rules).
 - **Don't add `width`/`height`/`top`/`left` animations** to the chip or other components — animate `transform`/`opacity` only.
 - **Don't commit secrets, `out/`, `.next/`, or `*.tsbuildinfo`** — already covered by `.gitignore`.
+- **Don't re-introduce the floating center chip** — the right-column `SlideDiagram` is the centerpiece. `LivingChip.tsx` is reference only.
+- **Don't put a `SlideVisual` data panel in the text column** — the right column already has the diagram; the text column is title + summary + bullets only.
+- **Don't re-introduce `BootRail` (the right-side scroll checklist with timestamps and dots)** — it was removed by request.
+- **Don't skip `popLayout` on `AnimatePresence` in `SlideDiagram`** — without it, the new and old diagrams overlap during the FLIP morph and the frame jitters.
+- **Don't put `motion.*` wrappers inside the per-stage `StageN` components** — every `motion.g` / `motion.line` / `motion.path` with `initial`/`animate`/`transition` props re-fires on every crossfade and produces a "blocks flying in" jitter. The diagram body must be plain static SVG; the only animation should be the `AnimatePresence` crossfade in `SlideDiagram.tsx`.
+- **Don't add unused props to `Iso3DBox`** — `cornerRadius` was added and immediately removed by lint; keep the primitive minimal.
 
 ## Workflow (added 2026-06-11, §9/§9a autonomous fix loop)
 
@@ -146,7 +221,7 @@ All final copy lives in `req.md` and is authoritative — do not invent new copy
 ### Lessons from #34 (lint unblock, merged as PR #56)
 
 - **The `react-hooks/set-state-in-effect` rule's recommended fix isn't always the right one.** For three of the seven errors (#14 LayoutContext path reset, BootRail ticker reset, LivingChip BSP-enum reset), the call *is* a legitimate external-system sync. Use a per-line `// eslint-disable-next-line react-hooks/set-state-in-effect` with a one-line comment explaining why.
-- **The other four errors were a real design smell:** SplitFlapCounter's `prev` state was dead (AnimatePresence is keyed on `current`); ClientShell's effect could be a lazy initializer; PlatformPage/page.tsx's `TypedEyebrow` was tracking a derived string as state. The lint rule was right to complain there.
+- **The other four errors were a real design smell:** SplitFlapCounter's `prev` state was dead (AnimatePresence is keyed on `current`); PlatformPage/page.tsx's `TypedEyebrow` was tracking a derived string as state. The lint rule was right to complain there. (ClientShell's lazy-initializer reading `sessionStorage` was the *wrong* call — see "Lessons from the hydration-fix run" below; the `typeof window` guard is a server/client branch and trips hydration even when wrapped in a lazy init.)
 - **StatusLine's tween closure defect (#47) is a real bug, not just a lint warning.** Switching from a `displayPercent` capture in the effect to a `useRef(latestPercent)` made the tween always read the current value — also resolves the "flicker near 98% gate" reported in #16 indirectly.
 - **Side-effect fixes are real fixes.** #14 (pathname trailing slash) and #47 (tween closure) both closed as side effects of #34. After every fix branch lands, grep the remaining queue for the file/area touched and close-as-side-effect anything that was really the same defect.
 - **The right way to start the fix loop:** always begin with a low-risk, high-leverage issue (here, #34 lint unblock) so that every subsequent PR can pass validation. Doing a sweeping LivingChip SVG refactor first would have meant every PR afterwards has to deal with pre-existing lint failures.
@@ -158,6 +233,7 @@ All final copy lives in `req.md` and is authoritative — do not invent new copy
 - **Audited 12 `initial={...false}` sites in LivingChip.tsx.** Fixed all of them: the S1 CoresCluster pins (line 225), the 4 high-speed interconnect lines (239, 245, 251, 257), the S8 CPU oscilloscope polyline (355), the S8 Arches oscilloscope polyline (450), the S5 protocol badges (855), the S7 code-bracket glyphs (946), the S3 boot-chain path lines (1141) and labels (1157), the S4 driver modules (1188), the S9 panel grid cells (1282) and `✓ PROVISIONED` stamps (1308). The grep regex: `initial={.*false` across all `src/components/*.tsx` and `src/app/**/*.tsx`.
 - **`prefers-reduced-motion` is the right default test path for "blank page" reports.** When the user reports a blank page that isn't a 5xx or a build error, the first place to look is the chrome (BootTerminal, ClientShell, layout context) and the framer-motion initial/animate pair on top-of-fold elements. SSR HTML is correct; what isn't reaching the eye is gated by a never-resolving client condition.
 - **Commit messages with literal backticks via Bash tool get stripped.** `git commit -m "fix: ... \`code\` ..."` interpolates the backticks and the shell tries to execute the contents. Either (a) avoid backticks in commit messages, (b) escape them with `\\` then strip, or (c) use a heredoc / `printf` / `git commit -F file.txt`. The amend pattern works: `git commit --amend -m "new message"` rebuilds the same commit with a corrected message; no new SHA to chase, no re-push needed if the remote is fast-forwardable.
+- **Don't initialize a `useState` from `typeof window` / `sessionStorage` / `localStorage`**, even via a lazy initializer (`useState(() => ...)`). Both lazy and eager initializers run on the server AND on the client during hydration; the server has no `window` so the branch always returns the SSR default, but the client may return a different value, and React will then diff server-rendered HTML against the client tree and throw a hydration mismatch. The first-line `if (typeof window === "undefined") return sessionValue` "guard" looks safe but is not — it returns the *empty* default on the server and the *real* value on the client, which is exactly the mismatch. **The right pattern is to start the state at the SSR default (`false`, `null`, `0`, etc.) and mirror the persisted value into state in a mount-only `useEffect`**, with a per-line `eslint-disable-next-line react-hooks/set-state-in-effect` + one-line justification (this is a legitimate external-system sync, not a cascading render).
 
 ### Lessons from the perf + SEO bundle (PR #66, 6 issues)
 
@@ -204,3 +280,105 @@ Closed in this run: #67 (1 issue) → 1 PR merged (#68). Diff: +29 / -19 across 
 | #68 | #67 | BootTerminal.tsx, LivingChip.tsx | reduced-motion ref-guard for BootTerminal + initial-state fixes for 12 LivingChip motion.* elements |
 
 **Total across all autonomous runs: 47 issues closed, 7 PRs merged (#56, #57, #59, #60, #61, #62, #63, #64, #65, #66, #68).** The open queue remains at 0.
+
+## Do (content / copy updates)
+
+- **Treat `req.md` as the single source of truth for site copy.** When the user
+  says "based on the req update the site", the work is a copy-only update —
+  don't touch the layout, the diagram system, the boot terminal, the chrome,
+  the visuals, or the routing. Update `src/data/platforms.ts` (per-platform
+  `edgeOneLiner`, `industries`, `bootChain`, all 9 `slides[i].eyebrow /
+  heading / bullets`), `src/app/page.tsx` (the 9 `homeSlides`), per-route
+  `metadata` in each `src/app/<platform>/page.tsx`, `src/app/layout.tsx`
+  keywords, and `src/components/Nav.tsx` chip labels. Then `make build &&
+  make lint`.
+- **Map the new 7–8 pages of req.md onto the existing 9-slide structure
+  consistently across all 6 platforms**:
+  - S1 = Intro / Overview (headline + subhead + "What it is" distilled)
+  - S2 = BSP & Board Bring-Up
+  - S3 = Bootloader & Golden Boot (failsafe + secure boot provisioning)
+  - S4 = Kernel & Device Drivers
+  - S5 = Middleware & Industry Images (one bullet per named image variant:
+    `arches-robotics`, `arches-iot`, `arches-automotive`, `arches-medical`,
+    `arches-vision` — and equivalents for each platform)
+  - S6 = OTA & Fleet Updates
+  - S7 = DevKit, SDK, Debug & Profile
+  - S8 = RTOS (or RTOS & FPGA for Zion) — not "Performance"
+  - S9 = Manufacturing & Provisioning
+  The S5 industry-images list is the load-bearing signal that the site is
+  no longer generic — each platform has 4–5 named `arches-X` / `zion-X` /
+  etc. image variants. Don't drop this section.
+- **Use real platform names in customer-facing copy** (NVIDIA Jetson, AMD
+  Xilinx Zynq, NXP i.MX, TI Sitara, Intel & AMD x86, Raspberry Pi) per
+  req.md. The previous labels ("Raspberry Pi CM5", "Xilinx Zynq") are now
+  abbreviated — keep the full official names.
+- **Update all four copies of a platform's name when it changes**: `chipFamily`
+  in `data/platforms.ts`, the per-route `title` in the platform's
+  `page.tsx`, the `chipLabel` in `Nav.tsx`, the matrix cell in
+  `visuals/PlatformVisuals.tsx`, and the `keywords` array in
+  `app/layout.tsx`. Forgetting any one of these leaves stale strings on
+  the live site.
+- **Add the cross-platform closing path** (Platform → Polaris V&V → Orion
+  HIL → Vela field logging → via SiliconCentric) to the S9 home slide
+  subhead when req.md §"Cross-Platform Closing Section" is updated. The
+  Growth path is a deliberate signal that SoCcentric is part of a larger
+  family, not a stand-alone vendor.
+
+## Don't (content / copy updates)
+
+- **Don't reflow the slide template, the diagram registry, the boot
+  terminal, or any visual while doing a copy update.** The 9-stage
+  diagram-kind catalog (`registry.ts`) and the 9-stage platform-template
+  (`PlatformPage.tsx`) are stable interfaces — leave them alone. If a
+  refactor is needed, file it as a separate task.
+- **Don't shorten the "Why SoCcentric" growth-path closing to fit the
+  S9 slide.** The cross-platform closing section is a required signal
+  per req.md — keep all four bullets (methodology, customer-owns, SBOM
+  / standards, growth path) and add the explicit CTA
+  ("Request an evaluation image" / "30-minute platform architecture
+  call") in the bullets.
+- **Don't shorten bullet lines to the point that they lose their
+  technical specificity.** A bullet like "RTOS" alone is the kind of
+  generic statement req.md §1 explicitly bans. The bullet should name
+  the RTOS family (FreeRTOS / Zephyr) and the integration mechanism
+  (RPMsg / Messaging Unit / OpenAMP / remoteproc). Same rule for boot
+  stages (don't write "bootloader" — write "FSBL → ATF → U-Boot → Linux").
+- **Don't change the chip family label in `chipFamily` without also
+  updating `bootChain`.** They are paired: Jetson uses BCT/MB1, Acadia
+  uses EEPROM+start.elf, Zion needs bitstream, Pinnacle uses SPL+HAB,
+  Joshua uses SPL/MLO+SYSFW, Sequoia uses UEFI/coreboot+TPM. Renaming
+  a platform without verifying its boot chain is in `bootChain` is a
+  correctness bug for the boot-chain diagram.
+
+### Session log (content update, 2026-06-12)
+
+User said "based on the req update the site" — req.md was rewritten with
+the new 7–8 page structure (Intro, BSP, Kernel, Middleware & Industry
+Images, OTA, DevKit/SDK, RTOS, plus FPGA for Zion) plus a new
+cross-platform closing section. This was a copy-only run:
+
+- `src/data/platforms.ts` — all 6 platforms rewritten: 9 slides each,
+  new `edgeOneLiner` (the Yocto-platform subhead), expanded `industries`
+  arrays, `chipFamily` updated to official names
+  (NVIDIA Jetson / Raspberry Pi / AMD Xilinx Zynq / NXP i.MX / TI Sitara /
+  Intel & AMD x86).
+- `src/app/page.tsx` — all 9 `homeSlides` updated: S1 gets 4 bullets
+  instead of 0, S2–S7 use the new subhead pattern
+  "Production-Ready Embedded Linux for <vendor>", S8 mentions
+  "SBOMs / ISO 26262 / IEC 62304 / IEC 61508 / DO-178C", S9 is the new
+  cross-platform closing with the SiliconCentric growth path.
+- `src/components/Nav.tsx` — `chipLabel` for Acadia and Zion updated to
+  match the new official names.
+- `src/app/<platform>/page.tsx` × 6 — every per-route `metadata`
+  (title / description / openGraph / twitter) rewritten to match the
+  new subhead; old marketing one-liners (e.g. "Inference on the GPU.
+  Control loops on the MCU.") removed.
+- `src/app/layout.tsx` — `keywords` array expanded (Raspberry Pi,
+  AMD Xilinx Zynq, AMD Ryzen Embedded, PREEMPT_RT, HAB AHAB secure
+  boot, bitstream OTA).
+- `src/components/visuals/PlatformVisuals.tsx` — `PlatformMatrix` cell
+  labels for Acadia and Zion updated.
+
+`make build && make lint` both clean. No code-level changes — diagram
+registry, slide templates, animations, boot terminal, chrome all
+untouched.

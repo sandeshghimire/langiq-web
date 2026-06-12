@@ -6,16 +6,17 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Joshua — TI Sitara",
-  description: "Joshua: TI Sitara real-time PRUs and industrial EtherCAT. FPGA-grade timing. Microcontroller-grade cost. Linux-grade ecosystem.",
+  description:
+    "Joshua: Production-Ready Embedded Linux for TI Sitara — AM335x, AM62x, AM64x. PRU-ICSS firmware, EtherCAT / PROFINET on PRU, RTOS on Cortex-M4F / R5F.",
   openGraph: {
     title: "Joshua — TI Sitara",
-    description: "FPGA-grade timing. Microcontroller-grade cost. Linux-grade ecosystem.",
+    description: "Production-Ready Embedded Linux for TI Sitara — AM335x, AM62x, AM64x.",
     url: "https://soccentric.com/joshua",
   },
   twitter: {
     card: "summary_large_image",
     title: "Joshua — TI Sitara",
-    description: "FPGA-grade timing. Microcontroller-grade cost. Linux-grade ecosystem.",
+    description: "Production-Ready Embedded Linux for TI Sitara — AM335x, AM62x, AM64x.",
   },
 };
 

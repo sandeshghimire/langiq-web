@@ -6,16 +6,19 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Arches — NVIDIA Jetson",
-  description: "Arches: NVIDIA Jetson platform bring-up and real-time control. Inference on the GPU. Control loops on the MCU. One board does the whole robot.",
+  description:
+    "Arches: Production-Ready Embedded Linux for NVIDIA Jetson — TX2, Xavier NX, Orin, Thor. Hardened Yocto build, custom BSP, multi-stage boot, A/B OTA, RTOS on SPE.",
   openGraph: {
     title: "Arches — NVIDIA Jetson",
-    description: "Inference on the GPU. Control loops on the MCU. One board does the whole robot.",
+    description:
+      "Production-Ready Embedded Linux for NVIDIA Jetson — TX2, Xavier NX, Orin, Thor.",
     url: "https://soccentric.com/arches",
   },
   twitter: {
     card: "summary_large_image",
     title: "Arches — NVIDIA Jetson",
-    description: "Inference on the GPU. Control loops on the MCU. One board does the whole robot.",
+    description:
+      "Production-Ready Embedded Linux for NVIDIA Jetson — TX2, Xavier NX, Orin, Thor.",
   },
 };
 

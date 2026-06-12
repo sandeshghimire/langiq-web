@@ -1,18 +1,46 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LayoutProvider } from "./LayoutContext";
 import Nav from "./Nav";
 import ProgressBar from "./ProgressBar";
-import BootRail from "./BootRail";
 import StatusLine from "./StatusLine";
 import BootTerminal from "./BootTerminal";
 
 export default function ClientShell({ children }: { children: React.ReactNode }) {
-  // Skip the boot screen on re-visits within the same session.
-  const [bootFinished, setBootFinished] = useState<boolean>(
-    () => typeof window !== "undefined" && sessionStorage.getItem("soccentric_booted") !== null
-  );
+  // Skip the boot screen on re-visits within the same session. We start
+  // `bootFinished` at `false` so the server-rendered HTML always matches
+  // the first client render (both show the BootTerminal); the
+  // sessionStorage check runs in an effect on mount and is allowed to
+  // change the value then. Reading sessionStorage in the initial-state
+  // lazy initializer would split the server and client trees and trip a
+  // React hydration mismatch (#69 regression lesson).
+  const [bootFinished, setBootFinished] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (sessionStorage.getItem("soccentric_booted") !== null) {
+      // sessionStorage is the source of truth for "did the boot screen
+      // finish on a prior visit"; reading it in a mount-only effect and
+      // mirroring into React state is a legitimate external-system sync,
+      // not a cascading render.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setBootFinished(true);
+      return;
+    }
+    // `?nohup=1` query param or `prefers-reduced-motion` skips the boot
+    // terminal entirely. The dev workflow on the LAN hits this so the
+    // user actually sees the page instead of being trapped at a login
+    // prompt they didn't ask for.
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("nohup") === "1") {
+      setBootFinished(true);
+      return;
+    }
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+      setBootFinished(true);
+    }
+  }, []);
 
   const handleBootComplete = () => {
     sessionStorage.setItem("soccentric_booted", "true");
@@ -37,7 +65,6 @@ export default function ClientShell({ children }: { children: React.ReactNode })
       <div className={`transition-opacity duration-700 ${bootFinished ? "opacity-100" : "opacity-0"}`}>
         <Nav />
         {children}
-        <BootRail />
         <StatusLine />
       </div>
     </LayoutProvider>
