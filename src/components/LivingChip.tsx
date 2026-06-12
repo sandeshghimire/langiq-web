@@ -143,6 +143,7 @@ export default function LivingChip({ platformId, stage }: LivingChipProps) {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: stage === 9 ? 0.7 : 1, opacity: 1 }}
           transition={{ type: "spring", stiffness: 100, damping: 20 }}
+          style={{ transformOrigin: "300px 300px", transformBox: "view-box" }}
         />
 
         {/* POWER RAIL heartbeat (stage 1) */}
@@ -285,7 +286,7 @@ export default function LivingChip({ platformId, stage }: LivingChipProps) {
 
             {/* Bitstream sweep animation (stage 6) */}
             {stage === 6 && (
-              <motion.div>
+              <motion.g>
                 <motion.line
                   x1="300"
                   y1="160"
@@ -306,7 +307,7 @@ export default function LivingChip({ platformId, stage }: LivingChipProps) {
                   animate={{ width: [0, 140, 0] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                 />
-              </motion.div>
+              </motion.g>
             )}
 
             {/* R5 cores */}
@@ -759,6 +760,7 @@ function HomeChip() {
         fill="#6b7075"
         animate={{ scale: [1, 2, 1], opacity: [0.3, 0.8, 0.3] }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        style={{ transformOrigin: "300px 300px", transformBox: "view-box" }}
       />
     </svg>
   );
