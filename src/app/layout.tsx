@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Source_Serif_4, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import ClientShell from "@/components/ClientShell";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+// Source Serif 4 is the closest free analog to Tiempos (Anthropic's
+// in-house display serif). It has a true italics axis, an opsz axis we
+// pin to 36 for display-weight headlines, and a slightly cool/warm
+// weight curve. Body stays Inter, mono stays JetBrains Mono.
+const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
   subsets: ["latin"],
-  weight: ["500", "700"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
 const inter = Inter({
@@ -77,9 +83,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${sourceSerif.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#fafaf8] text-[#16181a]">
+      <body className="min-h-full flex flex-col bg-[#faf9f5] text-[#1f1e1c]">
         <ClientShell>{children}</ClientShell>
       </body>
     </html>

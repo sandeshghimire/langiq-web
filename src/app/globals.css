@@ -1,12 +1,24 @@
 @import "tailwindcss";
 
+/* Anthropic-inspired palette. Warm cream surface, warm orange-coral
+   accent, charcoal-warm ink. Display headings are set in a Tiempos-like
+   serif (Source Serif 4) and pull the optical size axis for the
+   display-weight headlines. Body stays Inter; mono stays JetBrains Mono. */
 @theme {
-  --color-bg-base: #fafaf8;
+  --color-bg-base: #faf9f5;
   --color-card-base: #ffffff;
-  --color-ink: #16181a;
-  --color-muted-text: #6b7075;
-  --color-hairline: #e4e2dd;
+  --color-ink: #1f1e1c;
+  --color-ink-soft: #2a2826;
+  --color-muted-text: #6f6c66;
+  --color-muted-soft: #8a8780;
+  --color-hairline: #e8e3d8;
+  --color-hairline-soft: #efeadd;
 
+  /* Warm orange-coral — Anthropic's primary. Platform accents are still
+     present per-platform for the per-slide underline / dot / scanline,
+     but the global default text accent is this. */
+  --color-accent-warm: #cc785c;
+  --color-accent-warm-hover: #b5654c;
   --color-accent-arches: #0f7a4d;
   --color-accent-acadia: #c43a3a;
   --color-accent-zion: #6b4fd3;
@@ -14,31 +26,36 @@
   --color-accent-joshua: #d4622a;
   --color-accent-sequoia: #4a6478;
 
-  --font-display: var(--font-space-grotesk), sans-serif;
-  --font-sans: var(--font-inter), sans-serif;
-  --font-mono: var(--font-jetbrains-mono), monospace;
+  --font-display: var(--font-source-serif), "Iowan Old Style", "Apple Garamond", "Baskerville", "Times New Roman", serif;
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
 }
 
 /* Light-only Base Styles */
 :root {
-  background-color: #fafaf8;
-  color: #16181a;
+  background-color: #faf9f5;
+  color: #1f1e1c;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
-  background-color: #fafaf8;
-  color: #16181a;
+  background-color: #faf9f5;
+  color: #1f1e1c;
   font-family: var(--font-sans);
   overflow-x: hidden;
   height: 100%;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Hide scrollbar for standard snapping but keep functionality */
 .scroll-container::-webkit-scrollbar {
   display: none;
 }
+
 .scroll-container {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -64,9 +81,11 @@ html, body {
   0% {
     top: 0%;
   }
+
   50% {
     top: 100%;
   }
+
   100% {
     top: 0%;
   }
@@ -85,8 +104,8 @@ html, body {
   left: 0;
   right: 0;
   height: 1px;
-  background: var(--accent-color, #16181a);
-  opacity: 0.3;
+  background: var(--accent-color, #cc785c);
+  opacity: 0.35;
   animation: scanline 6s linear infinite;
   pointer-events: none;
 }
@@ -116,12 +135,12 @@ html, body {
 .mono-input {
   font-family: var(--font-mono);
   background-color: #ffffff;
-  border: 1px solid #e4e2dd;
-  color: #16181a;
+  border: 1px solid #e8e3d8;
+  color: #1f1e1c;
   padding: 0.75rem 1rem;
   border-radius: 4px;
   outline: none;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .mono-input:focus:not(:focus-visible) {
@@ -129,7 +148,8 @@ html, body {
 }
 
 .mono-input:focus {
-  border-color: var(--accent-color, #16181a);
+  border-color: var(--accent-color, #cc785c);
+  box-shadow: 0 0 0 3px rgba(204, 120, 92, 0.12);
 }
 
 /* Cursor blink */
@@ -138,15 +158,23 @@ html, body {
 }
 
 @keyframes blink {
-  from, to { background-color: transparent }
-  50% { background-color: currentColor }
+
+  from,
+  to {
+    background-color: transparent
+  }
+
+  50% {
+    background-color: currentColor
+  }
 }
 
 /* Keyboard focus ring — req.md §10 "visible keyboard focus".
    Accent comes from the same per-platform CSS var used elsewhere; falls
-   back to ink. The offset keeps the ring outside the element box. */
+   back to the warm orange. The offset keeps the ring outside the element
+   box. */
 :focus-visible {
-  outline: 2px solid var(--accent-color, #16181a);
+  outline: 2px solid var(--accent-color, #cc785c);
   outline-offset: 2px;
   border-radius: 3px;
 }
@@ -155,6 +183,7 @@ html, body {
    honored". Kills all CSS-driven motion and smooth scroll. Component-level
    JS animations are gated separately with useReducedMotion(). */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
