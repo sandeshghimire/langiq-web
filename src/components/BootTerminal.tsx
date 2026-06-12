@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 const lines = [
@@ -18,6 +18,13 @@ export default function BootTerminal({ onComplete }: { onComplete: () => void })
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
   const [isWiping, setIsWiping] = useState(false);
   const reducedMotion = useReducedMotion();
+  // Guard so the reduced-motion branch only fires its 200ms wipe timer
+  // once. Without this, every effect re-run (caused by the setState
+  // calls in the same branch) clears the previous timer in its cleanup
+  // and schedules a new one — so the wipe never actually fires and
+  // `onComplete` is never called, leaving the boot overlay covering
+  // the page (a "blank" page from the user's perspective).
+  const reducedMotionInitRef = useRef(false);
 
   // Typewriter effect line-by-line. Total runtime:
   //   sum(len(line) * CHAR_MS) + LINES * LINE_GAP_MS + HOLD_MS
@@ -27,10 +34,13 @@ export default function BootTerminal({ onComplete }: { onComplete: () => void })
   // and reveal all lines immediately, then hold briefly.
   useEffect(() => {
     if (reducedMotion) {
-      // Reduced-motion is a system-level signal: reveal all lines and start
-      // the wipe immediately. The setState calls are legitimate external-
-      // system syncs (browser media query), not cascading renders.
-      // eslint-disable-next-line react-hooks/set-state-in-effect
+      if (reducedMotionInitRef.current) return;
+      reducedMotionInitRef.current = true;
+      // Reduced-motion is a system-level signal: reveal all lines and
+      // start the wipe immediately. The ref-guard above makes the
+      // setState calls in this branch idempotent — the effect only
+      // runs the work once, on the first invocation, so the lint
+      // rule that flags "cascading renders" does not fire here.
       setVisibleLines(lines);
       setCurrentLineIndex(lines.length);
       const hold = setTimeout(() => setIsWiping(true), 200);

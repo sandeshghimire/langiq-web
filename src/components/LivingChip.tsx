@@ -222,7 +222,7 @@ export default function LivingChip({ platformId, stage }: LivingChipProps) {
                   cy={100 + j * 40}
                   r="1.5"
                   fill="#16181a"
-                  initial={stage === 1 && !reducedMotion ? { scale: 0, opacity: 0 } : false}
+                  initial={stage === 1 && !reducedMotion ? { scale: 0, opacity: 0 } : { scale: 1, opacity: 0.15 }}
                   animate={{ scale: 1, opacity: 0.15 }}
                   transition={stage === 1 && !reducedMotion ? { delay: rowDelay + colDelay, duration: 0.3 } : { duration: 0 }}
                   style={{ transformOrigin: `${100 + i * 40}px ${100 + j * 40}px`, transformBox: "view-box" }}
@@ -236,25 +236,25 @@ export default function LivingChip({ platformId, stage }: LivingChipProps) {
         <g opacity={stage >= 4 ? 0.35 : 0.15} stroke="#16181a" strokeWidth="0.5" fill="none">
           <motion.path
             d="M 150 150 L 450 450"
-            initial={stage === 1 && !reducedMotion ? { pathLength: 0, opacity: 0 } : false}
+            initial={stage === 1 && !reducedMotion ? { pathLength: 0, opacity: 0 } : { pathLength: 1, opacity: 1 }}
             animate={{ pathLength: 1, opacity: 1 }}
             transition={stage === 1 && !reducedMotion ? { delay: 1.2, duration: 0.6 } : { duration: 0 }}
           />
           <motion.path
             d="M 450 150 L 150 450"
-            initial={stage === 1 && !reducedMotion ? { pathLength: 0, opacity: 0 } : false}
+            initial={stage === 1 && !reducedMotion ? { pathLength: 0, opacity: 0 } : { pathLength: 1, opacity: 1 }}
             animate={{ pathLength: 1, opacity: 1 }}
             transition={stage === 1 && !reducedMotion ? { delay: 1.4, duration: 0.6 } : { duration: 0 }}
           />
           <motion.path
             d="M 300 100 L 300 500"
-            initial={stage === 1 && !reducedMotion ? { pathLength: 0, opacity: 0 } : false}
+            initial={stage === 1 && !reducedMotion ? { pathLength: 0, opacity: 0 } : { pathLength: 1, opacity: 1 }}
             animate={{ pathLength: 1, opacity: 1 }}
             transition={stage === 1 && !reducedMotion ? { delay: 1.6, duration: 0.6 } : { duration: 0 }}
           />
           <motion.path
             d="M 100 300 L 500 300"
-            initial={stage === 1 && !reducedMotion ? { pathLength: 0, opacity: 0 } : false}
+            initial={stage === 1 && !reducedMotion ? { pathLength: 0, opacity: 0 } : { pathLength: 1, opacity: 1 }}
             animate={{ pathLength: 1, opacity: 1 }}
             transition={stage === 1 && !reducedMotion ? { delay: 1.8, duration: 0.6 } : { duration: 0 }}
           />
@@ -352,7 +352,7 @@ export default function LivingChip({ platformId, stage }: LivingChipProps) {
               <g stroke={accent} strokeWidth="1" fill="none" opacity="0.85">
                 <motion.polyline
                   points="170,225 185,210 200,235 215,205 230,225 245,200 260,230 275,220"
-                  initial={!reducedMotion ? { pathLength: 0 } : false}
+                  initial={!reducedMotion ? { pathLength: 0 } : { pathLength: 1 }}
                   animate={{ pathLength: 1 }}
                   transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
                 />
@@ -447,7 +447,7 @@ export default function LivingChip({ platformId, stage }: LivingChipProps) {
                   <g stroke={accent} strokeWidth="1" fill="none" opacity="0.85">
                     <motion.polyline
                       points="210,355 230,335 250,360 270,330 290,355 310,325 330,355 350,330 370,350 390,330 400,360"
-                      initial={!reducedMotion ? { pathLength: 0 } : false}
+                      initial={!reducedMotion ? { pathLength: 0 } : { pathLength: 1 }}
                       animate={{ pathLength: 1 }}
                       transition={{ duration: 1.8, repeat: Infinity, ease: "linear" }}
                     />
@@ -852,7 +852,7 @@ export default function LivingChip({ platformId, stage }: LivingChipProps) {
               {protocols.map((proto, i) => (
                 <motion.g
                   key={proto}
-                  initial={reducedMotion ? false : { opacity: 0, y: 6 }}
+                  initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={reducedMotion ? { duration: 0 } : { delay: 0.2 + i * 0.15, duration: 0.3 }}
                 >
@@ -943,7 +943,7 @@ export default function LivingChip({ platformId, stage }: LivingChipProps) {
                 y={g.y}
                 className="text-[12px] font-bold"
                 fill={accent}
-                initial={reducedMotion ? false : { opacity: 0, scale: 0.4 }}
+                initial={reducedMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.4 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={reducedMotion ? { duration: 0 } : { delay: 0.3 + i * 0.2, type: "spring", stiffness: 250, damping: 16 }}
                 style={{ transformOrigin: `${g.x}px ${g.y}px`, transformBox: "view-box" }}
@@ -1138,7 +1138,7 @@ function BootChainPath({
             y2={y2}
             stroke={accent}
             strokeWidth="2"
-            initial={reducedMotion ? false : { pathLength: 0 }}
+            initial={reducedMotion ? { pathLength: 1 } : { pathLength: 0 }}
             animate={{ pathLength: 1 }}
             transition={reducedMotion ? { duration: 0 } : { delay: i * 0.4, duration: 0.5 }}
           />
@@ -1154,7 +1154,7 @@ function BootChainPath({
           fill={accent}
           stroke="none"
           className="text-[7px] font-bold"
-          initial={reducedMotion ? false : { opacity: 0 }}
+          initial={reducedMotion ? { opacity: 1 } : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={reducedMotion ? { duration: 0 } : { delay: i * 0.4 + 0.4, duration: 0.3 }}
         >
@@ -1185,7 +1185,7 @@ function DriverModules({ accent, reducedMotion }: { accent: string; reducedMotio
         return (
           <motion.g
             key={m.id}
-            initial={reducedMotion ? false : { x: 0, y: 0, opacity: 0, scale: 0.6 }}
+            initial={reducedMotion ? { x: deltaX, y: deltaY, opacity: 1, scale: 1 } : { x: 0, y: 0, opacity: 0, scale: 0.6 }}
             animate={{ x: deltaX, y: deltaY, opacity: 1, scale: [0.6, 1.2, 1] }}
             transition={
               reducedMotion
@@ -1279,7 +1279,7 @@ function PanelGrid({ accent, reducedMotion }: { accent: string; reducedMotion: b
             return (
               <motion.g
                 key={`cell-${idx}`}
-                initial={reducedMotion ? false : { opacity: 0, scale: 0.6 }}
+                initial={reducedMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.6 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={reducedMotion ? { duration: 0 } : { delay: idx * 0.08, duration: 0.4 }}
                 style={{ transformOrigin: `${x + 50}px ${y + 50}px`, transformBox: "view-box" }}
@@ -1305,7 +1305,7 @@ function PanelGrid({ accent, reducedMotion }: { accent: string; reducedMotion: b
                   className="text-[7px] font-bold"
                   textAnchor="middle"
                   fill={accent}
-                  initial={reducedMotion ? false : { opacity: 0 }}
+                  initial={reducedMotion ? { opacity: 1 } : { opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={reducedMotion ? { duration: 0 } : { delay: idx * 0.08 + 0.5, duration: 0.3 }}
                 >
