@@ -5,8 +5,18 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "SoCcentric — Arches NVIDIA Jetson Platform",
+  title: "Arches — NVIDIA Jetson",
   description: "Arches: NVIDIA Jetson platform bring-up and real-time control. Inference on the GPU. Control loops on the MCU. One board does the whole robot.",
+  openGraph: {
+    title: "Arches — NVIDIA Jetson",
+    description: "Inference on the GPU. Control loops on the MCU. One board does the whole robot.",
+    url: "https://soccentric.com/arches",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Arches — NVIDIA Jetson",
+    description: "Inference on the GPU. Control loops on the MCU. One board does the whole robot.",
+  },
 };
 
 export default function ArchesPage() {

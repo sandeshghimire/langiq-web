@@ -4,6 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useLayoutState } from "./LayoutContext";
 import { platforms } from "@/data/platforms";
 import { motion, useReducedMotion } from "framer-motion";
+import { usePageVisibility } from "@/hooks/usePageVisibility";
 
 interface RailEntry {
   label: string;
@@ -39,6 +40,8 @@ export default function BootRail() {
   const [tickingTime, setTickingTime] = useState<number>(0);
   const timeRef = useRef<number>(0);
   const reducedMotion = useReducedMotion();
+  // #42: pause the ticking clock when the tab is hidden.
+  const isVisible = usePageVisibility();
 
   const entries =
     platformId === "home"
@@ -51,7 +54,8 @@ export default function BootRail() {
   const activeEntry = entries[activeIndex] || entries[0];
 
   // Tick the timestamp upward for the active slide. Skipped under
-  // prefers-reduced-motion (req.md §7 #11).
+  // prefers-reduced-motion (req.md §7 #11) and when the tab is hidden
+  // (#42 perf bundle).
   useEffect(() => {
     if (platformId === "contact") {
       // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -59,6 +63,7 @@ export default function BootRail() {
       return;
     }
     if (reducedMotion) return;
+    if (!isVisible) return;
 
     const base = activeEntry.baseTime;
     timeRef.current = base;
@@ -70,7 +75,7 @@ export default function BootRail() {
     }, 50);
 
     return () => clearInterval(interval);
-  }, [activeStage, platformId, activeEntry, reducedMotion]);
+  }, [activeStage, platformId, activeEntry, reducedMotion, isVisible]);
 
   const pageItem = platforms.find((p) => p.id === platformId);
   const accentColor = pageItem ? pageItem.accent : "#16181a";

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import type { CSSProperties } from "react";
 import { platforms } from "@/data/platforms";
+import { usePageVisibility } from "@/hooks/usePageVisibility";
 
 interface LivingChipProps {
   platformId: string;
@@ -109,32 +110,39 @@ export default function LivingChip({ platformId, stage }: LivingChipProps) {
   // Probe-log char count for stage 7 readout. Derived from props; reset via
   // `key` on the parent when stage changes. (#19 boot-log readout.)
   const [probeCharCount, setProbeCharCount] = useState(0);
+  // #42: pause idle loops (BSP / OTA / probe-log) when the tab is hidden —
+  // the browser throttles requestAnimationFrame, so the underlying
+  // framer-motion `repeat: Infinity` animations also stall. We just have
+  // to stop pushing state updates from setInterval.
+  const isVisible = usePageVisibility();
 
   // OTA stage simulation loops
   useEffect(() => {
-    if (stage === 6) {
+    if (stage === 6 && isVisible) {
       const interval = setInterval(() => {
         setOtaPulse((prev) => (prev + 1) % 3);
       }, 3000);
       return () => clearInterval(interval);
     }
-  }, [stage]);
+  }, [stage, isVisible]);
 
   // BSP enumeration simulation loops. The setBspEnumIndex call is a
   // ref-based reset triggered by an external-system change (stage), so the
   // set-state-in-effect rule doesn't apply here.
   useEffect(() => {
-    if (stage === 2) {
+    if (stage !== 2) {
+      // External-system reset (stage change) — not a cascading render.
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      setBspEnumIndex(0);
-      const interval = setInterval(() => {
-        setBspEnumIndex((prev) => (prev + 1) % 6);
-      }, 800);
-      return () => clearInterval(interval);
-    } else {
       setBspEnumIndex(-1);
+      return;
     }
-  }, [stage]);
+    setBspEnumIndex(0);
+    if (!isVisible) return;
+    const interval = setInterval(() => {
+      setBspEnumIndex((prev) => (prev + 1) % 6);
+    }, 800);
+    return () => clearInterval(interval);
+  }, [stage, isVisible]);
 
   // Stage 7 boot-log typing loop. Reset to 0 whenever we leave stage 7
   // (via the bspEnumIndex-style external-system reset pattern).
@@ -148,6 +156,7 @@ export default function LivingChip({ platformId, stage }: LivingChipProps) {
       setProbeCharCount(PROBE_LOG_LINES.join("\n").length);
       return;
     }
+    if (!isVisible) return;
     const total = PROBE_LOG_LINES.join("\n").length;
     let i = 0;
     const interval = setInterval(() => {
@@ -156,7 +165,7 @@ export default function LivingChip({ platformId, stage }: LivingChipProps) {
       if (i >= total) clearInterval(interval);
     }, 60);
     return () => clearInterval(interval);
-  }, [stage, reducedMotion]);
+  }, [stage, reducedMotion, isVisible]);
 
   // Stage 9 panel grid
   if (!activePlatform && platformId === "home" && stage === 9) {

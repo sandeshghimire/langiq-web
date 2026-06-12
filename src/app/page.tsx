@@ -128,6 +128,12 @@ export default function HomePage() {
   const { activeStage, setActiveStage, setScrollProgress } = useLayoutState();
   const containerRef = useRef<HTMLDivElement>(null);
   const slidesRef = useRef<(HTMLDivElement | null)[]>([]);
+  // #46: Mirror activeStage in a ref so the scroll listener can compare
+  // against the latest value without re-binding on every stage change.
+  const activeStageRef = useRef(activeStage);
+  useEffect(() => {
+    activeStageRef.current = activeStage;
+  }, [activeStage]);
 
   // Update layout context on scroll
   useEffect(() => {
@@ -142,15 +148,15 @@ export default function HomePage() {
       const slideHeight = clientHeight;
       const currentSlide = Math.round(scrollTop / slideHeight) + 1;
       const boundedSlide = Math.min(Math.max(currentSlide, 1), 9);
-      
-      if (boundedSlide !== activeStage) {
+
+      if (boundedSlide !== activeStageRef.current) {
         setActiveStage(boundedSlide);
       }
     };
 
     container.addEventListener("scroll", handleScroll);
     return () => container.removeEventListener("scroll", handleScroll);
-  }, [activeStage, setActiveStage, setScrollProgress]);
+  }, [setActiveStage, setScrollProgress]);
 
   const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith("#")) {
@@ -263,16 +269,17 @@ export default function HomePage() {
         ))}
       </div>
 
-      {/* Floating Centerpiece chip */}
-      <div
-        className="fixed top-0 bottom-0 z-0 hidden lg:flex items-center justify-center pointer-events-none transition-all duration-[800ms] cubic-bezier(0.25, 1, 0.5, 1)"
-        style={{
-          left: isChipLeft ? "10vw" : "50vw",
-          width: "40vw",
-        }}
+      {/* Floating Centerpiece chip — glides between left and right via
+          `transform: translateX` (compositor-friendly, req.md §7 perf
+          rules), with a spring easing instead of a CSS cubic-bezier. */}
+      <motion.div
+        className="fixed top-0 bottom-0 z-0 hidden lg:flex items-center justify-center pointer-events-none"
+        style={{ left: "30vw", width: "40vw" }}
+        animate={{ x: isChipLeft ? "-20vw" : "20vw" }}
+        transition={{ type: "spring", stiffness: 120, damping: 20 }}
       >
         <LivingChip platformId="home" stage={activeStage} />
-      </div>
+      </motion.div>
     </main>
   );
 }
@@ -318,20 +325,34 @@ function TypedText({ text, active }: { text: string; active: boolean }) {
 
 function SweepHeading({ text, active }: { text: string; active: boolean }) {
   const reducedMotion = useReducedMotion();
+  // req.md §7 perf rules: only transform / opacity / stroke-dashoffset /
+  // pathLength. The reveal is implemented with a mask-image linear-
+  // gradient whose stop position is animated as `x` (transform) on the
+  // overlay div — paint-free on the compositor thread.
   return (
     <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-[#16181a] tracking-tight relative overflow-hidden select-none py-1">
-      <motion.span
-        initial={{ clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)" }}
-        animate={active ? { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" } : { clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)" }}
-        transition={{ duration: reducedMotion ? 0 : 0.8, ease: "easeInOut" }}
+      <span
         className="block"
+        style={{
+          WebkitMaskImage:
+            "linear-gradient(to right, black 0%, black 100%, transparent 100%)",
+          WebkitMaskSize: "200% 100%",
+          WebkitMaskPosition: active ? "0% 0%" : "100% 0%",
+          maskImage:
+            "linear-gradient(to right, black 0%, black 100%, transparent 100%)",
+          maskSize: "200% 100%",
+          maskPosition: active ? "0% 0%" : "100% 0%",
+          transition: reducedMotion
+            ? "none"
+            : "mask-position 0.8s ease-in-out, -webkit-mask-position 0.8s ease-in-out",
+        }}
       >
         {text}
-      </motion.span>
+      </span>
       {active && (
         <motion.div
-          initial={{ left: "0%" }}
-          animate={{ left: "100%" }}
+          initial={{ x: "0%" }}
+          animate={{ x: "100%" }}
           transition={{ duration: reducedMotion ? 0 : 0.8, ease: "easeInOut" }}
           className="absolute top-0 bottom-0 w-[1px] bg-[#16181a] z-10"
         />

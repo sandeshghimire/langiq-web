@@ -5,8 +5,18 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "SoCcentric — Sequoia x86 Edge Platform",
+  title: "Sequoia — Intel & AMD x86",
   description: "Sequoia: Intel & AMD x86 edge servers and real-time PREEMPT_RT. If it only runs on x86, it runs here — with all the I/O it needs.",
+  openGraph: {
+    title: "Sequoia — Intel & AMD x86",
+    description: "If it only runs on x86, it runs here — with all the I/O it needs.",
+    url: "https://soccentric.com/sequoia",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sequoia — Intel & AMD x86",
+    description: "If it only runs on x86, it runs here — with all the I/O it needs.",
+  },
 };
 
 export default function SequoiaPage() {
