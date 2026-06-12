@@ -36,7 +36,7 @@ export default function ContactForm() {
         >
           {/* Name */}
           <div className="flex flex-col gap-1.5">
-            <label className="font-mono text-[10px] uppercase tracking-wider text-[#6b7075]">
+            <label className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#6f6c66]">
               Name
             </label>
             <input
@@ -52,7 +52,7 @@ export default function ContactForm() {
 
           {/* Company */}
           <div className="flex flex-col gap-1.5">
-            <label className="font-mono text-[10px] uppercase tracking-wider text-[#6b7075]">
+            <label className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#6f6c66]">
               Company
             </label>
             <input
@@ -68,7 +68,7 @@ export default function ContactForm() {
 
           {/* Platform Dropdown */}
           <div className="flex flex-col gap-1.5">
-            <label className="font-mono text-[10px] uppercase tracking-wider text-[#6b7075]">
+            <label className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#6f6c66]">
               Platform
             </label>
             <select
@@ -91,7 +91,7 @@ export default function ContactForm() {
 
           {/* Message */}
           <div className="flex flex-col gap-1.5">
-            <label className="font-mono text-[10px] uppercase tracking-wider text-[#6b7075]">
+            <label className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#6f6c66]">
               Message
             </label>
             <textarea
@@ -109,9 +109,10 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={submitting}
-            className="font-mono text-xs uppercase tracking-wider px-6 py-3 bg-[#16181a] text-[#fafaf8] border border-[#16181a] hover:bg-transparent hover:text-[#16181a] transition-all duration-300 font-bold self-start mt-2 disabled:opacity-50"
+            className="inline-flex items-center gap-2 font-sans text-[15px] font-medium tracking-tight px-6 py-3 bg-[#cc785c] text-white border border-[#cc785c] hover:bg-[#b5654c] hover:border-[#b5654c] transition-all duration-200 rounded-[3px] self-start mt-2 disabled:opacity-50"
           >
-            {submitting ? "CONNECTING..." : "Talk to engineering"}
+            {submitting ? "Connecting..." : "Talk to engineering"}
+            {!submitting && <span aria-hidden="true" className="text-[15px] leading-none">→</span>}
           </button>
         </motion.form>
       ) : (
@@ -125,12 +126,12 @@ export default function ContactForm() {
           aria-live="polite"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-8 p-6 bg-white border border-[#e4e2dd] rounded-[3px] flex flex-col gap-3 max-w-lg"
+          className="mt-8 p-6 bg-white border border-[#e8e3d8] rounded-[3px] flex flex-col gap-3 max-w-lg"
         >
-          <span className="font-mono text-sm text-emerald-600 font-bold">
+          <span className="font-mono text-sm text-[#0f7a4d] font-bold">
             ✓ message queued
           </span>
-          <span className="font-mono text-[10px] text-[#6b7075]">
+          <span className="font-mono text-[10px] text-[#6f6c66]">
             {name} · {company}
           </span>
         </motion.div>
