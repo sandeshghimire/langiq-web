@@ -204,18 +204,18 @@ export default function HomePage() {
                     Anthropic's pages also use a small mono "tag" for
                     stage metadata above the headline. */}
                   <motion.span
-                    initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 6 }}
+                    initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 4 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: reducedMotion ? 0 : 0.4, ease: "easeOut" }}
+                    transition={{ duration: reducedMotion ? 0 : 0.2, ease: "easeOut" }}
                     className="font-mono text-[11px] tracking-[0.18em] text-[#cc785c] uppercase"
                   >
                     {String(slide.stage).padStart(2, "0")} / 09
                   </motion.span>
 
                   <motion.h1
-                    initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
+                    initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 4 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: reducedMotion ? 0 : 0.5, ease: "easeOut" }}
+                    transition={{ duration: reducedMotion ? 0 : 0.2, ease: "easeOut" }}
                     className="font-display font-medium text-5xl md:text-6xl lg:text-7xl text-[#1f1e1c] tracking-[-0.02em] leading-[1.02]"
                     style={{ fontVariationSettings: "'opsz' 36" }}
                   >
@@ -224,11 +224,11 @@ export default function HomePage() {
 
                   {slide.sub && (
                     <motion.p
-                      initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 6 }}
+                      initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 3 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{
-                        duration: reducedMotion ? 0 : 0.5,
-                        delay: reducedMotion ? 0 : 0.15,
+                        duration: reducedMotion ? 0 : 0.2,
+                        delay: reducedMotion ? 0 : 0.05,
                         ease: "easeOut",
                       }}
                       className="font-display italic font-normal text-xl md:text-2xl text-[#6f6c66] max-w-md leading-[1.35]"
@@ -242,11 +242,11 @@ export default function HomePage() {
                       {slide.bullets.slice(0, 5).map((bullet, idx) => (
                         <motion.li
                           key={`${slide.stage}-${idx}`}
-                          initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 8 }}
+                          initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 3 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{
-                            duration: reducedMotion ? 0 : 0.4,
-                            delay: reducedMotion ? 0 : 0.2 + idx * 0.08,
+                            duration: reducedMotion ? 0 : 0.18,
+                            delay: reducedMotion ? 0 : 0.05 + idx * 0.04,
                             ease: "easeOut",
                           }}
                           className="flex items-start gap-3.5 text-[17px] text-[#1f1e1c] font-sans leading-[1.6]"
@@ -264,9 +264,9 @@ export default function HomePage() {
 
                   {slide.ctaText && slide.ctaHref && (
                     <motion.div
-                      initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
+                      initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 3 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: reducedMotion ? 0 : 0.6 }}
+                      transition={{ delay: reducedMotion ? 0 : 0.2, duration: reducedMotion ? 0 : 0.2 }}
                       className="mt-6 flex items-center gap-5"
                     >
                       <Link
