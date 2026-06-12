@@ -4,6 +4,29 @@ import React, { useEffect, useState, useRef } from "react";
 import { useLayoutState } from "./LayoutContext";
 import { platforms } from "@/data/platforms";
 
+// On the Home page the visible stage 2..7 announces a platform identity
+// (Arches / Acadia / Zion / Pinnacle / Joshua / Sequoia), even though the
+// URL is still "/" (platformId === "home"). The status line needs the same
+// mapping so the bottom-bar filename matches the slide in view. Stage 1
+// (hero), 8 (team), and 9 (closing) use the generic SoCcentric OS image.
+const homeStageToPlatformId: Record<number, string> = {
+  2: "arches",
+  3: "acadia",
+  4: "zion",
+  5: "pinnacle",
+  6: "joshua",
+  7: "sequoia",
+};
+
+function resolveImageFilename(platformId: string, activeStage: number): string {
+  const effectiveId =
+    platformId === "home" && activeStage in homeStageToPlatformId
+      ? homeStageToPlatformId[activeStage]
+      : platformId;
+  const pageItem = platforms.find((p) => p.id === effectiveId);
+  return pageItem ? `${pageItem.id}.img` : "soccentric_os.img";
+}
+
 export default function StatusLine() {
   const { scrollProgress, platformId, activeStage, isContactSubmitted } = useLayoutState();
   const [displayPercent, setDisplayPercent] = useState(0);
@@ -45,18 +68,21 @@ export default function StatusLine() {
     };
   }, [scrollProgress]);
 
-  // Determine active platform filename
-  const pageItem = platforms.find((p) => p.id === platformId);
-  const filename = pageItem ? `${pageItem.id}.img` : "soccentric_os.img";
+  const filename = resolveImageFilename(platformId, activeStage);
 
   const isFinalSlide = activeStage === 9;
+  // Use the *raw* scrollProgress (not the tweened displayPercent) to evaluate
+  // the 98% gate. The tween can briefly go backwards (e.g. when a new
+  // scroll event arrives during the easing window) and would oscillate the
+  // final-slide message between "writing ..." and "100% — boot complete".
+  const bootComplete = isFinalSlide && scrollProgress >= 98;
 
   let message = "";
   if (platformId === "contact") {
-    message = isContactSubmitted 
-      ? "contact — boot complete ✓ 0 errors" 
+    message = isContactSubmitted
+      ? "contact — boot complete ✓ 0 errors"
       : "waiting contact_form.input ...";
-  } else if (isFinalSlide && displayPercent >= 98) {
+  } else if (bootComplete) {
     message = "100% — boot complete ✓ 0 errors";
   } else {
     message = `writing ${filename} … ${displayPercent}%`;
