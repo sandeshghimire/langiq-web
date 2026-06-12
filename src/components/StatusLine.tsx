@@ -34,6 +34,12 @@ export default function StatusLine() {
   // Hold the latest displayPercent in a ref so the rAF tween can read the
   // current value without capturing a stale closure.
   const latestPercent = useRef<number>(0);
+  // The current announcement string. We only update it when a meaningful
+  // milestone is crossed — never on every percentage tick — so screen
+  // readers aren't spammed (req.md §10: "Status updates and rail stamps
+  // are not announced to assistive tech").
+  const [announcement, setAnnouncement] = useState<string>("system idle");
+  const lastAnnouncedRef = useRef<string>("system idle");
 
   // Smooth tweening using requestAnimationFrame
   useEffect(() => {
@@ -88,8 +94,33 @@ export default function StatusLine() {
     message = `writing ${filename} … ${displayPercent}%`;
   }
 
+  // Compute the announcement. Only change it when:
+  //   1. The active stage changes, or
+  //   2. We cross the boot-complete gate, or
+  //   3. The contact form submission state changes.
+  // We deliberately do NOT announce every percentage tick.
+  useEffect(() => {
+    let next: string;
+    if (platformId === "contact") {
+      next = isContactSubmitted ? "contact form submitted" : "contact form waiting";
+    } else if (bootComplete) {
+      next = "100 percent — boot complete, zero errors";
+    } else {
+      next = `stage ${activeStage} of 9, writing ${filename}`;
+    }
+    if (next !== lastAnnouncedRef.current) {
+      lastAnnouncedRef.current = next;
+      setAnnouncement(next);
+    }
+  }, [activeStage, platformId, isContactSubmitted, bootComplete, filename]);
+
   return (
-    <footer className="fixed bottom-0 left-0 right-0 z-50 border-t border-[#e4e2dd] bg-[#fafaf8]/80 backdrop-blur-md px-6 md:px-12 py-2 select-none">
+    <footer
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+      className="fixed bottom-0 left-0 right-0 z-50 border-t border-[#e4e2dd] bg-[#fafaf8]/80 backdrop-blur-md px-6 md:px-12 py-2 select-none"
+    >
       <div className="max-w-7xl mx-auto flex items-center justify-between font-mono text-[10px] text-[#6b7075] uppercase tracking-wider">
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-[#16181a] animate-pulse" />
@@ -99,6 +130,10 @@ export default function StatusLine() {
           <span>baud_rate: 115200 bps</span>
         </div>
       </div>
+      {/* The visible text is duplicated here as a screen-reader-only line
+          so the announcement is always available to AT, but the visible
+          status line is not itself read on every tick. */}
+      <span className="sr-only">{announcement}</span>
     </footer>
   );
 }

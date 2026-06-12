@@ -21,9 +21,18 @@ export default function ClientShell({ children }: { children: React.ReactNode })
 
   return (
     <LayoutProvider>
+      {/* Skip-to-content — req.md §10: keyboard users should not have to
+          tab through the fixed top nav to reach the main content. */}
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-white focus:text-[#16181a] focus:px-4 focus:py-2 focus:border focus:border-[#16181a] focus:font-mono focus:text-xs focus:uppercase focus:tracking-wider"
+      >
+        Skip to main content
+      </a>
+
       <ProgressBar />
       {!bootFinished && <BootTerminal onComplete={handleBootComplete} />}
-      
+
       {/* Dynamic contents */}
       <div className={`transition-opacity duration-700 ${bootFinished ? "opacity-100" : "opacity-0"}`}>
         <Nav />

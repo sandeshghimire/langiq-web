@@ -25,7 +25,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="w-full min-h-screen bg-[#fafaf8] pt-24 pb-16 px-6 md:px-12 flex items-center justify-center">
+    <main id="main" className="w-full min-h-screen bg-[#fafaf8] pt-24 pb-16 px-6 md:px-12 flex items-center justify-center">
       <div className="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
         
         {/* Left Column - Form */}
@@ -98,12 +98,12 @@ export default function ContactPage() {
                     className="mono-input w-full appearance-none cursor-pointer bg-white"
                   >
                     <option value="" disabled>Select a platform ...</option>
-                    <option value="Arches">Arches (NVIDIA Jetson)</option>
-                    <option value="Acadia">Acadia (Raspberry Pi CM5)</option>
-                    <option value="Zion">Zion (Xilinx Zynq)</option>
-                    <option value="Pinnacle">Pinnacle (NXP i.MX)</option>
-                    <option value="Joshua">Joshua (TI Sitara)</option>
-                    <option value="Sequoia">Sequoia (Intel / AMD x86)</option>
+                    <option value="Arches">Arches</option>
+                    <option value="Acadia">Acadia</option>
+                    <option value="Zion">Zion</option>
+                    <option value="Pinnacle">Pinnacle</option>
+                    <option value="Joshua">Joshua</option>
+                    <option value="Sequoia">Sequoia</option>
                     <option value="Not sure yet">Not sure yet</option>
                   </select>
                 </div>

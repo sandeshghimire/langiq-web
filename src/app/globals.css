@@ -110,7 +110,9 @@ html, body {
   background-color: var(--accent-color, #16181a);
 }
 
-/* Form inputs styling */
+/* Form inputs styling.
+   `outline: none` is scoped to non-keyboard focus so the global
+   :focus-visible ring still appears for keyboard users (req.md §10). */
 .mono-input {
   font-family: var(--font-mono);
   background-color: #ffffff;
@@ -120,6 +122,10 @@ html, body {
   border-radius: 4px;
   outline: none;
   transition: border-color 0.2s ease;
+}
+
+.mono-input:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .mono-input:focus {
@@ -134,4 +140,27 @@ html, body {
 @keyframes blink {
   from, to { background-color: transparent }
   50% { background-color: currentColor }
+}
+
+/* Keyboard focus ring — req.md §10 "visible keyboard focus".
+   Accent comes from the same per-platform CSS var used elsewhere; falls
+   back to ink. The offset keeps the ring outside the element box. */
+:focus-visible {
+  outline: 2px solid var(--accent-color, #16181a);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Reduced motion — req.md §6, §7 #11, §10 "prefers-reduced-motion fully
+   honored". Kills all CSS-driven motion and smooth scroll. Component-level
+   JS animations are gated separately with useReducedMotion(). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -26,7 +26,12 @@ const navItems: NavItem[] = [
 
 export default function Nav() {
   const { platformId } = useLayoutState();
+  // Track focused as well as hovered so keyboard tabbing also reveals the
+  // mono chip label — req.md §3 "hovering a platform item reveals a small
+  // mono chip label"; §10 "aria-labels on rail/nav".
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [focusedId, setFocusedId] = useState<string | null>(null);
+  const revealedId = hoveredId ?? focusedId;
 
   // Active accent of the CURRENT page we are on
   const currentPageItem = navItems.find((item) => item.id === platformId) || navItems[0];
@@ -38,17 +43,17 @@ export default function Nav() {
         {/* Brand */}
         <Link href="/" className="font-display font-bold text-lg tracking-wider text-[#16181a] flex items-center gap-2">
           <span>SOCCENTRIC</span>
-          <span 
-            className="w-1.5 h-1.5 rounded-full inline-block" 
+          <span
+            className="w-1.5 h-1.5 rounded-full inline-block"
             style={{ backgroundColor: currentAccent }}
           />
         </Link>
 
         {/* Navigation Items */}
-        <nav className="flex items-center gap-4 lg:gap-8">
+        <nav aria-label="Primary" className="flex items-center gap-2 lg:gap-6">
           {navItems.map((item) => {
             const isActive = platformId === item.id;
-            const isHovered = hoveredId === item.id;
+            const isRevealed = revealedId === item.id;
 
             return (
               <div
@@ -59,7 +64,14 @@ export default function Nav() {
               >
                 <Link
                   href={item.href}
-                  className="font-display font-medium text-sm transition-colors duration-200 block text-[#16181a] hover:text-[#16181a]/80"
+                  aria-current={isActive ? "page" : undefined}
+                  aria-label={item.chipLabel ? `${item.name} — ${item.chipLabel}` : item.name}
+                  onFocus={() => setFocusedId(item.id)}
+                  onBlur={() => setFocusedId(null)}
+                  // py-1 + min-h gives a touch target ≥ 32px (req.md §10
+                  // "touch-friendly targets" — full 44px is hit by the
+                  // px-3 + py-2 wrapper below).
+                  className="font-display font-medium text-sm transition-colors duration-200 block text-[#16181a] hover:text-[#16181a]/80 px-3 py-2 min-h-[44px] flex items-center"
                 >
                   {item.name}
                 </Link>
@@ -74,12 +86,12 @@ export default function Nav() {
                   />
                 )}
 
-                {/* Sub-label showing processor type on hover */}
+                {/* Sub-label showing processor type on hover or focus */}
                 {item.chipLabel && (
                   <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 pointer-events-none overflow-hidden h-5 min-w-[120px] text-center">
                     <motion.span
                       initial={{ y: -15, opacity: 0 }}
-                      animate={{ y: isHovered ? 0 : -15, opacity: isHovered ? 1 : 0 }}
+                      animate={isRevealed ? { y: 0, opacity: 1 } : { y: -15, opacity: 0 }}
                       transition={{ duration: 0.15, ease: "easeOut" }}
                       className="font-mono text-[10px] text-[#6b7075] uppercase block whitespace-nowrap"
                     >

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 const lines = [
   "U-Boot 2026.01-soccentric (Jun 11 2026 - 11:00:15)",
@@ -17,9 +17,30 @@ export default function BootTerminal({ onComplete }: { onComplete: () => void })
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
   const [isWiping, setIsWiping] = useState(false);
+  const reducedMotion = useReducedMotion();
 
-  // Typewriter effect line-by-line
+  // Typewriter effect line-by-line. Total runtime:
+  //   sum(len(line) * CHAR_MS) + LINES * LINE_GAP_MS + HOLD_MS
+  // With 6 lines of ~60 chars each, at 2ms/char: 720ms typing +
+  // 6 * 90ms = 540ms gap + 220ms hold = ~1.48s — under the 1.8s spec
+  // budget. Under prefers-reduced-motion we skip the typewriter entirely
+  // and reveal all lines immediately, then hold briefly.
   useEffect(() => {
+    if (reducedMotion) {
+      // Reduced-motion is a system-level signal: reveal all lines and start
+      // the wipe immediately. The setState calls are legitimate external-
+      // system syncs (browser media query), not cascading renders.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setVisibleLines(lines);
+      setCurrentLineIndex(lines.length);
+      const hold = setTimeout(() => setIsWiping(true), 200);
+      return () => clearTimeout(hold);
+    }
+
+    const CHAR_MS = 2;
+    const LINE_GAP_MS = 90;
+    const HOLD_MS = 220;
+
     if (currentLineIndex < lines.length) {
       const fullText = lines[currentLineIndex];
       if (currentCharIndex < fullText.length) {
@@ -33,24 +54,22 @@ export default function BootTerminal({ onComplete }: { onComplete: () => void })
             return copy;
           });
           setCurrentCharIndex((prev) => prev + 1);
-        }, 3); // Fast type speed
+        }, CHAR_MS);
         return () => clearTimeout(charTimeout);
       } else {
-        // Move to next line
         const lineTimeout = setTimeout(() => {
           setCurrentLineIndex((prev) => prev + 1);
           setCurrentCharIndex(0);
-        }, 120); // Delay between lines
+        }, LINE_GAP_MS);
         return () => clearTimeout(lineTimeout);
       }
     } else {
-      // Completed typing all lines, hold for a brief moment then start wipe
       const completeTimeout = setTimeout(() => {
         setIsWiping(true);
-      }, 300);
+      }, HOLD_MS);
       return () => clearTimeout(completeTimeout);
     }
-  }, [currentLineIndex, currentCharIndex]);
+  }, [currentLineIndex, currentCharIndex, reducedMotion]);
 
   // Handle wipe animation complete
   const handleAnimationComplete = () => {
@@ -63,10 +82,28 @@ export default function BootTerminal({ onComplete }: { onComplete: () => void })
     <AnimatePresence>
       {!isWiping && (
         <motion.div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Boot sequence"
+          // Pressing Escape or Enter/Space closes the boot overlay so
+          // keyboard and AT users are not trapped. (req.md §10: reduced-
+          // motion escape.)
+          onKeyDown={(e) => {
+            if (e.key === "Escape" || e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              setIsWiping(true);
+            }
+          }}
+          tabIndex={-1}
+          ref={(el) => {
+            // Autofocus the dialog so the keydown handler can fire
+            // immediately on any key.
+            if (el && typeof el.focus === "function") el.focus();
+          }}
           initial={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
-          exit={{ 
+          exit={{
             clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
-            transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] } 
+            transition: { duration: reducedMotion ? 0 : 0.5, ease: [0.76, 0, 0.24, 1] },
           }}
           onAnimationComplete={handleAnimationComplete}
           className="fixed inset-0 z-[100] bg-[#16181a] text-[#fafaf8] font-mono text-xs md:text-sm p-8 md:p-16 flex flex-col justify-start gap-2 select-none"
@@ -77,12 +114,15 @@ export default function BootTerminal({ onComplete }: { onComplete: () => void })
                 {line}
               </div>
             ))}
-            
+
             {/* Blinking cursor */}
-            {currentLineIndex < lines.length && (
+            {currentLineIndex < lines.length && !reducedMotion && (
               <div className="flex items-center gap-1 leading-relaxed">
                 <span>{visibleLines[currentLineIndex] || ""}</span>
-                <span className="w-2 h-4 cursor-blink inline-block" style={{ backgroundColor: "currentColor" }} />
+                <span
+                  className="w-2 h-4 cursor-blink inline-block"
+                  style={{ backgroundColor: "currentColor" }}
+                />
               </div>
             )}
           </div>

@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useLayoutState } from "./LayoutContext";
 import { platforms } from "@/data/platforms";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface RailEntry {
   label: string;
@@ -38,38 +38,40 @@ export default function BootRail() {
   const { platformId, activeStage, isContactSubmitted } = useLayoutState();
   const [tickingTime, setTickingTime] = useState<number>(0);
   const timeRef = useRef<number>(0);
+  const reducedMotion = useReducedMotion();
 
-  const entries = platformId === "home" 
-    ? homeEntries 
-    : platformId === "contact"
-      ? [{ label: "contact", baseTime: 0.000 }]
-      : platformEntries;
+  const entries =
+    platformId === "home"
+      ? homeEntries
+      : platformId === "contact"
+        ? [{ label: "contact", baseTime: 0.000 }]
+        : platformEntries;
 
   const activeIndex = activeStage - 1;
   const activeEntry = entries[activeIndex] || entries[0];
 
-  // Tick the timestamp upward for the active slide
+  // Tick the timestamp upward for the active slide. Skipped under
+  // prefers-reduced-motion (req.md §7 #11).
   useEffect(() => {
     if (platformId === "contact") {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setTickingTime(0);
       return;
     }
+    if (reducedMotion) return;
 
-    // Reset ticker to the base time of the active stage
     const base = activeEntry.baseTime;
     timeRef.current = base;
     setTickingTime(base);
 
     const interval = setInterval(() => {
-      timeRef.current += 0.003; // increment time
+      timeRef.current += 0.003;
       setTickingTime(timeRef.current);
     }, 50);
 
     return () => clearInterval(interval);
-  }, [activeStage, platformId, activeEntry]);
+  }, [activeStage, platformId, activeEntry, reducedMotion]);
 
-  // Determine active accent color
   const pageItem = platforms.find((p) => p.id === platformId);
   const accentColor = pageItem ? pageItem.accent : "#16181a";
 
@@ -77,66 +79,103 @@ export default function BootRail() {
     if (platformId === "contact") return;
     const target = document.getElementById(`slide-${index + 1}`);
     if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
+      target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
     }
   };
 
   return (
-    <div className="fixed right-6 md:right-10 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-5 select-none font-mono text-xs text-[#6b7075]">
-      {entries.map((entry, idx) => {
-        const isCurrent = idx === activeIndex;
-        const isCompleted = idx < activeIndex;
+    <>
+      {/* Full rail — desktop only (req.md §10: rail → dot strip < 768px). */}
+      <nav
+        aria-label="Section navigation"
+        className="fixed right-6 md:right-10 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-3 select-none font-mono text-xs text-[#6b7075]"
+      >
+        {entries.map((entry, idx) => {
+          const isCurrent = idx === activeIndex;
+          const isCompleted = idx < activeIndex;
+          const displayTime = isCurrent ? tickingTime.toFixed(3) : entry.baseTime.toFixed(3);
 
-        // Ticking logic formatting
-        const displayTime = isCurrent 
-          ? tickingTime.toFixed(3) 
-          : entry.baseTime.toFixed(3);
+          return (
+            <button
+              type="button"
+              key={entry.label}
+              onClick={() => handleEntryClick(idx)}
+              aria-current={isCurrent ? "step" : undefined}
+              aria-label={`Jump to ${entry.label} (stage ${idx + 1} of ${entries.length})`}
+              // Touch-friendly target — req.md §10.
+              className={`group flex items-center gap-3 cursor-pointer py-2 pr-2 text-right justify-end transition-all duration-200 ${
+                isCurrent ? "text-[#16181a] font-medium" : "hover:text-[#16181a]"
+              }`}
+            >
+              <span
+                aria-hidden="true"
+                className="w-16 tabular-nums opacity-80 group-hover:opacity-100"
+              >
+                {platformId === "contact" && isContactSubmitted ? (
+                  <motion.span
+                    initial={reducedMotion ? false : { scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className="text-accent-arches"
+                  >
+                    ✓ message queued
+                  </motion.span>
+                ) : isCompleted ? (
+                  <motion.span
+                    initial={reducedMotion ? false : { scale: 0.5, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className="text-inherit"
+                  >
+                    ✓
+                  </motion.span>
+                ) : (
+                  `[ ${displayTime} ]`
+                )}
+              </span>
 
-        return (
-          <div
-            key={entry.label}
-            onClick={() => handleEntryClick(idx)}
-            className={`flex items-center gap-3 cursor-pointer group py-1 text-right justify-end transition-all duration-200 ${
-              isCurrent ? "text-[#16181a] font-medium" : "hover:text-[#16181a]"
-            }`}
-          >
-            {/* Timestamp or check icon */}
-            <span className="w-16 tabular-nums opacity-80 group-hover:opacity-100">
-              {platformId === "contact" && isContactSubmitted ? (
-                <motion.span 
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  className="text-accent-arches"
-                >
-                  ✓ message queued
-                </motion.span>
-              ) : isCompleted ? (
-                <motion.span 
-                  initial={{ scale: 0.5, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  className="text-inherit"
-                >
-                  ✓
-                </motion.span>
-              ) : (
-                `[ ${displayTime} ]`
-              )}
-            </span>
+              <div className="relative pb-0.5">
+                <span className="uppercase text-[10px] tracking-widest">{entry.label}</span>
+                {isCurrent && (
+                  <motion.div
+                    layoutId="railUnderline"
+                    className="absolute bottom-0 left-0 right-0 h-[1px] animate-pulse"
+                    style={{ backgroundColor: accentColor }}
+                  />
+                )}
+              </div>
+            </button>
+          );
+        })}
+      </nav>
 
-            {/* Label name */}
-            <div className="relative pb-0.5">
-              <span className="uppercase text-[10px] tracking-widest">{entry.label}</span>
-              {isCurrent && (
-                <motion.div
-                  layoutId="railUnderline"
-                  className="absolute bottom-0 left-0 right-0 h-[1px] animate-pulse"
-                  style={{ backgroundColor: accentColor }}
-                />
-              )}
-            </div>
-          </div>
-        );
-      })}
-    </div>
+      {/* Dot-strip fallback — mobile only (req.md §10). Same targets as the
+          desktop rail, but compact. */}
+      <nav
+        aria-label="Section navigation"
+        className="fixed right-4 top-1/2 -translate-y-1/2 z-40 flex md:hidden flex-col gap-2"
+      >
+        {entries.map((entry, idx) => {
+          const isCurrent = idx === activeIndex;
+          return (
+            <button
+              type="button"
+              key={`dot-${entry.label}`}
+              onClick={() => handleEntryClick(idx)}
+              aria-current={isCurrent ? "step" : undefined}
+              aria-label={`Jump to ${entry.label} (stage ${idx + 1} of ${entries.length})`}
+              // ≥ 44px tap target.
+              className="w-11 h-11 flex items-center justify-center p-2"
+            >
+              <span
+                aria-hidden="true"
+                className={`block rounded-full transition-all duration-200 ${
+                  isCurrent ? "w-2.5 h-2.5" : "w-1.5 h-1.5 opacity-50"
+                }`}
+                style={{ backgroundColor: isCurrent ? accentColor : "#6b7075" }}
+              />
+            </button>
+          );
+        })}
+      </nav>
+    </>
   );
 }

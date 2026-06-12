@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { useLayoutState } from "@/components/LayoutContext";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import LivingChip from "@/components/LivingChip";
 import SplitFlapCounter from "@/components/SplitFlapCounter";
 import Link from "next/link";
@@ -163,12 +163,23 @@ export default function HomePage() {
 
   const isChipLeft = activeStage % 2 === 0;
 
+  // Relax strict scroll-snap on short viewports — req.md §10 "scroll-snap
+  // relaxed on short viewports". Detected at mount + on resize.
+  const [relaxSnap, setRelaxSnap] = useState(false);
+  useEffect(() => {
+    const check = () => setRelaxSnap(window.innerHeight < 700);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
-    <main className="relative w-full h-screen overflow-hidden bg-[#fafaf8]">
+    <main id="main" className="relative w-full h-screen overflow-hidden bg-[#fafaf8]">
       {/* Scroll Snap Sections */}
       <div
         ref={containerRef}
         className="scroll-container w-full h-full relative z-10"
+        style={relaxSnap ? { scrollSnapType: "y proximity" } : undefined}
       >
         {homeSlides.map((slide, idx) => (
           <div
@@ -278,9 +289,19 @@ function TypedText({ text, active }: { text: string; active: boolean }) {
   // Track only the typed length; the visible string is derived. Re-mount via
   // `key` resets the length so we never have to set state in an effect.
   const [length, setLength] = useState(0);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (!active) return;
+    if (reducedMotion) {
+      // Reduced-motion is a system-level signal: snap to the full string
+      // immediately when the user has it set. The setState here is a
+      // legitimate external-system sync (browser media query), not a
+      // cascading render.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setLength(text.length);
+      return;
+    }
     let i = 0;
     const interval = setInterval(() => {
       i += 1;
@@ -288,19 +309,20 @@ function TypedText({ text, active }: { text: string; active: boolean }) {
       if (i >= text.length) clearInterval(interval);
     }, 12);
     return () => clearInterval(interval);
-  }, [text, active]);
+  }, [text, active, reducedMotion]);
 
   const visible = active ? text.slice(0, length) : "";
   return <>{visible || "\u00A0"}</>;
 }
 
 function SweepHeading({ text, active }: { text: string; active: boolean }) {
+  const reducedMotion = useReducedMotion();
   return (
     <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-[#16181a] tracking-tight relative overflow-hidden select-none py-1">
       <motion.span
         initial={{ clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)" }}
         animate={active ? { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" } : { clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)" }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
+        transition={{ duration: reducedMotion ? 0 : 0.8, ease: "easeInOut" }}
         className="block"
       >
         {text}
@@ -309,8 +331,8 @@ function SweepHeading({ text, active }: { text: string; active: boolean }) {
         <motion.div
           initial={{ left: "0%" }}
           animate={{ left: "100%" }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="absolute top-0 bottom-0 w-[2px] bg-[#16181a] z-10"
+          transition={{ duration: reducedMotion ? 0 : 0.8, ease: "easeInOut" }}
+          className="absolute top-0 bottom-0 w-[1px] bg-[#16181a] z-10"
         />
       )}
     </h1>
@@ -318,6 +340,7 @@ function SweepHeading({ text, active }: { text: string; active: boolean }) {
 }
 
 function StaggeredBullets({ bullets, active }: { bullets: string[]; active: boolean }) {
+  const reducedMotion = useReducedMotion();
   return (
     <ul className="flex flex-col gap-3 max-w-lg mt-1">
       {bullets.map((bullet, idx) => (
@@ -326,8 +349,8 @@ function StaggeredBullets({ bullets, active }: { bullets: string[]; active: bool
             initial={{ opacity: 0, y: 15 }}
             animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
             transition={{
-              duration: 0.4,
-              delay: 0.2 + idx * 0.08,
+              duration: reducedMotion ? 0 : 0.4,
+              delay: reducedMotion ? 0 : 0.2 + idx * 0.08,
               ease: "easeOut",
             }}
             className="flex items-start gap-3 text-sm md:text-base text-[#6b7075] font-sans leading-relaxed"

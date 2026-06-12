@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLayoutState } from "./LayoutContext";
 import { PlatformData } from "@/data/platforms";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import LivingChip from "./LivingChip";
 import SplitFlapCounter from "./SplitFlapCounter";
 import Link from "next/link";
@@ -43,12 +43,24 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
   // The chip alternates left/right per slide.
   const isChipLeft = activeStage % 2 === 0;
 
+  // Relax strict scroll-snap on short viewports — req.md §10 "scroll-snap
+  // relaxed on short viewports". We detect the height at mount and on
+  // resize; if viewport < ~700px the snap stops being mandatory.
+  const [relaxSnap, setRelaxSnap] = useState(false);
+  useEffect(() => {
+    const check = () => setRelaxSnap(window.innerHeight < 700);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-[#fafaf8]">
+    <main id="main" className="relative w-full h-screen overflow-hidden bg-[#fafaf8]">
       {/* Scroll Container */}
       <div
         ref={containerRef}
         className="scroll-container w-full h-full relative z-10"
+        style={relaxSnap ? { scrollSnapType: "y proximity" } : undefined}
       >
         {platform.slides.map((slide) => (
           <div
@@ -123,7 +135,7 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
       >
         <LivingChip platformId={platform.id} stage={activeStage} />
       </div>
-    </div>
+    </main>
   );
 }
 
@@ -141,9 +153,19 @@ function TypedText({ text, active }: { text: string; active: boolean }) {
   // derived from it on every render, so we never have to set state in an
   // effect to reset the display. Re-mount via `key` resets length to 0.
   const [length, setLength] = useState(0);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (!active) return;
+    if (reducedMotion) {
+      // Reduced-motion is a system-level signal: snap to the full string
+      // immediately when the user has it set. The setState here is a
+      // legitimate external-system sync (browser media query), not a
+      // cascading render.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setLength(text.length);
+      return;
+    }
     let i = 0;
     const interval = setInterval(() => {
       i += 1;
@@ -151,7 +173,7 @@ function TypedText({ text, active }: { text: string; active: boolean }) {
       if (i >= text.length) clearInterval(interval);
     }, 15);
     return () => clearInterval(interval);
-  }, [text, active]);
+  }, [text, active, reducedMotion]);
 
   const visible = active ? text.slice(0, length) : "";
   return <>{visible || "\u00A0"}</>;
@@ -159,25 +181,28 @@ function TypedText({ text, active }: { text: string; active: boolean }) {
 
 // Sub-component: Heading reveal with sweep scanline
 function SweepHeading({ text, active, accent }: { text: string; active: boolean; accent: string }) {
+  const reducedMotion = useReducedMotion();
+  // 1px scanline per req.md spec (separate issue #9). Width here stays
+  // consistent with the Home page version.
   return (
     <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-[#16181a] tracking-tight relative overflow-hidden select-none py-1">
       {/* Visual slide Heading */}
       <motion.span
         initial={{ clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)" }}
         animate={active ? { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" } : { clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)" }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
+        transition={{ duration: reducedMotion ? 0 : 0.8, ease: "easeInOut" }}
         className="block"
       >
         {text}
       </motion.span>
-      
+
       {/* 1px Scanline traveling ahead of reveal */}
       {active && (
         <motion.div
           initial={{ left: "0%" }}
           animate={{ left: "100%" }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="absolute top-0 bottom-0 w-[2px] z-10"
+          transition={{ duration: reducedMotion ? 0 : 0.8, ease: "easeInOut" }}
+          className="absolute top-0 bottom-0 w-[1px] z-10"
           style={{ backgroundColor: accent }}
         />
       )}
@@ -187,6 +212,7 @@ function SweepHeading({ text, active, accent }: { text: string; active: boolean;
 
 // Sub-component: Staggered bullets animation
 function StaggeredBullets({ bullets, active, accent }: { bullets: string[]; active: boolean; accent: string }) {
+  const reducedMotion = useReducedMotion();
   return (
     <ul className="flex flex-col gap-4 max-w-lg mt-2">
       {bullets.map((bullet, idx) => (
@@ -195,8 +221,8 @@ function StaggeredBullets({ bullets, active, accent }: { bullets: string[]; acti
             initial={{ opacity: 0, y: 15 }}
             animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
             transition={{
-              duration: 0.4,
-              delay: 0.2 + idx * 0.08,
+              duration: reducedMotion ? 0 : 0.4,
+              delay: reducedMotion ? 0 : 0.2 + idx * 0.08,
               ease: "easeOut",
             }}
             className="flex items-start gap-3 text-sm md:text-base text-[#6b7075] font-sans leading-relaxed"
