@@ -134,21 +134,23 @@ export default function ContactPage() {
                 </button>
               </motion.form>
             ) : (
+              // req.md §9.8: "stamps `✓ message queued` on submit". The
+              // success affordance lives in the BootRail's timestamp slot
+              // (handled in BootRail.tsx). Here we only need to confirm
+              // the submission to the user in the form column.
               <motion.div
                 key="success-message"
+                role="status"
+                aria-live="polite"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-8 p-6 bg-white border border-[#e4e2dd] rounded-[3px] flex flex-col gap-4 max-w-lg"
+                className="mt-8 p-6 bg-white border border-[#e4e2dd] rounded-[3px] flex flex-col gap-3 max-w-lg"
               >
-                <div className="flex items-center gap-2 text-emerald-600 font-mono text-sm font-bold">
-                  <span>✓</span>
-                  <span>MESSAGE QUEUED SUCCESSFUL</span>
-                </div>
-                <p className="font-sans text-sm text-[#6b7075] leading-relaxed">
-                  Thank you, {name}. Your schematic details or description have been logged. An embedded engineer will review this payload and respond to you directly.
-                </p>
-                <span className="font-mono text-[9px] text-[#6b7075]">
-                  [ SYSTEM_LOG: MESSAGE_DISPATCHED_TO_QUEUE_0 ]
+                <span className="font-mono text-sm text-emerald-600 font-bold">
+                  ✓ message queued
+                </span>
+                <span className="font-mono text-[10px] text-[#6b7075]">
+                  {name} · {company}
                 </span>
               </motion.div>
             )}

@@ -15,6 +15,7 @@ interface PlatformPageProps {
 export default function PlatformPage({ platform }: PlatformPageProps) {
   const { activeStage, setActiveStage, setScrollProgress } = useLayoutState();
   const containerRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotion();
 
   // Monitor scroll progress and active slide
   useEffect(() => {
@@ -85,6 +86,19 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
                 {/* Animated Heading */}
                 <SweepHeading text={slide.heading} active={activeStage === slide.stage} accent={platform.accent} />
 
+                {/* Sub line on S1 — the platform's edge one-liner per
+                    req.md §9.2-§9.7 ("Headline: <Platform> — Sub: <edge>"). */}
+                {slide.stage === 1 && platform.edgeOneLiner && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={activeStage === 1 ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
+                    transition={{ duration: reducedMotion ? 0 : 0.5, delay: reducedMotion ? 0 : 0.5 }}
+                    className="font-sans text-base text-[#6b7075] -mt-2 max-w-md"
+                  >
+                    {platform.edgeOneLiner}
+                  </motion.p>
+                )}
+
                 {/* Bullets List */}
                 <StaggeredBullets bullets={slide.bullets} active={activeStage === slide.stage} accent={platform.accent} />
 
@@ -107,14 +121,14 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
                         href={`/${getNextPlatform(platform.id)}`}
                         className="font-mono text-xs uppercase tracking-wider text-[#6b7075] hover:text-[#16181a] transition-colors"
                       >
-                        Next platform: {getNextPlatformName(platform.id)} →
+                        Next platform: {getNextPlatformName(platform.id)}
                       </Link>
                     ) : (
                       <Link
                         href="/"
                         className="font-mono text-xs uppercase tracking-wider text-[#6b7075] hover:text-[#16181a] transition-colors"
                       >
-                        Back to platforms →
+                        Back to platforms
                       </Link>
                     )}
                   </motion.div>

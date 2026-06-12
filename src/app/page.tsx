@@ -108,9 +108,10 @@ const homeSlides: HomeSlide[] = [
       "OTA, A/B updates, secure boot, CI/CD image builds, reproducible releases.",
       "Productive on your hardware in weeks — with documented handoff, not lock-in."
     ],
-    ctaText: "Talk to engineering",
+    // req.md §9.1: S8's CTA is the spec sentence verbatim — the "send us
+    // your job description" pitch, not "Talk to engineering".
+    ctaText: "Send us your job description — we'll send back how we'd deliver it.",
     ctaHref: "/contact",
-    secondaryCtaText: "Send us your job description",
   },
   {
     stage: 9,
