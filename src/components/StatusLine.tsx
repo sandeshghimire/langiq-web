@@ -119,11 +119,11 @@ export default function StatusLine() {
       role="status"
       aria-live="polite"
       aria-atomic="true"
-      className="fixed bottom-0 left-0 right-0 z-50 border-t border-[#e4e2dd] bg-[#fafaf8]/80 backdrop-blur-md px-6 md:px-12 py-2 select-none"
+      className="fixed bottom-0 left-0 right-0 z-50 border-t border-[#e8e3d8] bg-[#faf9f5]/80 backdrop-blur-md px-6 md:px-12 py-2 select-none"
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between font-mono text-[10px] text-[#6b7075] uppercase tracking-wider">
+      <div className="max-w-7xl mx-auto flex items-center justify-between font-mono text-[10px] text-[#6f6c66] uppercase tracking-wider">
         <div className="flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#16181a] animate-pulse" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#1f1e1c] animate-pulse" />
           <span>system_status: {message}</span>
         </div>
         <div className="hidden sm:block">

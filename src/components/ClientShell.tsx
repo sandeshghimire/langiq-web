@@ -53,7 +53,7 @@ export default function ClientShell({ children }: { children: React.ReactNode })
           tab through the fixed top nav to reach the main content. */}
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-white focus:text-[#16181a] focus:px-4 focus:py-2 focus:border focus:border-[#16181a] focus:font-mono focus:text-xs focus:uppercase focus:tracking-wider"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-white focus:text-[#1f1e1c] focus:px-4 focus:py-2 focus:border focus:border-[#1f1e1c] focus:font-mono focus:text-xs focus:uppercase focus:tracking-wider"
       >
         Skip to main content
       </a>

@@ -38,11 +38,11 @@ export default function Nav() {
   const currentAccent = currentPageItem.accent;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-[#e4e2dd] bg-[#fafaf8]/80 backdrop-blur-md px-6 md:px-12 py-3 select-none">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-[#e8e3d8] bg-[#faf9f5]/80 backdrop-blur-md px-6 md:px-12 py-3 select-none">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Brand */}
-        <Link href="/" className="font-display font-bold text-lg tracking-wider text-[#16181a] flex items-center gap-2">
-          <span>SOCCENTRIC</span>
+        <Link href="/" className="font-display font-semibold text-lg tracking-tight text-[#1f1e1c] flex items-center gap-2">
+          <span>SoCcentric</span>
           <span
             className="w-1.5 h-1.5 rounded-full inline-block"
             style={{ backgroundColor: currentAccent }}
@@ -71,7 +71,7 @@ export default function Nav() {
                   // py-1 + min-h gives a touch target ≥ 32px (req.md §10
                   // "touch-friendly targets" — full 44px is hit by the
                   // px-3 + py-2 wrapper below).
-                  className="font-display font-medium text-sm transition-colors duration-200 block text-[#16181a] hover:text-[#16181a]/80 px-3 py-2 min-h-[44px] flex items-center"
+                  className="font-display font-medium text-[15px] transition-colors duration-200 block text-[#1f1e1c] hover:text-[#1f1e1c]/70 px-3 py-2 min-h-[44px] flex items-center tracking-tight"
                 >
                   {item.name}
                 </Link>
@@ -93,7 +93,7 @@ export default function Nav() {
                       initial={{ y: -15, opacity: 0 }}
                       animate={isRevealed ? { y: 0, opacity: 1 } : { y: -15, opacity: 0 }}
                       transition={{ duration: 0.15, ease: "easeOut" }}
-                      className="font-mono text-[10px] text-[#6b7075] uppercase block whitespace-nowrap"
+                      className="font-mono text-[10px] text-[#6f6c66] uppercase block whitespace-nowrap tracking-wider"
                     >
                       {item.chipLabel}
                     </motion.span>

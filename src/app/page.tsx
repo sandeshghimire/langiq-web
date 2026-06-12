@@ -176,7 +176,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main id="main" className="relative w-full h-screen overflow-hidden bg-[#fafaf8]">
+    <main id="main" className="relative w-full h-screen overflow-hidden bg-[#faf9f5]">
       <div
         ref={containerRef}
         className="scroll-container w-full h-full relative z-10"
@@ -194,17 +194,30 @@ export default function HomePage() {
               id={`slide-${slide.stage}`}
               className="scroll-slide w-full min-h-screen flex items-center px-6 md:px-16 lg:px-24 py-16"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-2 w-full max-w-7xl mx-auto items-center gap-10 lg:gap-16">
+              <div className="grid grid-cols-1 lg:grid-cols-2 w-full max-w-7xl mx-auto items-center gap-10 lg:gap-20">
                 {/* Left column: title, summary, bullets. Nothing else. */}
                 <div
-                  className={`flex flex-col gap-6 w-full relative z-20 ${diagramFirst ? "lg:order-2" : "lg:order-1"
+                  className={`flex flex-col gap-7 w-full relative z-20 ${diagramFirst ? "lg:order-2" : "lg:order-1"
                     }`}
                 >
+                  {/* Kicker / section label. The mono eyebrow stays —
+                    Anthropic's pages also use a small mono "tag" for
+                    stage metadata above the headline. */}
+                  <motion.span
+                    initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: reducedMotion ? 0 : 0.4, ease: "easeOut" }}
+                    className="font-mono text-[11px] tracking-[0.18em] text-[#cc785c] uppercase"
+                  >
+                    {String(slide.stage).padStart(2, "0")} / 09
+                  </motion.span>
+
                   <motion.h1
                     initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: reducedMotion ? 0 : 0.5, ease: "easeOut" }}
-                    className="font-display font-bold text-5xl md:text-6xl lg:text-7xl text-[#16181a] tracking-tight leading-[0.95]"
+                    className="font-display font-medium text-5xl md:text-6xl lg:text-7xl text-[#1f1e1c] tracking-[-0.02em] leading-[1.02]"
+                    style={{ fontVariationSettings: "'opsz' 36" }}
                   >
                     {slide.heading}
                   </motion.h1>
@@ -218,7 +231,7 @@ export default function HomePage() {
                         delay: reducedMotion ? 0 : 0.15,
                         ease: "easeOut",
                       }}
-                      className="font-sans text-lg text-[#6b7075] max-w-md leading-relaxed"
+                      className="font-display italic font-normal text-xl md:text-2xl text-[#6f6c66] max-w-md leading-[1.35]"
                     >
                       {slide.sub}
                     </motion.p>
@@ -236,11 +249,13 @@ export default function HomePage() {
                             delay: reducedMotion ? 0 : 0.2 + idx * 0.08,
                             ease: "easeOut",
                           }}
-                          className="flex items-start gap-3 text-base text-[#16181a] font-sans leading-relaxed"
+                          className="flex items-start gap-3.5 text-[17px] text-[#1f1e1c] font-sans leading-[1.6]"
                         >
-                          <span className="font-mono text-sm mt-1 select-none text-[#16181a]">
-                            &gt;
-                          </span>
+                          <span
+                            aria-hidden="true"
+                            className="mt-[14px] block w-1.5 h-1.5 rounded-full shrink-0"
+                            style={{ backgroundColor: "#cc785c" }}
+                          />
                           <span>{bullet}</span>
                         </motion.li>
                       ))}
@@ -252,13 +267,14 @@ export default function HomePage() {
                       initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: reducedMotion ? 0 : 0.6 }}
-                      className="mt-4"
+                      className="mt-6 flex items-center gap-5"
                     >
                       <Link
                         href={slide.ctaHref}
-                        className="inline-block font-mono text-xs uppercase tracking-wider px-5 py-2.5 bg-[#16181a] text-[#fafaf8] border border-[#16181a] hover:bg-transparent hover:text-[#16181a] transition-all duration-300 font-bold"
+                        className="inline-flex items-center gap-2 font-sans text-[15px] font-medium tracking-tight px-6 py-3 bg-[#cc785c] text-white border border-[#cc785c] hover:bg-[#b5654c] hover:border-[#b5654c] transition-all duration-200 rounded-[3px]"
                       >
                         {slide.ctaText}
+                        <span aria-hidden="true" className="text-[15px] leading-none">→</span>
                       </Link>
                     </motion.div>
                   )}
