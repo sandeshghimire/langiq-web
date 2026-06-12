@@ -13,39 +13,55 @@ const lines = [
 ];
 
 export default function BootTerminal({ onComplete }: { onComplete: () => void }) {
-  const [visibleLines, setVisibleLines] = useState<string[]>([]);
-  const [currentLineIndex, setCurrentLineIndex] = useState(0);
+  const reducedMotion = useReducedMotion();
+  // Typewriter state is only used for the non-reduced-motion path. Under
+  // prefers-reduced-motion we render all lines immediately from `lines`
+  // and never enter the typewriter at all. This is the structural reason
+  // the previous "ref-guard" patch was fragile: the typewriter effect's
+  // effect-deps included the state it itself set, so any setState in
+  // the effect body re-ran the effect and (via the cleanup) cancelled
+  // the wipe timer it had just scheduled. Splitting reducedMotion into
+  // a separate effect with `[reducedMotion]` as the sole dep sidesteps
+  // the whole problem.
+  const [visibleLines, setVisibleLines] = useState<string[]>(() =>
+    reducedMotion ? lines : []
+  );
+  const [currentLineIndex, setCurrentLineIndex] = useState(
+    reducedMotion ? lines.length : 0
+  );
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
   const [isWiping, setIsWiping] = useState(false);
-  const reducedMotion = useReducedMotion();
-  // Guard so the reduced-motion branch only fires its 200ms wipe timer
-  // once. Without this, every effect re-run (caused by the setState
-  // calls in the same branch) clears the previous timer in its cleanup
-  // and schedules a new one — so the wipe never actually fires and
-  // `onComplete` is never called, leaving the boot overlay covering
-  // the page (a "blank" page from the user's perspective).
-  const reducedMotionInitRef = useRef(false);
+
+  // Ref to track isWiping for the animation complete callback.
+  // The onAnimationComplete handler closes over the render where the
+  // motion.div was mounted (isWiping=false), so we need a ref to read
+  // the current value when the exit animation actually finishes.
+  const isWipingRef = useRef(isWiping);
+
+  // Keep ref in sync with state (must be in effect, not during render)
+  useEffect(() => {
+    isWipingRef.current = isWiping;
+  }, [isWiping]);
+
+  // Reduced-motion fast path: reveal all lines + start the wipe in a
+  // dedicated effect whose only dep is `reducedMotion`. This effect
+  // runs exactly once (mount) and its cleanup never re-runs because
+  // the dep doesn't change. No setState, no infinite loop.
+  useEffect(() => {
+    if (!reducedMotion) return;
+    const hold = setTimeout(() => setIsWiping(true), 200);
+    return () => clearTimeout(hold);
+  }, [reducedMotion]);
 
   // Typewriter effect line-by-line. Total runtime:
   //   sum(len(line) * CHAR_MS) + LINES * LINE_GAP_MS + HOLD_MS
   // With 6 lines of ~60 chars each, at 2ms/char: 720ms typing +
   // 6 * 90ms = 540ms gap + 220ms hold = ~1.48s — under the 1.8s spec
-  // budget. Under prefers-reduced-motion we skip the typewriter entirely
-  // and reveal all lines immediately, then hold briefly.
+  // budget. Only runs when reducedMotion is false (the early return
+  // below is the guard against accidentally entering the typewriter
+  // when the user has reduce-motion set).
   useEffect(() => {
-    if (reducedMotion) {
-      if (reducedMotionInitRef.current) return;
-      reducedMotionInitRef.current = true;
-      // Reduced-motion is a system-level signal: reveal all lines and
-      // start the wipe immediately. The ref-guard above makes the
-      // setState calls in this branch idempotent — the effect only
-      // runs the work once, on the first invocation, so the lint
-      // rule that flags "cascading renders" does not fire here.
-      setVisibleLines(lines);
-      setCurrentLineIndex(lines.length);
-      const hold = setTimeout(() => setIsWiping(true), 200);
-      return () => clearTimeout(hold);
-    }
+    if (reducedMotion) return;
 
     const CHAR_MS = 2;
     const LINE_GAP_MS = 90;
@@ -83,7 +99,7 @@ export default function BootTerminal({ onComplete }: { onComplete: () => void })
 
   // Handle wipe animation complete
   const handleAnimationComplete = () => {
-    if (isWiping) {
+    if (isWipingRef.current) {
       onComplete();
     }
   };
