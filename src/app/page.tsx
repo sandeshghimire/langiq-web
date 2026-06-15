@@ -205,7 +205,8 @@ export default function HomePage() {
                     stage metadata above the headline. */}
                   <motion.span
                     initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.35 }}
                     transition={{ duration: reducedMotion ? 0 : 0.4, ease: "easeOut" }}
                     className="font-mono text-[11px] tracking-[0.18em] text-[#cc785c] uppercase"
                   >
@@ -214,7 +215,8 @@ export default function HomePage() {
 
                   <motion.h1
                     initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.35 }}
                     transition={{ duration: reducedMotion ? 0 : 0.5, ease: "easeOut" }}
                     className="font-display font-medium text-5xl md:text-6xl lg:text-7xl text-[#1f1e1c] tracking-[-0.02em] leading-[1.02]"
                     style={{ fontVariationSettings: "'opsz' 36" }}
@@ -225,7 +227,8 @@ export default function HomePage() {
                   {slide.sub && (
                     <motion.p
                       initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 6 }}
-                      animate={{ opacity: 1, y: 0 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: false, amount: 0.35 }}
                       transition={{
                         duration: reducedMotion ? 0 : 0.5,
                         delay: reducedMotion ? 0 : 0.15,
@@ -243,7 +246,8 @@ export default function HomePage() {
                         <motion.li
                           key={`${slide.stage}-${idx}`}
                           initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 8 }}
-                          animate={{ opacity: 1, y: 0 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: false, amount: 0.35 }}
                           transition={{
                             duration: reducedMotion ? 0 : 0.4,
                             delay: reducedMotion ? 0 : 0.2 + idx * 0.08,
@@ -265,8 +269,9 @@ export default function HomePage() {
                   {slide.ctaText && slide.ctaHref && (
                     <motion.div
                       initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: reducedMotion ? 0 : 0.6 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: false, amount: 0.35 }}
+                      transition={{ duration: reducedMotion ? 0 : 0.5, delay: reducedMotion ? 0 : 0.6, ease: "easeOut" }}
                       className="mt-6 flex items-center gap-5"
                     >
                       <Link
@@ -282,12 +287,16 @@ export default function HomePage() {
 
                 {/* Right column: the diagram for this slide. Order
                   alternates per slide for visual rhythm. */}
-                <div
+                <motion.div
+                  initial={reducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.96 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{ duration: reducedMotion ? 0 : 0.6, ease: "easeOut" }}
                   className={`w-full aspect-[4/3] relative z-10 flex items-center justify-center ${diagramFirst ? "lg:order-1" : "lg:order-2"
                     }`}
                 >
                   <SlideDiagram platform={null} stage={slide.stage} isHome />
-                </div>
+                </motion.div>
               </div>
             </div>
           );

@@ -87,7 +87,8 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
                     headline. Here we also include the slide number. */}
                   <motion.span
                     initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.35 }}
                     transition={{ duration: reducedMotion ? 0 : 0.4, ease: "easeOut" }}
                     className="font-mono text-[11px] tracking-[0.18em] uppercase"
                     style={{ color: platform.accent }}
@@ -100,7 +101,8 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
                   {/* Title */}
                   <motion.h2
                     initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.35 }}
                     transition={{ duration: reducedMotion ? 0 : 0.5, ease: "easeOut" }}
                     className="font-display font-medium text-5xl md:text-6xl lg:text-7xl text-[#1f1e1c] tracking-[-0.02em] leading-[1.02]"
                     style={{ fontVariationSettings: "'opsz' 36" }}
@@ -112,7 +114,8 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
                   {slide.subtitle && (
                     <motion.p
                       initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 6 }}
-                      animate={{ opacity: 1, y: 0 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: false, amount: 0.35 }}
                       transition={{
                         duration: reducedMotion ? 0 : 0.5,
                         delay: reducedMotion ? 0 : 0.15,
@@ -130,7 +133,8 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
                       <motion.li
                         key={`${slide.stage}-${idx}`}
                         initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: false, amount: 0.35 }}
                         transition={{
                           duration: reducedMotion ? 0 : 0.4,
                           delay: reducedMotion ? 0 : 0.2 + idx * 0.08,
@@ -152,8 +156,9 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
                   {slide.stage === 1 && (
                     <motion.div
                       initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: reducedMotion ? 0 : 0.6 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: false, amount: 0.35 }}
+                      transition={{ duration: reducedMotion ? 0 : 0.5, delay: reducedMotion ? 0 : 0.6, ease: "easeOut" }}
                       className="mt-6"
                     >
                       <a
@@ -170,12 +175,16 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
 
                 {/* Diagram column. Sits inside the grid (real 50/50),
                   not a fixed overlay. Order alternates per slide. */}
-                <div
+                <motion.div
+                  initial={reducedMotion ? { opacity: 1 } : { opacity: 0, scale: 0.96 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{ duration: reducedMotion ? 0 : 0.6, ease: "easeOut" }}
                   className={`w-full aspect-[4/3] relative z-10 flex items-center justify-center ${diagramFirst ? "lg:order-1" : "lg:order-2"
                     }`}
                 >
                   <SlideDiagram platform={platform} stage={slide.stage} />
-                </div>
+                </motion.div>
               </div>
             </div>
           );

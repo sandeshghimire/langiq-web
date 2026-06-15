@@ -77,6 +77,7 @@ body {
 }
 
 /* Scanline Sweep Animation */
+/* Scanline Sweep Animation */
 @keyframes scanline {
   0% {
     top: 0%;
@@ -88,6 +89,32 @@ body {
 
   100% {
     top: 0%;
+  }
+}
+
+/* Generic entrance: fade up. Used for server-rendered pages (e.g. the
+   contact page) that can't use framer-motion's whileInView. */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-enter {
+  opacity: 0;
+  animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-enter {
+    opacity: 1;
+    animation: none;
   }
 }
 
@@ -121,75 +148,75 @@ body {
   border-color: var(--accent-color, #16181a);
 }
 
-.accent-text {
-  color: var(--accent-color, #16181a);
-}
+  .accent-text {
+    color: var(--accent-color, #16181a);
+  }
 
-.accent-bg {
-  background-color: var(--accent-color, #16181a);
-}
+  .accent-bg {
+    background-color: var(--accent-color, #16181a);
+  }
 
-/* Form inputs styling.
+  /* Form inputs styling.
    `outline: none` is scoped to non-keyboard focus so the global
    :focus-visible ring still appears for keyboard users (req.md §10). */
-.mono-input {
-  font-family: var(--font-mono);
-  background-color: #ffffff;
-  border: 1px solid #e8e3d8;
-  color: #1f1e1c;
-  padding: 0.75rem 1rem;
-  border-radius: 4px;
-  outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.mono-input:focus:not(:focus-visible) {
-  outline: none;
-}
-
-.mono-input:focus {
-  border-color: var(--accent-color, #cc785c);
-  box-shadow: 0 0 0 3px rgba(204, 120, 92, 0.12);
-}
-
-/* Cursor blink */
-.cursor-blink {
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-
-  from,
-  to {
-    background-color: transparent
+  .mono-input {
+    font-family: var(--font-mono);
+    background-color: #ffffff;
+    border: 1px solid #e8e3d8;
+    color: #1f1e1c;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
-  50% {
-    background-color: currentColor
+  .mono-input:focus:not(:focus-visible) {
+    outline: none;
   }
-}
 
-/* Keyboard focus ring — req.md §10 "visible keyboard focus".
+  .mono-input:focus {
+    border-color: var(--accent-color, #cc785c);
+    box-shadow: 0 0 0 3px rgba(204, 120, 92, 0.12);
+  }
+
+  /* Cursor blink */
+  .cursor-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+
+    from,
+    to {
+      background-color: transparent
+    }
+
+    50% {
+      background-color: currentColor
+    }
+  }
+
+  /* Keyboard focus ring — req.md §10 "visible keyboard focus".
    Accent comes from the same per-platform CSS var used elsewhere; falls
    back to the warm orange. The offset keeps the ring outside the element
    box. */
-:focus-visible {
-  outline: 2px solid var(--accent-color, #cc785c);
-  outline-offset: 2px;
-  border-radius: 3px;
-}
+  :focus-visible {
+    outline: 2px solid var(--accent-color, #cc785c);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
 
-/* Reduced motion — req.md §6, §7 #11, §10 "prefers-reduced-motion fully
+  /* Reduced motion — req.md §6, §7 #11, §10 "prefers-reduced-motion fully
    honored". Kills all CSS-driven motion and smooth scroll. Component-level
    JS animations are gated separately with useReducedMotion(). */
-@media (prefers-reduced-motion: reduce) {
+  @media (prefers-reduced-motion: reduce) {
 
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
   }
-}
