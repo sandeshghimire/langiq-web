@@ -38,6 +38,13 @@ export const SlideDiagram: React.FC<SlideDiagramProps> = ({
     const reducedMotion = useReducedMotion();
     const ctx = isHome ? getHomeContext(stage) : { platform, stage, isHome: false };
 
+    // Each slide mounts its own SlideDiagram, so the frame's layoutId must
+    // be unique per instance. A shared layoutId across the 9 simultaneously
+    // mounted frames makes framer-motion's shared-layout system collapse
+    // them into one element and leave the rest invisible until a scroll
+    // re-measures the layout.
+    const frameLayoutId = `slide-diagram-frame-${isHome ? "home" : platform?.id ?? "none"}-${stage}`;
+
     return (
         <div className="w-full h-full flex items-center justify-center p-2 lg:p-4">
             {/* Persistent frame. The `layout` prop lets framer-motion
@@ -45,7 +52,7 @@ export const SlideDiagram: React.FC<SlideDiagramProps> = ({
                 the wrapper has a fixed aspect ratio it never does. */}
             <motion.div
                 layout
-                layoutId="slide-diagram-frame"
+                layoutId={frameLayoutId}
                 transition={{ duration: reducedMotion ? 0 : 0.5, ease: "easeInOut" }}
                 className="w-full max-w-[640px] aspect-[4/3] relative"
             >
