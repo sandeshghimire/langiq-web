@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { useLayoutState } from "./LayoutContext";
 import { PlatformData } from "@/data/platforms";
 import { motion, useReducedMotion } from "framer-motion";
-import Link from "next/link";
 import { SlideDiagram } from "./diagrams/SlideDiagram";
 
 interface PlatformPageProps {
@@ -93,7 +92,9 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
                     className="font-mono text-[11px] tracking-[0.18em] uppercase"
                     style={{ color: platform.accent }}
                   >
-                    {platform.name} · {String(slide.stage).padStart(2, "0")} / 09
+                    {platform.name} ·{" "}
+                    {String(slide.stage + platform.counterBase).padStart(2, "0")} /{" "}
+                    {String(platform.counterBase + 9).padStart(2, "0")}
                   </motion.span>
 
                   {/* Title */}
@@ -107,8 +108,8 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
                     {slide.heading}
                   </motion.h2>
 
-                  {/* Brief summary — only on stage 1 */}
-                  {slide.stage === 1 && platform.edgeOneLiner && (
+                  {/* Section subtitle — one line under the title, every slide */}
+                  {slide.subtitle && (
                     <motion.p
                       initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -119,7 +120,7 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
                       }}
                       className="font-display italic font-normal text-xl md:text-2xl text-[#6f6c66] max-w-md leading-[1.35]"
                     >
-                      {platform.edgeOneLiner}
+                      {slide.subtitle}
                     </motion.p>
                   )}
 
@@ -147,21 +148,22 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
                     ))}
                   </ul>
 
-                  {/* Stage 9: small CTA link, no extra panel */}
-                  {slide.stage === 9 && (
+                  {/* Stage 1: brochure download, styled as a button */}
+                  {slide.stage === 1 && (
                     <motion.div
                       initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: reducedMotion ? 0 : 0.6 }}
                       className="mt-6"
                     >
-                      <Link
-                        href="/contact"
+                      <a
+                        href={`/brochure/${platform.id}-brochure.pdf`}
+                        download
                         className="inline-flex items-center gap-2 font-sans text-[15px] font-medium tracking-tight px-6 py-3 bg-[#cc785c] text-white border border-[#cc785c] hover:bg-[#b5654c] hover:border-[#b5654c] transition-all duration-200 rounded-[3px]"
                       >
-                        Talk to engineering
-                        <span aria-hidden="true" className="text-[15px] leading-none">→</span>
-                      </Link>
+                        Download brochure
+                        <span aria-hidden="true" className="text-[15px] leading-none">↓</span>
+                      </a>
                     </motion.div>
                   )}
                 </div>
