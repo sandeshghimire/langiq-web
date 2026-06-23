@@ -448,3 +448,75 @@ middleware→S7 (now uses named `*-robotics`/`*-vision`/… image variants),
 ota→S8. Dropped old `Stage8Perf` / `Stage9Mfg`. `make build && make
 lint` both clean; verified all 9 stages render with per-platform data
 on /arches and /zion.
+
+### Session log (diagram visual redesign, 2026-06-23)
+
+The phase-1 remap above was rejected as "not impressive" — all four
+problems flagged: too boxy/generic, animation too weak, still mismatched
+content, design quality low. Phase 2 was a **full visual rewrite of
+`stages.tsx`**, pivoting from isometric-box schematics to bespoke,
+recognizable technical illustrations per slide, with bolder motion.
+Per-platform maps, `r()`, `DiagramFrame`, the dispatch, and
+`getHomeContext` were all kept; `Iso3DBox` was dropped (that was the
+"boxy" look).
+
+**Do (redesign)**
+- **Build a recognizable *thing* per slide, not a generic schematic.**
+  S1 = a real IC package (pin ticks, pin-1 dot, inner die, co-processor
+  satellite + power pulse). S2 = a PCB top-view with a SoC, L-shaped
+  traces to labeled peripheral pads, and a probe/multimeter sweeping.
+  S3 = a Yocto pipeline: layer repos → a "Bitbake oven" (rotating gears
+  + heat shimmer) → image artifact (lock badge) → SBOM doc (typed lines
+  + blinking cursor). S4 = a horizontal boot-chain ribbon with a
+  glowing signal dot traveling the full width, a golden recovery
+  vault, and a rollback loop. S5 = a kernel core with 12 driver `.ko`
+  cards docking around it on a radial mesh. S6 = two distinct chips
+  (big Linux SoC + small RTOS MCU) on a wire with packets traveling
+  both directions + a deterministic-pulse scope + watchdog. S7 = a
+  base-image hub fanning out to named image cards each with a distinct
+  icon (robot/camera/gear/car/cross/cloud/net/disp/bolt/stack). S8 =
+  an A/B partition table (A active ✓, B filling via `diag-flood`,
+  golden vault) + a 16-device fleet rollout wave. S9 = dev laptop →
+  eSDK → target + a dark oscilloscope panel with a live sweeping trace.
+- **Make the animation *obvious*.** Use `diag-signal` for a dot
+  traveling the full boot-chain width (`--diag-travel = totalW`),
+  `diag-rotate` for the Bitbake gears, `diag-flood` for the OTA slot-B
+  fill, `diag-packet` (both directions, opposite `--diag-travel`
+  signs) for the RPMsg link, `diag-sweep` for the probe and scope, and
+  staggered `diag-blink` for the fleet + peripheral-pad bring-up
+  checklist. Stagger via inline `animationDelay: \`${i * 0.12}s\``.
+- **Namespace the trace path as a single JS string constant** (e.g.
+  `Stage9Sdk`'s `tracePath`) and render with `<path d={tracePath}>` —
+  long polyline d-strings as inline JSX get unreadable.
+- **Tiny icon glyphs in a single `Icon` switch** keyed by string
+  (`"robot"`, `"cam"`, `"gear"`, `"car"`, `"cross"`, `"cloud"`, …)
+  drawn at origin and translated/scaled by the caller. Keeps the
+  middleware fan-out data-driven: `PLATFORM_IMAGES` now carries an
+  `icon` field per image variant.
+
+**Don't (redesign)**
+- **Don't keep `Iso3DBox` as the primary primitive** if the goal is
+  "recognizable, not boxy." It was the entire reason phase 1 read as
+  generic. Flat rects + real iconography (pin ticks, gears, scope
+  graticule, partition blocks) read as the actual hardware concept.
+- **Don't forget to remove a now-unused palette const.** Dropping
+  `Iso3DBox` left `HAIR` unreferenced → ESLint `no-unused-vars`
+  warning. After a structural rewrite, grep the const block for any
+  token no longer used.
+- **Don't put `animationDirection: "reverse"` on a bare SVG `<g>`
+  expecting the gear to spin the other way** — the `diag-rotate`
+  keyframe uses `transform-box: fill-box` on the *class*, and an inline
+  `style={{ animationDirection: "reverse" }}` only overrides if it's
+  on the same element that carries the class. Put both the class and
+  the inline style on the same `<g>`.
+- **Don't use `React.FC` for the `Icon` switch return** with many
+  branches returning `null` for the default — TypeScript is fine, but
+  ESLint's `no-unused-vars` will flag the unused `k` in branches that
+  ignore it. Keep the switch exhaustive or accept the default-null.
+
+`make build && make lint` both clean (0 errors, 0 warnings). Verified
+via `curl localhost:3001/<platform>`: per-platform signals all present
+(arches→meta-tegra/STM32/Nsight, zion→meta-xilinx/FPGA/VIVADO,
+acadia→meta-raspberrypi/PICO W, joshua→meta-ti/PRU/CCS,
+sequoia→meta-intel/TPM 2.0/ACRN/IVSHMEM); 0 `NaN` across all 6 pages;
+all 9 stage titles present on platform pages and home.

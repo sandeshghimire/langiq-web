@@ -330,3 +330,62 @@ body {
   transform-box: fill-box;
   animation: diag-packet 2.6s ease-in-out infinite;
 }
+
+/* Continuous rotation — gears in the Bitbake "oven", a rolling CI loop.
+   transform-box: fill-box keeps the origin on the element's own bbox. */
+@keyframes diag-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.diag-rotate {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: diag-rotate 6s linear infinite;
+}
+
+/* Fast shimmer — heat / activity glow on an energized element. */
+@keyframes diag-shimmer {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+.diag-shimmer {
+  animation: diag-shimmer 1.1s ease-in-out infinite;
+}
+
+/* Vertical fill rising from the bottom — a storage partition block
+   filling up, a tank, a progress vessel. */
+@keyframes diag-flood {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+.diag-flood {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: diag-flood 3.2s ease-out infinite alternate;
+}
+
+/* A signal dot traveling a fixed path (boot chain, build flow). Same
+   --diag-travel mechanism as diag-packet but keeps full opacity so it
+   reads as a moving pulse, not a fading packet. */
+@keyframes diag-signal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(var(--diag-travel, 120px));
+  }
+}
+.diag-signal {
+  transform-box: fill-box;
+  animation: diag-signal 2.2s linear infinite;
+}

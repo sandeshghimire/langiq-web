@@ -1,1233 +1,845 @@
 "use client";
 
 import React from "react";
-import {
-    DiagramFrame,
-    Iso3DBox,
-} from "./shared3d";
+import { DiagramFrame } from "./shared3d";
 import type { DiagramContext } from "./registry";
 import { platforms } from "@/data/platforms";
 
-// Round a number to 2 decimal places. Used everywhere we emit an SVG
-// coordinate that came from `Math.cos` / `Math.sin` / floating-point
-// arithmetic. Without this, V8 on the server and V8 on the client
-// can disagree on the trailing digits of a result like
-// `Math.cos(Math.PI / 3) * 50`, which makes the SSR'd SVG markup
-// not match the client's, which trips a React hydration mismatch
-// warning and floods the console with diffs. Round to 2dp — the
-// diagram only needs 1/100 of a pixel of precision, but V8's
-// default toString emits 15+ digits.
+// Round a number to 2dp — keeps SSR and client SVG markup bit-identical
+// (prevents React hydration mismatches from floating-point trailing
+// digits in trig-derived coordinates).
 const r = (n: number) => Math.round(n * 100) / 100;
 
-// Shared block container. The per-stage diagrams are fully static
-// SVG; the only animation in the system is the AnimatePresence
-// crossfade in SlideDiagram.tsx plus the CSS "living motion"
-// classes (.diag-flow / .diag-pulse / .diag-write / .diag-sweep /
-// .diag-packet) applied directly to SVG elements. We deliberately do
-// NOT use framer-motion `motion.*` wrappers here — they re-fire on
-// every crossfade and produce the "blocks flying in" jitter called
-// out in the project CLAUDE.md.
-const BlockReveal: React.FC<{
-    active?: boolean;
-    delay?: number;
-    suppressAnimations?: boolean;
-    children: React.ReactNode;
-}> = ({ children }) => <g opacity={1}>{children}</g>;
+// Shared palette (light-only by design — no dark variant).
+const INK = "#1f1e1c";
+const MUTED = "#6f6c66";
+const PAPER = "#fafaf5";
+const WHITE = "#ffffff";
+const MONO = "var(--font-mono), monospace";
 
-// ─────────────────────────────────────────────────────────────────
-// Per-platform data maps
-// ─────────────────────────────────────────────────────────────────
+// ── Tiny shared motifs ──────────────────────────────────────────
 
-// Stage 1 — Overview block grids (4x3). The platform determines which
-// blocks are present and their labels.
+// A status LED that blinks. Stagger via inline animationDelay.
+const LED: React.FC<{ cx: number; cy: number; accent: string; on?: boolean; delay?: number }> = ({
+    cx,
+    cy,
+    accent,
+    on = true,
+    delay = 0,
+}) => (
+    <circle
+        cx={cx}
+        cy={cy}
+        r={2.4}
+        fill={on ? accent : WHITE}
+        stroke={accent}
+        strokeWidth={0.8}
+        className={on ? "diag-blink" : undefined}
+        style={on ? { animationDelay: `${delay}s` } : undefined}
+    />
+);
+
+// Bottom mono status readout strip.
+const StatusStrip: React.FC<{ y?: number; accent: string; text: string }> = ({
+    y = 342,
+    accent,
+    text,
+}) => (
+    <text
+        x={20}
+        y={y}
+        fill={accent}
+        style={{ fontSize: 8, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.5, textTransform: "uppercase" }}
+    >
+        {text}
+    </text>
+);
+
+// A flat IC package: rounded package body, pin ticks, pin-1 dot, inner die.
+const Chip: React.FC<{
+    cx: number; cy: number; w: number; h: number; accent: string;
+    label?: string; sub?: string; bodyFill?: string;
+}> = ({ cx, cy, w, h, accent, label, sub, bodyFill = WHITE }) => {
+    const left = cx - w / 2;
+    const top = cy - h / 2;
+    const pins = Math.max(4, Math.floor(w / 16));
+    return (
+        <g>
+            <rect x={left} y={top} width={w} height={h} rx={5} fill={bodyFill} stroke={INK} strokeWidth={1.4} />
+            {/* pin ticks (top + bottom) */}
+            {Array.from({ length: pins }).map((_, i) => {
+                const px = left + 8 + (i * (w - 16)) / (pins - 1);
+                return (
+                    <g key={`pin-${i}`}>
+                        <line x1={px} y1={top} x2={px} y2={top - 4} stroke={INK} strokeWidth={1} />
+                        <line x1={px} y1={top + h} x2={px} y2={top + h + 4} stroke={INK} strokeWidth={1} />
+                    </g>
+                );
+            })}
+            <circle cx={left + 6} cy={top + 6} r={2} fill={accent} />
+            {/* inner die */}
+            <rect x={left + 12} y={top + 12} width={w - 24} height={h - 24} rx={3} fill={PAPER} stroke={accent} strokeWidth={1} />
+            {label && (
+                <text x={cx} y={cy + (sub ? -3 : 3)} textAnchor="middle" fill={INK} style={{ fontSize: 9, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.3 }}>
+                    {label}
+                </text>
+            )}
+            {sub && (
+                <text x={cx} y={cy + 9} textAnchor="middle" fill={accent} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.4, textTransform: "uppercase" }}>
+                    {sub}
+                </text>
+            )}
+        </g>
+    );
+};
+
+// ── Per-platform data maps ──────────────────────────────────────
+
 const PLATFORM_BLOCKS: Record<string, { name: string; sub: string }[]> = {
     arches: [
-        { name: "GPU", sub: "CUDA" },
-        { name: "DLA", sub: "x2" },
-        { name: "Cortex-A", sub: "8C" },
-        { name: "STM32", sub: "RT" },
-        { name: "NVMe", sub: "PCIe" },
-        { name: "CSI", sub: "x6" },
-        { name: "RPMsg", sub: "LINK" },
-        { name: "Ethernet", sub: "GbE" },
-        { name: "USB 3", sub: "x3" },
-        { name: "CAN-FD", sub: "x2" },
-        { name: "Display", sub: "DP/HDMI" },
-        { name: "GPIO", sub: "I/O" },
+        { name: "GPU", sub: "CUDA" }, { name: "DLA", sub: "x2" }, { name: "A-Core", sub: "8C" }, { name: "SPE", sub: "R-core" },
+        { name: "NVMe", sub: "PCIe" }, { name: "CSI", sub: "x6" }, { name: "NVENC", sub: "H.265" }, { name: "GbE", sub: "x2" },
+        { name: "USB 3", sub: "x3" }, { name: "CAN-FD", sub: "x2" }, { name: "DP/HDMI", sub: "out" }, { name: "GPIO", sub: "I/O" },
     ],
     acadia: [
-        { name: "Cortex-A", sub: "4C" },
-        { name: "Video", sub: "H.265" },
-        { name: "Pico W", sub: "RP2040" },
-        { name: "WiFi", sub: "2.4/5G" },
-        { name: "ETH", sub: "GbE" },
-        { name: "USB 3", sub: "x2" },
-        { name: "CAM", sub: "x2" },
-        { name: "DSI", sub: "Display" },
-        { name: "HDMI", sub: "4K" },
-        { name: "PCIe", sub: "Gen 2" },
-        { name: "I2C/SPI", sub: "x4" },
-        { name: "RTC", sub: "+ GPIO" },
+        { name: "A-Core", sub: "4C" }, { name: "Video", sub: "H.265" }, { name: "Pico W", sub: "RP2040" }, { name: "WiFi", sub: "2.4/5G" },
+        { name: "ETH", sub: "GbE" }, { name: "USB 3", sub: "x2" }, { name: "CAM", sub: "x2" }, { name: "DSI", sub: "disp" },
+        { name: "HDMI", sub: "4K" }, { name: "PCIe", sub: "Gen2" }, { name: "I2C/SPI", sub: "x4" }, { name: "RTC", sub: "+GPIO" },
     ],
     zion: [
-        { name: "Cortex-A53", sub: "4C" },
-        { name: "FPGA", sub: "Fabric" },
-        { name: "R5 Lockstep", sub: "2C" },
-        { name: "DDR4", sub: "ctrl" },
-        { name: "Bitstream", sub: "OTA" },
-        { name: "GEM", sub: "GbE x2" },
-        { name: "USB 3", sub: "x2" },
-        { name: "DisplayPort", sub: "x2" },
-        { name: "SATA", sub: "x2" },
-        { name: "CAN-FD", sub: "x2" },
-        { name: "SPI/QSPI", sub: "x4" },
-        { name: "PL I/O", sub: "GPIO" },
+        { name: "A53", sub: "4C" }, { name: "FPGA", sub: "PL" }, { name: "R5 Lock", sub: "2C" }, { name: "DDR4", sub: "ctrl" },
+        { name: "Bitstream", sub: "OTA" }, { name: "GEM", sub: "GbE" }, { name: "USB 3", sub: "x2" }, { name: "DP", sub: "x2" },
+        { name: "SATA", sub: "x2" }, { name: "CAN-FD", sub: "x2" }, { name: "QSPI", sub: "x4" }, { name: "PL I/O", sub: "GPIO" },
     ],
     pinnacle: [
-        { name: "Cortex-A53", sub: "4C" },
-        { name: "Cortex-M7", sub: "1C" },
-        { name: "GPU", sub: "Vivante" },
-        { name: "DDR4", sub: "ctrl" },
-        { name: "Display", sub: "LVDS/DSI" },
-        { name: "CAN-FD", sub: "x2" },
-        { name: "ENET", sub: "1Gb x2" },
-        { name: "USB 3", sub: "x2" },
-        { name: "PCIe", sub: "Gen 2" },
-        { name: "15YR", sub: "LIFETIME" },
-        { name: "FuSa", sub: "IEC 61508" },
-        { name: "ECC", sub: "LPDDR4" },
+        { name: "A53", sub: "4C" }, { name: "M7", sub: "1C" }, { name: "GPU", sub: "Viv" }, { name: "DDR4", sub: "ctrl" },
+        { name: "LVDS/DSI", sub: "disp" }, { name: "CAN-FD", sub: "x2" }, { name: "ENET", sub: "x2" }, { name: "USB 3", sub: "x2" },
+        { name: "PCIe", sub: "Gen2" }, { name: "15YR", sub: "LIFE" }, { name: "FuSa", sub: "61508" }, { name: "ECC", sub: "LPDDR" },
     ],
     joshua: [
-        { name: "Cortex-A15", sub: "2C" },
-        { name: "PRU", sub: "x2" },
-        { name: "PRU", sub: "x2" },
-        { name: "EtherCAT", sub: "PHY" },
-        { name: "DDR3", sub: "ctrl" },
-        { name: "QSPI", sub: "x2" },
-        { name: "ENET", sub: "1Gb x2" },
-        { name: "USB 3", sub: "x2" },
-        { name: "CAN-FD", sub: "x2" },
-        { name: "ADC", sub: "12-bit" },
-        { name: "PWM", sub: "x6" },
-        { name: "GPIO", sub: "168" },
+        { name: "A15", sub: "2C" }, { name: "PRU", sub: "x2" }, { name: "PRU", sub: "x2" }, { name: "EtherCAT", sub: "PHY" },
+        { name: "DDR3", sub: "ctrl" }, { name: "QSPI", sub: "x2" }, { name: "ENET", sub: "x2" }, { name: "USB 3", sub: "x2" },
+        { name: "CAN-FD", sub: "x2" }, { name: "ADC", sub: "12b" }, { name: "PWM", sub: "x6" }, { name: "GPIO", sub: "168" },
     ],
     sequoia: [
-        { name: "x86", sub: "8C/16T" },
-        { name: "DDR4", sub: "x2 chan" },
-        { name: "PCIe", sub: "Gen 4" },
-        { name: "10GbE", sub: "x2" },
-        { name: "SATA", sub: "x4" },
-        { name: "M.2", sub: "NVMe" },
-        { name: "USB 3", sub: "x4" },
-        { name: "IPMI", sub: "BMC" },
-        { name: "Hypervisor", sub: "Xen/ACRN" },
-        { name: "PREEMPT_RT", sub: "kernel" },
-        { name: "SR-IOV", sub: "vfio" },
-        { name: "ECC", sub: "Reg" },
+        { name: "x86", sub: "8C/16T" }, { name: "DDR4", sub: "x2ch" }, { name: "PCIe", sub: "Gen4" }, { name: "10GbE", sub: "x2" },
+        { name: "SATA", sub: "x4" }, { name: "M.2", sub: "NVMe" }, { name: "USB 3", sub: "x4" }, { name: "IPMI", sub: "BMC" },
+        { name: "Hyperv", sub: "ACRN" }, { name: "PREEMPT", sub: "RT" }, { name: "SR-IOV", sub: "vfio" }, { name: "ECC", sub: "REG" },
     ],
 };
 
-// Stage 2 — peripheral interface enumeration order (bring-up).
-const ENUM_INTERFACES = [
-    "UART0", "UART1", "I2C0", "I2C1", "SPI0", "SPI1",
-    "ETH0", "ETH1", "PCIe", "USB0", "USB1", "GPIO",
-    "CAN0", "CAN1", "CSI0", "CSI1", "DSI", "I2S",
-];
-
-// Stage 3 — Yocto layer / build layer per platform (meta-{project}).
-const YOCTO_LAYERS: Record<string, string> = {
-    arches: "meta-tegra",
-    acadia: "meta-raspberrypi",
-    zion: "meta-xilinx",
-    pinnacle: "meta-imx",
-    joshua: "meta-ti",
-    sequoia: "meta-intel",
+// Co-processor satellite per platform (S1 overview). x86 has no copproc;
+// it shows a TPM + hypervisor stack instead.
+const SATELLITE: Record<string, { label: string; sub: string }> = {
+    arches: { label: "STM32", sub: "RT coproc" },
+    acadia: { label: "PICO W", sub: "RP2040" },
+    zion: { label: "FPGA", sub: "PL fabric" },
+    joshua: { label: "PRU", sub: "ICSS" },
+    pinnacle: { label: "M7", sub: "RT coproc" },
+    sequoia: { label: "TPM 2.0", sub: "measured boot" },
 };
 
-// Stage 6 — RT core + link per platform.
+// S2 — peripheral pads on the carrier board.
+const PERIPHERALS: { name: string; icon: string }[] = [
+    { name: "CSI camera", icon: "cam" }, { name: "GbE", icon: "eth" }, { name: "USB 3", icon: "usb" },
+    { name: "CAN-FD", icon: "can" }, { name: "GPIO", icon: "hdr" }, { name: "DDR4", icon: "mem" },
+    { name: "PCIe", icon: "pcie" }, { name: "Display", icon: "disp" },
+];
+
+// S3 — Yocto layer name per platform.
+const YOCTO_LAYERS: Record<string, string> = {
+    arches: "meta-tegra", acadia: "meta-raspberrypi", zion: "meta-xilinx",
+    pinnacle: "meta-imx", joshua: "meta-ti", sequoia: "meta-intel",
+};
+
+// S6 — RT core + link per platform.
 const RT_CORE: Record<string, { rt: string; linux: string; fw: string }> = {
-    arches: { rt: "Cortex-R SPE", linux: "Cortex-A · Linux", fw: "FreeRTOS" },
+    arches: { rt: "Cortex-R · SPE", linux: "Cortex-A · Linux", fw: "FreeRTOS" },
     acadia: { rt: "Pico · RP2040", linux: "Pi · Linux", fw: "FreeRTOS / Zephyr" },
     zion: { rt: "RPU · R5F", linux: "APU · Linux", fw: "FreeRTOS / Zephyr" },
     pinnacle: { rt: "Cortex-M7/M33", linux: "Cortex-A · Linux", fw: "FreeRTOS / Zephyr" },
     joshua: { rt: "PRU-ICSS + M4F", linux: "Cortex-A · Linux", fw: "PRU FW + FreeRTOS" },
     sequoia: { rt: "RT Guest", linux: "HMI Guest", fw: "KVM / ACRN" },
 };
-
 const RT_LINK: Record<string, string> = {
-    arches: "IVC shmem",
-    acadia: "UART / SPI / USB",
-    zion: "OpenAMP / RPMsg",
-    pinnacle: "RPMsg / MU",
-    joshua: "remoteproc / RPMsg",
-    sequoia: "virtio / IVSHMEM",
+    arches: "IVC shmem", acadia: "UART / SPI", zion: "OpenAMP / RPMsg",
+    pinnacle: "RPMsg / MU", joshua: "remoteproc / RPMsg", sequoia: "virtio / IVSHMEM",
 };
 
-// Stage 7 — named industry image variants per platform (the load-bearing
-// signal that the platform ships multiple purpose-built images, not one
-// generic one). Derived from each platform's S7 bullets in platforms.ts.
-const PLATFORM_IMAGES: Record<string, { name: string; sub: string }[]> = {
+// S7 — named industry image variants per platform, each with a glyph key.
+const PLATFORM_IMAGES: Record<string, { name: string; sub: string; icon: string }[]> = {
     arches: [
-        { name: "arches-robotics", sub: "ROS 2" },
-        { name: "arches-vision", sub: "DeepStream" },
-        { name: "arches-iot", sub: "MQTT" },
-        { name: "arches-automotive", sub: "CAN-FD" },
-        { name: "arches-medical", sub: "IEC 62304" },
+        { name: "arches-robotics", sub: "ROS 2", icon: "robot" },
+        { name: "arches-vision", sub: "DeepStream", icon: "cam" },
+        { name: "arches-iot", sub: "MQTT", icon: "cloud" },
+        { name: "arches-automotive", sub: "CAN-FD", icon: "car" },
+        { name: "arches-medical", sub: "IEC 62304", icon: "cross" },
     ],
     acadia: [
-        { name: "acadia-iot", sub: "cloud" },
-        { name: "acadia-gateway", sub: "Modbus" },
-        { name: "acadia-robotics", sub: "ROS 2" },
-        { name: "acadia-hmi", sub: "Qt / LVGL" },
+        { name: "acadia-iot", sub: "cloud", icon: "cloud" },
+        { name: "acadia-gateway", sub: "Modbus", icon: "net" },
+        { name: "acadia-robotics", sub: "ROS 2", icon: "robot" },
+        { name: "acadia-hmi", sub: "Qt / LVGL", icon: "disp" },
     ],
     zion: [
-        { name: "zion-industrial", sub: "EtherCAT" },
-        { name: "zion-robotics", sub: "ROS 2" },
-        { name: "zion-vision", sub: "GStreamer" },
-        { name: "zion-automotive", sub: "CAN-FD" },
-        { name: "zion-medical", sub: "IEC 62304" },
+        { name: "zion-industrial", sub: "EtherCAT", icon: "gear" },
+        { name: "zion-robotics", sub: "ROS 2", icon: "robot" },
+        { name: "zion-vision", sub: "GStreamer", icon: "cam" },
+        { name: "zion-automotive", sub: "CAN-FD", icon: "car" },
+        { name: "zion-medical", sub: "IEC 62304", icon: "cross" },
     ],
     pinnacle: [
-        { name: "pinnacle-industrial", sub: "OPC UA" },
-        { name: "pinnacle-automotive", sub: "cluster" },
-        { name: "pinnacle-iot", sub: "EdgeLock" },
-        { name: "pinnacle-hmi", sub: "Qt / LVGL" },
-        { name: "pinnacle-medical", sub: "IEC 62304" },
+        { name: "pinnacle-industrial", sub: "OPC UA", icon: "gear" },
+        { name: "pinnacle-automotive", sub: "cluster", icon: "car" },
+        { name: "pinnacle-iot", sub: "EdgeLock", icon: "cloud" },
+        { name: "pinnacle-hmi", sub: "Qt / LVGL", icon: "disp" },
+        { name: "pinnacle-medical", sub: "IEC 62304", icon: "cross" },
     ],
     joshua: [
-        { name: "joshua-industrial", sub: "EtherCAT" },
-        { name: "joshua-automation", sub: "motor" },
-        { name: "joshua-iot", sub: "MQTT" },
-        { name: "joshua-energy", sub: "DNP3" },
+        { name: "joshua-industrial", sub: "EtherCAT", icon: "gear" },
+        { name: "joshua-automation", sub: "motor", icon: "robot" },
+        { name: "joshua-iot", sub: "MQTT", icon: "cloud" },
+        { name: "joshua-energy", sub: "DNP3", icon: "bolt" },
     ],
     sequoia: [
-        { name: "sequoia-industrial", sub: "soft-PLC" },
-        { name: "sequoia-edge", sub: "Docker" },
-        { name: "sequoia-vision", sub: "OpenVINO" },
-        { name: "sequoia-virt", sub: "KVM / ACRN" },
-        { name: "sequoia-medical", sub: "audit" },
+        { name: "sequoia-industrial", sub: "soft-PLC", icon: "gear" },
+        { name: "sequoia-edge", sub: "Docker", icon: "cloud" },
+        { name: "sequoia-vision", sub: "OpenVINO", icon: "cam" },
+        { name: "sequoia-virt", sub: "KVM / ACRN", icon: "stack" },
+        { name: "sequoia-medical", sub: "audit", icon: "cross" },
     ],
 };
 
-// Stage 9 — per-platform profiler / debugger toolchain.
+// S9 — per-platform profiler / debugger.
 const PROFILER: Record<string, string> = {
-    arches: "Nsight Systems",
-    acadia: "gdbserver / perf",
-    zion: "Vivado JTAG",
-    pinnacle: "Lauterbach / Segger",
-    joshua: "CCS / XDS",
-    sequoia: "perf / eBPF",
+    arches: "Nsight Systems", acadia: "gdbserver / perf", zion: "Vivado JTAG",
+    pinnacle: "Lauterbach / Segger", joshua: "CCS / XDS", sequoia: "perf / eBPF",
+};
+
+// ── Tiny icon glyphs (drawn at origin, translated by caller) ────
+const Icon: React.FC<{ k: string; accent: string }> = ({ k, accent }) => {
+    const s = { stroke: INK, strokeWidth: 1.1, fill: "none" } as const;
+    switch (k) {
+        case "robot":
+            return (
+                <g>
+                    <rect x={-7} y={-8} width={14} height={10} rx={2} {...s} />
+                    <circle cx={-3} cy={-3} r={1.4} fill={accent} /><circle cx={3} cy={-3} r={1.4} fill={accent} />
+                    <line x1={0} y1={2} x2={0} y2={8} {...s} /><line x1={-5} y1={8} x2={5} y2={8} {...s} />
+                </g>
+            );
+        case "cam":
+            return (
+                <g>
+                    <rect x={-8} y={-5} width={16} height={11} rx={2} {...s} />
+                    <circle cx={0} cy={0} r={3.2} {...s} /><circle cx={0} cy={0} r={1} fill={accent} />
+                </g>
+            );
+        case "cloud":
+            return (
+                <g>
+                    <path d="M -7 2 a 4 4 0 0 1 1 -7 a 5 5 0 0 1 9 1 a 3.5 3.5 0 0 1 -1 7 Z" {...s} />
+                </g>
+            );
+        case "car":
+            return (
+                <g>
+                    <path d="M -9 2 L -7 -3 L 7 -3 L 9 2 Z M -9 2 L 9 2" {...s} />
+                    <circle cx={-5} cy={3} r={1.8} fill={INK} /><circle cx={5} cy={3} r={1.8} fill={INK} />
+                </g>
+            );
+        case "cross":
+            return (
+                <g>
+                    <rect x={-2.5} y={-8} width={5} height={16} rx={1} fill={accent} />
+                    <rect x={-7} y={-3.5} width={14} height={5} rx={1} fill={accent} />
+                </g>
+            );
+        case "gear":
+            return (
+                <g className="diag-rotate" style={{ transformOrigin: "center" }}>
+                    <circle cx={0} cy={0} r={4.5} {...s} />
+                    {Array.from({ length: 8 }).map((_, i) => {
+                        const a = (i / 8) * Math.PI * 2;
+                        return <line key={i} x1={r(Math.cos(a) * 5)} y1={r(Math.sin(a) * 5)} x2={r(Math.cos(a) * 7)} y2={r(Math.sin(a) * 7)} {...s} />;
+                    })}
+                </g>
+            );
+        case "bolt":
+            return <path d="M -2 -8 L 3 -1 L 0 -1 L 2 8 L -3 1 L 0 1 Z" fill={accent} stroke={INK} strokeWidth={0.6} />;
+        case "net":
+            return (
+                <g>
+                    <circle cx={0} cy={0} r={3} {...s} />
+                    <circle cx={-6} cy={-5} r={2} {...s} /><circle cx={6} cy={-5} r={2} {...s} /><circle cx={0} cy={7} r={2} {...s} />
+                    <line x1={-4} y1={-3} x2={-2} y2={-1} {...s} /><line x1={4} y1={-3} x2={2} y2={-1} {...s} /><line x1={0} y1={3} x2={0} y2={5} {...s} />
+                </g>
+            );
+        case "disp":
+            return (
+                <g>
+                    <rect x={-8} y={-6} width={16} height={11} rx={1} {...s} />
+                    <line x1={-4} y1={-2} x2={4} y2={-2} {...s} /><line x1={-4} y1={1} x2={4} y2={1} {...s} />
+                </g>
+            );
+        case "stack":
+            return (
+                <g>
+                    <rect x={-7} y={-7} width={14} height={4} rx={1} {...s} />
+                    <rect x={-7} y={-2} width={14} height={4} rx={1} {...s} />
+                    <rect x={-7} y={3} width={14} height={4} rx={1} {...s} />
+                </g>
+            );
+        // peripheral icons (S2)
+        case "eth":
+            return <g><rect x={-7} y={-4} width={14} height={9} rx={1} {...s} /><line x1={-4} y1={-1} x2={4} y2={-1} {...s} /><line x1={-4} y1={2} x2={4} y2={2} {...s} /></g>;
+        case "usb":
+            return <g><rect x={-3} y={-7} width={6} height={4} {...s} /><line x1={0} y1={-3} x2={0} y2={6} {...s} /><circle cx={0} cy={7} r={1.6} fill={accent} /></g>;
+        case "can":
+            return <g><rect x={-7} y={-3} width={14} height={7} rx={1} {...s} /><line x1={-7} y1={0} x2={7} y2={0} stroke={accent} strokeWidth={1} /></g>;
+        case "hdr":
+            return <g>{Array.from({ length: 5 }).map((_, i) => <rect key={i} x={-7 + i * 3} y={-3} width={2} height={7} fill={i % 2 ? accent : INK} />)}</g>;
+        case "mem":
+            return <g><rect x={-8} y={-4} width={16} height={9} rx={1} {...s} />{Array.from({ length: 4 }).map((_, i) => <line key={i} x1={-6 + i * 4} y1={-4} x2={-6 + i * 4} y2={-7} {...s} />)}</g>;
+        case "pcie":
+            return <g><rect x={-2} y={-7} width={4} height={14} rx={1} {...s} /><rect x={-6} y={5} width={12} height={3} {...s} /></g>;
+        default:
+            return null;
+    }
 };
 
 // ─────────────────────────────────────────────────────────────────
-// Stage 1 — Overview (platform block grid + satellite)
+// Stage 1 — Overview: SoC package + co-processor satellite
 // ─────────────────────────────────────────────────────────────────
-export const Stage1Overview: React.FC<{ ctx: DiagramContext; filterId: string }> = ({
-    ctx,
-    filterId,
-}) => {
+export const Stage1Overview: React.FC<{ ctx: DiagramContext; filterId: string }> = ({ ctx, filterId }) => {
     const accent = ctx.platform?.accent ?? "#16181a";
     const platformId = ctx.platform?.id ?? "arches";
     const blocks = PLATFORM_BLOCKS[platformId] ?? PLATFORM_BLOCKS.arches;
+    const sat = SATELLITE[platformId];
 
-    const cellW = 90;
-    const cellH = 64;
-    const gridX = (480 - 4 * cellW - 30) / 2;
-    const gridY = 70;
+    const cx = 175;
+    const cy = 185;
+    const w = 200;
+    const h = 150;
 
     return (
         <DiagramFrame accent={accent} stage={1} title="OVERVIEW" filterId={filterId}>
-            {blocks.map((b, i) => {
-                const col = i % 4;
-                const row = Math.floor(i / 4);
-                const x = gridX + col * (cellW + 10);
-                const y = gridY + row * (cellH + 12);
+            {/* power pulse radiating from the die */}
+            {[0, 1, 2].map((i) => (
+                <circle key={`pulse-${i}`} cx={cx} cy={cy} r={20 + i * 14} fill="none" stroke={accent} strokeWidth={0.8} opacity={0.18} className="diag-pulse" style={{ animationDelay: `${i * 0.5}s` }} />
+            ))}
+
+            <Chip cx={cx} cy={cy} w={w} h={h} accent={accent} label={ctx.platform?.chipFamily ?? "SoC"} sub="SYSTEM-ON-CHIP" />
+
+            {/* a few live inner blocks */}
+            {blocks.slice(0, 4).map((b, i) => {
+                const positions = [
+                    { x: cx - 60, y: cy - 30 }, { x: cx + 40, y: cy - 30 },
+                    { x: cx - 60, y: cy + 30 }, { x: cx + 40, y: cy + 30 },
+                ];
+                const p = positions[i];
                 return (
-                    <BlockReveal key={`${platformId}-${i}`}>
-                        <Iso3DBox
-                            x={x}
-                            y={y}
-                            w={cellW}
-                            h={cellH}
-                            depth={6}
-                            accent={accent}
-                            label={b.name}
-                            sublabel={b.sub}
-                            filterId={filterId}
-                        />
-                    </BlockReveal>
-                );
-            })}
-
-            {/* Longevity seal for Pinnacle (per req.md §6) */}
-            {platformId === "pinnacle" && (
-                <g transform="translate(360, 50)" className="diag-pulse">
-                    <circle r={26} fill="#ffffff" stroke={accent} strokeWidth={1.5} />
-                    <text
-                        textAnchor="middle"
-                        y={-4}
-                        fill={accent}
-                        style={{ fontSize: 10, fontWeight: 700, fontFamily: "var(--font-mono), monospace" }}
-                    >
-                        15
-                    </text>
-                    <text
-                        textAnchor="middle"
-                        y={8}
-                        fill={accent}
-                        style={{ fontSize: 6, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.5, textTransform: "uppercase" }}
-                    >
-                        YR
-                    </text>
-                    <text
-                        textAnchor="middle"
-                        y={20}
-                        fill="#6b7075"
-                        style={{ fontSize: 5, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.5, textTransform: "uppercase" }}
-                    >
-                        LONGEVITY
-                    </text>
-                </g>
-            )}
-
-            {/* Pico W satellite for Acadia */}
-            {platformId === "acadia" && (
-                <g transform="translate(420, 90)" className="diag-pulse">
-                    <rect x={-22} y={-14} width={44} height={28} fill="#ffffff" stroke={accent} strokeWidth={1.2} rx={2} />
-                    <text
-                        textAnchor="middle"
-                        y={3}
-                        fill={accent}
-                        style={{ fontSize: 6, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.4, textTransform: "uppercase" }}
-                    >
-                        PICO W
-                    </text>
-                    <line x1={0} y1={-14} x2={0} y2={-26} stroke={accent} strokeWidth={1} />
-                    <path d="M -3 -26 Q 0 -34 3 -26 Q 0 -22 -3 -26 Z" fill={accent} />
-                </g>
-            )}
-
-            {/* STM32 satellite for Arches */}
-            {platformId === "arches" && (
-                <g transform="translate(420, 90)" className="diag-pulse">
-                    <rect x={-22} y={-14} width={44} height={28} fill="#ffffff" stroke={accent} strokeWidth={1.2} rx={2} />
-                    <text
-                        textAnchor="middle"
-                        y={3}
-                        fill={accent}
-                        style={{ fontSize: 6, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.4, textTransform: "uppercase" }}
-                    >
-                        STM32
-                    </text>
-                    <text
-                        textAnchor="middle"
-                        y={11}
-                        fill={accent}
-                        style={{ fontSize: 4, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.3, textTransform: "uppercase" }}
-                    >
-                        RT coproc
-                    </text>
-                </g>
-            )}
-
-            {/* FPGA fabric satellite for Zion */}
-            {platformId === "zion" && (
-                <g transform="translate(420, 90)" className="diag-pulse">
-                    <rect x={-24} y={-16} width={48} height={32} fill="#ffffff" stroke={accent} strokeWidth={1.2} rx={2} />
-                    <text
-                        textAnchor="middle"
-                        y={1}
-                        fill={accent}
-                        style={{ fontSize: 6, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.4, textTransform: "uppercase" }}
-                    >
-                        FPGA
-                    </text>
-                    <text
-                        textAnchor="middle"
-                        y={10}
-                        fill={accent}
-                        style={{ fontSize: 4, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.3, textTransform: "uppercase" }}
-                    >
-                        PL fabric
-                    </text>
-                </g>
-            )}
-
-            {/* PRU satellite for Joshua */}
-            {platformId === "joshua" && (
-                <g transform="translate(420, 90)" className="diag-pulse">
-                    <rect x={-24} y={-16} width={48} height={32} fill="#ffffff" stroke={accent} strokeWidth={1.2} rx={2} />
-                    <text
-                        textAnchor="middle"
-                        y={1}
-                        fill={accent}
-                        style={{ fontSize: 6, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.4, textTransform: "uppercase" }}
-                    >
-                        PRU
-                    </text>
-                    <text
-                        textAnchor="middle"
-                        y={10}
-                        fill={accent}
-                        style={{ fontSize: 4, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.3, textTransform: "uppercase" }}
-                    >
-                        ICSS
-                    </text>
-                </g>
-            )}
-
-            {/* Platform edge caption at the bottom */}
-            <text
-                x={240}
-                y={340}
-                textAnchor="middle"
-                fill="#16181a"
-                style={{ fontSize: 9, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.6, textTransform: "uppercase" }}
-            >
-                {ctx.platform?.name ?? "Platform"} — {ctx.platform?.chipFamily ?? "Architecture"}
-            </text>
-        </DiagramFrame>
-    );
-};
-
-// ─────────────────────────────────────────────────────────────────
-// Stage 2 — Board bring-up & BSP (peripheral enumeration)
-// ─────────────────────────────────────────────────────────────────
-export const Stage2Bsp: React.FC<{ ctx: DiagramContext; filterId: string }> = ({
-    ctx,
-    filterId,
-}) => {
-    const accent = ctx.platform?.accent ?? "#16181a";
-    const cols = 6;
-    const rows = 3;
-    const cellW = 56;
-    const cellH = 36;
-    const gridX = (480 - cols * cellW - (cols - 1) * 8) / 2;
-    const gridY = 90;
-    const total = cols * rows;
-
-    return (
-        <DiagramFrame accent={accent} stage={2} title="BOARD BRING-UP" filterId={filterId}>
-            {/* Center die (the chip being brought up) */}
-            <Iso3DBox
-                x={180}
-                y={140}
-                w={120}
-                h={80}
-                depth={10}
-                accent={accent}
-                label={ctx.platform?.chipFamily ?? "SoC"}
-                sublabel="BSP CORE"
-                filterId={filterId}
-            />
-
-            {/* Enumerated interface cells + status LEDs that light up in
-                sequence (the "bring-up wave"). */}
-            {ENUM_INTERFACES.slice(0, total).map((iface, i) => {
-                const col = i % cols;
-                const row = Math.floor(i / cols);
-                const x = gridX + col * (cellW + 8);
-                const y = gridY + row * (cellH + 14);
-                return (
-                    <g key={iface}>
-                        <Iso3DBox
-                            x={x}
-                            y={y}
-                            w={cellW}
-                            h={cellH}
-                            depth={4}
-                            accent={accent}
-                            label={iface}
-                            sublabel="OK"
-                            filterId={filterId}
-                            fillFront="#fafaf8"
-                            fillTop="#ffffff"
-                        />
-                        {/* Status LED — staggered bring-up wave */}
-                        <circle
-                            cx={x + cellW - 5}
-                            cy={y + 5}
-                            r={1.8}
-                            fill={accent}
-                            className="diag-blink"
-                            style={{ animationDelay: `${(i % 6) * 0.18}s` }}
-                        />
+                    <g key={b.name}>
+                        <rect x={p.x} y={p.y} width={48} height={22} rx={2} fill={WHITE} stroke={accent} strokeWidth={0.8} />
+                        <text x={p.x + 24} y={p.y + 9} textAnchor="middle" fill={INK} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO }}>{b.name}</text>
+                        <text x={p.x + 24} y={p.y + 17} textAnchor="middle" fill={accent} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO, textTransform: "uppercase" }}>{b.sub}</text>
                     </g>
                 );
             })}
 
-            {/* Connector lines from outer cells to center die — data
-                flowing in during enumeration. */}
-            {ENUM_INTERFACES.slice(0, 12).map((iface, i) => {
-                const col = i % cols;
-                const row = Math.floor(i / cols);
-                const x = gridX + col * (cellW + 8) + cellW / 2;
-                const y = gridY + row * (cellH + 14) + cellH / 2;
-                return (
-                    <line
-                        key={`line-${iface}`}
-                        x1={x}
-                        y1={y}
-                        x2={240}
-                        y2={180}
-                        stroke={accent}
-                        strokeWidth={0.6}
-                        opacity={0.35}
-                        className="diag-flow"
-                        style={{ animationDelay: `${i * 0.1}s` }}
-                    />
-                );
-            })}
+            {/* trace to the co-processor satellite, with flowing data */}
+            <path d={`M ${cx + w / 2} ${cy - 30} L ${cx + w / 2 + 30} ${cy - 30} L ${cx + w / 2 + 30} ${90} L 400 90`} stroke={accent} strokeWidth={1} fill="none" className="diag-flow" />
+            {sat && (
+                <g transform="translate(400, 90)" className="diag-pulse">
+                    <rect x={-30} y={-16} width={60} height={32} rx={4} fill={WHITE} stroke={INK} strokeWidth={1.2} />
+                    <circle cx={-23} cy={-9} r={1.6} fill={accent} />
+                    <text x={0} y={-1} textAnchor="middle" fill={INK} style={{ fontSize: 7, fontWeight: 700, fontFamily: MONO }}>{sat.label}</text>
+                    <text x={0} y={9} textAnchor="middle" fill={accent} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO, textTransform: "uppercase" }}>{sat.sub}</text>
+                </g>
+            )}
 
-            {/* BSP status footer */}
-            <text
-                x={20}
-                y={345}
-                fill={accent}
-                style={{ fontSize: 8, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.5, textTransform: "uppercase" }}
-            >
-                18/18 INTERFACES · ENUM OK · DT OVERLAYS APPLIED
-            </text>
+            {/* Pinnacle longevity seal */}
+            {platformId === "pinnacle" && (
+                <g transform="translate(410, 150)" className="diag-pulse">
+                    <circle r={22} fill={WHITE} stroke={accent} strokeWidth={1.4} />
+                    <text textAnchor="middle" y={-2} fill={accent} style={{ fontSize: 11, fontWeight: 700, fontFamily: MONO }}>15</text>
+                    <text textAnchor="middle" y={9} fill={MUTED} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.5, textTransform: "uppercase" }}>YR LIFE</text>
+                </g>
+            )}
+
+            <StatusStrip accent={accent} text={`${ctx.platform?.name ?? "Platform"} · ${ctx.platform?.chipFamily ?? "SoC"} · owned by you`} />
         </DiagramFrame>
     );
 };
 
 // ─────────────────────────────────────────────────────────────────
-// Stage 3 — Yocto & Embedded Linux (reproducible build pipeline)
+// Stage 2 — Board bring-up & BSP: PCB top-view with probe sweep
 // ─────────────────────────────────────────────────────────────────
-export const Stage3Yocto: React.FC<{ ctx: DiagramContext; filterId: string }> = ({
-    ctx,
-    filterId,
-}) => {
+export const Stage2Bsp: React.FC<{ ctx: DiagramContext; filterId: string }> = ({ ctx, filterId }) => {
     const accent = ctx.platform?.accent ?? "#16181a";
-    const platformId = ctx.platform?.id ?? "arches";
-    const layer = YOCTO_LAYERS[platformId] ?? "meta-{project}";
-    const imageTag = `${platformId}-image`;
-
-    // Pipeline stages, top → bottom.
     const cx = 240;
+    const cy = 190;
+    const pads = PERIPHERALS;
+
+    // peripheral pad positions around the board edge (angle around center)
+    const padPos = pads.map((_, i) => {
+        const a = (i / pads.length) * Math.PI * 2 - Math.PI / 2;
+        const rad = 150;
+        return { x: r(cx + Math.cos(a) * rad), y: r(cy + Math.sin(a) * rad * 0.78) };
+    });
 
     return (
-        <DiagramFrame accent={accent} stage={3} title="YOCTO BUILD" filterId={filterId}>
-            {/* Connector spine — recipes flow down into the build */}
-            <line x1={cx} y1={100} x2={cx} y2={118} stroke={accent} strokeWidth={1} className="diag-flow" />
-            <line x1={cx} y1={168} x2={cx} y2={186} stroke={accent} strokeWidth={1} className="diag-flow" />
-            <line x1={cx} y1={232} x2={cx} y2={250} stroke={accent} strokeWidth={1} className="diag-flow" />
-            <line x1={cx} y1={298} x2={cx} y2={312} stroke={accent} strokeWidth={1} className="diag-flow" />
+        <DiagramFrame accent={accent} stage={2} title="BOARD BRING-UP" filterId={filterId}>
+            {/* PCB outline */}
+            <rect x={36} y={56} width={408} height={248} rx={8} fill={PAPER} stroke={INK} strokeWidth={1.2} />
+            <text x={48} y={72} fill={MUTED} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.4, textTransform: "uppercase" }}>CARRIER BOARD</text>
 
-            {/* 1. Yocto layer (meta-{project}) */}
-            <Iso3DBox
-                x={150}
-                y={58}
-                w={180}
-                h={42}
-                depth={6}
-                accent={accent}
-                label="YOCTO LAYER"
-                sublabel={layer}
-                filterId={filterId}
-            />
+            {/* SoC in the middle */}
+            <Chip cx={cx} cy={cy} w={110} h={80} accent={accent} label={(ctx.platform?.chipFamily ?? "SoC").toUpperCase()} sub="BSP CORE" />
 
-            {/* 2. Recipe chips (3 representative recipes) */}
-            {[
-                { label: "kernel", x: 70 },
-                { label: "rootfs", x: 190 },
-                { label: "drivers", x: 310 },
-            ].map((rec) => (
-                <Iso3DBox
-                    key={rec.label}
-                    x={rec.x}
-                    y={120}
-                    w={100}
-                    h={48}
-                    depth={4}
-                    accent={accent}
-                    label={rec.label}
-                    sublabel="recipe"
-                    filterId={filterId}
-                />
-            ))}
-
-            {/* 3. Bitbake build engine + filling progress bar */}
-            <Iso3DBox
-                x={170}
-                y={188}
-                w={140}
-                h={44}
-                depth={6}
-                accent={accent}
-                label="BITBAKE"
-                sublabel="reproducible"
-                filterId={filterId}
-            />
-            {/* Progress bar inside the build — fills left→right */}
-            <rect x={182} y={222} width={116} height={5} fill="#fafaf8" stroke={accent} strokeWidth={0.6} rx={1} />
-            <rect x={182} y={222} width={116} height={5} fill={accent} rx={1} className="diag-write" />
-
-            {/* 4. Image artifact */}
-            <Iso3DBox
-                x={150}
-                y={252}
-                w={180}
-                h={46}
-                depth={6}
-                accent={accent}
-                label={imageTag.toUpperCase()}
-                sublabel="READ-ONLY ROOTFS"
-                filterId={filterId}
-            />
-
-            {/* 5. SBOM manifest lines (typing readout) */}
-            <g transform="translate(60, 314)">
-                <rect x={-6} y={-12} width={372} height={32} fill="#16181a" rx={2} />
-                <text
-                    x={4}
-                    y={0}
-                    fill="#ffffff"
-                    style={{ fontSize: 7, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.3 }}
-                >
-                    SBOM · SPDX · traceable to source rev
-                </text>
-                <text
-                    x={4}
-                    y={11}
-                    fill="#9aa0a6"
-                    style={{ fontSize: 6, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.3 }}
-                >
-                    ISO 26262 / IEC 62304 / DO-178C ready
-                </text>
-                {/* blinking cursor */}
-                <rect x={352} y={-4} width={5} height={8} fill={accent} className="diag-blink" />
-            </g>
-        </DiagramFrame>
-    );
-};
-
-// ─────────────────────────────────────────────────────────────────
-// Stage 4 — Bootloader & boot chain (multi-stage + golden boot)
-// ─────────────────────────────────────────────────────────────────
-export const Stage4Boot: React.FC<{ ctx: DiagramContext; filterId: string }> = ({
-    ctx,
-    filterId,
-}) => {
-    const accent = ctx.platform?.accent ?? "#16181a";
-    const chain = ctx.platform?.bootChain ?? ["BootROM", "FSBL", "U-Boot", "kernel"];
-
-    const n = chain.length;
-    const blockW = 80;
-    const blockH = 50;
-    const yMid = 150;
-    const totalW = n * blockW + (n - 1) * 18;
-    const startX = (480 - totalW) / 2;
-
-    return (
-        <DiagramFrame accent={accent} stage={4} title="BOOT CHAIN" filterId={filterId}>
-            {/* Connector ribbon under the chain */}
-            <line
-                x1={startX + blockW / 2}
-                y1={yMid + blockH + 16}
-                x2={startX + totalW - blockW / 2}
-                y2={yMid + blockH + 16}
-                stroke={accent}
-                strokeWidth={1.2}
-                opacity={0.3}
-            />
-
-            {chain.map((stage, i) => {
-                const x = startX + i * (blockW + 18);
-                const cx = x + blockW / 2;
+            {/* traces + peripheral pads, lit in sequence */}
+            {pads.map((p, i) => {
+                const pos = padPos[i];
                 return (
-                    <g key={`${stage}-${i}`}>
-                        {/* Hop-to-hop connector line — boot signal flowing */}
-                        {i < n - 1 && (
-                            <line
-                                x1={cx + blockW / 2}
-                                y1={yMid + blockH / 2}
-                                x2={cx + blockW / 2 + 18}
-                                y2={yMid + blockH / 2}
-                                stroke={accent}
-                                strokeWidth={1.4}
-                                className="diag-flow"
-                                style={{ animationDelay: `${i * 0.25}s` }}
-                            />
-                        )}
-
-                        <Iso3DBox
-                            x={x}
-                            y={yMid}
-                            w={blockW}
-                            h={blockH}
-                            depth={6}
-                            accent={accent}
-                            label={stage}
-                            sublabel={`STAGE ${i + 1}`}
-                            filterId={filterId}
-                        />
-
-                        {/* Stage hop number circle below */}
-                        <g>
-                            <circle cx={cx} cy={yMid + blockH + 30} r={9} fill="#ffffff" stroke={accent} strokeWidth={1.2} />
-                            <text
-                                x={cx}
-                                y={yMid + blockH + 33}
-                                textAnchor="middle"
-                                fill={accent}
-                                style={{ fontSize: 8, fontWeight: 700, fontFamily: "var(--font-mono), monospace" }}
-                            >
-                                {i + 1}
-                            </text>
+                    <g key={p.name}>
+                        <path d={`M ${cx} ${cy} L ${pos.x} ${pos.y}`} stroke={accent} strokeWidth={0.7} fill="none" opacity={0.4} />
+                        <g transform={`translate(${pos.x}, ${pos.y})`}>
+                            <rect x={-22} y={-13} width={44} height={26} rx={3} fill={WHITE} stroke={INK} strokeWidth={0.9} />
+                            <g transform="translate(0,-2) scale(0.7)"><Icon k={p.icon} accent={accent} /></g>
+                            <text x={0} y={9} textAnchor="middle" fill={INK} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO, textTransform: "uppercase" }}>{p.name}</text>
+                            <LED cx={16} cy={-9} accent={accent} delay={i * 0.2} />
                         </g>
                     </g>
                 );
             })}
 
-            {/* Golden boot stamp at the end */}
-            <g transform="translate(380, 80)" className="diag-pulse">
-                <rect x={-32} y={-12} width={64} height={24} fill={accent} rx={2} />
-                <text
-                    textAnchor="middle"
-                    y={4}
-                    fill="#ffffff"
-                    style={{ fontSize: 8, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.6, textTransform: "uppercase" }}
-                >
-                    ✓ GOLDEN
-                </text>
+            {/* probe / multimeter sweep across the board */}
+            <g className="diag-sweep" style={{ transformBox: "fill-box" }}>
+                <line x1={48} y1={60} x2={48} y2={300} stroke={accent} strokeWidth={1} opacity={0.55} />
+                <circle cx={48} cy={180} r={5} fill={WHITE} stroke={accent} strokeWidth={1.2} />
+                <line x1={48} y1={180} x2={60} y2={192} stroke={accent} strokeWidth={1.2} />
             </g>
 
-            {/* Rollback curved arrow (health-check fallback) */}
-            <path
-                d="M 60 300 Q 240 340 420 300"
-                stroke={accent}
-                strokeWidth={1}
-                fill="none"
-                strokeDasharray="3 4"
-                opacity={0.5}
-                className="diag-flow"
-            />
-            <text
-                x={240}
-                y={338}
-                textAnchor="middle"
-                fill="#6b7075"
-                style={{ fontSize: 7, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.5, textTransform: "uppercase" }}
-            >
-                ↺ ROLLBACK ON FAIL
-            </text>
-
-            {/* Boot time ticker */}
-            <text
-                x={20}
-                y={288}
-                fill="#6b7075"
-                style={{ fontSize: 8, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.5, textTransform: "uppercase" }}
-            >
-                [ 0.000 ] bootrom → {n} STAGES · failsafe OK
-            </text>
+            <StatusStrip accent={accent} text="schematic + PCB review · 8/8 peripherals · DT overlays applied" />
         </DiagramFrame>
     );
 };
 
 // ─────────────────────────────────────────────────────────────────
-// Stage 5 — Kernel & device drivers (modules docking onto the die)
+// Stage 3 — Yocto & Embedded Linux: build pipeline (oven → image → SBOM)
 // ─────────────────────────────────────────────────────────────────
-const DRIVER_MODULES = [
-    "I2C", "SPI", "ETH", "GPIO", "CAN", "UART", "PCIe", "PWM",
-    "ADC", "I2S", "USB", "DSI",
-];
-
-export const Stage5Kernel: React.FC<{ ctx: DiagramContext; filterId: string }> = ({
-    ctx,
-    filterId,
-}) => {
+export const Stage3Yocto: React.FC<{ ctx: DiagramContext; filterId: string }> = ({ ctx, filterId }) => {
     const accent = ctx.platform?.accent ?? "#16181a";
+    const platformId = ctx.platform?.id ?? "arches";
+    const layer = YOCTO_LAYERS[platformId] ?? "meta-{project}";
 
-    const dieX = 200;
-    const dieY = 130;
-    const dieW = 80;
-    const dieH = 100;
+    return (
+        <DiagramFrame accent={accent} stage={3} title="YOCTO BUILD" filterId={filterId}>
+            {/* 1. layer repos (left) */}
+            {["base", "vendor", layer].map((l, i) => (
+                <g key={l} transform={`translate(60, ${90 + i * 40})`}>
+                    <rect x={0} y={-14} width={92} height={28} rx={3} fill={WHITE} stroke={INK} strokeWidth={1} />
+                    <circle cx={8} cy={0} r={2} fill={accent} />
+                    <text x={16} y={3} fill={INK} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO, textTransform: "uppercase" }}>{l}</text>
+                </g>
+            ))}
+            <text x={60} y={70} fill={MUTED} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.4, textTransform: "uppercase" }}>LAYERS / RECIPES</text>
+
+            {/* flow into oven */}
+            <line x1={152} y1={130} x2={196} y2={150} stroke={accent} strokeWidth={1} className="diag-flow" />
+
+            {/* 2. Bitbake oven */}
+            <g transform="translate(252, 168)">
+                <rect x={-58} y={-44} width={116} height={88} rx={8} fill={WHITE} stroke={INK} strokeWidth={1.4} />
+                <text x={0} y={-26} textAnchor="middle" fill={INK} style={{ fontSize: 8, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.5 }}>BITBAKE</text>
+                {/* heat shimmer */}
+                <rect x={-50} y={28} width={100} height={12} rx={2} fill={accent} className="diag-shimmer" />
+                {/* two gears */}
+                <g transform="translate(-18, -4)"><g className="diag-rotate"><circle r={9} fill="none" stroke={accent} strokeWidth={1.2} />{Array.from({ length: 8 }).map((_, i) => { const a = (i / 8) * Math.PI * 2; return <line key={i} x1={r(Math.cos(a) * 9)} y1={r(Math.sin(a) * 9)} x2={r(Math.cos(a) * 12)} y2={r(Math.sin(a) * 12)} stroke={accent} strokeWidth={1.2} />; })}</g></g>
+                <g transform="translate(16, 2)"><g className="diag-rotate" style={{ animationDirection: "reverse" }}><circle r={6} fill="none" stroke={MUTED} strokeWidth={1.2} />{Array.from({ length: 6 }).map((_, i) => { const a = (i / 6) * Math.PI * 2; return <line key={i} x1={r(Math.cos(a) * 6)} y1={r(Math.sin(a) * 6)} x2={r(Math.cos(a) * 8)} y2={r(Math.sin(a) * 8)} stroke={MUTED} strokeWidth={1.2} />; })}</g></g>
+            </g>
+
+            {/* flow to image */}
+            <line x1={252} y1={212} x2={252} y2={236} stroke={accent} strokeWidth={1} className="diag-flow" />
+
+            {/* 3. image artifact (ROM/disk) */}
+            <g transform="translate(252, 262)">
+                <rect x={-70} y={-22} width={140} height={40} rx={4} fill={WHITE} stroke={INK} strokeWidth={1.2} />
+                <rect x={-62} y={-14} width={40} height={24} rx={2} fill={PAPER} stroke={accent} strokeWidth={0.8} />
+                <text x={-42} y={1} textAnchor="middle" fill={accent} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO }}>IMG</text>
+                <text x={12} y={-3} fill={INK} style={{ fontSize: 7, fontWeight: 700, fontFamily: MONO, textTransform: "uppercase" }}>{platformId}-image</text>
+                <text x={12} y={8} fill={MUTED} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO, textTransform: "uppercase" }}>read-only rootfs</text>
+                {/* lock badge */}
+                <g transform="translate(56, -10)">
+                    <rect x={-5} y={-2} width={10} height={8} rx={1} fill={accent} />
+                    <path d="M -3 -2 L -3 -5 a 3 3 0 0 1 6 0 L 3 -2" fill="none" stroke={accent} strokeWidth={1.2} />
+                </g>
+            </g>
+
+            {/* 4. SBOM doc (right) */}
+            <g transform="translate(400, 200)">
+                <rect x={-34} y={-50} width={68} height={92} rx={3} fill={WHITE} stroke={INK} strokeWidth={1} />
+                <text x={0} y={-40} textAnchor="middle" fill={accent} style={{ fontSize: 7, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.5 }}>SBOM</text>
+                <text x={0} y={-32} textAnchor="middle" fill={MUTED} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO }}>SPDX · CYCLONEDX</text>
+                {Array.from({ length: 6 }).map((_, i) => (
+                    <line key={i} x1={-26} y1={-22 + i * 9} x2={26 - (i % 2) * 8} y2={-22 + i * 9} stroke={MUTED} strokeWidth={1} opacity={0.5} />
+                ))}
+                <rect x={20} y={-2} width={5} height={8} fill={accent} className="diag-blink" />
+            </g>
+            {/* arrow image → SBOM */}
+            <line x1={324} y1={262} x2={360} y2={244} stroke={accent} strokeWidth={1} className="diag-flow" />
+
+            <StatusStrip accent={accent} text={`reproducible · ${layer} · SBOM → ISO 26262 / IEC 62304 / DO-178C`} />
+        </DiagramFrame>
+    );
+};
+
+// ─────────────────────────────────────────────────────────────────
+// Stage 4 — Bootloader: boot chain with a traveling signal + golden vault
+// ─────────────────────────────────────────────────────────────────
+export const Stage4Boot: React.FC<{ ctx: DiagramContext; filterId: string }> = ({ ctx, filterId }) => {
+    const accent = ctx.platform?.accent ?? "#16181a";
+    const chain = ctx.platform?.bootChain ?? ["BootROM", "FSBL", "U-Boot", "kernel"];
+    const n = chain.length;
+    const blockW = 78;
+    const blockH = 52;
+    const gap = 20;
+    const totalW = n * blockW + (n - 1) * gap;
+    const startX = (480 - totalW) / 2;
+    const yMid = 170;
+
+    return (
+        <DiagramFrame accent={accent} stage={4} title="BOOT CHAIN" filterId={filterId}>
+            {/* the chain ribbon + a signal dot traveling the whole width */}
+            <line x1={startX} y1={yMid + blockH / 2} x2={startX + totalW} y2={yMid + blockH / 2} stroke={accent} strokeWidth={1.4} opacity={0.35} />
+            <circle cx={startX} cy={yMid + blockH / 2} r={4} fill={accent} className="diag-signal" style={{ "--diag-travel": `${totalW}px` } as React.CSSProperties} />
+
+            {chain.map((stage, i) => {
+                const x = startX + i * (blockW + gap);
+                return (
+                    <g key={`${stage}-${i}`}>
+                        <rect x={x} y={yMid - blockH / 2} width={blockW} height={blockH} rx={4} fill={WHITE} stroke={INK} strokeWidth={1.2} />
+                        <rect x={x} y={yMid - blockH / 2} width={blockW} height={14} rx={4} fill={accent} />
+                        <text x={x + blockW / 2} y={yMid - blockH / 2 + 10} textAnchor="middle" fill={WHITE} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.4 }}>{`STAGE ${i + 1}`}</text>
+                        <text x={x + blockW / 2} y={yMid + 4} textAnchor="middle" fill={INK} style={{ fontSize: 8, fontWeight: 700, fontFamily: MONO }}>{stage}</text>
+                        {/* timing tick */}
+                        <text x={x + blockW / 2} y={yMid + 22} textAnchor="middle" fill={MUTED} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO }}>{`0.${(i * 12).toString().padStart(2, "0")}s`}</text>
+                    </g>
+                );
+            })}
+
+            {/* golden recovery vault (protected) */}
+            <g transform="translate(420, 86)" className="diag-pulse">
+                <rect x={-34} y={-18} width={68} height={36} rx={4} fill={accent} />
+                <path d="M -10 -18 L -10 -26 a 10 10 0 0 1 20 0 L 10 -18" fill="none" stroke={accent} strokeWidth={2} />
+                <text x={0} y={4} textAnchor="middle" fill={WHITE} style={{ fontSize: 7, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.5, textTransform: "uppercase" }}>GOLDEN</text>
+            </g>
+            <line x1={startX + totalW} y1={yMid} x2={386} y2={86} stroke={accent} strokeWidth={0.8} strokeDasharray="3 3" opacity={0.5} />
+
+            {/* rollback loop */}
+            <path d={`M ${startX + 20} ${yMid + 50} Q 240 ${yMid + 95} ${startX + totalW - 20} ${yMid + 50}`} stroke={accent} strokeWidth={1} fill="none" strokeDasharray="4 4" className="diag-flow" />
+            <text x={240} y={yMid + 84} textAnchor="middle" fill={MUTED} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.4, textTransform: "uppercase" }}>↺ rollback on fail</text>
+
+            <StatusStrip accent={accent} text={`${n}-stage boot · golden recovery · watchdog-supervised`} />
+        </DiagramFrame>
+    );
+};
+
+// ─────────────────────────────────────────────────────────────────
+// Stage 5 — Kernel & device drivers: cards docking into the kernel
+// ─────────────────────────────────────────────────────────────────
+const DRIVER_MODULES = ["I2C", "SPI", "ETH", "GPIO", "CAN", "UART", "PCIe", "PWM", "ADC", "I2S", "USB", "DSI"];
+export const Stage5Kernel: React.FC<{ ctx: DiagramContext; filterId: string }> = ({ ctx, filterId }) => {
+    const accent = ctx.platform?.accent ?? "#16181a";
+    const kx = 240;
+    const ky = 180;
+    const kw = 120;
+    const kh = 96;
 
     return (
         <DiagramFrame accent={accent} stage={5} title="KERNEL & DRIVERS" filterId={filterId}>
-            {/* Mesh of pulses around the die — driver↔die traffic */}
-            {Array.from({ length: 6 }).map((_, i) => {
-                const angle = (i / 6) * Math.PI * 2;
-                const r1 = 50;
-                const r2 = 80;
-                return (
-                    <line
-                        key={`mesh-${i}`}
-                        x1={r(dieX + dieW / 2 + Math.cos(angle) * r1)}
-                        y1={r(dieY + dieH / 2 + Math.sin(angle) * r1)}
-                        x2={r(dieX + dieW / 2 + Math.cos(angle) * r2)}
-                        y2={r(dieY + dieH / 2 + Math.sin(angle) * r2)}
-                        stroke={accent}
-                        strokeWidth={1}
-                        className="diag-flow"
-                        style={{ animationDelay: `${i * 0.18}s` }}
-                    />
-                );
-            })}
-
-            <Iso3DBox
-                x={dieX}
-                y={dieY}
-                w={dieW}
-                h={dieH}
-                depth={10}
-                accent={accent}
-                label="KERNEL"
-                sublabel="CUSTOM"
-                filterId={filterId}
-            />
-
-            {/* Driver modules docking around the die */}
+            {/* driver cards docking around the kernel core */}
             {DRIVER_MODULES.map((drv, i) => {
                 const angle = (i / DRIVER_MODULES.length) * Math.PI * 2 - Math.PI / 2;
-                const dist = 130;
-                const mx = r(dieX + dieW / 2 + Math.cos(angle) * dist - 28);
-                const my = r(dieY + dieH / 2 + Math.sin(angle) * dist - 14);
+                const dist = 132;
+                const mx = r(kx + Math.cos(angle) * dist);
+                const my = r(ky + Math.sin(angle) * dist * 0.82);
                 return (
-                    <Iso3DBox
-                        key={drv}
-                        x={mx}
-                        y={my}
-                        w={56}
-                        h={28}
-                        depth={4}
-                        accent={accent}
-                        label={drv}
-                        sublabel=".ko"
-                        filterId={filterId}
-                    />
+                    <g key={drv}>
+                        <line x1={mx} y1={my} x2={kx} y2={ky} stroke={accent} strokeWidth={0.7} opacity={0.4} className="diag-flow" style={{ animationDelay: `${i * 0.12}s` }} />
+                        <rect x={mx - 24} y={my - 11} width={48} height={22} rx={3} fill={WHITE} stroke={INK} strokeWidth={0.9} />
+                        <text x={mx} y={my - 1} textAnchor="middle" fill={INK} style={{ fontSize: 7, fontWeight: 700, fontFamily: MONO }}>{drv}</text>
+                        <text x={mx} y={my + 7} textAnchor="middle" fill={accent} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO }}>.ko</text>
+                        <LED cx={mx + 18} cy={my - 7} accent={accent} delay={i * 0.15} />
+                    </g>
                 );
             })}
 
-            {/* Module count footer */}
-            <text
-                x={20}
-                y={345}
-                fill={accent}
-                style={{ fontSize: 8, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.5, textTransform: "uppercase" }}
-            >
-                {DRIVER_MODULES.length} DRIVERS LOADED · DT OVERLAYS · MAINLINE-TRACKING
-            </text>
+            {/* kernel core */}
+            <rect x={kx - kw / 2} y={ky - kh / 2} width={kw} height={kh} rx={6} fill={accent} stroke={INK} strokeWidth={1.4} />
+            <text x={kx} y={ky - 8} textAnchor="middle" fill={WHITE} style={{ fontSize: 10, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.5 }}>KERNEL</text>
+            <text x={kx} y={ky + 6} textAnchor="middle" fill={WHITE} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.4, textTransform: "uppercase" }}>downstream · customized</text>
+            <text x={kx} y={ky + 22} textAnchor="middle" fill={WHITE} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.3, textTransform: "uppercase" }}>PREEMPT_RT</text>
+
+            {/* device-tree sidebar */}
+            <text x={410} y={70} fill={MUTED} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.4, textTransform: "uppercase" }}>DEVICE TREE</text>
+            {Array.from({ length: 5 }).map((_, i) => (
+                <g key={i} transform={`translate(398, ${84 + i * 16})`}>
+                    <line x1={0} y1={0} x2={12 + i * 8} y2={0} stroke={accent} strokeWidth={1} />
+                    <circle cx={12 + i * 8} cy={0} r={1.6} fill={accent} />
+                </g>
+            ))}
+
+            <StatusStrip accent={accent} text="12 drivers · DT overlays · mainline-tracking" />
         </DiagramFrame>
     );
 };
 
 // ─────────────────────────────────────────────────────────────────
-// Stage 6 — RTOS & microcontroller (Linux ↔ RTOS split + RPMsg)
+// Stage 6 — RTOS & MCU: Linux ↔ RTOS split with packets on the wire
 // ─────────────────────────────────────────────────────────────────
-export const Stage6Rtos: React.FC<{ ctx: DiagramContext; filterId: string }> = ({
-    ctx,
-    filterId,
-}) => {
+export const Stage6Rtos: React.FC<{ ctx: DiagramContext; filterId: string }> = ({ ctx, filterId }) => {
     const accent = ctx.platform?.accent ?? "#16181a";
     const platformId = ctx.platform?.id ?? "arches";
     const rt = RT_CORE[platformId] ?? RT_CORE.arches;
     const link = RT_LINK[platformId] ?? "RPMsg";
 
-    // Left (Linux) and right (RTOS) domain boxes; the RPMsg link runs
-    // between their inner edges (x 190 → 290, 100px gap).
-    const linkStartX = 190;
-    const linkEndX = 290;
-    const linkY = 180;
+    const linkStartX = 188;
+    const linkEndX = 292;
+    const linkY = 200;
     const travel = linkEndX - linkStartX;
 
     return (
         <DiagramFrame accent={accent} stage={6} title="RTOS & MCU" filterId={filterId}>
             {/* Linux domain (left) */}
-            <Iso3DBox
-                x={40}
-                y={120}
-                w={150}
-                h={120}
-                depth={8}
-                accent={accent}
-                label="LINUX"
-                sublabel={rt.linux.toUpperCase()}
-                filterId={filterId}
-            />
-            {/* Linux role tags */}
-            <text x={115} y={258} textAnchor="middle" fill="#6b7075" style={{ fontSize: 6, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.4, textTransform: "uppercase" }}>
-                perception · net · UI
-            </text>
+            <g transform="translate(108, 180)">
+                <rect x={-70} y={-70} width={140} height={140} rx={8} fill={WHITE} stroke={INK} strokeWidth={1.4} />
+                <rect x={-70} y={-70} width={140} height={20} rx={8} fill={accent} />
+                <text x={0} y={-56} textAnchor="middle" fill={WHITE} style={{ fontSize: 7, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.5 }}>LINUX · APU</text>
+                <text x={0} y={-30} textAnchor="middle" fill={INK} style={{ fontSize: 7, fontWeight: 700, fontFamily: MONO }}>{rt.linux}</text>
+                {/* little window: perception/net/UI bars */}
+                {["perception", "networking", "UI / app"].map((t, i) => (
+                    <g key={t} transform={`translate(0, ${-14 + i * 18})`}>
+                        <rect x={-52} y={-6} width={104} height={12} rx={2} fill={PAPER} stroke={accent} strokeWidth={0.6} />
+                        <text x={0} y={2} textAnchor="middle" fill={MUTED} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO, textTransform: "uppercase" }}>{t}</text>
+                    </g>
+                ))}
+            </g>
 
             {/* RTOS domain (right) */}
-            <Iso3DBox
-                x={290}
-                y={120}
-                w={150}
-                h={120}
-                depth={8}
-                accent={accent}
-                label={rt.rt.split(" ")[0].toUpperCase()}
-                sublabel={rt.fw.toUpperCase()}
-                filterId={filterId}
-            />
-            <text x={365} y={258} textAnchor="middle" fill="#6b7075" style={{ fontSize: 6, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.4, textTransform: "uppercase" }}>
-                control · I/O · safety
-            </text>
+            <g transform="translate(372, 180)">
+                <rect x={-70} y={-70} width={140} height={140} rx={8} fill={accent} />
+                <rect x={-70} y={-70} width={140} height={20} rx={8} fill={INK} />
+                <text x={0} y={-56} textAnchor="middle" fill={WHITE} style={{ fontSize: 7, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.5 }}>RTOS · MCU</text>
+                <text x={0} y={-32} textAnchor="middle" fill={WHITE} style={{ fontSize: 7, fontWeight: 700, fontFamily: MONO }}>{rt.rt}</text>
+                <text x={0} y={-20} textAnchor="middle" fill={WHITE} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.3, textTransform: "uppercase" }}>{rt.fw}</text>
+                {/* deterministic pulse scope */}
+                <rect x={-54} y={-6} width={108} height={34} rx={2} fill={WHITE} opacity={0.92} />
+                <path d="M -48 11 L -36 11 L -32 2 L -28 20 L -24 5 L -20 17 L -16 11 L 8 11 L 12 4 L 16 18 L 20 8 L 24 14 L 28 11 L 48 11" fill="none" stroke={INK} strokeWidth={1} />
+            </g>
 
-            {/* RPMsg / OpenAMP link — dashed flow */}
-            <line
-                x1={linkStartX}
-                y1={linkY}
-                x2={linkEndX}
-                y2={linkY}
-                stroke={accent}
-                strokeWidth={1.2}
-                className="diag-flow"
-            />
-            {/* Link label */}
-            <text x={240} y={170} textAnchor="middle" fill={accent} style={{ fontSize: 7, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.4, textTransform: "uppercase" }}>
-                {link}
-            </text>
-
-            {/* Packets traveling the link (left → right and back) */}
+            {/* the link + packets both directions */}
+            <line x1={linkStartX} y1={linkY} x2={linkEndX} y2={linkY} stroke={INK} strokeWidth={1.4} />
+            <line x1={linkStartX} y1={linkY} x2={linkEndX} y2={linkY} stroke={accent} strokeWidth={1.2} className="diag-flow" />
+            <text x={240} y={linkY - 10} textAnchor="middle" fill={accent} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.3, textTransform: "uppercase" }}>{link}</text>
             {[0, 1, 2].map((i) => (
-                <rect
-                    key={`pkt-r-${i}`}
-                    x={linkStartX}
-                    y={linkY - 3 + i * 4}
-                    width={7}
-                    height={4}
-                    rx={1}
-                    fill={accent}
-                    className="diag-packet"
-                    style={{ "--diag-travel": `${travel}px`, animationDelay: `${i * 0.7}s` } as React.CSSProperties}
-                />
+                <rect key={`pr-${i}`} x={linkStartX} y={linkY - 10 + i * 3} width={8} height={3} rx={1} fill={accent} className="diag-packet" style={{ "--diag-travel": `${travel}px`, animationDelay: `${i * 0.6}s` } as React.CSSProperties} />
             ))}
             {[0, 1].map((i) => (
-                <rect
-                    key={`pkt-l-${i}`}
-                    x={linkEndX - 7}
-                    y={linkY + 9 + i * 4}
-                    width={7}
-                    height={4}
-                    rx={1}
-                    fill="#6b7075"
-                    className="diag-packet"
-                    style={{ "--diag-travel": `${-travel}px`, animationDelay: `${0.5 + i * 0.9}s` } as React.CSSProperties}
-                />
+                <rect key={`pl-${i}`} x={linkEndX - 8} y={linkY + 6 + i * 3} width={8} height={3} rx={1} fill={MUTED} className="diag-packet" style={{ "--diag-travel": `${-travel}px`, animationDelay: `${0.4 + i * 0.8}s` } as React.CSSProperties} />
             ))}
 
-            {/* Watchdog + supervision caption */}
-            <g transform="translate(240, 300)">
-                <circle r={12} fill="#ffffff" stroke={accent} strokeWidth={1.2} className="diag-pulse" />
-                <text textAnchor="middle" y={3} fill={accent} style={{ fontSize: 8, fontWeight: 700, fontFamily: "var(--font-mono), monospace" }}>
-                    WDT
-                </text>
+            {/* watchdog */}
+            <g transform="translate(240, 300)" className="diag-pulse">
+                <circle r={13} fill={WHITE} stroke={accent} strokeWidth={1.4} />
+                <text y={3} textAnchor="middle" fill={accent} style={{ fontSize: 7, fontWeight: 700, fontFamily: MONO }}>WDT</text>
             </g>
-            <text x={20} y={345} fill={accent} style={{ fontSize: 8, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.5, textTransform: "uppercase" }}>
-                HETEROGENEOUS · RT OFFLOAD · WATCHDOG-SUPERVISED
-            </text>
+
+            <StatusStrip accent={accent} text="heterogeneous offload · deterministic I/O · watchdog-supervised" />
         </DiagramFrame>
     );
 };
 
 // ─────────────────────────────────────────────────────────────────
-// Stage 7 — Middleware (base image → named industry image variants)
+// Stage 7 — Middleware: base image → named industry image variants
 // ─────────────────────────────────────────────────────────────────
-export const Stage7Middleware: React.FC<{ ctx: DiagramContext; filterId: string }> = ({
-    ctx,
-    filterId,
-}) => {
+export const Stage7Middleware: React.FC<{ ctx: DiagramContext; filterId: string }> = ({ ctx, filterId }) => {
     const accent = ctx.platform?.accent ?? "#16181a";
     const platformId = ctx.platform?.id ?? "arches";
     const images = PLATFORM_IMAGES[platformId] ?? PLATFORM_IMAGES.arches;
-
-    // Fan-out the image variants in a row beneath the base image.
     const count = images.length;
-    const cellW = 84;
-    const gap = 8;
-    const totalW = count * cellW + (count - 1) * gap;
-    const startX = (480 - totalW) / 2;
+
+    // hub at top-center; cards in an arc below
+    const hubx = 240;
+    const huby = 96;
+    const cardY = 250;
+    const totalW = 440;
+    const step = totalW / count;
 
     return (
         <DiagramFrame accent={accent} stage={7} title="MIDDLEWARE" filterId={filterId}>
-            {/* Base image (publisher) */}
-            <Iso3DBox
-                x={170}
-                y={60}
-                w={140}
-                h={44}
-                depth={6}
-                accent={accent}
-                label={`${platformId}-base`}
-                sublabel="YOCTO IMAGE"
-                filterId={filterId}
-            />
+            {/* base image hub */}
+            <g transform={`translate(${hubx}, ${huby})`}>
+                <circle r={30} fill={accent} className="diag-pulse" />
+                <text y={-2} textAnchor="middle" fill={WHITE} style={{ fontSize: 7, fontWeight: 700, fontFamily: MONO }}>{platformId}</text>
+                <text y={8} textAnchor="middle" fill={WHITE} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.3, textTransform: "uppercase" }}>-base</text>
+            </g>
 
-            {/* Spokes from base to each variant + the variant cards */}
             {images.map((img, i) => {
-                const x = startX + i * (cellW + gap);
-                const cx = x + cellW / 2;
-                const cy = 60 + 44; // base bottom edge
-                const ty = 200; // variant top
+                const x = 40 + step / 2 + i * step;
                 return (
                     <g key={img.name}>
-                        <line
-                            x1={240}
-                            y1={cy}
-                            x2={cx}
-                            y2={ty}
-                            stroke={accent}
-                            strokeWidth={0.8}
-                            opacity={0.45}
-                            className="diag-flow"
-                            style={{ animationDelay: `${i * 0.18}s` }}
-                        />
-                        <Iso3DBox
-                            x={x}
-                            y={ty}
-                            w={cellW}
-                            h={70}
-                            depth={5}
-                            accent={accent}
-                            label={img.name}
-                            sublabel={img.sub.toUpperCase()}
-                            filterId={filterId}
-                        />
+                        {/* pub/sub spoke with flowing dots */}
+                        <line x1={hubx} y1={huby + 30} x2={x} y2={cardY - 26} stroke={accent} strokeWidth={0.8} opacity={0.4} className="diag-flow" style={{ animationDelay: `${i * 0.15}s` }} />
+                        {/* card */}
+                        <g transform={`translate(${x}, ${cardY})`}>
+                            <rect x={-38} y={-26} width={76} height={52} rx={5} fill={WHITE} stroke={INK} strokeWidth={1.1} />
+                            <rect x={-38} y={-26} width={76} height={12} rx={5} fill={accent} />
+                            <g transform="translate(0,-2) scale(1.3)"><Icon k={img.icon} accent={accent} /></g>
+                            <text x={0} y={14} textAnchor="middle" fill={INK} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO }}>{img.name}</text>
+                            <text x={0} y={21} textAnchor="middle" fill={accent} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO, textTransform: "uppercase" }}>{img.sub}</text>
+                        </g>
                     </g>
                 );
             })}
 
-            {/* Fan-out caption */}
-            <text x={20} y={345} fill={accent} style={{ fontSize: 8, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.5, textTransform: "uppercase" }}>
-                {count} IMAGE VARIANTS · ONE BASE · QoS-CONFIGURED
-            </text>
+            <StatusStrip accent={accent} text={`${count} image variants · one base · QoS-configured`} />
         </DiagramFrame>
     );
 };
 
 // ─────────────────────────────────────────────────────────────────
-// Stage 8 — OTA & fleet management (A/B + write + rollback + rollout)
+// Stage 8 — OTA & fleet: A/B partition table + fleet rollout wave
 // ─────────────────────────────────────────────────────────────────
-export const Stage8Ota: React.FC<{ ctx: DiagramContext; filterId: string }> = ({
-    ctx,
-    filterId,
-}) => {
+export const Stage8Ota: React.FC<{ ctx: DiagramContext; filterId: string }> = ({ ctx, filterId }) => {
     const accent = ctx.platform?.accent ?? "#16181a";
 
     return (
         <DiagramFrame accent={accent} stage={8} title="OTA & FLEET" filterId={filterId}>
-            {/* Partition A (active) */}
-            <Iso3DBox
-                x={40}
-                y={60}
-                w={150}
-                h={210}
-                depth={10}
-                accent={accent}
-                label="PARTITION A"
-                sublabel="ACTIVE  ✓"
-                filterId={filterId}
-                fillTop="#ffffff"
-                fillFront="#f3f1ec"
-            />
+            {/* storage device outline */}
+            <text x={36} y={62} fill={MUTED} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.4, textTransform: "uppercase" }}>STORAGE · A/B SLOTS</text>
+            <rect x={36} y={70} width={408} height={130} rx={6} fill={PAPER} stroke={INK} strokeWidth={1.2} />
 
-            {/* Partition B header */}
-            <text
-                x={330}
-                y={52}
-                textAnchor="middle"
-                fill={accent}
-                style={{ fontSize: 9, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.5, textTransform: "uppercase" }}
-            >
-                PARTITION B · WRITING
-            </text>
-
-            {/* Partition B — 6 cells being written in sequence */}
-            {Array.from({ length: 6 }).map((_, i) => {
-                const y = 60 + i * 34;
-                const written = i < 4;
-                return (
-                    <g key={`b-cell-${i}`}>
-                        <rect
-                            x={250}
-                            y={y}
-                            width={170}
-                            height={26}
-                            fill="#fafaf8"
-                            stroke={accent}
-                            strokeWidth={1}
-                            rx={2}
-                        />
-                        {/* Fill bar — cells fill left→right as they're written */}
-                        <rect
-                            x={250}
-                            y={y}
-                            width={170}
-                            height={26}
-                            fill={accent}
-                            opacity={0.12}
-                            rx={2}
-                            className="diag-write"
-                            style={{ animationDelay: `${i * 0.25}s`, animationDuration: `${1.6 + i * 0.2}s` }}
-                        />
-                        <text
-                            x={335}
-                            y={y + 16}
-                            textAnchor="middle"
-                            fill={accent}
-                            style={{ fontSize: 7, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.4 }}
-                        >
-                            {written ? `B/${i + 1} WRITTEN` : "B/5…"}
-                        </text>
-                    </g>
-                );
-            })}
-
-            {/* Swap arrow A → B */}
-            <line x1={195} y1={165} x2={245} y2={165} stroke={accent} strokeWidth={2} className="diag-flow" />
-            <polygon points="245,165 237,161 237,169" fill={accent} />
-
-            {/* Rollback stamp */}
-            <g transform="translate(330, 312)" className="diag-pulse">
-                <rect x={-70} y={-12} width={140} height={22} fill="#16181a" rx={2} />
-                <text
-                    textAnchor="middle"
-                    y={3}
-                    fill="#ffffff"
-                    style={{ fontSize: 8, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.5, textTransform: "uppercase" }}
-                >
-                    ✓ ROLLBACK READY
-                </text>
+            {/* partition A — active */}
+            <g transform="translate(60, 86)">
+                <rect x={0} y={0} width={110} height={98} rx={3} fill={WHITE} stroke={accent} strokeWidth={1.2} />
+                <rect x={0} y={0} width={110} height={16} rx={3} fill={accent} />
+                <text x={55} y={11} textAnchor="middle" fill={WHITE} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.4 }}>SLOT A · ACTIVE</text>
+                <text x={55} y={60} textAnchor="middle" fill={INK} style={{ fontSize: 18, fontWeight: 700, fontFamily: MONO }}>✓</text>
+                <text x={55} y={80} textAnchor="middle" fill={MUTED} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO, textTransform: "uppercase" }}>running</text>
             </g>
 
-            {/* Staged rollout meter (1% → 10% → all) */}
-            <text x={40} y={312} fill={accent} style={{ fontSize: 7, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.4, textTransform: "uppercase" }}>
-                ROLLOUT
-            </text>
-            <rect x={40} y={318} width={150} height={8} fill="#fafaf8" stroke={accent} strokeWidth={0.6} rx={1} />
-            <rect x={40} y={318} width={150} height={8} fill={accent} rx={1} className="diag-write" style={{ animationDuration: "3.4s" }} />
-            <text x={40} y={342} fill="#6b7075" style={{ fontSize: 6, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.3, textTransform: "uppercase" }}>
-                1% → 10% → ALL · SIGNED · DELTA
-            </text>
+            {/* swap arrow A → B */}
+            <g transform="translate(180, 130)">
+                <line x1={0} y1={6} x2={40} y2={6} stroke={accent} strokeWidth={1.6} className="diag-flow" />
+                <polygon points="40,6 32,1 32,11" fill={accent} />
+            </g>
+
+            {/* partition B — writing, fills from bottom */}
+            <g transform="translate(230, 86)">
+                <rect x={0} y={0} width={110} height={98} rx={3} fill={WHITE} stroke={accent} strokeWidth={1.2} />
+                <rect x={1} y={1} width={108} height={96} rx={2} fill={accent} opacity={0.18} className="diag-flood" />
+                <rect x={0} y={0} width={110} height={16} rx={3} fill={INK} />
+                <text x={55} y={11} textAnchor="middle" fill={WHITE} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.4 }}>SLOT B · WRITING</text>
+                <text x={55} y={60} textAnchor="middle" fill={INK} style={{ fontSize: 8, fontWeight: 700, fontFamily: MONO }}>B/4</text>
+                <text x={55} y={80} textAnchor="middle" fill={MUTED} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO, textTransform: "uppercase" }}>62% · signed</text>
+            </g>
+
+            {/* golden recovery vault */}
+            <g transform="translate(370, 86)">
+                <rect x={0} y={0} width={58} height={98} rx={3} fill={accent} />
+                <path d="M 18 0 L 18 -8 a 11 11 0 0 1 22 0 L 40 0" fill="none" stroke={accent} strokeWidth={2} />
+                <text x={29} y={48} textAnchor="middle" fill={WHITE} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.3 }}>GOLDEN</text>
+                <text x={29} y={58} textAnchor="middle" fill={WHITE} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO, textTransform: "uppercase" }}>recovery</text>
+            </g>
+
+            {/* rollback loop */}
+            <path d="M 60 184 Q 240 214 430 184" stroke={accent} strokeWidth={1} fill="none" strokeDasharray="4 4" className="diag-flow" />
+            <text x={240} y={210} textAnchor="middle" fill={MUTED} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.3, textTransform: "uppercase" }}>↺ auto-rollback on failed boot / health check</text>
+
+            {/* fleet rollout wave */}
+            <text x={36} y={252} fill={MUTED} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.4, textTransform: "uppercase" }}>FLEET ROLLOUT · 1% → 10% → ALL</text>
+            {Array.from({ length: 16 }).map((_, i) => (
+                <g key={i} transform={`translate(${48 + i * 24}, 268)`}>
+                    <rect x={-9} y={0} width={18} height={26} rx={2} fill={WHITE} stroke={INK} strokeWidth={0.8} />
+                    <circle cx={0} cy={7} r={1.6} fill={accent} className="diag-blink" style={{ animationDelay: `${i * 0.12}s` }} />
+                    <line x1={-5} y1={14} x2={5} y2={14} stroke={MUTED} strokeWidth={0.7} />
+                    <line x1={-5} y1={19} x2={5} y2={19} stroke={MUTED} strokeWidth={0.7} />
+                </g>
+            ))}
+
+            <StatusStrip accent={accent} text="A/B · golden · signed · delta updates · staged" />
         </DiagramFrame>
     );
 };
 
 // ─────────────────────────────────────────────────────────────────
-// Stage 9 — SDK, debug & profiling (toolchain + scope + CI/HIL)
+// Stage 9 — SDK, debug & profiling: dev → toolchain → target + scope
 // ─────────────────────────────────────────────────────────────────
-export const Stage9Sdk: React.FC<{ ctx: DiagramContext; filterId: string }> = ({
-    ctx,
-    filterId,
-}) => {
+export const Stage9Sdk: React.FC<{ ctx: DiagramContext; filterId: string }> = ({ ctx, filterId }) => {
     const accent = ctx.platform?.accent ?? "#16181a";
     const platformId = ctx.platform?.id ?? "arches";
     const profiler = PROFILER[platformId] ?? "perf / gdbserver";
 
-    // Profiler / oscilloscope trace path
-    const tracePath =
-        "M 30 250 L 60 250 L 68 232 L 76 268 L 84 240 L 92 260 L 100 250 L 140 250 L 148 220 L 156 280 L 164 236 L 172 264 L 180 250 L 230 250 L 238 228 L 246 272 L 254 244 L 262 256 L 270 250 L 320 250 L 328 224 L 336 276 L 344 240 L 352 260 L 360 250 L 410 250";
+    const tracePath = "M 30 250 L 60 250 L 68 232 L 76 268 L 84 240 L 92 260 L 100 250 L 140 250 L 148 220 L 156 280 L 164 236 L 172 264 L 180 250 L 230 250 L 238 228 L 246 272 L 254 244 L 262 256 L 270 250 L 320 250 L 328 224 L 336 276 L 344 240 L 352 260 L 360 250 L 410 250";
 
     return (
         <DiagramFrame accent={accent} stage={9} title="SDK & PROFILING" filterId={filterId}>
-            {/* Dev machine (x86 host) */}
-            <Iso3DBox
-                x={30}
-                y={70}
-                w={120}
-                h={70}
-                depth={6}
-                accent={accent}
-                label="DEV (x86)"
-                sublabel="APP TEAM"
-                filterId={filterId}
-            />
+            {/* dev laptop */}
+            <g transform="translate(80, 92)">
+                <rect x={-44} y={-30} width={88} height={54} rx={4} fill={WHITE} stroke={INK} strokeWidth={1.2} />
+                <rect x={-38} y={-24} width={76} height={38} rx={2} fill={PAPER} stroke={accent} strokeWidth={0.7} />
+                <text x={0} y={-4} textAnchor="middle" fill={INK} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO, textTransform: "uppercase" }}>DEV (x86)</text>
+                <text x={0} y={6} textAnchor="middle" fill={MUTED} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO, textTransform: "uppercase" }}>app team</text>
+                <rect x={-16} y={24} width={32} height={5} rx={1} fill={INK} />
+            </g>
 
-            {/* Cross-toolchain + eSDK (middle) */}
-            <Iso3DBox
-                x={180}
-                y={70}
-                w={120}
-                h={70}
-                depth={6}
-                accent={accent}
-                label="eSDK"
-                sublabel="TOOLCHAIN"
-                filterId={filterId}
-            />
+            {/* build artifact travels dev → esdk → target */}
+            <line x1={124} y1={92} x2={196} y2={92} stroke={accent} strokeWidth={1.2} className="diag-flow" />
+            <circle cx={124} cy={92} r={3.5} fill={accent} className="diag-signal" style={{ "--diag-travel": `${72}px` } as React.CSSProperties} />
 
-            {/* Target device */}
-            <Iso3DBox
-                x={330}
-                y={70}
-                w={120}
-                h={70}
-                depth={6}
-                accent={accent}
-                label="TARGET"
-                sublabel={(ctx.platform?.chipFamily ?? "SoC").toUpperCase()}
-                filterId={filterId}
-            />
+            {/* eSDK / toolchain */}
+            <g transform="translate(240, 92)">
+                <rect x={-40} y={-30} width={80} height={54} rx={4} fill={accent} stroke={INK} strokeWidth={1.2} />
+                <text x={0} y={-12} textAnchor="middle" fill={WHITE} style={{ fontSize: 8, fontWeight: 700, fontFamily: MONO }}>eSDK</text>
+                <text x={0} y={0} textAnchor="middle" fill={WHITE} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO, textTransform: "uppercase" }}>cross-toolchain</text>
+                <text x={0} y={10} textAnchor="middle" fill={WHITE} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO, textTransform: "uppercase" }}>+ sysroot</text>
+            </g>
 
-            {/* Build artifact flow: dev → esdk → target */}
-            <line x1={150} y1={105} x2={180} y2={105} stroke={accent} strokeWidth={1.2} className="diag-flow" />
-            <line x1={300} y1={105} x2={330} y2={105} stroke={accent} strokeWidth={1.2} className="diag-flow" />
-            <text x={165} y={98} fill="#6b7075" style={{ fontSize: 5, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.3, textTransform: "uppercase" }}>
-                build
-            </text>
-            <text x={315} y={98} fill="#6b7075" style={{ fontSize: 5, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.3, textTransform: "uppercase" }}>
-                deploy
-            </text>
+            <line x1={284} y1={92} x2={356} y2={92} stroke={accent} strokeWidth={1.2} className="diag-flow" />
+            <circle cx={284} cy={92} r={3.5} fill={accent} className="diag-signal" style={{ "--diag-travel": `${72}px` } as React.CSSProperties} />
 
-            {/* Profiler / oscilloscope panel */}
-            <rect x={20} y={170} width={440} height={96} fill="#fafaf8" stroke={accent} strokeWidth={1} rx={2} />
-            {/* gridlines */}
+            {/* target board */}
+            <g transform="translate(400, 92)">
+                <rect x={-44} y={-30} width={88} height={54} rx={4} fill={WHITE} stroke={INK} strokeWidth={1.2} />
+                <rect x={-30} y={-22} width={26} height={26} rx={2} fill={PAPER} stroke={accent} strokeWidth={0.8} />
+                {Array.from({ length: 4 }).map((_, i) => <line key={i} x1={-30} y1={-22 + i * 6} x2={-4} y2={-22 + i * 6} stroke={accent} strokeWidth={0.5} />)}
+                <text x={6} y={-6} fill={INK} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO, textTransform: "uppercase" }}>TARGET</text>
+                <text x={6} y={4} fill={MUTED} style={{ fontSize: 5, fontWeight: 700, fontFamily: MONO }}>{(ctx.platform?.chipFamily ?? "SoC").toUpperCase()}</text>
+            </g>
+
+            {/* profiling scope */}
+            <rect x={20} y={150} width={440} height={120} fill="#16181a" rx={4} />
+            <rect x={26} y={156} width={428} height={108} fill={PAPER} rx={2} />
             {Array.from({ length: 7 }).map((_, i) => (
-                <line
-                    key={`gv-${i}`}
-                    x1={20 + (i + 1) * 55}
-                    y1={170}
-                    x2={20 + (i + 1) * 55}
-                    y2={266}
-                    stroke={accent}
-                    strokeWidth={0.4}
-                    opacity={0.18}
-                />
+                <line key={`gv-${i}`} x1={26 + (i + 1) * 53.5} y1={156} x2={26 + (i + 1) * 53.5} y2={264} stroke={accent} strokeWidth={0.4} opacity={0.18} />
             ))}
             {Array.from({ length: 2 }).map((_, i) => (
-                <line
-                    key={`gh-${i}`}
-                    x1={20}
-                    y1={202 + i * 32}
-                    x2={460}
-                    y2={202 + i * 32}
-                    stroke={accent}
-                    strokeWidth={0.4}
-                    opacity={0.18}
-                />
+                <line key={`gh-${i}`} x1={26} y1={190 + i * 36} x2={454} y2={190 + i * 36} stroke={accent} strokeWidth={0.4} opacity={0.18} />
             ))}
-            {/* The trace */}
             <path d={tracePath} stroke={accent} strokeWidth={1.5} fill="none" />
-            {/* Sweep scanline */}
-            <line x1={30} y1={172} x2={30} y2={264} stroke={accent} strokeWidth={1} opacity={0.4} className="diag-sweep" style={{ transformBox: "fill-box" }} />
-            <text x={28} y={184} fill={accent} style={{ fontSize: 6, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.3, textTransform: "uppercase" }}>
-                {profiler.toUpperCase()}
-            </text>
+            {/* sweep */}
+            <line x1={30} y1={158} x2={30} y2={262} stroke={accent} strokeWidth={1} opacity={0.5} className="diag-sweep" style={{ transformBox: "fill-box" }} />
+            <text x={30} y={172} fill={accent} style={{ fontSize: 6, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.3, textTransform: "uppercase" }}>{profiler.toUpperCase()}</text>
 
-            {/* CI/CD HIL loop indicator */}
+            {/* CI / HIL loop back to target */}
+            <path d="M 400 122 Q 460 150 400 178" stroke={accent} strokeWidth={1} fill="none" strokeDasharray="3 3" className="diag-flow" />
             <g transform="translate(240, 300)">
-                <rect x={-110} y={-12} width={220} height={22} fill={accent} rx={2} />
-                <text
-                    textAnchor="middle"
-                    y={3}
-                    fill="#ffffff"
-                    style={{ fontSize: 8, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.5, textTransform: "uppercase" }}
-                >
-                    CI/CD · HARDWARE-IN-THE-LOOP
-                </text>
+                <rect x={-120} y={-12} width={240} height={22} rx={3} fill={accent} />
+                <text x={0} y={3} textAnchor="middle" fill={WHITE} style={{ fontSize: 8, fontWeight: 700, fontFamily: MONO, letterSpacing: 0.5, textTransform: "uppercase" }}>CI/CD · HARDWARE-IN-THE-LOOP</text>
             </g>
-            {/* HIL loop arrow */}
-            <path d="M 390 140 Q 440 160 390 180" stroke={accent} strokeWidth={1} fill="none" strokeDasharray="3 3" className="diag-flow" />
 
-            <text x={20} y={345} fill={accent} style={{ fontSize: 8, fontWeight: 700, fontFamily: "var(--font-mono), monospace", letterSpacing: 0.5, textTransform: "uppercase" }}>
-                EVAL IMAGE · CROSS-SDK · HIL SMOKE TESTS
-            </text>
+            <StatusStrip accent={accent} text="eval image · cross-SDK · remote debug · HIL smoke tests" />
         </DiagramFrame>
     );
 };
@@ -1235,39 +847,21 @@ export const Stage9Sdk: React.FC<{ ctx: DiagramContext; filterId: string }> = ({
 // ─────────────────────────────────────────────────────────────────
 // Public dispatch
 // ─────────────────────────────────────────────────────────────────
-export const StageDiagram: React.FC<{
-    stage: number;
-    ctx: DiagramContext;
-    filterId: string;
-}> = ({ stage, ctx, filterId }) => {
+export const StageDiagram: React.FC<{ stage: number; ctx: DiagramContext; filterId: string }> = ({ stage, ctx, filterId }) => {
     switch (stage) {
-        case 1:
-            return <Stage1Overview ctx={ctx} filterId={filterId} />;
-        case 2:
-            return <Stage2Bsp ctx={ctx} filterId={filterId} />;
-        case 3:
-            return <Stage3Yocto ctx={ctx} filterId={filterId} />;
-        case 4:
-            return <Stage4Boot ctx={ctx} filterId={filterId} />;
-        case 5:
-            return <Stage5Kernel ctx={ctx} filterId={filterId} />;
-        case 6:
-            return <Stage6Rtos ctx={ctx} filterId={filterId} />;
-        case 7:
-            return <Stage7Middleware ctx={ctx} filterId={filterId} />;
-        case 8:
-            return <Stage8Ota ctx={ctx} filterId={filterId} />;
-        case 9:
-        default:
-            return <Stage9Sdk ctx={ctx} filterId={filterId} />;
+        case 1: return <Stage1Overview ctx={ctx} filterId={filterId} />;
+        case 2: return <Stage2Bsp ctx={ctx} filterId={filterId} />;
+        case 3: return <Stage3Yocto ctx={ctx} filterId={filterId} />;
+        case 4: return <Stage4Boot ctx={ctx} filterId={filterId} />;
+        case 5: return <Stage5Kernel ctx={ctx} filterId={filterId} />;
+        case 6: return <Stage6Rtos ctx={ctx} filterId={filterId} />;
+        case 7: return <Stage7Middleware ctx={ctx} filterId={filterId} />;
+        case 8: return <Stage8Ota ctx={ctx} filterId={filterId} />;
+        case 9: default: return <Stage9Sdk ctx={ctx} filterId={filterId} />;
     }
 };
 
-// Helper for Home — pick the platform context for the current Home stage
 export function getHomeContext(stage: number): DiagramContext {
-    // Home page mirrors the platform ordering: 1=hero, 2=arches,
-    // 3=acadia, 4=zion, 5=pinnacle, 6=joshua, 7=sequoia, 8=team,
-    // 9=closing panel grid.
     let platformId: string | null = null;
     if (stage === 2) platformId = "arches";
     else if (stage === 3) platformId = "acadia";
