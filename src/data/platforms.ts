@@ -30,7 +30,7 @@ export const platforms: PlatformData[] = [
     name: "Arches",
     chipFamily: "NVIDIA Jetson",
     accent: "#0f7a4d",
-    counterBase: 0,
+    counterBase: 10,
     edgeOneLiner:
       "A custom Yocto-based embedded Linux platform, validated on Jetson TX2, Xavier NX, Orin, and Thor — from board bring-up to OTA-managed fleets.",
     industries: {
@@ -161,7 +161,7 @@ export const platforms: PlatformData[] = [
     name: "Acadia",
     chipFamily: "Raspberry Pi",
     accent: "#c43a3a",
-    counterBase: 10,
+    counterBase: 20,
     edgeOneLiner:
       "A custom Yocto-based platform for Compute Module 4 / 5, Pi 4 / 5, and Pico — turning the world's most popular SBC into a real industrial product platform.",
     industries: {
@@ -292,7 +292,7 @@ export const platforms: PlatformData[] = [
     name: "Zion",
     chipFamily: "AMD Xilinx Zynq",
     accent: "#6b4fd3",
-    counterBase: 20,
+    counterBase: 30,
     edgeOneLiner:
       "A custom Yocto / PetaLinux-based platform for Zynq-7000, Zynq UltraScale+ MPSoC, Versal, and Kria SOMs — processing system and programmable logic, engineered as one platform.",
     industries: {
@@ -423,7 +423,7 @@ export const platforms: PlatformData[] = [
     name: "Pinnacle",
     chipFamily: "NXP i.MX",
     accent: "#1f6fd6",
-    counterBase: 30,
+    counterBase: 40,
     edgeOneLiner:
       "A custom Yocto-based platform for NXP i.MX 8M (Mini / Nano / Plus), i.MX 93, and i.MX 95 — secure, power-efficient, industrial-grade.",
     industries: {
@@ -553,7 +553,7 @@ export const platforms: PlatformData[] = [
     name: "Joshua",
     chipFamily: "TI Sitara",
     accent: "#d4622a",
-    counterBase: 40,
+    counterBase: 50,
     edgeOneLiner:
       "A custom Yocto-based platform for AM335x, AM62x, and AM64x — the industrial workhorse line. Deterministic I/O with PRU-ICSS, industrial networking, long-lifecycle support.",
     industries: {
@@ -682,7 +682,7 @@ export const platforms: PlatformData[] = [
     name: "Sequoia",
     chipFamily: "Intel / AMD x86",
     accent: "#4a6478",
-    counterBase: 50,
+    counterBase: 60,
     edgeOneLiner:
       "A custom Yocto-based platform for industrial SBCs, COM Express / SMARC modules, and edge servers — Intel Atom / Core and AMD Ryzen Embedded. The same rigor as our ARM platforms, on x86.",
     industries: {

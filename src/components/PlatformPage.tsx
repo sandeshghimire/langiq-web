@@ -93,7 +93,7 @@ export default function PlatformPage({ platform }: PlatformPageProps) {
                     className="font-mono text-[11px] tracking-[0.18em] uppercase"
                     style={{ color: platform.accent }}
                   >
-                    {platform.name} ·{" "}
+                    {platform.name} — {platform.chipFamily} ·{" "}
                     {String(slide.stage + platform.counterBase).padStart(2, "0")} /{" "}
                     {String(platform.counterBase + 9).padStart(2, "0")}
                   </motion.span>
