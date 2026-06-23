@@ -220,3 +220,113 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────────
+   Slide diagram animations (stages.tsx)
+   Living motion inside the per-stage SVGs. Compositor-friendly only:
+   transform / opacity / stroke-dashoffset — never width/height/top/
+   left. Applied via className on SVG sub-elements; per-element timing
+   and transform-origin come from inline style. The reduced-motion guard
+   above already neutralizes all of these globally, so no per-component
+   gating is needed.
+   ───────────────────────────────────────────────────────────────── */
+
+/* Flowing dashed line — signal along a boot chain, RPMsg packet on a
+   link, pulses on a driver mesh, fan-out spokes. Uses stroke-dashoffset
+   so the path geometry never changes. */
+@keyframes diag-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+.diag-flow {
+  stroke-dasharray: 4 4;
+  animation: diag-flow 1.2s linear infinite;
+}
+
+/* Soft opacity pulse — nodes, satellites, hotspots, "active" LEDs. */
+@keyframes diag-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.diag-pulse {
+  animation: diag-pulse 2.4s ease-in-out infinite;
+}
+
+/* A bar filling left-to-right — OTA partition B cells being written,
+   Yocto pipeline progress, SDK build flow. Use on a rect/transformable
+   element with transform-box: fill-box; transform-origin: left center
+   set inline (SVG transform-origin needs fill-box to be relative to the
+   element's own bbox, not the SVG root). */
+@keyframes diag-write {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+.diag-write {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: diag-write 1.6s ease-out infinite alternate;
+}
+
+/* Horizontal sweep — profiler / oscilloscope scan, board bring-up scan.
+   translateX within a clipped group. */
+@keyframes diag-sweep {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+.diag-sweep {
+  animation: diag-sweep 3s ease-in-out infinite alternate;
+}
+
+/* Status LED blink — reuses the existing blink rhythm but scoped to
+   diagram status dots. */
+@keyframes diag-blink {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.diag-blink {
+  animation: diag-blink 1.4s step-end infinite;
+}
+
+/* A packet traveling a fixed distance along a link (RPMsg / OpenAMP).
+   translateX by a CSS variable so one keyframe serves links of any
+   length; the element sets --diag-travel inline. Fades in/out at the
+   ends so packets look like discrete messages, not a sliding bar. */
+@keyframes diag-packet {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(var(--diag-travel, 120px));
+    opacity: 0;
+  }
+}
+.diag-packet {
+  transform-box: fill-box;
+  animation: diag-packet 2.6s ease-in-out infinite;
+}

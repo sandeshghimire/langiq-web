@@ -382,3 +382,69 @@ cross-platform closing section. This was a copy-only run:
 `make build && make lint` both clean. No code-level changes — diagram
 registry, slide templates, animations, boot terminal, chrome all
 untouched.
+
+### Session log (diagram remap to match content, 2026-06-23)
+
+The 9-stage content (`src/data/platforms.ts`) was rewritten earlier
+(Overview → Board Bring-Up → Yocto → Bootloader → Kernel → RTOS →
+Middleware → OTA → SDK), but the diagrams (`stages.tsx`) still used the
+OLD stage mapping (Overview → BSP → Boot → Kernel → Middleware → OTA →
+SDK → Performance → Manufacturing). Slides 3–9 showed diagrams that
+contradicted their text. Remapped so stage N's diagram depicts stage N's
+content, and added living SVG animation.
+
+**Do**
+- **Animate SVG diagrams with CSS keyframes on SVG sub-elements
+  (transform / opacity / stroke-dashoffset), not framer-motion
+  `motion.*` wrappers.** The `diag-flow / diag-pulse / diag-write /
+  diag-sweep / diag-packet / diag-blink` classes live in
+  `globals.css`; per-element timing/origin via inline `style`. The
+  existing `@media (prefers-reduced-motion: reduce)` block in
+  `globals.css` neutralizes all of them globally — zero per-component
+  gating needed. CSS animations restart cleanly on the SlideDiagram
+  crossfade re-mount (smooth), avoiding the "blocks flying in" jitter
+  that `motion.*` re-firing caused.
+- **For a packet traveling a fixed link distance, drive `translateX`
+  from a CSS custom property** (`--diag-travel`) set inline so one
+  `@keyframes diag-packet` serves links of any length. React typing:
+  cast the style object `as React.CSSProperties` for the custom prop.
+- **Set `transform-box: fill-box` (and `transform-origin`) on any SVG
+  element animated with `transform`** — without it, `transform-origin`
+  resolves against the SVG root, not the element's bbox, so `scaleX`/
+  `translateX` go to the wrong place.
+- **Keep per-platform specifics in small maps beside the stage
+  component** (`YOCTO_LAYERS`, `RT_CORE`, `RT_LINK`,
+  `PLATFORM_IMAGES`, `PROFILER`), mirroring the `PLATFORM_BLOCKS` /
+  `PROTOCOL_SETS` pattern. No copy in JSX; everything data-driven off
+  `ctx.platform?.id`.
+- **The build greps for "undefined" in prerendered HTML will show ~36
+  hits — those are Next.js RSC flight-data `"$undefined"` serialization,
+  not rendered SVG.** A real missing-map-value would show as a bare
+  `undefined` text node inside an SVG `<text>`. Distinguish by context.
+
+**Don't**
+- **Don't assume the diagram stage numbers match the content stage
+  numbers.** The `StageN` component for slot N must depict the content
+  slide at index N. After a content restructure, re-validate the whole
+  stage→diagram mapping — the diagram registry is a stable interface
+  but its entries drifted out of sync with `platforms.ts` here.
+- **Don't grep prerendered HTML with `grep "STAGE 0[1-9]"` to verify a
+  stage rendered** — React inserts `<!-- -->` comment separators around
+  interpolated numbers (`STAGE <!-- -->01<!-- --> / OVERVIEW`), so the
+  literal pattern misses. Grep for the title word ("YOCTO", "OVERVIEW")
+  or a known data value ("meta-tegra") instead.
+
+**Files:** `src/components/diagrams/stages.tsx` (rewrote dispatch + 9
+stage components, added 5 per-platform maps, CSS-animation classes on
+SVG elements; kept `r()` rounding, `DiagramFrame`, `Iso3DBox`,
+`BlockReveal`), `src/components/diagrams/registry.ts` (new kind catalog
++ titles), `src/app/globals.css` (appended `diag-*` keyframes + utility
+classes). `SlideDiagram.tsx`, `shared3d.tsx`, pages, layout, Nav
+unchanged. New diagram kinds: `Stage3Yocto` (build pipeline → image →
+SBOM), `Stage6Rtos` (Linux↔RTOS split + RPMsg packets, per-platform RT
+core), `Stage9Sdk` (dev→eSDK→target + profiling scope + CI/HIL,
+reusing the oscilloscope motif). Relocated: boot→S4, kernel→S5,
+middleware→S7 (now uses named `*-robotics`/`*-vision`/… image variants),
+ota→S8. Dropped old `Stage8Perf` / `Stage9Mfg`. `make build && make
+lint` both clean; verified all 9 stages render with per-platform data
+on /arches and /zion.
