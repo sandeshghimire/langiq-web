@@ -79,12 +79,12 @@ export default function ContactForm() {
               className="mono-input w-full appearance-none cursor-pointer bg-white"
             >
               <option value="" disabled>Select a platform ...</option>
-              <option value="Arches">Arches</option>
-              <option value="Acadia">Acadia</option>
-              <option value="Zion">Zion</option>
-              <option value="Pinnacle">Pinnacle</option>
-              <option value="Joshua">Joshua</option>
-              <option value="Sequoia">Sequoia</option>
+              <option value="NVIDIA Jetson">NVIDIA Jetson</option>
+              <option value="Raspberry Pi">Raspberry Pi</option>
+              <option value="AMD Xilinx Zynq">AMD Xilinx Zynq</option>
+              <option value="NXP i.MX">NXP i.MX</option>
+              <option value="TI Sitara">TI Sitara</option>
+              <option value="Intel / AMD x86">Intel / AMD x86</option>
               <option value="Not sure yet">Not sure yet</option>
             </select>
           </div>
